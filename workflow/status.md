@@ -101,19 +101,6 @@ Verify the fracture equivalence for `ℤ` — discrete type; ♭ℤ ≃ ℤ and 
 
 S¹ excluded: site is Bℤ with ℤ foregrounded; including S¹ would reintroduce the topological viewpoint we deliberately set aside.
 
-## Next session — memory update
-
-Concepts from this session that may be memory-worthy (to confirm/veto and persist into the memory folder):
-
-- **Negative anchoring** as the role of `workflow/conversation.md` — and the broader principle that some files in the project exist specifically to forestall default-LLM mis-readings. A collaboration pattern unique to how we work, not derivable from the code.
-- **The math is a subsystem of the broader project, not its totality** — the framing for `workflow/motivation.md`. A standing reminder against the drift where the formalism starts to feel self-sufficient.
-- **Decisions Log split: Relevant in-flow, Archived at bottom** — an organizational pattern that worked here and might apply elsewhere.
-- **Propose-with-numbered-items → user replies OK/IGNORE/QUESTION** — the collaboration pattern used in this session worked very efficiently; worth naming as a default for non-trivial multi-part proposals.
-
-### Action
-
-Update Claude's memory folder (`workflow/memory/`) with the current status of the project and the concepts above.
-
 ## Next step
 
 **`agda/ModalHoTT/Modalities/Fracture.agda`** (synthetic) + **`agda/Analytic/ModalHoTT/Modalities/Fracture.agda`** (analytic). Synthetic: one postulate stating the fracture square is a pullback; commutativity attempted from `flat-sharp-counit-compat` + flat functoriality, postulated if blocked. Analytic: verify the fracture equivalence for ℤ — discrete, so the pullback collapses cleanly. Bℤ excluded analytically: needs `♯(Bℤ)`, which is undefined (see Cohesion.agda).

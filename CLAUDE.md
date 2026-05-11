@@ -6,7 +6,18 @@ Establish a conjecture/theorem: while HoTT is the most appropriate *foundation* 
 
 ## Current Phase
 
-Encoding modal HoTT in Agda. Entry point: the site for the ∞-topos is the delooping of the circle (BΩ / B¹). Start there.
+The site for the ∞-topos is **Bℤ** (delooping of the integers — the algebra, not the topology, is what's load-bearing; `workflow/conversation.md` explicitly rejects "site is S¹"). Synthetic and analytic tracks both have `Cohesion`, `Adjunctions`, and `Properties` files complete.
+
+**Current task: the fracture theorem** — the canonical pullback square
+
+```
+♭A ————→ A
+ |        |
+ ↓        ↓
+♭(♯A) ——→ ♯A
+```
+
+as the geometric backbone for the de Rham separation result (the arc target). See `workflow/status.md` for the precise plan.
 
 ## Roles
 
@@ -24,14 +35,23 @@ Encoding modal HoTT in Agda. Entry point: the site for the ∞-topos is the delo
 
 ## Directory Layout
 
-**Start with `workflow/README.md`** — it is the onboarding map for the project and lists the read order for the rest of the workflow folder.
+**Start with `workflow/README.md`** — it is the onboarding map and lists the read order (arc.md → targets.md → status.md, then references).
 
 ```
-agda/          Agda source files
-workflow/      Project management artifacts
-  README.md    Onboarding map (read first)
-  prompts.md   Original goal and first-step prompts
-  status.md    Current state, blockers, decisions log
+agda/
+  ModalHoTT/           Synthetic (axiomatic) track — modalities postulated
+  Analytic/ModalHoTT/  Analytic (verification) track — demonstrates non-vacuity
+  Concurrency/         B-side stub (dormant; ThreePointedStruct only)
+workflow/              Project management; read README.md first
+  README.md            Onboarding map
+  arc.md               Cohesive reformulation (Allow ⊣ Mediate ⊣ Require)
+  targets.md           T1–T7: concrete propositions decomposing the arc
+  status.md            Current state, live decisions, blockers
+  motivation.md        Philosophical seed (the math is a subsystem of this)
+  conversation.md      Negative anchoring — defaults the project rejects
+  naming.md            Modality vocabulary (♭/♯/ʃ)
+  related_structures.md  Adjacent frameworks (Connes, Bennequin/Belfiore/Laforgue)
+  memory/              Symlink to Claude auto-memory for this project
 ```
 
 ## Agda Notes
