@@ -24,9 +24,12 @@ Encoding modal HoTT in Agda. Entry point: the site for the ∞-topos is the delo
 
 ## Directory Layout
 
+**Start with `workflow/README.md`** — it is the onboarding map for the project and lists the read order for the rest of the workflow folder.
+
 ```
 agda/          Agda source files
 workflow/      Project management artifacts
+  README.md    Onboarding map (read first)
   prompts.md   Original goal and first-step prompts
   status.md    Current state, blockers, decisions log
 ```

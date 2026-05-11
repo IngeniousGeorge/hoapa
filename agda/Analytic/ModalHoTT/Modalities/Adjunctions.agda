@@ -94,6 +94,9 @@ module Analytic.ModalHoTT.Modalities.Adjunctions where
 
 open import Cubical.Foundations.Prelude
 open import Cubical.Foundations.Equiv
+open import Cubical.Foundations.Isomorphism
+open import Cubical.Data.Int using (ℤ)
+open import Cubical.Data.Int.Properties using (isSetℤ)
 
 open import Analytic.ModalHoTT.Modalities.Cohesion
 
@@ -113,7 +116,13 @@ private
 -- postulate is witnessed here by reflexivity.
 ------------------------------------------------------------------------
 
--- trivial code to be added
+-- ♭ ⊣ ♯ for ℤ: (♭ℤ → ℤ) ≃ (ℤ → ♯ℤ); all modalities are identity.
+flat-sharp-integers : (FlatOfIntegers → ℤ) ≃ (ℤ → SharpOfIntegers)
+flat-sharp-integers = idEquiv (ℤ → ℤ)
+
+-- ʃ ⊣ ♭ for ℤ: (ʃℤ → ℤ) ≃ (ℤ → ♭ℤ); all modalities are identity.
+shape-flat-integers : (ShapeOfIntegers → ℤ) ≃ (ℤ → FlatOfIntegers)
+shape-flat-integers = idEquiv (ℤ → ℤ)
 
 ------------------------------------------------------------------------
 -- Adjunctions for Bℤ — ʃ ⊣ ♭
@@ -129,7 +138,28 @@ private
 -- the adjunction breaks.
 ------------------------------------------------------------------------
 
--- trivial code to be added
+-- Any map Bℤ → ℤ is determined by its value at base-pt: ℤ is a set,
+-- so every loop in ℤ is refl, and the constraint from translation-step
+-- forces the map to be constant on the path.
+private
+  maps-to-int-const : (f : DeloopingOfIntegers → ℤ) (x : DeloopingOfIntegers)
+                    → f x ≡ f base-pt
+  maps-to-int-const f base-pt         = refl
+  maps-to-int-const f (translation-step j) k =
+    isSetℤ (f base-pt) (f base-pt) (cong f translation-step) refl k j
+
+-- (Bℤ → ℤ) ≃ ℤ: the right side of the adjunction (Bℤ → Bℤ) ≃? (Bℤ → ℤ).
+--
+-- The left side (Bℤ → Bℤ) is larger: a map Bℤ → Bℤ is determined by a
+-- point x : Bℤ and a loop p : x ≡ x, giving Σ[x ∈ Bℤ](x ≡ x) ≃ Bℤ × ℤ
+-- (using loop-space-equiv). Bℤ × ℤ ≇ ℤ (not discrete), so the adjunction
+-- fails at (A, B) = (Bℤ, Bℤ).
+maps-into-integers : (DeloopingOfIntegers → ℤ) ≃ ℤ
+maps-into-integers = isoToEquiv (iso
+  (λ f   → f base-pt)
+  (λ n _ → n)
+  (λ _   → refl)
+  (λ f   → sym (funExt (maps-to-int-const f))))
 
 ------------------------------------------------------------------------
 -- Adjunctions for Bℤ — ♭ ⊣ ♯

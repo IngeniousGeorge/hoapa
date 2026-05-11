@@ -1,5 +1,20 @@
 # Main prompts
 
+## Why this file exists — *negative anchoring*
+
+This file is not a historical chat log. Its job is to forestall the default-LLM mis-readings of this project — the framings a fresh agent will reach for out of habit, but which the instigator has explicitly rejected. Read it as **corrections-against-assumptions**.
+
+Defaults this file rules out, in particular:
+
+- "The project is *modal HoTT vs HoTT*." — Rejected. The framing is *modal HoTT as extending HoTT-as-foundation along the developmental axis*. See "On the structural conjecture".
+- "The site is the circle / S¹." — Rejected. The site is the delooping of ℤ. The algebraic structure (subgroup inclusions, comonad story, Lawvere on ℤ) is what's load-bearing, not the topology. See "Goal & first step" + "Precisions".
+- "The concurrency / 3-marked-points leg is decorative." — Rejected. It is a co-equal conjecture (community-of-agents, actor model + session types); the full scope is what makes the math conjecture provable rather than opinion. See "On 3 marked points" + "On the structural conjecture".
+- "The synthetic side alone is enough." — Rejected. The analytic two-track exists because both instigator and agent need machine-checked grounding during development, and the eventual presentation can't rest on postulates alone. See "3 roles".
+
+If you find yourself drifting toward one of these defaults, that is the moment to re-read the corresponding instigator prompt below.
+
+---
+
 ### Instigator - 3 roles
 
 We are a trio, me the human instigator, you the LLM agent and it the proof checker. I'm not a recognized  
@@ -33,51 +48,6 @@ Then it has more chances of being provable. It needs this full scope to be compl
 
 Synthetic/axiomatic — postulate the cohesion modalities (shape ʃ, flat ♭, sharp ♯) as axioms and develop modal HoTT from there. This is how Wellen, Myers, and Shulman have actually worked in Agda/Coq. The site never appears as a Agda object — it lives in the semantic background justifying the axioms. ... agda/ModalHoTT/Modalities/ is the right starting point, with the cohesion modalities postulated as axioms. That's the first real Agda file — something like Cohesion.agda postulating shape, flat, and sharp with their units and the key adjunctions. Keeping in mind that Bℤ is the intended semantic model for the axioms.
 
-### Claude - The sharp story
-
-What would allow us to unlock the sharp story? And what would that buy us and give us as new directions?                                                                                      
-
-● Two separate questions: what unlocks ♯, and what does it buy.                                                                                                                                 
-
----                                                                                                                                                                                           
-What would unlock ♯
-
-On the synthetic side, the blocker is dependent elimination for ♯ (the open question already in status.md). With ♯-ind, IsSharpModal (♯A) becomes a theorem rather than a postulate, and
-sharp-map-id / sharp-map-comp follow. This is the same structural gap as for ʃ, and has the same resolution: a proof assistant that implements ♯ as a genuine modal type former with dependent
-recursion.
-
-On the analytic side for Bℤ, the blocker is deeper: no concrete cubical Agda construction for ♯(Bℤ) is known. In Shulman's real-cohesive HoTT, ♯ is tied to the interval ℝ — ♯X can be thought
-of as X with all points connected by real-valued paths, making it "maximally cohesive." For Bℤ in that model, ♯(Bℤ) is likely contractible (ℝ-connectedness collapses everything). But
-contractibility of ♯(Bℤ) is inconsistent with the fracture theorem holding for Bℤ with our ♭(Bℤ) = ℤ — the fracture pullback would then give ℤ ≃ Bℤ, which is false. So either our ♭(Bℤ) = ℤ  
-is wrong in that model (which we already know), or the real-cohesive model is the wrong intuition for our Bℤ site.
-
-The clean unlock for the analytic side is the same as for the adjunction: crisp type theory implementing ♯ as a proper modality, where ♯(Bℤ) would be computable from the type-theoretic rules
-rather than requiring a concrete cubical construction.
-
----             
-What it buys
-
-Immediately: the fracture theorem for Bℤ analytically. The pullback square uses ♯A — without ♯(Bℤ) the analytic Fracture.agda is bounded to ℤ. Getting ♯ is the prerequisite for verifying the
-fracture theorem on the most interesting type we have.                                                                                                                                       
-
-The ♭ ⊣ ♯ adjunction as a pair with ʃ ⊣ ♭: Right now we have the "global" half of cohesion (ʃ sees the shape, ♭ sees the discrete skeleton). ♯ completes the "local" half — it is the         
-codiscrete reflection, the type seen from the ambient connected world rather than from the discrete skeleton. Having both adjoints of ♭ gives the full local-global interplay, which is the
-geometric content of the fracture theorem.                                                                                                                                                    
-
-New directions:
-
-- Differential cohomology: The canonical construction in cohesive HoTT is the pullback H^n(X,ℤ) ×_{H^n(X,ℝ)} Ω^n(X) — flat integral classes, real forms, and the comparison. Both ♭ (integral,
-discrete) and ♯ (real, ambient) appear. This is the first genuinely new object that requires all three modalities and is not statable in plain HoTT.
-- The Poincaré lemma synthetically: De Rham cohomology equals cohomology with flat coefficients. The statement uses ʃ and ♭; the proof uses ♯ to mediate between the two. This is the most    
-direct formalization of the separation result — something that cannot even be stated without all three modalities.                                                                            
-- The creativity/provability axis of the conjecture: ♭ encodes the formal, discrete, provable side; ♯ encodes the ambient, connected, everywhere-related side. The ♭ ⊣ ♯ adjunction is the
-mathematical expression of the tension between these. Lawvere's fixed-point theorem applied to the ♭-comonad and ♯-monad gives a precise handle on the fixed-point/no-fixed-point distinction 
-that the conjecture draws on.
-
-In short: ♯ is the door to the de Rham story, which is the door to the separation result
-
----
-
 ## Useful prompts
 
 ### After clear
@@ -86,4 +56,4 @@ Next is open:
 Please have a look at the files in workflow and tell me where you want to go next. Either with the next step as planned or if you feel something must be corrected/added.
 
 Next is set:
-Please have a look at the files in workflow and make sure you understand the next step. Don't hesitate to tell me if you feel something must be corrected/added. 
+Please have a look at the files in workflow and make sure you understand the next step. Don't hesitate to tell me if you feel something must be corrected/added.
