@@ -8,7 +8,7 @@ Establish a conjecture/theorem: while HoTT is the most appropriate *foundation* 
 
 The site for the ∞-topos is **Bℤ** (delooping of the integers — the algebra, not the topology, is what's load-bearing; `workflow/only_read_if_asked_to/conversation.md` explicitly rejects "site is S¹"). Synthetic and analytic tracks both have `Cohesion`, `Adjunctions`, `Properties`, and `Fracture` files complete.
 
-**Current task: the de Rham separation arc.** Fracture has landed (synthetic postulate + analytic ℤ verification). The next step is the de Rham separation result — exhibit something stateable in cohesive HoTT but not in plain HoTT. A three-way branching point is pending: (i) abstract coefficients `ʃX → B` for flat-modal `B`, (ii-weak) instantiate at postulated ℝ, (ii-strong) full differential cohesion with the infinitesimal shape modality ℑ. See `workflow/status.md` "Discussion of the next step" for the live reading; `workflow/only_read_if_asked_to/rug.md` for what (ii-strong) would cost.
+**Current task: the de Rham separation arc.** Fracture has landed (synthetic postulate + analytic ℤ verification). The next step is the de Rham separation result — exhibit something stateable in cohesive HoTT but not in plain HoTT. A three-way branching point is pending — the **de Rham depth ladder**: **structural** (abstract coefficients `ʃX → B` for flat-modal `B`), **named-coefficient** (instantiate at postulated ℝ), **differential** (full differential cohesion with the infinitesimal shape modality ℑ). See `workflow/status.md` "Discussion of the next step" for the live reading; `workflow/only_read_if_asked_to/rug.md` for what the differential level would cost.
 
 ## Roles
 

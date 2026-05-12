@@ -60,11 +60,11 @@ Live decisions still shaping current work. See *Decisions Log — Archived* at t
 
 ## Current Task
 
-**Post-fracture: de Rham separation arc.** Fracture has landed (`agda/ModalHoTT/Modalities/Fracture.agda` synthetic + `agda/Analytic/ModalHoTT/Modalities/Fracture.agda` analytic ℤ). The arc target is unchanged — exhibit something naturally stateable in cohesive HoTT that is not stateable in plain HoTT — but the route to it is now an open branching point. See *Discussion of the next step* below for the (i)/(ii) split (abstract coefficients vs. ℝ axiomatized); pending decision.
+**Post-fracture: de Rham separation arc.** Fracture has landed (`agda/ModalHoTT/Modalities/Fracture.agda` synthetic + `agda/Analytic/ModalHoTT/Modalities/Fracture.agda` analytic ℤ). The arc target is unchanged — exhibit something naturally stateable in cohesive HoTT that is not stateable in plain HoTT — but the route to it is now an open branching point. See *Discussion of the next step* below for the de Rham depth ladder (structural / named-coefficient / differential); pending decision.
 
 ## Next step
 
-Resolve the (i)/(ii) branching point in *Discussion of the next step*. Once chosen, draft the first file of the de Rham arc accordingly. No code action on the A-side until the branching point is settled.
+Resolve which level of the de Rham depth ladder to write next, in *Discussion of the next step*. Once chosen, draft the first file of the de Rham arc accordingly. No code action on the A-side until the branching point is settled.
 
 ## Unlocking ♯ — what it costs and what it buys
 
@@ -129,3 +129,19 @@ Settled implementation notes, one-time choices, and dead-end pruning. Kept so th
 
 ## Discussion of the next step
 
+The inertial answer, per rug.md, is named-coefficient (postulate ℝ, instantiate structural at B := ♭ℝ). One clean file, slots into Cohomology/. Worth doing eventually.
+
+I'd push back on that as the immediate next step. Two reasons:
+
+(a) Pin the structural map first. The file I just wrote gives a bare equivalence. The canonical map f ↦ f ∘ shape-unit isn't pinned. For a separation result this matters — separation is "the
+canonical map is the equivalence," not "an equivalence exists." Pinning needs either adjunction-naturality or the IsFlatModal ↔ IsShapeModal bridge — both already in Open Questions.
+Resolving the bridge (one short postulate or one direction derivable) cleans up the structural file, unblocks several other Open Questions, and is a prerequisite for any clean ♯-side work
+later. One file's work, high leverage.
+
+(b) Consider sideways instead of upward. Three rungs deep into A-side consequences and T1 still has no Agda. If T1 is genuinely foundational, the strategy of "finish A's downstream, then
+build the bridge" has a cost: every A-side result is currently statable without the conjecture-leg, which is what makes the treadmill so tempting. A stubbed ModalHoTT/Arc/AdjointTriple.agda
+that just names the three Arc modalities (Allow, Mediate, Require) and states the triple — even with everything postulated — would re-orient the project. It also forces the question of
+whether the middle slot has content (arc.md §3 leaves that open).
+
+My genuine recommendation: (a) before climbing the ladder, then take a hard look at (b). Pin the structural map; while doing it, draft a one-paragraph plan for whether the Arc triple gets
+its own file before named-coefficient. If yes, write a stub. If no, articulate why, and the ladder is justified.
