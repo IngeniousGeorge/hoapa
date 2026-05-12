@@ -55,55 +55,16 @@ Live decisions still shaping current work. See *Decisions Log — Archived* at t
 - [ ] Missing bridge: `IsShapeModal` and `IsFlatModal` are defined independently but should pick out the same class of types (the discrete types) in any cohesive model. The identification `IsShapeModal A ↔ IsFlatModal A` is not yet stated. It underlies the coherence of `shape-rec` (which requires `IsShapeModal`) and `shape-flat-transpose` (the full adjunction, no modal condition) — without it, future derivations that cross between the two may need an ad hoc postulate.
 - [ ] Missing monad/comonad structure: comultiplication δ : ♭A → ♭(♭A), multiplication μ : ʃ(ʃA) → ʃA, and the corresponding structure for ♯. These follow from idempotency by abstract nonsense and are trivial in the idempotent case, but are currently unnamed. Defer until something concretely needs them.
 - [ ] `agda/Analytic/toy/` branch — a thorough construction of the synthetic structure using more pinpointed instances for the higher structures we work with. Alternative to the current ℤ-only analytic track; would broaden what gets verified without requiring full crisp-context support. Deferred. (Note migrated from `conversation.md`.)
+- [ ] ♯ as a lex modality (preserves finite limits) — would turn `fracture` from a postulate into a theorem; deferred along with crisp contexts since the analytic side of ♯ is blocked anyway.
+- [ ] Naturality of the fracture equivalence in A — currently postulated as a bare `isEquiv` on the canonical map; naturality in A is what would let fracture commute with constructions on diagrams (e.g. differential cohomology pullbacks). Same shape as the existing adjunction-naturality entry; defer until a downstream use forces it.
 
 ## Current Task
 
-**Fracture theorem** — `agda/ModalHoTT/Modalities/Fracture.agda` (synthetic) + `agda/Analytic/ModalHoTT/Modalities/Fracture.agda` (analytic test suite).
-
-**Target: separation result via de Rham / local-global cohomology.** Exhibit something naturally stateable in cohesive HoTT that is not stateable in plain HoTT — specifically, the synthetic de Rham theorem (differential forms as maps ʃX → ♭ℝ; de Rham cohomology equals cohomology with flat coefficients). You cannot even define "locally constant" or "differential form" synthetically without ♭ and ʃ. This is the most direct formalization of the foundation-vs-praxis distinction.
-
-The fracture theorem is the geometric backbone of the separation result: it is what makes ♭ and ʃ interact in a non-trivial way, and it grounds the local/global distinction that de Rham theory formalizes.
-
-
-### Fracture theorem: what it says
-
-For any type A, there is a canonical pullback square:
-
-```
-♭A ————→ A
- |              |
- ↓              ↓
-♭(♯A) ——→ ♯A
-```
-
-- Top: `flat-counit : FlatModality A → A`
-- Right: `sharp-unit : A → SharpModality A`
-- Left: `flat-map sharp-unit : FlatModality A → FlatModality (SharpModality A)` (from Properties.agda)
-- Bottom: `flat-counit {A = SharpModality A} : FlatModality (SharpModality A) → SharpModality A`
-
-The square commutes by naturality of `flat-counit`. The fracture theorem is the claim that it is in fact a **pullback** — i.e., that `FlatModality A` is equivalent to the pullback type:
-
-```
-Σ[ a ∈ A ] Σ[ u ∈ FlatModality (SharpModality A) ] sharp-unit a ≡ flat-counit u
-```
-
-All four maps are available from existing files. The only new postulate is that this specific square is a pullback.
-
-### Synthetic plan (Fracture.agda)
-
-One postulate: `FractureSquare : (A : Type ℓ) → FlatModality A ≃ <pullback type>`.
-
-Commutativity of the square — needed to even state the pullback correctly — should be derivable from `flat-sharp-counit-compat` in Adjunctions.agda plus flat functoriality. Attempt to prove it; postulate if blocked.
-
-### Analytic plan (Analytic/ModalHoTT/Modalities/Fracture.agda)
-
-Verify the fracture equivalence for `ℤ` — discrete type; ♭ℤ ≃ ℤ and ♯ℤ ≃ ℤ; pullback should collapse cleanly. Concrete definitions of ♭ and ♯ for ℤ are now in `Analytic.ModalHoTT.Modalities.Cohesion` (all trivial — identity maps).
-
-S¹ excluded: site is Bℤ with ℤ foregrounded; including S¹ would reintroduce the topological viewpoint we deliberately set aside.
+**Post-fracture: de Rham separation arc.** Fracture has landed (`agda/ModalHoTT/Modalities/Fracture.agda` synthetic + `agda/Analytic/ModalHoTT/Modalities/Fracture.agda` analytic ℤ). The arc target is unchanged — exhibit something naturally stateable in cohesive HoTT that is not stateable in plain HoTT — but the route to it is now an open branching point. See *Discussion of the next step* below for the (i)/(ii) split (abstract coefficients vs. ℝ axiomatized); pending decision.
 
 ## Next step
 
-**`agda/ModalHoTT/Modalities/Fracture.agda`** (synthetic) + **`agda/Analytic/ModalHoTT/Modalities/Fracture.agda`** (analytic). Synthetic: one postulate stating the fracture square is a pullback; commutativity attempted from `flat-sharp-counit-compat` + flat functoriality, postulated if blocked. Analytic: verify the fracture equivalence for ℤ — discrete, so the pullback collapses cleanly. Bℤ excluded analytically: needs `♯(Bℤ)`, which is undefined (see Cohesion.agda).
+Resolve the (i)/(ii) branching point in *Discussion of the next step*. Once chosen, draft the first file of the de Rham arc accordingly. No code action on the A-side until the branching point is settled.
 
 ## Unlocking ♯ — what it costs and what it buys
 
@@ -145,6 +106,8 @@ None currently. Note: cubical library uses infective flags (`--guardedness`); ev
 - [x] `agda/Analytic/ModalHoTT/Modalities/Adjunctions.agda` — ℤ adjunctions as `idEquiv` (both `♭ ⊣ ♯` and `ʃ ⊣ ♭`); for Bℤ, the diagnostic lemma `maps-into-integers : (DeloopingOfIntegers → ℤ) ≃ ℤ` (any map Bℤ → ℤ is constant, forced by `isSetℤ`) — companion to the free-loop-space obstruction `(Bℤ → Bℤ) ≃ Bℤ × ℤ`. Documents: why the type-level adjunction fails for (Bℤ, Bℤ); why `♭(Bℤ) = ℤ` is not the correct ♭ for any model where the adjunction holds; crisp contexts as the intended future path. No postulates.
 - [x] `agda/Analytic/ModalHoTT/Modalities/Properties.agda` — flat/shape/sharp map and id/comp laws for ℤ (all `refl`); shape-map for Bℤ trivial (`ʃBℤ = Bℤ`); flat-map for Bℤ documented as blocked (mirrors `¬-IsFlatModal-delooping`); sharp-map for Bℤ deferred (`♯(Bℤ)` undefined). No postulates.
 - [x] `flat-counit-natural` added to `Properties.agda` (synthetic + analytic ℤ mirror) — derived theorem from `flat-ind` + `flat-counit-intro`, no new postulates; supplies the commutativity of the fracture square as a special case at `f = sharp-unit`.
+- [x] `agda/ModalHoTT/Modalities/Fracture.agda` — synthetic; `FracturePullback` as inline Σ Σ ≡; `fracture-square-commutes` derived from `flat-counit-natural`; `flat-to-pullback` canonical map; single postulate `fracture : isEquiv (flat-to-pullback A)` framed as ♯-lex shortcut; derived `fracture-equiv`. Header notes synthetic/analytic asymmetry at Bℤ (♯(Bℤ) undefined analytically, so the postulate's Bℤ instance is a synthetic-only commitment).
+- [x] `agda/Analytic/ModalHoTT/Modalities/Fracture.agda` — analytic ℤ; pullback collapses definitionally to `Σ ℤ singl`; canonical map sends `n` to `(n, n, refl)`; `isEquiv` via `isoToEquiv` of an `Iso` with `fst` as inverse, section lifted from `isContrSingl n .snd`. No postulates. Bℤ excluded (♯(Bℤ) undefined).
 
 ## Decisions Log — Archived
 
@@ -160,160 +123,20 @@ Settled implementation notes, one-time choices, and dead-end pruning. Kept so th
 | 2026-05-07 | ℤ-spaces dismissed as analytic model | PhD-scale infrastructure cost; misaligned with analytic folder's role and with the crisp-context design goal |
 | 2026-05-07 | free-loop-space obstruction to be a named lemma in analytic Adjunctions.agda | (Bℤ → Bℤ) ≃ Bℤ × ℤ records where and why the adjunction breaks; uses loop-space-equiv; belongs in the file as an explicit obstruction witness. Implemented |
 | 2026-05-11 | `(Bℤ → ℤ) ≃ ℤ` recorded as a named lemma in analytic Adjunctions.agda | Companion to the free-loop-space obstruction: right side of the would-be (Bℤ, Bℤ) adjunction is just ℤ, while the left side (Bℤ → Bℤ) ≃ Bℤ × ℤ; together they pinpoint where the adjunction fails. Proof uses `isSetℤ` to force the loop on `translation-step` to refl, so every map Bℤ → ℤ is constant. Implemented |
+| 2026-05-12 | Fracture postulated as `isEquiv (flat-to-pullback A)`, not bare `≃` | Pins the specific mediating map (workflow rule 4); a bare ≃ would let any equivalence count |
+| 2026-05-12 | Fracture pullback type defined inline as Σ Σ ≡, not via a stdlib pullback type | Three lines; no import burden; the unfolded form is what the analytic ℤ proof needs (`isContrSingl` on the inner Σ) |
+| 2026-05-12 | ♯-lex framed in synthetic Fracture.agda header (and Open Questions) as the meta-axiom that would derive `fracture` | Documents that `fracture` is a theorem in real-cohesive HoTT, not a deeper independent claim; same register as the `flat-intro` crisp-context note in Cohesion.agda |
 
-## Detailed plan of the next step
+## Discussion of the next step
 
-Plan: Fracture.agda (synthetic + analytic ℤ)
+Branching point — the one I'd most like a decision on
 
-  Two files
+  What does the de Rham step after fracture look like? Two paths:
 
-  - agda/ModalHoTT/Modalities/Fracture.agda — synthetic; the fracture axiom.
-  - agda/Analytic/ModalHoTT/Modalities/Fracture.agda — analytic ℤ; no postulates.
+  - (i) Abstract coefficients. State de Rham as: for any flat-modal B, ʃX → B characterizes flat B-cohomology of X. No ℝ as primitive. Lighter on postulates, closer to the project's "minimal
+  modal infrastructure" ethos, and arguably already enough for the separation point (the existence of ♭ is what plain HoTT lacks).
+  - (ii) ℝ axiomatized. Postulate ℝ with its modal properties, then state de Rham specifically as ʃX → ♭ℝ ≃ differential forms ≃ de Rham cohomology. More rhetorical force (it's the de Rham
+  theorem rather than an abstract reflection statement) but adds a substantial postulate budget and a new axiomatic object.
 
-  Synthetic — declarations in order
-
-  1. Pullback type (one line, no postulate):
-  FracturePullback : Type ℓ → Type ℓ
-  FracturePullback A = Σ[ a ∈ A ] Σ[ u ∈ FlatModality (SharpModality A) ]
-                         sharp-unit a ≡ flat-counit u
-
-  2. Commutativity of the square — derived theorem; one line; the payload of yesterday's flat-counit-natural:
-  fracture-square-commutes : (A : Type ℓ) (v : FlatModality A)
-    → sharp-unit (flat-counit v) ≡ flat-counit (flat-map sharp-unit v)
-  fracture-square-commutes A v = sym (flat-counit-natural sharp-unit v)
-  
-  3. The canonical map ♭A → Pullback:
-  flat-to-pullback : (A : Type ℓ) → FlatModality A → FracturePullback A
-  flat-to-pullback A v = flat-counit v
-                       , flat-map sharp-unit v
-                       , fracture-square-commutes A v
-  
-  4. The fracture axiom — the only new postulate:
-  postulate
-    fracture : (A : Type ℓ) → isEquiv (flat-to-pullback A)
-    
-  5. Equivalence form — derived, no new content:
-  fracture-equiv : (A : Type ℓ) → FlatModality A ≃ FracturePullback A
-  fracture-equiv A = flat-to-pullback A , fracture A
-  
-  Analytic — ℤ only, Bℤ excluded
-
-  1. Pullback type for ℤ — using the actual modality functions; since sharp-unit-integers and flat-counit-integers are both identity, this reduces definitionally to Σ ℤ (λ n → Σ ℤ (λ m → n ≡ 
-  m)):
-  FracturePullbackIntegers : Type₀
-  FracturePullbackIntegers =
-    Σ[ n ∈ ℤ ] Σ[ m ∈ ℤ ] sharp-unit-integers n ≡ flat-counit-integers m
-
-  2. Canonical map — sends n to (n, n, refl):
-  flat-to-pullback-integers : FlatOfIntegers → FracturePullbackIntegers
-  flat-to-pullback-integers n = n , n , refl
-  
-  3. It's an equivalence — by singleton contractibility on the second factor. Inverse is fst; section is refl; retraction is J on the path component:
-  IsFracture-integers : isEquiv flat-to-pullback-integers
-  -- Proof skeleton: isoToEquiv of an Iso whose retract is
-  --   J (λ m' p' → (n , n , refl) ≡ (n , m' , p')) refl p
-
-  Optional 4: the ≃ form for symmetry with the synthetic file. Likely worth including.
-
-  Bℤ excluded — same reason as the analytic adjunction: SharpOfDeloopingOfIntegers is undefined in Cohesion.agda, so the pullback type cannot even be stated.
-
-  Design choices to flag
-
-  - Postulate isEquiv (canonical-map), not ≃ over an opaque map. Mathematical fidelity (workflow rule 4): the fracture theorem says this specific canonical map mediating the modal data is the
-  equivalence — a bare ≃ postulate would lose that pin and let any equivalence count. Trade-off: one extra line (deriving fracture-equiv from the postulate).
-  - Pullback defined inline as Σ Σ ≡, not via a stdlib pullback type. Matches status.md's spec verbatim; three lines; no import burden. The unfolded form is also what the analytic ℤ proof
-  needs (J on the path component).
-  - Naming. fracture for the postulate, fracture-equiv for the derived ≃, flat-to-pullback for the canonical map, fracture-square-commutes for the naturality square. Matches the conciseness of
-   flat-modality-idempotent etc. in Adjunctions.agda.
-
-  New imports
-
-  - Synthetic: add Cubical.Data.Sigma (for Σ[...] syntax). Otherwise just Cohesion + Properties.
-  - Analytic: same Cubical.Data.Sigma, plus Cubical.Foundations.Isomorphism (for iso / isoToEquiv). Imports Cohesion + Properties from the analytic side.
-
-  No new library dependencies beyond what Cubical already provides.
-
-  Postulate budget
-
-  - Synthetic: +1 (fracture). All other declarations are definitions or derived theorems.
-  - Analytic: 0. No postulates; structurally clean.
-
-  Verification
-
-  Type-check both files (cd agda && agda --cubical ...). Report success; status.md update afterwards.
-
-  What this unblocks (forward-looking, not part of this PR)
-
-  - De Rham separation: once fracture is in, the next step is differential forms as ʃX → ♭ℝ and the cohomology comparison. That's the arc target — fracture is the geometric backbone.
-  - Analytic Bℤ fracture: still blocked on ♯(Bℤ). Out of scope here; flagged in the file's module comment.
-
-## Second opinion (only status as context)  
-
-Here are the targeted edits I'd propose. I'll show them as before/after on the affected blocks rather than as a free-form rewrite, so you can see exactly what shifts. (Not editing the file —
-   flagging for your approval first, per workflow rule 1.)
-
-  Edit 1 — Synthetic plan, step 4 (the fracture postulate)
-
-  Before (lines ~191–194):
-    4. The fracture axiom — the only new postulate:
-    postulate
-      fracture : (A : Type ℓ) → isEquiv (flat-to-pullback A)
-
-  After:
-    4. The fracture axiom — the only new postulate.
-       File-level comment to accompany it: in real-cohesive HoTT this is a
-       theorem, derived from ♯ being a lex modality (preserves finite limits).
-       We do not postulate ♯-lex separately; we postulate the specific
-       pullback equivalence we need. Same register as the `flat-intro`
-       crisp-context note in Cohesion.agda.
-
-    postulate
-      fracture : (A : Type ℓ) → isEquiv (flat-to-pullback A)
-      
-  Edit 2 — Analytic plan, step 3 (the isEquiv proof)
-
-  Before (lines ~211–215):
-    3. It's an equivalence — by singleton contractibility on the second factor. Inverse is fst; section is refl; retraction is J on the path component:
-    IsFracture-integers : isEquiv flat-to-pullback-integers
-    -- Proof skeleton: isoToEquiv of an Iso whose retract is
-    --   J (λ m' p' → (n , n , refl) ≡ (n , m' , p')) refl p
-
-  After:
-    3. It's an equivalence — the second-and-third factors form a singleton
-       `singl n`, contractible by `isContrSingl`. Two equally clean routes:
-       (a) `isoToEquiv` of an Iso with `fst` as inverse, retract proved via
-           `isContrSingl n .snd`; section refl.
-       (b) `isOfHLevelRetractFromIso 0 …` straight to contractibility of the
-           pullback fiber, then `isContr→isEquiv`.
-       Prefer whichever type-checks with fewer auxiliary lemmas; (a) is the
-       more direct mirror of the synthetic story.
-    IsFracture-integers : isEquiv flat-to-pullback-integers
-
-  Edit 3 — Imports note
-
-  Before (line ~232):
-    - Analytic: same Cubical.Data.Sigma, plus Cubical.Foundations.Isomorphism (for iso / isoToEquiv). Imports Cohesion + Properties from the analytic side.
-
-  After:
-    - Analytic: same Cubical.Data.Sigma, plus Cubical.Foundations.Isomorphism
-      (for iso / isoToEquiv) and Cubical.Foundations.HLevels (for isContrSingl).
-      Imports Cohesion + Properties from the analytic side.
-
-  Edit 4 — "Design choices to flag" gets one new bullet
-
-  Add after the existing three bullets (around line 227):
-    - Document ♯-lex as the meta-axiom that would derive fracture rather than
-      postulate it. Not introduced here — pinpointing the fracture pullback
-      directly is more economical than building general lex-modality
-      infrastructure — but called out in the file comment so the postulate is
-      not mistaken for a deeper independent claim.
-
-  One change outside this section (heads up)
-
-  The ♯-lex remark also wants a one-line Open Questions entry (around line 50, next to the existing ♯/ʃ dependent-induction bullet):
-
-  - [ ] ♯ as a lex modality (preserves finite limits) — would turn `fracture`
-        from a postulate into a theorem; deferred along with crisp contexts
-        since the analytic side of ♯ is blocked anyway.
-
-  That's a separate edit from the plan section, but the two belong together — without the Open Questions entry, the file-comment forward-reference dangles.
+  My lean: (i) first, then optionally (ii) as a concretization once the abstract version is in place. The reason to decide now (or at least flag) is that the synthetic Fracture.agda's header
+  comment will want to forward-reference what fracture is in service of, and "abstract de Rham" vs. "ℝ-de Rham" changes that sentence.
