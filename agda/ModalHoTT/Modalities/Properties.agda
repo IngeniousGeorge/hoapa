@@ -28,7 +28,7 @@ private
     ℓ ℓ' ℓ'' : Level
 
 ------------------------------------------------------------------------
--- Flat modality — functoriality
+-- Flat modality — functoriality and naturality
 ------------------------------------------------------------------------
 
 -- The functorial action of ♭.
@@ -60,6 +60,24 @@ flat-map-comp f g = flat-ind _
   (λ a → flat-ind-β _ (flat-intro ∘ g ∘ f) a
        ∙ sym (  cong (flat-map g) (flat-ind-β _ (flat-intro ∘ f) a)
               ∙ flat-ind-β _ (flat-intro ∘ g) (f a)))
+
+-- Naturality of the counit: flat-counit ∘ flat-map f ≡ f ∘ flat-counit.
+--
+-- The unit/counit-naturality square for ♭, completing its functorial data
+-- alongside flat-map-id and flat-map-comp. Proof mirrors flat-map-comp:
+-- flat-ind on the path goal, β-rules at the generator. At flat-intro a,
+-- the left side rewrites via flat-ind-β (unfolding flat-map) and
+-- flat-counit-intro; the right side via flat-counit-intro alone.
+--
+-- The analogous shape-unit-natural and sharp-unit-natural are blocked on
+-- dependent elimination for ʃ/♯, same gap that blocks shape-map-id etc.
+flat-counit-natural : {A : Type ℓ} {B : Type ℓ'}
+  (f : A → B) (u : FlatModality A)
+  → flat-counit (flat-map f u) ≡ f (flat-counit u)
+flat-counit-natural f = flat-ind _
+  (λ a →   cong flat-counit (flat-ind-β _ (flat-intro ∘ f) a)
+         ∙ flat-counit-intro (f a)
+         ∙ sym (cong f (flat-counit-intro a)))
 
 ------------------------------------------------------------------------
 -- Shape modality — functoriality

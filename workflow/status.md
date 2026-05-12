@@ -144,6 +144,7 @@ None currently. Note: cubical library uses infective flags (`--guardedness`); ev
 - [x] `agda/Analytic/ModalHoTT/Modalities/Cohesion.agda` — full 3×2 grid: ♭/ʃ/♯ instances for ℤ (all trivial); ♭/ʃ/♯ instances for Bℤ (♭: non-trivial, Bℤ is NOT flat-modal, machine-checked; ʃ: trivial, Bℤ is already a pure homotopy type; ♯: deferred, comment only — no cubical construction for codiscrete reflection of Bℤ). DeloopingOfIntegers HIT, deck transformations, universal cover, and Ω(Bℤ) ≃ ℤ are all defined in this file (not a separate Types/ file).
 - [x] `agda/Analytic/ModalHoTT/Modalities/Adjunctions.agda` — ℤ adjunctions as `idEquiv` (both `♭ ⊣ ♯` and `ʃ ⊣ ♭`); for Bℤ, the diagnostic lemma `maps-into-integers : (DeloopingOfIntegers → ℤ) ≃ ℤ` (any map Bℤ → ℤ is constant, forced by `isSetℤ`) — companion to the free-loop-space obstruction `(Bℤ → Bℤ) ≃ Bℤ × ℤ`. Documents: why the type-level adjunction fails for (Bℤ, Bℤ); why `♭(Bℤ) = ℤ` is not the correct ♭ for any model where the adjunction holds; crisp contexts as the intended future path. No postulates.
 - [x] `agda/Analytic/ModalHoTT/Modalities/Properties.agda` — flat/shape/sharp map and id/comp laws for ℤ (all `refl`); shape-map for Bℤ trivial (`ʃBℤ = Bℤ`); flat-map for Bℤ documented as blocked (mirrors `¬-IsFlatModal-delooping`); sharp-map for Bℤ deferred (`♯(Bℤ)` undefined). No postulates.
+- [x] `flat-counit-natural` added to `Properties.agda` (synthetic + analytic ℤ mirror) — derived theorem from `flat-ind` + `flat-counit-intro`, no new postulates; supplies the commutativity of the fracture square as a special case at `f = sharp-unit`.
 
 ## Decisions Log — Archived
 
@@ -159,3 +160,160 @@ Settled implementation notes, one-time choices, and dead-end pruning. Kept so th
 | 2026-05-07 | ℤ-spaces dismissed as analytic model | PhD-scale infrastructure cost; misaligned with analytic folder's role and with the crisp-context design goal |
 | 2026-05-07 | free-loop-space obstruction to be a named lemma in analytic Adjunctions.agda | (Bℤ → Bℤ) ≃ Bℤ × ℤ records where and why the adjunction breaks; uses loop-space-equiv; belongs in the file as an explicit obstruction witness. Implemented |
 | 2026-05-11 | `(Bℤ → ℤ) ≃ ℤ` recorded as a named lemma in analytic Adjunctions.agda | Companion to the free-loop-space obstruction: right side of the would-be (Bℤ, Bℤ) adjunction is just ℤ, while the left side (Bℤ → Bℤ) ≃ Bℤ × ℤ; together they pinpoint where the adjunction fails. Proof uses `isSetℤ` to force the loop on `translation-step` to refl, so every map Bℤ → ℤ is constant. Implemented |
+
+## Detailed plan of the next step
+
+Plan: Fracture.agda (synthetic + analytic ℤ)
+
+  Two files
+
+  - agda/ModalHoTT/Modalities/Fracture.agda — synthetic; the fracture axiom.
+  - agda/Analytic/ModalHoTT/Modalities/Fracture.agda — analytic ℤ; no postulates.
+
+  Synthetic — declarations in order
+
+  1. Pullback type (one line, no postulate):
+  FracturePullback : Type ℓ → Type ℓ
+  FracturePullback A = Σ[ a ∈ A ] Σ[ u ∈ FlatModality (SharpModality A) ]
+                         sharp-unit a ≡ flat-counit u
+
+  2. Commutativity of the square — derived theorem; one line; the payload of yesterday's flat-counit-natural:
+  fracture-square-commutes : (A : Type ℓ) (v : FlatModality A)
+    → sharp-unit (flat-counit v) ≡ flat-counit (flat-map sharp-unit v)
+  fracture-square-commutes A v = sym (flat-counit-natural sharp-unit v)
+  
+  3. The canonical map ♭A → Pullback:
+  flat-to-pullback : (A : Type ℓ) → FlatModality A → FracturePullback A
+  flat-to-pullback A v = flat-counit v
+                       , flat-map sharp-unit v
+                       , fracture-square-commutes A v
+  
+  4. The fracture axiom — the only new postulate:
+  postulate
+    fracture : (A : Type ℓ) → isEquiv (flat-to-pullback A)
+    
+  5. Equivalence form — derived, no new content:
+  fracture-equiv : (A : Type ℓ) → FlatModality A ≃ FracturePullback A
+  fracture-equiv A = flat-to-pullback A , fracture A
+  
+  Analytic — ℤ only, Bℤ excluded
+
+  1. Pullback type for ℤ — using the actual modality functions; since sharp-unit-integers and flat-counit-integers are both identity, this reduces definitionally to Σ ℤ (λ n → Σ ℤ (λ m → n ≡ 
+  m)):
+  FracturePullbackIntegers : Type₀
+  FracturePullbackIntegers =
+    Σ[ n ∈ ℤ ] Σ[ m ∈ ℤ ] sharp-unit-integers n ≡ flat-counit-integers m
+
+  2. Canonical map — sends n to (n, n, refl):
+  flat-to-pullback-integers : FlatOfIntegers → FracturePullbackIntegers
+  flat-to-pullback-integers n = n , n , refl
+  
+  3. It's an equivalence — by singleton contractibility on the second factor. Inverse is fst; section is refl; retraction is J on the path component:
+  IsFracture-integers : isEquiv flat-to-pullback-integers
+  -- Proof skeleton: isoToEquiv of an Iso whose retract is
+  --   J (λ m' p' → (n , n , refl) ≡ (n , m' , p')) refl p
+
+  Optional 4: the ≃ form for symmetry with the synthetic file. Likely worth including.
+
+  Bℤ excluded — same reason as the analytic adjunction: SharpOfDeloopingOfIntegers is undefined in Cohesion.agda, so the pullback type cannot even be stated.
+
+  Design choices to flag
+
+  - Postulate isEquiv (canonical-map), not ≃ over an opaque map. Mathematical fidelity (workflow rule 4): the fracture theorem says this specific canonical map mediating the modal data is the
+  equivalence — a bare ≃ postulate would lose that pin and let any equivalence count. Trade-off: one extra line (deriving fracture-equiv from the postulate).
+  - Pullback defined inline as Σ Σ ≡, not via a stdlib pullback type. Matches status.md's spec verbatim; three lines; no import burden. The unfolded form is also what the analytic ℤ proof
+  needs (J on the path component).
+  - Naming. fracture for the postulate, fracture-equiv for the derived ≃, flat-to-pullback for the canonical map, fracture-square-commutes for the naturality square. Matches the conciseness of
+   flat-modality-idempotent etc. in Adjunctions.agda.
+
+  New imports
+
+  - Synthetic: add Cubical.Data.Sigma (for Σ[...] syntax). Otherwise just Cohesion + Properties.
+  - Analytic: same Cubical.Data.Sigma, plus Cubical.Foundations.Isomorphism (for iso / isoToEquiv). Imports Cohesion + Properties from the analytic side.
+
+  No new library dependencies beyond what Cubical already provides.
+
+  Postulate budget
+
+  - Synthetic: +1 (fracture). All other declarations are definitions or derived theorems.
+  - Analytic: 0. No postulates; structurally clean.
+
+  Verification
+
+  Type-check both files (cd agda && agda --cubical ...). Report success; status.md update afterwards.
+
+  What this unblocks (forward-looking, not part of this PR)
+
+  - De Rham separation: once fracture is in, the next step is differential forms as ʃX → ♭ℝ and the cohomology comparison. That's the arc target — fracture is the geometric backbone.
+  - Analytic Bℤ fracture: still blocked on ♯(Bℤ). Out of scope here; flagged in the file's module comment.
+
+## Second opinion (only status as context)  
+
+Here are the targeted edits I'd propose. I'll show them as before/after on the affected blocks rather than as a free-form rewrite, so you can see exactly what shifts. (Not editing the file —
+   flagging for your approval first, per workflow rule 1.)
+
+  Edit 1 — Synthetic plan, step 4 (the fracture postulate)
+
+  Before (lines ~191–194):
+    4. The fracture axiom — the only new postulate:
+    postulate
+      fracture : (A : Type ℓ) → isEquiv (flat-to-pullback A)
+
+  After:
+    4. The fracture axiom — the only new postulate.
+       File-level comment to accompany it: in real-cohesive HoTT this is a
+       theorem, derived from ♯ being a lex modality (preserves finite limits).
+       We do not postulate ♯-lex separately; we postulate the specific
+       pullback equivalence we need. Same register as the `flat-intro`
+       crisp-context note in Cohesion.agda.
+
+    postulate
+      fracture : (A : Type ℓ) → isEquiv (flat-to-pullback A)
+      
+  Edit 2 — Analytic plan, step 3 (the isEquiv proof)
+
+  Before (lines ~211–215):
+    3. It's an equivalence — by singleton contractibility on the second factor. Inverse is fst; section is refl; retraction is J on the path component:
+    IsFracture-integers : isEquiv flat-to-pullback-integers
+    -- Proof skeleton: isoToEquiv of an Iso whose retract is
+    --   J (λ m' p' → (n , n , refl) ≡ (n , m' , p')) refl p
+
+  After:
+    3. It's an equivalence — the second-and-third factors form a singleton
+       `singl n`, contractible by `isContrSingl`. Two equally clean routes:
+       (a) `isoToEquiv` of an Iso with `fst` as inverse, retract proved via
+           `isContrSingl n .snd`; section refl.
+       (b) `isOfHLevelRetractFromIso 0 …` straight to contractibility of the
+           pullback fiber, then `isContr→isEquiv`.
+       Prefer whichever type-checks with fewer auxiliary lemmas; (a) is the
+       more direct mirror of the synthetic story.
+    IsFracture-integers : isEquiv flat-to-pullback-integers
+
+  Edit 3 — Imports note
+
+  Before (line ~232):
+    - Analytic: same Cubical.Data.Sigma, plus Cubical.Foundations.Isomorphism (for iso / isoToEquiv). Imports Cohesion + Properties from the analytic side.
+
+  After:
+    - Analytic: same Cubical.Data.Sigma, plus Cubical.Foundations.Isomorphism
+      (for iso / isoToEquiv) and Cubical.Foundations.HLevels (for isContrSingl).
+      Imports Cohesion + Properties from the analytic side.
+
+  Edit 4 — "Design choices to flag" gets one new bullet
+
+  Add after the existing three bullets (around line 227):
+    - Document ♯-lex as the meta-axiom that would derive fracture rather than
+      postulate it. Not introduced here — pinpointing the fracture pullback
+      directly is more economical than building general lex-modality
+      infrastructure — but called out in the file comment so the postulate is
+      not mistaken for a deeper independent claim.
+
+  One change outside this section (heads up)
+
+  The ♯-lex remark also wants a one-line Open Questions entry (around line 50, next to the existing ♯/ʃ dependent-induction bullet):
+
+  - [ ] ♯ as a lex modality (preserves finite limits) — would turn `fracture`
+        from a postulate into a theorem; deferred along with crisp contexts
+        since the analytic side of ♯ is blocked anyway.
+
+  That's a separate edit from the plan section, but the two belong together — without the Open Questions entry, the file-comment forward-reference dangles.

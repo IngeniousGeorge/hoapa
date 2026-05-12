@@ -38,6 +38,10 @@ flat-map-comp-integers : (f g : ℤ → ℤ) (n : FlatOfIntegers)
   → flat-map-integers (g ∘ f) n ≡ flat-map-integers g (flat-map-integers f n)
 flat-map-comp-integers _ _ _ = refl
 
+flat-counit-natural-integers : (f : ℤ → ℤ) (n : FlatOfIntegers)
+  → flat-counit-integers (flat-map-integers f n) ≡ f (flat-counit-integers n)
+flat-counit-natural-integers _ _ = refl
+
 ------------------------------------------------------------------------
 -- Shape modality — functoriality for ℤ
 ------------------------------------------------------------------------
