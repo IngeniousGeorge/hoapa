@@ -129,14 +129,3 @@ Settled implementation notes, one-time choices, and dead-end pruning. Kept so th
 
 ## Discussion of the next step
 
-Branching point — the one I'd most like a decision on
-
-  What does the de Rham step after fracture look like? Two paths:
-
-  - (i) Abstract coefficients. State de Rham as: for any flat-modal B, ʃX → B characterizes flat B-cohomology of X. No ℝ as primitive. Lighter on postulates, closer to the project's "minimal
-  modal infrastructure" ethos, and arguably already enough for the separation point (the existence of ♭ is what plain HoTT lacks).
-  - (ii) ℝ axiomatized. Postulate ℝ with its modal properties, then state de Rham specifically as ʃX → ♭ℝ ≃ differential forms ≃ de Rham cohomology. More rhetorical force (it's the de Rham
-  theorem rather than an abstract reflection statement) but adds a substantial postulate budget and a new axiomatic object.
-
-  My lean: (i) first, then optionally (ii) as a concretization once the abstract version is in place. The reason to decide now (or at least flag) is that the synthetic Fracture.agda's header
-  comment will want to forward-reference what fracture is in service of, and "abstract de Rham" vs. "ℝ-de Rham" changes that sentence.

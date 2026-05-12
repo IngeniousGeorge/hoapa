@@ -1,4 +1,4 @@
-# arc.md — the arc reformulated in cohesive vocabulary
+# The arc reformulated in cohesive vocabulary
 
 ## 1. Preamble
 

@@ -44,3 +44,7 @@ Each entry: who, what they use, what it models, relation to our arc.
 **What they use.**
 **What it models.**
 **Relation to our arc.**
+
+## Candidate future entries
+
+- Friston's free energy principle

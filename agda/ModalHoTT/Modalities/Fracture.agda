@@ -34,6 +34,17 @@
 --   sharp-for-Bℤ comment block). So the analytic test suite verifies fracture
 --   at ℤ only; the Bℤ instance is a synthetic-only commitment. This is the
 --   sharpest synthetic/analytic divergence in the project to date.
+--
+-- Downstream target:
+--
+--   Fracture is the geometric backbone of the de Rham separation arc.
+--   Plan: (i) abstract coefficients (ʃX → B for flat-modal B), then a
+--   minimal (ii-weak) consolidation instantiating at postulated ℝ. The
+--   content-bearing (ii-strong) version — differential forms via the
+--   infinitesimal shape modality ℑ, requiring differential cohesion —
+--   is a deferred separate phase, not on the immediate path. See
+--   `workflow/status.md` "Discussion of the next step" for the live
+--   reading of this split.
 
 module ModalHoTT.Modalities.Fracture where
 
