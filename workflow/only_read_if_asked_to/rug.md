@@ -38,3 +38,5 @@ What an upgrade to the differential level would need:
 - The de Rham theorem proper: `(ℑX → ♭ℝ) ≃ (ʃX → ♭ℝ)` (or similar) — a statement that *is* content-bearing.
 
 Scope: a separate phase, comparable in size to the entire plain-cohesion phase we have just finished.
+
+**Under the three-track strategy:** the differential rung is deferred to `agda/AnalyticTest/` (see folder README); structural and named-coefficient remain on synthetic + `Analytic/`. The "future rug" framing above is updated accordingly — differential is deferred to a specific track, not indefinitely.

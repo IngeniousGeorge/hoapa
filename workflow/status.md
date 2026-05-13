@@ -14,7 +14,9 @@ The arc is articulated in `workflow/arc.md` (the cohesive reformulation, with th
 
 ## Analytic Development
 
-`agda/analytic/` mirrors the synthetic structure but contains no postulates. Its purpose is to **demonstrate non-vacuity**: show that the synthetic postulates are consistent and that ♭ draws a real distinction between types. It is not a full verification of the postulates in an external model — that requires genuine cohesive type theory (see *Decisions Log — Relevant*: crisp contexts).
+`agda/Analytic/` mirrors the synthetic structure but contains no postulates. Its purpose is to **demonstrate non-vacuity**: show that the synthetic postulates are consistent and that ♭ draws a real distinction between types. It is not a full verification of the postulates in an external model — that requires genuine cohesive type theory (see *Decisions Log — Relevant*: crisp contexts).
+
+A third track, `agda/AnalyticTest/`, is reserved for a separated concern that `Analytic/` cannot carry. It is currently empty; see `AnalyticTest/README.md`.
 
 The centrepiece result is `¬-IsFlatModal-delooping` in Cohesion.agda: machine-checked proof that Bℤ is not flat-modal. This is the strongest claim the analytic folder can make without cohesive type theory infrastructure.
 
@@ -60,7 +62,7 @@ Live decisions still shaping current work. See *Decisions Log — Archived* at t
 
 ## Current Task
 
-**Post-fracture: de Rham separation arc.** Fracture has landed (`agda/ModalHoTT/Modalities/Fracture.agda` synthetic + `agda/Analytic/ModalHoTT/Modalities/Fracture.agda` analytic ℤ). The arc target is unchanged — exhibit something naturally stateable in cohesive HoTT that is not stateable in plain HoTT — but the route to it is now an open branching point. See *Discussion of the next step* below for the de Rham depth ladder (structural / named-coefficient / differential); pending decision.
+**Post-fracture: de Rham separation arc.** Fracture has landed (`agda/ModalHoTT/Modalities/Fracture.agda` synthetic + `agda/Analytic/ModalHoTT/Modalities/Fracture.agda` analytic ℤ). The arc target is unchanged — exhibit something naturally stateable in cohesive HoTT that is not stateable in plain HoTT. The depth ladder is resolved by the three-track structure (differential→AnalyticTest); live work on the synthetic side is the structural / named-coefficient trajectory. See *Discussion of the next step*.
 
 ## Next step
 
@@ -129,19 +131,22 @@ Settled implementation notes, one-time choices, and dead-end pruning. Kept so th
 
 ## Discussion of the next step
 
-The inertial answer, per rug.md, is named-coefficient (postulate ℝ, instantiate structural at B := ♭ℝ). One clean file, slots into Cohomology/. Worth doing eventually.
+The clearest live next step on the synthetic side: pin the structural map in FlatCoefficients.agda (the file added in commit 91d468e).
 
-I'd push back on that as the immediate next step. Two reasons:
+Why:
+- That file, per the pre-rewrite "Discussion of the next step" in status.md, currently presents the structural rung as a bare equivalence. For a separation result, "the canonical map is the
+equivalence" matters more than "an equivalence exists." Without pinning, the file states the right shape but doesn't yet say what we want it to say.
+- Pinning needs one of two Open Questions: (i) the IsFlatModal ↔ IsShapeModal bridge, or (ii) naturality of the adjunction bijections. (i) is the smaller move — a short addition to Cohesion
+or Adjunctions, plausibly one direction derivable + one direction postulated.
+- High leverage: the bridge appears in multiple Open Questions; pinning it once unblocks future ♯-side work cleanly.
+- Stays in the structural rung — doesn't pre-commit to named-coefficient yet.
 
-(a) Pin the structural map first. The file I just wrote gives a bare equivalence. The canonical map f ↦ f ∘ shape-unit isn't pinned. For a separation result this matters — separation is "the
-canonical map is the equivalence," not "an equivalence exists." Pinning needs either adjunction-naturality or the IsFlatModal ↔ IsShapeModal bridge — both already in Open Questions.
-Resolving the bridge (one short postulate or one direction derivable) cleans up the structural file, unblocks several other Open Questions, and is a prerequisite for any clean ♯-side work
-later. One file's work, high leverage.
+After that, the natural sequence on the synthetic side is: structural-pinned → named-coefficient (postulate ℝ, instantiate at ♭ℝ) → the synthetic-side "de Rham" packaging is complete (in the
+depth-ladder's narrow sense; differential remains parked in AnalyticTest).
 
-(b) Consider sideways instead of upward. Three rungs deep into A-side consequences and T1 still has no Agda. If T1 is genuinely foundational, the strategy of "finish A's downstream, then
-build the bridge" has a cost: every A-side result is currently statable without the conjecture-leg, which is what makes the treadmill so tempting. A stubbed ModalHoTT/Arc/AdjointTriple.agda
-that just names the three Arc modalities (Allow, Mediate, Require) and states the triple — even with everything postulated — would re-orient the project. It also forces the question of
-whether the middle slot has content (arc.md §3 leaves that open).
+Two other live options I'd flag, less preferred:
 
-My genuine recommendation: (a) before climbing the ladder, then take a hard look at (b). Pin the structural map; while doing it, draft a one-paragraph plan for whether the Arc triple gets
-its own file before named-coefficient. If yes, write a stub. If no, articulate why, and the ladder is justified.
+- Move directly to named-coefficient. Skip the pinning; let the structural file stay bare. The named-coefficient result then inherits the bare-equivalence weakness — same shape one rung up.
+Faster but produces a structurally weaker arc.
+- Background maintenance instead of de Rham progression. Address dependent induction for ♯/ʃ (Open Question), which would unblock deriving idempotency and the four map laws as theorems.
+Reduces postulate density. Independent of de Rham. Useful but not on the depth-ladder trajectory.

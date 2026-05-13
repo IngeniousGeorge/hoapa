@@ -32,6 +32,7 @@ The site for the ∞-topos is **Bℤ** (delooping of the integers — the algebr
 agda/
   ModalHoTT/           Synthetic (axiomatic) track — modalities postulated
   Analytic/ModalHoTT/  Analytic (verification) track — demonstrates non-vacuity
+  AnalyticTest/        Reserved third track; see AnalyticTest/README.md
   Concurrency/         B-side stub (dormant; ThreePointedStruct only)
 workflow/              Project management; read README.md first
   README.md            Onboarding map (two reading paths)

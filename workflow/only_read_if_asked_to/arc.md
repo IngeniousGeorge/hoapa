@@ -48,7 +48,8 @@ adjoint data, with the asymmetry made explicit.
 
 - `agda/ModalHoTT/`    — site Bℤ, develops A.
 - `agda/Concurrency/`  — candidate site (3-pointed sphere or related), develops B1+B2 separation.
-- `agda/Analytic/`     — test suite for both.
+- `agda/Analytic/`     — analytic mirror for A; documents non-vacuity.
+- `agda/AnalyticTest/` — reserved third track; see folder README.
 
 The arc-level theorem lives in the ambient ∞-topos relating the two cohesive sites
 via a functor or geometric morphism. Brief note on what kind of relation that functor must be.
