@@ -134,29 +134,3 @@ Settled implementation notes, one-time choices, and dead-end pruning. Kept so th
 
 ## Discussion of the next step
 
-The asymmetry to fix. A-side's anchor is Bℤ — a mathematical object on its own terms (the delooping of ℤ, with integer algebra as its content) that exists before any modality is laid on top.
-The modalities then speak about Bℤ; they don't constitute it. Both T2 and T4 violate this on the B-side: T2 makes B carry "a site for cohesion," T4 makes B's primitives line up with three
-pre-chosen modalities. Either way, the anchor ends up cohesion-shaped, not concurrency-shaped.
-
-What the B-anchor should look like. An operational concurrent system as a mathematical object on its own terms — agents, messages, typed channels, conversations — formalized in concurrency's
-native language, with the modal/cohesive questions only arising afterward. The phrase you wrote — "agents having conversations and producing typed data" — already names the slots: agents
-(actor-like), conversations (sessions/protocols), typed data (session types on channels).
-
-Concrete candidates. The natural fit for that phrase is the session-types + asynchronous-agents family:
-
-- Honda–Yoshida–Carbone multiparty session types — participants, global protocols, typed messages. Mature literature, including categorical treatments.
-- Asynchronous π-calculus with session types — same content, more operational.
-- Caires–Pfenning propositions-as-sessions — connects session types to linear logic, gives a logical/categorical handle.
-
-Commit to one (or a stable intersection of them) and the anchor is "this operational system." The mathematical object on B is then the category-or-topos of such systems, the way Bℤ is the
-mathematical object on A.
-
-How this changes the target structure. None of T1–T7 currently take this stance — they all start from cohesion and ask how B fits. This would be a new target, upstream of T2, T4, T5: a
-"T0/B" or "operational anchor." Once in place, T2 (does cohesion lift?), T4 (does the partition match?), T5 (does the operational reading recover cohesion?) become questions about this
-system rather than constructions designed to mimic A.
-
-Approachability: good. The relevant operational frameworks exist with decades of literature; the work is committing to one (or a small family) and articulating its mathematical-object form.
-Same register as this session.
-
-Caveat to flag. This is a genuine reframe of arc.md and targets.md. Currently the arc has cohesion-on-both-sites as its starting picture; making B's anchor operational means cohesion-on-B
-becomes a derived question, not a starting commitment. Worth being explicit about that revision before opening the work.

@@ -48,6 +48,10 @@ Then it has more chances of being provable. It needs this full scope to be compl
 
 Synthetic/axiomatic — postulate the cohesion modalities (shape ʃ, flat ♭, sharp ♯) as axioms and develop modal HoTT from there. This is how Wellen, Myers, and Shulman have actually worked in Agda/Coq. The site never appears as a Agda object — it lives in the semantic background justifying the axioms. ... agda/ModalHoTT/Modalities/ is the right starting point, with the cohesion modalities postulated as axioms. That's the first real Agda file — something like Cohesion.agda postulating shape, flat, and sharp with their units and the key adjunctions. Keeping in mind that Bℤ is the intended semantic model for the axioms.
 
+### Instigator
+
+Pure inspiration:  there are too many items on that list of concurrency models, and it's something we don't understand well and have many assumptions about (why did it emerge so long after sequential computation, we must be wrong about it in an essential way), so maybe there's a unique object that give us many different interfaces but if we do what's right and listen carefully we can get to the unique object (the story of motives).
+
 ## Useful prompts
 
 ### After clear
