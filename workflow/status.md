@@ -48,13 +48,14 @@ Live decisions still shaping current work. See *Decisions Log — Archived* at t
 | 2026-05-07 | Crisp contexts are the intended analytic validation path | The adjunction is built into the modal rules in crisp cohesive type theory (Shulman 2018, Myers); marked as future work. Agda --cohesion covers ♭ partially; ʃ and ♯ not supported maturely anywhere |
 | 2026-05-07 | flat-map for Bℤ maps not derivable via the synthetic route analytically | Synthetic derivation uses flat-ind + flat-intro ∘ f; flat-intro does not exist for Bℤ (same obstruction as ¬-IsFlatModal-delooping). A winding-number construction exists but does not mirror the synthetic side |
 | 2026-05-07 | Crisp contexts would unblock Bℤ flat-map in analytic Properties.agda | In crisp type theory, flat-intro is valid for crisp variables; flat-ind + flat-intro ∘ f goes through for crisp f : Bℤ → Bℤ by the same derivation as the synthetic side. Shape-map for Bℤ remains trivial (ʃBℤ = Bℤ); sharp-map remains deferred |
+| 2026-05-14 | Pinning route is naturality in B, not the IsFlatModal ↔ IsShapeModal bridge | Bridge alone is not enough to derive the pinning equation (would still need ʃ-uniqueness or adjunction-naturality); naturality is the precise piece. One new postulate `shape-flat-natural-B`; four-step derivation chain. Discrete.agda drafted as a deferred reserve, not load-bearing. |
 
 ## Open Questions
 
 - [ ] Dependent induction for ♯ and ʃ (fiberwise modality conditions needed); would unlock deriving IsSharpModal (♯A), IsShapeModal (ʃA), and all four postulated map laws in Properties.agda as theorems.
-- [ ] Naturality of the adjunction bijections (currently postulated as bare equivalences; naturality belongs in Properties.agda or a separate Naturality.agda).
+- [ ] Naturality of the adjunction bijections in A; naturality of `flat-sharp-transpose` (♭ ⊣ ♯) in either variable. (Naturality of `shape-flat-transpose` in B is now postulated as `shape-flat-natural-B` in Properties.agda — load-bearing for the structural-pinning derivation.)
 - [ ] `shape-map-id`, `shape-map-comp`, `sharp-map-id`, `sharp-map-comp` postulated in Properties.agda; same blocker as above.
-- [ ] Missing bridge: `IsShapeModal` and `IsFlatModal` are defined independently but should pick out the same class of types (the discrete types) in any cohesive model. The identification `IsShapeModal A ↔ IsFlatModal A` is not yet stated. It underlies the coherence of `shape-rec` (which requires `IsShapeModal`) and `shape-flat-transpose` (the full adjunction, no modal condition) — without it, future derivations that cross between the two may need an ad hoc postulate.
+- [ ] Missing bridge: `IsShapeModal` and `IsFlatModal` are defined independently but should pick out the same class of types (the discrete types) in any cohesive model. Drafted in `Discrete.agda` (both directions postulated) but **held in reserve / not imported**. The intended pinning route turned out to need adjunction naturality instead; the bridge remains independently motivated and will matter for ♯-side work.
 - [ ] Missing monad/comonad structure: comultiplication δ : ♭A → ♭(♭A), multiplication μ : ʃ(ʃA) → ʃA, and the corresponding structure for ♯. These follow from idempotency by abstract nonsense and are trivial in the idempotent case, but are currently unnamed. Defer until something concretely needs them.
 - [ ] `agda/Analytic/toy/` branch — a thorough construction of the synthetic structure using more pinpointed instances for the higher structures we work with. Alternative to the current ℤ-only analytic track; would broaden what gets verified without requiring full crisp-context support. Deferred. (Note migrated from `conversation.md`.)
 - [ ] ♯ as a lex modality (preserves finite limits) — would turn `fracture` from a postulate into a theorem; deferred along with crisp contexts since the analytic side of ♯ is blocked anyway.
@@ -62,11 +63,11 @@ Live decisions still shaping current work. See *Decisions Log — Archived* at t
 
 ## Current Task
 
-**Post-fracture: de Rham separation arc.** Fracture has landed (`agda/ModalHoTT/Modalities/Fracture.agda` synthetic + `agda/Analytic/ModalHoTT/Modalities/Fracture.agda` analytic ℤ). The arc target is unchanged — exhibit something naturally stateable in cohesive HoTT that is not stateable in plain HoTT. The depth ladder is resolved by the three-track structure (differential→AnalyticTest); live work on the synthetic side is the structural / named-coefficient trajectory. See *Discussion of the next step*.
+**Post-pinning: named-coefficient rung of the de Rham depth ladder.** Pinning has landed (`flat-coefficients-factor-pin` in synthetic FlatCoefficients.agda, via `shape-flat-natural-B`). The arc target remains exhibiting something stateable in cohesive HoTT but not in plain HoTT. Next step on the synthetic side: postulate a cohesive type ℝ and instantiate the structural equivalence at B := ♭ℝ. See *Discussion of the next step*.
 
 ## Next step
 
-Resolve which level of the de Rham depth ladder to write next, in *Discussion of the next step*. Once chosen, draft the first file of the de Rham arc accordingly. No code action on the A-side until the branching point is settled.
+Draft `agda/ModalHoTT/Cohomology/NamedCoefficient.agda` (or similar) — postulate a cohesive type ℝ and apply `flat-coefficients-factor-pin` at B := ♭ℝ. Open design question: postulate ℝ as a bare type plus `IsFlatModal ♭ℝ`, or as a single bundled record. Propose before writing.
 
 ## Unlocking ♯ — what it costs and what it buys
 
@@ -110,6 +111,8 @@ None currently. Note: cubical library uses infective flags (`--guardedness`); ev
 - [x] `flat-counit-natural` added to `Properties.agda` (synthetic + analytic ℤ mirror) — derived theorem from `flat-ind` + `flat-counit-intro`, no new postulates; supplies the commutativity of the fracture square as a special case at `f = sharp-unit`.
 - [x] `agda/ModalHoTT/Modalities/Fracture.agda` — synthetic; `FracturePullback` as inline Σ Σ ≡; `fracture-square-commutes` derived from `flat-counit-natural`; `flat-to-pullback` canonical map; single postulate `fracture : isEquiv (flat-to-pullback A)` framed as ♯-lex shortcut; derived `fracture-equiv`. Header notes synthetic/analytic asymmetry at Bℤ (♯(Bℤ) undefined analytically, so the postulate's Bℤ instance is a synthetic-only commitment).
 - [x] `agda/Analytic/ModalHoTT/Modalities/Fracture.agda` — analytic ℤ; pullback collapses definitionally to `Σ ℤ singl`; canonical map sends `n` to `(n, n, refl)`; `isEquiv` via `isoToEquiv` of an `Iso` with `fst` as inverse, section lifted from `isContrSingl n .snd`. No postulates. Bℤ excluded (♯(Bℤ) undefined).
+- [x] `agda/ModalHoTT/Cohomology/FlatCoefficients.agda` pinning — `flat-coefficients-factor-pin` proves `equivFun (flat-coefficients-factor Bm) ≡ λ f → f ∘ shape-unit`. Derived from one new postulate (`shape-flat-natural-B` in Properties.agda — naturality of `shape-flat-transpose` in B) plus three existing primitives (`shape-flat-adj-unit-eq`, `flat-counit-natural`, `flat-counit-intro`). Four-step pointwise chain. Type-checks.
+- [x] `agda/ModalHoTT/Modalities/Discrete.agda` drafted (bridge `IsFlatModal A ↔ IsShapeModal A`, both directions postulated) but **deferred — not imported anywhere**. Header carries a status note. Held in reserve: independently motivated (resolves several Open Questions, will matter for ♯-side work) but the naturality-based pinning route made it non-load-bearing for the current task.
 
 ## Decisions Log — Archived
 

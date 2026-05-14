@@ -80,6 +80,26 @@ flat-counit-natural f = flat-ind _
          ∙ sym (cong f (flat-counit-intro a)))
 
 ------------------------------------------------------------------------
+-- Adjunction naturality (ʃ ⊣ ♭)
+------------------------------------------------------------------------
+
+-- Naturality of shape-flat-transpose in the right-hand variable B.
+--
+-- The ʃ ⊣ ♭ adjunction's hom-set equivalence (ʃA → B) ≃ (A → ♭B) is
+-- natural in B: post-composing with g : B → B' commutes with the
+-- transpose, with the right-hand side using flat-map g.
+--
+-- Postulated rather than derived: the bare hom-set equivalence in
+-- Adjunctions.agda (`shape-flat-transpose`) does not carry naturality
+-- data; in real-cohesive HoTT this is part of the adjunction package.
+-- Listed in status.md Open Questions; load-bearing for pinning the
+-- structural de Rham map in Cohomology/FlatCoefficients.agda.
+postulate
+  shape-flat-natural-B : {A : Type ℓ} {B : Type ℓ'} {B' : Type ℓ''}
+    (g : B → B') (h : ShapeModality A → B)
+    → shape-to-flat (g ∘ h) ≡ flat-map g ∘ shape-to-flat h
+
+------------------------------------------------------------------------
 -- Shape modality — functoriality
 ------------------------------------------------------------------------
 

@@ -10,6 +10,10 @@
 --   IsFlatModal  (FlatModality A)   proved as a theorem via flat-counit-intro
 --   IsSharpModal (SharpModality A)  postulated (derivation requires ♯-ind)
 --   IsShapeModal (ShapeModality A)  postulated (derivation requires ʃ-ind)
+--
+-- Naturality of the hom-set equivalences is not recorded here; the one
+-- piece currently load-bearing — naturality of `shape-flat-transpose`
+-- in B — sits in Properties.agda as `shape-flat-natural-B`.
 
 module ModalHoTT.Modalities.Adjunctions where
 

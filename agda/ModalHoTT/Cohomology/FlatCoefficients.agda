@@ -35,6 +35,7 @@ open import Cubical.Foundations.Isomorphism
 
 open import ModalHoTT.Modalities.Cohesion
 open import ModalHoTT.Modalities.Adjunctions
+open import ModalHoTT.Modalities.Properties
 
 private
   variable
@@ -62,14 +63,8 @@ FlatCohomology A B = ShapeModality A → B
 -- No new postulates: the equivalence is built entirely from
 -- shape-flat-transpose and flat-counit.
 --
--- Note: the resulting map (ʃA → B) → (A → B) is determined by the
--- composition shape-flat-transpose followed by post-composition with
--- flat-counit; it is not pinned here to the more obvious precomposition
--- f ↦ f ∘ shape-unit. Showing those agree would require either
--- naturality of the adjunction in B (currently postulated only as a
--- bare equivalence; see status.md Open Questions) or the bridge
--- IsFlatModal ↔ IsShapeModal (also Open Questions). Pinning can be
--- added if a downstream use forces it.
+-- The resulting map agrees pointwise with precomposition by shape-unit;
+-- this is pinned below as `flat-coefficients-factor-pin`.
 ------------------------------------------------------------------------
 
 flat-coefficients-factor : {A : Type ℓ} {B : Type ℓ'}
@@ -87,3 +82,31 @@ flat-coefficients-factor {A = A} {B = B} Bm =
       (λ g → invEq counit-equiv ∘ g)
       (λ g → funExt (λ a → secEq counit-equiv (g a)))
       (λ f → funExt (λ a → retEq counit-equiv (f a))))
+
+------------------------------------------------------------------------
+-- Pinning: the equivalence is precomposition with shape-unit.
+--
+-- The forward map of `flat-coefficients-factor` is built as
+-- `flat-counit ∘ shape-to-flat`. We show pointwise that this agrees
+-- with the canonical map f ↦ f ∘ shape-unit, by a four-step chain:
+--
+--   flat-counit (shape-to-flat f a)
+--     ≡ flat-counit (flat-map f (shape-to-flat (λ u → u) a))   -- naturality
+--     ≡ flat-counit (flat-map f (flat-intro (shape-unit a)))   -- adj-unit-eq
+--     ≡ f (flat-counit (flat-intro (shape-unit a)))            -- counit-natural
+--     ≡ f (shape-unit a)                                        -- counit-intro
+--
+-- Uses one postulate not in the original construction
+-- (`shape-flat-natural-B` from Properties.agda) plus three existing
+-- primitives. For separation, what matters is that *the* canonical
+-- map is the equivalence — not just that some equivalence exists.
+------------------------------------------------------------------------
+
+flat-coefficients-factor-pin : {A : Type ℓ} {B : Type ℓ'}
+  (Bm : IsFlatModal B)
+  → equivFun (flat-coefficients-factor {A = A} Bm) ≡ λ f → f ∘ shape-unit
+flat-coefficients-factor-pin {A = A} {B = B} Bm = funExt λ f → funExt λ a →
+    cong (λ h → flat-counit (h a)) (shape-flat-natural-B f (λ u → u))
+  ∙ cong (λ h → flat-counit (flat-map f (h a))) shape-flat-adj-unit-eq
+  ∙ flat-counit-natural f (flat-intro (shape-unit a))
+  ∙ cong f (flat-counit-intro (shape-unit a))
