@@ -139,3 +139,13 @@ Each target: claim, what's needed to state it cleanly, what's needed to verify i
 - T7 depends on T1 and on status.md's current work.
 
 T1 and T2 are the two primary targets. The rest are downstream.
+
+---
+
+## Appendix — flow leading to the B-side operational anchor
+
+The T1–T7 above are abstract-mathematical: they ask how cohesive modalities behave on each side and how the two sides relate. Working through whether T2 or T4 should be B-side starting points surfaced that neither anchors B *locally*. T2 imports A's frame onto B by making it carry "a site for cohesion." T4 fixes the modal partition (♭ / ♯ / ʃ ↔ typed data / unityped agents / interaction shape) before B's own primitives are committed to. Both let the A-side dictate B's shape; the dependency runs in the wrong direction.
+
+The fix is structural: A has an anchor *beneath* its modal mathematics — Bℤ as a mathematical object on its own terms, with motivation.md's perspectivalism as the philosophical layer beneath that. The modal vocabulary speaks *about* Bℤ; it doesn't constitute it. B currently has no such under-layer. The proposal is to add one: an **operational anchor** — an operational concurrent system formalized in concurrency's native language (candidate families: Honda–Yoshida–Carbone multiparty session types, asynchronous π-calculus with session types, Caires–Pfenning propositions-as-sessions) — as a mathematical object on its own terms. The modal/cohesive questions (T2, T4, T5) then become questions *about* this system, not constructions designed to mimic A.
+
+The mirror with A: motivation.md is the philosophical layer beneath the modal math on A (perspectivalism — same object under different probes); the operational anchor is the operational layer beneath the modal math on B (agents having conversations and producing typed data). Both layers sit *under* the abstract-mathematical targets, not within them. The B-side operational anchor is a proposed new target upstream of T2, T4, T5 — not a refinement of any of them.

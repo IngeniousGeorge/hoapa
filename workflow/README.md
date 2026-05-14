@@ -10,6 +10,10 @@ For active tasks (writing Agda, debugging a postulate, extending a file): **read
 
 When the task needs wider context — conjecture scope, where things sit in the arc, what has been deferred, what is under the rug — read these in order. They live in `workflow/only_read_if_asked_to/` and are *not* loaded by default.
 
+## Structure of context path
+
+Some special sessions can be about the structure of contextual information for the project, only in this case are those files needed.
+
 ### Backbone
 
 0. **`only_read_if_asked_to/motivation.md`** — the philosophical seed. Hand-wavy proto-conjecture. *The math we are building is a subsystem of this broader picture, not its totality.* Re-read when the formalism starts to feel self-contained.

@@ -134,22 +134,29 @@ Settled implementation notes, one-time choices, and dead-end pruning. Kept so th
 
 ## Discussion of the next step
 
-The clearest live next step on the synthetic side: pin the structural map in FlatCoefficients.agda (the file added in commit 91d468e).
+The asymmetry to fix. A-side's anchor is Bℤ — a mathematical object on its own terms (the delooping of ℤ, with integer algebra as its content) that exists before any modality is laid on top.
+The modalities then speak about Bℤ; they don't constitute it. Both T2 and T4 violate this on the B-side: T2 makes B carry "a site for cohesion," T4 makes B's primitives line up with three
+pre-chosen modalities. Either way, the anchor ends up cohesion-shaped, not concurrency-shaped.
 
-Why:
-- That file, per the pre-rewrite "Discussion of the next step" in status.md, currently presents the structural rung as a bare equivalence. For a separation result, "the canonical map is the
-equivalence" matters more than "an equivalence exists." Without pinning, the file states the right shape but doesn't yet say what we want it to say.
-- Pinning needs one of two Open Questions: (i) the IsFlatModal ↔ IsShapeModal bridge, or (ii) naturality of the adjunction bijections. (i) is the smaller move — a short addition to Cohesion
-or Adjunctions, plausibly one direction derivable + one direction postulated.
-- High leverage: the bridge appears in multiple Open Questions; pinning it once unblocks future ♯-side work cleanly.
-- Stays in the structural rung — doesn't pre-commit to named-coefficient yet.
+What the B-anchor should look like. An operational concurrent system as a mathematical object on its own terms — agents, messages, typed channels, conversations — formalized in concurrency's
+native language, with the modal/cohesive questions only arising afterward. The phrase you wrote — "agents having conversations and producing typed data" — already names the slots: agents
+(actor-like), conversations (sessions/protocols), typed data (session types on channels).
 
-After that, the natural sequence on the synthetic side is: structural-pinned → named-coefficient (postulate ℝ, instantiate at ♭ℝ) → the synthetic-side "de Rham" packaging is complete (in the
-depth-ladder's narrow sense; differential remains parked in AnalyticTest).
+Concrete candidates. The natural fit for that phrase is the session-types + asynchronous-agents family:
 
-Two other live options I'd flag, less preferred:
+- Honda–Yoshida–Carbone multiparty session types — participants, global protocols, typed messages. Mature literature, including categorical treatments.
+- Asynchronous π-calculus with session types — same content, more operational.
+- Caires–Pfenning propositions-as-sessions — connects session types to linear logic, gives a logical/categorical handle.
 
-- Move directly to named-coefficient. Skip the pinning; let the structural file stay bare. The named-coefficient result then inherits the bare-equivalence weakness — same shape one rung up.
-Faster but produces a structurally weaker arc.
-- Background maintenance instead of de Rham progression. Address dependent induction for ♯/ʃ (Open Question), which would unblock deriving idempotency and the four map laws as theorems.
-Reduces postulate density. Independent of de Rham. Useful but not on the depth-ladder trajectory.
+Commit to one (or a stable intersection of them) and the anchor is "this operational system." The mathematical object on B is then the category-or-topos of such systems, the way Bℤ is the
+mathematical object on A.
+
+How this changes the target structure. None of T1–T7 currently take this stance — they all start from cohesion and ask how B fits. This would be a new target, upstream of T2, T4, T5: a
+"T0/B" or "operational anchor." Once in place, T2 (does cohesion lift?), T4 (does the partition match?), T5 (does the operational reading recover cohesion?) become questions about this
+system rather than constructions designed to mimic A.
+
+Approachability: good. The relevant operational frameworks exist with decades of literature; the work is committing to one (or a small family) and articulating its mathematical-object form.
+Same register as this session.
+
+Caveat to flag. This is a genuine reframe of arc.md and targets.md. Currently the arc has cohesion-on-both-sites as its starting picture; making B's anchor operational means cohesion-on-B
+becomes a derived question, not a starting commitment. Worth being explicit about that revision before opening the work.
