@@ -134,3 +134,75 @@ Settled implementation notes, one-time choices, and dead-end pruning. Kept so th
 
 ## Discussion of the next step
 
+*Provisional home for B-side scoping work. The inventory, comments, and relations below need proper homing in a dedicated B-side workflow document next session — this isn't really "next-step" material, it's foundational scoping that will outlive any one task. Old B-side content (icosahedral / 3-pointed framing, `b_side_site_icosahedral` memory entry, possibly parts of `arc.md` §5) needs to be reclaimed at the same time.*
+
+### B-side module inventory (level-2 zoom)
+
+Level 1: `_Site`, `_Algebra`, `_Sheaf`, `_Topos`. (Causality was previously listed as a fifth module; demoted — see comments.)
+
+#### `_Site`
+
+Canonical decomposition — math forces it: a Grothendieck site *is* a small category + a topology.
+
+- `_Site._Category` — objects (actor-groupings / frames / configurations), morphisms (causal extensions / refinements).
+- `_Site._Topology` — which families count as covers (local-frame coverings).
+
+Interpretive piece: what fills `_Site._Category`'s objects and morphisms — the Lamport / event-structure / Lorentzian sub-decision (deferred per `b_anchor.md`).
+
+#### `_Algebra`
+
+Interpretive but with a natural three-part shape — a logical theory plus its categorical packaging.
+
+- `_Algebra._Connectives` — the type constructors (⊗, ⅋, &, ⊕, !, ?, ⊸, units).
+- `_Algebra._Proofs` — sequent rules and proof terms; cut-elimination = communication semantics lives here.
+- `_Algebra._SyntacticCategory` — the categorical form (star-autonomous / polycategory); the piece that talks to `_Sheaf`.
+
+Duality (A ↔ A^⊥) cross-cuts all three — a symmetry on the whole, not its own sub-module.
+
+#### `_Sheaf`
+
+Canonical decomposition (a sheaf is a presheaf satisfying descent), plus one open question.
+
+- `_Sheaf._Presheaf` — assignment of a value-object to each site-object, with functoriality on morphisms.
+- `_Sheaf._Descent` — the gluing condition for covers from `_Site._Topology`.
+
+Open, math-side: the **value category V**. Set, Cat, `_Algebra._SyntacticCategory` itself? "Sheaf of session-types" needs V to be at least a 2-category or richer (flagged in `b_anchor.md`). Tracked as its own item, not hidden inside `_Sheaf._Presheaf`.
+
+#### `_Topos`
+
+Canonical first three pieces, plus a cohesion-adapted fourth.
+
+- `_Topos._SheafCategory` — Sh(`_Site._Category`, `_Site._Topology`) as an object.
+- `_Topos._InternalLogic` — subobject classifier Ω, internal language, predicates.
+- `_Topos._GeometricMorphisms` — relations to other topoi (in particular: the embedding into cubical sets, the shared substrate with A).
+- `_Topos._InfinityLift` — the 1-topos → ∞-topos move. Not in the classical decomposition; needed because the A-side's cohesion lives in an ∞-topos.
+
+`_Topos._InfinityLift` is where the "Winskel is 1-categorical, we want ∞-categorical" caveat from `b_anchor.md` actually lives.
+
+### Comments
+
+- **What this zoom-in surfaced.** Two cleanups to the level-1 inventory:
+  - **Causality demoted.** Previously listed as a fifth module, it isn't really top-level — it's the parameter that fixes both `_Site._Category`'s morphisms (what counts as a causal extension) and `_Site._Topology`'s covers (what counts as local). Re-tagged as "the choice that determines `_Site`."
+  - **Value category for `_Sheaf` promoted to a tracked item.** It's the technical hinge between `_Algebra` and `_Sheaf`, and likely where the hybrid proves harder than the conceptual sketch suggested.
+
+- **Canonical vs interpretive.** `_Site` and `_Sheaf` decompose canonically; `_Algebra` and `_Topos` are partly interpretive (which connectives, which topos features foregrounded). Worth flagging because the canonical pieces are where math will push back if we get it wrong; the interpretive pieces are where the project's framing actively shapes the construction.
+
+- **Is causality a modality on `_Site`?** Yes, in two distinct senses worth keeping separate:
+  - **Meta-modality on building `_Site`** — a reflective operation carving "sites with causal structure" out of an ambient of unstructured small-category-plus-topology pairs. Idempotent, picks out a sub-class — modal in shape, one level *up* from the cohesive modalities ♭/♯/ʃ which act on types inside the topos.
+  - **Modalities induced on `_Topos`** — once `_Site` is fixed with causality, the resulting topos's internal logic carries modal operators like "causally-before X" or "concurrent with X" on B-types. These are at the right level — comparable to ♭/♯/ʃ — and may be where part of T4's modal partition actually originates on B.
+
+  The two pull in different directions for what we want B to give us.
+
+### Structuring relations (level-2 zoom)
+
+Complement to the inventory: six relations that constrain how the modules can be filled in. Useful as a checklist when any single-module decision threatens to ripple.
+
+- **R1 — Valuation.** `_Sheaf` takes values in V; V drawn from `_Algebra._SyntacticCategory`. The sheaf functor F: `_Site._Category`^op → V. Choosing V is the technical hinge between `_Algebra` and `_Sheaf`.
+- **R2 — Indexing.** `_Sheaf` lives over `_Site`: presheaf + descent against `_Site._Topology`. Both pieces of `_Site` feed in; descent is the load-bearing half.
+- **R3 — Generation.** `_Topos` = Sh(`_Site._Category`, `_Site._Topology`). No freedom in this step; the topos is generated from site + sheaves.
+- **R4 — Interpretation.** `_Topos._InternalLogic` ↔ `_Algebra._Connectives`. Topos logic is cartesian by default; `_Algebra` is linear. The compatibility (or its principled absence) is its own piece of work — not automatic from the construction.
+- **R5 — Embedding.** `_Topos._GeometricMorphisms` → cubical sets. B's topos sits inside the shared substrate; the mathematical form of "A and B share an ambient" (per `b_anchor.md`).
+- **R6 — Parametrization.** Causality → `_Site`. Constrains both `_Site._Category` (which morphisms count as causal) and `_Site._Topology` (which families count as local-frame covers).
+
+**Most load-bearing:** R1 (Valuation) and R4 (Interpretation). R1 is the *technical* hinge — it determines whether the construction even type-checks. R4 is the *conceptual* hinge — it determines whether the topos's logic and the algebra's logic agree. A decision at any level-2 question will propagate through at least one of these two.
+
