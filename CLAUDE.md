@@ -6,9 +6,9 @@ Establish a conjecture/theorem: while HoTT is the most appropriate *foundation* 
 
 ## Current Phase
 
-The site for the ∞-topos is **Bℤ** (delooping of the integers — the algebra, not the topology, is what's load-bearing; `workflow/only_read_if_asked_to/conversation.md` explicitly rejects "site is S¹"). Synthetic and analytic tracks both have `Cohesion`, `Adjunctions`, `Properties`, and `Fracture` files complete.
+The site for the ∞-topos is **Bℤ** (delooping of the integers — the algebra, not the topology, is what's load-bearing; `workflow/conversation.md` explicitly rejects "site is S¹"). Synthetic and analytic tracks both have `Cohesion`, `Adjunctions`, `Properties`, and `Fracture` files complete.
 
-**Current task: the de Rham separation arc.** Fracture has landed (synthetic postulate + analytic ℤ verification). The next step is the de Rham separation result — exhibit something stateable in cohesive HoTT but not in plain HoTT. A three-way branching point is pending — the **de Rham depth ladder**: **structural** (abstract coefficients `ʃX → B` for flat-modal `B`), **named-coefficient** (instantiate at postulated ℝ), **differential** (full differential cohesion with the infinitesimal shape modality ℑ). See `workflow/status.md` "Discussion of the next step" for the live reading; `workflow/only_read_if_asked_to/rug.md` for what the differential level would cost.
+**Current task: the de Rham separation arc.** Fracture has landed (synthetic postulate + analytic ℤ verification). The next step is the de Rham separation result — exhibit something stateable in cohesive HoTT but not in plain HoTT. A three-way branching point is pending — the **de Rham depth ladder**: **structural** (abstract coefficients `ʃX → B` for flat-modal `B`), **named-coefficient** (instantiate at postulated ℝ), **differential** (full differential cohesion with the infinitesimal shape modality ℑ). See `workflow/status.md` "Discussion of the next step" for the live reading; `workflow/rug.md` for what the differential level would cost.
 
 ## Roles
 
@@ -26,7 +26,7 @@ The site for the ∞-topos is **Bℤ** (delooping of the integers — the algebr
 
 ## Directory Layout
 
-**Start with `workflow/README.md`** — onboarding map. It defines two reading paths: a **focused** path (read `status.md` and stop) for active tasks, and an **architecture** path (the files in `workflow/only_read_if_asked_to/`) for orientation, reframing, or big-picture decisions. The architecture-path files are *not* loaded by default; consult them when `status.md` proves insufficient or when explicitly directed.
+**Start with `workflow/README.md`** — onboarding map. It defines two reading paths: a **focused** path (read `status.md` and stop) for active tasks, and an **architecture** path (the files in `workflow/`) for orientation, reframing, or big-picture decisions. The architecture-path files are *not* loaded by default; consult them when `status.md` proves insufficient or when explicitly directed.
 
 ```
 agda/
@@ -38,14 +38,14 @@ workflow/              Project management; read README.md first
   README.md            Onboarding map (two reading paths)
   status.md            Focused-path file: current state, live decisions, blockers
   memory/              Symlink to Claude auto-memory for this project
-  only_read_if_asked_to/   Architecture-path files; not loaded by default
-    motivation.md          Philosophical seed (the math is a subsystem of this)
-    arc.md                 Cohesive reformulation (Allow ⊣ Mediate ⊣ Require)
-    targets.md             T1–T7: concrete propositions decomposing the arc
-    conversation.md        Negative anchoring — defaults the project rejects
-    rug.md                 What's under the rug: shortcut postulates, gaps, horizons
-    related_structures.md  Adjacent frameworks (Connes, Bennequin/Belfiore/Laforgue)
-    naming.md              Modality vocabulary (♭/♯/ʃ)
+  motivation.md          Philosophical seed (the math is a subsystem of this)
+  arc.md                 Cohesive reformulation (Allow ⊣ Mediate ⊣ Require)
+  targets.md             T1–T7: concrete propositions decomposing the arc
+  conversation.md        Negative anchoring — defaults the project rejects
+  rug.md                 What's under the rug: shortcut postulates, gaps, horizons
+  related_structures.md  Adjacent frameworks (Connes, Bennequin/Belfiore/Laforgue)
+  naming.md              Modality vocabulary (♭/♯/ʃ)
+  only_read_if_asked_to/ Session-scoped working files (agent plans, discussion logs, anchor notes, ideas); not loaded by default
 ```
 
 ## Agda Notes

@@ -22,7 +22,7 @@ Severity tags:
 | "agda/Concurrency/ holds a brand-new stub (`ThreePointedStruct`)" | `workflow/status.md:9` |
 | "Concurrency/ B-side stub (dormant; ThreePointedStruct only)" | `CLAUDE.md:46` |
 | Decisions Log: "Concurrency stub named `ThreePointedStruct`" / `2026-05-06` | `workflow/status.md:123` |
-| "agda/Concurrency/  — candidate site (3-pointed sphere or related), develops B1+B2 separation." | `workflow/only_read_if_asked_to/arc.md:50` |
+| "agda/Concurrency/  — candidate site (3-pointed sphere or related), develops B1+B2 separation." | `workflow/arc.md:50` |
 
 | Repo says |
 |---|

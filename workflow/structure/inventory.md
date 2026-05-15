@@ -14,13 +14,13 @@ Loaded on the focused path. Together these are the minimum a fresh agent reads.
 
 | File | Lines | Role | Landmarks |
 |---|---:|---|---|
-| `README.md` | 29 | Onboarding map. Defines the **focused path** (`status.md` only) and the **architecture path** (everything in `only_read_if_asked_to/`). | "Focused path" §, "Architecture path" § (Backbone + Reference), "Memory" §. |
+| `README.md` | 29 | Onboarding map. Defines the **focused path** (`status.md` only) and the **architecture path** (the architecture-path files at `workflow/` root). | "Focused path" §, "Architecture path" § (Backbone + Reference), "Memory" §. |
 | `status.md` | 154 | The living document. Single source of truth for state, decisions, blockers, completed work, and the live discussion of the next step. | Conjecture Arc / B-side / Semantic Background / Analytic Development / Decisions Log — Relevant (12 rows, latest 2026-05-14) / Open Questions / **Current Task** / **Next step** / "Unlocking ♯" / Blockers / Completed (13 items) / Decisions Log — Archived / Discussion of the next step. |
 | `memory/` | — | Symlink → `~/.claude/projects/-home-ig-Code-doc2cog/memory/`. Cross-conversation agent memory. | Catalogued separately in §3 below. |
 
 ---
 
-## 2. `workflow/only_read_if_asked_to/` (architecture path)
+## 2. Architecture-path files (`workflow/` root)
 
 Loaded only when `status.md` is insufficient. Seven files; two reading orders depending on need (backbone vs reference; see `README.md:14-25`).
 
@@ -89,7 +89,7 @@ Not in `workflow/` but loaded into every conversation. Cross-references most of 
 
 | File | Lines | Role |
 |---|---:|---|
-| `CLAUDE.md` | 55 | Project Goal · Current Phase · Roles · Workflow Conventions (6 rules) · Directory Layout · Agda Notes. References `workflow/README.md`, `workflow/status.md`, `workflow/only_read_if_asked_to/conversation.md`, `workflow/only_read_if_asked_to/rug.md`. |
+| `CLAUDE.md` | 55 | Project Goal · Current Phase · Roles · Workflow Conventions (6 rules) · Directory Layout · Agda Notes. References `workflow/README.md`, `workflow/status.md`, `workflow/conversation.md`, `workflow/rug.md`. |
 
 ---
 

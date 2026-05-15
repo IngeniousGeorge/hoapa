@@ -23,7 +23,7 @@ flowchart LR
     STATUS[workflow/status.md]
   end
 
-  subgraph ARCH[only_read_if_asked_to/]
+  subgraph ARCH["architecture (workflow/)"]
     direction TB
     MOT[motivation.md]
     ARC[arc.md]
@@ -169,7 +169,7 @@ flowchart LR
                               │
                 ┌─────────────┴──────────────┐
                 ▼                            ▼
-         status.md  ◀──────────── only_read_if_asked_to/
+         status.md  ◀──────────── architecture-path files (workflow/)
        (focused path)                       │
                                 ┌──────┬────┴───┬───────┬──────┬─────┐
                                 ▼      ▼        ▼       ▼      ▼     ▼
@@ -192,8 +192,8 @@ Format: `source(line) → target — label`. Anchors that occur many times in on
 |---|---|
 | CLAUDE.md → workflow/README.md | "Start with `workflow/README.md`" (`CLAUDE.md:36`) |
 | CLAUDE.md → workflow/status.md | "Track blockers in `workflow/status.md`" (`CLAUDE.md:18`); `CLAUDE.md:37`, `:42` |
-| CLAUDE.md → conversation.md | "`workflow/only_read_if_asked_to/conversation.md` explicitly rejects 'site is S¹'" (`CLAUDE.md:7`) |
-| CLAUDE.md → rug.md | "`workflow/only_read_if_asked_to/rug.md` for what the differential level would cost" (`CLAUDE.md:9`) |
+| CLAUDE.md → conversation.md | "`workflow/conversation.md` explicitly rejects 'site is S¹'" (`CLAUDE.md:7`) |
+| CLAUDE.md → rug.md | "`workflow/rug.md` for what the differential level would cost" (`CLAUDE.md:9`) |
 
 ### 3.2 `workflow/README.md` → all architecture-path files
 

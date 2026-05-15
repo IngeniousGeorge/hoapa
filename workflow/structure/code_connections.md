@@ -14,9 +14,9 @@ Conventions:
 **Workflow homes:**
 - `CLAUDE.md:5-7` — Project Goal §; "The site for the ∞-topos is **Bℤ**"
 - `workflow/status.md:13` — "**The site is Bℤ — the delooping of ℤ.** ... It does not appear as an Agda object"
-- `workflow/only_read_if_asked_to/motivation.md` — proto-conjecture only; site choice deferred
-- `workflow/only_read_if_asked_to/conversation.md:10` — rejects "site is S¹"
-- `workflow/only_read_if_asked_to/conversation.md:30, 34` — instigator prompts converging on Bℤ
+- `workflow/motivation.md` — proto-conjecture only; site choice deferred
+- `workflow/conversation.md:10` — rejects "site is S¹"
+- `workflow/conversation.md:30, 34` — instigator prompts converging on Bℤ
 - `workflow/memory/b_side_site_icosahedral.md` — B-side companion (A-side site is Bℤ; B-side is icosahedral S²)
 
 **Agda anchor:** the synthetic side never names the site. Only the analytic side gives it a concrete witness.
