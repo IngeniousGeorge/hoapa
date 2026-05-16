@@ -10,9 +10,9 @@ Cross-reference convention: each section below that maps to a concrete propositi
 
 ## 2. The three per-domain claims
 
-A.  Modalities allow complexity to develop.            (cohesive HoTT)
-B1. Typed data is robust for information transfer.    (programming / session types)
-B2. Unityped agents handle complexity well.           (concurrency / actor model)
+ModalHoTT.     Modalities allow complexity to develop.        (cohesive HoTT)
+SessionValues. Typed data is robust for information transfer. (programming / session types)
+ActorBase.     Unityped agents handle complexity well.        (concurrency / actor model)
 
 For each: a short sentence on why it is trivial in its own domain, and the citation / anchor.
 
@@ -22,7 +22,7 @@ The non-trivial assembly. Stated as an adjoint triple of modalities
 
     Allow ⊣ Mediate ⊣ Require
 
-between A (perspectives) and B = (B1 separated from B2) (data-agents),
+between ModalHoTT (A) (perspectives) and Concurrency (B) = (SessionValues separated from ActorBase) (data-agents),
 living in an ambient ∞-topos that contains both as cohesive sub-presentations.
 
 Whether this is the full triple or a single adjoint pair is the first design choice;
@@ -44,15 +44,14 @@ This section is the structural meat. The four bullets of `motivation.md:13-17`
 requires / allows perspectivalism") are recovered here as the four pieces of
 adjoint data, with the asymmetry made explicit.
 
-## 5. Sites and folders  → T2 (icosahedral site), T4 (partition match), T5 (protocol)
+## 5. Sites and folders  → T2, T4, T5
 
-- `agda/ModalHoTT/`    — site Bℤ, develops A.
-- `agda/Concurrency/`  — candidate site (3-pointed sphere or related), develops B1+B2 separation.
-- `agda/Analytic/`     — analytic mirror for A; documents non-vacuity.
+- `agda/ModalHoTT/`    — site Bℤ, develops the ModalHoTT claim.
+- `agda/Concurrency/`  — site under reframe (operational under-layer: actor-causal + session-type values via sheaf); canonical source `deep_context/concurrency_anchor.md`. SessionValues + ActorBase separation is structural in the hybrid.
+- `agda/Analytic/`     — analytic mirror for ModalHoTT; documents non-vacuity.
 - `agda/AnalyticTest/` — reserved third track; see folder README.
 
-The arc-level theorem lives in the ambient ∞-topos relating the two cohesive sites
-via a functor or geometric morphism. Brief note on what kind of relation that functor must be.
+The arc-level theorem lives in the ambient ∞-topos relating the two cohesive sites via a functor or geometric morphism. (The specific shape of this functor is deferred to next session — both sites are intended to sit inside the same cubical-set ambient; see `concurrency_anchor.md`.)
 
 ## 6. The mathematical fragment  → T3 (Lawvere asymmetry)
 
@@ -79,5 +78,5 @@ Explicit list. Examples to seed it:
 - Whether the structural claim is one adjunction or the full triple.
 - What the middle modality "Mediate" picks out, if it exists.
 - The functor / geometric morphism between the two cohesive sites.
-- Whether 3-pointed-sphere is the right Concurrency site or only a candidate.
+- Concurrency-site sub-decisions (`_Site._Category` model, value category V, ∞-lift timing) — currently live in `status.md` "Discussion of the next step"; will fold here next session.
 - The precise statement of the math fragment as a theorem in the ambient topos.

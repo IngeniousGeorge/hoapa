@@ -2,16 +2,16 @@
 
 *The philosophical seed for this project. `arc.md`, `targets.md`, and `related_structures.md` all grow from this hand-wavy proto-conjecture. The math we're building is a subsystem of the broader picture, not its totality — re-read this file when the formalism starts to feel self-contained.*
 
-That modalities (perspectivalism encoded in HoTT) allows complexity to develop is trivial in abstract math [A]
+That modalities (perspectivalism encoded in HoTT) allows complexity to develop is trivial in abstract math [ModalHoTT]
 
-That typed data is more robust, readable, literate... is trivial in any domain concerned with information transfer, such as programming (HoTT says in homotopic math as well) [B1]
+That typed data is more robust, readable, literate... is trivial in any domain concerned with information transfer, such as programming (HoTT says in homotopic math as well) [SessionValues]
 
-That unityped agents are most adapted to handle complexity is trivial in concurrency theory¹ (a lesson of the Yoneda lemma, visible in the notion of comonads/coalgebras?) [B2]
+That unityped agents are most adapted to handle complexity is trivial in concurrency theory¹ (a lesson of the Yoneda lemma, visible in the notion of comonads/coalgebras?) [ActorBase]
 
 The result we're targeting should show (encoded in category theory): 
 If:
-- B1 and B2 follow separation of concern (independence, in the sense of modularity/clean code)
-- A and B1-B2 are in a requires-allows adjunction.
+- SessionValues and ActorBase follow separation of concern (independence, in the sense of modularity/clean code)
+- ModalHoTT and SessionValues-ActorBase are in a requires-allows adjunction.
     codependency: 
     - perspectives require typed data handled by unityped (or "univocal" in spinozism) agents
     - persepctives allow typed data to be handled by unityped agents

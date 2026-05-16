@@ -6,9 +6,7 @@ Establish a conjecture/theorem: while HoTT is the most appropriate *foundation* 
 
 ## Current Phase
 
-The site for the ∞-topos is **Bℤ** (delooping of the integers — the algebra, not the topology, is what's load-bearing; `workflow/conversation.md` explicitly rejects "site is S¹"). Synthetic and analytic tracks both have `Cohesion`, `Adjunctions`, `Properties`, and `Fracture` files complete.
-
-**Current task: the de Rham separation arc.** Fracture has landed (synthetic postulate + analytic ℤ verification). The next step is the de Rham separation result — exhibit something stateable in cohesive HoTT but not in plain HoTT. A three-way branching point is pending — the **de Rham depth ladder**: **structural** (abstract coefficients `ʃX → B` for flat-modal `B`), **named-coefficient** (instantiate at postulated ℝ), **differential** (full differential cohesion with the infinitesimal shape modality ℑ). See `workflow/status.md` "Discussion of the next step" for the live reading; `workflow/rug.md` for what the differential level would cost.
+Bandwidth has shifted from the ModalHoTT side (the formal-foundation leg) to the Concurrency side (the community-of-agents leg, dual conjecture). ModalHoTT work is on pause at the de Rham named-coefficient rung; the Concurrency side is in scoping after a major reframe — canonical source `workflow/deep_context/concurrency_anchor.md`. Live state in `workflow/status.md`; the "Discussion of the next step" section there carries the level-2 Concurrency inventory and structuring relations.
 
 ## Roles
 
@@ -22,31 +20,7 @@ The site for the ∞-topos is **Bℤ** (delooping of the integers — the algebr
 3. **No silent imports.** When a new Agda dependency or library is introduced, say so explicitly.
 4. **Mathematical fidelity first.** Prefer the formalization that matches the mathematical intent, even if a more pragmatic encoding type-checks more easily.
 5. **Track blockers in workflow/status.md.** If a formalization is stuck (e.g., universe levels, termination checker, missing stdlib), record it there rather than papering over it.
-6. **Long names over notation.** Prefer `DeloopingOfIntegers` over `Bℤ`, `ThreePointedStruct` over `C₃`, `FlatModality` over `♭`. Math notation belongs in comments, not identifiers.
-
-## Directory Layout
-
-**Start with `workflow/README.md`** — onboarding map. It defines two reading paths: a **focused** path (read `status.md` and stop) for active tasks, and an **architecture** path (the files in `workflow/`) for orientation, reframing, or big-picture decisions. The architecture-path files are *not* loaded by default; consult them when `status.md` proves insufficient or when explicitly directed.
-
-```
-agda/
-  ModalHoTT/           Synthetic (axiomatic) track — modalities postulated
-  Analytic/ModalHoTT/  Analytic (verification) track — demonstrates non-vacuity
-  AnalyticTest/        Reserved third track; see AnalyticTest/README.md
-  Concurrency/         B-side stub (dormant; ThreePointedStruct only)
-workflow/              Project management; read README.md first
-  README.md            Onboarding map (two reading paths)
-  status.md            Focused-path file: current state, live decisions, blockers
-  memory/              Symlink to Claude auto-memory for this project
-  motivation.md          Philosophical seed (the math is a subsystem of this)
-  arc.md                 Cohesive reformulation (Allow ⊣ Mediate ⊣ Require)
-  targets.md             T1–T7: concrete propositions decomposing the arc
-  conversation.md        Negative anchoring — defaults the project rejects
-  rug.md                 What's under the rug: shortcut postulates, gaps, horizons
-  related_structures.md  Adjacent frameworks (Connes, Bennequin/Belfiore/Laforgue)
-  naming.md              Modality vocabulary (♭/♯/ʃ)
-  only_read_if_asked_to/ Session-scoped working files (agent plans, discussion logs, anchor notes, ideas); not loaded by default
-```
+6. **Long names over notation.** Prefer `DeloopingOfIntegers` over `Bℤ`, `FlatModality` over `♭`. Math notation belongs in comments, not identifiers.
 
 ## Agda Notes
 

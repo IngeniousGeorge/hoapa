@@ -1,6 +1,6 @@
 # Under the rug
 
-All aspects of the code that will need to be completed of corrected if we want to present it.
+All aspects of the code that will need to be completed or corrected if we want to present it.
 
 ## Regarding fracture
 
