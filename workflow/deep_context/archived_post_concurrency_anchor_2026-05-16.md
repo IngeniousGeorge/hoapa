@@ -288,3 +288,99 @@ Removed in Batch 7 — file inventories duplicate `ls` output and require consta
 >   naming.md              Modality vocabulary (♭/♯/ʃ)
 >   only_read_if_asked_to/ Session-scoped working files (agent plans, discussion logs, anchor notes, ideas); not loaded by default
 > ```
+
+## memory/project_workflow_cleanup_2026-05-16.md (full file, archived 2026-05-16)
+
+The cleanup-tracking memory entry, archived here in full once the cleanup it documented was completed.
+
+```markdown
+---
+name: workflow-cleanup-2026-05-16
+description: "Multi-batch workflow/ restructure in progress 2026-05-16. Batches 1, 3, 4, 5, 6, 7 done; batches 8 (A/B → ModalHoTT/Concurrency rename pass), 9 (memory propagation), 10 (README) pending. Post-cleanup: real Concurrency-side restatement work (T2–T5)."
+metadata:
+  node_type: memory
+  type: project
+  originSessionId: 7095595f-923a-49bd-8e20-a16c8f93be1e
+---
+
+A `workflow/` folder cleanup is in progress as of 2026-05-16, prompted by the bandwidth shift from ModalHoTT to Concurrency and the Concurrency-side reframe (icosahedral S² retired → actor-causal + Caires–Pfenning session-type values via sheaf, all inside cubical sets).
+
+## What's done — Batches 1, 3, 4, 5, 6, 7
+
+**Folder/file renames:**
+- `workflow/only_read_if_asked_to/` → `workflow/deep_context/` (evolution journal, not standard onboarding)
+- `workflow/deep_context/b_anchor.md` → `concurrency_anchor.md` (load-bearing Concurrency-side reframe)
+- `workflow/deep_context/agent_plan_2026-05-13.md` → `plan_for_load_bearing_first_2026-05-13.md`
+- `workflow/deep_context/ideas.md` → `misc_ideas_2026-05-07.md`
+- `workflow/structure/` → `workflow/deep_context/workflow_structure_audit_2026-05-15/` (pre-restructure audit; stale, kept as historical artifact)
+
+**Archive infrastructure:** `workflow/deep_context/archived_post_concurrency_anchor_2026-05-16.md` collects all cut content. Section titles take the form `/path/to/file:Section:Subsection`. Folder snapshot at top.
+
+**Surgery applied:**
+- **`status.md`** (~170 lines, was ~260): Concurrency / ModalHoTT subsections; "Current Task + Next step" pattern removed; full Decisions Log archived; lightweight 7-row ModalHoTT-relevant table kept; Completed migrated to `targets.md` T7 Progress; "Discussion of the next step" kept as live Concurrency scoping doc.
+- **`targets.md`** (~163 lines): T2/T3/T4/T5 and Dependency sketch replaced with "to restate next session" placeholders pointing at `concurrency_anchor.md` and `status.md` "Discussion of the next step". T1 and T7 got Progress subsections. T7 absorbed the "Unlocking ♯" essay.
+- **`arc.md`**: §5 header anchor stripped of "icosahedral site"; Concurrency bullet now points at `concurrency_anchor.md`; §8 "3-pointed-sphere" bullet replaced with pointer to status.md Discussion.
+- **`rug.md`**: only the `of`→`or` typo on line 3. Instigator explicitly kept the "Discussion of the next step when the bandwidth was still on the modal side" section as a deliberate ModalHoTT-history breadcrumb (similar logic to the lightweight Decisions Log in status.md).
+- **`CLAUDE.md`**: Current Phase rewritten (3 lines, bandwidth-shift framing); Directory Layout section *removed* (file inventories duplicate `ls`; archived).
+
+**Concept renames (partial — full pass is Batch 8):**
+- B1 / B2 → SessionValues / ActorBase across `motivation.md`, `arc.md`, `memory/b_side_site_icosahedral.md`.
+
+## Batch 8 — broader A / B → ModalHoTT / Concurrency rename
+
+**Approach: surgical, not wholesale. Propose per file before editing.** Some A/B uses are structural per-claim labels in math formulas (A = cohesion side; B = data-agents side); some are folder-side (`agda/ModalHoTT/`, `agda/Concurrency/`). The folder-side ones should become ModalHoTT/Concurrency; the structural ones may or may not, depending on whether prose or formula reads better with descriptive names. **Don't rewrite swathes — flag each occurrence and ask.**
+
+Files with remaining A/B usage (`grep -n '\bA\b\|\bB\b\|A-side\|B-side' workflow/*.md` is the starting point):
+
+- **`arc.md`**: §3 "between A (perspectives) and B = (SessionValues separated from ActorBase) (data-agents)"; §5 bullets `agda/ModalHoTT/ — site Bℤ, develops A.` and `agda/Analytic/ — analytic mirror for A; documents non-vacuity.`
+- **`targets.md`**: T1 claim ("between A (perspectives) and B (data-agents)"); T6 claim ("A above B ... B above A"); T7 claim ("witness `A` alone"); Appendix title "flow leading to the B-side operational anchor" + body.
+- **`naming.md`**: section header "cross-site adjoints between A and B".
+- **`motivation.md`**: minimal — the math formula uses `A`, `SessionValues`, `ActorBase`. Decide whether to keep A as math-formula-label or rename for consistency.
+- **`conversation.md`**: instigator quotes use "A side"/"B side". **Preserve as historical text** — that's the file's job (negative anchoring as historical record).
+- **`CLAUDE.md`**: Convention 6 example `ThreePointedStruct` (the file never existed on disk) — swap to a real long-name example like `DeloopingOfIntegers` or `FlatModality`.
+- **`status.md`**: a few residual `A` references in Open Questions (e.g., "Naturality of the adjunction bijections in A"). These are technically the per-claim label; possibly leave.
+
+## Batch 9 — memory propagation
+
+- **`memory/MEMORY.md`** index: a few entries use "A-side" / "B-side" — sweep.
+- **`memory/b_side_site_icosahedral.md`** → rename to `project_concurrency_under_layer_reframe.md` (or similar). Content already captures the under-layer reframe; just the filename is stale.
+- **`memory/feedback_independent_legs_then_bridge.md`**: uses "A and B" — sweep.
+- **`memory/decisions_log_split.md`**: feedback-type without `feedback_` prefix; minor naming inconsistency flagged in the now-archived `duplication_audit.md`. Rename for prefix consistency, or leave.
+- Other memory files: check `negative_anchoring.md` (mentions rejected defaults "modal HoTT vs HoTT" / "concurrency leg decorative" — fine, those are the rejections); `feedback_analytic_folder_structure.md` references `agda/ModalHoTT/` mirror — fine.
+- Update `MEMORY.md` to point at the new entry (this file: `project_workflow_cleanup_2026-05-16.md`).
+
+## Batch 10 — README.md
+
+- Reflect new folder name `deep_context/` (currently mentions only `only_read_if_asked_to/` via outdated path).
+- Typo fix: `"you my ask the instigator"` → `"you may ask"` (line 7).
+- Slim/clarify the "Structure of context path" subsection title — currently confusing.
+
+## What should be done after the cleanup
+
+The real Concurrency-side work. Cleanup is preparation; this is the substance:
+
+1. **Restate T2, T3, T4, T5** against the actor-causal + session-type-values hybrid. The placeholders in `targets.md` point at `deep_context/concurrency_anchor.md` and `status.md` "Discussion of the next step"; both need refining first, then fold durable content into proper target statements.
+
+2. **Decide `_Site._Category`.** Proposal in `status.md` Discussion: Lamport partial-order (low cost; monotonic-enrichment toward event-structures; Lorentzian as long-horizon regulative principle). Escape clause if a Concurrency-side claim needs event-structures as primitive.
+
+3. **Decide V — value category for `_Sheaf`.** R1's hinge per `status.md` Discussion. Set / Cat / `_Algebra._SyntacticCategory` itself. Status flags this as the most urgent unresolved decision after `_Site._Category`.
+
+4. **Then first Agda file** on the Concurrency side. Likely `agda/Concurrency/_Site.agda` (Lamport partial-order as Grothendieck site). `agda/Concurrency/` is currently empty.
+
+## Workflow conventions reinforced this session
+
+- **Stepwise: propose → discuss → apply.** Never apply before discussing. Already covered in `feedback_propose_first` memory; reinforced here.
+- **Don't duplicate `ls`.** File inventories / structure docs that mirror the actual folder become a maintenance treadmill. Cut. The folder is the source of truth.
+- **Placeholders + notes-for-next-session > writing new content during cleanup.** New content is for after the dust settles.
+- **Some ModalHoTT context stays visible.** Lightweight Decisions Log in `status.md`; the ModalHoTT-history section in `rug.md`. The Concurrency-focused agent still needs orientation about what landed on ModalHoTT and why.
+- **Established naming**: A → ModalHoTT, B → Concurrency, B1 → SessionValues (typed data / session types), B2 → ActorBase (unityped agents / actor model).
+
+## Pointers (load-bearing files)
+
+- **`workflow/deep_context/concurrency_anchor.md`** — canonical Concurrency-side reframe. **Required reading** for any Concurrency work.
+- **`workflow/deep_context/archived_post_concurrency_anchor_2026-05-16.md`** — everything cut from workflow/ on 2026-05-16. Section titles = original locations.
+- **`workflow/status.md`** "Discussion of the next step" — live Concurrency scoping (level-2 module inventory `_Site / _Algebra / _Sheaf / _Topos`, structuring relations R1–R6, Lamport proposal for `_Site._Category`, V as the next-most-urgent decision).
+- **`workflow/targets.md`** — T1 and T7 carry current Progress subsections. T2/T3/T4/T5 are placeholders pending restatement.
+
+See related: [[b-side-under-layer-reframe-icosahedral-retired]] (the project memory entry that this cleanup operationalised), [[de_rham_depth_ladder]] (still load-bearing for ModalHoTT-side context), [[feedback_propose_first]] (the stepwise convention that shaped this session).
+```

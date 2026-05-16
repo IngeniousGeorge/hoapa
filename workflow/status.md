@@ -10,7 +10,7 @@ Post-reframe scoping. The operational anchor is an actor-causal site (GR-inspire
 
 ## ModalHoTT
 
-On pause at the de Rham named-coefficient rung. Synthetic-side fracture and structural pinning have landed; analytic mirror is bounded by `♯(Bℤ)` undefined (see T7 Progress in `targets.md` for the file-level state). Postulate budget catalogued in `rug.md`. When bandwidth returns: postulate a cohesive ℝ and instantiate the structural equivalence at `B := ♭ℝ`.
+On pause at the de Rham named-coefficient rung. Synthetic-side fracture and structural pinning have landed; analytic mirror is bounded by `♯(Bℤ)` undefined (see T7 Progress in `targets.md` for the file-level state). Postulate budget catalogued in `future_work.md`. When bandwidth returns: postulate a cohesive ℝ and instantiate the structural equivalence at `B := ♭ℝ`.
 
 ## Semantic Background — ModalHoTT (Bℤ)
 

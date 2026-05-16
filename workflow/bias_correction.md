@@ -1,4 +1,4 @@
-# Main prompts
+# Bias Correction
 
 ## Why this file exists — *negative anchoring*
 

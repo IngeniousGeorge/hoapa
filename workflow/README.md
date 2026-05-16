@@ -8,7 +8,7 @@ For active tasks (writing Agda, debugging a postulate, extending a file): **read
 
 ## Architecture path
 
-When the task needs wider context — conjecture scope, where things sit in the arc, what has been deferred, what is under the rug — read these in order. They live in `workflow/` and are *not* loaded by default.
+When the task needs wider context — conjecture scope, where things sit in the arc, what has been deferred, what future work is parked — read these in order. They live in `workflow/` and are *not* loaded by default.
 
 ## Structure of context path
 
@@ -23,8 +23,8 @@ Some special sessions can be about the structure of contextual information for t
 
 ### Reference
 
-- **`conversation.md`** — **negative anchoring.** Forestalls default-LLM mis-readings of this project (e.g. "modal HoTT vs HoTT", "site is S¹", "concurrency is decorative" — each explicitly rejected by the instigator). Read as corrections-against-assumptions, not as historical chat log.
-- **`rug.md`** — what is under the rug: postulates we have shortcut, claims that depend on imported soundness (real-cohesive HoTT), and the differential-cohesion gap blocking a content-bearing de Rham theorem. Consult when evaluating new postulates, when "is this really proved?" is in scope, or before extending the postulate budget.
+- **`bias_correction.md`** — **negative anchoring.** Forestalls default-LLM mis-readings of this project (e.g. "modal HoTT vs HoTT", "site is S¹", "concurrency is decorative" — each explicitly rejected by the instigator). Read as corrections-against-assumptions, not as historical chat log.
+- **`future_work.md`** — future work and known gaps: postulates we have shortcut, claims that depend on imported soundness (real-cohesive HoTT), and the differential-cohesion gap blocking a content-bearing de Rham theorem. Consult when evaluating new postulates, when "is this really proved?" is in scope, or before extending the postulate budget.
 - **`related_structures.md`** — adjacent frameworks (Connes, Bennequin/Laforgue, …) with explicit "Relation to our arc" framing. A locator, not a target; use to position the work against neighbours, not to import their machinery.
 - **`naming.md`** — short vocabulary table for the three cohesion modalities (♭, ♯, ʃ — what each *keeps* and *forgets*).
 

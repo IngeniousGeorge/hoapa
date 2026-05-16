@@ -90,7 +90,7 @@ ModalHoTT-side adjunctions are formalised synthetically as hom-set equivalences 
 
 ### Progress
 
-The fracture theorem and the de Rham structural / named-coefficient / differential ladder (see `rug.md` "Beyond fracture") are anchored here.
+The fracture theorem and the de Rham structural / named-coefficient / differential ladder (see `future_work.md` "Beyond fracture") are anchored here.
 
 **Completed — synthetic side (`agda/ModalHoTT/`).**
 
@@ -109,7 +109,7 @@ The fracture theorem and the de Rham structural / named-coefficient / differenti
 - `Modalities/Fracture.agda` — analytic ℤ; pullback collapses definitionally to `Σ ℤ singl`; canonical map sends `n` to `(n, n, refl)`; `isEquiv` via `isoToEquiv` on `fst` as inverse. No postulates. Bℤ excluded (♯(Bℤ) undefined).
 - `Cohomology/FlatCoefficients.agda` — analytic mirror at the structural rung.
 
-**Paused next step.** Postulate a cohesive type ℝ and instantiate the structural equivalence at `B := ♭ℝ` — the named-coefficient rung. Open design call: postulate ℝ as a bare type plus `IsFlatModal ♭ℝ`, or as a single bundled record. Tautological as a "de Rham theorem" (see `rug.md`); the content-bearing differential level is deferred to `agda/AnalyticTest/`.
+**Paused next step.** Postulate a cohesive type ℝ and instantiate the structural equivalence at `B := ♭ℝ` — the named-coefficient rung. Open design call: postulate ℝ as a bare type plus `IsFlatModal ♭ℝ`, or as a single bundled record. Tautological as a "de Rham theorem" (see `future_work.md`); the content-bearing differential level is deferred to `agda/AnalyticTest/`.
 
 ### Unlocking ♯ — what it costs and what it buys
 
