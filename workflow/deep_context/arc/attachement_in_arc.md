@@ -794,3 +794,364 @@ typical instance with n being a free parameter.
 If you commit to this vision for _Algebras, the R1 decision in my "decisions in priority order" gets framed concretely: the target category for evaluating the operad is "the category of
 Pask-style entailment meshes typed by concepts," or some categorical refinement of that. R1 stops being abstract and becomes a real design call against a specific intended semantics. That's
 a much better position to commit from than the abstract "Set / Cat / *-autonomous?" framing I gave.
+
+---
+
+`New agent`
+
+---
+
+❯ Welcome to the project. Please read all the files at the top level in /workflow and then /deep_context/arc (not the others in /deep_context). Our task today is to evaluate the direction the 
+project is going to take if we follow the direction that has been laid out in 'attachment_in_arc.md'.                                                                                        
+I'll let you read all that and also tell me your first impression, about the project in general and then the topic we're going to discuss.                                                    
+
+Read 10 files, listed 1 directory (ctrl+o to expand)
+
+● Now let me look at the centerpiece file — the attachment we're meant to evaluate.
+
+Read 2 files (ctrl+o to expand)
+
+● Let me sample the discussion log to round out the picture.
+
+Searched for 1 pattern, read 1 file (ctrl+o to expand)
+
+● Read all of it. Quick impressions on both fronts.
+
+On the project
+
+A genuinely interesting interdisciplinary conjecture with an unusually honest scaffold around it. The double-conjecture structure (modal HoTT for foundations-as-praxis + concurrency for
+community-as-algorithm, with a cross-site adjunction Allow ⊣ Require knitting them) is well thought out, and the workflow files reflect a mature discipline: explicit negative anchoring,
+postulate budgets, separation of synthetic and analytic tracks, future-work that names the gaps. The A-side has real Agda content (cohesion, fracture, structural pinning, T_recursion
+iteration scaffold). The B-side is in scoping after a major reframe (icosahedral A₅ → actor-causal + Caires–Pfenning hybrid), with a level-2 inventory in status.md and concurrency_anchor.md
+as canonical.
+
+One observation: the project has just completed a substantial reframe on the B-side, and the actor-causal+session-values hybrid hasn't yet produced a single Agda file. That context matters
+for evaluating the attachment.
+
+On the direction in attachement_in_arc.md
+
+The proposal is a second major B-side reframe, on top of the first: replace the site/sheaf/topos hybrid with an operadic picture — Ass_cyc (one binary op + cyclic involution) and its modular
+envelope MO₁ ≃ M̄_{g,n}, landing at S²-with-3-marks where dessins, Belyi maps and GT-action sit. Plus a companion "two paths to S²" diagram (Bℤ → S¹ → S² on A, O₁ → MO₁ → S² on B) and a
+speculative claim that the η-iteration on A and the genus-raising on B might be the same recursion.
+
+What's genuinely attractive:
+- Multi-fidelity: the involution gets three honest readings at once (linear-logic duality, session-type duality, 1=2 perspective-swap).
+- The S² landing is more faithful to the geometric intuitions the project actually had (dessins, A₅, trinion) than B²ℤ would be.
+- Up-then-sideways on B vs. sideways-then-up on A lines up with T3's Lawvere asymmetry.
+- The cyclic-operad-with-one-generator naming the actor/session "interaction algebra" is structurally clean.
+
+What I'd push on before endorsing:
+- targets.md explicitly puts the Esquisse mapping under "Not targets" with "If subsequent work starts orienting toward 'recovering Esquisse-style results,' push back." This direction does
+precisely that. Worth surfacing whether that bright line is being deliberately moved or accidentally crossed.
+- Scope. The hybrid was already estimated as "months, comparable to the entire A-side cohesion phase." Modular operads + ribbon graphs + moduli + GT is heavier still, with much thinner
+cubical-Agda support.
+- The "joint at S²" picture is the bet, by the attachment's own admission. The claim that A-side η-iteration ≡ B-side operadic genus-raising is unverified and would carry most of the
+structural weight.
+- Direction of fit. The previous agent praised "math catching up to intuition." This is a virtue, but at scoping time it's also where over-fitting happens — the three structural matches (3
+ports / 3 roles, involution / duality, etc.) are at the level of analogies, not theorems.
+- Inversion of B's role. Previously B was the "down-to-earth operational anchor"; here it becomes "higher-categorical at birth" while A becomes the rigid algebraic side. Real shift, not just
+a refinement.
+
+My instinct: the operadic framing is intellectually exciting and probably names something real, but committing the B-side scoping to it before the previous hybrid has any Agda traction risks
+a second pivot's worth of sunk planning. Worth discussing whether this is the next B-side step or a longer-horizon target the hybrid could be designed to be compatible with.
+
+What angle would you like to take first?
+
+✻ Worked for 2m 27s
+
+※ recap: Goal: evaluate whether to pivot the B-side scoping to the operadic framework proposed in attachement_in_arc.md, on top of the recent actor-causal + Caires–Pfenning hybrid reframe. 
+Next: you pick which angle to open first.
+
+❯ So, if on the modal side we have a "humble beginning" in the site Bℤ which would later (that is, from our perspective, in future work, and from the math-itself's perspective, through        
+refinements) sideways into S¹ and then suspends into S^2, wouldn't it be logical to say, following the diagram sketched in attachment_in_arc, that the modular operad is the equivalent of S¹ 
+(the intermediary step between the humble beginning and the target "in its full glory", except the step in its past is the suspension and the step in its future is the sideways move)? In   
+that case, what you're saying could be interpreted as: the modular operad has its place in the diagram, but what we need for the project is its "humble beginning"? Tell me what you think of 
+this, and don't hesitate to be critical, we're here to move forward, not boost my confidence.                                                                                                
+
+● That's a sharp move and it dissolves about two-thirds of my critique. Let me say what I think it gets right, then what I'd still flag.
+
+What the reframe gets right
+
+The structural reading is exactly correct. In the attachment's diagram:
+
+- A: Bℤ (humble) → S¹ (intermediate, via ʃ) → S² (target, via Σ)
+- B: O₁ (humble) → MO₁ (intermediate, via modular envelope) → S² (target, via eval@(0,3))
+
+MO₁ sits at the S¹ position. The asymmetry between up-then-sideways and sideways-then-up is exactly what the diagram is supposed to celebrate (and what T3's Lawvere asymmetry predicts). If I
+take this seriously, my critique was conflating two things:
+
+- (a) The structural insight that a cyclic operad with one binary op + involution names the actor/session interaction algebra cleanly.
+- (b) Committing to the full modular envelope + ribbon graphs + dessins + GT machinery now.
+
+You're taking (a) without (b). That's a much defensible position than what the attachment itself proposed. It honors the bias_correction.md discipline (don't make Esquisse a target) — the
+modular-envelope step exists in the diagram as long-horizon math, but it's not what the current scoping commits to. Same discipline as Bℤ: we know cohesion / fracture / differential / de
+Rham are downstream, but we committed to the small site.
+
+It also reframes the operadic picture as augmentation of the actor-causal + Caires–Pfenning hybrid rather than replacement of it. The hybrid gives substrate (where things live, what topology
+they sit on); O₁ gives the interaction algebra (the missing third leg concurrency_anchor.md was reaching for). That's a much cleaner story than the attachment's "operadic inventory replaces
+the site inventory" presentation.
+
+What I'd still flag
+
+1. The "humble" parallel isn't fully clean. Bℤ has one object, one π₁; you can write it down completely on a postcard. O₁ is a one-generator presentation, but what the generator generates —
+trees of all arities at genus 0 — is already infinite. So the parallel holds at the level of presentation (minimal data), not at the level of what's been committed to. Honest version of the
+analogy: O₁ is the minimal-presentation analog of Bℤ; the things it generates are richer than what Bℤ generates.
+2. The "up step" is heavier on B than on A. Σ is a 6-line cubical HIT. Modular envelope is Getzler–Kapranov 1998 + ribbon-graph machinery. Both can be deferred, but the long-term cost ratio
+between the two sides is much steeper than the diagram's visual symmetry suggests. Worth being explicit when you put this in the workflow files.
+3. Even O₁ alone is novel scaffolding. Cyclic operads in cubical Agda is not a standard library item. There's a setup cost — probably a small one (it's a finitely-presented operad with one
+relation), but a real one. The hybrid's Lamport-partial-order start was even cheaper.
+4. The integration story with the hybrid needs to be explicit. If O₁ augments rather than replaces, then the level-2 inventory in status.md doesn't get torn up — it gets a new entry (a
+_InteractionAlgebra module, say, or _Algebras._Operad if you want it under _Algebras). That entry interacts with R1 (Valuation: V is what O₁'s algebras evaluate into) and R4 (Interpretation:
+the involution mediates linear vs. cartesian). Worth naming where it lives before committing.
+5. One genuine concern survives. The attachment's most exciting claim was the speculative "η-iteration on A = operadic genus-raising on B" identity. That claim sits at the intermediate level
+(S¹ ↔ MO₁), not at the humble level (Bℤ ↔ O₁). If we take only the humble commitment, we don't yet have access to that identity — it becomes downstream evidence rather than a current
+motivator. The reframe makes the operadic move cheaper but also defers the most structurally interesting payoff.
+
+Where this leaves me
+
+If the move is "commit to O₁ as the interaction-algebra layer inside the existing hybrid; hold MO₁ and everything downstream as future-work," then I'd endorse it. It's the right shape:
+structurally informed by the attachment, scoped honestly, compatible with the hybrid that just landed, doesn't violate the Esquisse-not-a-target line.
+
+What I'd want to know before going further: does O₁ get pinned as Com_cyc or Ass_cyc at humble-beginning stage, or do we leave both open and let the actor-model / session-type considerations
+force the choice? The attachment leans Ass_cyc (planar / ribbon-graph world). That's already a non-trivial commitment — it determines whether the eventual downstream lands in M̄_{g,n} or in
+ribbon-decorated M̄. Worth being deliberate.
+
+✻ Cooked for 1m 46s
+
+❯ 1. Isn't this assymetry a good thing?                                                                                                                                                         
+2. Noted.                                                                                                                                                                                     
+3. Do you think you're up to the task? And would it be easier if we switched from Agda to Lean? How harder would it be to start at the modular operad directly, rather than its humble        
+begining in O₁?                                                                                                                                                                               
+4. You seem to already have decided we should target O₁. Please keep an open mind.                                                                                                            
+5. Say we nailed the modular operad level on the concurrency side, then we would need a S¹ site on the modal side to get to the iteration/genus-raising identity, wouldn't we?                
+
+● 1. The asymmetry
+
+Yes — and I was sloppy to flag it as a critique. Two different asymmetries got conflated in my (3):
+
+- Structural asymmetry (A rigid, B fluid; A needs to be pushed, B grows on its own): genuinely good, load-bearing, the engine. The attachment is explicit that the asymmetry is the motor.
+- Resource-cost asymmetry (B is more work to build at each level than A): a fact downstream of the structural asymmetry, not a value judgment. Rich structure is more work; that's
+tautological.
+
+What matters is calibration, not anxiety. If structure A took six months and structure B takes twelve, that's compatible with both being on the right track. So: agreed, retract my framing of
+(3) as a concern. The right framing is "scope the work knowing it's asymmetric," not "the asymmetry is a problem."
+
+3. Am I up to it; Lean vs Agda; MO₁ direct
+
+Up to it. Honest answer: O₁ alone, yes — finitely-presented cyclic operad with one generator is real work but bounded, no obvious blocker. Modular envelope: research-grade for me. I don't
+know of any cubical-Agda formalization of modular operads; ribbon-graph machinery in HoTT is an open area. I'd be feeling my way. I can do it, but the failure mode is plausible (something
+turns out to need infrastructure that isn't there yet) and I should be honest that the confidence interval is wider than for the A-side cohesion phase.
+
+Lean. Would not help, and would probably hurt:
+- Lean's HoTT story is much weaker than cubical Agda's. The mathlib4 ecosystem is set-theoretic/classical by default; HoTT-in-Lean is a research project, not a mature library.
+- This project is HoTT-native — cohesion, cubical paths, univalence, fracture all depend on it.
+- Mathlib has some operad content (small) and no modular-operad content I'm aware of. So the library advantage doesn't apply at the level we'd be working at.
+- The existing A-side Agda investment would have to be rewritten.
+
+Lean would be the right call if the project were "formalize a known mathematical result," not "develop new structural mathematics in a cohesive HoTT setting." The latter is cubical Agda's
+home turf.
+
+MO₁ direct vs. O₁ first. Significantly harder, but not unreasonably so given the project's track record. The cost comparison:
+
+┌──────────────────────────┬────────────────────────────────────────────────────────────────────────────────────┬─────────────────────────────────────────────────────────────────────────┐
+│                          │                                      O₁ first                                      │                               MO₁ direct                                │
+├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────┤
+│ Setup                    │ Finitely-presented cyclic operad — small file, few constructors                    │ Operad structure + cyclic structure + self-gluing + stability condition │
+│                          │                                                                                    │  + (optionally) geometric realization                                   │
+├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────┤
+│ Validation               │ Can check operadic framing against actor/session content at low cost; if the       │ Commits to the whole stack before knowing if the framing carries the    │
+│                          │ analogy turns out thin, you've sunk a little                                       │ weight it should                                                        │
+├──────────────────────────┼────────────────────────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────┤
+│ Access to the            │ Deferred — the η-iteration ≡ genus-raising identity (the attachment's most         │ Available — at least statable                                           │
+│ speculative payoff       │ interesting claim) sits at MO₁                                                     │                                                                         │
+└──────────────────────────┴────────────────────────────────────────────────────────────────────────────────────┴─────────────────────────────────────────────────────────────────────────┘
+
+The pattern that pulls toward MO₁-direct is the bandwidth pattern of the A-side: cohesion + fracture + iteration was also research-grade and got built. So "we don't do hard things" isn't the
+right reason to prefer O₁. The right reason is incremental validation. The right reason to prefer MO₁ is faster access to the identity.
+
+4. Open mind on the target
+
+Fair callout. My previous response leaked endorsement of O₁. To open the option space honestly, at least these are live:
+
+- O₁ as humble beginning, MO₁ deferred. Cheapest path; defers the identity.
+- MO₁ directly. Costly; gives statable identity sooner.
+- Stick with the actor-causal + Caires–Pfenning hybrid as currently scoped, no operadic move. The hybrid is what's actually in concurrency_anchor.md and status.md. The operadic framing might
+be a future augmentation. Choosing this would mean filing the attachment as "interesting structural reading, file for when bandwidth returns to this question."
+- Hybrid + O₁ as the interaction-algebra slot within it. What I drifted into endorsing in my previous response — but it's one option among several, not the conclusion.
+- Something below O₁. A single binary operation without cyclic structure? An algebraic theory (in Lawvere's sense)? The attachment doesn't really name a "below O₁" rung — but that doesn't
+mean there isn't one.
+- A different operadic flavor. Com_cyc vs Ass_cyc, π-calculus-flavored, dendroidal — the attachment ranked these but didn't commit.
+
+I shouldn't pretend to know which of these is right. The decision belongs to you, and to what the work surfaces.
+
+5. S¹ on the modal side to access the identity
+
+Sharp question, and the honest answer goes further than you've already inferred: yes, and it's not just an input change — it's a construction change too.
+
+The current A-side iteration in Iteration.agda is η-iteration, which by design collapses (IterationCohesion.agda proves the first-level collapse). Iteration-via-collapse is the wrong shape
+to mirror MO₁'s genus-raising, which grows rather than collapses. The attachment itself acknowledges this earlier in the file, in the answer about S¹/S²/suspension:
+
+▎ "What does produce higher-dimensional content from a monad is the bar construction Bar(T) — a simplicial object whose realisation is the classifying object for T-algebras. Bar(T) genuinely
+▎  raises dimension."
+
+So to state the identity cleanly you'd need both:
+- Lift the input from Bℤ to S¹ (where suspension Σ — and dimension-raising on homotopy types generally — has obvious meaning). Bℤ ≃ S¹ as ∞-groupoids, but the iteration scaffold operates on
+a chosen presentation; the dimension-raising side wants the homotopical presentation.
+- Switch the construction from η-iteration to bar construction (or some other genuinely dimension-raising operation). The current scaffold is iteration-by-collapse; the right shape to mirror
+genus-raising is iteration-by-bar.
+
+Implication: the speculative identity is further out than I had registered. To even state it, both sides need machinery they don't have:
+- A-side: bar construction at S¹ (a BarConstruction.agda file — substantial cubical-HIT work)
+- B-side: modular envelope of O₁ 
+
+This is worth being explicit about because it changes the cost calculation in (3): the identity isn't just a payoff that lands "when MO₁ is built." It needs an A-side extension as well.
+Going for MO₁-direct on B without the A-side bar-construction extension still leaves the identity unstatable.
+
+If the identity is what's pulling you toward this whole direction, the honest scope is: bar construction at S¹ on A, modular envelope of O₁ on B, then the comparison. That's two pieces of
+research-grade work on a coordinated schedule, not one. Worth knowing before deciding which option from (4) to pursue.
+
+✻ Sautéed for 1m 49s
+
+※ recap: Goal: evaluate the attachment_in_arc.md operadic reframe of the Concurrency side. We've narrowed options to five live paths (O₁ first, MO₁ direct, stay with hybrid, hybrid plus O₁, or
+below-O₁) and flagged that the speculative iteration/genus-raising identity also needs bar construction at S¹ on A. Next: you pick which option to pursue.
+
+❯ I believe we're converging.                                                                                                                                                                   
+-- new numbering from now on                                                                                                                                                                  
+I think I know my preference and the plan:                                                                                                                                                    
+1. Preparation: deprecate current status file (put in /deep_context/archived_status_date) and create a new one (which should use the tools and conventions laid out in /memory/context_*) to  
+set the stage for work on the concurrency side. Write a longish section which will summarize the brainstorming now residing in /deep_context/arc). The only sections that survive are         
+decisions log and next step (open questions should go into future_work). Leave the targets.md file as is, make T_recursion prominent and leave room for possibly the emergence of new targets 
+as we explore the concurrency side. Also in status, what we plan on doing on the modal side when bandwidth switches back: S¹ and the bar construction). New section: modules (in the style   
+of what's in status now and also in the attachment conversation.)                                                                                                                             
+2. Plan: start with O_1 but think of it as a stepping stone towards MO_1, which is our target. Once we're there, we'll move the bandwidth back to the modal side and lift Bℤ to S¹ and        
+η-iteration to bar construction, to see if we can reach our targets once we're there. In the meanwhile the "stable" O_1 can be used to nail down the actor-base/session-value hybrid and      
+start envisioning an implementation in the human world.                                                                                                                                       
+3. Get to it. Write the math.                                                                                                                                                                 
+
+Also 4., there are conections between the bar construction (which we'd have on the modal side) and Chu spaces (which I believe we'd have on the concurrency side), could those be the beams   
+and arcs we can build our bridge upon?                                                                                                                                                        
+
+Please be critical and flag everything that needs to be flaged (don't repeat yourself, but refer back to things you said if you believe I've overlooked them). Also, tell me what the project 
+would look like to an external observer who is working in this field, either in one of the domains touched or proof assistants.                                                              
+
+● Before drafting, let me quickly check the conventions/tools you referenced — I haven't read them yet.
+
+Listed 1 directory, recalled 1 memory (ctrl+o to expand)
+
+● Looked at context_tags_and_wiki_links.md, the tools folder, and the archived status. Substantive flags on each item, then the bridge question, then the external view.
+
+On (1) — status restructure
+
+Three real flags, beyond the obvious "I should propose the shape before writing it."
+
+The schema you want me to apply is in-flight and untested. Per context_tags_and_wiki_links.md: only tools/view is implemented (no refs, rename, audit-staleness, toc, lint, neighborhood);
+five open questions remain unresolved; no file has been tagged yet; no atomic note has been created yet. The doc itself names the level-2 Concurrency scoping as the trial bed, with success
+criterion "if the view reads cleaner than raw, the schema earned its keep." So what you're proposing in (1) is the trial-bed run. That's appropriate — but worth being explicit that we're
+piloting the schema, not applying a settled one. Be ready to revise the conventions if the first application surfaces friction.
+
+"Open questions → future_work" conflates two different temporal flavors. Live status.md Open Questions are mostly unresolved blockers to current work ("dependent induction for ♯/ʃ — would
+unlock several theorems"). future_work.md is known gaps for the eventual presentation ("differential cohesion gap"). Moving the first into the second risks burying live blockers in a parked
+list. Suggest: live blockers stay in the new status (under a different name if "Open Questions" reads stale); cataloged-but-deferred items go to future_work. Same split the current Decisions
+Log makes between Relevant and Archived.
+
+The "decisions log" survival needs an honest call. Today's Decisions Log on the ModalHoTT side captures methodological choices that drove the A-side construction. With bandwidth on
+Concurrency, that table is reference for past commitments, not live decision queue. Two options: (a) keep it as the Concurrency-side decisions accumulate next to it, or (b) move the
+ModalHoTT decisions to future_work.md or to an archive and start a fresh Concurrency-side decisions log. Lean (a) — the methodological-choice continuity is useful — but worth your call.
+
+On (2) — the staged plan
+
+Three additions, none repeating my (3)/(5) flags from before.
+
+Com_cyc vs Ass_cyc must be decided before O₁ work starts. The attachment leaned Ass_cyc (planar, ribbon-graph world, lines up with actor send/receive asymmetry and session-type
+non-commutativity). But Com_cyc is the version for which Getzler–Kapranov's MO₁ ≃ M̄_{g,n} is the cleanest theorem; Ass_cyc gives the ribbon-decorated variant (Kontsevich/Penner). The choice
+changes what the future MO₁ work is. Defer if you want, but don't start O₁ Agda before pinning it — they have different constructors.
+
+The existing A-side iteration scaffold changes role under this plan. Iteration.agda + IterationCohesion.agda are iteration-by-collapse at Bℤ. When bandwidth returns to A and we move to bar
+construction at S¹, we're not extending the scaffold — we're switching to a different construction. The existing scaffold becomes documentation / proof-of-concept that iteration-by-collapse
+is statable and works at the toy level. Worth flagging in the new status so a future agent doesn't read "next step on ModalHoTT" as "extend Iteration.agda."
+
+The Pask-style "implementation in the human world" deserves its own slot, not absorption into the operadic work. The collective-scientific-method angle from the end of the attachment is a
+third deliverable: math (formalization), B-side application of the math, plus this human-implementation layer. Your phrasing ("start envisioning") is appropriately loose — but worth being
+explicit in the new status that this is on the radar as a future, separate track, not as something O₁ work is expected to deliver. Otherwise scope creep is built-in from day one.
+
+On (3) — write the math
+
+Scope-flag: (1) is a substantial restructure with first-application-of-schema risk, and (2) is a non-trivial commitment document that the new status needs to capture. Both want
+propose-then-do per project convention. Realistic for this session: (1) and (2). For (3) — the actual O₁ Agda — propose the file scaffold this session if you want, but writing math should
+start when the prep is solid. Trying to do all three risks the prep being rushed and the math starting on uncertain ground.
+
+On (4) — Chu spaces ↔ bar construction as the bridge
+
+Honest answer in three parts.
+
+Real but not pinned. Both constructions live in the *-autonomous / linear-logic neighborhood. Chu(V, K) is *-autonomous by construction (events × states → truth value, with the involution
+exchanging the two sides). Bar construction of a monad/comonad on a closed monoidal category produces simplicial objects whose realization carries the algebra/coalgebra structure. They touch
+the same machinery (Mellies, Tabareau, Hyland-Schalk-Power have work in this neighborhood), but I don't know of a direct "Bar = Chu" theorem. The structural feeling that they're cousins is
+real; the equation isn't.
+
+Chu isn't currently in the B-side. concurrency_anchor.md considered Pratt's action algebra (Chu-flavored) as the "most Grothendieckian, least operationally direct" option and didn't pick it.
+The hybrid + operadic framing brings session-type duality S ↔ S^⊥ as the involution, which is adjacent to but not the same as Chu's event/state duality. Folding Chu in now would add a new
+commitment.
+
+The bridge is already crowded. Cross-site coupling currently runs through (i) the geometric morphism into the cubical-set ambient (R5 in the level-2 inventory), and (ii) the speculative
+Allow ⊣ Require adjunction. Adding "Chu ↔ Bar duality" as a third bridge mechanism is a real commitment, not a refinement of an existing one. The right disposition probably matches the
+Grothendieckian rising-sea: keep on file as a regulative idea — "if a structural connection between bar construction on A and Chu/event-state duality on B surfaces during the work, that's
+the moment to look at this seriously" — without committing to it now. Worth a related_structures.md entry rather than a target.
+
+One sharper version of the question that would be productive to investigate when bar construction lands on A: does Bar(Require ∘ Allow) carry a natural *-autonomous structure that
+intertwines with the B-side operad's involution? If yes, the bridge is real and Chu is the right vocabulary for it. If no, the connection is loose and we don't owe it formalization.
+
+External observer view
+
+Different communities, different reads. Compressed:
+
+Cohesive HoTT (Schreiber, Myers, Wellen, Riley, Cherubini, Shulman). Sympathetic-curious. The A-side reads as a respectable formalization at the level Wellen-Myers do — cohesion, fracture,
+structural pinning. The differential rung being deferred is the standard gap, not a surprise. The "modal HoTT as setting for praxis (development) rather than foundation (grounding)" framing
+is unusual but defensible — Schreiber's own "modern physics formalized" manifesto is in adjacent territory. They'd want the differential rung to land before fully buying in. Adding operadic
+concurrency is far outside their normal scope but wouldn't actively offend.
+
+Concurrency theory (Caires, Pfenning, Yoshida, Atkey, Honda-school). Mixed. The actor-causal + Caires–Pfenning hybrid is unusual but defensible. The operadic move is much more divisive —
+operadic models of concurrency are a niche (Pratt is the precedent, and Chu spaces "remain elegant but didn't become the motives of concurrency," per the attachment itself). First question
+they'd ask: "what operational theorem does this prove that linear-logic-typed session calculus doesn't?" If the answer is "the cyclic involution is session duality, structurally" they'd nod;
+if the answer is "GT acts on multiparty protocols," they'd wonder why they should care. The Pask-style application would be received politely and not engaged with.
+
+Categorical logic / linear logic (Mellies, Hyland, Tabareau). The closest natural audience for the math. Cyclic operads with session-type-duality involution sit cleanly in their language.
+The cubical-Agda formalization is novel; the GT connection is speculative-but-not-crazy. They'd be the first to bite if the operad work landed.
+
+Cubical Agda / proof assistants (Vezzosi, Mörtberg, Brunerie, Cavallo). Would care about reusable infrastructure — any cohesion library or operad-in-cubical-Agda formalization is
+contribution-grade. The postulate budget is what they'd worry about; the analytic-test pattern is the right response and they'd notice. The B-side operadic work would be novel terrain for
+the library.
+
+Operad / modular operad community (Getzler-Kapranov-Costello descent line). Few but motivated. Would caution against under-estimating modular envelope; would offer help if asked. The match
+to concurrency is unusual but the cyclic-operad-as-interaction-algebra reading is sensible to them.
+
+Esquisse / dessins community (Schneps, Lochak). Smallest, most niche. Would be interested in any concrete dessin-related construction, but the project's framing is far from theirs. The "GT
+acts on session protocols" reading would either delight them or be filed as overreach, depending on the individual.
+
+Philosophy of math (Hersh-adjacent; Cherubini for type-theoretic ph.). The Hersh / Grothendieck framing is genuine and would be recognized. The risk is reading as "philosophizing about math"
+rather than "doing math that philosophers find interesting." Mitigation: published Agda + structural theorems carry weight that prose doesn't.
+
+The overall risk profile, honestly:
+
+- Long unpublished horizon. No paper, no PR, no public artifact yet. Many cycles spent on scoping.
+- B-side has shifted twice now (icosahedral → actor-causal hybrid → operadic-on-top-of-hybrid). A fresh reader of the workflow files would track this; an external observer encountering the
+project for the first time might read it as instability rather than as evolution.
+- Three deliverables in flight (A-side formalization, B-side construction, human-implementation Pask layer). That's a lot for any project; for an interdisciplinary one with a single
+instigator + LLM agent it's a lot a lot.
+- The interdisciplinary framing carries upside (positions the work as more than narrow formalization) but isn't load-bearing for any single technical deliverable. If A-side lands a
+structural pinning of fracture, that's publishable on its own; if B-side lands cyclic-operadic semantics for actor-session systems, that's publishable on its own. The cross-site adjunction
+is the place the framing is load-bearing — and that's the furthest-out commitment.
+
+The most charitable read: disciplined structural-math project with genuine technical content (real Agda, real category theory), unusual ambition, and honest documentation practices. The
+dual-conjecture framing positions it as more than the sum of its parts.
+
+The most skeptical read: elaborate scoping over a long horizon with no landed theorem on the B-side and a tendency to reframe at each major decision point. Needs to ship something to be
+assessable.
+
+Both reads are honest. Which one wins by the time the project meets external eyes depends on whether the next ~6 months produces (a) an operadic Agda file with content, and (b) the
+bar-construction return trip to A landing. Without (a) by then, the skeptical read wins by default.
+
+Before I start anything
+
+Confirm scope: are (1) and (2) the work for this session, with (3) starting next? And on (1), do you want me to draft a shape proposal for the new status.md first (modules section sketch,
+tags I'd apply, what survives / what migrates / what gets archived), or jump straight to writing it?
