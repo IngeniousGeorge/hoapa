@@ -1,6 +1,6 @@
 # Project Status
 
-The arc is articulated in `arc.md` (the cohesive reformulation, with the `Allow ⊣ Mediate ⊣ Require` triple) and decomposed into propositions T1–T7 in `targets.md`. Philosophical seed in `motivation.md`.
+The arc is articulated in `arc.md` (the cohesive reformulation, with the `Allow ⊣ Mediate ⊣ Require` triple) and decomposed into propositions T1–T7 plus T_recursion in `targets.md`. Philosophical seed in `motivation.md`.
 
 Bandwidth has shifted from the ModalHoTT side (the formal-foundation leg) to the Concurrency side (the community-of-agents leg, dual conjecture). ModalHoTT work is on pause at the de Rham named-coefficient rung; Concurrency work is in the scoping phase after a major reframe — canonical source `deep_context/concurrency_anchor.md`, live level-2 inventory in "Discussion of the next step" below.
 
@@ -11,6 +11,8 @@ Post-reframe scoping. The operational anchor is an actor-causal site (GR-inspire
 ## ModalHoTT
 
 On pause at the de Rham named-coefficient rung. Synthetic-side fracture and structural pinning have landed; analytic mirror is bounded by `♯(Bℤ)` undefined (see T7 Progress in `targets.md` for the file-level state). Postulate budget catalogued in `future_work.md`. When bandwidth returns: postulate a cohesive ℝ and instantiate the structural equivalence at `B := ♭ℝ`.
+
+In parallel: the generic iteration scaffold for T_recursion has landed — `agda/ModalHoTT/Modalities/Iteration.agda` (`T`, `T-map`, `T^_`, `η^_`, postulated `η-naturality`, derived `η^-coherent`, `T-sequence`, `ND : Type → Type`) plus the A-side sanity check `agda/ModalHoTT/Modalities/IterationCohesion.agda` (ʃ ⊣ ♭ instantiation; refl-level `T-as-flat-shape` / `η^1-is-unit`; first-level collapse `η-equiv-at-T : T A ≃ T(T A)` via the `Discrete.agda` bridge — `T A` is flat-modal definitionally and shape-modal by the bridge, so the next iterate-step is an equivalence). Cross-site instantiation waits on Concurrency-side scoping; deferred items (B-side dual, cyclic-involution layer, full sequential-colimit convergence `ND A ≃ T A`) flagged in `future_work.md` "Regarding T_recursion iteration."
 
 ## Semantic Background — ModalHoTT (Bℤ)
 
@@ -53,9 +55,9 @@ Lightweight subset — the load-bearing methodological choices. Full merged tabl
 ## Open Questions — ModalHoTT
 
 - [ ] Dependent induction for ♯ and ʃ (fiberwise modality conditions needed); would unlock deriving `IsSharpModal (♯A)`, `IsShapeModal (ʃA)`, and all four postulated map laws in `Properties.agda` as theorems.
-- [ ] Naturality of the adjunction bijections in A; naturality of `flat-sharp-transpose` (♭ ⊣ ♯) in either variable. (Naturality of `shape-flat-transpose` in B is now postulated as `shape-flat-natural-B` in `Properties.agda` — load-bearing for the structural-pinning derivation.)
+- [ ] Naturality of the adjunction bijections in A; naturality of `flat-sharp-transpose` (♭ ⊣ ♯) in either variable. (Naturality of `shape-flat-transpose` in B is now postulated as `shape-flat-natural-B` in `Properties.agda` — load-bearing for the structural-pinning derivation. The generic-adjunction interface in `Modalities/Iteration.agda` carries a parallel postulate `η-naturality` — load-bearing for `η^-coherent`; same gap, same resolution path.)
 - [ ] `shape-map-id`, `shape-map-comp`, `sharp-map-id`, `sharp-map-comp` postulated in `Properties.agda`; same blocker as above.
-- [ ] Missing bridge: `IsShapeModal` and `IsFlatModal` are defined independently but should pick out the same class of types (the discrete types) in any cohesive model. Drafted in `Discrete.agda` (both directions postulated) but **held in reserve / not imported**. The intended pinning route turned out to need adjunction naturality instead; the bridge remains independently motivated and will matter for ♯-side work.
+- [ ] Missing bridge: `IsShapeModal` and `IsFlatModal` are defined independently but should pick out the same class of types (the discrete types) in any cohesive model. Drafted in `Discrete.agda` (both directions postulated); the intended pinning route turned out to need adjunction naturality instead, but the bridge is now **imported by `Modalities/IterationCohesion.agda`** to derive the first-level collapse of the T_recursion iteration. The two postulates (`flat-modal-to-shape-modal`, `shape-modal-to-flat-modal`) remain postulates, blocked on dependent ʃ-induction and the crisp η-rule for ♭ respectively; the file header documents both blockers.
 - [ ] Missing monad/comonad structure: comultiplication δ : ♭A → ♭(♭A), multiplication μ : ʃ(ʃA) → ʃA, and the corresponding structure for ♯. These follow from idempotency by abstract nonsense and are trivial in the idempotent case, but are currently unnamed. Defer until something concretely needs them.
 - [ ] `agda/Analytic/toy/` branch — a thorough construction of the synthetic structure using more pinpointed instances for the higher structures we work with. Alternative to the current ℤ-only analytic track; would broaden what gets verified without requiring full crisp-context support. Deferred.
 - [ ] ♯ as a lex modality (preserves finite limits) — would turn `fracture` from a postulate into a theorem; deferred along with crisp contexts since the analytic side of ♯ is blocked anyway.
@@ -171,4 +173,20 @@ Other crucial same-level questions, in priority order:
 
 (1) is the one to press on next, immediately after `_Site._Category` lands. (2) is structural-conceptual — worth a deliberate decision soon but doesn't block (1). (3) and (4) fall out once V is committed.
 
-## Workflow update - current status
+## After the detour into T_recursion
+
+Summary of this round:
+
+Code:
+- agda/ModalHoTT/Modalities/IterationCohesion.agda — added flat-intro-equiv (helper: on a flat-modal type, the postulated unconditional flat-intro is the equivalence), T-is-flat-modal /
+T-is-shape-modal (the latter via the bridge), and the main result η-equiv-at-T : T A ≃ T(T A) showing the first-level collapse, with η-equiv-fst pinning the forward map.
+- agda/ModalHoTT/Modalities/Discrete.agda — header updated from "DRAFTED, NOT YET USED" to "IMPORTED by IterationCohesion.agda", with a sentence explaining what the two postulates now do
+(and noting they remain postulates, blockers unchanged).
+
+Docs:
+- workflow/status.md — ModalHoTT paragraph updated to mention the first-level collapse via the bridge; Open Questions bridge entry rewritten to reflect that it's now imported.
+- workflow/targets.md — T_recursion Progress updated to record the IterationCohesion content.
+- workflow/future_work.md — "Regarding T_recursion iteration" updated; new deferred item added for full sequential-colimit convergence ND A ≃ T A.
+
+What now remains genuinely open (not just deferred): nothing surprising. The natural next move stays the same as before — wait on Concurrency-side scoping for the cross-site adjunction, or
+open up the sequential-colimit convergence lemma if you want a fully closed A-side ND A ≃ T A statement.

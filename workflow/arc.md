@@ -53,7 +53,7 @@ adjoint data, with the asymmetry made explicit.
 
 The arc-level theorem lives in the ambient ∞-topos relating the two cohesive sites via a functor or geometric morphism. (The specific shape of this functor is deferred to next session — both sites are intended to sit inside the same cubical-set ambient; see `concurrency_anchor.md`.)
 
-## 6. The mathematical fragment  → T3 (Lawvere asymmetry)
+## 6. The mathematical fragment  → T3 (Lawvere asymmetry), T_recursion (iteration / developing network)
 
 The line from `motivation.md:20` ("covers / coverings, recursion, infinite network")
 restated in cohesive vocabulary:
@@ -63,6 +63,8 @@ restated in cohesive vocabulary:
 - infinite network from the comonadic structure inducing co-presheaves on a developing diagram
 
 This is the part of the arc that is genuinely interesting in mathematics on its own.
+
+The "recursion" and "infinite network" bullets are the prose form of T_recursion: the iteration of the adjunction's unit η : id → Require ∘ Allow, with its sequential colimit as the developing network. T3 (the Lawvere fixed-point asymmetry between the two sides) is what makes this iteration non-trivial — without it, `Require ∘ Allow` would be idempotent and the network would collapse after one step. T_recursion is the structural target this section names; T3 is the asymmetry-engine that powers it.
 
 ## 7. Interpretation  → T6 (philosophical reading of unit / counit)
 

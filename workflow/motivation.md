@@ -13,9 +13,9 @@ If:
 - SessionValues and ActorBase follow separation of concern (independence, in the sense of modularity/clean code)
 - ModalHoTT and SessionValues-ActorBase are in a requires-allows adjunction.
     codependency: 
-    - perspectives require typed data handled by unityped (or "univocal" in spinozism) agents
+    - perspectives require (the optimality) typed data handled by unityped (or "univocal" in spinozism) agents
     - persepctives allow typed data to be handled by unityped agents
-    - the separation of concern between data and agents requires perspectivalism (a modal network)
+    - the separation of concern between data and agents (more precisely, the optimality of the system, secured by that separation) requires perspectivalism (a modal network)
     - it allows it
 Then: 
 Philosophically: the category which hosts this structure is capable of ? (World understanding and world creation)

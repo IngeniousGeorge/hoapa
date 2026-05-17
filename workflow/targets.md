@@ -25,6 +25,8 @@ Each target: claim, what's needed to state it cleanly, what's needed to verify i
 
 ModalHoTT-side adjunctions are formalised synthetically as hom-set equivalences with named transposes in `agda/ModalHoTT/Modalities/Adjunctions.agda` (♭ ⊣ ♯ and ʃ ⊣ ♭); `flat-modality-idempotent` is a theorem, while `sharp-modality-idempotent` and `shape-modality-idempotent` are postulated (blocked on dependent induction for ♯ and ʃ — see Open Questions in `status.md`). The cross-site `Allow ⊣ Mediate ⊣ Require` triple between ModalHoTT and Concurrency is not yet stated — pending the Concurrency side maturing past scoping.
 
+T_recursion (below) is downstream of T1: once `Allow ⊣ Require` is stated, its unit instantiates the generic-adjunction iteration scaffold in `agda/ModalHoTT/Modalities/Iteration.agda`. The naturality piece flagged in "To state cleanly" is load-bearing for T_recursion's `η^-coherent` lemma — bridged currently by a postulated `η-naturality` on the generic-adjunction interface.
+
 ---
 
 ## T2. Cohesion on the Concurrency site
@@ -39,7 +41,18 @@ ModalHoTT-side adjunctions are formalised synthetically as hom-set equivalences 
 
 *Arc anchor: `arc.md` §6.*
 
-*To restate next session.* Core intuition (cohesive modalities are fixed-point-rich; the Concurrency side is fixed-point-poor by locality) is durable; the specific anchor (A_5 simple-and-transitive on 12 vertices) is retired with the icosahedral framing. Reformulate against the actor-causal site's no-global-frame property. Original archived.
+**Claim.** The two sides of the adjunction sit at opposite Lawvere poles. The A-side (ModalHoTT) is fixed-point-rich: the cohesive modalities ʃ, ♭, ♯ are idempotent, each picking out a sub-class of fixed-point types (the modal types of `Modalities/Cohesion.agda`). The B-side (Concurrency) is fixed-point-poor by locality: the actor-causal site has no global frame, and consequently no globally fixed-point endomap on the resulting topos. The asymmetry is structural — it is what makes the cross-site adjunction `Allow ⊣ Require` non-trivial, and in particular what gives T_recursion's iteration content rather than collapse: if both sides were fixed-point-rich, `Require ∘ Allow` would be idempotent and the iteration would collapse after one step.
+
+**To state cleanly.**
+- Fix the precise sense of "fixed-point-poor" on the actor-causal site (no global-frame morphism; or: every globally A-equivariant endomap is the identity; or: a specific failure form of Lawvere's fixed-point theorem). Depends on the Concurrency-side scoping for `_Site._Category`.
+- State the implication direction: that the asymmetry is *necessary* for T_recursion's iteration to be non-trivial.
+
+**To verify.**
+- A-side fixed-point richness is already in `Modalities/Adjunctions.agda` (`flat-modality-idempotent` proved; `sharp-modality-idempotent` and `shape-modality-idempotent` postulated).
+- B-side non-fixed-point claim becomes statable once `_Site._Category` is committed.
+- Non-collapse of T_recursion would be the derived corollary: `Iteration.T^_ n A` not equivalent to `Iteration.T A` for some `n > 1` and some `A`.
+
+The original formulation — A_5 simple-and-transitive on the 12 icosahedral vertices, with equivariant fixed-point absence enforced at the symmetry level — is preserved in `deep_context/archived_post_concurrency_anchor_2026-05-16.md`. It is retired *as a specific anchor* (with the icosahedral framing), not as a line of thought: the structural content (asymmetry as the engine of non-trivial iteration) survives the move to the actor-causal site, and is what the rewrite above names.
 
 ---
 
@@ -91,6 +104,35 @@ ModalHoTT-side adjunctions are formalised synthetically as hom-set equivalences 
 ### Progress
 
 The fracture theorem and the de Rham structural / named-coefficient / differential ladder (see `future_work.md` "Beyond fracture") are anchored here.
+
+---
+
+## T_recursion. Iterable adjunction and the developing network
+
+*Arc anchor: `arc.md` §6.*
+
+**Claim.** The unit η : id → Require ∘ Allow of T1's adjunction is iterable with coherent self-composition, and the iteration carries a cyclic / modular-operad structure whose involution is the perspective-swap "cared-for = caregiver" (the 1=2 identity). The colimit of the iteration tower (in the ambient ∞-topos) is the mathematical object the arc's "math fragment" §6 names as the developing infinite network. T_recursion makes the static adjunction of T1 into a generative process: it names the mechanism by which praxis (developmental aspect, `motivation.md`) is realised on top of the adjoint structure. T3's asymmetry is what makes the iteration non-trivial; the present target is what the asymmetry *does*.
+
+**To state cleanly.**
+- Pick the operad flavour: cyclic operad (minimum — carries the 1=2 involution), modular operad (richer — adds genus-grading, making the Esquisse-side mapping literal rather than analogical), or dendroidal ∞-operad (most native to the cubical-set ambient).
+- Decide where the operad lives: on `_Site._Category` directly, on the sheaf-of-session-values, or on the ambient ∞-topos. Likely follows R1/R4 in `status.md`'s level-2 zoom — on the sheaf, with composition coming from cut-elimination on the Caires–Pfenning side.
+- Name the involution explicitly: at the session-type level this is `S ↔ S^⊥` (linear-logic duality); at the philosophical level this is the 1=2 perspective swap.
+- State the colimit's homotopy invariant: an analogue of the Grothendieck–Teichmüller-tower homotopy type, scaled to whatever finite combinatorial data the Concurrency site commits to.
+
+**To verify.**
+- *Iteration-alone layer (cheaper, Agda-reachable now).* The scaffold in `agda/ModalHoTT/Modalities/Iteration.agda` provides `T`, `T-map`, `T^_`, `η^_`, `η^-coherent` (derived from a postulated `η-naturality`), and the developing-network type `ND : Type → Type` as a sequential colimit. Specializing to the A-side ʃ ⊣ ♭ should collapse `ND` to `♭(ʃ A)` by idempotency; at `A := Bℤ` this should yield `ND Bℤ ≃ ℤ` via the analytic-side computation in `Analytic/.../Cohesion.agda`. This is the cheapest non-trivial content from the scaffold.
+- *Operad-structure layer (harder, scoping-bound).* Once `Allow ⊣ Require` is named, instantiate the iteration module; exhibit the cyclic / modular operad structure; check the involution restricts to session-type duality on the value layer. Depends on the Concurrency-side scoping committing R1 (V) and R4 (Interpretation).
+
+### Progress
+
+The iteration scaffold is in place: `agda/ModalHoTT/Modalities/Iteration.agda` defines the generic-adjunction `Iteration` module (`T`, `T-map`, `T^_`, `η^_`, `η-naturality` postulate, `η^-coherent` derived, `T-sequence`, `ND`). A-side sanity check `agda/ModalHoTT/Modalities/IterationCohesion.agda` instantiates with ʃ ⊣ ♭: refl-level `T-as-flat-shape` and `η^1-is-unit`, plus the first-level collapse `η-equiv-at-T : T A ≃ T(T A)` derived via the `Discrete.agda` bridge (`T A` is flat-modal definitionally and shape-modal by the bridge, so the next iterate-step is an equivalence). Cross-site adjunction not yet stated (waits on Concurrency-side scoping). Deferred items (B-side dual, cyclic-involution layer, full sequential-colimit convergence `ND A ≃ T A`) flagged in `future_work.md` "Regarding T_recursion iteration."
+
+### Relation to other targets
+
+- **Downstream of T1** (the adjunction itself).
+- **T3 is the asymmetry-engine** — the Lawvere asymmetry is what makes the iteration content rather than collapse.
+- **Distinct from T6** ("two-sided above") — T6 is the snapshot of mutual constitution; T_recursion is its dynamics.
+- **Esquisse pointer.** T_recursion is the natural target for the Grothendieck-Esquisse mapping the arc_discussion_log named: the modular-operad form of the moduli-tower recursion, surviving the retirement of the A_5 / icosahedral example. See `deep_context/arc_discussion_log-2026-05-08.md` Turn 21.
 
 **Completed — synthetic side (`agda/ModalHoTT/`).**
 

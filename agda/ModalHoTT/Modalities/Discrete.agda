@@ -1,14 +1,17 @@
 {-# OPTIONS --cubical --guardedness #-}
 
--- Status (2026-05-14): DRAFTED, NOT YET USED.
+-- Status: IMPORTED by `Modalities/IterationCohesion.agda` (2026-05-16).
 --
 -- The bridge was originally queued to support pinning the structural
 -- de Rham map in Cohomology/FlatCoefficients.agda. On working through
 -- the pinning derivation, naturality of `shape-flat-transpose` in B
 -- turned out to be the load-bearing piece, not the bridge — so this
--- file's two postulates are held in reserve. They remain independently
--- well-motivated (resolve several Open Questions in status.md and will
--- matter for ♯-side work later) but are not currently imported anywhere.
+-- file's two postulates were initially held in reserve. They are now
+-- used in `IterationCohesion.agda` to derive that `T A = ♭(ʃ A)` is
+-- shape-modal (via `flat-modal-to-shape-modal`) and that `ʃ(T A)` is
+-- flat-modal (via `shape-modal-to-flat-modal`), which together give
+-- the first-level collapse of T_recursion's iteration. They remain
+-- independently well-motivated for ♯-side work later.
 --
 -- Coincidence of the discrete and shape-modal type classes.
 --

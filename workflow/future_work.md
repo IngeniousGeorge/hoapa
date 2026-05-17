@@ -26,6 +26,20 @@ Fracture is trustworthy as a *postulate-relative theorem in an axiomatization kn
 
 A useful frame: we are building a *consistent axiomatic stance* and naming the geometric objects it commits to. The proof-checker confirms internal coherence; soundness comes from citation, not from our own work.
 
+## Regarding T_recursion iteration
+
+`agda/ModalHoTT/Modalities/Iteration.agda` lands the iteration scaffold for T_recursion on the A-side: generic-adjunction-parameterized monad iteration `T^n`, iterated unit `η^_n`, operadic associator `η^-coherent` (derived from a postulated `η-naturality`), and the developing-network type `ND A` as the sequential colimit of `A → TA → T²A → …`. `agda/ModalHoTT/Modalities/IterationCohesion.agda` provides the A-side sanity check at ʃ ⊣ ♭, including the first-level collapse `η-equiv-at-T : T A ≃ T(T A)` derived via the `Discrete.agda` bridge.
+
+Pieces deferred:
+
+- **B-side dual.** A symmetric module would iterate the *counit* of the comonad `L ∘ R` on the target side, taking the *limit* of a decreasing tower `… → M²B → MB → B`. Not written yet because: until the cross-site adjunction `Allow ⊣ Require` is stated and `ND` has non-trivial content, the dual is a duplicate of an empty scaffold. The 1=2 identity is conjecturally the equivalence between the A-side colimit `ND A` and the B-side limit `ND_B (L A)` via the adjunction — stateable only once both halves exist. Revisit when Concurrency-side scoping commits enough that `Allow ⊣ Require` can be postulated.
+
+- **Cyclic-operad involution.** The 1=2 perspective-swap "cared-for = caregiver" would be a path constructor (or separate HIT) on top of `SeqColim`, encoding that the iteration is cyclic / self-dual on each level. Deferred for the same reason as the dual: adding the involution to a scaffold that hasn't yet produced non-trivial iteration content is premature.
+
+- **`η-naturality` postulate.** Load-bearing for `η^-coherent`. Same shape and same resolution path as `shape-flat-natural-B` in `Properties.agda` — becomes a theorem once adjunction-naturality is recorded (status.md Open Questions). Not new scope; folds into the existing naturality gap.
+
+- **Full sequential-colimit convergence.** `IterationCohesion.agda` proves the first-level collapse `T A ≃ T(T A)`. Lifting this to `ND A ≃ T A` (the colimit's value, not just the step) requires a "convergent sequence has colimit at the convergence point" lemma against cubical's `Sequence` / `SeqColim` infrastructure (`Cubical.Data.Sequence.converges`). Straightforward but heavier than the step lemma; left as a follow-up if a downstream use forces it (e.g. when stating the 1=2 identity via the B-side dual).
+
 ## Beyond fracture: the differential-cohesion gap
 
 The de Rham target splits three ways once examined — the **de Rham depth ladder**, three levels distinguished by what each adds:
