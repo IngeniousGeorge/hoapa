@@ -47,7 +47,7 @@ adjoint data, with the asymmetry made explicit.
 ## 5. Sites and folders  → T2, T4, T5
 
 - `agda/ModalHoTT/`    — site Bℤ, develops the ModalHoTT claim.
-- `agda/Concurrency/`  — site under reframe (operational under-layer: actor-causal + session-type values via sheaf); canonical source `deep_context/concurrency_anchor.md`. SessionValues + ActorBase separation is structural in the hybrid.
+- `agda/Concurrency/`  — hybrid substrate (actor-causal + session-type values via sheaf; canonical source `deep_context/concurrency_anchor.md`) plus the `O_1` operadic interaction layer named on top. Operadic syntax shipped 2026-05-18 in `Concurrency/Operads/{Ports,RawCyclicOperad,PortGluing,CyclicAssociative}.agda` (HIT-by-copy with `compₒ-assoc-seq`, `compₒ-assoc-par`, `rot-compₒ`; the last is the boundary-rotation operand-swap presentation — full-cyclic-equivariance status open). Algebras and hybrid integration not yet started. SessionValues + ActorBase separation is structural in the hybrid.
 - `agda/Analytic/`     — analytic mirror for ModalHoTT; documents non-vacuity.
 - `agda/AnalyticTest/` — reserved third track; see folder README.
 

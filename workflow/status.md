@@ -208,115 +208,211 @@ Analytic-side mirror is future work; whether the `agda/Analytic/` pattern from M
 | 2026-05-17 | Philosophical lean: `Ass_cyc` over `Com_cyc` | Actor send/receive is ordered, session composition non-commutative, dessins live in ribbon-decorated world. Pending ratification before `O_1` Agda starts |
 | 2026-05-17 | A-side return plan: lift `Bℤ → S¹`, switch η-iteration → cyclic bar | Cross-site identity (`S¹ ↔ MO_1`) is only statable when both sides have dimension-raising machinery; cyclic bar pairs with `Ass_cyc` |
 | 2026-05-17 | Differential cohesion rung elevated to load-bearing for the cross-site bridge | `M̄`'s natural infinitesimal structure needs an A-side infinitesimal layer to talk to; see `targets.md` T3 refinement |
+| 2026-05-17 | `Ass_cyc` ratified (was philosophical lean; now committed) | Actor send/receive is ordered, session composition non-commutative, dessins live in ribbon-decorated world, 1=2 reads as cyclic-of-three not symmetric. Closes plain-bar option on A; commits `MO_1` to ribbon-decorated `M̄` |
+| 2026-05-17 | R7 target = parameterized `*`-autonomous record (polycategory co-equal, flagged in header) | Minimum that hosts session-type duality natively; doesn't pre-empt `(∞,1)`-enrichment or cohesion. Implementation in future `Concurrency/Algebras/StarAutonomous.agda` |
+| 2026-05-17 | Concurrency-side three-file staging: `Ports.agda` → `RawCyclicOperad.agda` → `CyclicAssociative.agda` | File names earn their semantics. Port arithmetic is the combinatorial substrate (not utility); raw cyclic operad ships without associativity; the named file carries associativity + equivariance. Codex framing |
+| 2026-05-17 | Cyclic action named `rot` / `rotate-equiv`, never `involution` | Cyclic rotation has order `n+1`, not order 2; session duality is the involutive structure (order 2) and lives on the algebra side. Discipline enforced at naming time |
+| 2026-05-18 | `compₒ` arity convention switched from `O (m + n ∸ 1)` to positive-only `O (suc (l + r))` (inputs `O (suc l)`, `O (suc r)`) | The port-gluing iso `Port (m + n ∸ 1) ≃ (Port m ─ {i}) ⊎ (Port n ─ {j})` is non-total at `m = n = 0` (`Fin 1 ≄ ∅ ⊎ ∅`). Positive-only inputs make the iso total without preconditions; no expressiveness loss (generator set has no nullary ops, reachable arities unchanged) |
+| 2026-05-18 | Port-gluing convention: cyclic-equivariant β (`delete-port i k = i +ₘ fsuc k`), not linear punch-in α | β anchors the renumbering to the deleted port, making per-operand cyclic action commute with delete-and-renumber by construction. α uses `<` order on `Fin`, breaking cyclic equivariance and forcing `rot-compₒ` to absorb the discrepancy. Cost: punch lemmas written from scratch rather than reused from stdlib |
+| 2026-05-18 | Glue API: equivalence + derived functions, no record wrapper | `port-gluing-equiv : (i j) → Port (suc (l+r)) ≃ Fin (suc l) ⊎ Fin (suc r)` exposed; `port-glue = equivFun`, `port-split = invEq` derived. Matches `feedback_postulates_over_records` (record wrappers reserved for parameter signatures, not gap-filling) |
+| 2026-05-18 | `CyclicAssociative.agda` shape: HIT-by-copy of `RawCyclicOperad`'s constructors, plus three new path constructors for the laws | The cyclic *associative* operad's laws are part of the type, not theorems added after the fact. `RawCyclicOperad.agda` becomes the "without-laws" reference; downstream files import `CyclicAssociative.O`. Quotient alternative ruled out (every function would have to respect the quotient — heavier to use) |
+| 2026-05-18 | `rot-compₒ` formulated as the **boundary-rotation operand-swap** form: `rot (boundary-rot l r) (compₒ i j a b) ≡ compₒ j i b a` (PathP over `+-comm l r`) | Cleanest possible RHS — no port reindexing at all. Makes the "1=2 perspective swap" (R8) literal at the boundary case: rotating past `a`'s contribution *is* the operand swap. **Caveat (per Codex):** this is **not** the standard MSS unit-rotation form, and the prior framing "general `rot k` derives by `rot-compose` induction" was an overclaim. `rot-compose` composes rotations of the same operation; it does not decompose a composite's rotation into operand-rotations. Whether boundary-swap is the whole cyclic compatibility for this presentation (alternative-presentation reading) or an incomplete case of full cyclic equivariance (incomplete-stand-in reading) is the open question flagged in "Discussion of the next step" |
+| 2026-05-18 | Full port bookkeeping (gluing iso + reindexing families for laws) lives in new sibling `Concurrency/Operads/PortGluing.agda` | `Ports.agda` stays minimal (Port type, cyclic-group arithmetic); `PortGluing.agda` owns the heavier combinatorics. Sibling file, not subdirectory (`feedback_analytic_folder_structure`) |
 
 ## Blockers  <!-- tags: kind:state -->
 
 (Previous Open Questions archived to `deep_context/archived_blockers/2026-05-17.md`. Deferred items migrated to `future_work.md`.)
 
-Concurrency: none yet (no Agda).
+Concurrency: none active. First B-side artifacts shipped; `PortGluing.agda` + `CyclicAssociative.agda` in progress this session (see "Discussion of the next step" → "State at session start (2026-05-18)").
 ModalHoTT: none active (paused).
 
-## Discussion of the next step  <!-- tags: kind:state -->
+## Assessment of the situation - Claude  <!-- tags: kind:state -->
 
-Three immediate calls, in priority order.
+(Prior session-end snapshot, design-call resolutions, and now-superseded planning archived to `deep_context/archived_status_2026-05-18.md`.)
 
-**1. Ratify `Ass_cyc` (or revisit `Com_cyc`).** Philosophical lean is `Ass_cyc`. If accepted, `_Operad._Generators` commits to planar / cyclic-associative; the A-side return plan commits to cyclic bar. If we want `Com_cyc` open, both sides loosen (plain bar; symmetric operad) and the diagram is symmetric-but-thinner. Decision before `O_1` Agda starts.
+### State at session end (2026-05-18)
 
-**2. R1 (Valuation): the target category for `_Algebras`.** What `_Sessions` evaluates into. Pins down R7 (Algebra-over-Operad), constrains R4 (Interpretation). Candidates: \*-autonomous category (matches Caires-Pfenning), `(∞,1)`-category enriched in \*-autonomous, cohesive ∞-topos. Most urgent technical commitment after Ass_cyc lands; `_Sheaf` doesn't type-check without it.
+What's shipped to `agda/Concurrency/Operads/` (all four files type-check clean under `--cubical --guardedness`):
 
-**3. Write the `O_1` Agda scaffold.** Finitely-presented cyclic operad; small file. The first concrete artifact on the B side.
+| File | Role | Line count |
+|------|------|-----------:|
+| `Ports.agda` | Minimal port type + cyclic-group arithmetic re-exports | ~60 |
+| `RawCyclicOperad.agda` | Positive-only `compₒ` HIT without laws; reference / pedagogy stepping-stone | ~165 |
+| `PortGluing.agda` | β `delete-port`, `port-gluing-equiv` via library `Fin+≅Fin⊎Fin`, reindexing functions (`a-port-after-inner-glue`, `b-port-after-inner-glue`, `boundary-rot`) | ~140 |
+| `CyclicAssociative.agda` | HIT-by-copy + three path constructors: `compₒ-assoc-seq`, `compₒ-assoc-par`, `rot-compₒ` | ~180 |
 
-### End of conversation of latest session
+Architectural decisions ratified this session are in `## Decisions Log` (rows dated 2026-05-18). Conventions established this session live in the source-file headers, not duplicated here.
 
-● Three real options, not two
+### Open question — resolve before any algebras work
 
-What I had in the previous message collapsed two distinct choices. Pulling them apart:
+`rot-compₒ` is implemented as the **boundary-rotation operand-swap** form:
 
-Option A — all conceptual first, then code. (1) Ass_cyc, (2) R1, then (3) the full O_1 Agda scaffold. Cleanest in the propose-before-implement spirit; O_1 lands with full context pinned.
-Slowest visible progress — no artifact until R1 is settled, and R1 isn't a quick exchange.
+```
+rot (boundary-rot l r) (compₒ i j a b) ≡ compₒ j i b a    -- PathP over +-comm l r
+```
 
-Option B — code parallel to R1. Start (3) while (2) is in flight. Risk: writing _Operad and _Algebras together; _Algebras literally evaluates into R1's category, so you'd be guessing at type
-signatures.
+The prior framing — that the standard unit-rotation Markl–Shnider–Stasheff form derives from this by `rot-compose` induction — was an overclaim. `rot-compose` composes rotations of the *same* operation; it does not decompose a composite's rotation into operand-rotations. The interaction is non-trivial because of arity-PathP transport.
 
-Option C — decompose (3) and stage. (1) Ass_cyc ratification (quick), then (3a) the _Operad scaffold (depends only on (1)), then (2) R1, then (3b) _Algebras scaffold (depends on R1), then
-integration with hybrid. This is my actual lean. The _Operad layer — generators, composition, involution — is self-contained; it doesn't touch the value category at all. So it lands without
-R1 being resolved. _Algebras waits for R1, which is where R1's exploration belongs anyway.
+Two readings of the present law:
 
-What the "quick" Ass_cyc decision actually commits to
+- **(I) Alternative-presentation reading.** Boundary-swap is the whole cyclic compatibility law in the arbitrary-port-gluing presentation. Document it as such; no further constructors needed.
+- **(II) Incomplete-stand-in reading.** Boundary-swap is one case of full cyclic equivariance; the general statement needs additional constructors or derived lemmas.
 
-Ratifying Ass_cyc isn't free, even though it looks like a one-word call. Two downstream commitments come with it:
+Either is mathematically respectable, but algebra-side commitments depend on which. `Concurrency/Algebras/Sessions.agda` (R8) maps the cyclic action to session-type duality `S ↔ S^⊥`: if the operad only commits to boundary-swap, the algebra only commits to "swap arguments dualizes both"; if full cyclic equivariance, the algebra commits to a richer compatibility.
 
-1. A-side commitment to cyclic bar (not plain bar). Already noted in the decisions log and the ModalHoTT return plan, but worth being conscious that ratifying Ass_cyc closes the door on
-plain bar on A. If we ever wanted to revisit and go Com_cyc, we'd be redoing the A-side return plan too.
-2. MO_1 stage commits to ribbon-decorated M̄_{g,n} (Kontsevich/Penner), not bare M̄_{g,n} (Getzler–Kapranov). R10's content changes accordingly. This in turn affects what R11 (Arithmetic
-Action) actually parametrizes — the GT action on ribbon-decorated moduli is structurally richer than on bare moduli, and the dessins / Belyi machinery lives in the ribbon-decorated world
-(which is part of why Ass_cyc was favored in the first place).
+**To resolve.** Mathematical check (likely with Codex, against Markl–Shnider–Stasheff §5.2 or Getzler–Kapranov): is (I) or (II) the right reading? If (I), document and move on. If (II), enumerate what's missing and add to `CyclicAssociative.agda`.
 
-Neither is a reason to hesitate. But ratifying should be done with the cascade visible, not as if it's only about _Operad._Generators.
+This question is a **soft block** for `OperadAlgebra.agda` and `Sessions.agda`, not for `StarAutonomous.agda` (the next file — parameter signature only, written either way).
 
-What R1 actually is — reframed
+### Next file
 
-I had R1 as "pick among *-autonomous, (∞,1)-enriched, cohesive ∞-topos." That framing invites paralysis. The sharper question is: what's the minimum that lets _Algebras._Sessions type-check 
-while leaving room to enrich later?
+`Concurrency/Algebras/StarAutonomous.agda` — R7's target-category parameter record. `*`-autonomous structure with polycategorical co-equal flagged in header. Encode as a record (parameter signature, not gap-filling postulate; correct per `feedback_postulates_over_records`). Estimated 50–100 lines.
 
-The three candidates sit in a partial order of richness:
+### After Sessions.agda
 
-- *-autonomous category — minimum that hosts session-type duality (matches Caires-Pfenning natively). Safest commitment; smallest cost; doesn't pre-empt much.
-- (∞,1)-category enriched in *-autonomous — same logical content, but levels carry homotopy structure. Closer to what cubical Agda gives us natively; might be cleaner for integration with
-cubical-set ambient (R5).
-- Cohesive ∞-topos — most ambitious; would also deliver R5's geometric morphism into the ambient roughly for free, since cubical sets carry cohesion. Pre-empts the most.
+1. **`Concurrency/Algebras/OperadAlgebra.agda`** — algebras over the cyclic associative operad, parameterized over a `StarAutonomous` target. Where the rot-compₒ question above starts to bite.
+2. **`Concurrency/Algebras/Sessions.agda`** — instantiate the target as Caires–Pfenning's session-type syntactic category; R8 (Involution-Duality) lands here.
+3. **Hybrid integration** — actor-causal site (R6) and sheaf valuation (R1) follow once `_Algebras._Sessions` has the right shape. Known shape, well-mapped, not started.
+4. **A-side return plan** (lift `Bℤ → S¹`, switch η-iteration → cyclic bar) — on hold until the B-side reaches a point where the cross-site adjunction `Allow ⊣ Require` is statable. Downstream of `OperadAlgebra.agda` at the earliest.
 
-My lean: start with *-autonomous, leave the path to enrichment open in the file structure. Concretely, define _Algebras over a parameter category satisfying *-autonomous axioms, with
-comments naming what enrichment would add. If we later want (∞,1)-enriched or cohesive, the parameter swaps; the algebras themselves don't need rewriting. This honors
-propose-before-implement (we're not pre-empting the richer choices) while letting _Algebras land at the cost of one decision instead of three.
+### Held-loose long-horizon items (no near-term action)
 
-_Operad itself has design calls
+- **Pask-style human-implementation layer** — conversation-as-operadic-composition. Speculative until `MO_1` makes "conversation creates conversation" a literal operadic operation. Held in motivation only.
+- **Pedagogy companions** — `pedagogy/Concurrency/Operads/` mirrors for the four files just shipped. Not started; lives in the pedagogy track (memory `pedagogy_project`).
 
-The scaffold isn't free of substance even at the cyclic-operad level. Worth surfacing before code:
+## Discussion of the next step
 
-- HIT vs inductive type. Cyclic operads can be defined either way. HIT is more honest about the relations (operadic associativity, involution coherence are path constructors); inductive type
-with quotient is simpler to compute with but loses the path-level content. For a project that's already cubical-HoTT-native and where the involution is structurally important, HIT is the 
-right call — but worth confirming before writing.
-- Free vs presented. The free cyclic operad on one binary generator has a canonical inductive structure (trees with cyclic ordering at marked points). A presented version lets us state extra
-relations. We want free, since O_1 is by definition the free thing — but the convention to state this in code is worth fixing once.
-- Levelwise vs term-level. Operads can be represented as a family O(n) of n-ary operations, or as a single type of "operadic terms." Levelwise is closer to the mathematical definition;
-term-level is closer to how Caires-Pfenning's session calculus reads operationally. Probably levelwise — but flag if you'd rather see term-level.
-- Univalent involution. The cyclic involution should be an isomorphism on each O(n). Whether to encode it as a function plus a proof of inverse, or as a ≃ directly (using cubical's Iso or
-Equiv), affects how naturally it composes with linear-logic duality downstream. Lean: encode as Equiv to keep the path-content explicit.
+### Claude
 
-None of these block; they want a paragraph of alignment before writing.
+● My recommendation: resolve the rot-compₒ question first, then StarAutonomous.agda.
 
-Two things I'm not proposing a next-step for
+The status.md plan says "StarAutonomous is next; rot-compₒ is a soft block on the algebras, not on the parameter record." That's true — they're independent. But I'd flip the order anyway.
 
-The hybrid substrate in Agda. Nothing of the actor-causal + Caires-Pfenning hybrid is in Agda yet. O_1 doesn't strictly depend on the substrate being in Agda — it can land as the first
-concrete B-side artifact and the substrate can follow. There's a mild aesthetic worry (operadic layer in Agda, substrate only in prose), but my lean is to let O_1 go first: it's the more
-novel commitment and the harder thing to get right. The Lamport partial-order _Site._Category file is a known shape and can be picked up later without surprise.
+Why settle rot-compₒ first. It's the only real unknown in the operad layer. If boundary-swap turns out to be (II) the incomplete-stand-in reading, we'll need to add constructors to
+CyclicAssociative.agda. Writing StarAutonomous → OperadAlgebra → Sessions first and only then discovering the operad is missing constructors means redoing algebra commitments. Cost of settling now:
+maybe 1–3 Codex rounds + small edits to CyclicAssociative.agda. Cost of settling later: potential refactor across 3 files. The asymmetry favors front-loading.
 
-The Pask-style human-implementation layer. Held as long-horizon in the status file. I'm not proposing a near-term move because it doesn't make sense until MO_1 makes "conversation creates
-conversation" a literal operadic operation (genus-raising). Before that it's speculation. Flag if you'd rather have a placeholder file or note for it sooner.
+How. Two complementary moves:
+- Math (with Codex): work through MSS §5.2 / Getzler-Kapranov §2 specifically on cyclic-operad presentations without a distinguished output port. The question is whether boundary-rotation
+operand-swap generates the full cyclic-equivariance content via the existing constructors (rot-compose, the assoc laws, the operand-swap) — or whether non-boundary rotations of composites carry
+genuinely new content.
+- Code probe: try to prove a small witness — e.g., rot (fsuc fzero) (compₒ fzero fzero gen gen) in some canonical form, derived from the existing constructors. If the boundary-swap form is
+computationally sufficient, this should be derivable. If we get stuck, that's evidence for (II).
 
-My actual recommendation
+Probably an hour of work end-to-end. Outcome: either documentation update only (if I), or 1–2 new path constructors (if II).
 
-Sequence Option C this way:
+Then StarAutonomous.agda. Once rot-compₒ is settled, the parameter record is well-scoped: *-autonomous structure + monoidal unit + duality (_^⊥) + the Sessions.agda-side flag that R8 will
+instantiate against the cyclic action. ~50–100 lines, mostly record fields.
 
-1. This exchange or the next: ratify Ass_cyc (or push back). If ratified, accept the cyclic-bar + ribbon-moduli cascades alongside.
-2. Short alignment: the four _Operad design calls above. Maybe 5-10 minutes of conversation.
-3. First Agda artifact: the _Operad scaffold — generators, composition, involution. Aim for a small, clean file.
-4. R1 decision: start with the *-autonomous-as-minimum framing; revisit when _Algebras._Sessions actually exercises the choice.
-5. _Algebras scaffold: parameterized over the chosen value category.
-6. Integration with hybrid: R7 and R8 land once _Algebras exists.
+Explicitly NOT recommended for next session:
+- Pedagogy companions — no math riding on them.
+- A-side cross-site work (cyclic bar construction) — still downstream of OperadAlgebra.agda.
+- Witness-only work on the existing files beyond what's needed to probe rot-compₒ.
 
-This puts a concrete Agda artifact within 1-2 sessions and keeps the conceptual commitments staged. The alternative — fully resolving R1 before writing anything — is defensible but I think
-slower than necessary, since _Operad doesn't require R1 to be settled.
+One smaller thing worth flagging. The R7 decision ("*-autonomous as parameter record") was ratified before we'd looked at how Caires-Pfenning actually presents its syntactic category. When we get
+to Sessions.agda (likely 2 sessions out), we may discover that polycategorical fits better than *-autonomous. The decision is "parameter shape committed, concrete target deferred," which gives us
+room — but it's worth keeping in mind that the record fields might need adjustment when concretization happens.
 
-❯ Yes or No, if not then what?: Is R1 "- **R1 — Valuation.** `_Sheaf` takes values in `V`; `V` drawn from `_Algebra._SyntacticCategory` (substrate) or `_Algebras._Sessions` (operadic). The    
-sheaf functor `F: _Site._Category^op → V`. Most urgent technical hinge."?                                                                                                                     
+### Codex
 
-● Yes, that's R1 as written.
+• I agree with Claude’s ordering: settle rot-compₒ before StarAutonomous.agda.
 
-But — caught by the question — what I've been calling "R1" in the next-step discussion is sloppier than the file. R1 is about _Sheaf's value category; R7 (Algebra-over-Operad) is about
-_Algebras' value category; they must agree, but they're distinct relations. When I wrote "R1: target category for _Algebras" in the decision queue, I was naming R7's content while calling it
-R1.
+But I would improve the proposed next session in one way: don’t rely too much on the “small witness” probe. For gen ∘ gen, the boundary rotation is especially degenerate because both operands are
+gen; the swap may collapse to something uninformative. Also, in a HIT with set truncation, there is no real canonical-normal-form computation unless you build an eliminator/model that exposes one.
 
-The cleaner framing of the immediate decision: commit V via R7 (what _Algebras._Sessions evaluates into); R1 then cascades (the sheaf's value category has to match). Calling it
-R7-with-R1-following is more honest than calling it R1-pinning-R7.
+A better probe is:
+
+1. State the desired unit-rotation law as a type, without adding it as a constructor.
+2. Try to prove it from the current constructors.
+3. If that proof needs a new axiom exactly where expected, add the missing constructor rather than forcing it.
+
+The key question should be phrased like this:
+
+> Does boundary-rotation operand-swap plus rot-compose imply the usual adjacent/unit cyclic equivariance for arbitrary composites, or does it only identify the composite after rotating past the
+> whole left block?
+
+My suspicion: boundary-swap is elegant but probably not enough by itself. rot-compose lets you combine rotations once you already know how rotation acts; it does not explain how a one-step rotation
+crosses or stays inside the left/right surviving-port blocks. So I would expect at least one additional “rotation inside a block” compatibility law, or a unit-rotation cyclic axiom from which
+boundary-swap becomes derived.
+
+So next session should probably be:
+
+- Clean docs first: remove stale “unit-rotation” claims if the implementation currently uses boundary rotation.
+- Formalize the target unit-rotation/adjacent-rotation law as a commented type or private attempted lemma.
+- Decide whether to replace rot-compₒ, add to it, or explicitly document boundary-swap as the chosen presentation.
+- Only then move to StarAutonomous.agda.
+
+On StarAutonomous.agda, I agree with the caution. Keep it thin and parameteric. Don’t overcommit to full Caires-Pfenning syntax yet. A minimal multiplicative star-autonomous record is enough for
+the next layer; polycategory should stay named as the serious alternative, not quietly forgotten.
+
+So my recommendation matches Claude’s direction, but with a sharper warning: the code probe should be a law-shape probe, not a gen ∘ gen example. The latter may pass or fail for the wrong reasons.
+
+### Claude
+
+● Convergence
+
+1. Ordering: rot-compₒ first, then StarAutonomous.agda. Both agree, same reasoning.
+2. StarAutonomous.agda shape: thin parametric record, polycategory named as the serious alternative — Codex sharpens to "minimal multiplicative star-autonomous" (⊗, ⅋, units, duality), not
+multiplicative-additive. I accept; the additive part is downstream content and can be added later if Sessions.agda needs it.
+3. The question is real and needs resolution before any algebras code.
+
+Tensions to resolve next session
+
+1. Probe method — I withdraw mine, Codex's is right.
+
+1. I suggested concrete-witness probes (rot (fsuc fzero) (compₒ fzero fzero gen gen)). Codex correctly points out this is doubly wrong: (a) gen ∘ gen is symmetric, so the swap collapses to
+something uninformative; (b) HITs with set-truncation have no canonical-normal-form computation, so even non-degenerate concrete instances wouldn't give us a clean answer.
+
+1. Codex's protocol — state the unit-rotation law as a type, try to prove it from the current constructors, watch where the proof gets stuck — is the right tool. The stuck-point IS the diagnostic:
+if it's stuck at something rot-compose can't bridge, that's evidence the law needs to be added (or replace boundary-swap).
+
+1. No remaining tension here — fully ceded to Codex.
+2. Codex's prediction vs. my agnosticism.
+
+2. I framed (I) alternative-presentation and (II) incomplete-stand-in as both mathematically respectable, no thumb on the scale. Codex puts the thumb on (II): expects boundary-swap is NOT
+sufficient, and predicts the missing piece is either a "rotation-stays-in-a-block" compatibility law or a unit-rotation axiom from which boundary-swap derives.
+
+2. Codex's reasoning matches my own when I tried to derive unit-rotation: rot (fsuc fzero) = rot (boundary-rot l r +ₘ -(l, _)) gives a circular reduction (rot of a rot of a composite) rather than a
+closed-form decomposition into operand rotations. The PathP transport over +-comm is the obstruction.
+
+2. This is a real prediction to test, not a settled fact. Worth recording: Codex bets (II), I'm agnostic, the next session's attempted-proof probe will likely settle it. If (II) lands, we choose
+between three resolution paths (replace boundary-swap with unit-rotation as primitive and derive the swap; add unit-rotation as a sibling constructor; or — least likely if (II) is right — accept
+boundary-swap as the chosen presentation with a documented gap).
+3. What "settling" looks like.
+
+3. Codex gives a sharper workflow than I did:
+- Stale "unit-rotation" claims cleaned from docs. ✓ (This session.)
+- Formalize the target unit-rotation / adjacent-rotation law as a commented type or private attempted lemma in CyclicAssociative.agda.
+- Run the attempt; observe stuck-point.
+- Decide between: replace rot-compₒ with unit-rotation (boundary-swap becomes derived), add unit-rotation alongside as a sibling constructor, or accept boundary-swap as the chosen presentation.
+
+No tension on workflow, but worth recording it explicitly in the next-step section so the next-session agent has the protocol clear from the start.
+
+### Codex
+
+• That convergence looks right.
+
+My concluding recommendation is:
+
+1. Treat rot-compₒ as the only remaining operad-layer uncertainty.
+2. Do not write algebra files until that uncertainty is resolved.
+3. In the next session, formalize the desired adjacent/unit-rotation law as a target type and attempt the derivation from current constructors.
+4. If it gets stuck in the predicted way, prefer replacing boundary-swap with the unit/adjacent cyclic axiom as primitive, then derive boundary-swap later.
+
+My bias is against keeping both laws as primitive unless necessary. Two primitive cyclic-compatibility constructors risk over-presenting the operad: you may silently impose a stronger quotient than
+intended. The cleaner mathematical shape is usually:
+
+one primitive cyclic equivariance axiom
+boundary-swap derived from it
+generic rotation compatibility derived from rot-compose
+
+Boundary-swap is beautiful as a theorem. I am less confident it is enough as the axiom.
+
+For StarAutonomous.agda, the right next shape is minimal multiplicative star-autonomous: tensor, par, units, duality, and the duality/tensor-par interaction. No additives, no exponentials, no
+session syntax yet. Also keep the polycategory alternative named in the header, because that may become the more natural home once Caires-Pfenning is concretized.
+
+So the next-session heading should basically be:
+
+> Resolve cyclic equivariance presentation before R7 algebras.
+
+That is the responsible checkpoint. The project is now past “scaffolding”; this is the point where a wrong operad presentation would propagate.
