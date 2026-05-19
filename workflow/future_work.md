@@ -40,6 +40,24 @@ Pieces deferred:
 
 - **Full sequential-colimit convergence.** `IterationCohesion.agda` proves the first-level collapse `T A ≃ T(T A)`. Lifting this to `ND A ≃ T A` (the colimit's value, not just the step) requires a "convergent sequence has colimit at the convergence point" lemma against cubical's `Sequence` / `SeqColim` infrastructure (`Cubical.Data.Sequence.converges`). Straightforward but heavier than the step lemma; left as a follow-up if a downstream use forces it (e.g. when stating the 1=2 identity via the B-side dual).
 
+## Regarding Sessions and the canonical O_1 action
+
+`Concurrency/Algebras/Sessions.agda` v1 landed with the `O_1` action (`gen`, `plug`, `shift`) packaged as explicit data rather than derived from the current categorical structure. This is the right current shape. The present `StarAutonomous` signature is intentionally thin: it has tensor, unit, braiding, duality, and local iso laws, but not the closed/evaluation structure or coherence needed to construct interaction composition canonically.
+
+What shipped: a `SessionO1Action` record containing `gen-morph`, `plug-morph`, `shift-morph`, and the six laws mirroring `O`'s path constructors. `Sessions.agda` constructs `Valuation` and `OperadAlgebra` from that action, defines `session-interp` by HIT recursion, and names both R8 faces: syntactic `dual-involutive` and categorical / operadic `boundary-swap-at-gen`. This is better than loose postulates and does not pretend the action is intrinsic to session syntax alone.
+
+The eventual quality target is stronger: replace the action assumption with a canonical definition from categorical/session structure. That should come back as a priority when the project reaches a richer session-category phase, after enough hybrid integration clarifies what the value-category morphisms mean operationally, but before serious `MO_1` / modular-envelope work.
+
+Expected ladder:
+
+1. **Done:** `Sessions.agda` v1: minimal session syntax, inductive structural `Hom`, and an explicit `SessionO1Action` assumption.
+2. Hybrid integration: actor-causal base and sheaf valuation clarify how session values sit over actor-local frames.
+3. Richer session category: add proof terms or an equivalent categorical semantics, cut as composition, cut-elimination/equality, closed structure/evaluation, and enough tensor/braiding coherence to manipulate long tensor strings.
+4. Canonical `O_1` action: define `SessionO1Action` rather than assume it. `shift` should come from coherent cyclic permutation of tensor factors; `plug` should come from closed/evaluation/cut structure composing two morphisms into the dualizing object.
+5. Only then push hard on `MO_1`: extend the canonical `O_1` action toward self-gluing / conversation-promotion / modular closure.
+
+Practical trigger: when the session target can state and use an evaluation/cut map of the form `eval : Hom ((A ⊸ B) ⊗ A) B` (or the equivalent polycategorical/sequent form) and can coherently rotate tensor factors, the deferred derivation of `gen`, `plug`, and `shift` should return to the top of the B-side queue.
+
 ## Beyond fracture: the differential-cohesion gap
 
 The de Rham target splits three ways once examined — the **de Rham depth ladder**, three levels distinguished by what each adds:

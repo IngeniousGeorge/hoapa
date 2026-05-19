@@ -127,7 +127,7 @@ The fracture theorem and the de Rham structural / named-coefficient / differenti
 
 **To verify.**
 - *Iteration-alone layer (cheaper, Agda-reachable now).* The scaffold in `agda/ModalHoTT/Modalities/Iteration.agda` provides `T`, `T-map`, `T^_`, `η^_`, `η^-coherent` (derived from a postulated `η-naturality`), and the developing-network type `ND : Type → Type` as a sequential colimit. Specializing to the A-side ʃ ⊣ ♭ should collapse `ND` to `♭(ʃ A)` by idempotency; at `A := Bℤ` this should yield `ND Bℤ ≃ ℤ` via the analytic-side computation in `Analytic/.../Cohesion.agda`. This is the cheapest non-trivial content from the scaffold.
-- *Operad-structure layer (partial — syntax and algebra signatures shipped; sessions pending).* The cyclic associative operad `O_1` syntax is in Agda (`Concurrency/Operads/CyclicAssociative.agda`: generator, substitution, cyclic action, sequential + parallel associativity, full cyclic equivariance via `rot-compₒ-a-block` / `rot-compₒ-b-block`, and derived `boundary-swap`; port bookkeeping split across `PortGluing.agda` and `PortRotation.agda`). The algebra interface is also in place (`Concurrency/Algebras/{StarAutonomous,Valuation,OperadAlgebra}.agda`): thin `*`-autonomous target signature, weak HIT valuation into `⊥-par`, and structural Step-2 operad algebra with `plug`, `shift`, and `boundary-swap-structural`. Still pending: (a) `Sessions.agda`, where the structural identity restricts to session-type duality (R8); (b) the cross-site adjunction `Allow ⊣ Require`, which then instantiates the iteration module against this operad. Depends on the Concurrency-side scoping committing R1 (V) and R4 (Interpretation).
+- *Operad-structure layer (partial — syntax, algebra signatures, and Sessions v1 shipped).* The cyclic associative operad `O_1` syntax is in Agda (`Concurrency/Operads/CyclicAssociative.agda`: generator, substitution, cyclic action, sequential + parallel associativity, full cyclic equivariance via `rot-compₒ-a-block` / `rot-compₒ-b-block`, and derived `boundary-swap`; port bookkeeping split across `PortGluing.agda` and `PortRotation.agda`). The algebra interface is also in place (`Concurrency/Algebras/{StarAutonomous,Valuation,OperadAlgebra}.agda`): thin `*`-autonomous target signature, weak HIT valuation into `⊥-par`, and structural Step-2 operad algebra with `plug`, `shift`, and `boundary-swap-structural`. `Concurrency/Algebras/Sessions.agda` now instantiates this interface with multiplicative session syntax, an inductive structural `Hom`, a bundled `SessionO1Action`, `session-interp`, `Sessions-Val`, and `Sessions-Alg`. R8 is present with both faces in Agda: syntactic `dual-involutive` and categorical / operadic `boundary-swap-at-gen`; the bridge between them is deliberately deferred to richer session-categorical structure. Still pending: the cross-site adjunction `Allow ⊣ Require`, which then instantiates the iteration module against this operadic/session layer. Depends on the Concurrency-side scoping committing R1 (V) and R4 (Interpretation).
 
 ### Philosophical anti-drift invariant: do not let R8 consume R∞
 
@@ -141,7 +141,7 @@ The failure mode is stopping at session-flavored cyclic operads. `O_1` is not th
 
 The iteration scaffold is in place: `agda/ModalHoTT/Modalities/Iteration.agda` defines the generic-adjunction `Iteration` module (`T`, `T-map`, `T^_`, `η^_`, `η-naturality` postulate, `η^-coherent` derived, `T-sequence`, `ND`). A-side sanity check `agda/ModalHoTT/Modalities/IterationCohesion.agda` instantiates with ʃ ⊣ ♭: refl-level `T-as-flat-shape` and `η^1-is-unit`, plus the first-level collapse `η-equiv-at-T : T A ≃ T(T A)` derived via the `Discrete.agda` bridge (`T A` is flat-modal definitionally and shape-modal by the bridge, so the next iterate-step is an equivalence). Cross-site adjunction not yet stated (waits on Concurrency-side scoping). Deferred items (B-side dual, cyclic-involution layer, full sequential-colimit convergence `ND A ≃ T A`) flagged in `future_work.md` "Regarding T_recursion iteration."
 
-B-side operadic syntax shipped 2026-05-18 (`Concurrency/Operads/CyclicAssociative.agda`: `O_1` as a cyclic associative HIT with `compₒ-assoc-seq`, `compₒ-assoc-par`, full cyclic equivariance via `rot-compₒ-a-block` / `rot-compₒ-b-block`, and derived `boundary-swap`; `PortRotation.agda` owns rotation-side port bookkeeping). The first algebra layer shipped 2026-05-19: `StarAutonomous.agda` is a thin target signature, `Valuation.agda` names weak HIT interpretations into `⊥-par`, and `OperadAlgebra.agda` adds `plug`/`shift` structural fields plus `boundary-swap-structural`. Concrete sessions are not yet written.
+B-side operadic syntax shipped 2026-05-18 (`Concurrency/Operads/CyclicAssociative.agda`: `O_1` as a cyclic associative HIT with `compₒ-assoc-seq`, `compₒ-assoc-par`, full cyclic equivariance via `rot-compₒ-a-block` / `rot-compₒ-b-block`, and derived `boundary-swap`; `PortRotation.agda` owns rotation-side port bookkeeping). The first algebra layer shipped 2026-05-19: `StarAutonomous.agda` is a thin target signature, `Valuation.agda` names weak HIT interpretations into `⊥-par`, and `OperadAlgebra.agda` adds `plug`/`shift` structural fields plus `boundary-swap-structural`. `Sessions.agda` now supplies the first concrete typed-content instance: the syntactic R8 face `dual-involutive`, the categorical / operadic R8 face `boundary-swap-at-gen`, and the explicit `SessionO1Action` assumption whose canonical derivation is deferred.
 
 ### Relation to other targets
 
@@ -219,3 +219,58 @@ The T1–T7 above are abstract-mathematical: they ask how cohesive modalities be
 The fix is structural: ModalHoTT has an anchor *beneath* its modal mathematics — Bℤ as a mathematical object on its own terms, with motivation.md's perspectivalism as the philosophical layer beneath that. The modal vocabulary speaks *about* Bℤ; it doesn't constitute it. Concurrency currently has no such under-layer. The proposal is to add one: an **operational anchor** — an operational concurrent system formalized in concurrency's native language (candidate families: Honda–Yoshida–Carbone multiparty session types, asynchronous π-calculus with session types, Caires–Pfenning propositions-as-sessions) — as a mathematical object on its own terms. The modal/cohesive questions (T2, T4, T5) then become questions *about* this system, not constructions designed to mimic ModalHoTT.
 
 The mirror with ModalHoTT: motivation.md is the philosophical layer beneath the modal math on ModalHoTT (perspectivalism — same object under different probes); the operational anchor is the operational layer beneath the modal math on Concurrency (agents having conversations and producing typed data). Both layers sit *under* the abstract-mathematical targets, not within them. The Concurrency-side operational anchor is a proposed new target upstream of T2, T4, T5 — not a refinement of any of them.
+
+## Appendix — adjunction shape layer and Sketch of a Program
+
+This appendix records the current target-level view of the possible `Allow ⊣ Require` adjunction and how the conversation got here.
+
+The starting practical problem was a verifiable program for human / LLM communication protocols: conversations should not only produce text, but produce checkable traces, typed artifacts, and commitments that can be inspected by another agent or by a proof assistant. That forced the Concurrency side to become more than an analogy. It needed an operational substrate: actors as local loci of action, sessions as typed content, and a way for local interactions to compose without erasing locality.
+
+The first stable split was therefore the actor/session hybrid. Typed content belongs in the values; unityped agents and locality belong in the base. This gave a modal echo of the hidden partition:
+
+- `discrete_modal` corresponds to formal, typed, documentable content.
+- `codiscrete_modal` corresponds to the ambient actor-local locus where action can happen.
+- `homotopy_shape_modal` is the remaining slot: the shape of admissible transformations.
+
+The third slot is the important one for the adjunction. It is not payload and it is not actor identity. It is the grammar of paths: which transitions are allowed, which loops matter, which reorderings are equivalent, which diagrams commute, and which local interactions can glue into a coherent global execution. On the Concurrency side this appears as interaction / conversation shape. On the Modal side it appears as homotopy shape. This is the common invariant on which `Allow` and `Require` are expected to meet.
+
+The `O_1` work made that third slot concrete. The cyclic associative operad supplies ports, gluing, cyclic rotation, and the derived `boundary-swap` theorem. The Sessions instance then shows how this shape layer acts on typed content: `session-interp` interprets `O_1`, `Sessions-Alg` supplies `plug` and `shift`, `dual-involutive` gives the syntactic R8 face, and `boundary-swap-at-gen` gives the categorical / operadic R8 face. This does not prove the adjunction, but it gives the B-side a first checkable shape layer.
+
+Sketch of a Program enters here as the deep theory of such shape data. Dessins, Belyi maps, monodromy, path lifting, and Grothendieck-Teichmuller symmetries are not being used as decorative resemblances. They are the long-horizon mathematics of finite combinatorial shapes that remember homotopy, covering, and arithmetic structure. In this framing, `O_1` is the small local operadic beginning, `MO_1` is the modular / self-gluing escalation, and dessins are the finite arithmetic avatars of the same homotopy-shape slot.
+
+So the current target is:
+
+```text
+modal constraints / theories
+  -- Require / Allow --
+concurrent operational realizations
+```
+
+with the mediating comparison forced to pass through:
+
+```text
+homotopy_shape_modal
+  ↔ interaction / conversation shape
+  ↔ operads, modular envelopes, dessins, monodromy
+```
+
+This is why the adjunction should not be stated as a bare correspondence between HoTT types and session types. That bridge is one face of the story, but the likely load-bearing object is the shape layer that lets theories require forms of witnessing and lets practices allow forms of realization. The test for the next phases is whether the actor-causal module and the hybrid sheaf valuation preserve this same partition without forcing it.
+
+The working comparison table is:
+
+| HoTT / Modal Side | Session / Concurrency Side | Sketch / Esquisse Mediator |
+|---|---|---|
+| Type as space: a type behaves like a homotopy space. | Session type as protocol shape: a type describes possible interaction behavior. | Dessin as finite combinatorial shape encoding a covering. |
+| Term of a type: a point / inhabitant. | Process endpoint / participant state: an inhabitant of a protocol position. | A vertex / edge / local branch of a dessin. |
+| Identity type / path: equality as path. | Protocol equivalence / trace equivalence: two interactions count as same behavior. | Homotopy / combinatorial equivalence of covers or graphs. |
+| Dependent type: fibers vary over a base. | Session indexed by context / state: protocol obligations vary with conversation state. | Family of covers over a moduli base. |
+| Function type: maps between spaces. | Channel / session transformer: turns one protocol state into another. | Morphism of covers / functor between combinatorial structures. |
+| Product / sum types: structured combination / alternatives. | Tensor / par / choice-like connectives: parallel or dual interaction structure. | Gluing / branching of covers. |
+| Univalence: equivalent structures can be identified. | Protocol isomorphism: behaviorally equivalent protocols can be treated as same. | Isomorphic dessins / equivalent covers. |
+| Higher inductive types: generate spaces by points, paths, higher paths. | Generated protocols: generate interactions from primitives plus equations. | Dessins generated by finite permutation / combinatorial data. |
+| Modalities: discrete, codiscrete, homotopy-shape views of a type. | Separated layers: typed content, actor-local substrate, conversation shape. | Different projections of the same cover / moduli data. |
+| Covers / descent: local data glues into global structure. | Session consistency: local conversations / documents glue into a coherent global state. | Central Esquisse theme: finite covers of the 3-pointed sphere. |
+| Fundamental group / loops: e.g. Bℤ, S¹. | Cyclic interaction / dual endpoints: rotation, reversal, session duality. | Monodromy permutations around punctures. |
+| Suspension / bar construction: dimension-raising from S¹ toward S². | Modular envelope: composition / self-gluing raises complexity or genus. | Teichmüller / moduli tower. |
+| Fixed points / Lawvere: closure, self-reference, modal stabilization. | Open interaction: protocols can keep generating new conversations. | GT / moduli tower as recursive, nontrivial self-organization. |
+| Proof object: verified inhabitant. | Trace / document certificate: verified protocol history. | Arithmetic / combinatorial certificate of a cover. |

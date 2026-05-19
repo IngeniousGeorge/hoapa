@@ -38,6 +38,26 @@ Each entry: who, what they use, what it models, relation to our arc.
 
 ---
 
+## A5 / icosahedral symmetry — detection heuristic, not anchor
+
+**Who.** The classical icosahedral symmetry package: the alternating group A5, the rotation group of the icosahedron/dodecahedron, and its appearances in dessins, Klein's icosahedral work, McKay-flavoured exceptional structures, and finite symmetry models.
+
+**What they use.**
+- A5 as the smallest non-abelian simple group.
+- Icosahedral incidence data: 12 vertices, 20 faces, 30 edges, 60 rotations.
+- Stabilizer/orbit patterns such as A5 acting transitively on 12 vertices.
+- Dessins/Belyi maps with icosahedral monodromy.
+
+**What it models.** A compact, finite, highly constrained symmetry pattern. For this project it is not currently the B-side anchor; the actor-causal + session-values hybrid and `O_1` interaction algebra are the active commitments. But A5/icosahedral structure may still reappear as a downstream finite witness of the larger cyclic/modular/dessin-facing machinery.
+
+**Relation to our arc.** Agents should be vigilant for genuine A5 or icosahedral signals in every structure we build: modal, operadic, categorical, session-typed, and implementation-facing. This includes recurring 5/3/2 symmetries, 12/20/30/60 incidence data, A5 actions, icosahedral dessins, or structures that remain stable under refactoring and reveal an orbit/stabilizer explanation.
+
+The caution is equally important: numerical resonances alone are not evidence. For example, a `5 + 8 = 13` decomposition of constructors may smell icosahedral or golden-ratio-adjacent, but it is not A5 structure unless it survives repackaging and is explained by an actual symmetry, action, orbit, representation, or dessin. Treat these resonances as places to look, not conclusions.
+
+This may be how the project catches its "big fish": not by forcing the old icosahedral anchor back into the foreground, but by noticing when independently built structures unexpectedly carry A5 symmetry.
+
+---
+
 ## Template for future entries
 
 **Who.**

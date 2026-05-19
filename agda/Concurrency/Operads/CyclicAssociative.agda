@@ -77,15 +77,20 @@ open import Concurrency.Operads.PortRotation
 -- Arity-equality lemmas for the law PathPs
 ------------------------------------------------------------------------
 
-private
-  -- Parallel-associative arity rebracketing:
-  -- (l + r) + p ≡ (l + p) + r, via assoc / comm / assoc.
-  parallel-arity-eq : (l r p : ℕ) → (l + r) + p ≡ (l + p) + r
-  parallel-arity-eq l r p =
-      (l + r) + p   ≡⟨ sym (+-assoc l r p)       ⟩
-      l + (r + p)   ≡⟨ cong (l +_) (+-comm r p)  ⟩
-      l + (p + r)   ≡⟨ +-assoc l p r             ⟩
-      (l + p) + r   ∎
+-- Parallel-associative arity rebracketing:
+-- (l + r) + p ≡ (l + p) + r, via assoc / comm / assoc.
+--
+-- Exposed (not `private`) because the law's PathP appears in
+-- `compₒ-assoc-par`'s constructor type, and downstream files that
+-- mirror this constructor as an interpretation law in their own
+-- algebra (e.g. `Sessions.plug-assoc-par-h`) need to refer to the
+-- same path term so the discharge in HIT-recursion typechecks.
+parallel-arity-eq : (l r p : ℕ) → (l + r) + p ≡ (l + p) + r
+parallel-arity-eq l r p =
+    (l + r) + p   ≡⟨ sym (+-assoc l r p)       ⟩
+    l + (r + p)   ≡⟨ cong (l +_) (+-comm r p)  ⟩
+    l + (p + r)   ≡⟨ +-assoc l p r             ⟩
+    (l + p) + r   ∎
 
 ------------------------------------------------------------------------
 -- The HIT

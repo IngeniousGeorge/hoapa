@@ -7,13 +7,18 @@
 -- land in it. The record parameterizes both
 -- `Concurrency/Algebras/Valuation.agda` (the weak interpretation layer)
 -- and `Concurrency/Algebras/OperadAlgebra.agda` (the structural layer
--- adding plug, shift, and their axioms). A concrete instance built from
--- Caires–Pfenning's session-type syntactic category will appear in
--- `Concurrency/Algebras/Sessions.agda`, where R8 (Involution-Duality)
--- lands. R8's bridge — the 1=2 perspective swap at arity 2 — comes from
--- the derived `boundary-swap` theorem in `Concurrency/Operads/Cyclic-
--- Associative.agda`, lifted to `boundary-swap-structural` in
--- `OperadAlgebra.agda`, not from a separate involutive field here.
+-- adding plug, shift, and their axioms). The first concrete instance —
+-- the session-type syntactic target — lives in
+-- `Concurrency/Algebras/Sessions.agda`; it presents a *-autonomous-
+-- style category over session-type syntax with structural fields
+-- postulated, not a Caires–Pfenning proof-term calculus. R8
+-- (Involution-Duality) splits into a syntactic face there
+-- (`dual-involutive`) and a categorical / operadic face
+-- (`boundary-swap-at-gen`), via the derived `boundary-swap` theorem in
+-- `Concurrency/Operads/CyclicAssociative.agda` lifted to
+-- `boundary-swap-structural` in `OperadAlgebra.agda`. The bridge
+-- between the two faces is the project's R8 claim and is deliberately
+-- not materialized in code.
 --
 -- Status: *thin signature*, not a full *-autonomous category. The
 -- signature names the operations (⊗, _^⊥, units) and the local iso
@@ -29,9 +34,10 @@
 --     compatibility with the involutive iso is not stated).
 --   * Universal property of `_⊸_` (it is named but not characterized
 --     as a hom-functor adjoint to `⊗`).
--- Concrete instances (e.g. Sessions.agda via Caires–Pfenning's
--- syntactic category) supply this content implicitly through their
--- constructions; downstream code that depends on coherence must add
+-- Concrete instances, such as the session-type syntactic target in
+-- `Sessions.agda`, supply this content implicitly through their
+-- constructions (or postulate it where the target is itself
+-- axiomatized); downstream code that depends on coherence must add
 -- the corresponding fields here.
 --
 -- Step 3 upgrade path (when `MO_1` / dessin work enters scope): to

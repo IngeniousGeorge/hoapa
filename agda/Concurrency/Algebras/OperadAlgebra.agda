@@ -21,25 +21,36 @@
 --     structural axioms with the operad's `boundary-swap`. This is
 --     the categorical R8-relevant identity: boundary-rotation of a
 --     plugged composite equals the operand-swapped plug (over the
---     arity commutation). The arity-2 instance is Sessions.agda's
---     session-type-duality witness.
+--     arity commutation). The arity-2 instance is the categorical /
+--     operadic R8 face for the chosen algebra; in `Sessions.agda` it
+--     appears as `boundary-swap-at-gen`. The bridge from this
+--     categorical face to syntactic session duality is the project's
+--     R8 claim and is deliberately not materialized in code.
 --
 -- This is "Step 2" of the refactor (decision 2026-05-19): plug and
 -- shift are *fields* of the algebra record, supplied by each concrete
 -- instance (e.g. Sessions.agda from the session-typed *-autonomous
 -- category). The full derivation from `StarAutonomous` — building
 -- `plug` from self-duality + tensor and `shift` from braiding +
--- associator generically — is "Step 3," deferred until `MO_1` enters
--- scope. Upgrading Step 2 → Step 3 later is mechanical: the auxiliary
--- fields become defined operations, the structural axioms become
--- theorems.
+-- associator generically — is "Step 3," deferred. Upgrading Step 2 →
+-- Step 3 is the intended next step on the algebra layer, but its
+-- mechanics depend on richer categorical structure (closed structure
+-- / evaluation / cut, coherent tensor rotation) than `StarAutonomous`
+-- currently records. The phrasing was previously "mechanical" — it
+-- isn't: the upgrade requires extending the target-category signature
+-- before the field-to-theorem conversion can happen.
 --
 -- R8 bridge: at every (l, r), combining the structural axioms with
 -- the operad's `boundary-swap` theorem yields a categorical identity
 -- relating `plug` and `shift` over `+-comm l r`. The arity-2 case
--- (`a = b = gen`) is where session-type duality lands in
--- Sessions.agda. The derivation is materialized below as
--- `boundary-swap-structural`.
+-- (`a = b = gen`) is the categorical / operadic R8 face for the
+-- chosen algebra; in `Sessions.agda` it appears as
+-- `boundary-swap-at-gen`. The bridge from this categorical face to
+-- the syntactic side — session duality `S ↔ S^⊥` and its proved
+-- involutivity `(S ^⊥ₛ) ^⊥ₛ ≡ S` — is the project's R8 claim and is
+-- deliberately not materialized in code here. See `Sessions.agda`'s
+-- header for the architectural reason. The derivation of the
+-- categorical face is materialized below as `boundary-swap-structural`.
 --
 -- Scope of plug and shift: at Step 2 these are *auxiliary categorical
 -- handles for factoring `⟦_⟧`*, not generic target-category operations.
