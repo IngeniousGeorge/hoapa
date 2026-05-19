@@ -4,9 +4,9 @@
 --
 -- This file presents O_1: a cyclic operad with one binary generator,
 -- the cyclic-group action on its ports, and the cyclic-operad laws
--- (sequential associativity, parallel associativity, the cyclic
--- axiom). The earlier file Concurrency/Operads/RawCyclicOperad.agda
--- presented the same HIT without the three law-constructors, as a
+-- (sequential associativity, parallel associativity, cyclic
+-- equivariance). The earlier file Concurrency/Operads/RawCyclicOperad.agda
+-- presented the same HIT without the law constructors, as a
 -- "without-laws" reference; downstream concurrency-side code imports
 -- from here, not from RawCyclicOperad.
 --
@@ -14,7 +14,7 @@
 -- operad's laws are part of its type, not theorems added after the
 -- fact. Concretely, this HIT re-declares the generator / composition /
 -- rotation / cancellation / truncation constructors of
--- RawCyclicOperad.O and adds three new path constructors for the laws.
+-- RawCyclicOperad.O and adds four new path constructors for the laws.
 -- The quotient alternative would force every function out of O to
 -- respect the quotient — heavier to use.
 --
@@ -28,7 +28,7 @@
 --   * Positive-arity inputs: compₒ requires both operands of arity
 --     ≥ 1 (decision 2026-05-18; see RawCyclicOperad.agda header).
 --
--- The three new path constructors:
+-- The law constructors:
 --
 --   compₒ-assoc-seq — sequential associativity. When the outer gluing
 --     port came from b at surviving-index y, re-bracketing produces
@@ -41,31 +41,25 @@
 --     came from a at surviving-index x, re-bracketing produces a ∘ c
 --     first, then (a ∘ c) ∘ b.
 --
---   rot-compₒ — cyclic axiom in the **boundary-rotation operand-swap**
---     presentation. Rotating the composite by suc l positions — the
---     point past a's surviving ports — effects the operand swap
---     a ↔ b with no port reindexing on the right:
---       rot (boundary-rot l r) (compₒ i j a b) ≡ compₒ j i b a
---     (modulo PathP over cong suc (+-comm l r)).
+--   rot-compₒ-a-block / rot-compₒ-b-block — cyclic equivariance in the
+--     arbitrary-port presentation. A rotation of a composite is classified
+--     by whether the new first visible port lies in a's surviving block or
+--     b's surviving block. The b-block seam specializes to the former
+--     boundary-rotation operand-swap law, now derived below as
+--     `boundary-swap`.
 --
---     This is **not** the standard Markl–Shnider–Stasheff unit-rotation
---     form, and is not equivalent to it by rot-compose alone:
---     rot-compose composes rotations of the same operation, not
---     decompositions of a composite-rotation into operand-rotations.
---     Whether boundary-swap is the whole cyclic compatibility law in
---     the arbitrary-port-gluing presentation (alternative-presentation
---     reading) or an incomplete case of full cyclic equivariance
---     (incomplete-stand-in reading) is the open question flagged in
---     workflow/status.md "Discussion of the next step"; resolve before
---     Concurrency/Algebras/Sessions.agda is written.
+--     Ass_cyc / planarity makes the boundary-swap theorem natural, but
+--     does not make boundary-swap alone a complete cyclic axiom. Full
+--     cyclic equivariance is the primitive content here.
 
 module Concurrency.Operads.CyclicAssociative where
 
 open import Cubical.Foundations.Prelude
 open import Cubical.Foundations.Isomorphism using (iso ; isoToEquiv)
 open import Cubical.Foundations.Equiv       using (_≃_ ; equivFun)
+open import Cubical.Data.Fin.Properties     using (Fin-fst-≡)
 open import Cubical.Data.Nat                using (ℕ ; suc ; _+_)
-open import Cubical.Data.Nat.Properties     using (+-assoc ; +-comm)
+open import Cubical.Data.Nat.Properties     using (+-assoc ; +-comm ; +-zero)
 open import Cubical.Data.Sum                using (inl ; inr)
 
 open import Concurrency.Operads.Ports
@@ -73,7 +67,10 @@ open import Concurrency.Operads.PortGluing
   using ( delete-port
         ; port-glue
         ; b-port-after-inner-glue ; a-port-after-inner-glue
-        ; boundary-rot
+        )
+open import Concurrency.Operads.PortRotation
+  using ( boundary-rot
+        ; port-before-survivor ; port-before-survivor-zero
         )
 
 ------------------------------------------------------------------------
@@ -134,16 +131,124 @@ data O : ℕ → Type where
         (compₒ (port-glue {l} {p} (inl (a-port-after-inner-glue {l} x))) j
                (compₒ (delete-port i x) k' a c) b)
 
-  -- Cyclic axiom — boundary-rotation operand-swap.
-  rot-compₒ :
+  -- Cyclic equivariance, a-block case.
+  --
+  -- Rotating a composite to a port in a's surviving block preserves the
+  -- operand order. In the arbitrary-port presentation, the same composite
+  -- is presented by moving a's local gluing port to the port immediately
+  -- before the chosen survivor.
+  rot-compₒ-a-block :
       {l r : ℕ}
       (i : Port (suc l)) (j : Port (suc r))
+      (x : Fin (suc l))
+      (a : O (suc l)) (b : O (suc r))
+    → rot (port-glue {l} {r} (inl x)) (compₒ i j a b)
+        ≡ compₒ (port-before-survivor i x) j a b
+
+  -- Cyclic equivariance, b-block case.
+  --
+  -- Rotating a composite to a port in b's surviving block crosses the
+  -- operand boundary, so the presentation swaps operands and lives over
+  -- the commuted arity. The seam case y = fzero is the boundary-swap
+  -- theorem below.
+  rot-compₒ-b-block :
+      {l r : ℕ}
+      (i : Port (suc l)) (j : Port (suc r))
+      (y : Fin (suc r))
       (a : O (suc l)) (b : O (suc r))
     → PathP (λ ι → O (suc (+-comm l r ι)))
-        (rot (boundary-rot l r) (compₒ i j a b))
-        (compₒ j i b a)
+        (rot (port-glue {l} {r} (inr y)) (compₒ i j a b))
+        (compₒ (port-before-survivor j y) i b a)
 
   trunc       : {n : ℕ} (x y : O n) (p q : x ≡ y) → p ≡ q
+
+------------------------------------------------------------------------
+-- Full cyclic-equivariance law shapes
+------------------------------------------------------------------------
+
+-- These aliases expose the two constructor shapes as ordinary types.
+-- They are useful documentation for the quotient data above and give
+-- later algebra files named targets to reference without re-expanding
+-- the port arithmetic.
+
+-- Rotation whose new first composite port lies in a's surviving block.
+-- The same composite can be presented by moving a's local gluing port to
+-- the port immediately before that survivor.
+rot-compₒ-a-block-target :
+    {l r : ℕ}
+    (i : Port (suc l)) (j : Port (suc r))
+    (x : Fin (suc l))
+    (a : O (suc l)) (b : O (suc r))
+  → Type
+rot-compₒ-a-block-target {l} {r} i j x a b =
+  rot (port-glue {l} {r} (inl x)) (compₒ i j a b)
+    ≡ compₒ (port-before-survivor i x) j a b
+
+-- Rotation whose new first composite port lies in b's surviving block.
+-- The presentation crosses the operand boundary, so the endpoints live
+-- over the commuted arity.
+rot-compₒ-b-block-target :
+    {l r : ℕ}
+    (i : Port (suc l)) (j : Port (suc r))
+    (y : Fin (suc r))
+    (a : O (suc l)) (b : O (suc r))
+  → Type
+rot-compₒ-b-block-target {l} {r} i j y a b =
+  PathP (λ ι → O (suc (+-comm l r ι)))
+    (rot (port-glue {l} {r} (inr y)) (compₒ i j a b))
+    (compₒ (port-before-survivor j y) i b a)
+
+-- The seam case is the first b-survivor. This is the bridge to the
+-- derived boundary-swap statement, using two Fin bookkeeping lemmas:
+--   port-glue (inr fzero)       = boundary-rot l r
+--   port-before-survivor j fzero = j
+rot-compₒ-seam-target :
+    {l r : ℕ}
+    (i : Port (suc l)) (j : Port (suc r))
+    (a : O (suc l)) (b : O (suc r))
+  → Type
+rot-compₒ-seam-target i j a b =
+  rot-compₒ-b-block-target i j fzero a b
+
+boundary-rot-is-b-seam :
+    {l r : ℕ}
+  → port-glue {l} {r} (inr fzero) ≡ boundary-rot l r
+boundary-rot-is-b-seam {l} {r} =
+  Fin-fst-≡ {n = suc (suc (l + r))} (cong suc (+-zero l))
+
+boundary-swap-from-seam :
+    {l r : ℕ}
+    (i : Port (suc l)) (j : Port (suc r))
+    (a : O (suc l)) (b : O (suc r))
+  → rot-compₒ-seam-target i j a b
+  → PathP (λ ι → O (suc (+-comm l r ι)))
+      (rot (boundary-rot l r) (compₒ i j a b))
+      (compₒ j i b a)
+boundary-swap-from-seam {l} {r} i j a b seam =
+  subst
+    (λ p →
+      PathP (λ ι → O (suc (+-comm l r ι)))
+        (rot p (compₒ i j a b))
+        (compₒ j i b a))
+    boundary-rot-is-b-seam
+    (subst
+      (λ q →
+        PathP (λ ι → O (suc (+-comm l r ι)))
+          (rot (port-glue {l} {r} (inr fzero)) (compₒ i j a b))
+          (compₒ q i b a))
+      (port-before-survivor-zero j)
+      seam)
+
+boundary-swap :
+    {l r : ℕ}
+    (i : Port (suc l)) (j : Port (suc r))
+    (a : O (suc l)) (b : O (suc r))
+  → PathP (λ ι → O (suc (+-comm l r ι)))
+      (rot (boundary-rot l r) (compₒ i j a b))
+      (compₒ j i b a)
+boundary-swap i j a b =
+  boundary-swap-from-seam i j a b
+    (rot-compₒ-b-block i j fzero a b)
 
 ------------------------------------------------------------------------
 -- Cyclic action as an equivalence

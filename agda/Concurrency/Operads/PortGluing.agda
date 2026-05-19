@@ -10,8 +10,11 @@
 --       Port (suc (l + r)) ≃ Fin (suc l) ⊎ Fin (suc r),
 --     which classifies the composite's ports as coming from `a` or `b`;
 --   * reindexing families that compute the gluing-port location after
---     re-bracketing (sequential / parallel associativity), and the
---     boundary-rotation needed by `rot-compₒ`.
+--     re-bracketing (sequential / parallel associativity).
+--
+-- Rotation-specific reindexing, including the boundary rotation used by
+-- cyclic equivariance / boundary-swap, lives in the sibling file
+-- Concurrency/Operads/PortRotation.agda.
 --
 -- β convention (decision 2026-05-18): delete-port i k = i +ₘ fsuc k.
 -- This anchors the renumbering of surviving ports to the deleted port
@@ -32,7 +35,7 @@ open import Cubical.Foundations.Prelude
 open import Cubical.Foundations.Equiv       using (_≃_ ; equivFun ; invEq ; compEquiv)
 open import Cubical.Foundations.Isomorphism using (isoToEquiv)
 open import Cubical.Foundations.Univalence  using (pathToEquiv)
-open import Cubical.Data.Nat                using (ℕ ; zero ; suc ; _+_ ; +-suc)
+open import Cubical.Data.Nat                using (ℕ ; suc ; _+_ ; +-suc)
 open import Cubical.Data.Nat.Properties     using (snotz)
 open import Cubical.Data.Fin                using (Fin ; fzero ; fsuc ; predFin)
 open import Cubical.Data.Fin.Properties     using (Fin+≅Fin⊎Fin)
@@ -140,35 +143,3 @@ b-port-after-inner-glue {r} y = predFin r (-ₘ fsuc y)
 -- as a Fin (suc l). Used in compₒ-assoc-par. Same shape as the b case.
 a-port-after-inner-glue : {l : ℕ} → Fin (suc l) → Fin (suc l)
 a-port-after-inner-glue {l} x = predFin l (-ₘ fsuc x)
-
-------------------------------------------------------------------------
--- Boundary rotation for rot-compₒ
---
--- The composite cyclic order under the linear-sum convention starts
--- with a's (suc l) surviving ports, then b's (suc r) surviving ports.
--- Rotating the composite by `suc l` positions moves the cyclic start
--- past a's contribution, effecting the operand swap a ↔ b.
---
--- Decision 2026-05-18: state rot-compₒ at this boundary rotation, not
--- at the unit rotation. The boundary form makes the equation
---   rot (boundary-rot l r) (compₒ i j a b) ≡ compₒ j i b a
--- (modulo PathP over +-comm) — no port reindexing on the RHS. The
--- unit-rotation form derives from this via rot-compose.
-------------------------------------------------------------------------
-
-private
-  open import Cubical.Data.Nat.Order            using (_<_)
-  open import Cubical.Data.Nat.Order.Inductive  using (<→<ᵗ)
-  open import Cubical.Data.Nat.Properties       using (+-comm)
-
-  -- suc l < suc (suc (l + r))  ≡  Σ[ k ∈ ℕ ] k + suc (suc l) ≡ suc (suc (l + r))
-  -- Witness with k = r and the +-suc / +-comm chain.
-  suc-l-bound : ∀ l r → suc l < suc (suc (l + r))
-  suc-l-bound l r = r ,
-      ( r + suc (suc l)   ≡⟨ +-suc r (suc l) ⟩
-        suc (r + suc l)   ≡⟨ cong suc (+-suc r l) ⟩
-        suc (suc (r + l)) ≡⟨ cong (λ z → suc (suc z)) (+-comm r l) ⟩
-        suc (suc (l + r)) ∎ )
-
-boundary-rot : (l r : ℕ) → Port (suc (l + r))
-boundary-rot l r = suc l , <→<ᵗ (suc-l-bound l r)

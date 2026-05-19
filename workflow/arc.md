@@ -47,11 +47,11 @@ adjoint data, with the asymmetry made explicit.
 ## 5. Sites and folders  → T2, T4, T5
 
 - `agda/ModalHoTT/`    — site Bℤ, develops the ModalHoTT claim.
-- `agda/Concurrency/`  — hybrid substrate (actor-causal + session-type values via sheaf; canonical source `deep_context/concurrency_anchor.md`) plus the `O_1` operadic interaction layer named on top. Operadic syntax shipped 2026-05-18 in `Concurrency/Operads/{Ports,RawCyclicOperad,PortGluing,CyclicAssociative}.agda` (HIT-by-copy with `compₒ-assoc-seq`, `compₒ-assoc-par`, `rot-compₒ`; the last is the boundary-rotation operand-swap presentation — full-cyclic-equivariance status open). Algebras and hybrid integration not yet started. SessionValues + ActorBase separation is structural in the hybrid.
+- `agda/Concurrency/`  — hybrid substrate (actor-causal + session-type values via sheaf; canonical source `deep_context/arc/02_concurrency_anchor.md`) plus the `O_1` operadic interaction layer named on top. Operadic syntax shipped 2026-05-18 in `Concurrency/Operads/{Ports,RawCyclicOperad,PortGluing,PortRotation,CyclicAssociative}.agda` (HIT-by-copy with sequential/parallel associativity and full cyclic equivariance via `rot-compₒ-a-block` / `rot-compₒ-b-block`; boundary-swap is derived). Algebra signatures shipped in `Concurrency/Algebras/{StarAutonomous,Valuation,OperadAlgebra}.agda`: thin `*`-autonomous target, weak HIT valuation, and structural Step-2 operad algebra with `plug`/`shift` and `boundary-swap-structural`. Sessions and hybrid integration not yet started. SessionValues + ActorBase separation is structural in the hybrid.
 - `agda/Analytic/`     — analytic mirror for ModalHoTT; documents non-vacuity.
 - `agda/AnalyticTest/` — reserved third track; see folder README.
 
-The arc-level theorem lives in the ambient ∞-topos relating the two cohesive sites via a functor or geometric morphism. (The specific shape of this functor is deferred to next session — both sites are intended to sit inside the same cubical-set ambient; see `concurrency_anchor.md`.)
+The arc-level theorem lives in the ambient ∞-topos relating the two cohesive sites via a functor or geometric morphism. (The specific shape of this functor is deferred — both sites are intended to sit inside the same cubical-set ambient; see `deep_context/arc/02_concurrency_anchor.md`.)
 
 ## 6. The mathematical fragment  → T3 (Lawvere asymmetry), T_recursion (iteration / developing network)
 
@@ -80,5 +80,5 @@ Explicit list. Examples to seed it:
 - Whether the structural claim is one adjunction or the full triple.
 - What the middle modality "Mediate" picks out, if it exists.
 - The functor / geometric morphism between the two cohesive sites.
-- Concurrency-site sub-decisions (`_Site._Category` model, value category V, ∞-lift timing) — currently live in `status.md` "Discussion of the next step"; will fold here next session.
+- Concurrency-site sub-decisions (`_Site._Category` model, value category V, ∞-lift timing) — currently live in `status.md`; fold durable outcomes here as they stabilize.
 - The precise statement of the math fragment as a theorem in the ambient topos.

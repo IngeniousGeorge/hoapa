@@ -11,9 +11,9 @@
 -- modular addition, and the cyclic inverse (with cancellation laws)
 -- to derive the rotate equivalence. Heavier port arithmetic — the
 -- β delete-and-renumber, the port-gluing equivalence, and the
--- reindexing families used by CyclicAssociative.agda's laws — lives
--- in the sibling file Concurrency/Operads/PortGluing.agda
--- (decision 2026-05-18).
+-- reindexing families used by CyclicAssociative.agda's laws — live in
+-- the sibling files Concurrency/Operads/PortGluing.agda and
+-- Concurrency/Operads/PortRotation.agda (decision 2026-05-18).
 
 module Concurrency.Operads.Ports where
 

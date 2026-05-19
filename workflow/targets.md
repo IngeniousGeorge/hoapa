@@ -33,7 +33,7 @@ T_recursion (below) is downstream of T1: once `Allow ⊣ Require` is stated, its
 
 *Arc anchor: `arc.md` §5.*
 
-*To restate next session.* Original claim (cohesion on A_5-equivariant icosahedral S²) retired with the icosahedral framing. The reformulated question — whether cohesion lifts to the Concurrency topos (actor-causal + session-type-values hybrid) — needs restatement against the new construction. See `deep_context/concurrency_anchor.md` and `status.md` "Discussion of the next step". Original archived.
+*To restate.* Original claim (cohesion on A_5-equivariant icosahedral S²) retired with the icosahedral framing. The reformulated question — whether cohesion lifts to the Concurrency topos (actor-causal + session-type-values hybrid) — needs restatement against the new construction. See `deep_context/arc/02_concurrency_anchor.md` and the Concurrency status in `status.md`. Original archived.
 
 ---
 
@@ -66,7 +66,7 @@ The original formulation — A_5 simple-and-transitive on the 12 icosahedral ver
 
 *Arc anchor: `arc.md` §5.*
 
-*To restate next session.* The original modal-partition claim (`♯/♭/ʃ ↔ unityped agents / typed data / protocol shape`) is partially answered by the hybrid construction in `deep_context/concurrency_anchor.md`: the ActorBase/SessionValues split is **definitional** (base topology vs sheaf values, with modularity = sheaf gluing). The protocol-shape (`ʃ`) slot still needs work. Original archived.
+*To restate.* The original modal-partition claim (`♯/♭/ʃ ↔ unityped agents / typed data / protocol shape`) is partially answered by the hybrid construction in `deep_context/arc/02_concurrency_anchor.md`: the ActorBase/SessionValues split is **definitional** (base topology vs sheaf values, with modularity = sheaf gluing). The protocol-shape (`ʃ`) slot still needs work. Original archived.
 
 ---
 
@@ -127,20 +127,28 @@ The fracture theorem and the de Rham structural / named-coefficient / differenti
 
 **To verify.**
 - *Iteration-alone layer (cheaper, Agda-reachable now).* The scaffold in `agda/ModalHoTT/Modalities/Iteration.agda` provides `T`, `T-map`, `T^_`, `η^_`, `η^-coherent` (derived from a postulated `η-naturality`), and the developing-network type `ND : Type → Type` as a sequential colimit. Specializing to the A-side ʃ ⊣ ♭ should collapse `ND` to `♭(ʃ A)` by idempotency; at `A := Bℤ` this should yield `ND Bℤ ≃ ℤ` via the analytic-side computation in `Analytic/.../Cohesion.agda`. This is the cheapest non-trivial content from the scaffold.
-- *Operad-structure layer (partial — syntax shipped 2026-05-18, algebras pending).* The cyclic associative operad `O_1` syntax is in Agda (`Concurrency/Operads/CyclicAssociative.agda`: generator, substitution, cyclic action, sequential + parallel associativity, the boundary-rotation operand-swap cyclic-axiom presentation). Still pending: (a) the algebra layer (`Concurrency/Algebras/{StarAutonomous,OperadAlgebra,Sessions}.agda`) where the cyclic involution restricts to session-type duality (R8); (b) the cross-site adjunction `Allow ⊣ Require`, which then instantiates the iteration module against this operad. Depends on the Concurrency-side scoping committing R1 (V) and R4 (Interpretation); the rot-compₒ presentation question (boundary-swap vs full cyclic equivariance) is a soft block on (a).
+- *Operad-structure layer (partial — syntax and algebra signatures shipped; sessions pending).* The cyclic associative operad `O_1` syntax is in Agda (`Concurrency/Operads/CyclicAssociative.agda`: generator, substitution, cyclic action, sequential + parallel associativity, full cyclic equivariance via `rot-compₒ-a-block` / `rot-compₒ-b-block`, and derived `boundary-swap`; port bookkeeping split across `PortGluing.agda` and `PortRotation.agda`). The algebra interface is also in place (`Concurrency/Algebras/{StarAutonomous,Valuation,OperadAlgebra}.agda`): thin `*`-autonomous target signature, weak HIT valuation into `⊥-par`, and structural Step-2 operad algebra with `plug`, `shift`, and `boundary-swap-structural`. Still pending: (a) `Sessions.agda`, where the structural identity restricts to session-type duality (R8); (b) the cross-site adjunction `Allow ⊣ Require`, which then instantiates the iteration module against this operad. Depends on the Concurrency-side scoping committing R1 (V) and R4 (Interpretation).
+
+### Anti-drift invariant: do not let R8 consume R∞
+
+The modal side gives the ambient Grothendieckian horizon: cohesion, covers, shape, fundamental groups, and descent. Its Agda role is mostly to record and discipline literature-backed commitments, not to pretend that the modal cathedral is being rebuilt from scratch.
+
+The concurrency side gives the active finite combinatorics: ports, cyclic order, gluing, rotation, associativity, and eventually modular closure. This is not a retreat from dessins/Belyi maps; it is where the dessin-facing material becomes manipulable. Dessins are finite ribboned combinatorics that remember arithmetic geometry, so the B-side productivity is a feature if it keeps climbing back toward covers, Belyi, and Galois.
+
+The failure mode is stopping at session-flavored cyclic operads. `O_1` is not the destination: `MO_1` / the modular envelope is the real dessin-facing object. Session duality is a necessary local face of the cyclic structure, but the Grothendieckian target needs the whole cyclic / ribbon / modular apparatus.
 
 ### Progress
 
 The iteration scaffold is in place: `agda/ModalHoTT/Modalities/Iteration.agda` defines the generic-adjunction `Iteration` module (`T`, `T-map`, `T^_`, `η^_`, `η-naturality` postulate, `η^-coherent` derived, `T-sequence`, `ND`). A-side sanity check `agda/ModalHoTT/Modalities/IterationCohesion.agda` instantiates with ʃ ⊣ ♭: refl-level `T-as-flat-shape` and `η^1-is-unit`, plus the first-level collapse `η-equiv-at-T : T A ≃ T(T A)` derived via the `Discrete.agda` bridge (`T A` is flat-modal definitionally and shape-modal by the bridge, so the next iterate-step is an equivalence). Cross-site adjunction not yet stated (waits on Concurrency-side scoping). Deferred items (B-side dual, cyclic-involution layer, full sequential-colimit convergence `ND A ≃ T A`) flagged in `future_work.md` "Regarding T_recursion iteration."
 
-B-side operadic syntax shipped 2026-05-18 (`Concurrency/Operads/CyclicAssociative.agda`: `O_1` as a cyclic associative HIT with `compₒ-assoc-seq`, `compₒ-assoc-par`, and `rot-compₒ` in boundary-rotation operand-swap form). Algebras over `O_1` not yet — that's the layer where the iteration scaffold becomes instantiable on the B side (and where R7's `*`-autonomous target is the parameter signature). One open question on the operadic side (boundary-swap presentation vs full cyclic equivariance for `rot-compₒ`; see `status.md`) is a soft block on the algebras.
+B-side operadic syntax shipped 2026-05-18 (`Concurrency/Operads/CyclicAssociative.agda`: `O_1` as a cyclic associative HIT with `compₒ-assoc-seq`, `compₒ-assoc-par`, full cyclic equivariance via `rot-compₒ-a-block` / `rot-compₒ-b-block`, and derived `boundary-swap`; `PortRotation.agda` owns rotation-side port bookkeeping). The first algebra layer shipped 2026-05-19: `StarAutonomous.agda` is a thin target signature, `Valuation.agda` names weak HIT interpretations into `⊥-par`, and `OperadAlgebra.agda` adds `plug`/`shift` structural fields plus `boundary-swap-structural`. Concrete sessions are not yet written.
 
 ### Relation to other targets
 
 - **Downstream of T1** (the adjunction itself).
 - **T3 is the asymmetry-engine** — the Lawvere asymmetry is what makes the iteration content rather than collapse.
 - **Distinct from T6** ("two-sided above") — T6 is the snapshot of mutual constitution; T_recursion is its dynamics.
-- **Esquisse pointer.** T_recursion is the natural target for the Grothendieck-Esquisse mapping the arc_discussion_log named: the modular-operad form of the moduli-tower recursion, surviving the retirement of the A_5 / icosahedral example. See `deep_context/arc_discussion_log-2026-05-08.md` Turn 21.
+- **Esquisse pointer.** T_recursion is the natural target for the Grothendieck-Esquisse mapping the arc discussion log named: the modular-operad form of the moduli-tower recursion, surviving the retirement of the A_5 / icosahedral example. See `deep_context/arc/01_arc_discussion_log-2026-05-08.md` Turn 21.
 
 **Completed — synthetic side (`agda/ModalHoTT/`).**
 
@@ -200,7 +208,7 @@ In short: **♯ is the door to the de Rham story, which is the door to the separ
 
 ## Dependency sketch
 
-*To restate next session, in tandem with T2–T5.* T1 remains foundational; T6 and T7 remain downstream of T1. The site question for the Concurrency side has migrated from T2 to `deep_context/concurrency_anchor.md` (level-2 inventory in `status.md` "Discussion of the next step"). Original archived.
+*To restate, in tandem with T2–T5.* T1 remains foundational; T6 and T7 remain downstream of T1. The site question for the Concurrency side has migrated from T2 to `deep_context/arc/02_concurrency_anchor.md` and the level-2 inventory in `status.md`. Original archived.
 
 ---
 
