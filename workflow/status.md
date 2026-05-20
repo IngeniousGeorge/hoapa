@@ -20,6 +20,8 @@ The first concrete typed-content instance is now shipped: `Concurrency/Algebras/
 
 The actor-causal locality leg is now shipped: `Concurrency/Sites/{ActorBase,ActorCausal}.agda` makes R6 concrete with opaque unityped actors, Lamport-style event causality, local frames, strict-reflecting frame embeddings, basis covers, and a Bool-based non-trivial cover witness. Promotion of a completed conversation into an actor-like node is deliberately not a `FrameHom`; it is reserved as a future morphism class for the `MO_1` / conversation-of-conversations stage.
 
+Hybrid v1 is now shipped as the first adapter layer: `Concurrency/Hybrid/Presheaf.agda` defines a generic `FramePresheaf` over actor-local frames valued in any `StarAutonomous` target, plus zero-postulate `IsSeparatedPresheaf` as the uniqueness / auditability half of descent. `Concurrency/Hybrid/SessionPresheaf.agda` specializes this to `Sessions-Cat Payload` and provides both constant witnesses, `const-𝟙ₛ-presheaf` and `const-⊥ₛ-presheaf`, without adding any hidden morphism between the tensor unit and the dualizing object. This is Adapter 1 (restriction); full sheaf gluing remains pending.
+
 `MO_1` (the modular envelope of `O_1`, closure under self-gluing at marked points, raises genus to produce operations at every `(g, n)`) is the long-horizon target. `O_1` is staged toward it but does not commit to it. Eventual landing: evaluation at `(0, 3)` — the universal trinion, the 3-pointed sphere where dessins / Belyi / Esquisse machinery live.
 
 Committed operadic flavor: `Ass_cyc` (planar cyclic associative, ribbon-graph world) over `Com_cyc` (fully symmetric, bare M̄_{g,n}). Justification: actor send/receive is intrinsically ordered, session composition is non-commutative, dessins live in the ribbon-decorated world.
@@ -58,10 +60,11 @@ Duality (`A ↔ A^⊥`) cross-cuts all three.
 
 Canonical decomposition (a sheaf is a presheaf satisfying descent).
 
-- `_Sheaf._Presheaf` — assignment of a value-object to each site-object, functorial.
-- `_Sheaf._Descent` — gluing condition for covers from `_Site._Topology`.
+- `_Sheaf._Presheaf` — shipped as Hybrid v1: `FramePresheaf` assigns a value-object to each actor-local frame and restricts contravariantly along `FrameHom`; `SessionPresheaf` specializes this to `Sessions-Cat Payload`.
+- `_Sheaf._Separatedness` — shipped as `IsSeparatedPresheaf`: cover-local equality of probes into `value F` detects global equality. This is a property record, not a global postulate.
+- `_Sheaf._Descent` — gluing condition for covers from `_Site._Topology`; not yet implemented.
 
-Open: the value category `V` (Set, Cat, `_Algebra._SyntacticCategory` itself?). Tracked as its own item via R1.
+The first value category `V` is `Sessions-Cat Payload`; later versions may replace or lift this to richer session categories or presheaves valued in `OperadAlgebra`.
 
 ##### `_Topos`  <!-- concept:topos -->
 
@@ -141,8 +144,8 @@ Near-term Agda-bound subset that brings the operadic layer to the hybrid substra
 
 ##### Integration with hybrid  <!-- concept:integration -->
 
-- `_Algebras._Sessions` evaluates into the value category `V` of the hybrid's `_Sheaf` (R1).
-- `_Site` supplies the actor-causal base over which `_Algebras._Sessions` will vary as values (R1).
+- `_Algebras._Sessions` now supplies the first value category `V` of the hybrid's `_Sheaf`: `SessionPresheaf = FramePresheaf AB (Sessions-Cat Payload)`.
+- `_Site` supplies the actor-causal frame category over which `_Algebras._Sessions` varies as values. Hybrid v1 takes `ActorBase` plus `LocalFrame` / `FrameHom` / `Cover`; the bundled `ActorCausalSite` re-enters when descent consumes identity, transitivity, and stability of covers.
 - `boundary-swap-structural` supplies the categorical / operadic R8 face that cross-cuts the existing `_Algebra._SyntacticCategory`; the bridge to syntactic session duality is deferred (R8).
 
 This is the commitment frontier for `O_1`: enough operadic structure to name the interaction algebra of the hybrid; no commitments beyond cyclic-operad-without-modular-envelope.
@@ -153,8 +156,8 @@ Named, like modules. R1–R6 are from the hybrid substrate's level-2 scoping; R7
 
 **Live now.**
 
-- **R1 — Valuation.** `_Sheaf` takes values in `V`; `V` drawn from `_Algebra._SyntacticCategory` (substrate) or `_Algebras._Sessions` (operadic). The sheaf functor `F: _Site._Category^op → V`. Most urgent technical hinge.
-- **R2 — Indexing.** `_Sheaf` lives over `_Site`: presheaf + descent against `_Site._Topology`. Descent is the load-bearing half.
+- **R1 — Valuation.** v1 landed in `Concurrency/Hybrid/{Presheaf,SessionPresheaf}.agda`: `FramePresheaf` is the generic functorial assignment `_Site._Category^op → V`, and `SessionPresheaf` instantiates `V = Sessions-Cat Payload`. Full sheaf valuation is not complete until descent/gluing lands.
+- **R2 — Indexing.** `_Sheaf` lives over `_Site`: presheaf + descent against `_Site._Topology`. The presheaf and separatedness layers are shipped; descent is the remaining load-bearing half.
 - **R3 — Generation.** `_Topos = Sh(_Site._Category, _Site._Topology)`. No freedom; the topos is generated from site + sheaves.
 - **R4 — Interpretation.** `_Topos._InternalLogic ↔ _Algebra._Connectives` / `_Algebras._Sessions`. Topos logic is cartesian by default; the algebra is linear. Compatibility (or its principled absence) is its own piece of work.
 - **R5 — Embedding.** `_Topos._GeometricMorphisms → cubical sets`. The mathematical form of "both sides share an ambient `(∞,1)`-topos."
@@ -162,7 +165,7 @@ Named, like modules. R1–R6 are from the hybrid substrate's level-2 scoping; R7
 - **R7 — Algebra-over-Operad.** `_Algebras` evaluates `_Operad`. Landed as `StarAutonomous` + `Valuation` + structural `OperadAlgebra`, and concretely instantiated by `Sessions.agda` for the typed-content layer. Closely interacts with R1 (the value category for both must agree).
 - **R8 — Involution-Duality.** `Sessions.agda` now contains both faces: syntactic `dual-involutive` and categorical / operadic `boundary-swap-at-gen` (a specialization of `boundary-swap-structural`). The bridge between them remains a deferred project claim, not a computational reduction.
 
-**Most load-bearing now:** hybrid integration. R6 is concrete enough for R1 to become statable: the next technical hinge is the value category / sheaf valuation explaining how shipped session values sit over actor-local frames. R4 (cartesian-vs-linear interpretation) remains the conceptual compatibility question.
+**Most load-bearing now:** Hybrid v1 has made R1 statable and inhabited; the next technical hinge is descent/gluing over covers, followed by R4 (how cartesian topos-internal logic talks to the linear/session value layer). The cross-site adjunction still waits on that sheaf/descent maturity.
 
 **Deferred (live at `MO_1` stage).**
 
@@ -199,6 +202,8 @@ When bandwidth returns to the A side, the iteration's input type lifts from `B�
 
 The substrate is the actor-causal + session-type-values hybrid: a Grothendieck site of actor-causal frames (GR-inspired actor model, Lamport partial-order at `_Site._Category`, shipped in `Concurrency/Sites/{ActorBase,ActorCausal}.agda`), with Caires-Pfenning session-type structures as the natural values (sheaves) on it (canonical source: `deep_context/arc/02_concurrency_anchor.md`). Separation of concerns is structural (modularity = sheaf-gluing); typed data lives in the values, unityped agents in the base topology.
 
+Hybrid v1 currently implements the presheaf/restriction adapter and separatedness property, not full sheaf descent: session values restrict along actor subviews, and `IsSeparatedPresheaf` states the no-hidden-global-difference condition. Matching families and gluing are future work.
+
 The interaction algebra layered on top is `O_1` (cyclic operad with one binary generator + cyclic action) — see "Where we landed." The hybrid is what `O_1`'s algebras live over.
 
 Analytic-side mirror is future work; whether the `agda/Analytic/` pattern from ModalHoTT transfers depends on the Concurrency-side base implementation.
@@ -234,12 +239,13 @@ Analytic-side mirror is future work; whether the `agda/Analytic/` pattern from M
 | 2026-05-20 | Actor-site covers use basis form, with `sieve-of` exposed for the E2 transition | Basis covers match implementation-facing local observations and concrete finite witnesses. The semantic endpoint remains the generated sieve / Grothendieck-topology presentation; prove equivalence later rather than starting Actors v1 at the sieve level |
 | 2026-05-20 | Actor-site identity and transitivity covers are generic; stability is the only v1 postulate gap | `identity-cover-canonical` and `transitivity-cover-canonical` are constructed. `stability-cover-postulate` is named and flagged because generic pullback-stability needs frame pullbacks or the future sieve presentation |
 | 2026-05-20 | Actor-site tiny witness upgraded to non-trivial Bool cover | `TinyAB` uses `Fin 2`; `TinyCausal` uses `Bool` events with `false ≤ true`; `PointFrame` embeds by `embed-point false` / `embed-point true`; `two-point-cover` exercises non-trivial index, patch, embedding, and event-lift data |
+| 2026-05-20 | Hybrid v1 shipped as adapter layer | `Concurrency/Hybrid/Presheaf.agda` provides generic `FramePresheaf`, zero-postulate `IsSeparatedPresheaf`, and `const-presheaf`; `SessionPresheaf.agda` specializes to `Sessions-Cat Payload` and exposes both `const-𝟙ₛ-presheaf` and `const-⊥ₛ-presheaf`. This implements Adapter 1 (restriction) and names future adapter slots without faking descent or a unit/dualizing conversion |
 
 ## Blockers  <!-- tags: kind:state -->
 
 (Previous Open Questions archived to `deep_context/archived_blockers/2026-05-17.md`. Deferred items migrated to `future_work.md`.)
 
-Concurrency: none active. First B-side operad, algebra signatures, concrete typed-content `Sessions.agda` instance, and actor-causal site v1 have shipped; next substantive work is the hybrid sheaf/value bridge (R1) over `ActorCausalSite`.
+Concurrency: none active. First B-side operad, algebra signatures, concrete typed-content `Sessions.agda` instance, actor-causal site v1, and Hybrid v1 presheaf/restriction adapter have shipped. Next substantive work is full descent/gluing over covers, then R4 compatibility and the eventual cross-site adjunction.
 ModalHoTT: none active (paused).
 
 ## Current B-side state  <!-- tags: kind:state -->
@@ -311,15 +317,39 @@ The actor site deliberately does not import `Sessions.agda` or operad files. Its
 
 The G3 witness is non-trivial: `TinyAB` has two actors (`Fin 2`), `TinyCausal` has two Bool events with `false ≤ true`, `PointFrame` embeds into `TinyFrame` via `embed-point false` and `embed-point true`, and `two-point-cover` covers `TinyFrame` by the two event-patches.
 
-### Next file
+### Hybrid
 
-The hybrid bridge: a session-valued presheaf / sheaf layer over `ActorCausalSite`. The goal is not the cross-site adjunction yet; it is R1, making precise how the shipped session values sit over actor-local frames.
+Shipped to `agda/Concurrency/Hybrid/` (both files typecheck under `--cubical --guardedness`):
 
-### After actor-causal site v1
+| File | Role | Line count |
+|------|------|-----------:|
+| `Presheaf.agda` | Generic Hybrid adapter chassis: `FramePresheaf` valued in any `StarAutonomous` target, zero-postulate `IsSeparatedPresheaf`, and `const-presheaf` | ~250 |
+| `SessionPresheaf.agda` | Sessions specialization: `SessionsV = Sessions-Cat Payload`, `SessionPresheaf`, `IsSeparatedSessionPresheaf`, `const-𝟙ₛ-presheaf`, and `const-⊥ₛ-presheaf` | ~135 |
 
-1. **Hybrid integration** — sheaf valuation (R1): place the shipped session values over the actor-causal site. Known shape, now the active next step.
+Hybrid v1 is the adapter-layer scaffold, not the final sheaf module. It implements the restriction adapter:
+
+```agda
+FrameHom AB G F → Hom (value F) (value G)
+```
+
+and the auditability/separatedness property:
+
+```agda
+cover-jointly-monic :
+  (c : Cover AB ℓI F) →
+  (x y : Hom X (value F)) →
+  ((i : Cover.Index c) → restrict (Cover.embed c i) ∘ x ≡ restrict (Cover.embed c i) ∘ y) →
+  x ≡ y
+```
+
+Design constraints held: no operad imports in Hybrid v1, no payloads or roles on actors, no promotion, no matching-family/gluing postulates, and no hidden `𝟙ₛ ↔ ⊥ₛ` conversion. The chassis is parameterized by `ActorBase` rather than the `ActorCausalSite` bundle because v1 uses the frame category and `Cover` basis directly; the bundled site axioms re-enter when descent uses identity/transitivity/stability of covers.
+
+### Next frontier
+
+1. **Descent / gluing over covers** — define matching families and amalgamation honestly; this is the remaining half of R1/R2.
 2. **R4 compatibility** — clarify how cartesian internal logic of the topos talks to the linear/session value layer.
-3. **A-side return plan** (lift `Bℤ → S¹`, switch η-iteration → cyclic bar) — on hold until the B-side reaches a point where the cross-site adjunction `Allow ⊣ Require` is statable.
+3. **Displayed-subsite / non-constant witness** — optional v1.1 example machinery for a non-trivial frame-varying presheaf.
+4. **A-side return plan** (lift `Bℤ → S¹`, switch η-iteration → cyclic bar) — on hold until the B-side reaches a point where the cross-site adjunction `Allow ⊣ Require` is statable.
 
 ### Held-loose long-horizon items (no near-term action)
 
@@ -329,307 +359,3 @@ The hybrid bridge: a session-valued presheaf / sheaf layer over `ActorCausalSite
 ## Historical note
 
 The detailed rot-compₒ discussion that led to the 2026-05-18 cyclic-equivariance repair is archived. The durable outcome is recorded above: full cyclic equivariance is primitive, `boundary-swap` is derived, and the algebra layer uses `boundary-swap-structural` rather than treating binary session duality as the whole cyclic story.
-
-## Discussion of the next step
-
-### Claude
-
-● Recommendation: hybrid bridge — SessionPresheaf over ActorCausalSite
-
-A presheaf in the actor-causal site, valued in Sessions's syntactic category. R1 (sheaf valuation) made concrete.
-
-Why this is the right next step
-
-1. It's what status.md "After Sessions.agda" item 2 was waiting on. Item 1 (Actors at maturity to Sessions) just landed. The "hybrid bridge — place the shipped session values over the actor-causal
-site" item moves to active.
-2. Both legs are now at honest comparable maturity. Sessions has the content-side R8 faces; Actors has the locality-side site axioms and a non-trivial cover. Bridging two equally-developed legs is
-symmetric; bridging now rather than later locks in that symmetry rather than letting one side outgrow the other.
-3. R1 is the structural separation-of-concerns hinge. The motivation file's claim — B1 (typed data) and B2 (unityped agents) follow separation of concerns — is currently a structural assertion in
-concurrency_anchor.md, not an Agda artifact. The bridge is what turns it into an artifact: B1 lives in the values (presheaf assignment to frames), B2 lives in the base topology (the site itself),
-and modularity is the (eventual) sheaf-gluing condition. Without the bridge, the central claim of the hybrid is unverified.
-4. It's the structural gate for the cross-site adjunction. Allow ⊣ Require lives between the A-side cohesive ∞-topos and the B-side topos formed by sheaves on the actor-causal site (per arc/02).
-The bridge is the constructive form of that topos's value structure. The A-side return plan (Bℤ → S¹, bar construction) is gated on the cross-site adjunction being statable, which is gated on the
-topos having content, which is what the bridge supplies.
-5. arc/05's verified-protocol-kernel framing depends on it. "Conversations produce typed documents" reads structurally as "frames bear session values"; "actor identity never leaks into the session
-carrier" reads as "the presheaf factors through the base site's locality, not through anything that mentions session types in the actor base." Both become checkable claims once the bridge exists.
-
-What v1 ships
-
-A single file Concurrency/Hybrid/SessionPresheaf.agda, on the order of 400-500 lines, containing:
-
-- SessionPresheaf record. A contravariant assignment: P-on-frame : LocalFrame → SessionType, P-on-hom : (F ↪ G) → Hom (P-on-frame G) (P-on-frame F), plus functoriality fields P-id and P-comp. Same
-field-and-postulate-laws shape as StarAutonomous and Sessions-Cat.
-- const-presheaf. The trivial inhabitability witness: assigns 𝟙ₛ (or ⊥ₛ — design call below) to every frame, id-h to every FrameHom. Functoriality holds definitionally.
-- A non-trivial witness over tiny-site. A presheaf that assigns one session type to PointFrame and a different session type to TinyFrame, with P-on-hom (embed-point b) being a non-identity Hom —
-exercising the contravariance of the bridge against the G3 site's embed-point false and embed-point true.
-- Header reservation for v2. The sheaf condition (descent over covers) is stated in prose only at v1; the categorical structure Sessions-Cat needs to host matching families (intersections,
-pullback-flavored data) is exactly the StarAutonomous extension that SessionO1Action's canonical-derivation slot is waiting on. The two deferred items now share a single trigger.
-
-Design calls
-
-Q1. Subdirectory for the bridge.
-
-- What's at stake: where the file lives and what category of artifact it signals.
-- Option Q1a — Concurrency/Hybrid/SessionPresheaf.agda. Buys: matches the concurrency_anchor.md "hybrid" vocabulary; the directory makes "bridge from one leg to another" explicit. Costs: introduces
-a new subdirectory pattern (so far we have Operads/, Algebras/, Sites/ — all mathematical-kind names; Hybrid/ is relational).
-- Option Q1b — Concurrency/Sites/SessionSheaf.agda. Buys: keeps it under Sites (the bridge gives the site its values). Costs: "Sites" becomes ambiguous between "the actor-causal site itself" and
-"things-over-the-site"; also the file is the presheaf, not yet the sheaf, so the filename is forward-leaning.
-- Option Q1c — Concurrency/Sheaves/Sessions.agda. Buys: "Sheaves" as a categorical-kind name fits the existing pattern. Costs: same as Q1b on the not-yet-sheaf naming.
-- Lean: Q1a. The Hybrid/ subdirectory honestly names the architectural move (cross-leg bridge) and reserves room for a future Hybrid/<Actors-over-Sessions>.agda or Hybrid/Compatibility.agda if
-other bridges land.
-
-Q2. Presheaf-only vs. sheaf-too at v1.
-
-- What's at stake: how much of the descent picture lands at v1 vs. is deferred.
-- Option Q2a — Presheaf only. Buys: honest; ships exactly what current Sessions-Cat supports; clean deferral story. Costs: the separation-of-concerns claim is only half-stated — the topology side
-is there, the descent side isn't.
-- Option Q2b — Presheaf + separated-presheaf property (uniqueness without existence). Buys: records the "at most one global section per matching family" half of the sheaf condition. Costs: still
-needs intersection-of-patches morphisms to state compatibility, which Sessions-Cat doesn't supply cleanly without enrichment.
-- Option Q2c — Full sheaf, postulates filling the categorical gaps. Buys: full structural commitment at v1. Costs: heavy postulate budget; many will be re-derived in v2 once Sessions-Cat is
-enriched, so the postulate work is throwaway.
-- Lean: Q2a. The bridge HALF that current ingredients support, with the descent half explicitly waiting on the same StarAutonomous extension that SessionO1Action's canonical derivation needs. Two
-deferred items, one trigger.
-
-Q3. The target object of the trivial presheaf.
-
-- What's at stake: whether const-presheaf returns 𝟙ₛ (tensor unit) or ⊥ₛ (dualizing object / par unit) at every frame.
-- Option Q3a — 𝟙ₛ. Buys: matches "no content yet" reading (tensor unit = empty product); standard for terminal-object presheaves in cartesian topoi. Costs: in *-autonomous (linear) settings, 𝟙ₛ is
-the multiplicative unit, not the terminal object — there's no canonical "everything maps to 𝟙ₛ."
-- Option Q3b — ⊥ₛ. Buys: matches the Valuation/OperadAlgebra codomain (R7 already commits to ⊥-par as the natural session-valued target); presheaves into the dualizing object are the natural shape
-downstream operadic algebras want to compose with. Costs: less standard outside linear-logic settings.
-- Lean: Q3b. The R7 commitment in Valuation.agda already pins ⊥-par as the canonical codomain; the bridge inherits that.
-
-Q4. Non-trivial v1 witness.
-
-- What's at stake: how concrete v1's non-degenerate inhabitant is.
-- Option Q4a — Constant presheaf only (I1-class). Buys: minimum. Costs: doesn't exercise P-on-hom non-trivially; same critique we just fixed for tiny-site.
-- Option Q4b — A two-value presheaf over tiny-site: assigns 𝟙ₛ to PointFrame, some other type (e.g., 𝟙ₛ ⊗ 𝟙ₛ) to TinyFrame, with P-on-hom (embed-point b) being one of the unitor morphisms. Buys:
-exercises every field non-trivially; demonstrates that the contravariance of the bridge against a non-identity FrameHom (the G3 work) actually shows up. Costs: 60-100 lines of additional witness
-code.
-- Option Q4c — Two "shadow" presheaves: an actor-only shadow that returns 𝟙ₛ everywhere (projects away content) and a content-only example. Buys: makes B1/B2 separation visible as an Agda artifact
-(the two shadows witness that the two legs can be looked at independently). Costs: needs frame-internal data the records don't currently expose for the content shadow.
-- Lean: Q4b. The two-shadow story (Q4c) is appealing but properly belongs at the sheaf level, where the descent picture makes "what each shadow forgets" precise. At the presheaf level, Q4b is
-honest non-triviality.
-
-Q5. Functoriality laws.
-
-- What's at stake: whether the laws are stated-and-postulated (Sessions's pattern) or stated-and-discharged-per-instance.
-- Option Q5a — Stated as fields, each instance discharges them. Buys: matches Sessions's pattern; the const-presheaf discharges by refl (id and composition are both identity), the non-trivial
-witness discharges them by short proofs. Costs: every future instance writes the discharges.
-- Option Q5b — Stated as fields, postulated globally for any inhabitant. Buys: less ceremony. Costs: hides actual mathematical content; instances could violate without notice.
-- Lean: Q5a.
-
-Q6. Whether to expose Codex-side "transition data" for v2.
-
-- What's at stake: should the v1 file expose a derived matching-family type (parallel to sieve-of for the E1→E2 transition) that v2 will use to state descent?
-- Option Q6a — Just the presheaf; defer matching-family entirely. Buys: simpler. Costs: v2 starts from scratch on the descent machinery.
-- Option Q6b — Expose a derived matching-family : (P : SessionPresheaf) (c : Cover F) → Type. Buys: same role as sieve-of — the bridge artifact between v1 and v2 lives in the v1 file. Costs: needs
-to use Sessions-Cat's morphisms, and at v1 the compatibility condition has to be honest about which intersection-data is unavailable.
-- Lean: Q6b, in the same spirit as sieve-of. Even if the compatibility condition is partial at v1 (postulating the intersection witnesses with a flag), having the type live in v1 anchors v2.
-
-Q7. Should the bridge be parameterized over Payload?
-
-- What's at stake: Sessions takes a Payload parameter; the bridge inherits the question.
-- Option Q7a — Parameterized over Payload, like Sessions. Buys: maximum flexibility; matches Sessions's signature. Costs: one more implicit parameter at every use site.
-- Option Q7b — Fix Payload = Unit at v1. Buys: simpler signatures. Costs: binds an arbitrary choice; later instances either re-instantiate or live with the choice.
-- Lean: Q7a.
-
-What's explicitly NOT in v1
-
-- Sheaf condition (descent, matching families with full compatibility on intersections). Deferred — same trigger as SessionO1Action's canonical derivation: the StarAutonomous extension with closed
-structure / evaluation / cut. When that lands, both the sheaf condition and the canonical action become statable, and the bridge gets a v2.
-- Sheaves of O_1-algebras over the site. A second-level bridge: instead of presheaves valued in SessionType, presheaves valued in OperadAlgebra Sessions-Cat. This is where the operadic interaction
-algebra and the site-with-values picture fuse. Properly a v3 artifact.
-- Actor-causal stability witness. Still postulated in ActorCausal.agda. The bridge doesn't unblock it; concrete stability for tiny-site (the smallest tractable witness) is a separate, smaller piece
-of work.
-- Promotion morphism. Still header-prose in ActorCausal.agda. Properly an MO_1 / arc/05 artifact.
-- A-side return. Still gated on the cross-site adjunction being statable, which is gated on the sheaf condition, not just the presheaf.
-- MO_1 / modular envelope. Premature.
-- Pedagogy companions. Held loose.
-
-What v2 of the bridge looks like (for context, not for now)
-
-When the StarAutonomous extension with closed structure / evaluation / cut lands (the trigger named in future_work.md's "Regarding Sessions and the canonical O_1 action" ladder, item 3):
-
-- IsSheaf record using the v1 matching-family type, now with full compatibility-on-intersections.
-- The constant presheaf upgraded to a trivial sheaf.
-- A genuine actor-only / session-only shadow pair making B1/B2 separation a theorem rather than an architectural claim.
-- The cross-site adjunction Allow ⊣ Require becomes statable: Allow takes A-side modal data to sheaves on the actor-causal site; Require reflects back.
-- A-side return (bar construction at S¹) unblocked.
-
-Plan if my leans are accepted
-
-A single file Concurrency/Hybrid/SessionPresheaf.agda, ~400-500 lines, structured as:
-1. Header with discipline guardrails (no operad-level imports, etc.) and explicit v2 deferral note.
-2. Imports (Sessions, ActorBase, ActorCausal).
-3. Module parameterized over (AB, S, Payload) where S is an ActorCausalSite over AB.
-4. SessionPresheaf record with five fields (Q5a).
-5. const-presheaf returning ⊥ₛ everywhere (Q3b).
-6. The two-value witness over tiny-site (Q4b), exercising embed-point false and embed-point true non-trivially.
-7. Derived matching-family type (Q6b), with partial compatibility data flagged in a comment as the v2 transition slot.
-8. Sanity checks.
-
-### Codex
-
-• The next step should be the hybrid bridge R1:
-
-> define a session-valued presheaf, and eventually sheaf, over the actor-causal site.
-
-This is the first place where the project’s structural claim stops being just architecture. We now have the two separated legs:
-
-- locality/base: Concurrency/Sites/{ActorBase,ActorCausal}.agda
-- typed content/value: Concurrency/Algebras/Sessions.agda
-
-The bridge must show how typed session values vary over actor-local causal frames without putting session information into actors themselves.
-
-Why This Is Next
-
-The project’s B-side claim is:
-
-> typed data lives in the value layer; unityped agents live in the base; separation of concerns is structural.
-
-Right now we have the two sides separately. R1 is where this becomes one mathematical object:
-
-Actor-causal site  C
-Session value category V
-Presheaf           Cᵒᵖ → V
-Sheaf condition    descent over local-frame covers
-
-That is the first real approach to the “separation of concerns” structural claim. It is also prerequisite for everything downstream: R4, the cross-site adjunction, and eventually the ModalHoTT/
-Concurrency comparison.
-
-What To Build First
-
-I would not jump straight to the full sheaf theorem. Build it in layers.
-
-Recommended new directory:
-
-agda/Concurrency/Sheaves/
-
-Recommended first files:
-
-agda/Concurrency/Sheaves/Presheaf.agda
-agda/Concurrency/Sheaves/SessionValuation.agda
-
-Presheaf.agda should be generic over a StarAutonomous target. SessionValuation.agda should specialize it to Sessions-Cat.
-
-Layer 1: Generic Frame Presheaf
-
-Define a contravariant functor from actor-local frames into a target category:
-
-FramePresheaf :
-ActorCausalSite AB ℓE ℓR ℓI →
-StarAutonomous ℓV ℓH →
-Type _
-
-Fields:
-
-value :
-LocalFrame AB ℓE ℓR → Ob
-
-restrict :
-(φ : G ↪ F) → Hom (value F) (value G)
-
-restrict-id :
-restrict (frame-id F) ≡ id
-
-restrict-comp :
-restrict (ψ ∘ᶠ φ) ≡ restrict φ ∘ restrict ψ
-
-This is the core R1 object. It says: a larger frame has typed content, and every sub-view gets a restricted typed content.
-
-The variance matters. Since FrameHom G F means “G embeds into F as a sub-view,” restriction goes:
-
-value F → value G
-
-Layer 2: Session-Valued Presheaf
-
-Specialize the generic presheaf to Sessions-Cat Payload.
-
-This should produce something like:
-
-SessionPresheaf :
-ActorCausalSite AB ℓE ℓR ℓI →
-(Payload : Type ℓP) →
-Type _
-
-Internally:
-
-SessionPresheaf site Payload =
-FramePresheaf site (Sessions-Cat Payload)
-
-The key design goal: the bridge imports both ActorCausal and Sessions, but still never modifies either. That proves the separation architecturally: values sit over frames; they are not inside
-actors.
-
-Layer 3: Minimal Witness
-
-Ship a tiny witness, but keep it honest.
-
-A good first witness is a constant presheaf over tiny-site:
-
-value F = end
-restrict φ = id-h
-
-This is degenerate mathematically, but valuable as a plumbing check. It proves the bridge typechecks end-to-end:
-
-ActorCausalSite → Sessions-Cat → FramePresheaf
-
-A nonconstant witness can come later.
-
-Layer 4: Descent Interface, Not Full Descent Yet
-
-After presheaf, add a named placeholder/interface for sheaf descent, but do not overclaim.
-
-The full sheaf condition needs careful matching-family machinery over covers, overlaps, and eventually the E2 sieve presentation. We should not fake that.
-
-For v1, define a record such as:
-
-BasisDescentData P
-
-or just leave a clearly named future section:
-
--- Future:
--- MatchingFamily
--- compatible local sections
--- amalgamation
--- uniqueness
-
-If implemented now, sections can be represented as:
-
-Section F = Hom 𝟙 (value F)
-
-But compatibility over overlaps will be awkward until pullbacks/sieves are better developed. So I’d make the descent target visible, not force it in the first bridge file.
-
-What This Step Should Not Do
-
-Do not:
-
-- define messages;
-- add payloads to actors;
-- distinguish human / LLM / conversation actors;
-- define promotion;
-- use gen, plug, or shift directly;
-- force the cross-site adjunction;
-- solve R4 in the same file;
-- switch to MO_1.
-
-The bridge is already important enough.
-
-Success Criterion
-
-This step succeeds if we can point to an Agda object saying:
-
-session values vary contravariantly over actor-local causal frames
-
-with:
-
-- actor carrier still opaque;
-- sessions still in the value category;
-- restrictions along FrameHom;
-- identity and composition laws;
-- a concrete constant-session witness over tiny-site.
-
-That would be the first checked form of the B-side structural separation. After that, the next hard question becomes sheaf descent: when do compatible local session values glue to a global session
-value over a frame?
-
-My recommendation: ask Claude to build generic presheaves first, then the Sessions specialization, then a tiny constant witness. Treat full sheaf descent as the next sub-step, not the first one.

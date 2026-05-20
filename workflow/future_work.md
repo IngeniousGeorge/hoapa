@@ -51,7 +51,7 @@ The eventual quality target is stronger: replace the action assumption with a ca
 Expected ladder:
 
 1. **Done:** `Sessions.agda` v1: minimal session syntax, inductive structural `Hom`, and an explicit `SessionO1Action` assumption.
-2. Hybrid integration: actor-causal base and sheaf valuation clarify how session values sit over actor-local frames.
+2. **Done at v1 scaffold level:** Hybrid integration now has `FramePresheaf` / `SessionPresheaf`, zero-postulate separatedness, and constant `𝟙ₛ` / `⊥ₛ` witnesses. Full sheaf descent is still pending.
 3. Richer session category: add proof terms or an equivalent categorical semantics, cut as composition, cut-elimination/equality, closed structure/evaluation, and enough tensor/braiding coherence to manipulate long tensor strings.
 4. Canonical `O_1` action: define `SessionO1Action` rather than assume it. `shift` should come from coherent cyclic permutation of tensor factors; `plug` should come from closed/evaluation/cut structure composing two morphisms into the dualizing object.
 5. Only then push hard on `MO_1`: extend the canonical `O_1` action toward self-gluing / conversation-promotion / modular closure.
@@ -60,7 +60,7 @@ Practical trigger: when the session target can state and use an evaluation/cut m
 
 ## Regarding the actor-causal site
 
-`Concurrency/Sites/{ActorBase,ActorCausal}.agda` v1 landed the R6 locality leg: opaque unityped actors, Lamport-style event causality, actor-local frames, strict-reflecting `FrameHom`, basis-form covers, `sieve-of`, generic identity / transitivity cover constructions, and a Bool-based non-trivial witness (`TinyAB`, `TinyCausal`, `PointFrame`, `embed-point false` / `embed-point true`, `two-point-cover`). This is enough for R1 to become the next active bridge.
+`Concurrency/Sites/{ActorBase,ActorCausal}.agda` v1 landed the R6 locality leg: opaque unityped actors, Lamport-style event causality, actor-local frames, strict-reflecting `FrameHom`, basis-form covers, `sieve-of`, generic identity / transitivity cover constructions, and a Bool-based non-trivial witness (`TinyAB`, `TinyCausal`, `PointFrame`, `embed-point false` / `embed-point true`, `two-point-cover`). This was enough for Hybrid v1's restriction adapter to land.
 
 Pieces deferred:
 
@@ -71,6 +71,34 @@ Pieces deferred:
 - **Promotion morphism class.** Strict `FrameHom` reflection deliberately prevents quotienting or reifying a sub-conversation as a single event / actor. The conversation-as-actor move belongs to a future promotion morphism class, coordinated with `MO_1` and the program-verification / conversation-of-conversations track.
 
 - **Richer concrete site witnesses.** The Bool tiny-site exercises non-trivial covers but still discharges site stability by the postulate. A future v2 witness should compute pullback stability explicitly against `embed-point false` and `embed-point true`, or against a slightly richer finite causal frame.
+
+## Regarding Hybrid v1 and the adapter layer
+
+`Concurrency/Hybrid/{Presheaf,SessionPresheaf}.agda` v1 landed the first Hybrid adapter. `Presheaf.agda` is generic over `ActorBase` and a `StarAutonomous` target, defines `FramePresheaf`, exposes `IsSeparatedPresheaf` as a zero-postulate property record over arbitrary probes `X`, and supplies `const-presheaf : Ob → FramePresheaf`. `SessionPresheaf.agda` specializes to `Sessions-Cat Payload` and provides `const-𝟙ₛ-presheaf` and `const-⊥ₛ-presheaf` without introducing a morphism between them.
+
+Pieces deferred:
+
+- **Full descent / gluing.** Matching families, overlap compatibility, and amalgamation are not yet implemented. This is the remaining sheaf half of R1/R2 and the next load-bearing Hybrid step.
+- **`ActorCausalSite` bundle in the API.** v1 only needs `LocalFrame`, `FrameHom`, `frame-id`, `_∘ᶠ_`, and `Cover`, so it is parameterized by `ActorBase`. When descent uses identity/transitivity/stability of covers, the bundled `ActorCausalSite` should become an explicit parameter of the descent layer.
+- **Separatedness witnesses.** `IsSeparatedPresheaf` is defined honestly, but no examples are proved. Constant presheaves are not generally separated over empty-index covers because the empty family of local tests would force arbitrary parallel morphisms into the constant object to be equal. Future options: restrict to inhabited covers, rule out empty covers topologically, or prove separatedness for specific targets/objects.
+- **Non-constant frame-varying witness.** Deferred to displayed-subsite / tiny-diagram machinery. The existing actor-site `two-point-cover` exercises locality; Hybrid v1 intentionally does not fake frame discrimination in a global `value` function.
+- **Unit / dualizing bridge.** `𝟙ₛ` and `⊥ₛ` are both exposed as constant presheaves, but no `Hom 𝟙ₛ ⊥ₛ` or `Hom ⊥ₛ 𝟙ₛ` is assumed. If the project wants a mix-like bridge later, it should be a named `UnitDualizingBridge` adapter with explicit laws.
+- **Operadic valuation over the Hybrid.** Future adapter: lift `Valuation` / `OperadAlgebra` through presheaves or sheaves so protocol shape is located over actor frames. Not v1.
+- **No-leak / erasure theorem.** v1 enforces separation by imports and module boundaries. A later adapter should state explicitly that session payloads, roles, and types do not refine actor identity.
+- **Promotion / conversation-as-actor.** Still `MO_1`-stage work; not a `FrameHom`.
+
+## Regarding Pijul / patch-based protocol semantics
+
+Pijul's patch/change model is a useful implementation-facing reference for the future conversation-of-conversations protocol, but not current Hybrid v1 scope. The relevant ideas to preserve are:
+
+- patches / changes as first-class protocol events or document transformations;
+- dependencies as causal-order data;
+- commutation of independent changes as the operational face of concurrency;
+- conflicts as explicit gluing obstructions;
+- resolutions as typed repair events;
+- partial clones as local views / restrictions.
+
+This thread should return after the first descent interface exists, not merely after Hybrid v1's presheaf scaffold. A possible future artifact is a small `Concurrency/Hybrid/PatchProtocol.agda`-style module or implementation note explaining how an event-log / patch-log backend could realize the actor-causal site operationally. If contacting Pijul maintainers ever becomes useful, do it with a small technical note and ask for feedback on the patch-theoretic reading rather than proposing a broad collaboration upfront.
 
 ## Beyond fracture: the differential-cohesion gap
 
