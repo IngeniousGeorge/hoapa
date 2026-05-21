@@ -354,7 +354,7 @@ Design constraints held: no operad imports in Hybrid v1, no payloads or roles on
 ### Held-loose long-horizon items (no near-term action)
 
 - **Pask-style human-implementation layer** — conversation-as-operadic-composition. Speculative until `MO_1` makes "conversation creates conversation" a literal operadic operation. Held in motivation only.
-- **Pedagogy companions** — `pedagogy/Concurrency/` mirrors for the operad and algebra files. Not started; lives in the pedagogy track (memory `pedagogy_project`).
+- **Pedagogy track** — current for the synthetic ModalHoTT and Concurrency Agda trees as of 2026-05-21. `pedagogy/01_ModalHoTT/` now has a top-level intro, companions for all current synthetic `ModalHoTT/Modalities` files, and `02_Cohomology/01_flatcoefficients.md`; `pedagogy/02_Concurrency/` mirrors all current `agda/Concurrency/` folders. Analytic pedagogy remains intentionally out of scope unless explicitly requested.
 
 ## Historical note
 
