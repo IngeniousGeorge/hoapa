@@ -44,7 +44,16 @@
 --
 --   Adapter 5 — Promotion.  A completed conversation becoming an
 --               actor in a higher-level conversation. Not a
---               `FrameHom`; deferred to the `MO_1` stage.
+--               `FrameHom` (strict causality reflection in
+--               `ActorCausal.agda` rules that out). Sharpened
+--               2026-05-21 by the Reflexive Protocol Layer (see
+--               `deep_context/arc/07_self-modifying_protocol.md`
+--               and the reservation below): when a closed
+--               meta-conversation reaches consensus, Promotion
+--               emits a morphism in the protocol-version category
+--               Π — the operational form of "protocol edited."
+--               Deferred to the `MO_1` stage at the construction
+--               level; the type-shape can be named earlier.
 --
 --   Adapter 6 — Allow ⊣ Require.  The cross-site modal adapter
 --               between the ModalHoTT cohesive presentation (A side)
@@ -56,6 +65,32 @@
 --               enforced by import-time guardrails (this file
 --               imports neither `Concurrency/Operads/*` nor session
 --               syntax); the named adapter would make it a theorem.
+--
+-- Reservation — Reflexive Protocol Layer (`Hybrid/Reflexive.agda`).
+--
+--   Named 2026-05-21. Future module slot for the *protocol-version
+--   category* Π, the temporal/version structure layered above the
+--   Hybrid chassis. Protocol edits are morphisms in Π. Edit
+--   proposals produced by meta-conversations are intended to form
+--   diagrams in a future patch-theoretic fragment formalism (Pijul is
+--   the primary candidate); colimit / coherent amalgamation there
+--   emits the next protocol-version morphism in Π. Promotion
+--   (Adapter 5) is the bridge from
+--   "closed meta-conversation reached consensus" to "Π-morphism
+--   emitted." Non-retroactivity is inherited from `FrameHom`'s
+--   strict causality reflection.
+--
+--   The layer is *new formal content*, compatible with and
+--   anticipated by the current scaffolds but not already implicit
+--   in them: nothing in this file or its siblings represents
+--   protocol versions, edit morphisms, or version-indexing. Trigger
+--   for opening `Hybrid/Reflexive.agda` v0: (a) descent / R4 stable
+--   enough that the Hybrid chassis is not moving under the new
+--   layer, and (b) the fragment-category candidate honest enough to
+--   state in Agda. Canonical source:
+--   `deep_context/arc/07_self-modifying_protocol.md`. See also
+--   `workflow/status.md` "Reflexive Protocol Layer" section and the
+--   parallel entry in `workflow/future_work.md`.
 --
 -- v1 ships Adapter 1 plus the property record for the uniqueness
 -- half of Adapter 2 (separatedness): local equality of two

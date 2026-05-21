@@ -240,6 +240,7 @@ Analytic-side mirror is future work; whether the `agda/Analytic/` pattern from M
 | 2026-05-20 | Actor-site identity and transitivity covers are generic; stability is the only v1 postulate gap | `identity-cover-canonical` and `transitivity-cover-canonical` are constructed. `stability-cover-postulate` is named and flagged because generic pullback-stability needs frame pullbacks or the future sieve presentation |
 | 2026-05-20 | Actor-site tiny witness upgraded to non-trivial Bool cover | `TinyAB` uses `Fin 2`; `TinyCausal` uses `Bool` events with `false ≤ true`; `PointFrame` embeds by `embed-point false` / `embed-point true`; `two-point-cover` exercises non-trivial index, patch, embedding, and event-lift data |
 | 2026-05-20 | Hybrid v1 shipped as adapter layer | `Concurrency/Hybrid/Presheaf.agda` provides generic `FramePresheaf`, zero-postulate `IsSeparatedPresheaf`, and `const-presheaf`; `SessionPresheaf.agda` specializes to `Sessions-Cat Payload` and exposes both `const-𝟙ₛ-presheaf` and `const-⊥ₛ-presheaf`. This implements Adapter 1 (restriction) and names future adapter slots without faking descent or a unit/dualizing conversion |
+| 2026-05-21 | Reflexive Protocol Layer named; not implemented | Π = category of protocol versions; protocol edits = morphisms in Π. Promotion (Adapter 5) sharpened with operational role: closed meta-conversation reaching consensus → Π-morphism. Consensus framed as future colimit / coherent amalgamation in a patch-theoretic fragment category, with Pijul as primary implementation-facing candidate; precise categorical shape held open. `Concurrency/Hybrid/Reflexive.agda` reserved as future home. `MO_1` elevated to active roadmap without displacing descent / R4 as the next technical step. Layer is new formal content, compatible with and anticipated by current scaffolds but not already implicit in them |
 
 ## Blockers  <!-- tags: kind:state -->
 
@@ -343,6 +344,31 @@ cover-jointly-monic :
 ```
 
 Design constraints held: no operad imports in Hybrid v1, no payloads or roles on actors, no promotion, no matching-family/gluing postulates, and no hidden `𝟙ₛ ↔ ⊥ₛ` conversion. The chassis is parameterized by `ActorBase` rather than the `ActorCausalSite` bundle because v1 uses the frame category and `Cover` basis directly; the bundled site axioms re-enter when descent uses identity/transitivity/stability of covers.
+
+### Reflexive Protocol Layer  <!-- tags: kind:reference -->
+
+Named here as a future commitment; no Agda content yet. Canonical source: `deep_context/arc/07_self-modifying_protocol.md`.
+
+The framework treats some conversations as *meta-conversations*: special conversations whose role is to inspect and (on consensus) modify the protocol itself. The operational picture has four pieces, all of which translate to mathematics already named by the static framework but not yet formalised at this layer:
+
+1. **Protocol-version category Π.** Protocols themselves form objects of a small category Π; a protocol edit is a morphism in Π. The reflexive layer lives over Π by a forgetful functor that recovers the current Hybrid structure at each version.
+2. **Non-retroactivity.** Past events live under the protocol active at the time of their occurrence; protocol edits affect future events only. This is already enforced at the locality leg: `FrameHom`'s strict causality reflection in `ActorCausal.agda` makes retroactive rewriting structurally impossible, which is why promotion was deliberately excluded from `FrameHom` and reserved as a separate morphism class.
+3. **Promotion as bridge (Adapter 5, sharpened).** A closed meta-conversation that has reached consensus *promotes* into a Π-morphism. This is the concrete operational duty of the Promotion adapter named in `Hybrid/Presheaf.agda`'s header: not just "conversation becomes actor," but "consensus of a meta-conversation becomes a protocol edit."
+4. **Consensus as future colimit / coherent amalgamation.** Edit proposals from inside a meta-conversation form a diagram; consensus is intended to become colimit / existence of coherent amalgamation in a future patch-theoretic fragment category. **Pijul is the primary implementation-facing candidate**; the precise categorical shape (category, double category, event structure, adhesive category, partial-commutation presentation) is held open until the candidate is examined honestly. Inconsistent proposals — a diagram with no colimit / no coherent amalgamation — give the framework an honest formal counterpart of "the protocol cannot be coherently edited from here."
+
+**Why this is new formal content, not already-present.** The current Agda scaffolds were *designed to receive* the reflexive layer: `ActorCausal` blocks promotion as `FrameHom`; `Sessions` explicitly defers conversation-of-conversations to `MO_1`; `Hybrid/Presheaf` names Promotion as Adapter 5. None of these contain protocol versions, edit morphisms, or version-indexing. The reflexive layer is compatible with and anticipated by the scaffolds, but it is not already implicit in them.
+
+**Self-scanning as eventual operational interpretation.** "Regular-interval meta-conversations" map naturally onto modal iteration on the A-side, but the formalised iteration in `ModalHoTT/Modalities/Iteration.agda` + `IterationCohesion.agda` lands only the first-level collapse — not the dimension-raising cyclic bar construction required for the cross-site recursion. Self-scanning is the operational interpretation of that *future* recursion, not of the current scaffold.
+
+**Roadmap impact.**
+
+- **Promotion (Adapter 5)** gets a concrete job description; header sharpened in `Hybrid/Presheaf.agda`.
+- **`MO_1` / modular envelope** elevated from "held loose" to active roadmap as the natural home for self-gluing / conversation-of-conversations. This does *not* displace descent / R4 as the next technical step — `MO_1` becomes the natural next slot once the Hybrid/descent/R4 bridge is stable enough to support modular-envelope work; the cross-site adjunction and bar-construction comparison remain downstream.
+- **B-side dual of T_recursion iteration** (deferred per `future_work.md` "until `ND` has non-trivial content") becomes statable once the reflexive layer gives `ND` operational meaning.
+
+**Where it goes in the Agda tree.** `Concurrency/Hybrid/Reflexive.agda` reserved as the future module slot. Kept inside the Hybrid layer because the protocol-version structure reads as one more adapter (between the current Hybrid instance and the next), and because the project avoids premature folder proliferation. If the file later grows into a genuinely higher-order protocol calculus, it can be split out to `Concurrency/Meta/` at that point.
+
+**Trigger for opening `Hybrid/Reflexive.agda` v0.** Two conditions, both required: (a) descent / R4 stable enough that the Hybrid chassis is no longer moving, and (b) the fragment-category candidate (Pijul or alternative) honest enough to state in Agda.
 
 ### Next frontier
 
