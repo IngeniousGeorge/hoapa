@@ -58,13 +58,79 @@ This may be how the project catches its "big fish": not by forcing the old icosa
 
 ---
 
+## Universal-theory precedents — the cybernetics-era pattern
+
+**Common pattern, and relation to our arc.** Each of the entries below was framed as a universal theory with applications across engineering, biology, psychology, sociology, and politics. In every case, a real piece of mathematics (control theory; differential equations on networks; cellular automata) was over-extended into a universal framework whose interdisciplinary claims outran the formal content. Each collapsed in part because the unifying claim turned out to be slogan-level rather than theorem-level. Our project shares the *ambition* — a framework with natural readings across disciplines — but is structurally trying to avoid the failure mode by keeping the mathematics first and the interdisciplinary readings second, rather than the other way around. The cohesive ∞-topos / cyclic operad / factorization algebra material has its own categorical integrity; the cross-disciplinary readings are downstream observations, not load-bearing claims. The discipline of "math earns the interpretation, the interpretation does not float free" is the deliberate counter-move to this pattern.
+
+The list:
+
+- *Wiener's cybernetics* — control theory and feedback as a universal frame for engineering, biology, society.
+- *Ashby's cybernetics* — variety, requisite variety, *Design for a Brain* — a homeostatic/adaptive-system formalism extended to cognition and ethics.
+- *Bateson's cybernetics* — patterns connecting biology, learning, ecology, mental disorder, family therapy.
+- *Pask's cybernetics* — conversation as a universal feedback structure (the praxis-including aspect of Pask's work is treated separately below).
+- *Bertalanffy's General Systems Theory* — open systems and equifinality as a universal interdisciplinary frame.
+- *Wolfram's A New Kind of Science* — cellular automata as a universal computational basis for natural science.
+
+---
+
+## Self-referential / praxis-including precedents
+
+**Common thread, and relation to our arc.** Frameworks that include the *praxis* of their own use as part of their subject matter — the community that uses the framework is also (in some sense) what the framework is about. Closer to our project than the cybernetics-era precedents above, because they share the structural commitment to fold praxis into theory; weaker than our project at the level of mathematical depth, except for HoTT/UF which is comparable. Ordered roughly historically. Each entry names what is shared and what is missing relative to our combination.
+
+**Peirce's community of inquiry.** The closest *philosophical* precedent. Peirce held that truth is what the community of inquiry would converge to in the long run, and that scientific practice is not a method *applied to* a community but a community *constitutive of* knowledge. The self-testing structure is there: the community's eventual convergence is the truth, so the community's work is *both* what produces truth and what tests whether it has been produced. What is missing: any formal mathematics underwriting the claim, any protocol the community could actually follow, any account of what counts as "convergence." Peirce gave the slogan; the technical content was deferred.
+
+**Pask's conversation theory.** Gordon Pask (1928–1996) explicitly tried to build a theory whose subject matter was conversation, and which could be deployed in actual conversational systems (the CASTE / THOUGHTSTICKER tutorial environments). The theory tested itself: a learner using a Pask-based system either learned or did not, and the rate at which they did was held to be the theory's vindication. This is the closest historical analogue to our "if the work is fruitful, the protocol is validated" structure. What is missing: Pask had no access to modern categorical / homotopical machinery, so the mathematical content was thin (a calculus of agreements, a graph-theoretic model of concepts). The theory's claims about deep structure (the L-language, P-individuals) did not have a topos-theoretic underwriting. The closest there is, and the project should probably claim Pask as a direct predecessor more explicitly than it currently does.
+
+**Maturana and Varela's autopoiesis.** A theory of self-producing systems intended to apply to cells, organisms, cognition, and (in Maturana's later "Biology of Cognition") social systems. Self-reference is constitutive: the theory describes systems that produce themselves, and the theorists claimed their work was an instance of what the theory described. What is missing: the formalisation never matured. Autopoiesis as a slogan survives; autopoiesis as a mathematical structure was never written down at the depth that, say, a topos-theoretic framing would require. And the praxis-loop was hand-wavy — there was no protocol attached.
+
+**Luhmann's social systems theory.** Niklas Luhmann built a theory of society as communication, mathematically grounded in Spencer-Brown's *Laws of Form*. He explicitly claimed his theory described its own production as a social system — the books were communications about the theory of communication. Strikingly self-referential. What is missing: again, no protocol — Luhmann did not give sociologists tools, he gave them a descriptive frame. And the mathematical underwriting (Spencer-Brown) is much thinner than what the project would need.
+
+**Univalent Foundations / HoTT community.** The closest *modern* precedent. The HoTT book was written collectively by a community using the foundations it described; the formal libraries (Coq, Agda, Lean) are the praxis arm; the community tests whether HoTT is a useful foundation by actually using it to formalise mathematics. The self-test loop is genuine: if HoTT is the right foundation, mathematicians will be able to formalise more and more of their work in it; the rate of that formalisation is, in some sense, the test. What is missing relative to our project: HoTT is a *foundation offered to a community*, not a *theory of the community using foundations*. The community is the user of HoTT, not the subject matter of HoTT. The two things are not quite the same — and the difference is what the "include praxis into the theory" formulation is pointing at.
+
+**Active inference / free-energy principle (Karl Friston).** This is structurally interesting because it includes the agent–environment loop and treats "the agent's model is tested by acting on the environment" as constitutive of cognition. Friston's framework is a unified mathematical theory (Bayesian, variational) that claims to describe perception, action, biology, and (by extension) social systems. The self-evidencing loop is built in. What is missing: the framework is foundationally *single-agent*. Social applications are by analogy, not by formal extension to community-of-inquiry structure. And the praxis arm is not part of the theory — the framework describes agents from outside, it is not used by agents.
+
+**Bourbaki.** A community-of-inquiry that produced a praxis (the *Éléments de mathématique*), with the meta-claim that "mathematics is what Bourbaki writes." Self-referential in the meta-claim. What is missing: no theory of the community itself; the praxis was *production of mathematics*, not *test of a theory about communities*.
+
+### What none of them have
+
+Scanning the list, no precedent has the specific combination our project is aiming at:
+
+1. **Modern mathematical foundations** (cohesive ∞-topos, modular operads, factorization algebras) — only HoTT/UF and Friston have technical material at this altitude;
+2. **A formal theory of the community-of-inquiry itself** as part of the framework's subject matter — Pask, Luhmann, Maturana–Varela aim at this, but at thinner formal depths;
+3. **A protocol the community can actually run** — Pask had this in CASTE, HoTT/UF has it in the libraries; the others do not;
+4. **The protocol's *use* validating the framework** — Pask, Friston, and (less explicitly) HoTT/UF have this; Peirce articulated it; the others do not;
+5. **A recursive co-evolution structure** linking (1)–(4) into a single mathematical object — *no precedent has this*. The iterated cross-site adjunction with sequential colimit is, as far as we can tell, genuinely without forerunners that combine it with (1)–(4).
+
+The closest individual matches are:
+
+- **Pask** (has 2, 3, 4 at low formal depth)
+- **HoTT/UF community** (has 1, 3, weak 4, no 2)
+- **Peirce** (has 4 philosophically, lacks 1–3 formally)
+- **Friston** (has 1, 4, weak 5, no 2 as community-of-inquiry)
+- **Luhmann** (has 2 at low formal depth, weak 5)
+
+The *combination* is, as far as we can see, novel. Not because the question is unprecedented — Peirce was asking it 130 years ago — but because the technical material to address it at depth is recent.
+
+### Why now
+
+The combination may not be merely *novel* but *newly available*. The technical conditions for assembling (1)–(5) were not in place until quite recently:
+
+- Cohesive ∞-toposes are a 21st-century object (Lawvere's hints in the 1990s, Schreiber's development in the 2010s, Shulman's formalisation work ongoing).
+- Modular operads as a tool for community-of-conversations structures presuppose Getzler–Kapranov 1998 and the categorical operad infrastructure since.
+- Factorization algebras as the categorical framework for QFT are Costello–Gwilliam 2017.
+- Linear logic / session types as a foundation for typed-message protocols is Caires–Pfenning 2010.
+- The HoTT book is 2013.
+- The existence of LLMs as plausible unityped participants in a protocol is a development of the last three or four years.
+
+The earlier attempts (Peirce, cybernetics, Pask, Maturana–Varela, Luhmann) were trying to do this with the tools available to them, and the tools were insufficient. The mathematical content thinned out exactly where it most needed to be dense. The current moment is the first in which the technical machinery exists *and* there is a class of agents (LLMs) for which the question of community-of-equal-participants is operationally pressing.
+
+That is also a defensive point for the project. The natural skeptical response to "we have a theory that includes its own praxis" is "lots of people have claimed that; most of them were wrong." The honest reply is: yes, they were, and we know why — the mathematical depth was missing. The mathematics is now available; whether the project succeeds is contingent on whether we deploy it correctly, but the previous failures are not evidence against the attempt being meaningful, because the previous attempts had structurally worse tools.
+
+---
+
 ## Template for future entries
 
 **Who.**
 **What they use.**
 **What it models.**
 **Relation to our arc.**
-
-## Candidate future entries
-
-- Friston's free energy principle

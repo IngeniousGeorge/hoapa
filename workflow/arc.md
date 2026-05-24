@@ -28,6 +28,8 @@ living in an ambient ∞-topos that contains both as cohesive sub-presentations.
 Whether this is the full triple or a single adjoint pair is the first design choice;
 default to the triple, fall back to the pair if the middle slot has no content.
 
+*Undecided, flagged 2026-05-24: this "default to the triple" is an aspiration, not a commitment — the only iteration machinery in the codebase (`Iteration.agda`) is single-adjunction-shaped and consumes the pair's monad `Require ∘ Allow` (see §4), so the pair and the triple are held open as two live possibilities and the choice is deferred to future mathematics rather than settled here.*
+
 ## 4. What the adjoint triple says  → T1 (data), T6 (philosophical reading)
 
 For each piece of data in the adjunction, give two readings — math and philosophy —
@@ -43,6 +45,8 @@ This section is the structural meat. The four bullets of `motivation.md:13-17`
 ("perspectives require / allow typed data handled by unityped agents; separation
 requires / allows perspectivalism") are recovered here as the four pieces of
 adjoint data, with the asymmetry made explicit.
+
+*Undecided, flagged 2026-05-24: the unit and counit above are the data of an adjoint **pair** `Allow ⊣ Require` — the composites `Require ∘ Allow` and `Allow ∘ Require` only typecheck if the two functors are anti-parallel — which stands in deliberate, unresolved tension with this section's "adjoint triple" heading and §3's wording, where `Allow` and `Require` would be parallel and these composites would not exist; the contradiction is left standing as a declared-open question, not silently resolved (see §3's note).*
 
 ## 5. Sites and folders  → T2, T4, T5
 

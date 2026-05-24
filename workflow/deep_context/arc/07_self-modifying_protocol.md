@@ -135,7 +135,7 @@ This file is a preserved design log. The opening Claude section contains the ori
 
 ## Claude 
 
-❯ Please review Codex's feedback:                                                                                                                                               
+❯ Please review Codex's feedback:  ***                                                                                                                                             
   And respond: where is there consensus, and where there's still tension. If the latter, tell me: what's at stake / what options we have / and for each what it buys and what it costs 
 
 ● Consensus
@@ -244,37 +244,73 @@ This file is a preserved design log. The opening Claude section contains the ori
   you have my response saved somewhere — but as of right now, what I wrote yesterday only lives in this conversation. If you want it preserved, I should write it to
   workflow/deep_context/arc/07_self-modifying_protocol.md after we resolve the tensions.
 
-## Instigator
-
-My choices:
-
-- **T1**: adopt Claude/Codex correction.
-- **T2**: (c), but phrase Pijul carefully.
-- **T3**: (c), strongly.
-- **T4**: (b) for now: `Concurrency/Hybrid/Reflexive.agda`.
-
 ## Codex
 
-One correction: in this workspace, `workflow/deep_context/arc/07_self-modifying_protocol.md` already exists. So the question is not whether to create it, but whether to revise/preserve it with these corrections.
+• My choices:
 
-On T2, I agree Pijul is too good not to name, but I would not yet say "patches as objects, dependencies as morphisms" as if that categorical shape is settled. Patch theory may want a category, double category, event structure, adhesive category, or partial-commutation presentation. Safer wording:
+  - T1: adopt Claude/Codex correction.
+  - T2: (c), but phrase Pijul carefully.
+  - T3: (c), strongly.
+  - T4: (b) for now: Concurrency/Hybrid/Reflexive.agda.
 
-> consensus is intended to become colimit / existence of coherent amalgamation in a future patch-theoretic fragment category; Pijul is the primary implementation-facing candidate.
+  One correction: in this workspace, workflow/deep_context/arc/07_self-modifying_protocol.md already exists. So the question is not whether to create it, but whether to revise/preserve it with these
+  corrections.
 
-That keeps the mathematical target while avoiding premature categorical encoding.
+  On T2, I agree Pijul is too good not to name, but I would not yet say “patches as objects, dependencies as morphisms” as if that categorical shape is settled. Patch theory may want a category,
+  double category, event structure, adhesive category, or partial-commutation presentation. Safer wording:
 
-On T3, the right wording is exactly the split Claude gives: the reflexive layer is new formal content, but the current scaffolds were designed to receive it. The Agda headers support that: `ActorCausal` blocks promotion as `FrameHom`; `Sessions` explicitly defers conversation-of-conversations to `MO_1`; `Hybrid/Presheaf` names Promotion as Adapter 5. So this is not arbitrary scope creep. But it is not formalized yet.
+  > consensus is intended to become colimit/existence of coherent amalgamation in a future patch-theoretic fragment category; Pijul is the primary implementation-facing candidate.
 
-On T4, I lean `Hybrid/Reflexive.agda`, not `Concurrency/Meta/`, because Hybrid is already framed as the adapter layer and the repo is trying to avoid premature folder proliferation. If the file later grows into a genuinely higher-order protocol calculus, then split to `Concurrency/Meta/`. For the first reservation, keep it in Hybrid.
+  That keeps the mathematical target while avoiding premature categorical encoding.
 
-Net: Claude's response is aligned with the code. The main discipline is wording: 07 should say "new reflexive layer compatible with and anticipated by the scaffolds," not "already present."
+  On T3, the right wording is exactly the split Claude gives: the reflexive layer is new formal content, but the current scaffolds were designed to receive it. The Agda headers support that:
+  ActorCausal blocks promotion as FrameHom; Sessions explicitly defers conversation-of-conversations to MO_1; Hybrid/Presheaf names Promotion as Adapter 5. So this is not arbitrary scope creep. But
+  it is not formalized yet.
 
-## Resolution
+  On T4, I lean Hybrid/Reflexive.agda, not Concurrency/Meta/, because Hybrid is already framed as the adapter layer and the repo is trying to avoid premature folder proliferation. If the file later
+  grows into a genuinely higher-order protocol calculus, then split to Concurrency/Meta/. For the first reservation, keep it in Hybrid.
 
-The four design decisions stand as recorded above. Concrete edits flowing from them:
+  Net: Claude’s response is aligned with the code. The main discipline is wording: 07 should say “new reflexive layer compatible with and anticipated by the scaffolds,” not “already present.”
 
-- **`workflow/status.md`**: new "Reflexive Protocol Layer" section naming Π, non-retroactivity, Promotion-as-bridge, consensus-as-future-colimit (with Pijul as primary candidate), and the elevation of `MO_1` to the active roadmap (without displacing descent / R4 as the next technical step). Decision-log row dated 2026-05-21.
-- **`workflow/future_work.md`**: parallel "Regarding the Reflexive Protocol Layer" section, sized to the existing "Regarding the actor-causal site" and "Regarding Sessions" entries.
-- **`agda/Concurrency/Hybrid/Presheaf.agda`**: header-prose-only edits sharpening Adapter 5 (Promotion) with its reflexive role and reserving `Hybrid/Reflexive.agda` as the future home for Π. No code changes; type-check rerun for safety.
+## Claude
 
-No Agda content yet beyond the header reservation. The trigger for `Hybrid/Reflexive.agda` v0 is: descent / R4 stable enough that the chassis is not moving under it, and a chosen category of edit proposals (the T2 candidate) honest enough to state.
+● Aligned across all four. Codex's Pijul phrasing on T2 is better than mine — "colimit/existence of coherent amalgamation in a future patch-theoretic fragment category; Pijul is the primary
+  implementation-facing candidate" — that's the right register: target named, categorical shape held open.
+
+  One thing to check: Codex says workflow/deep_context/arc/07_self-modifying_protocol.md already exists in the workspace. I didn't write it myself, and the last commit didn't include it. Let me
+  confirm before revising.
+
+● Bash(ls -la /home/ig/Code/doc2cog/workflow/deep_context/arc/ && echo "---" && git status workflow/deep_context/arc/)
+  ⎿  Permissions Size User Date Modified Name
+     .rw-rw-r--   54k ig   11 May 13:50  01_arc_discussion_log-2026-05-08.md
+     .rw-rw-r--   41k ig   15 May 13:33  02_concurrency_anchor.md
+     … +14 lines (ctrl+o to expand)
+
+● 07 exists (23k, dated today — you saved it). And there's an empty 08 placeholder for what looks like the next topic. Let me read 07 before revising.
+
+  Read 2 files (ctrl+o to expand)
+
+● Final word: full alignment with both you and Codex on T1–T4 and on the safer Pijul phrasing. 07 already captures the full trajectory through my consensus/tensions response; what's missing is the
+  closing decisions and the application of those decisions to the workflow + the Presheaf header.
+
+  Concrete edits I'd make on your go, in order:
+
+  1. Append resolution block to 07_self-modifying_protocol.md. Two short sections at the bottom: an "Instigator" subsection recording the four decisions (T1 adopt; T2 (c) with Codex's safer Pijul
+  phrasing; T3 (c) strongly; T4 (b)), and a "Codex" closing subsection with his final note. Conversation log shape preserved per arc/06's pattern; no edits to the earlier prose (the imprecisions stay
+   in the record, the corrections sit beneath them — which is how the project documents refinement).
+  2. Add "Reflexive Protocol Layer" section to workflow/status.md. Single new section (likely under Concurrency, after "Module inventory (level-2)" or in a new sub-block) naming: Π as the category of
+   protocol versions; non-retroactivity carried by FrameHom strictness; Promotion (Adapter 5) as the bridge from closed meta-conversation to Π-morphism; consensus framed as eventual colimit-existence
+   in a future patch-theoretic fragment category with Pijul as primary candidate; MO_1 elevated from "long-horizon" to "active-roadmap" without changing the descent/R4 next-step ordering.
+  Pull-forward of B-side dual of T_recursion noted.
+  3. Add parallel entry to workflow/future_work.md. "Regarding the Reflexive Protocol Layer" section, sized like the existing "Regarding the actor-causal site" and "Regarding Sessions" entries:
+  what's at stake, what's deferred, what triggers it (descent + R4 stable first). Per T3-(c), explicit "scaffolds anticipated this layer; layer is new formal content" framing.
+  4. Edit agda/Concurrency/Hybrid/Presheaf.agda header. Two changes inside the existing Adapter list: Adapter 5 (Promotion) acquires its sharpened operational role (consensus → Π-morphism); a
+  reservation noting Concurrency/Hybrid/Reflexive.agda as the future home for Π. No code edits, header prose only. Re-typecheck for safety though it's prose-only.
+  5. Edit communication/introduction.md "Conjectural centre" paragraph. One added sentence per T3-(c): the iteration is for a reflexive structure not yet built; the framework is for verified
+  communication that revises its own verification discipline. This is the "actually make Polyphony's central claim noticeably sharper" line.
+  6. Decision-log entry in status.md. Single row dated 2026-05-21: "Reflexive Protocol Layer named; Π as protocol-version category; Promotion (Adapter 5) sharpened; consensus = future colimit in
+  patch-theoretic fragment category, Pijul primary candidate; Hybrid/Reflexive.agda reserved."
+
+  Total time: ~20-30 minutes of editing, all prose, no Agda content changes. Want me to proceed with all six, or pick a subset?
+
+
