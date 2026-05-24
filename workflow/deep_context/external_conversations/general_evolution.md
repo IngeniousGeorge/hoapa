@@ -112,6 +112,6 @@ This exchange of requirements and benefits forms an adjunction, a bridge between
 
 ### Contact & further reading
 
-> <doc2cog@proton.me>
+> <hoapa@proton.me>
 
-> <https://codeberg.org/doc2cog/research>
+> <https://codeberg.org/hoapa/research>

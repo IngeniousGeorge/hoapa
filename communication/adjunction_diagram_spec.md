@@ -19,7 +19,7 @@ Math symbols that appear (ʃ, ♭, ♯, ⊗, ⅋, ⊥, η, ε, MO_1, Π, Λ, etc
 - **Greyscale-survivable.** The colour palette below is meaningful but never *load-bearing*. The diagram must remain legible if printed in greyscale; weight, dashing, position, and labels must carry the structural meaning. Use colour for orientation, not for distinction-of-kind.
 - **Self-contained typography.** Use a system font stack (e.g. `font-family: 'Inter', 'Helvetica Neue', system-ui, sans-serif;`) plus a serif fallback for mathematical symbols where rendering is better in serif (`font-family: 'Latin Modern', 'STIX Two Math', 'Computer Modern', Cambria, Georgia, serif;` for SVG `<text>` containing modal symbols, η / ε, etc.). No web-font loading.
 - **No interactivity.** Static. No JavaScript.
-- **Untitled.** No project-level heading. No "Polyphony" anywhere on the diagram. The diagram is meant to be embedded in a context that supplies the title.
+- **Untitled.** No project-level heading. No "Hoapa" anywhere on the diagram. The diagram is meant to be embedded in a context that supplies the title.
 
 ---
 
@@ -311,7 +311,7 @@ No easter egg is labelled or explained; they are simply present.
 7. The cascade strip is at the bottom of the concurrency column, six rows, aligned to the modules above.
 8. The audience-hook chips for Grothendieck, Lawvere, Shulman, Schreiber, Hersh (modal anchors), Hewitt, Lamport (actor site), Getzler–Kapranov, Markl (operad), Caires–Pfenning, Girard (sessions), Baudot–Bennequin, Manin–Marcolli (info cohomology) are present in their specified locations.
 9. The codependency prose in the adjunction column is verbatim as specified.
-10. No "Polyphony", no project title, no decorative chrome that wasn't specified.
+10. No "Hoapa", no project title, no decorative chrome that wasn't specified.
 
 ---
 

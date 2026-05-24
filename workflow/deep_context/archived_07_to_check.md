@@ -83,7 +83,7 @@
    may not warrant its own slot, depending on whether you read protocol-editing as Promotion's natural extension or as a separate concern.
 
   Then the README we just wrote needs a paragraph in the "Conjectural centre" section saying the iteration produces self-modification of the protocol, not just static descent. That paragraph would
-  actually make Polyphony's central claim noticeably sharper — the framework isn't just for verified communication, it's for verified communication that revises its own verification discipline.
+  actually make Hoapa's central claim noticeably sharper — the framework isn't just for verified communication, it's for verified communication that revises its own verification discipline.
 
 ## Codex
 
@@ -276,7 +276,7 @@
   One thing to check: Codex says workflow/deep_context/arc/07_self-modifying_protocol.md already exists in the workspace. I didn't write it myself, and the last commit didn't include it. Let me
   confirm before revising.
 
-● Bash(ls -la /home/ig/Code/doc2cog/workflow/deep_context/arc/ && echo "---" && git status workflow/deep_context/arc/)
+● Bash(ls -la /home/ig/Code/hoapa/workflow/deep_context/arc/ && echo "---" && git status workflow/deep_context/arc/)
   ⎿  Permissions Size User Date Modified Name
      .rw-rw-r--   54k ig   11 May 13:50  01_arc_discussion_log-2026-05-08.md
      .rw-rw-r--   41k ig   15 May 13:33  02_concurrency_anchor.md
@@ -303,7 +303,7 @@
   4. Edit agda/Concurrency/Hybrid/Presheaf.agda header. Two changes inside the existing Adapter list: Adapter 5 (Promotion) acquires its sharpened operational role (consensus → Π-morphism); a
   reservation noting Concurrency/Hybrid/Reflexive.agda as the future home for Π. No code edits, header prose only. Re-typecheck for safety though it's prose-only.
   5. Edit communication/introduction.md "Conjectural centre" paragraph. One added sentence per T3-(c): the iteration is for a reflexive structure not yet built; the framework is for verified
-  communication that revises its own verification discipline. This is the "actually make Polyphony's central claim noticeably sharper" line.
+  communication that revises its own verification discipline. This is the "actually make Hoapa's central claim noticeably sharper" line.
   6. Decision-log entry in status.md. Single row dated 2026-05-21: "Reflexive Protocol Layer named; Π as protocol-version category; Promotion (Adapter 5) sharpened; consensus = future colimit in
   patch-theoretic fragment category, Pijul primary candidate; Hybrid/Reflexive.agda reserved."
 

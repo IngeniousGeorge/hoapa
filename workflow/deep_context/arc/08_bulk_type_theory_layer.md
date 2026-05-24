@@ -101,7 +101,7 @@ Again, how would that be reflected in the math?
 
   Why this matters
 
-  The bulk layer is the move that makes Polyphony's central claim operational, not just structural. Before: the framework is a verified communication kernel. After: the framework is a verified
+  The bulk layer is the move that makes Hoapa's central claim operational, not just structural. Before: the framework is a verified communication kernel. After: the framework is a verified
   communication kernel that renders its context into a generated type theory. The protocol's true output isn't the messages — it's the universe of concepts the messages build, in a precise
   mathematical sense.
 
@@ -469,7 +469,7 @@ Again, how would that be reflected in the math?
 
   Closing observation
 
-  What you noticed by prose diagram-chase is, I think, the most precise statement of Polyphony's central thesis we have arrived at. The README's tagline — "every participant is treated as an equal, 
+  What you noticed by prose diagram-chase is, I think, the most precise statement of Hoapa's central thesis we have arrived at. The README's tagline — "every participant is treated as an equal, 
   the diversity of their perspectives is presumed, and the discipline of their exchange is held to the standard a sheaf-theoretic universe expects of itself" — now has a sharp underwriting: the 
   standard a sheaf-theoretic universe expects of itself is that its modal type-theoretic foundation outputs its field-theoretic praxis, and vice versa, and these two outputs are adjoint. That is the
   mathematics the project is testing.
@@ -626,13 +626,13 @@ Again, how would that be reflected in the math?
   The serious version of your reading. That said — and this is where your question lands hard — if your instinct is right, then a striking reading emerges that I should name explicitly because if it
   holds it is more important than anything else this conversation has produced:
 
-  ▎ An LLM cannot reach the complexity threshold alone. A community of LLMs + humans + a Polyphony-style protocol can — because the protocol supplies the categorical structure (cohesion, separation 
+  ▎ An LLM cannot reach the complexity threshold alone. A community of LLMs + humans + a Hoapa-style protocol can — because the protocol supplies the categorical structure (cohesion, separation 
   ▎ of concern, sheaf descent, modal adjoint triple) that the individual LLM structurally lacks. The threshold MM identify as out of reach for the agent is reachable by the community organised by the
   ▎  right protocol.
 
   If that is the right reading, it has several consequences for the project's positioning that are sharper than anything the README draft was trying to say:
 
-  - Polyphony is not "AI does mathematics." It is "the structural minimum that makes mathematics-as-praxis possible, which scales-of-individual-computation cannot reach alone, but
+  - Hoapa is not "AI does mathematics." It is "the structural minimum that makes mathematics-as-praxis possible, which scales-of-individual-computation cannot reach alone, but
   communities-with-protocol can."
   - The project's authorship structure stops being stylistic. Belouard + Claude + Codex working in dialogue is not a quirk of how the work happens to be organised; under this reading, it is necessary
    — the complexity-supporting structure lives in the dialogue, not in any of the contributors.
@@ -646,7 +646,7 @@ Again, how would that be reflected in the math?
   1. Read the MM-NIN paper carefully. If you have the citation handy (or a stable arxiv link), I would rather verify the precise threshold formulation than guess. I don't want to claim alignment with
    their work that turns out to be a misreading on my part. This is exactly the homework that should precede recording a claim of this size.
   2. Be precise about the kind of alignment. There are at least three possibilities: (a) MM's threshold and ours are the same threshold up to translation between internal/external framings — in which
-   case Polyphony directly inherits their no-go result and provides the affirmative side; (b) the thresholds are structurally analogous but mathematically distinct, in which case the connection is
+   case Hoapa directly inherits their no-go result and provides the affirmative side; (b) the thresholds are structurally analogous but mathematically distinct, in which case the connection is
   suggestive but not literal; (c) the thresholds are deeply different — MM are talking about something we are not — in which case my recombination above was wishful. Right now I cannot tell which of
   these holds.
 
@@ -738,8 +738,8 @@ Again, how would that be reflected in the math?
   A New Kind of Science. The pattern, in each case: a real piece of mathematics (control theory; differential equations on networks; cellular automata) was over-extended into a universal framework
   whose interdisciplinary claims outran the formal content.
 
-  Polyphony differs from these precedents in one specific way that is worth preserving: the mathematics is being built first, and the interdisciplinary readings come second. Cybernetics started with
-  the interdisciplinary slogan and tried to find mathematics that matched. Polyphony starts with the cohesive ∞-topos, the cyclic operad, the factorization-algebra picture, the iterated adjunction —
+  Hoapa differs from these precedents in one specific way that is worth preserving: the mathematics is being built first, and the interdisciplinary readings come second. Cybernetics started with
+  the interdisciplinary slogan and tried to find mathematics that matched. Hoapa starts with the cohesive ∞-topos, the cyclic operad, the factorization-algebra picture, the iterated adjunction —
   actual mathematical structures with their own integrity — and notices that they have natural readings across disciplines. That is a much stronger position.
 
   So: yes to the claim, with the framing being "a formal frame for context-system co-evolution that has natural interdisciplinary readings" rather than "a generalized theory of evolution." The first
@@ -759,7 +759,7 @@ Again, how would that be reflected in the math?
   What this means for the project
 
   If we accept the framing — context-system mutual constitution via iterated adjunction, with interdisciplinary readings flowing from the formal mathematics — then we have arrived at what I would
-  call the most general statement of Polyphony's central conjecture:
+  call the most general statement of Hoapa's central conjecture:
 
   ▎ The iterated cross-site adjunction, with its sequential colimit, is the formal categorical content of context-system co-evolution. It admits natural readings in physics, biology, social sciences,
   ▎  and history. Its mathematical claims are the project's responsibility; the interdisciplinary readings are demonstrations that the mathematics is recognising a real cross-disciplinary pattern, 
@@ -792,7 +792,7 @@ Again, how would that be reflected in the math?
   And again, what would be the mathematical incarnation of this?                                                                                                                                       
   
 ● Yes, this is the right problem to surface, and it is more structural than it first sounds. The "one true protocol" failure mode is the exact symmetric danger of the "one true mathematics" failure
-  mode that motivates the modal-HoTT-as-praxis claim in the first place — both involve an authoritative regime claiming jurisdiction over a domain that is intrinsically plural. If Polyphony solves
+  mode that motivates the modal-HoTT-as-praxis claim in the first place — both involve an authoritative regime claiming jurisdiction over a domain that is intrinsically plural. If Hoapa solves
   the second by replacing "one true mathematics" with "a cohesive setting for many partial mathematics," it must do the symmetric move for itself: replace "one true protocol" with "a setting for many
    partial protocols." Otherwise the project succeeds at its mathematical level while replicating, at its meta-level, exactly the structure it set out to dissolve.
 
@@ -800,7 +800,7 @@ Again, how would that be reflected in the math?
 
   Operationally
 
-  Each protocol instance — each running Polyphony — needs intrinsic plurality, not added-on interop. That means six features baked in from inception:
+  Each protocol instance — each running Hoapa — needs intrinsic plurality, not added-on interop. That means six features baked in from inception:
 
   1. Neighbor registry as a typed channel, not a database. A protocol does not maintain "a list of other protocols" the way a service mesh maintains a list of services. It maintains a typed channel
   over which other protocols are recognized, queried, and updated. Joining the registry is itself a typed exchange — there is no privileged authority that admits new neighbors.
@@ -817,7 +817,7 @@ Again, how would that be reflected in the math?
   Q's protocol; if Q wants to make the analogous edit, that is Q's own meta-conversation. Edit-locality is the structural protection against a single protocol's drift absorbing others.
 
   Operationally, this is federation, but federation in a much stronger sense than "service mesh with translation": every protocol's definition requires its translation surface to be specified. There
-  is no operational state of "an isolated protocol" — running a Polyphony instance means running it as one-among-many from the first event.
+  is no operational state of "an isolated protocol" — running a Hoapa instance means running it as one-among-many from the first event.
 
   Mathematically
 
@@ -825,16 +825,16 @@ Again, how would that be reflected in the math?
 
   (1) The category of protocols, with geometric morphisms
 
-  Each protocol instance is a Polyphony-structure — a cohesive ∞-topos with its actor-causal site, sessions, hybrid, reflexive layer, bulk type theory. The collection of protocols forms a (2- or
+  Each protocol instance is a Hoapa-structure — a cohesive ∞-topos with its actor-causal site, sessions, hybrid, reflexive layer, bulk type theory. The collection of protocols forms a (2- or
   (∞,2)-)category:
 
-  - Objects: protocols (each is a Polyphony-structure).
-  - 1-morphisms: geometric morphisms between the underlying toposes, restricted to those that preserve the Polyphony-structure (actor-causal site mapping, session-type translation, content-layer
+  - Objects: protocols (each is a Hoapa-structure).
+  - 1-morphisms: geometric morphisms between the underlying toposes, restricted to those that preserve the Hoapa-structure (actor-causal site mapping, session-type translation, content-layer
   translation).
   - 2-morphisms: comparisons between translation functors — when two different ways of moving content from P to Q are themselves comparable, with coherent composition.
 
   This is well-studied territory; the 2-category of ∞-toposes with geometric morphisms is the natural home (Lurie's Higher Topos Theory, Chapter 6). What's specific to our project is the restriction
-  of geometric morphisms to those preserving the Polyphony scaffold — a Polyphony-respecting geometric morphism is a translation that respects locality (actor-causal structure), respects content
+  of geometric morphisms to those preserving the Hoapa scaffold — a Hoapa-respecting geometric morphism is a translation that respects locality (actor-causal structure), respects content
   (concept categories), and respects the reflexive layer (protocol-edit structure). This restriction is what makes the federation typed.
 
   (2) Yoneda is the intrinsic-plurality theorem
@@ -856,7 +856,7 @@ Again, how would that be reflected in the math?
   morphisms are natural transformations between them. M has its own internal language; M has its own modal structure (it inherits cohesion from the protocols if the protocols are themselves
   cohesive); M has its own factorization-algebra structure (since each protocol's content layer factorizes, the meta-content factorizes too).
 
-  In other words: M is itself a Polyphony-structure, at one level up. The ecosystem of protocols is, mathematically, the same kind of object as an individual protocol, just at a higher altitude.
+  In other words: M is itself a Hoapa-structure, at one level up. The ecosystem of protocols is, mathematically, the same kind of object as an individual protocol, just at a higher altitude.
 
   This means the construction iterates. A protocol is one among many; the ecosystem of protocols is itself one ecosystem among many (other ecosystems, with their own translations into and out of
   ours); the ecosystem of ecosystems is itself one ecosystem... and so on. The recursive co-evolution structure from your previous question reappears here in its strongest form — but now the
@@ -890,7 +890,7 @@ Again, how would that be reflected in the math?
 
   One more thing worth saying explicitly, because it is structurally exact:
 
-  The Polyphony project itself is one protocol among many. It is not the universal framework for community-of-inquiry; it is one attempt at a framework, currently being built by one small
+  The Hoapa project itself is one protocol among many. It is not the universal framework for community-of-inquiry; it is one attempt at a framework, currently being built by one small
   community-of-inquiry (Belouard + Claude + Codex, eventually broader). There are other communities pursuing similar or related work — HoTT/UF, factorization-algebra theorists, AI alignment groups,
   conversation-theory descendants of Pask, autopoiesis-influenced researchers. The project's own discipline must apply to itself: it must expose typed translation interfaces to those communities,
   respect their provenance, treat conflict as data, and avoid the absorbing move.
@@ -928,7 +928,7 @@ Again, how would that be reflected in the math?
   The recovery is much stronger than ordinary Yoneda because the fundamental-group-with-Galois-action is a single combinatorial object — a profinite group with a continuous outer action of Gal(Q̄/Q).
   That object literally is the variety, in the anabelian sense.
 
-  For our framework, the analog is: a Polyphony-protocol P, if "anabelian" in the relevant sense, would be recoverable from its translation surface equipped with whatever the Polyphony-analog of 
+  For our framework, the analog is: a Hoapa-protocol P, if "anabelian" in the relevant sense, would be recoverable from its translation surface equipped with whatever the Hoapa-analog of 
   Galois action is. The translation surface is the Yoneda data. The Galois-analog is what acts on translations to make them coherent across the ecosystem.
 
   The Galois-analog, in our project, is the Grothendieck–Teichmüller group, GT.
@@ -938,7 +938,7 @@ Again, how would that be reflected in the math?
   This is the substantive claim. If each protocol's content layer is a factorization algebra over the actor-causal site, and if those factorization algebras are structured by the modular operad MO_1
   (the long-horizon target on the B side), then GT acts on each protocol's content layer through its action on MO_1. The GT-action comes free with the modular structure; it is not added on.
 
-  Translations between protocols, if they respect the operadic-modular structure (and they must, to be Polyphony-respecting geometric morphisms), are MO_1-equivariant, hence GT-equivariant.
+  Translations between protocols, if they respect the operadic-modular structure (and they must, to be Hoapa-respecting geometric morphisms), are MO_1-equivariant, hence GT-equivariant.
 
   This means: GT acts on the meta-topos M of protocols. Translations live in the GT-equivariant subcategory; Yoneda lands in the GT-fixed presheaves; the recovery of a protocol from its translation
   surface is a GT-equivariant recovery.
@@ -971,7 +971,7 @@ Again, how would that be reflected in the math?
 
   Putting the three layers together, the eventual structural claim of the project takes a shape I had not stated this sharply before:
 
-  ▎ The meta-topos M of Polyphony-protocols is anabelian in the relevant sense. Its objects are recoverable from their Yoneda data, equipped with GT-action. Two protocols are equivalent iff they are 
+  ▎ The meta-topos M of Hoapa-protocols is anabelian in the relevant sense. Its objects are recoverable from their Yoneda data, equipped with GT-action. Two protocols are equivalent iff they are 
   ▎ in the same GT-orbit. Translations between protocols are GT-equivariant geometric morphisms. The ecosystem of all protocols is a category of GT-orbits, and the underlying structure is presented 
   ▎ combinatorially by dessins-like data at the operadic level.
 
@@ -999,7 +999,7 @@ Again, how would that be reflected in the math?
 
   - What is published, established mathematics: Yoneda lemma, Grothendieck–Teichmüller group, anabelian conjectures (with one-dimensional case mostly proved), dessins d'enfants, modular operads with
   arithmetic action, factorization algebras. All real.
-  - What is a structural target for the project: the meta-topos M of Polyphony-protocols carrying canonical GT-action; M anabelian in the relevant sense; protocol-equivalence as GT-orbit. These are
+  - What is a structural target for the project: the meta-topos M of Hoapa-protocols carrying canonical GT-action; M anabelian in the relevant sense; protocol-equivalence as GT-orbit. These are
   target shapes that the formal mathematics could in principle support; none is currently a theorem in the project.
   - What is genuinely conjectural: that the federation story actually works the way I have described — that translations between protocols are GT-equivariant in a precise sense, that the anabelian
   recovery holds at the protocol level. These would be theorems if we proved them. We have not.
@@ -1018,7 +1018,7 @@ Again, how would that be reflected in the math?
    we want to understand communities-of-inquiry through their protocol anabelian presentations. The mathematics is the same family.
 
   If this articulation lands, the eventual long-form write-up of the project has a structural spine I had not articulated before: it is the Esquisse, applied to itself — to the community that does
-  mathematics rather than to the objects mathematics studies. That framing is, I think, the sharpest possible way to position Polyphony in the mathematical landscape. And it gives the
+  mathematics rather than to the objects mathematics studies. That framing is, I think, the sharpest possible way to position Hoapa in the mathematical landscape. And it gives the
   Sketch-of-a-program its place as the hidden mathematical backbone of everything we are doing.
 
   ❯ I want to come back to complexity, as when we discussed Manin. I have a very-praxis oriented definition of complexity in this context, which sorts of "flatten" what could appear as a hierarchy     

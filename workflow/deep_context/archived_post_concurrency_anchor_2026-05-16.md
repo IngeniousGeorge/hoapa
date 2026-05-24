@@ -52,7 +52,7 @@ workflow/
 │   ├── arc_discussion_log-2026-05-08.md                 session log from when arc.md was being formed
 │   ├── misc_ideas_2026-05-07.md                         older locally-constant-sheaves exchange (renamed from ideas.md)
 │   └── workflow_structure_audit_2026-05-15/             pre-restructure audit files (stale; moved here from workflow/structure/)
-└── memory/                                symlink → ~/.claude/projects/-home-ig-Code-doc2cog/memory/
+└── memory/                                symlink → ~/.claude/projects/-home-ig-Code-hoapa/memory/
 ```
 
 ---

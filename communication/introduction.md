@@ -1,4 +1,4 @@
-# Polyphony
+# Hoapa
 
 > *A mathematics-backed framework for communication protocols in which every participant is treated as an equal, the diversity of their perspectives is presumed, and the discipline of their exchange is held to the standard a sheaf-theoretic universe expects of itself.*
 

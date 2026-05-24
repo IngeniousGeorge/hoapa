@@ -16,7 +16,7 @@ Loaded on the focused path. Together these are the minimum a fresh agent reads.
 |---|---:|---|---|
 | `README.md` | 29 | Onboarding map. Defines the **focused path** (`status.md` only) and the **architecture path** (the architecture-path files at `workflow/` root). | "Focused path" §, "Architecture path" § (Backbone + Reference), "Memory" §. |
 | `status.md` | 154 | The living document. Single source of truth for state, decisions, blockers, completed work, and the live discussion of the next step. | Conjecture Arc / B-side / Semantic Background / Analytic Development / Decisions Log — Relevant (12 rows, latest 2026-05-14) / Open Questions / **Current Task** / **Next step** / "Unlocking ♯" / Blockers / Completed (13 items) / Decisions Log — Archived / Discussion of the next step. |
-| `memory/` | — | Symlink → `~/.claude/projects/-home-ig-Code-doc2cog/memory/`. Cross-conversation agent memory. | Catalogued separately in §3 below. |
+| `memory/` | — | Symlink → `~/.claude/projects/-home-ig-Code-hoapa/memory/`. Cross-conversation agent memory. | Catalogued separately in §3 below. |
 
 ---
 

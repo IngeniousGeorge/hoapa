@@ -30,4 +30,4 @@ Some special sessions can be about the structure of contextual information for t
 
 ### Memory (both paths)
 
-- **`memory/`** — symlink to the Claude Code auto-memory directory for this project (`~/.claude/projects/-home-ig-Code-doc2cog/memory/`). Cross-conversation memory for the AI agent; the user-facing index is `MEMORY.md` inside it. Read-through to see what the agent already knows about the user and project from past sessions.
+- **`memory/`** — symlink to the Claude Code auto-memory directory for this project (`~/.claude/projects/-home-ig-Code-hoapa/memory/`). Cross-conversation memory for the AI agent; the user-facing index is `MEMORY.md` inside it. Read-through to see what the agent already knows about the user and project from past sessions.
