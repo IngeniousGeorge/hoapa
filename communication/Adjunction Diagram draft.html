@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Adjunction Diagram</title>
+<style>
+  @page { size: A4 landscape; margin: 0; }
+
+  :root {
+    --bg: #FFFFFF;
+    --modal: #2C5282;
+    --modal-soft: #90B4D8;
+    --conc: #9A3412;
+    --conc-soft: #FCA974;
+    --slate: #1F2937;
+    --grey: #6B7280;
+    --cascade-bg: #F5F5F4;
+    --chip-bg: #E5E7EB;
+    --chip-fg: #374151;
+    --rule: #E5E7EB;
+
+    --sans: 'Inter', 'Helvetica Neue', system-ui, -apple-system, sans-serif;
+    --serif: 'Latin Modern', 'STIX Two Math', 'Computer Modern', Cambria, Georgia, 'Times New Roman', serif;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #d9d9d6;
+    font-family: var(--sans);
+    color: var(--slate);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  /* Outer page — A4 landscape exactly. */
+  .page {
+    width: 297mm;
+    height: 210mm;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    margin: 8mm auto;
+    box-shadow: 0 2mm 8mm rgba(0,0,0,0.12);
+  }
+
+  @media print {
+    body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { margin: 0; box-shadow: none; }
+  }
+
+  /* Inner content area: 10 mm top, 12 mm sides, 4 mm bottom so trailing italics fit. */
+  .content {
+    position: absolute;
+    top: 10mm; left: 12mm; right: 12mm; bottom: 4mm;
+    display: grid;
+    grid-template-columns: 76.4mm 38.2mm 158.4mm;
+    grid-template-rows: 1fr;
+  }
+
+  /* ───────────────────── columns common ───────────────────── */
+
+  .col {
+    position: relative;
+    padding: 0 3mm;
+    box-sizing: border-box;
+  }
+  .col.modal { padding-right: 4mm; }
+  .col.adj   { padding: 0 1mm; }
+  .col.conc  { padding-left: 4mm; padding-right: 0; }
+
+  /* Column headers */
+  .col-header {
+    font-size: 14pt;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    line-height: 1.05;
+  }
+  .col-sub {
+    font-size: 9pt;
+    font-weight: 400;
+    line-height: 1.3;
+    margin-top: 1.4mm;
+    max-width: 100%;
+    font-style: italic;
+  }
+  .modal .col-header, .modal .col-sub { color: var(--modal); }
+  .conc  .col-header, .conc  .col-sub { color: var(--conc); }
+
+  .col-header-block {
+    margin-bottom: 4mm;
+  }
+
+  /* Module boxes */
+  .mod {
+    border: 1pt solid var(--slate);
+    border-radius: 1mm;
+    padding: 2mm 2.4mm;
+    margin-bottom: 2.4mm;
+    background: #fff;
+    box-sizing: border-box;
+  }
+  .modal .mod { border-color: var(--modal); }
+  .conc  .mod { border-color: var(--conc); }
+  .mod.future { border-style: dashed; }
+  .modal .mod.future { border-color: var(--modal-soft); }
+  .conc  .mod.future { border-color: var(--conc-soft); }
+
+  .mod-name {
+    font-size: 11.5pt;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+  .modal .mod-name { color: var(--modal); }
+  .conc  .mod-name { color: var(--conc); }
+  .mod.future .mod-name { opacity: 0.85; }
+
+  .mod-sym {
+    font-family: var(--serif);
+    font-size: 9pt;
+    color: var(--grey);
+    margin-top: 0.6mm;
+    line-height: 1.15;
+    font-style: italic;
+  }
+  .mod-desc {
+    font-size: 8.5pt;
+    font-weight: 400;
+    color: var(--slate);
+    line-height: 1.3;
+    margin-top: 1.2mm;
+  }
+
+  /* Audience-hook chips */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5mm 2mm;
+    margin-top: 2mm;
+  }
+  .chip {
+    font-size: 8.5pt;
+    font-weight: 500;
+    color: var(--chip-fg);
+    background: var(--chip-bg);
+    border-radius: 9999px;
+    padding: 0.4mm 2.4mm;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+
+  /* ───────────────────── modal column ───────────────────── */
+
+  .modal-modules { display: flex; flex-direction: column; }
+  .anchors {
+    margin-top: auto;
+    padding-top: 3mm;
+  }
+  .anchors .chip { font-size: 8pt; padding: 0.3mm 2.2mm; }
+  .anchors-title {
+    font-size: 10pt;
+    font-weight: 600;
+    color: var(--modal);
+    margin-bottom: 1.6mm;
+  }
+  .anchors-note {
+    font-size: 8pt;
+    font-style: italic;
+    color: var(--chip-fg);
+    line-height: 1.3;
+    margin-top: 1.4mm;
+  }
+
+  .modal-col-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* ───────────────────── adjunction column ───────────────────── */
+
+  .adj-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    text-align: center;
+  }
+
+  .adj-spacer { height: 6mm; }
+
+  .adj-stack {
+    font-family: var(--serif);
+    font-size: 15pt;
+    font-weight: 500;
+    color: var(--slate);
+    line-height: 1.35;
+    letter-spacing: 0.005em;
+    z-index: 2;
+    background: #fff;
+    padding: 0.5mm 2mm;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .adj-stack span { display: block; }
+  .adj-stack .turn { font-size: 13pt; color: var(--slate); line-height: 1.0; margin: 0.3mm 0; }
+
+  /* Visual gap reserved for the curved arrows. The SVG overlay draws into this zone
+     so the curves never collide with the stack or the codependency paragraph. */
+  .adj-curve-zone { height: 50mm; flex: 0 0 auto; }
+
+  .mediate-bar {
+    position: absolute;
+    top: 50%;
+    left: 0; right: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+
+  .codep {
+    font-size: 8pt;
+    font-style: italic;
+    color: var(--slate);
+    line-height: 1.4;
+    margin-top: 0;
+    text-align: center;
+    max-width: 36mm;
+  }
+
+  .easter {
+    margin-top: auto;
+    padding-bottom: 0;
+    color: var(--grey);
+    font-family: var(--serif);
+    font-size: 8pt;
+    line-height: 1.3;
+    width: 100%;
+  }
+  .easter .row {
+    display: flex;
+    align-items: center;
+    gap: 1.6mm;
+    margin-bottom: 1.4mm;
+    justify-content: center;
+    font-size: 7.5pt;
+  }
+  .easter .lawvere {
+    font-size: 7pt;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.3;
+    margin-top: 1mm;
+    color: var(--grey);
+  }
+  .tri { flex: 0 0 auto; }
+
+  /* ───────────────────── concurrency column ───────────────────── */
+
+  .conc-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .conc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    flex: 0 0 auto;
+  }
+
+  .conc-sub {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .conc-sub-title {
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: var(--grey);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 2mm;
+  }
+
+  .mod.compact {
+    padding: 1.5mm 2.2mm;
+    margin-bottom: 2mm;
+  }
+  .mod.compact .mod-name { font-size: 10pt; }
+  .mod.compact .mod-desc { font-size: 8pt; margin-top: 0.6mm; line-height: 1.25; }
+  .mod.compact .mod-sym  { font-size: 7.5pt; margin-top: 0.2mm; }
+  .mod.compact .chips { margin-top: 1.2mm; }
+  .mod.compact .chip  { font-size: 7pt; padding: 0.1mm 1.8mm; }
+
+  /* ───────────────────── cascade strip ───────────────────── */
+
+  .cascade {
+    background: var(--cascade-bg);
+    border-top: 0.5pt solid var(--slate);
+    margin-top: auto;
+    padding: 2mm 3mm 2mm 3mm;
+    box-sizing: border-box;
+    flex: 0 0 auto;
+  }
+  .cascade-head {
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: var(--grey);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.2mm;
+  }
+  .cascade-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .cascade-table td {
+    padding: 0.25mm 0;
+    vertical-align: top;
+    font-size: 8pt;
+    line-height: 1.18;
+    color: var(--slate);
+  }
+  .cascade-table td.module {
+    font-size: 8.5pt;
+    font-weight: 600;
+    width: 28%;
+    padding-right: 2mm;
+  }
+  .cascade-table td.tradeoff {
+    font-style: italic;
+    width: 32%;
+    padding-right: 2mm;
+    color: var(--slate);
+  }
+  .cascade-table td.strategy {
+    width: 40%;
+    color: var(--slate);
+  }
+  .cascade-foot {
+    font-size: 7pt;
+    font-style: italic;
+    color: var(--chip-fg);
+    margin-top: 1.2mm;
+    line-height: 1.25;
+  }
+
+  /* ───────────────────── overlay (arrows) ───────────────────── */
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+  }
+
+  /* dotted vertical guides between cascade rows & modules above */
+  .guide { stroke: var(--rule); stroke-width: 0.4; stroke-dasharray: 0.6 1.6; fill: none; }
+
+  /* SVG strokes & text — sizes given in user units (1 unit = 1 mm here)
+     because CSS pt inside a viewBox SVG scales unpredictably across browsers. */
+  .arrow {
+    fill: none;
+    stroke: #1F2937;
+    stroke-width: 0.5;
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ════════════ overlay: arrows, mediate bar, guides ════════════ -->
+  <!-- Coordinate system in mm, matching the page. -->
+  <svg class="overlay" viewBox="0 0 297 210" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arrowhead-slate" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#1F2937" />
+      </marker>
+      <marker id="arrowhead-slate-rev" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#1F2937" />
+      </marker>
+      <marker id="tick-slate" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#1F2937" />
+      </marker>
+    </defs>
+
+    <!-- The symbol stack sits in the upper part of the adjunction column (roughly
+         y≈18–47 inside the content area, i.e. y≈30–59 on the page). The two curved
+         arrows sit in a dedicated visual band BELOW the stack so they never collide
+         with the modality words. Allow arches up toward the stack; Require arches
+         down toward the codependency paragraph. -->
+
+    <!-- The curve-zone is 50 mm tall and sits between the symbol stack and the
+         codependency paragraph (roughly y≈49–99 absolute). All SVG curves and
+         labels are positioned to stay inside this band. -->
+
+    <!-- Allow: modal-right → concurrency-left, arching gently upward (∩ shape). -->
+    <path class="arrow"
+          d="M 88.4 72 C 100 60, 115 60, 126.6 72"
+          marker-end="url(#arrowhead-slate)" />
+    <text x="107.5" y="57" text-anchor="middle"
+          font-family="'Inter','Helvetica Neue',system-ui,sans-serif"
+          font-size="3.2" font-weight="500" fill="#1F2937">Allow</text>
+
+    <!-- Require: concurrency-left → modal-right, arching gently downward (∪ shape).
+         Label sits INSIDE the U interior (above the deepest line), mirroring how
+         "Allow" sits above its ∩ curve. -->
+    <path class="arrow"
+          d="M 126.6 82 C 115 96, 100 96, 88.4 82"
+          marker-end="url(#arrowhead-slate)" />
+    <text x="107.5" y="88" text-anchor="middle"
+          font-family="'Inter','Helvetica Neue',system-ui,sans-serif"
+          font-size="3.2" font-weight="500" fill="#1F2937">Require</text>
+
+    <!-- Mediate: small bidirectional tick between the two curves. -->
+    <line x1="103" y1="77" x2="112" y2="77"
+          stroke="#6B7280" stroke-width="0.4"
+          marker-start="url(#arrowhead-slate)" marker-end="url(#arrowhead-slate)" />
+    <text x="107.5" y="75.2" text-anchor="middle"
+          font-family="'Inter','Helvetica Neue',system-ui,sans-serif"
+          font-size="2.4" font-style="italic" fill="#6B7280">Mediate</text>
+
+    <!-- Cascade alignment guides: subtle dotted verticals connecting each cascade row to the module above. -->
+    <!-- The 4 left shipped modules sit roughly at x = 138, 138, 138, 138 within concurrency.
+         The cascade rows reference: Hybrid, Reflexive Π, Bulk Λ, Field dynamics, Federation, Info cohomology.
+         Hybrid is in shipped (left sub-col); the other 5 are in future (right sub-col).
+         We draw faint short guides above each row to suggest alignment without committing to exact coords. -->
+    <!-- (Disabled: too noisy at this scale. Kept the option open via CSS class.) -->
+  </svg>
+
+  <!-- ════════════ content grid ════════════ -->
+  <div class="content">
+
+    <!-- ─────────── MODAL COLUMN ─────────── -->
+    <div class="col modal">
+      <div class="modal-col-inner">
+
+        <div class="col-header-block">
+          <div class="col-header">Modal side</div>
+          <div class="col-sub">the cohesive ∞-topos in which the system is embedded — its context, its perspectival structure, its space of resolutions</div>
+        </div>
+
+        <div class="modal-modules">
+
+          <div class="mod">
+            <div class="mod-name">Cohesion</div>
+            <div class="mod-sym">ʃ&nbsp;⊣&nbsp;♭&nbsp;⊣&nbsp;♯</div>
+            <div class="mod-desc">shape ⊣ flat ⊣ sharp. The minimum modal structure that supports multi-level perspectival reasoning. The floor of the framework on this side.</div>
+          </div>
+
+          <div class="mod">
+            <div class="mod-name">Modal site</div>
+            <div class="mod-sym">Bℤ&nbsp;≃&nbsp;S¹</div>
+            <div class="mod-desc">the delooping of ℤ as a higher inductive type. Carries the group structure for the iteration scaffold; presentable as the circle S¹ for the future bar construction.</div>
+          </div>
+
+          <div class="mod">
+            <div class="mod-name">Iteration scaffold</div>
+            <div class="mod-sym">Tⁿ,&nbsp;η<tspan>ⁿ</tspan>,&nbsp;N∞</div>
+            <div class="mod-desc">modally-iterated unit, developing network as sequential colimit. The toy iteration is shipped; the cyclic bar construction at S¹ is the next step toward field-theoretic output.</div>
+          </div>
+
+          <div class="mod future">
+            <div class="mod-name">Differential cohesion</div>
+            <div class="mod-sym">ℜ&nbsp;⊣&nbsp;ℑ&nbsp;⊣&nbsp;&amp;</div>
+            <div class="mod-desc">reduction ⊣ infinitesimal shape ⊣ infinitesimal flat. The further modal floor required for the modal side to output a synthetic field theory.</div>
+          </div>
+
+        </div>
+
+        <div class="anchors">
+          <div class="anchors-title">Anchors</div>
+          <div class="chips">
+            <span class="chip">Grothendieck</span>
+            <span class="chip">Lawvere</span>
+            <span class="chip">Shulman</span>
+            <span class="chip">Schreiber</span>
+            <span class="chip">Hersh</span>
+          </div>
+          <div class="anchors-note">the modal side is shaped by these traditions; for many readers it is here that the framework first reads as familiar.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─────────── ADJUNCTION COLUMN ─────────── -->
+    <div class="col adj">
+      <div class="adj-inner">
+
+        <div class="adj-spacer"></div>
+
+        <div class="adj-stack">
+          <span>Allow</span>
+          <span class="turn">⊣</span>
+          <span>Mediate</span>
+          <span class="turn">⊣</span>
+          <span>Require</span>
+        </div>
+
+        <!-- Reserved visual zone the SVG overlay draws its curves into. -->
+        <div class="adj-curve-zone"></div>
+
+        <div class="codep">
+          Codependency, not foundation. Neither side is the substrate of the other; both rest on the adjunction. The modal context requires what the concurrent system provides, and licenses what it produces; the concurrent system requires what the modal context structures, and operates inside what it allows.
+        </div>
+
+        <div class="easter">
+          <!-- η triangle -->
+          <div class="row">
+            <svg class="tri" width="9mm" height="6mm" viewBox="0 0 18 12" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2,10 L9,2 L16,10 Z" fill="none" stroke="#6B7280" stroke-width="0.5" stroke-dasharray="1.2 1" />
+              <text x="9" y="1.7" font-family="serif" font-style="italic" font-size="3.6" fill="#6B7280" text-anchor="middle">η</text>
+            </svg>
+            <span>unit&nbsp;&nbsp;(id → Require ∘ Allow)</span>
+          </div>
+          <!-- ε triangle -->
+          <div class="row">
+            <svg class="tri" width="9mm" height="6mm" viewBox="0 0 18 12" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2,2 L16,2 L9,10 Z" fill="none" stroke="#6B7280" stroke-width="0.5" stroke-dasharray="1.2 1" />
+              <text x="9" y="11.3" font-family="serif" font-style="italic" font-size="3.6" fill="#6B7280" text-anchor="middle">ε</text>
+            </svg>
+            <span>counit&nbsp;&nbsp;(Allow ∘ Require → id)</span>
+          </div>
+          <div class="lawvere">Lawvere asymmetry: B fluid, A rigid; prevents the iteration from collapsing to a fixed point.</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ─────────── CONCURRENCY COLUMN ─────────── -->
+    <div class="col conc">
+      <div class="conc-inner">
+
+        <div class="col-header-block">
+          <div class="col-header">Concurrency side</div>
+          <div class="col-sub">the actor-causal protocol that navigates the modal context — its participants, its events, its language, its production</div>
+        </div>
+
+        <div class="conc-grid">
+
+          <!-- ── shipped sub-column ── -->
+          <div class="conc-sub">
+            <div class="conc-sub-title">Shipped</div>
+
+            <div class="mod compact">
+              <div class="mod-name">Actor-causal site</div>
+              <div class="mod-sym">ActorBase,&nbsp;FrameHom,&nbsp;Cover</div>
+              <div class="mod-desc">opaque unityped actors, Lamport partial-order events, local frames as sub-views, basis covers. The locality leg: who participates, in what causal order, with what local visibility.</div>
+              <div class="chips">
+                <span class="chip">Hewitt</span>
+                <span class="chip">Lamport</span>
+              </div>
+            </div>
+
+            <div class="mod compact">
+              <div class="mod-name">Cyclic operad O₁</div>
+              <div class="mod-sym">gen,&nbsp;comp<tspan>ₒ</tspan>,&nbsp;rot</div>
+              <div class="mod-desc">the interaction grammar: one binary generator (send/receive), three cyclic ports (sender/receiver/channel), boundary-swap derived as session duality.</div>
+              <div class="chips">
+                <span class="chip">Getzler–Kapranov</span>
+                <span class="chip">Markl</span>
+              </div>
+            </div>
+
+            <div class="mod compact">
+              <div class="mod-name">Sessions algebra</div>
+              <div class="mod-sym">⊗,&nbsp;⅋,&nbsp;𝟙,&nbsp;⊥</div>
+              <div class="mod-desc">multiplicative session types in a ∗-autonomous category. The how-layer: typed obligations, duality S ↔ S<sup>⊥</sup>, linear-logic semantics for cut-free interaction.</div>
+              <div class="chips">
+                <span class="chip">Caires–Pfenning</span>
+                <span class="chip">Girard</span>
+              </div>
+            </div>
+
+            <div class="mod compact">
+              <div class="mod-name">Hybrid v1 <span style="font-weight:400; font-size:9pt; color:var(--grey);">(restriction adapter)</span></div>
+              <div class="mod-sym">FramePresheaf,&nbsp;IsSeparated</div>
+              <div class="mod-desc">the first adapter: session values vary contravariantly over actor-local frames. Auditability is the uniqueness half of descent. The bridge that makes the two legs one mathematical object.</div>
+            </div>
+
+          </div>
+
+          <!-- ── future sub-column ── -->
+          <div class="conc-sub">
+            <div class="conc-sub-title">Future layers</div>
+
+            <div class="mod compact future">
+              <div class="mod-name">Sheaf descent</div>
+              <div class="mod-desc">next step. Compatible local content glues into shared global content.</div>
+            </div>
+
+            <div class="mod compact future">
+              <div class="mod-name">Reflexive Π</div>
+              <div class="mod-desc">the protocol revises itself. Meta-conversations propose edits; consensus emits a protocol-version morphism.</div>
+            </div>
+
+            <div class="mod compact future">
+              <div class="mod-name">Bulk Λ</div>
+              <div class="mod-desc">the protocol generates its own language. Every message carries a what-tag alongside its how-tag; the language evolves through consensus.</div>
+            </div>
+
+            <div class="mod compact future">
+              <div class="mod-name">Field-theoretic dynamics</div>
+              <div class="mod-desc">the language's evolution as RG flow on a factorization algebra over the actor-causal site. Symmetry-breaking, fluctuation, stabilization.</div>
+            </div>
+
+            <div class="mod compact future">
+              <div class="mod-name">Federation</div>
+              <div class="mod-sym">Yoneda,&nbsp;GT,&nbsp;MO₁</div>
+              <div class="mod-desc">one protocol among many. Typed translation interfaces, partial clones, conflict-as-data. The meta-topos of protocols is itself the same kind of object — at one level up.</div>
+            </div>
+
+            <div class="mod compact future">
+              <div class="mod-name">Information cohomology</div>
+              <div class="mod-desc">receiver-relative complexity. Transparency-of-language as an engineering -ility on the same footing as performance and security.</div>
+              <div class="chips">
+                <span class="chip">Baudot–Bennequin</span>
+                <span class="chip">Manin–Marcolli</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ── trade-off cascade strip ── -->
+        <div class="cascade">
+          <div class="cascade-head">Trade-off cascade</div>
+          <table class="cascade-table">
+            <tr>
+              <td class="module">Hybrid</td>
+              <td class="tradeoff">locality vs globality</td>
+              <td class="strategy">sheaf descent</td>
+            </tr>
+            <tr>
+              <td class="module">Reflexive Π</td>
+              <td class="tradeoff">stability vs adaptability</td>
+              <td class="strategy">meta-conversation + consensus</td>
+            </tr>
+            <tr>
+              <td class="module">Bulk Λ</td>
+              <td class="tradeoff">expressive power vs transparency</td>
+              <td class="strategy">protocol generates its own language</td>
+            </tr>
+            <tr>
+              <td class="module">Field dynamics</td>
+              <td class="tradeoff">exploration vs exploitation</td>
+              <td class="strategy">RG flow with reflexive insertions</td>
+            </tr>
+            <tr>
+              <td class="module">Federation</td>
+              <td class="tradeoff">coherence vs plurality</td>
+              <td class="strategy">translation interfaces, partial clones, conflict-as-data</td>
+            </tr>
+            <tr>
+              <td class="module">Info cohomology</td>
+              <td class="tradeoff">dense vs accessible encoding</td>
+              <td class="strategy">receiver-relative measurement</td>
+            </tr>
+          </table>
+          <div class="cascade-foot">each trade-off is created by the previous resolution; the strategy applied at every step is separation of concerns.</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /content -->
+
+</div><!-- /page -->
+
+</body>
+</html>

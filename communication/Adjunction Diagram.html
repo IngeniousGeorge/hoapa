@@ -2,374 +2,316 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Adjunction Diagram</title>
+<title>Comparison adjunction — formal status map</title>
 <style>
   @page { size: A4 landscape; margin: 0; }
 
   :root {
-    --bg: #FFFFFF;
-    --modal: #2C5282;
-    --modal-soft: #90B4D8;
-    --conc: #9A3412;
-    --conc-soft: #FCA974;
-    --slate: #1F2937;
-    --grey: #6B7280;
-    --cascade-bg: #F5F5F4;
-    --chip-bg: #E5E7EB;
-    --chip-fg: #374151;
-    --rule: #E5E7EB;
+    --page-bg: #FFFFFF;
+    --ink:      #111827;
+    --ink-2:    #4B5563;
+    --rule:     #D1D5DB;
+    --hairline: #E5E7EB;
+    --horizon-fill:   #F3F4F6;
+    --horizon-border: #9CA3AF;
+    --tag-bg:    #F9FAFB;
+    --legend-bg: #F9FAFB;
+    --planned-border: #6B7280;
 
-    --sans: 'Inter', 'Helvetica Neue', system-ui, -apple-system, sans-serif;
-    --serif: 'Latin Modern', 'STIX Two Math', 'Computer Modern', Cambria, Georgia, 'Times New Roman', serif;
+    --sans:  Inter, "Helvetica Neue", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --serif: "STIX Two Math", "Latin Modern Math", "Cambria Math", Cambria, Georgia, "Times New Roman", serif;
+    --mono:  ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
   }
 
   html, body {
-    margin: 0;
-    padding: 0;
+    margin: 0; padding: 0;
     background: #d9d9d6;
     font-family: var(--sans);
-    color: var(--slate);
+    color: var(--ink);
     -webkit-font-smoothing: antialiased;
     text-rendering: geometricPrecision;
   }
 
-  /* Outer page — A4 landscape exactly. */
   .page {
-    width: 297mm;
-    height: 210mm;
-    background: var(--bg);
+    width: 297mm; height: 210mm;
+    background: var(--page-bg);
     position: relative;
     overflow: hidden;
     margin: 8mm auto;
-    box-shadow: 0 2mm 8mm rgba(0,0,0,0.12);
+    box-shadow: 0 1mm 6mm rgba(0,0,0,0.10);
   }
-
   @media print {
-    body { background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .page { margin: 0; box-shadow: none; }
+    body { background:#fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { margin:0; box-shadow:none; }
   }
 
-  /* Inner content area: 10 mm top, 12 mm sides, 4 mm bottom so trailing italics fit. */
-  .content {
+  .abs { position:absolute; box-sizing:border-box; }
+
+  /* Region headings */
+  .rh {
+    font-size: 10.5pt;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.005em;
+  }
+  .rh .it { font-family: var(--serif); font-style: italic; }
+
+  /* Status / formal boxes */
+  .box {
     position: absolute;
-    top: 10mm; left: 12mm; right: 12mm; bottom: 4mm;
-    display: grid;
-    grid-template-columns: 76.4mm 38.2mm 158.4mm;
-    grid-template-rows: 1fr;
-  }
-
-  /* ───────────────────── columns common ───────────────────── */
-
-  .col {
-    position: relative;
-    padding: 0 3mm;
     box-sizing: border-box;
-  }
-  .col.modal { padding-right: 4mm; }
-  .col.adj   { padding: 0 1mm; }
-  .col.conc  { padding-left: 4mm; padding-right: 0; }
-
-  /* Column headers */
-  .col-header {
-    font-size: 14pt;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    line-height: 1.05;
-  }
-  .col-sub {
-    font-size: 9pt;
-    font-weight: 400;
-    line-height: 1.3;
-    margin-top: 1.4mm;
-    max-width: 100%;
-    font-style: italic;
-  }
-  .modal .col-header, .modal .col-sub { color: var(--modal); }
-  .conc  .col-header, .conc  .col-sub { color: var(--conc); }
-
-  .col-header-block {
-    margin-bottom: 4mm;
-  }
-
-  /* Module boxes */
-  .mod {
-    border: 1pt solid var(--slate);
-    border-radius: 1mm;
-    padding: 2mm 2.4mm;
-    margin-bottom: 2.4mm;
     background: #fff;
-    box-sizing: border-box;
+    border: 0.5pt solid var(--ink);
+    padding: 1.4mm 1.8mm 1.6mm 1.8mm;
+    overflow: hidden;
   }
-  .modal .mod { border-color: var(--modal); }
-  .conc  .mod { border-color: var(--conc); }
-  .mod.future { border-style: dashed; }
-  .modal .mod.future { border-color: var(--modal-soft); }
-  .conc  .mod.future { border-color: var(--conc-soft); }
+  .box.postulate  { border-left-width: 2.7pt; }
+  .box.planned    { border: 0.5pt dashed var(--planned-border); }
+  .box.horizon    { border: 0.5pt dashed var(--horizon-border); background: var(--horizon-fill); }
 
-  .mod-name {
-    font-size: 11.5pt;
-    font-weight: 600;
-    line-height: 1.1;
-  }
-  .modal .mod-name { color: var(--modal); }
-  .conc  .mod-name { color: var(--conc); }
-  .mod.future .mod-name { opacity: 0.85; }
-
-  .mod-sym {
-    font-family: var(--serif);
-    font-size: 9pt;
-    color: var(--grey);
-    margin-top: 0.6mm;
-    line-height: 1.15;
-    font-style: italic;
-  }
-  .mod-desc {
-    font-size: 8.5pt;
-    font-weight: 400;
-    color: var(--slate);
-    line-height: 1.3;
-    margin-top: 1.2mm;
-  }
-
-  /* Audience-hook chips */
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5mm 2mm;
-    margin-top: 2mm;
-  }
-  .chip {
-    font-size: 8.5pt;
-    font-weight: 500;
-    color: var(--chip-fg);
-    background: var(--chip-bg);
-    border-radius: 9999px;
-    padding: 0.4mm 2.4mm;
-    line-height: 1.3;
-    white-space: nowrap;
-  }
-
-  /* ───────────────────── modal column ───────────────────── */
-
-  .modal-modules { display: flex; flex-direction: column; }
-  .anchors {
-    margin-top: auto;
-    padding-top: 3mm;
-  }
-  .anchors .chip { font-size: 8pt; padding: 0.3mm 2.2mm; }
-  .anchors-title {
+  .box-label {
     font-size: 10pt;
     font-weight: 600;
-    color: var(--modal);
-    margin-bottom: 1.6mm;
-  }
-  .anchors-note {
-    font-size: 8pt;
-    font-style: italic;
-    color: var(--chip-fg);
-    line-height: 1.3;
-    margin-top: 1.4mm;
-  }
-
-  .modal-col-inner {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  /* ───────────────────── adjunction column ───────────────────── */
-
-  .adj-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100%;
-    position: relative;
-    text-align: center;
-  }
-
-  .adj-spacer { height: 6mm; }
-
-  .adj-stack {
-    font-family: var(--serif);
-    font-size: 15pt;
-    font-weight: 500;
-    color: var(--slate);
-    line-height: 1.35;
+    color: var(--ink);
+    margin: 0 18mm 0.7mm 0;
     letter-spacing: 0.005em;
-    z-index: 2;
-    background: #fff;
-    padding: 0.5mm 2mm;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    line-height: 1.15;
   }
-  .adj-stack span { display: block; }
-  .adj-stack .turn { font-size: 13pt; color: var(--slate); line-height: 1.0; margin: 0.3mm 0; }
-
-  /* Visual gap reserved for the curved arrows. The SVG overlay draws into this zone
-     so the curves never collide with the stack or the codependency paragraph. */
-  .adj-curve-zone { height: 50mm; flex: 0 0 auto; }
-
-  .mediate-bar {
-    position: absolute;
-    top: 50%;
-    left: 0; right: 0;
-    transform: translateY(-50%);
-    pointer-events: none;
-  }
-
-  .codep {
-    font-size: 8pt;
-    font-style: italic;
-    color: var(--slate);
-    line-height: 1.4;
-    margin-top: 0;
-    text-align: center;
-    max-width: 36mm;
-  }
-
-  .easter {
-    margin-top: auto;
-    padding-bottom: 0;
-    color: var(--grey);
+  .box-formula {
     font-family: var(--serif);
-    font-size: 8pt;
+    font-size: 9.8pt;
+    color: var(--ink);
+    margin: 0 0 1.0mm 0;
+    line-height: 1.15;
+  }
+  .box-desc {
+    font-size: 7.4pt;
+    color: var(--ink);
+    line-height: 1.28;
+    margin: 0 0 0.9mm 0;
+    text-wrap: pretty;
+  }
+  .box-anno {
+    font-size: 6.8pt;
+    color: var(--ink-2);
+    font-style: italic;
+    margin: 0.4mm 0 0.9mm 0;
+    line-height: 1.25;
+  }
+  .box-paths {
+    font-family: var(--mono);
+    font-size: 6.0pt;
+    color: var(--ink-2);
+    line-height: 1.35;
+  }
+  .box-paths div { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* Status tag */
+  .tag {
+    position: absolute;
+    top: 1.1mm; right: 1.3mm;
+    font-size: 5.8pt;
+    font-family: var(--sans);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--tag-bg);
+    border: 0.3pt solid var(--rule);
+    padding: 0.4mm 1.1mm;
+    border-radius: 0.6mm;
+    line-height: 1;
+  }
+  .tag.horizon { background: #FFFFFF; }
+
+  /* Center region styling */
+  .center-band {
+    position: absolute;
+    left: 99mm; top: 18mm;
+    width: 57mm; height: 130mm;
+  }
+  .center-claim {
+    position:absolute; left:0; right:0; bottom:0; top:0;
+  }
+  .center-note {
+    font-size: 6.8pt;
+    color: var(--ink-2);
     line-height: 1.3;
-    width: 100%;
+    text-align:center;
+    font-style: italic;
   }
-  .easter .row {
-    display: flex;
+  .conj-box {
+    border: 0.5pt dashed var(--planned-border);
+    background: #fff;
+    padding: 1.2mm 1.5mm;
+    border-radius: 0.5mm;
+  }
+  .conj-box .h {
+    font-size: 7.2pt;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 0.6mm;
+  }
+  .conj-box .formula {
+    font-family: var(--serif);
+    font-size: 8.4pt;
+    color: var(--ink);
+    line-height: 1.35;
+  }
+
+  /* Adjoint-shape-open two-candidate box */
+  .ash {
+    border: 0.5pt solid var(--ink);
+    background: var(--tag-bg);
+    padding: 1.2mm 1.5mm 1.4mm 1.5mm;
+    border-radius: 0.5mm;
+    line-height: 1.25;
+  }
+  .ash .head {
+    font-size: 7.2pt; font-weight: 600; letter-spacing: 0.02em;
+    text-transform: uppercase; color: var(--ink); margin-bottom: 0.8mm;
+  }
+  .ash .row {
+    display: grid;
+    grid-template-columns: 12mm 1fr;
+    column-gap: 1mm;
+    margin-top: 0.6mm;
+  }
+  .ash .role {
+    font-size: 6.4pt; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em;
+    color: var(--ink);
+  }
+  .ash .body {
+    font-size: 6.7pt; color: var(--ink);
+  }
+  .ash .body .f { font-family: var(--serif); font-size: 7.4pt; }
+  .ash .gloss { font-size: 6.4pt; color: var(--ink-2); font-style: italic; }
+  .ash .rule-row { border-top: 0.3pt solid var(--hairline); margin: 1.0mm 0 0.4mm; }
+
+  /* Lower band */
+  .lower-band {
+    position:absolute;
+    left: 6mm; right: 6mm;
+    top: 151mm; height: 28mm;
+    border-top: 0.5pt solid var(--rule);
+  }
+  .lower-head {
+    font-size: 8.2pt; font-weight: 600; color: var(--ink);
+    margin: 0.8mm 0 0.8mm 0;
+  }
+  .lower-head .sub { color: var(--ink-2); font-weight: 400; font-size: 7.0pt; }
+
+  /* Legend strip */
+  .legend {
+    position:absolute;
+    left: 6mm; right: 6mm; top: 181mm; height: 24mm;
+    background: var(--legend-bg);
+    border: 0.4pt solid var(--rule);
+    border-radius: 0.6mm;
+    padding: 1mm 2.2mm;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1.1fr 1.6fr 1.1fr;
+    column-gap: 3mm;
+    font-size: 6.1pt;
+    color: var(--ink);
+    line-height: 1.15;
+  }
+  .legend .col-h {
+    font-size: 6.0pt;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-2);
+    font-weight: 600;
+    margin-bottom: 0.4mm;
+  }
+  .legend .row {
+    display: grid;
+    grid-template-columns: 10mm 1fr;
+    column-gap: 1.2mm;
     align-items: center;
-    gap: 1.6mm;
-    margin-bottom: 1.4mm;
-    justify-content: center;
-    font-size: 7.5pt;
+    margin: 0.1mm 0;
   }
-  .easter .lawvere {
-    font-size: 7pt;
+  .legend .swatch {
+    height: 2.8mm;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .legend .swatch svg { display:block; }
+  .legend .swatch .b {
+    width: 9mm; height: 2.8mm;
+    background:#fff;
+    border: 0.4pt solid var(--ink);
+    box-sizing: border-box;
+  }
+  .legend .swatch .b.postulate { border-left-width: 2.4pt; }
+  .legend .swatch .b.planned   { border: 0.4pt dashed var(--planned-border); }
+  .legend .swatch .b.horizon   { border: 0.4pt dashed var(--horizon-border); background: var(--horizon-fill); }
+  .legend-caveat {
+    font-size: 6.3pt; color: var(--ink-2); font-style: italic; line-height: 1.3;
+    align-self: center;
+    padding-left: 2mm;
+    border-left: 0.4pt solid var(--rule);
+  }
+
+  /* Brace labels */
+  .brace-label {
+    font-size: 6.6pt;
+    color: var(--ink-2);
     font-style: italic;
     text-align: center;
-    line-height: 1.3;
-    margin-top: 1mm;
-    color: var(--grey);
-  }
-  .tri { flex: 0 0 auto; }
-
-  /* ───────────────────── concurrency column ───────────────────── */
-
-  .conc-inner {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
-
-  .conc-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4mm;
-    flex: 0 0 auto;
-  }
-
-  .conc-sub {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .conc-sub-title {
-    font-size: 8.5pt;
-    font-weight: 600;
-    color: var(--grey);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 2mm;
-  }
-
-  .mod.compact {
-    padding: 1.5mm 2.2mm;
-    margin-bottom: 2mm;
-  }
-  .mod.compact .mod-name { font-size: 10pt; }
-  .mod.compact .mod-desc { font-size: 8pt; margin-top: 0.6mm; line-height: 1.25; }
-  .mod.compact .mod-sym  { font-size: 7.5pt; margin-top: 0.2mm; }
-  .mod.compact .chips { margin-top: 1.2mm; }
-  .mod.compact .chip  { font-size: 7pt; padding: 0.1mm 1.8mm; }
-
-  /* ───────────────────── cascade strip ───────────────────── */
-
-  .cascade {
-    background: var(--cascade-bg);
-    border-top: 0.5pt solid var(--slate);
-    margin-top: auto;
-    padding: 2mm 3mm 2mm 3mm;
-    box-sizing: border-box;
-    flex: 0 0 auto;
-  }
-  .cascade-head {
-    font-size: 8.5pt;
-    font-weight: 600;
-    color: var(--grey);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    margin-bottom: 1.2mm;
-  }
-  .cascade-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  .cascade-table td {
-    padding: 0.25mm 0;
-    vertical-align: top;
-    font-size: 8pt;
-    line-height: 1.18;
-    color: var(--slate);
-  }
-  .cascade-table td.module {
-    font-size: 8.5pt;
-    font-weight: 600;
-    width: 28%;
-    padding-right: 2mm;
-  }
-  .cascade-table td.tradeoff {
-    font-style: italic;
-    width: 32%;
-    padding-right: 2mm;
-    color: var(--slate);
-  }
-  .cascade-table td.strategy {
-    width: 40%;
-    color: var(--slate);
-  }
-  .cascade-foot {
-    font-size: 7pt;
-    font-style: italic;
-    color: var(--chip-fg);
-    margin-top: 1.2mm;
     line-height: 1.25;
   }
 
-  /* ───────────────────── overlay (arrows) ───────────────────── */
-
-  .overlay {
+  /* Diagnostics inset */
+  .diagnostics {
+    border: 0.5pt solid var(--ink);
+    background: #fff;
+    box-sizing: border-box;
     position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
+    padding: 1.4mm 1.8mm 1.6mm 1.8mm;
+    overflow: hidden;
+  }
+  .diagnostics::before {
+    content: "";
+    position: absolute;
+    inset: 1.2mm;
+    border: 0.3pt dotted var(--rule);
     pointer-events: none;
-    z-index: 5;
+  }
+  .diagnostics .role-tag {
+    font-size: 5.6pt;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-2);
+    margin-bottom: 0.6mm;
+    display: block;
   }
 
-  /* dotted vertical guides between cascade rows & modules above */
-  .guide { stroke: var(--rule); stroke-width: 0.4; stroke-dasharray: 0.6 1.6; fill: none; }
+  /* Vertical region rules (faint guides) */
+  .vrule {
+    position:absolute;
+    width: 0; border-left: 0.3pt solid var(--hairline);
+  }
 
-  /* SVG strokes & text — sizes given in user units (1 unit = 1 mm here)
-     because CSS pt inside a viewBox SVG scales unpredictably across browsers. */
-  .arrow {
-    fill: none;
-    stroke: #1F2937;
-    stroke-width: 0.5;
+  .overlay {
+    position:absolute; left:0; top:0;
+    width:297mm; height:210mm;
+    pointer-events:none;
+  }
+
+  /* Tiny labels used as arrow midpoint chips, etc. */
+  .mid-P {
+    position:absolute;
+    background:#fff;
+    border: 0.3pt solid var(--ink);
+    border-radius: 50%;
+    width: 2.6mm; height: 2.6mm;
+    text-align:center;
+    font-size: 5.4pt; font-weight: 700;
+    line-height: 2.4mm;
+    color: var(--ink);
   }
 </style>
 </head>
@@ -377,304 +319,509 @@
 
 <div class="page">
 
-  <!-- ════════════ overlay: arrows, mediate bar, guides ════════════ -->
-  <!-- Coordinate system in mm, matching the page. -->
-  <svg class="overlay" viewBox="0 0 297 210" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- ============ REGION HEADINGS ============ -->
+  <div class="abs rh" style="left:6mm; top:6mm; width:90mm;">
+    fragments of <span class="it">𝓜</span> &mdash; cohesive HoTT
+  </div>
+  <div class="abs rh" style="left:99mm; top:6mm; width:57mm; text-align:center;">
+    proposed comparison adjunction
+  </div>
+  <div class="abs rh" style="left:159mm; top:6mm; width:132mm;">
+    fragments of <span class="it">𝓟</span> &mdash; actor-causal / session
+  </div>
+
+  <!-- Hairline divider under headings -->
+  <div class="abs" style="left:6mm; right:6mm; top:14.5mm; height:0; border-top:0.4pt solid var(--hairline);"></div>
+
+  <!-- Faint vertical guides between regions (removed: braces serve this role) -->
+
+
+  <!-- ====================================================== -->
+  <!-- ============ LEFT REGION: fragments of 𝓜 ============= -->
+  <!-- ====================================================== -->
+
+  <!-- Box: Cohesive modalities -->
+  <div class="box postulate" style="left:15mm; top:18mm; width:80mm; height:24mm;">
+    <div class="tag">Postulate</div>
+    <div class="box-label">Cohesive modalities</div>
+    <div class="box-formula">ʃ &nbsp;⊣&nbsp; ♭ &nbsp;⊣&nbsp; ♯</div>
+    <div class="box-desc">
+      Synthetic axiomatization of shape, flat, sharp. Some functor laws and idempotency results derived; others postulated.
+    </div>
+    <div class="box-paths">
+      <div>agda/ModalHoTT/Modalities/{Cohesion,Adjunctions,Properties}.agda</div>
+    </div>
+  </div>
+
+  <!-- Box: Fracture square -->
+  <div class="box postulate" style="left:15mm; top:44mm; width:80mm; height:24mm;">
+    <div class="tag">Postulate</div>
+    <div class="box-label">Fracture square</div>
+    <div class="box-formula">♭X &nbsp;≃&nbsp; X &times;<sub style="font-size:7pt;">♯X</sub> ♭♯X</div>
+    <div class="box-desc">
+      The canonical map ♭X → (X ×<sub style="font-size:6.5pt;">♯X</sub> ♭♯X) is postulated to be an equivalence.
+    </div>
+    <div class="box-paths">
+      <div>agda/ModalHoTT/Modalities/Fracture.agda</div>
+    </div>
+  </div>
+
+  <!-- Box: Adjunction iteration -->
+  <div class="box postulate" style="left:15mm; top:70mm; width:80mm; height:24mm;">
+    <div class="tag">Postulate</div>
+    <div class="box-label">Adjunction iteration</div>
+    <div class="box-formula">T = ♭ ∘ ʃ,&nbsp;&nbsp; T<sup style="font-size:7pt;">n</sup>,&nbsp;&nbsp; η<sup style="font-size:7pt;">n</sup>,&nbsp;&nbsp; SeqColim</div>
+    <div class="box-desc">
+      Generic monad iteration of an adjunction; the cohesive instance proves first-level collapse for ʃ ⊣ ♭.
+    </div>
+    <div class="box-paths">
+      <div>agda/ModalHoTT/Modalities/{Iteration,IterationCohesion}.agda</div>
+    </div>
+  </div>
+
+  <!-- Box: Flat-coefficient cohomology -->
+  <div class="box postulate" style="left:15mm; top:96mm; width:80mm; height:24mm;">
+    <div class="tag">Postulate</div>
+    <div class="box-label">Flat-coefficient cohomology</div>
+    <div class="box-formula">H<sub style="font-size:7pt;">flat</sub>(X; B) &nbsp;:=&nbsp; ʃX → B</div>
+    <div class="box-desc">
+      Structural flat-coefficient equivalence pinned via naturality postulates. Not yet differential de Rham theory.
+    </div>
+    <div class="box-paths">
+      <div>agda/{ModalHoTT,Analytic/ModalHoTT}/Cohomology/FlatCoefficients.agda</div>
+    </div>
+  </div>
+
+  <!-- Diagnostics inset (NOT a 𝓜 fragment box) -->
+  <div class="diagnostics" style="left:14mm; top:122mm; width:76mm; height:26mm;">
+    <span class="role-tag">diagnostic inset · not a 𝓜 fragment</span>
+    <div class="tag">Agda def</div>
+    <div class="box-label">Analytic diagnostics</div>
+    <div class="box-formula">ℤ,&nbsp;&nbsp; Bℤ,&nbsp;&nbsp; Ω(Bℤ) ≃ ℤ</div>
+    <div class="box-desc" style="font-size:7.2pt;">
+      Concrete model for checking the synthetic axioms. <span style="font-family:var(--serif); font-style:italic;">Bℤ</span> records where the axiomatization overshoots the analytic model.
+    </div>
+    <div class="box-paths">
+      <div>agda/Analytic/ModalHoTT/Modalities/*</div>
+    </div>
+  </div>
+
+
+  <!-- ====================================================== -->
+  <!-- ============ CENTER: comparison adjunction =========== -->
+  <!-- ====================================================== -->
+
+  <!-- Two-lane rail -->
+  <div class="abs" style="left:99mm; top:20mm; width:57mm; height:75mm;">
+
+    <!-- Faint vertical rails -->
+    <div class="abs" style="left:8.55mm; top:0; width:0; height:64mm; border-left:0.4pt solid var(--rule);"></div>
+    <div class="abs" style="left:48.45mm; top:0; width:0; height:64mm; border-left:0.4pt solid var(--rule);"></div>
+
+    <!-- Rail labels (𝓜 / 𝓟) at top of rails — both placed OUTSIDE the rail pair so neither touches its line -->
+    <div class="abs" style="left:0mm;    top:-1mm; width:7mm; text-align:center; font-family:var(--serif); font-style:italic; font-size:11pt; color:var(--ink);">𝓜</div>
+    <div class="abs" style="left:50mm;   top:-1mm; width:7mm; text-align:center; font-family:var(--serif); font-style:italic; font-size:11pt; color:var(--ink);">𝓟</div>
+
+    <!-- Upper lane: Allow :&nbsp; 𝓜&thinsp; → 𝓟 -->
+    <svg class="overlay" viewBox="0 0 57 75" preserveAspectRatio="none" style="left:0; top:0; width:57mm; height:75mm;">
+      <defs>
+        <marker id="ah-ink" viewBox="0 0 8 8" refX="6.4" refY="4" markerWidth="3" markerHeight="3" orient="auto-start-reverse">
+          <path d="M0,0 L7,4 L0,8 z" fill="#111827"/>
+        </marker>
+      </defs>
+      <!-- Allow lane: left → right -->
+      <line x1="9.0" y1="14" x2="48.0" y2="14" stroke="#111827" stroke-width="0.35" marker-end="url(#ah-ink)"/>
+      <!-- Require lane: right → left -->
+      <line x1="48.0" y1="28" x2="9.0" y2="28" stroke="#111827" stroke-width="0.35" marker-end="url(#ah-ink)"/>
+    </svg>
+
+    <!-- Lane labels -->
+    <div class="abs" style="left:0; top:6mm; width:57mm; text-align:center;
+                            font-family:var(--serif); font-style:italic; font-size:10.8pt; color:var(--ink);">
+      Allow : 𝓜 → 𝓟
+    </div>
+    <div class="abs" style="left:0; top:31mm; width:57mm; text-align:center;
+                            font-family:var(--serif); font-style:italic; font-size:10.8pt; color:var(--ink);">
+      Require :&nbsp; 𝓟&thinsp; → 𝓜
+    </div>
+
+    <!-- Adjunction symbol between lanes -->
+    <div class="abs" style="left:0; top:18mm; width:57mm; text-align:center;
+                            font-family:var(--serif); font-size:10.5pt; color:var(--ink);">
+      <span style="display:inline-block; border:0.4pt solid var(--ink); padding:0.5mm 1.6mm; border-radius:0.6mm; background:#fff;">
+        Allow&nbsp;⊣&nbsp;Require
+      </span>
+    </div>
+
+    <!-- Conjectural status note -->
+    <div class="abs center-note" style="left:9.5mm; top:38mm; width:38mm;">
+      Conjectural comparison adjunction.<br/>
+      The code currently formalizes fragments of <span style="font-family:var(--serif); font-style:italic;">𝓜</span> and
+      <span style="font-family:var(--serif); font-style:italic;">𝓟</span>,
+      not the functors <span style="font-family:var(--serif); font-style:italic;">Allow</span> and
+      <span style="font-family:var(--serif); font-style:italic;">Require</span>.
+    </div>
+
+    <!-- η / ε formulae -->
+    <div class="abs conj-box" style="left:1mm; top:56mm; width:55mm;">
+      <div class="h">conjectural unit / counit</div>
+      <div class="formula">
+        η :&nbsp; id<sub style="font-size:6.8pt;">𝓜</sub> ⇒ Require ∘ Allow<br/>
+        ε :&nbsp; Allow ∘ Require ⇒ id<sub style="font-size:6.8pt;">𝓟</sub>
+      </div>
+    </div>
+
+  </div><!-- end rail block -->
+
+  <!-- adjoint-shape-open two-candidate box (under η/ε) -->
+  <div class="abs ash" style="left:100mm; top:97mm; width:55mm; height:39mm;">
+    <div class="head">adjoint shape open <span style="font-weight:400; text-transform:none; letter-spacing:0; color:var(--ink-2); font-style:italic; font-size:6.6pt;">— resolution deferred to future mathematics</span></div>
+
+    <div class="row">
+      <div class="role">drawn</div>
+      <div class="body">
+        <span class="f">Allow ⊣ Require</span>
+        <div class="gloss">
+          displayed η, ε; matches current <span style="font-family:var(--mono); font-style:normal; font-size:6pt;">arc.md</span> data;
+          same pair shape as the generic <span style="font-family:var(--mono); font-style:normal; font-size:6pt;">Iteration.agda</span> scaffold.
+        </div>
+      </div>
+    </div>
+
+    <div class="rule-row"></div>
+
+    <div class="row">
+      <div class="role">not drawn</div>
+      <div class="body">
+        <span class="f">Allow ⊣ Mediate ⊣ Require</span>
+        <div class="gloss">
+          possible refinement; does not supply the displayed
+          <span style="font-family:var(--serif); font-style:italic;">η :&nbsp;id<sub style="font-size:5.8pt;">𝓜</sub> ⇒ Require ∘ Allow</span>
+          without extra identifications.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashed braces removed per user request -->
+
+  <!-- Brace labels removed per user request -->
+
+  <!-- 𝓟 region composite-caveat note -->
+  <div class="abs" style="left:158mm; top:124mm; width:131mm;
+                          font-size: 6.8pt; color: var(--ink-2); line-height:1.3; font-style:italic;
+                          border-left: 0.5pt solid var(--rule); padding: 0.5mm 0 0.5mm 2.5mm;">
+    <span style="font-family:var(--serif); font-style:italic;">𝓟</span>&nbsp;&nbsp;is a composite (site-with-session-values + <span style="font-family:var(--serif); font-style:italic;">O</span><sub style="font-size:5.6pt;">1</sub> interaction-structure),
+    not yet unified into a single category; these fragments are heterogeneous
+    ingredients, not approximations of one object.
+  </div>
+
+
+  <!-- ====================================================== -->
+  <!-- =========== RIGHT REGION: fragments of 𝓟 ============= -->
+  <!-- ====================================================== -->
+
+  <!-- Row 1, col A: Actor-causal pretopology -->
+  <div class="box postulate" style="left:159mm; top:18mm; width:63mm; height:31mm;">
+    <div class="tag">Postulate</div>
+    <div class="box-label">Actor-causal pretopology</div>
+    <div class="box-formula">LocalFrame,&nbsp; FrameHom,&nbsp; Cover</div>
+    <div class="box-desc">
+      Opaque actors, causally ordered events, local frames, frame embeddings, basis covers. Cover stability postulated.
+    </div>
+    <div class="box-paths">
+      <div>agda/Concurrency/Sites/{ActorBase,ActorCausal}.agda</div>
+    </div>
+  </div>
+
+  <!-- Row 1, col B: Cyclic operad O₁ -->
+  <div class="box" style="left:226mm; top:18mm; width:63mm; height:31mm;">
+    <div class="tag">Agda def</div>
+    <div class="box-label">Cyclic operad <span style="font-family:var(--serif); font-style:italic;">O₁</span></div>
+    <div class="box-formula">gen,&nbsp; comp<sub style="font-size:7pt;">○</sub>,&nbsp; rot,&nbsp; boundary-swap</div>
+    <div class="box-desc">
+      One-generator cyclic interaction grammar with rotation and gluing operations.
+    </div>
+    <div class="box-paths">
+      <div>agda/Concurrency/Operads/{CyclicAssociative,PortGluing,PortRotation}.agda</div>
+    </div>
+  </div>
+
+  <!-- Row 2, col A: Generic frame-indexed presheaves -->
+  <div class="box" style="left:159mm; top:54mm; width:63mm; height:31mm;">
+    <div class="tag">Agda def</div>
+    <div class="box-label">Generic frame-indexed presheaves</div>
+    <div class="box-formula">F : Frame<sup style="font-size:6.8pt; font-family:var(--serif); font-style:italic;">op</sup> → 𝓥;&nbsp;&nbsp; IsSeparated <span style="font-style:italic;">stated, no witness</span></div>
+    <div class="box-desc">
+      Presheaves over actor-causal frames valued in an abstract *-autonomous target. Descent and gluing planned.
+    </div>
+    <div class="box-anno">(constant presheaves only; no separatedness witnesses yet)</div>
+    <div class="box-paths">
+      <div>agda/Concurrency/Hybrid/Presheaf.agda</div>
+    </div>
+  </div>
+
+  <!-- Row 2, col B: *-autonomous session target -->
+  <div class="box postulate" style="left:226mm; top:54mm; width:63mm; height:31mm;">
+    <div class="tag">Postulate</div>
+    <div class="box-label">*-autonomous session target</div>
+    <div class="box-formula">⊗,&nbsp; ⅋,&nbsp; 𝟙,&nbsp; ⊥,&nbsp; (−)<sup style="font-size:7pt;">⊥</sup></div>
+    <div class="box-desc">
+      Thin categorical interface for multiplicative session semantics; coherence not yet developed in full.
+    </div>
+    <div class="box-paths">
+      <div>agda/Concurrency/Algebras/{StarAutonomous,Sessions}.agda</div>
+    </div>
+  </div>
+
+  <!-- Row 3, col A: Session-valued frame presheaves -->
+  <div class="box postulate" style="left:159mm; top:90mm; width:63mm; height:31mm;">
+    <div class="tag">Postulate</div>
+    <div class="box-label">Session-valued frame presheaves</div>
+    <div class="box-formula">SessionPresheaf = FramePresheaf(Sessions-Cat)</div>
+    <div class="box-desc">
+      Specializes the generic chassis to the session target. The Sessions-Cat dependency imports postulate-supported semantics.
+    </div>
+    <div class="box-anno">(constant presheaves only; no separatedness witnesses yet)</div>
+    <div class="box-paths">
+      <div>agda/Concurrency/Hybrid/SessionPresheaf.agda</div>
+    </div>
+  </div>
+
+  <!-- Row 3, col B: O₁-algebra on session values -->
+  <div class="box postulate" style="left:226mm; top:90mm; width:63mm; height:31mm;">
+    <div class="tag">Postulate</div>
+    <div class="box-label"><span style="font-family:var(--serif); font-style:italic;">O₁</span>-algebra on session values</div>
+    <div class="box-formula">Valuation,&nbsp; OperadAlgebra,&nbsp; SessionO1Action</div>
+    <div class="box-desc">
+      The <span style="font-family:var(--serif); font-style:italic;">O₁</span> action is packaged as explicit structure, not derived canonically from the current session category.
+    </div>
+    <div class="box-anno">(operadic lift to presheaves planned)</div>
+    <div class="box-paths">
+      <div>agda/Concurrency/Algebras/{Valuation,OperadAlgebra}.agda</div>
+    </div>
+  </div>
+
+
+  <!-- ====================================================== -->
+  <!-- =========== LOWER BAND ================================ -->
+  <!-- ====================================================== -->
+
+  <div class="lower-band">
+    <div class="lower-head">
+      Further structure not part of the current formalization
+      <span class="sub">&nbsp;— planned and programmatic items; not participating in the displayed adjunction</span>
+    </div>
+
+    <!-- Planned construction group: 8 single-line pills in 2 rows of 4 -->
+    <div class="abs" style="left:0; top:5mm; width:172mm;">
+      <div style="font-size:6.2pt; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-2); font-weight:600; margin-bottom:1.2mm;">
+        Planned construction
+      </div>
+      <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap: 1.2mm 1.6mm;">
+
+        <div class="box planned" style="position:relative; left:auto; top:auto; width:auto; min-height:9.6mm; padding:0.7mm 1.3mm; display:flex; align-items:center;">
+          <div class="tag" style="background:#fff; position:static; margin-right:1.5mm;">Planned</div>
+          <div style="font-size:7.0pt; font-weight:600; color:var(--ink); line-height:1.15;">Sheaf descent over actor-causal covers</div>
+        </div>
+
+        <div class="box planned" style="position:relative; left:auto; top:auto; width:auto; min-height:9.6mm; padding:0.7mm 1.3mm; display:flex; align-items:center;">
+          <div class="tag" style="background:#fff; position:static; margin-right:1.5mm;">Planned</div>
+          <div style="font-size:7.0pt; font-weight:600; color:var(--ink); line-height:1.15;">Generated sieve topology</div>
+        </div>
+
+        <div class="box planned" style="position:relative; left:auto; top:auto; width:auto; min-height:9.6mm; padding:0.7mm 1.3mm; display:flex; align-items:center;">
+          <div class="tag" style="background:#fff; position:static; margin-right:1.5mm;">Planned</div>
+          <div style="font-size:7.0pt; font-weight:600; color:var(--ink); line-height:1.15;">Canonical&nbsp;<span style="font-family:var(--serif); font-style:italic;">O₁</span>&nbsp;action from richer session semantics</div>
+        </div>
+
+        <div class="box planned" style="position:relative; left:auto; top:auto; width:auto; min-height:9.6mm; padding:0.7mm 1.3mm; display:flex; align-items:center;">
+          <div class="tag" style="background:#fff; position:static; margin-right:1.5mm;">Planned</div>
+          <div style="font-size:7.0pt; font-weight:600; color:var(--ink); line-height:1.15;">Operadic valuation over frame presheaves</div>
+        </div>
+
+        <div class="box planned" style="position:relative; left:auto; top:auto; width:auto; min-height:9.6mm; padding:0.7mm 1.3mm; display:flex; align-items:center;">
+          <div class="tag" style="background:#fff; position:static; margin-right:1.5mm;">Planned</div>
+          <div style="font-size:7.0pt; font-weight:600; color:var(--ink); line-height:1.15;">Differential cohesion:&nbsp; ℜ ⊣ ℑ ⊣ &amp;</div>
+        </div>
+
+        <div class="box planned" style="position:relative; left:auto; top:auto; width:auto; min-height:9.6mm; padding:0.7mm 1.3mm; display:flex; align-items:center;">
+          <div class="tag" style="background:#fff; position:static; margin-right:1.5mm;">Planned</div>
+          <div style="font-size:7.0pt; font-weight:600; color:var(--ink); line-height:1.15;">Cyclic bar construction at&nbsp;<span style="font-family:var(--serif); font-style:italic;">S¹</span></div>
+        </div>
+
+        <div class="box planned" style="position:relative; left:auto; top:auto; width:auto; min-height:9.6mm; padding:0.7mm 1.3mm; display:flex; align-items:center;">
+          <div class="tag" style="background:#fff; position:static; margin-right:1.5mm;">Planned</div>
+          <div style="font-size:7.0pt; font-weight:600; color:var(--ink); line-height:1.15;">Protocol-version category&nbsp;<span style="font-family:var(--serif); font-style:italic;">Π</span></div>
+        </div>
+
+        <div class="box planned" style="position:relative; left:auto; top:auto; width:auto; min-height:9.6mm; padding:0.7mm 1.3mm; display:flex; align-items:center;">
+          <div class="tag" style="background:#fff; position:static; margin-right:1.5mm;">Planned</div>
+          <div style="font-size:7.0pt; font-weight:600; color:var(--ink); line-height:1.15;">Content category&nbsp;<span style="font-family:var(--serif); font-style:italic;">Λ</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Programmatic horizon group -->
+    <div class="abs" style="left:178mm; top:5mm; width:107mm;">
+      <div style="font-size:6.2pt; text-transform:uppercase; letter-spacing:0.08em; color:var(--ink-2); font-weight:600; margin-bottom:1.2mm;">
+        Programmatic horizon
+      </div>
+      <div class="box horizon" style="position:relative; left:auto; top:auto; width:auto; height:18mm; padding:1.0mm 1.4mm 1.2mm 1.4mm;">
+        <div class="tag horizon">Horizon</div>
+        <div class="box-label" style="font-size:8.0pt; margin-right:14mm; margin-bottom:0.6mm;">Long-horizon mathematical program</div>
+        <div class="box-desc" style="font-size:6.6pt; color:var(--ink); margin-bottom:0.5mm;">
+          Factorization-algebra dynamics;&nbsp; Protocol 2-category / meta-topos;&nbsp;
+          <span style="font-family:var(--serif); font-style:italic;">MO₁</span> and <span style="font-family:var(--serif); font-style:italic;">GT</span> action;&nbsp;
+          Receiver-relative information cohomology;&nbsp; Iterated comparison adjunction.
+        </div>
+        <div style="font-size:6.2pt; color:var(--ink-2); font-style:italic; line-height:1.25;">
+          Not current constructions. Listed to mark the program of which the displayed fragments are early pieces;
+          nothing here participates in the central adjunction at present.
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ====================================================== -->
+  <!-- =========== LEGEND STRIP (bottom margin) ============= -->
+  <!-- ====================================================== -->
+  <div class="legend">
+    <!-- Status column -->
+    <div>
+      <div class="col-h">status</div>
+      <div class="row"><div class="swatch"><div class="b"></div></div>
+        <div><b>Agda definition</b> &mdash; defined in the Agda tree.</div></div>
+      <div class="row"><div class="swatch"><div class="b postulate"></div></div>
+        <div><b>Agda, postulate-supported</b> &mdash; defined but relies on explicit postulates or axiomatic interfaces.</div></div>
+      <div class="row"><div class="swatch"><div class="b planned"></div></div>
+        <div><b>Planned construction</b> &mdash; intended next or medium-term construction.</div></div>
+      <div class="row"><div class="swatch"><div class="b horizon"></div></div>
+        <div><b>Programmatic horizon</b> &mdash; long-horizon program, not a current construction.</div></div>
+    </div>
+
+    <!-- Arrows column -->
+    <div>
+      <div class="col-h">arrows</div>
+      <div class="row">
+        <div class="swatch">
+          <svg width="9mm" height="3.2mm" viewBox="0 0 9 3.2"><defs>
+            <marker id="lh1" viewBox="0 0 8 8" refX="6.4" refY="4" markerWidth="3.4" markerHeight="3.4" orient="auto-start-reverse"><path d="M0,0 L7,4 L0,8 z" fill="#111827"/></marker>
+          </defs><line x1="0.4" y1="1.6" x2="8.4" y2="1.6" stroke="#111827" stroke-width="0.35" marker-end="url(#lh1)"/></svg>
+        </div>
+        <div>solid arrow &mdash; implemented dependency, construction, or import relation.</div>
+      </div>
+      <div class="row">
+        <div class="swatch" style="position:relative;">
+          <svg width="9mm" height="3.2mm" viewBox="0 0 9 3.2"><defs>
+            <marker id="lh2" viewBox="0 0 8 8" refX="6.4" refY="4" markerWidth="3.4" markerHeight="3.4" orient="auto-start-reverse"><path d="M0,0 L7,4 L0,8 z" fill="#111827"/></marker>
+          </defs><line x1="0.4" y1="1.6" x2="8.4" y2="1.6" stroke="#111827" stroke-width="0.35" marker-end="url(#lh2)"/>
+          <circle cx="4.4" cy="1.6" r="1.0" fill="#FFFFFF" stroke="#111827" stroke-width="0.25"/>
+          <text x="4.4" y="2.3" text-anchor="middle" font-size="1.4" font-family="Inter, sans-serif" font-weight="700" fill="#111827">P</text>
+          </svg>
+        </div>
+        <div>solid arrow with <b>P</b> &mdash; dependency through postulate-supported structure or an axiomatic interface.</div>
+      </div>
+      <div class="row">
+        <div class="swatch">
+          <svg width="9mm" height="3.2mm" viewBox="0 0 9 3.2"><defs>
+            <marker id="lh3" viewBox="0 0 8 8" refX="6.4" refY="4" markerWidth="3.4" markerHeight="3.4" orient="auto-start-reverse"><path d="M0,0 L7,4 L0,8 z" fill="#111827"/></marker>
+          </defs><line x1="0.4" y1="1.6" x2="8.4" y2="1.6" stroke="#111827" stroke-width="0.35" stroke-dasharray="1.0 0.8" marker-end="url(#lh3)"/></svg>
+        </div>
+        <div>dashed arrow &mdash; conjectural or planned relation (not drawn in this diagram; reserved for future use).</div>
+      </div>
+      <div class="row">
+        <div class="swatch">
+          <svg width="9mm" height="3.2mm" viewBox="0 0 9 3.2">
+            <line x1="0.2" y1="1.1" x2="8.8" y2="1.1" stroke="#111827" stroke-width="0.30"/>
+            <line x1="0.2" y1="2.1" x2="8.8" y2="2.1" stroke="#111827" stroke-width="0.30"/>
+          </svg>
+        </div>
+        <div>thin double-stroke line, no arrowheads &mdash; <b>model / diagnostic comparison</b>; not a construction, dependency, or import relation.</div>
+      </div>
+    </div>
+
+    <!-- Central caveat -->
+    <div class="legend-caveat">
+      The central comparison adjunction is <b>proposed structure</b>. The
+      surrounding boxes are current formal fragments and planned extensions,
+      not a proof that the adjunction has been constructed.
+    </div>
+  </div>
+
+
+  <!-- ====================================================== -->
+  <!-- =========== ARROWS / OVERLAYS (in mm coords) ========= -->
+  <!-- ====================================================== -->
+  <svg class="overlay" viewBox="0 0 297 210" preserveAspectRatio="none">
     <defs>
-      <marker id="arrowhead-slate" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-        <path d="M0,0 L10,5 L0,10 z" fill="#1F2937" />
-      </marker>
-      <marker id="arrowhead-slate-rev" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
-        <path d="M0,0 L10,5 L0,10 z" fill="#1F2937" />
-      </marker>
-      <marker id="tick-slate" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
-        <path d="M0,0 L10,5 L0,10 z" fill="#1F2937" />
+      <marker id="ar-ink" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="3.2" markerHeight="3.2" orient="auto-start-reverse">
+        <path d="M0,0 L9,5 L0,10 z" fill="#111827"/>
       </marker>
     </defs>
 
-    <!-- The symbol stack sits in the upper part of the adjunction column (roughly
-         y≈18–47 inside the content area, i.e. y≈30–59 on the page). The two curved
-         arrows sit in a dedicated visual band BELOW the stack so they never collide
-         with the modality words. Allow arches up toward the stack; Require arches
-         down toward the codependency paragraph. -->
+    <!-- ============ 𝓜 INTERNAL DEPENDENCIES ============ -->
+    <!-- Trunk: right edge of Cohesive modalities, down through gap channel x=96; stubs run in the gaps between boxes (y=43, 69, 95) and drop into each target box's top edge. -->
+    <line x1="95" y1="30"  x2="96" y2="30"  stroke="#111827" stroke-width="0.4"/>
+    <line x1="96" y1="30"  x2="96" y2="95"  stroke="#111827" stroke-width="0.4"/>
+    <!-- Stub into Fracture square (in gap y=43) -->
+    <line x1="96" y1="43"  x2="55" y2="43"  stroke="#111827" stroke-width="0.4"/>
+    <line x1="55" y1="43"  x2="55" y2="44"  stroke="#111827" stroke-width="0.4" marker-end="url(#ar-ink)"/>
+    <!-- Stub into Adjunction iteration (in gap y=69) -->
+    <line x1="96" y1="69"  x2="55" y2="69"  stroke="#111827" stroke-width="0.4"/>
+    <line x1="55" y1="69"  x2="55" y2="70"  stroke="#111827" stroke-width="0.4" marker-end="url(#ar-ink)"/>
+    <!-- Stub into Flat-coefficient cohomology (in gap y=95) -->
+    <line x1="96" y1="95"  x2="55" y2="95"  stroke="#111827" stroke-width="0.4"/>
+    <line x1="55" y1="95"  x2="55" y2="96"  stroke="#111827" stroke-width="0.4" marker-end="url(#ar-ink)"/>
 
-    <!-- The curve-zone is 50 mm tall and sits between the symbol stack and the
-         codependency paragraph (roughly y≈49–99 absolute). All SVG curves and
-         labels are positioned to stay inside this band. -->
+    <!-- ============ DIAGNOSTICS DOUBLE-STROKE COMPARISON LINE ============ -->
+    <!-- Single centerline rendered twice: thick black + thin white overlay = two parallel rails, no arrowheads. -->
+    <path d="M 30 122 L 30 119 L 11 119 L 11 30 L 15 30"
+          fill="none" stroke="#111827" stroke-width="1.0" stroke-linejoin="round" stroke-linecap="butt"/>
+    <path d="M 30 122 L 30 119 L 11 119 L 11 30 L 15 30"
+          fill="none" stroke="#FFFFFF" stroke-width="0.42" stroke-linejoin="round" stroke-linecap="butt"/>
 
-    <!-- Allow: modal-right → concurrency-left, arching gently upward (∩ shape). -->
-    <path class="arrow"
-          d="M 88.4 72 C 100 60, 115 60, 126.6 72"
-          marker-end="url(#arrowhead-slate)" />
-    <text x="107.5" y="57" text-anchor="middle"
-          font-family="'Inter','Helvetica Neue',system-ui,sans-serif"
-          font-size="3.2" font-weight="500" fill="#1F2937">Allow</text>
+    <!-- ============ 𝓟 INTERNAL DEPENDENCIES ============ -->
+    <!-- Pretopology → Generic presheaves (col A, row1 → row2): solid -->
+    <line x1="190.5" y1="49" x2="190.5" y2="54" stroke="#111827" stroke-width="0.4" marker-end="url(#ar-ink)"/>
+    <!-- Generic presheaves → Session presheaves (col A, row2 → row3): solid -->
+    <line x1="190.5" y1="85" x2="190.5" y2="90" stroke="#111827" stroke-width="0.4" marker-end="url(#ar-ink)"/>
 
-    <!-- Require: concurrency-left → modal-right, arching gently downward (∪ shape).
-         Label sits INSIDE the U interior (above the deepest line), mirroring how
-         "Allow" sits above its ∩ curve. -->
-    <path class="arrow"
-          d="M 126.6 82 C 115 96, 100 96, 88.4 82"
-          marker-end="url(#arrowhead-slate)" />
-    <text x="107.5" y="88" text-anchor="middle"
-          font-family="'Inter','Helvetica Neue',system-ui,sans-serif"
-          font-size="3.2" font-weight="500" fill="#1F2937">Require</text>
+    <!-- O₁ → O₁-algebra (col B, row1 → row3) routed at x=291, OUTSIDE the *-autonomous box at x=226-289 -->
+    <path d="M 270 49 L 270 50.5 L 291 50.5 L 291 91.5 L 289 91.5"
+          fill="none" stroke="#111827" stroke-width="0.4"
+          marker-end="url(#ar-ink)"/>
 
-    <!-- Mediate: small bidirectional tick between the two curves. -->
-    <line x1="103" y1="77" x2="112" y2="77"
-          stroke="#6B7280" stroke-width="0.4"
-          marker-start="url(#arrowhead-slate)" marker-end="url(#arrowhead-slate)" />
-    <text x="107.5" y="75.2" text-anchor="middle"
-          font-family="'Inter','Helvetica Neue',system-ui,sans-serif"
-          font-size="2.4" font-style="italic" fill="#6B7280">Mediate</text>
+    <!-- *-autonomous → O₁-algebra (col B, row2 → row3): solid w/ P marker -->
+    <line x1="257.5" y1="85" x2="257.5" y2="90"
+          stroke="#111827" stroke-width="0.4"
+          marker-end="url(#ar-ink)"/>
 
-    <!-- Cascade alignment guides: subtle dotted verticals connecting each cascade row to the module above. -->
-    <!-- The 4 left shipped modules sit roughly at x = 138, 138, 138, 138 within concurrency.
-         The cascade rows reference: Hybrid, Reflexive Π, Bulk Λ, Field dynamics, Federation, Info cohomology.
-         Hybrid is in shipped (left sub-col); the other 5 are in future (right sub-col).
-         We draw faint short guides above each row to suggest alignment without committing to exact coords. -->
-    <!-- (Disabled: too noisy at this scale. Kept the option open via CSS class.) -->
+    <!-- *-autonomous → Session presheaves: orthogonal route via gap below row 2 -->
+    <path d="M 240 85 L 240 87.5 L 170 87.5 L 170 90"
+          fill="none" stroke="#111827" stroke-width="0.4"
+          marker-end="url(#ar-ink)"/>
   </svg>
 
-  <!-- ════════════ content grid ════════════ -->
-  <div class="content">
+  <!-- P markers placed atop the postulate-dependency arrows above -->
+  <!-- 1. O₁ → O₁-algebra (along x=291) midpoint ≈ y=67 -->
+  <div class="mid-P" style="left:289.7mm; top:69.7mm;">P</div>
+  <!-- 2. *-aut → O₁-algebra (x=257.5) midpoint ≈ y=82.5 -->
+  <div class="mid-P" style="left:256.2mm; top:86.2mm;">P</div>
+  <!-- 3. *-aut → Session presheaves (diagonal) midpoint ≈ (224, 75) -->
+  <div class="mid-P" style="left:203.7mm; top:86.2mm;">P</div>
 
-    <!-- ─────────── MODAL COLUMN ─────────── -->
-    <div class="col modal">
-      <div class="modal-col-inner">
+  <!-- Label on the diagnostic-comparison line -->
+  <div class="abs" style="left:6mm; top:67mm; width:14mm;
+                          font-size: 5.8pt; color: var(--ink-2); font-style: italic; line-height:1.2;
+                          writing-mode: vertical-rl; transform: rotate(180deg);
+                          text-align:center;">
+    diagnostic comparison&nbsp;·&nbsp;model check, not a dependency
+  </div>
 
-        <div class="col-header-block">
-          <div class="col-header">Modal side</div>
-          <div class="col-sub">the cohesive ∞-topos in which the system is embedded — its context, its perspectival structure, its space of resolutions</div>
-        </div>
-
-        <div class="modal-modules">
-
-          <div class="mod">
-            <div class="mod-name">Cohesion</div>
-            <div class="mod-sym">ʃ&nbsp;⊣&nbsp;♭&nbsp;⊣&nbsp;♯</div>
-            <div class="mod-desc">shape ⊣ flat ⊣ sharp. The minimum modal structure that supports multi-level perspectival reasoning. The floor of the framework on this side.</div>
-          </div>
-
-          <div class="mod">
-            <div class="mod-name">Modal site</div>
-            <div class="mod-sym">Bℤ&nbsp;≃&nbsp;S¹</div>
-            <div class="mod-desc">the delooping of ℤ as a higher inductive type. Carries the group structure for the iteration scaffold; presentable as the circle S¹ for the future bar construction.</div>
-          </div>
-
-          <div class="mod">
-            <div class="mod-name">Iteration scaffold</div>
-            <div class="mod-sym">Tⁿ,&nbsp;η<tspan>ⁿ</tspan>,&nbsp;N∞</div>
-            <div class="mod-desc">modally-iterated unit, developing network as sequential colimit. The toy iteration is shipped; the cyclic bar construction at S¹ is the next step toward field-theoretic output.</div>
-          </div>
-
-          <div class="mod future">
-            <div class="mod-name">Differential cohesion</div>
-            <div class="mod-sym">ℜ&nbsp;⊣&nbsp;ℑ&nbsp;⊣&nbsp;&amp;</div>
-            <div class="mod-desc">reduction ⊣ infinitesimal shape ⊣ infinitesimal flat. The further modal floor required for the modal side to output a synthetic field theory.</div>
-          </div>
-
-        </div>
-
-        <div class="anchors">
-          <div class="anchors-title">Anchors</div>
-          <div class="chips">
-            <span class="chip">Grothendieck</span>
-            <span class="chip">Lawvere</span>
-            <span class="chip">Shulman</span>
-            <span class="chip">Schreiber</span>
-            <span class="chip">Hersh</span>
-          </div>
-          <div class="anchors-note">the modal side is shaped by these traditions; for many readers it is here that the framework first reads as familiar.</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ─────────── ADJUNCTION COLUMN ─────────── -->
-    <div class="col adj">
-      <div class="adj-inner">
-
-        <div class="adj-spacer"></div>
-
-        <div class="adj-stack">
-          <span>Allow</span>
-          <span class="turn">⊣</span>
-          <span>Mediate</span>
-          <span class="turn">⊣</span>
-          <span>Require</span>
-        </div>
-
-        <!-- Reserved visual zone the SVG overlay draws its curves into. -->
-        <div class="adj-curve-zone"></div>
-
-        <div class="codep">
-          Codependency, not foundation. Neither side is the substrate of the other; both rest on the adjunction. The modal context requires what the concurrent system provides, and licenses what it produces; the concurrent system requires what the modal context structures, and operates inside what it allows.
-        </div>
-
-        <div class="easter">
-          <!-- η triangle -->
-          <div class="row">
-            <svg class="tri" width="9mm" height="6mm" viewBox="0 0 18 12" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2,10 L9,2 L16,10 Z" fill="none" stroke="#6B7280" stroke-width="0.5" stroke-dasharray="1.2 1" />
-              <text x="9" y="1.7" font-family="serif" font-style="italic" font-size="3.6" fill="#6B7280" text-anchor="middle">η</text>
-            </svg>
-            <span>unit&nbsp;&nbsp;(id → Require ∘ Allow)</span>
-          </div>
-          <!-- ε triangle -->
-          <div class="row">
-            <svg class="tri" width="9mm" height="6mm" viewBox="0 0 18 12" xmlns="http://www.w3.org/2000/svg">
-              <path d="M2,2 L16,2 L9,10 Z" fill="none" stroke="#6B7280" stroke-width="0.5" stroke-dasharray="1.2 1" />
-              <text x="9" y="11.3" font-family="serif" font-style="italic" font-size="3.6" fill="#6B7280" text-anchor="middle">ε</text>
-            </svg>
-            <span>counit&nbsp;&nbsp;(Allow ∘ Require → id)</span>
-          </div>
-          <div class="lawvere">Lawvere asymmetry: B fluid, A rigid; prevents the iteration from collapsing to a fixed point.</div>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- ─────────── CONCURRENCY COLUMN ─────────── -->
-    <div class="col conc">
-      <div class="conc-inner">
-
-        <div class="col-header-block">
-          <div class="col-header">Concurrency side</div>
-          <div class="col-sub">the actor-causal protocol that navigates the modal context — its participants, its events, its language, its production</div>
-        </div>
-
-        <div class="conc-grid">
-
-          <!-- ── shipped sub-column ── -->
-          <div class="conc-sub">
-            <div class="conc-sub-title">Shipped</div>
-
-            <div class="mod compact">
-              <div class="mod-name">Actor-causal site</div>
-              <div class="mod-sym">ActorBase,&nbsp;FrameHom,&nbsp;Cover</div>
-              <div class="mod-desc">opaque unityped actors, Lamport partial-order events, local frames as sub-views, basis covers. The locality leg: who participates, in what causal order, with what local visibility.</div>
-              <div class="chips">
-                <span class="chip">Hewitt</span>
-                <span class="chip">Lamport</span>
-              </div>
-            </div>
-
-            <div class="mod compact">
-              <div class="mod-name">Cyclic operad O₁</div>
-              <div class="mod-sym">gen,&nbsp;comp<tspan>ₒ</tspan>,&nbsp;rot</div>
-              <div class="mod-desc">the interaction grammar: one binary generator (send/receive), three cyclic ports (sender/receiver/channel), boundary-swap derived as session duality.</div>
-              <div class="chips">
-                <span class="chip">Getzler–Kapranov</span>
-                <span class="chip">Markl</span>
-              </div>
-            </div>
-
-            <div class="mod compact">
-              <div class="mod-name">Sessions algebra</div>
-              <div class="mod-sym">⊗,&nbsp;⅋,&nbsp;𝟙,&nbsp;⊥</div>
-              <div class="mod-desc">multiplicative session types in a ∗-autonomous category. The how-layer: typed obligations, duality S ↔ S<sup>⊥</sup>, linear-logic semantics for cut-free interaction.</div>
-              <div class="chips">
-                <span class="chip">Caires–Pfenning</span>
-                <span class="chip">Girard</span>
-              </div>
-            </div>
-
-            <div class="mod compact">
-              <div class="mod-name">Hybrid v1 <span style="font-weight:400; font-size:9pt; color:var(--grey);">(restriction adapter)</span></div>
-              <div class="mod-sym">FramePresheaf,&nbsp;IsSeparated</div>
-              <div class="mod-desc">the first adapter: session values vary contravariantly over actor-local frames. Auditability is the uniqueness half of descent. The bridge that makes the two legs one mathematical object.</div>
-            </div>
-
-          </div>
-
-          <!-- ── future sub-column ── -->
-          <div class="conc-sub">
-            <div class="conc-sub-title">Future layers</div>
-
-            <div class="mod compact future">
-              <div class="mod-name">Sheaf descent</div>
-              <div class="mod-desc">next step. Compatible local content glues into shared global content.</div>
-            </div>
-
-            <div class="mod compact future">
-              <div class="mod-name">Reflexive Π</div>
-              <div class="mod-desc">the protocol revises itself. Meta-conversations propose edits; consensus emits a protocol-version morphism.</div>
-            </div>
-
-            <div class="mod compact future">
-              <div class="mod-name">Bulk Λ</div>
-              <div class="mod-desc">the protocol generates its own language. Every message carries a what-tag alongside its how-tag; the language evolves through consensus.</div>
-            </div>
-
-            <div class="mod compact future">
-              <div class="mod-name">Field-theoretic dynamics</div>
-              <div class="mod-desc">the language's evolution as RG flow on a factorization algebra over the actor-causal site. Symmetry-breaking, fluctuation, stabilization.</div>
-            </div>
-
-            <div class="mod compact future">
-              <div class="mod-name">Federation</div>
-              <div class="mod-sym">Yoneda,&nbsp;GT,&nbsp;MO₁</div>
-              <div class="mod-desc">one protocol among many. Typed translation interfaces, partial clones, conflict-as-data. The meta-topos of protocols is itself the same kind of object — at one level up.</div>
-            </div>
-
-            <div class="mod compact future">
-              <div class="mod-name">Information cohomology</div>
-              <div class="mod-desc">receiver-relative complexity. Transparency-of-language as an engineering -ility on the same footing as performance and security.</div>
-              <div class="chips">
-                <span class="chip">Baudot–Bennequin</span>
-                <span class="chip">Manin–Marcolli</span>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-        <!-- ── trade-off cascade strip ── -->
-        <div class="cascade">
-          <div class="cascade-head">Trade-off cascade</div>
-          <table class="cascade-table">
-            <tr>
-              <td class="module">Hybrid</td>
-              <td class="tradeoff">locality vs globality</td>
-              <td class="strategy">sheaf descent</td>
-            </tr>
-            <tr>
-              <td class="module">Reflexive Π</td>
-              <td class="tradeoff">stability vs adaptability</td>
-              <td class="strategy">meta-conversation + consensus</td>
-            </tr>
-            <tr>
-              <td class="module">Bulk Λ</td>
-              <td class="tradeoff">expressive power vs transparency</td>
-              <td class="strategy">protocol generates its own language</td>
-            </tr>
-            <tr>
-              <td class="module">Field dynamics</td>
-              <td class="tradeoff">exploration vs exploitation</td>
-              <td class="strategy">RG flow with reflexive insertions</td>
-            </tr>
-            <tr>
-              <td class="module">Federation</td>
-              <td class="tradeoff">coherence vs plurality</td>
-              <td class="strategy">translation interfaces, partial clones, conflict-as-data</td>
-            </tr>
-            <tr>
-              <td class="module">Info cohomology</td>
-              <td class="tradeoff">dense vs accessible encoding</td>
-              <td class="strategy">receiver-relative measurement</td>
-            </tr>
-          </table>
-          <div class="cascade-foot">each trade-off is created by the previous resolution; the strategy applied at every step is separation of concerns.</div>
-        </div>
-
-      </div>
-    </div>
-
-  </div><!-- /content -->
-
-</div><!-- /page -->
+</div><!-- /.page -->
 
 </body>
 </html>
