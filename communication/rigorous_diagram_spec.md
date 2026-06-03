@@ -838,3 +838,8 @@ diagram.
 | Bℤ as site | delooping of ℤ; circle presentation; analytic test object | `Analytic diagnostics: ℤ, Bℤ, Ω(Bℤ) ≃ ℤ` | Render as a separate inset, not a `𝓜` fragment box; connect with the model-comparison line (no arrowheads), not a dependency arrow. Diagnostic, not full verification. |
 | de Rham target | flat-coefficient cohomology; differential cohesion; de Rham theorem | `Flat-coefficient cohomology`; `Differential cohesion: ℜ ⊣ ℑ ⊣ &` | Keep structural cohomology separate from future differential cohesion. |
 
+## Notes
+
+`Also, please have a look at adj_diag_now.png and notice how the maine issue is with the names of files either being absent or clipped. I believe we don't need the full path but only the name the
+  file, in a list in one line if several, so that in all cases we only need one line. But in many boxes we don't even get this one line to show up. Also, at the bottom, the boxes in "Further
+  structure not part of the current formalization  " are clipped.`
