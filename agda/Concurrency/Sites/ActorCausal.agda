@@ -503,25 +503,32 @@ module _ {ℓA : Level} (AB : ActorBase ℓA) where
                   g ∘ᶠ Cover.embed d j ≡ Cover.embed c i ∘ᶠ h)
 
 ------------------------------------------------------------------------
--- Stability postulate.
+-- Stability postulate (SUPERSEDED downstream — see note).
 --
--- A generic Agda construction of pullback-stability would need
--- FrameCategory equipped with pullbacks of FrameHoms, which the
--- present signature does not provide. Worked instances (and the
--- hybrid sheaf bridge that will use them) will either prove stability
--- against their concrete topology, or restrict the sheaf condition to
--- the stability-holding sub-class.
+-- A generic Agda construction of pullback-stability needs FrameCategory
+-- equipped with pullbacks of FrameHoms, which this file's signature
+-- does not provide on its own.
 --
--- For v1 we expose the postulate at the top level, flagged here per
--- memory `feedback_flag_workarounds`. Downstream sites pass it as the
--- `stability-cover` field; concrete constructions replace it as they
--- become available. The postulate is universe-polymorphic over the
--- actor base level so any site instance can use it.
+-- **Update 2026-06-02.** That construction now exists:
+-- `Concurrency/Sites/ActorPullback.agda` builds frame pullbacks and
+-- derives `stability-cover-pullback`, a genuine *proof* of the
+-- stability data. New sites should use it for their `stability-cover`
+-- field instead of this postulate.
 --
--- Worth noting: identity and transitivity (the other two site axioms
--- per F1) have generic constructions above (`identity-cover-canonical`
--- and `transitivity-cover-canonical`), so they are not postulated.
--- Only stability is a true axiom-gap in the v1 setting.
+-- Why this postulate nonetheless remains in *this* file: `ActorPullback`
+-- imports `ActorCausal`, so `ActorCausal` cannot import `ActorPullback`
+-- without a cycle. `tiny-site` below therefore still discharges its
+-- `stability-cover` field with this in-file postulate (a concrete
+-- pullback-based `tiny-site` would have to live in a third file that
+-- imports both). The postulate is kept as a *legacy in-file fallback*,
+-- not as the project's stability story — the construction in
+-- `ActorPullback` is.
+--
+-- Identity and transitivity (the other two site axioms per F1) have
+-- generic constructions above (`identity-cover-canonical`,
+-- `transitivity-cover-canonical`); they are not postulated. Stability
+-- was the only v1 axiom-gap, and it is now closed by construction
+-- downstream.
 ------------------------------------------------------------------------
 
 postulate
