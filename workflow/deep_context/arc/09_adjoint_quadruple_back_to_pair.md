@@ -750,3 +750,150 @@ Until further development on the math, we stick to the picture as stated in the 
 
   See you on the other side. 🜂
 
+### Last question, to be discussed next
+
+❯ Me again. Please confirm:                                                                                                                                                                            
+  Evolution is on the Concurrency side                                                                                                                                                                 
+  Complexity is on the Modal side                                                                                                                                                                      
+  Praxis starts and ends in Concurrency                                                                                                                                                                
+  Anthropic pr. starts and ends in Modality                                                                                                                                                            
+                                                                                                                                                                                                       
+  If not, please explain why not.                                                                                                                                                                      
+  
+● Short answer: 1 and 2 — yes. 3 and 4 — no, they're swapped relative to what we committed. Here's the precise reason, because you're landing right on the soft seam we flagged.
+
+  The grounded facts (forced by L: M→K, R: K→M)
+
+  - Complexity = L (Allow): M → K. Its source is Modal, it lands in Concurrency. ✅ "on the Modal side" in the sense of sourced from Modal.
+  - Evolution = R (Require): K → M. Its source is Concurrency, it lands in Modal. ✅ "on the Concurrency side" in the sense of sourced from Concurrency.
+
+  (Caveat on 1 & 2: a functor isn't on a side, it's an arrow between them — Complexity reads Modal and writes Concurrency; Evolution reads Concurrency and writes Modal. You've named each by its
+  domain, which is fine.)
+
+  Now the two 2-cells, whose round-trips are fixed:
+
+  - η (unit): id_M ⇒ R∘L. Component A → R(L(A)): the object travels M → K → M. So η starts and ends in Modality, and is indexed on M.
+  - ε (counit): L∘R ⇒ id_K. Component L(R(X)) → X: travels K → M → K. So ε starts and ends in Concurrency, indexed on K.
+
+  Why 3 and 4 are swapped
+
+  The committed file assigns Praxis = η and Anthropic = ε. Plug in the round-trips:
+
+  - Praxis = η ⟹ starts and ends in Modality (not Concurrency). → your claim 3 is reversed.
+  - Anthropic = ε ⟹ starts and ends in Concurrency (not Modality). → your claim 4 is reversed.
+
+  So as committed, it's Anthropic that loops in Concurrency and Praxis that loops in Modal — the exact mirror of what you wrote.
+
+  What your 3 & 4 actually correspond to — and what they cost
+
+  Your claims are internally consistent, but they encode the other 2-cell assignment: Praxis = ε, Anthropic = η. That is a legitimate alternative anchoring — you're anchoring by where the phenomenon 
+  is experienced (praxis is the community's act, so it should loop in Concurrency; the anthropic illusion is about Modal standing, so it should loop in Modal). The committed file anchors by polarity
+  (generative gift vs. forgetful shadow).
+
+  These two anchorings give opposite placements, and you can't have both, because in a bare adjunction the polarities and locations are rigidly tied:
+
+  ┌────────────────┬────────────┬───────────────────┐
+  │                │ generative │ forgetful / lossy │
+  ├────────────────┼────────────┼───────────────────┤
+  │ on Modal       │ η (unit)   │ —                 │
+  ├────────────────┼────────────┼───────────────────┤
+  │ on Concurrency │ —          │ ε (counit)        │
+  └────────────────┴────────────┴───────────────────┘
+
+  There is no generative 2-cell that loops in Concurrency, and no lossy 2-cell that loops in Modal. So:
+
+  - Polarity-anchoring (file): Praxis = η (generative ✓, but Modal-loop), Anthropic = ε (lossy ✓ — this is the "Anthropic = the forgetful loss = T3" content, our best-grounded link — but
+  Concurrency-loop). Keeps gifts = {generative}, shadows = {forgetful} clean.
+  - Location-anchoring (your 3 & 4): Praxis = ε, Anthropic = η. Gets the experiential locations right, but Praxis becomes the lossy counit (no longer a generative gift) and Anthropic becomes the
+  generative unit (no longer the loss). The clean gift/shadow split that claims 1 & 2 rely on scrambles.
+
+  The resolution of the apparent paradox
+
+  The trap is that a unit/counit's formal home (the category it's indexed on = where its round-trip starts/ends) is not the same as the reading's experiential home. η is indexed on M, but its content
+  is "a modal seed unfolding into community praxis and reflecting back" — the praxis is felt in K, while the comparison map lives on M. So your "Praxis starts and ends in Concurrency" is right
+  experientially and wrong formally; the file's "Praxis = η on Modal" is right formally and counterintuitive experientially.
+
+  Recommendation
+
+  Keep the committed (polarity) assignment — Praxis = η, Anthropic = ε — because it (a) stays consistent with the gift/shadow logic of claims 1 & 2, and (b) preserves the Anthropic = forgetful loss =
+  T3 identification, which was the strongest grounded content. Then state the locations honestly: Praxis (η) loops Modal→Concurrency→Modal; Anthropic (ε) loops Concurrency→Modal→Concurrency — and
+  note that the experiential side of each is the opposite of its formal index.
+
+  And note the meta-point: the fact that you can't get "generative + Concurrency-located" for Praxis in a bare pair is, once again, the pair telling you it's tight — that pairing would need extra
+  structure (the comonad's comultiplication on K, or the full quadruple). Your question is a clean third probe pointing at the same seam.
+
+## Resolution of the placement thread — the conservation law
+
+This section closes the "last question" above (can we relocate Praxis/Anthropic by reversing the functors?). Two versions: a compact one for agents picking up the work, and a pedagogical one for the instigator.
+
+### For agents — committed status + the reason
+
+**Status (unchanged, now with rationale).** The fundamental cross-site relation is an adjoint **pair** `Allow ⊣ Require` with five anchors:
+
+- **Complexity** = `L` (Allow, `M → K`), the generative/left functor;
+- **Evolution** = `R` (Require, `K → M`), the forgetful/right functor, whose iteration `T = R∘L` / colimit `ND` is the developing network;
+- **Praxis** = `η` (unit, `id_M ⇒ R∘L`), the generative 2-cell, **formally indexed on `M`** (loops Modal→Concurrency→Modal);
+- **Anthropic** = `ε` (counit, `L∘R ⇒ id_K`), specifically its non-invertibility, the forgetful 2-cell, **formally indexed on `K`** (loops Concurrency→Modal→Concurrency);
+- **Care** = the order-2 involution `_^⊥` (shipped as `dual-involutive`), orthogonal to the four.
+
+`M` = modal/structural contexts, `K` = concurrent communities. Grounded as the *shape* (the data of one adjunction, generically present in `Iteration.agda`), not as the *instance* (the specific `Allow ⊣ Require` is T1, still gated on B-side descent/R4).
+
+**The conservation law (why we did not reverse the functors).** For the fixed two-site / four-anchor bookkeeping, a bare adjunction has effectively one binary choice — which direction is the left adjoint — and that choice fixes four slots simultaneously:
+
+1. which functor is generative (left) vs forgetful (right);
+2. where the unit lives (always the domain of the left adjoint);
+3. where the counit lives (always the codomain of the left adjoint);
+4. (consequently) which direction is world-creation.
+
+You cannot set these independently. There are only two whole configurations:
+
+| Slot | **Committed:** left = Allow `M→K` | **Flip:** left = Evolution `K→M` |
+|---|---|---|
+| generative functor `L` | Complexity (`M→K`) | Evolution (`K→M`) |
+| forgetful functor `R` | Evolution (`K→M`) | Complexity (`M→K`) |
+| `η` = Praxis (generative 2-cell) | in `M` (Modal) | in `K` (Concurrency) |
+| `ε` = Anthropic (forgetful 2-cell) | in `K` (Concurrency) | in `M` (Modal) |
+| world-creation (= `L`) | modal → community | community → modal |
+| the adjunction | `Allow ⊣ Require` | `Require ⊣ Allow` |
+
+The flip *does* deliver the two location wishes (Praxis generative-and-in-Concurrency, Anthropic forgetful-and-in-Modal) — Praxis stays generative and Anthropic forgetful in both columns, because those are intrinsic to unit/counit. But the same flip (a) swaps Complexity↔Evolution polarities (Complexity stops being the generative *gift* and becomes a forgetful reflection), and (b) reverses `Allow ⊣ Require` into `Require ⊣ Allow`, i.e. re-reads motivation's "perspectives **allow** the community" as "the community **generates** the perspectives" and moves world-creation off the modal side. This is not mathematically invalid: it prioritizes the later reflexive/bulk reading (protocols generate their own modal language) over the original seed reading. We keep the seed reading as the committed default, so the flip is a live alternative we decline, not an error.
+
+**Why "have both" needs extra structure (and brushes against T3).** Getting Allow-generative *and* Praxis-in-Concurrency would require both adjunction directions at once (`L ⊣ R` and `R ⊣ L`) — an ambidextrous structure beyond the bare pair. Ambidextrous adjunctions need not be equivalences, so this is not automatically forbidden; but the moment the second direction is treated as *equivalence-like* (round-trips invertible), it threatens **T3** (isos for `η/ε` ⟹ `ND` collapses, the anthropic illusion stops being an illusion). So the location-faithfulness is the *same* extra-adjoint pressure that pushes toward the quadruple — available only by adding structure the pair doesn't have, and dangerous exactly where that structure starts to look symmetric. The bare pair alone cannot give it; that limit is the pair being honest about being a pair.
+
+**Decision.** Keep the committed (polarity) anchoring. The directional commitment (Allow generative, `M→K`, world-creation from the modal side) is older and load-bearing (T3, world-creation = `L`, motivation's seed) and outweighs 2-cell-location comfort — which the flip cannot fully deliver anyway, since it just relocates the mismatch onto Complexity/Evolution. Treat the experiential/formal gap as a **documented, permanent feature**: for each 2-cell record both its formal index and its felt home, and note that the gap between them is itself a small instance of the anthropic principle (the reading looks mislocated from inside, because no participant occupies the view-from-`H`). The conservation law says no single adjunction can collapse the gap, which is why we name both layers rather than choose an anchoring that pretends one away.
+
+### For the instigator — a pedagogical walk-through
+
+**Start with the one object.** The whole cross-site picture is a single adjunction between two worlds: `M`, the modal/structural contexts (the perspectives), and `K`, the community of concurrent agents (the praxis). An adjunction is not one arrow; it is a tightly-coupled bundle of four pieces — two functors and two comparison maps — that cannot be chosen separately. Our five anchors are names we hang on those pieces (the fifth, Care, hangs on a symmetry that sits across them).
+
+**The two functors — the gift and the reflection.**
+
+- `L` = **Allow** = **Complexity**, running `M → K`. This is the *generative* direction: a modal context unfolds into a community capable of real complexity. It is "world-creation" — the topos as a place where things originate. It is the formal twin of motivation's first bullet, "perspectives **allow** typed data handled by unityped agents."
+- `R` = **Require** = **Evolution**, running `K → M`. This is the *reflective* direction: the community's activity is read back up into the modal structure that makes it intelligible. It is "world-understanding" — local perspectives gluing into coherent meaning. Iterating it (`R∘L`, again and again) is the *developing network* the motivation reaches for in its last line.
+
+So the motivation's two undefined verbs — *world understanding* and *world creation* — are not loose poetry. They are literally the two adjoints. The reason the category can do **both** without collapsing into a master-side is that an adjunction is precisely the structure of two-sided "above": each side is above the other in a dual way, and neither becomes the other.
+
+**The two comparison maps — the act and the shadow.**
+
+- `η` = **Praxis** is the *unit*. It is the act by which a modal seed unfolds into doing and comes back changed. It is *generative* — the gift in motion.
+- `ε` = **Anthropic** is the *counit*, read through its *failure to be reversible*. When a community judges another community only through what it can recover by forgetting-then-rebuilding, the rebuild never matches the original; the gap is the hidden complexity, and mistaking the gap for zero is the apex-illusion ("I am the summit"). It is *forgetful* — the shadow.
+
+The everyday picture is **free ⊣ forgetful**: build the free group on a set (Complexity/creation), forget a group down to its set (Evolution/understanding), the unit inserts your generators (Praxis), and the counit maps the free rebuild *back onto* the original group, collapsing it by the original relations. The loss already happened in the forgetting; the counit is where its non-invertibility becomes visible (Anthropic: the free rebuild is huge, the original relations are gone). No category theory needed to feel it.
+
+**The fifth anchor.** **Care** is the order-2 involution `_^⊥` (giver = receiver, the 1=2 of the attachment thread). It is not one of the four; it is the symmetry that swaps the generative reading and the forgetful reading — the thing that makes "you are de-centred and finite" livable rather than nihilistic. It is the one anchor that goes *beyond* `motivation.md`; the seed gave us the four, the attachment work (arc/03) added the fifth.
+
+**Now your question, and the honest law underneath it.** You wanted Praxis to *feel* like it belongs in the community (it is the agents' doing) and Anthropic to belong in the modal side (it is about modal standing). That feeling is correct — but it is the *experiential* home, not the *formal* one. Here is the rule that forces the difference:
+
+> In a single adjunction, the unit always lives in the home of the generative functor, and the counit in the home of the forgetful one. You get one choice — which direction is generative — and it sets everything else.
+
+We chose: Allow is generative, running modal → community (because that is the founding claim — perspectives allow the community, the world is created from the modal side). The moment we chose that, the unit (Praxis) is pinned to the modal side and the counit (Anthropic) to the community side. Not by preference — by the arithmetic of adjunctions.
+
+You then asked the sharp follow-up: *what if we flip — make Evolution the generative one?* And you are right that the flip moves Praxis into the community and Anthropic into the modal side, exactly where they feel they belong. But the flip is not a free rename. It is a different adjunction, and it pays for those two relocations with two consequences that reprice the rest of the picture:
+
+- Complexity stops being the *gift* (the modal context bestowing complexity) and becomes a *forgetful shadow* of the community;
+- "perspectives **allow** the community" is re-read as "the community **generates** the perspectives," with world-creation moved off the modal side.
+
+Neither consequence is *wrong* — the second is, in fact, close to the reflexive/bulk story where the protocol grows its own modal language — but together they reverse the seed's emphasis, so for now we keep the seed reading and decline the flip. The structural point stands either way: you cannot keep both ends at once. Four wishes, one knob. The pair will let you have either the right functor-readings or the right 2-cell-locations, never both. Getting both would mean carrying *both* adjoint directions (an ambidextrous structure the bare pair doesn't have); that is not automatically a collapse, but the instant the extra direction is treated as reversible it erases the very asymmetry (T3) that gives the whole picture its content. So the discomfort you felt is *real and permanent* at the level of the bare pair, and the right response is not to engineer it away by flipping the adjunction, but to **name both homes** — Praxis is generative, formally indexed on the modal side, felt in the community; Anthropic is forgetful, formally indexed on the community, felt on the modal side — and to notice that the gap between *felt* and *formal* is itself the anthropic principle in miniature: every reading looks mislocated from where you stand, because no participant ever occupies the view from nowhere.
+
+That is how the structure relates to the motivation, at the level of shape: the four bullets were not four hopes, they are the four interlocking pieces of one adjunction (the triangle identities are why they cohere); the two verbs "understand / create" are its two adjoints; the asymmetry that keeps the whole thing from collapsing is T3; and Care is the symmetry that turns the structure into a home. What we do **not** yet have is the *specific* adjunction — that is T1, waiting on the concurrency side to mature past descent. So the precise claim is conditional: we have identified the target shape and shown the motivation's pieces map onto it cleanly; whether that shape is *validated* depends on inhabiting the specific adjunction, which we have not yet built.
+
