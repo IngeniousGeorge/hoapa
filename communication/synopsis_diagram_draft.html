@@ -1,0 +1,607 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Hoapa — Synopsis</title>
+<style>
+  @page { size: A4 portrait; margin: 14mm; }
+
+  :root {
+    --page-bg:    #FFFFFF;
+    --tint-a:     #EEF3FA;   /* very light blue — structural side */
+    --tint-b:     #FAF1EC;   /* very light terracotta — operational side */
+    --tint-bridge:#F4F5F7;   /* very light slate — bridge / output */
+    --ink:        #1F2937;   /* slate body + headings */
+    --ink-soft:   #4B5563;   /* translation / captions */
+    --marker:     #6B7280;   /* marker underlines, letters, arrows */
+    --rule:       #D1D5DB;   /* hairlines */
+    --legend-bg:  #F9FAFB;
+
+    --serif: 'STIX Two Text', 'Latin Modern', 'Cambria', 'Georgia', serif;
+    --sans:  'Inter', 'Helvetica Neue', system-ui, -apple-system, sans-serif;
+  }
+
+  html, body {
+    margin: 0; padding: 0;
+    background: #d9d9d6;
+    font-family: var(--serif);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: geometricPrecision;
+  }
+
+  /* ---------- the sheet (continuous, book-like) ---------- */
+  .sheet {
+    width: 210mm;
+    background: var(--page-bg);
+    box-sizing: border-box;
+    padding: 14mm;
+    margin: 8mm auto;
+    box-shadow: 0 1mm 6mm rgba(0,0,0,0.12);
+  }
+
+  @media print {
+    body { background:#fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .sheet { width:auto; margin:0; padding:0; box-shadow:none; }
+    a.wiki { color: inherit; text-decoration: underline; }
+    .mirror, table.cascade, ul.layers, .legend, .s0-trans { break-inside: avoid; }
+    h2.sec-head, h3.subhead { break-after: avoid; }
+  }
+
+  /* ---------- section shell ---------- */
+  .section {
+    padding: 3.5mm;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .sec-a      { background: var(--tint-a); }
+  .sec-b      { background: var(--tint-b); }
+  .sec-bridge { background: var(--tint-bridge); }
+
+  .hr {
+    height: 0;
+    border-top: 0.4pt solid var(--rule);
+    margin: 4mm 0;
+    width: 100%;
+  }
+
+  /* ---------- typography ---------- */
+  h2.sec-head {
+    font-family: var(--sans);
+    font-size: 14pt;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    margin: 0 0 2.5mm 0;
+    line-height: 1.18;
+  }
+  h2.sec-head .sec-topic {
+    display: block;
+    font-size: 10.5pt;
+    font-weight: 400;
+    color: var(--ink-soft);
+    letter-spacing: 0;
+    margin-top: 0.8mm;
+  }
+  h3.subhead {
+    font-family: var(--sans);
+    font-size: 11pt;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 1.5mm 0;
+  }
+  .gap-sub { margin-top: 3mm; }
+
+  p.body {
+    font-size: 10.5pt;
+    line-height: 1.45;
+    color: var(--ink);
+    margin: 0 0 1.8mm 0;
+    text-align: left;
+    hyphens: auto;
+  }
+  p.body:last-child { margin-bottom: 0; }
+
+  ul.layers {
+    margin: 0.6mm 0 1.8mm 0;
+    padding-left: 6mm;
+    font-size: 10.5pt;
+    line-height: 1.45;
+    color: var(--ink);
+  }
+  ul.layers li { margin: 0.4mm 0; }
+
+  a.wiki {
+    font-style: italic;
+    text-decoration: underline;
+    text-decoration-thickness: 0.4pt;
+    text-underline-offset: 1.5px;
+    color: inherit;
+  }
+  a.wiki:hover { color: #2C5282; }
+  em.plain { font-style: italic; }
+
+  /* ---------- Section 0 — Heuristics ---------- */
+  .mirror { padding: 0; position: relative; }
+  .mirror > .heur-head {
+    font-family: var(--sans);
+    font-size: 14pt;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0 0 3mm 0;
+  }
+  .mirror > .heur-head .sec-topic {
+    display: block;
+    font-size: 10.5pt;
+    font-weight: 400;
+    color: var(--ink-soft);
+    margin-top: 0.8mm;
+  }
+
+  .s0-sentences { position: relative; }
+
+  .s0-bar {
+    padding: 4mm 14mm;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .s0-bar.bar-a { background: var(--tint-a); padding-bottom: 7mm; }
+  .s0-bar.bar-b { background: var(--tint-b); padding-top: 4mm; padding-bottom: 4mm; }
+  .s0-band { height: 15mm; background: #fff; }
+
+  .side-name {
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 8pt;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--marker);
+  }
+  .bar-a .side-name { margin-bottom: 3mm; }
+  .bar-b .side-name { margin-top: 6mm; }
+
+  .msentence {
+    font-size: 12.5pt;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.25;
+    margin: 0;
+    color: var(--ink);
+    white-space: nowrap;
+  }
+  .kw {
+    position: relative;
+    border-bottom: 0.7pt solid var(--marker);
+    padding-bottom: 0.3mm;
+  }
+  .kw > .klbl {
+    position: absolute;
+    left: 50%; top: 100%;
+    transform: translateX(-50%);
+    margin-top: 1.0mm;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 8pt;
+    font-style: normal;
+    color: var(--marker);
+    line-height: 1;
+  }
+  .kw > .klbl.x { font-size: 9pt; }
+
+  .s0-arrows {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+  }
+
+  /* translations below the sentence pair */
+  .s0-trans { padding: 4mm 1mm 1mm 1mm; }
+  .mtrans {
+    font-size: 9.5pt;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.45;
+    text-align: left;
+    margin: 0 0 2.6mm 0;
+  }
+  .mtrans:last-child { margin-bottom: 0; }
+  .tside {
+    font-family: var(--sans);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 8.5pt;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--marker);
+    margin-right: 0.6em;
+  }
+  .tmark {
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 6.8pt;
+    font-style: normal;
+    vertical-align: super;
+    line-height: 0;
+    margin-left: 0.2mm;
+    color: var(--marker);
+  }
+
+  /* ---------- cascade table ---------- */
+  table.cascade {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.8mm;
+    font-size: 9pt;
+    line-height: 1.3;
+  }
+  table.cascade th {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 9pt;
+    text-align: left;
+    background: var(--tint-bridge);
+    padding: 0.8mm 1.5mm;
+    border: 0.4pt solid var(--rule);
+    color: var(--ink);
+  }
+  table.cascade td {
+    padding: 0.8mm 1.5mm;
+    border: 0.4pt solid var(--rule);
+    vertical-align: top;
+    color: var(--ink);
+    height: 5mm;
+    box-sizing: border-box;
+  }
+  table.cascade td.layer { font-weight: 600; }
+  .cascade-cap {
+    font-size: 9pt;
+    font-style: italic;
+    color: var(--ink-soft);
+    line-height: 1.3;
+    margin: 1.6mm 0 0 0;
+  }
+
+  /* ---------- legend strip ---------- */
+  .legend {
+    width: 100%;
+    background: var(--legend-bg);
+    border: 0.4pt solid var(--rule);
+    border-radius: 0.6mm;
+    padding: 1.5mm 2.5mm;
+    box-sizing: border-box;
+    font-size: 8.5pt;
+    font-family: var(--serif);
+    color: var(--ink-soft);
+    line-height: 1.4;
+    margin-top: 4mm;
+  }
+  .legend .cue {
+    font-style: italic;
+    text-decoration: underline;
+    text-decoration-thickness: 0.4pt;
+    text-underline-offset: 1.5px;
+    color: inherit;
+  }
+  .legend em { font-style: italic; }
+
+  .colophon {
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 7.5pt;
+    letter-spacing: 0.06em;
+    color: var(--rule);
+    margin-top: 5mm;
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <!-- ===================== SECTION 0 — Heuristics ===================== -->
+  <div class="section mirror">
+    <h2 class="heur-head">Heuristics<span class="sec-topic">The project in two mirror sentences</span></h2>
+
+    <div class="s0-sentences">
+
+      <!-- Structural side — blue -->
+      <div class="s0-bar bar-a">
+        <div class="side-name">The structural side of the bridge</div>
+        <p class="msentence">
+          <span class="kw" id="ka">Type-theoretic<span class="klbl">a</span></span>
+          <span class="kw" id="kb">foundations<span class="klbl">b</span></span>
+          whose
+          <span class="kw" id="kX">internal<span class="klbl x">X</span></span>
+          <span class="kw" id="kc">semantics<span class="klbl">c</span></span>
+          is
+          <span class="kw" id="kd">field-theory-shaped<span class="klbl">d</span></span>.
+        </p>
+      </div>
+
+      <!-- arrow band -->
+      <div class="s0-band"></div>
+
+      <!-- Operational side — terracotta -->
+      <div class="s0-bar bar-b">
+        <p class="msentence">
+          <span class="kw" id="ka2">Field-theory-shaped<span class="klbl">a</span></span>
+          <span class="kw" id="kb2">dynamics<span class="klbl">b</span></span>
+          whose
+          <span class="kw" id="kc2">stabilized output<span class="klbl">c</span></span>
+          <span class="kw" id="kX2">is an internal<span class="klbl x">X</span></span>
+          <span class="kw" id="kd2">type-theory<span class="klbl">d</span></span>.
+        </p>
+        <div class="side-name">The operational side of the bridge</div>
+      </div>
+
+      <!-- bowtie arrows overlay (coords in mm, set after measuring) -->
+      <svg class="s0-arrows" id="s0arrows" viewBox="0 0 182 61" preserveAspectRatio="none">
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="6.5" refY="5" markerWidth="2.6" markerHeight="2.6" orient="auto-start-reverse">
+            <path d="M0,1 L8,5 L0,9 z" fill="#6B7280"/>
+          </marker>
+          <marker id="ah-lite" viewBox="0 0 10 10" refX="6.5" refY="5" markerWidth="2.6" markerHeight="2.6" orient="auto-start-reverse">
+            <path d="M0,1 L8,5 L0,9 z" fill="#9aa1ab"/>
+          </marker>
+        </defs>
+        <!-- a -> d : type-theory thread, crosses left-to-right -->
+        <path id="arc-ad" d="M 36.8 21 C 82 27, 120 34, 150.6 40.0" fill="none" stroke="#6B7280" stroke-width="0.4" stroke-linecap="round" stroke-dasharray="0.1 1.4" marker-end="url(#ah)"/>
+        <!-- d -> a : field-theory thread, crosses right-to-left -->
+        <path id="arc-da" d="M 139.8 21 C 96 27, 58 34, 38.0 40.0" fill="none" stroke="#6B7280" stroke-width="0.4" stroke-linecap="round" stroke-dasharray="0.1 1.4" marker-end="url(#ah)"/>
+        <!-- b -> b -->
+        <line id="arc-bb" x1="61.2" y1="21" x2="64.5" y2="40.0" stroke="#9aa1ab" stroke-width="0.35" stroke-linecap="round" stroke-dasharray="0.1 1.4" marker-end="url(#ah-lite)"/>
+        <!-- c -> c -->
+        <line id="arc-cc" x1="109" y1="21" x2="101.6" y2="40.0" stroke="#9aa1ab" stroke-width="0.35" stroke-linecap="round" stroke-dasharray="0.1 1.4" marker-end="url(#ah-lite)"/>
+        <!-- X -> X -->
+        <line id="arc-xx" x1="91.9" y1="21" x2="127.7" y2="40.0" stroke="#9aa1ab" stroke-width="0.35" stroke-linecap="round" stroke-dasharray="0.1 1.4" marker-end="url(#ah-lite)"/>
+      </svg>
+
+    </div>
+
+    <!-- translations -->
+    <div class="s0-trans">
+      <p class="mtrans">
+        <span class="tside">The structural side.</span>
+        We start with type-theoretic<span class="tmark">a</span> foundations<span class="tmark">b</span> — a way of doing
+        mathematics in which mathematical objects are defined by the relationships between them, rather
+        than by what they are made of. When we look at how such a foundation reasons internally<span class="tmark x">X</span> — what its
+        semantics<span class="tmark">c</span> is — the structures we find behave like field theories<span class="tmark">d</span>: local data on a
+        space, with rules for how the local pieces fit together globally.
+      </p>
+      <p class="mtrans">
+        <span class="tside">The operational side.</span>
+        We also study field-theoretic<span class="tmark">a</span> dynamics<span class="tmark">b</span> — local-to-global processes evolving
+        over a space, with their own rules of change. When such a process stabilizes — when its long-time
+        behaviour settles — what it leaves behind<span class="tmark">c</span> is itself a type theory<span class="tmark">d</span>: an internal<span class="tmark x">X</span>
+        language of mathematical objects and the maps between them.
+      </p>
+    </div>
+  </div>
+
+  <div class="hr"></div>
+
+  <!-- ===================== STRUCTURAL SIDE ===================== -->
+  <div class="section sec-a">
+    <h2 class="sec-head">The structural side of the bridge<span class="sec-topic">Modal type theory as a system of perspectives</span></h2>
+    <p class="body">
+      Modal type theory adds <em class="plain">modalities</em> — operators that filter, reflect, or
+      restate parts of a structure — to a type-theoretic foundation. The result is a foundation in
+      which different perspectives on the same structure can be made formally precise.
+    </p>
+
+    <h3 class="subhead gap-sub">Inspiration</h3>
+    <p class="body">
+      Mid-twentieth-century mathematics underwent a silent revolution, led in different registers by
+      William Lawvere (1937–2023) and Alexander Grothendieck (1928–2014). Mathematics moved from
+      defining objects by their internal construction — <em class="plain">“what is this set?”</em> — to
+      defining them by their relationships — <em class="plain">“how does this object</em>
+      <a class="wiki" href="https://en.wikipedia.org/wiki/Map_(mathematics)">map</a> <em class="plain">to
+      others?”</em> — and from doing mathematics in one fixed logic to recognising that each context —
+      each <a class="wiki" href="https://en.wikipedia.org/wiki/Topos">topos</a> — carries its own internal
+      logic. The shift was from substance to relation, and from one logic to many. Lawvere's particular
+      contribution was <em class="plain">cohesion</em>: a context-internal distinction between continuous
+      variation and discrete points — the basis of the project's cohesive ∞-topos framework.
+    </p>
+    <p class="body">
+      Philosophy made a structurally similar move in the same period, finding roots in a lineage traced by
+      Gilles Deleuze: from Duns Scotus and Spinoza, through Leibniz and Nietzsche, to Peirce and Whitehead.
+      This family replaced the search for a single absolute truth with the recognition that reality is
+      irreducibly multi-perspectival, each perspective carrying valid inputs of its own.
+    </p>
+    <p class="body">
+      Both movements — the mathematical and the philosophical — arrive at the same embrace of multiplicity.
+      The link between them is structural, not historical: independent disciplines reaching the same
+      perspective.
+    </p>
+
+    <h3 class="subhead gap-sub">Hypothesis</h3>
+    <p class="body">
+      The modal context must be <em class="plain">complex enough</em> to support reasoning across many
+      levels of structure at once. Yuri Manin (1937–2023), a direct intellectual descendent of
+      Grothendieck, gave a reading of complexity not as randomness, not as regularity, but as
+      <em class="plain">generative depth</em> — the kind a setting has when it supports multi-level
+      <a class="wiki" href="https://en.wikipedia.org/wiki/Adjoint_functors">adjoint</a> reasoning. The
+      hypothesis on the structural side: modal cohesion meets this threshold, and so the foundation has
+      enough depth for complexity to actually develop in it; shallower modal structures cannot host this
+      kind of growth.
+    </p>
+  </div>
+
+  <div class="hr"></div>
+
+  <!-- ===================== OPERATIONAL SIDE ===================== -->
+  <div class="section sec-b">
+    <h2 class="sec-head">The operational side of the bridge<span class="sec-topic">Concurrency as implementable protocol</span></h2>
+    <p class="body">
+      Concurrency studies systems of agents acting in parallel and communicating with each other. Two
+      ideas anchor the modern study of such systems: the
+      <a class="wiki" href="https://en.wikipedia.org/wiki/Actor_model">actor model</a> (which describes
+      the agents) and <a class="wiki" href="https://en.wikipedia.org/wiki/Session_type">session types</a>
+      (which describe the structured communication between them).
+    </p>
+
+    <h3 class="subhead gap-sub">Inspiration</h3>
+    <p class="body">
+      One of Grothendieck's gifts to mathematics was his radical generalization of the notion of a
+      <em class="plain">cover</em> — a collection of local views that together describe a whole, like an
+      atlas mapping a country in patches. Each patch makes sense on its own; the way patches overlap is
+      part of the structure. In his memoirs, <em class="plain">Récoltes et Semailles</em>, Grothendieck
+      meditates on how mathematical insight grows from local perspectives and the bridges between them; in
+      <em class="plain">Esquisse d'un Programme</em>, he sketches the structural directions he believed
+      could carry that growth further.
+    </p>
+
+    <h3 class="subhead gap-sub">Operational layers</h3>
+    <p class="body">The protocol the project builds separates communication into two layers:</p>
+    <ul class="layers">
+      <li><strong>&ldquo;How&rdquo; layer.</strong> How participants communicate — who talks to whom, in
+        what order, with what kind of messages (question, request…). The protocol of the conversation
+        itself.</li>
+      <li><strong>&ldquo;What&rdquo; layer.</strong> What they communicate about — typed content carrying
+        meaning, structured so every receiver can decode it. The substance of the conversation.</li>
+    </ul>
+    <p class="body">
+      The how-layer is what lets a community of arbitrary participants do something together without
+      imposing a centralized authority on them. The what-layer is what allows their output to be
+      meaningful, readable, reusable and tractable in a network of such protocols.
+    </p>
+
+    <h3 class="subhead gap-sub">Hypothesis</h3>
+    <p class="body">
+      The protocol must follow strict <em class="plain">separation of concerns</em>. The system's
+      organisation is built as a <em class="plain">cascade</em>: each layer's resolution by modular
+      separation opens the next problem; separation of concerns is the recursive move that produces the
+      whole structure.
+    </p>
+
+    <table class="cascade">
+      <thead>
+        <tr>
+          <th style="width:20%;">Layer</th>
+          <th style="width:28%;">Trade-off it navigates</th>
+          <th style="width:52%;">Strategy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="layer">Hybrid</td>
+          <td>locality vs globality</td>
+          <td>local content glues into global by descent</td>
+        </tr>
+        <tr>
+          <td class="layer">Reflexive</td>
+          <td>stability vs adaptability</td>
+          <td>meta-conversations propose structural edits, consensus ratifies</td>
+        </tr>
+        <tr>
+          <td class="layer">Bulk</td>
+          <td>expressive power vs transparency</td>
+          <td>the protocol generates its own language</td>
+        </tr>
+        <tr>
+          <td class="layer">Field-theoretic dynamics</td>
+          <td>exploration vs exploitation</td>
+          <td>3 phases inspired by cosmology: symmetry-breaking, fluctuation, stabilisation</td>
+        </tr>
+        <tr>
+          <td class="layer">Federation</td>
+          <td>coherence vs plurality</td>
+          <td>typed translation between protocols inside a network of protocols</td>
+        </tr>
+        <tr>
+          <td class="layer">Information cohomology</td>
+          <td>dense vs accessible encoding</td>
+          <td>receiver-relative measurement of cost of understanding</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="cascade-cap">
+      Each row's strategy creates the next row's trade-off. The cascade is what builds the whole protocol.
+    </p>
+  </div>
+
+  <div class="hr"></div>
+
+  <!-- ===================== THE CROSS-SIDE BRIDGE ===================== -->
+  <div class="section sec-bridge">
+    <h2 class="sec-head">The cross-side bridge<span class="sec-topic">How the structural and operational sides constitute each other</span></h2>
+    <p class="body">
+      Between modal type theory (the structural side) and concurrency (the operational side), there is a
+      two-way bridge. The two sides are mutually constitutive: each makes the other possible.
+    </p>
+
+    <h3 class="subhead gap-sub">Allow and Require</h3>
+    <p class="body">The bridge has two directions:</p>
+    <ul class="layers">
+      <li><strong>Allow:</strong> The modal context, by making multi-perspective reasoning formally
+        precise and meaningful, <em class="plain">allows</em> concurrent agents to operate at a level of
+        complexity which justifies the structural investments built into the system. Without this
+        permission, the protocol would be better off collapsing to a hierarchy. In return, the concurrent
+        operations are part of an evolution which culminated in this modal context for agents.</li>
+      <li><strong>Require:</strong> The concurrent protocol, to separate its concerns cleanly,
+        <em class="plain">requires</em> the modal context to host its operations. And without this
+        requirement, the modal foundation would have no praxis — no community of agents actually doing the
+        work.</li>
+    </ul>
+
+    <h3 class="subhead gap-sub">Mutually constitutive</h3>
+    <p class="body">
+      The structural and operational sides are parent and child to each other — in turn, depending on the
+      direction. The structural side is parent to the operational side when the operational side's
+      separations need a multi-perspective context to live in. The operational side is parent to the
+      structural side when the structural side's modal structure needs an actual community of agents to
+      mean anything in practice. Together they act on their shared context like an ecosystem: each one's
+      activity becomes the other's environment, and the environment's state is what the next round acts in.
+    </p>
+
+    <h3 class="subhead gap-sub">Iteration</h3>
+    <p class="body">
+      Once this relation is established, it can be repeated. Each round of the bridge produces a new
+      (context, protocol) pair, in which new structures become statable that were not statable before.
+    </p>
+    <p class="body">
+      The two sides are not symmetric: the structural side is settled enough that its perspectives can be
+      re-applied; the operational side is fluid enough that each application produces genuinely new
+      structure. This asymmetry is what keeps the iteration alive.
+    </p>
+    <p class="body">
+      The sequence of stages produced this way is the <em class="plain">developing protocol</em> the
+      implementation targets.
+    </p>
+  </div>
+
+  <div class="hr"></div>
+
+  <!-- ===================== WHAT IT OUTPUTS ===================== -->
+  <div class="section sec-bridge">
+    <h2 class="sec-head">What it outputs</h2>
+    <p class="body">
+      The same algebraic structure that organises quantum field theories — the
+      <a class="wiki" href="https://en.wikipedia.org/wiki/Cobordism_hypothesis">cobordism hypothesis</a>
+      — organises the project's session-typed protocols. The framework's output is a kind of field
+      theory: a way of assigning local structure to local pieces of a space, with global coherence
+      emerging from how the pieces fit together. This is why the top sentence of the synopsis holds:
+      type-theoretic foundations, when their internal semantics is read off carefully, produce
+      field-theoretic structure. And it is why the bottom sentence holds: field-theoretic dynamics, when
+      stabilised, produce an internal type theory. The two halves of the project meet at this point.
+    </p>
+  </div>
+
+  <!-- ===================== LEGEND STRIP ===================== -->
+  <div class="legend">
+    <span class="cue">Italic-underlined terms</span> (such as <span class="cue">topos</span>,
+    <span class="cue">adjoint</span>, <span class="cue">actor model</span>,
+    <span class="cue">session types</span>, <span class="cue">cobordism hypothesis</span>) are searchable
+    on Wikipedia; in the digital version they are clickable links. — The project's full implementation
+    status, the formalised constructions, and the proposed <em>Allow ⊣ Require</em> adjunction are shown
+    in the companion document <em>Hoapa: Construction map — Allow ⊣ Require</em>.
+  </div>
+
+  <div class="colophon">HOAPA — SYNOPSIS</div>
+
+</div>
+
+</body>
+</html>
