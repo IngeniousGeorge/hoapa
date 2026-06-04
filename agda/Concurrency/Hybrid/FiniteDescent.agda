@@ -27,29 +27,31 @@
 -- `value` is the empty product `⊤ₚ` (terminal). So these are plain
 -- universally-quantified properties, not restricted to inhabited covers.
 --
--- Scope guardrails: generic over any `StarAutonomous` `V` and any
--- `FiniteFramePresheaf` over it; no session syntax, no operad imports.
--- The witness that inhabits these records (the event-product presheaf)
--- lives in `Concurrency/Hybrid/EventProductSheaf.agda`.
+-- Scope guardrails: generic over any Cubical `Category` `C` and any
+-- `FiniteFramePresheaf` over it; no value-category structure beyond the
+-- underlying 1-category, no session syntax, no operad imports. The
+-- witness that inhabits these records (the event-product presheaf) lives
+-- in `Concurrency/Hybrid/EventProductSheaf.agda`.
 
 module Concurrency.Hybrid.FiniteDescent where
 
 open import Cubical.Foundations.Prelude
 open import Cubical.Data.Sigma using (Σ-syntax ; _,_ ; fst ; snd)
+open import Cubical.Categories.Category.Base using (Category)
 
 open import Concurrency.Sites.ActorBase using (ActorBase)
 open import Concurrency.Sites.ActorPullback using (pb-π₁ ; pb-π₂)
 open import Concurrency.Sites.FiniteFrame using (FiniteFrame)
 open import Concurrency.Sites.FiniteCover using (FiniteCover)
-open import Concurrency.Algebras.StarAutonomous using (StarAutonomous)
-open import Concurrency.Hybrid.EventProductPresheaf using (FiniteFramePresheaf)
+open import Concurrency.Algebras.CategoryApplicative using (module ApplicativeView)
+open import Concurrency.Hybrid.FinitePresheaf using (FiniteFramePresheaf)
 
 module _ {ℓA : Level} (AB : ActorBase ℓA)
-         {ℓV ℓH : Level} (V : StarAutonomous ℓV ℓH) where
+         {ℓV ℓH : Level} (C : Category ℓV ℓH) where
 
-  open StarAutonomous V
+  open ApplicativeView C
 
-  module _ {ℓE ℓR ℓI : Level} (P : FiniteFramePresheaf AB V {ℓE} {ℓR}) where
+  module _ {ℓE ℓR ℓI : Level} (P : FiniteFramePresheaf AB C {ℓE} {ℓR}) where
 
     open FiniteFramePresheaf P
 

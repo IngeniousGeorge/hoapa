@@ -40,8 +40,9 @@
 --
 -- Generic first, then a one-line Sessions specialization, per the
 -- value-category-agnostic discipline of the finite-descent stack: the
--- generic module is parametric in `(V , HasFiniteProducts V , P₀)`; the
--- closing module instantiates it at `Sessions-Cat Payload`.
+-- generic module is parametric in `(C : Category , HasFiniteProducts C ,
+-- P₀)`; the closing module instantiates it at `StarAutonomous→Category
+-- (Sessions-Cat Payload)`.
 --
 -- Scope guardrails: no new postulates; no mutation of any shipped file;
 -- no event-dependent slots and no sheaf-category / topos structure (the
@@ -60,10 +61,13 @@ open import Concurrency.Sites.FiniteFrame using (FiniteFrame)
 open import Concurrency.Sites.FiniteCover using (FiniteCover)
 open import Concurrency.Sites.TinyFiniteCover
   using (TinyFrameF ; PointFrameF ; TinyFiniteCover)
+open import Cubical.Categories.Category.Base using (Category)
 open import Concurrency.Algebras.StarAutonomous using (StarAutonomous)
+open import Concurrency.Algebras.StarAutonomousCategory using (StarAutonomous→Category)
+open import Concurrency.Algebras.CategoryApplicative using (module ApplicativeView)
 open import Concurrency.Algebras.FiniteProducts using (HasFiniteProducts)
-open import Concurrency.Hybrid.EventProductPresheaf
-  using (FiniteFramePresheaf ; event-product-presheaf)
+open import Concurrency.Hybrid.FinitePresheaf using (FiniteFramePresheaf)
+open import Concurrency.Hybrid.EventProductPresheaf using (event-product-presheaf)
 open import Concurrency.Hybrid.FiniteDescent
   using (MatchingFamily ; HasAmalgamation ; IsSeparated ; IsSheaf)
 open import Concurrency.Hybrid.EventProductSheaf using (event-product-sheaf)
@@ -71,26 +75,26 @@ open import Concurrency.Algebras.Sessions
   using (Sessions-Cat ; Sessions-HasFiniteProducts)
 
 ------------------------------------------------------------------------
--- Generic over any value category with finite products and a slot P₀.
+-- Generic over any Cubical `Category` with finite products and a slot P₀.
 ------------------------------------------------------------------------
 
-module _ {ℓV ℓH : Level} (V : StarAutonomous ℓV ℓH)
-         (FP : HasFiniteProducts V)
-         (P₀ : StarAutonomous.Ob V) where
+module _ {ℓV ℓH : Level} (C : Category ℓV ℓH)
+         (FP : HasFiniteProducts C)
+         (P₀ : Category.ob C) where
 
-  open StarAutonomous V
+  open ApplicativeView C
   open HasFiniteProducts FP
 
   private
-    P : FiniteFramePresheaf TinyAB V {ℓ-zero} {ℓ-zero}
-    P = event-product-presheaf TinyAB V FP P₀
+    P : FiniteFramePresheaf TinyAB C {ℓ-zero} {ℓ-zero}
+    P = event-product-presheaf TinyAB C FP P₀
 
   open FiniteFramePresheaf P
   open FiniteCover TinyFiniteCover using (patch ; embed ; overlap-frame)
 
   -- The event-product sheaf, at the tiny site.
-  tiny-sheaf : IsSheaf TinyAB V {ℓ-zero} {ℓ-zero} {ℓ-zero} P
-  tiny-sheaf = event-product-sheaf TinyAB V FP P₀
+  tiny-sheaf : IsSheaf TinyAB C {ℓ-zero} {ℓ-zero} {ℓ-zero} P
+  tiny-sheaf = event-product-sheaf TinyAB C FP P₀
 
   ----------------------------------------------------------------------
   -- A concrete matching family over the two-point cover.
@@ -98,7 +102,7 @@ module _ {ℓV ℓH : Level} (V : StarAutonomous ℓV ℓH)
 
   tiny-matching :
     {X : Ob} (p : (i : Bool) → Hom X (value PointFrameF))
-    → MatchingFamily TinyAB V P TinyFiniteCover X
+    → MatchingFamily TinyAB C P TinyFiniteCover X
   tiny-matching {X} p = record { part = p ; compatible = compat }
     where
       -- Diagonal: pb-π₁ and pb-π₂ have equal event-maps (both the single
@@ -162,6 +166,9 @@ module _ {ℓv ℓ' : Level} (Payload : Type ℓv)
     Vs : StarAutonomous ℓv (ℓ-max ℓv ℓ')
     Vs = Sessions-Cat {ℓv} {ℓ'} Payload
 
-  session-tiny-sheaf      = tiny-sheaf      Vs (Sessions-HasFiniteProducts Payload) P₀
-  session-tiny-amalgamate = tiny-amalgamate Vs (Sessions-HasFiniteProducts Payload) P₀
-  session-tiny-separated  = tiny-separated  Vs (Sessions-HasFiniteProducts Payload) P₀
+    -- Its underlying category, fed to the generic tiny witnesses.
+    Ĉs = StarAutonomous→Category Vs
+
+  session-tiny-sheaf      = tiny-sheaf      Ĉs (Sessions-HasFiniteProducts Payload) P₀
+  session-tiny-amalgamate = tiny-amalgamate Ĉs (Sessions-HasFiniteProducts Payload) P₀
+  session-tiny-separated  = tiny-separated  Ĉs (Sessions-HasFiniteProducts Payload) P₀

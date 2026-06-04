@@ -1,28 +1,32 @@
 {-# OPTIONS --cubical --guardedness #-}
 
--- The V-valued linear sheaf category Sh_fin(site, V): the category of
--- finite-frame sheaves over a `StarAutonomous` value category `V`.
+-- The finite sheaf category Sh_fin(site, C): the category of finite-frame
+-- sheaves valued in an arbitrary Cubical `Category` `C`.
 --
--- This is leg 1 of the three-leg program scoped in the workflow
--- discussion (leg 1: this V-valued linear sheaf category; leg 2: a
--- minimal Set-valued cartesian locality side; leg 3: the R4 Benton /
--- linear-non-linear adapter between them). It is the object the
--- cross-site `Require : K → M` must land in and `Allow : M → K` map
--- out of — the "K as a category" that arc/09 names as the gating
--- prerequisite for stating `Allow ⊣ Require`. Building it makes no
--- adjunction claim; it builds the slot.
+-- This is the *generic* framework that produces both legs of the
+-- three-leg program by change of value category: leg 1 (V-valued, linear)
+-- is this construction at `C := StarAutonomous→Category V`; leg 2
+-- (Set-valued, cartesian) is the same construction at `C := SET` (see
+-- `Concurrency/Hybrid/SetFiniteSheafCategory.agda`); leg 3 is the R4
+-- Benton / linear-non-linear adapter between them. Being one construction
+-- at two value categories is what keeps R4 a clean cartesian-vs-linear
+-- bridge rather than a presentation gap. The sheaf category is the object
+-- the cross-site `Require : K → M` must land in and `Allow : M → K` map
+-- out of — the "K as a category" arc/09 names as the gating prerequisite
+-- for `Allow ⊣ Require`. Building it makes no adjunction claim; it builds
+-- the slot.
 --
 -- Construction (the "bridge, don't re-express" decision). The working
--- representation stays the hand-rolled `FiniteFramePresheaf` record and
--- its `IsSheaf` (from `FiniteDescent`); the honest library-`Functor`
--- view of each presheaf is provided separately in
--- `Concurrency/Hybrid/FiniteFramePresheafFunctor.agda`. Here we package
--- those records into a library `Cubical.Categories.Category.Category`:
+-- representation stays the hand-rolled `FiniteFramePresheaf` record
+-- (`FinitePresheaf.agda`) and its `IsSheaf` (`FiniteDescent.agda`); the
+-- honest library-`Functor` view of each presheaf is provided separately
+-- in `FiniteFramePresheafFunctor.agda`. Here we package those records
+-- into a library `Cubical.Categories.Category.Category`:
 --
 --   * `FiniteFramePresheafCategory` — objects are presheaf records,
---     morphisms are natural transformations (a family of `V`-morphisms
+--     morphisms are natural transformations (a family of `C`-morphisms
 --     commuting with `restrict`). `isSetHom` is `isSetΣ` of a Π into
---     `V`'s hom-sets with a propositional naturality square — exactly
+--     `C`'s hom-sets with a propositional naturality square — exactly
 --     the coherence the library obligation asks us to pay, and it is
 --     payable.
 --   * `IsSheaf`-is-a-proposition (`isPropIsSheaf`) — proved *now*, not
@@ -33,18 +37,24 @@
 --     so `IsSheaf`-isProp is an `isProp→PathP` over the separatedness
 --     path — the amalgamation half depending on the separated half.
 --   * `FiniteSheafCategory` — the full subcategory on `IsSheaf`.
---   * a concrete sanity object: the event-product sheaf is an honest
---     object of the category, so it is non-vacuous.
 --
--- Convention: diagrammatic `_⋆_` (library style), with `V`'s
--- applicative `_∘_` used inside the naturality / law proofs — the
--- single conversion is isolated, as in `StarAutonomousCategory.agda`.
+-- The framework is *witness-free*: it depends only on the underlying
+-- 1-category of `C` (via the applicative view in `CategoryApplicative`),
+-- never on `StarAutonomous`, `HasFiniteProducts`, or any concrete
+-- presheaf. The leg-1 non-vacuity sanity object (the event-product sheaf
+-- as an object of the V-valued category) therefore lives in its own file
+-- `EventProductSheafObject.agda`, so that the Set-valued skeleton can
+-- import this framework without pulling in the finite-product witness.
 --
--- Scope guardrails: generic over any `StarAutonomous V`; the value
--- category is *not* enriched onto the sheaf category (Fork B / the
--- Day-convolution `*`-autonomous structure on K is deferred,
--- interface-first). No Set-valued side, no R4 adapter here — those are
--- the reserved `Concurrency/Topos/` work.
+-- Convention: diagrammatic `_⋆_` (library style) for the produced
+-- category, with `C`'s applicative `_∘_` (from `ApplicativeView`) used
+-- inside the naturality / law proofs.
+--
+-- Scope guardrails: generic over any Cubical `Category C`; the value
+-- category's structure (when it has any, e.g. the linear `*`-autonomous
+-- structure on the V side) is *not* enriched onto the sheaf category
+-- (Fork B / the Day-convolution structure on K is deferred, interface-
+-- first). No Coverage bridge and no R4 adapter here.
 
 module Concurrency.Hybrid.FiniteSheafCategory where
 
@@ -61,18 +71,15 @@ open import Concurrency.Sites.ActorBase using (ActorBase)
 open import Concurrency.Sites.ActorCausal using (FrameHom)
 open import Concurrency.Sites.FiniteFrame using (FiniteFrame)
 open import Concurrency.Sites.FiniteCover using (FiniteCover)
-open import Concurrency.Algebras.StarAutonomous using (StarAutonomous)
-open import Concurrency.Algebras.FiniteProducts using (HasFiniteProducts)
-open import Concurrency.Hybrid.EventProductPresheaf
-  using (FiniteFramePresheaf ; event-product-presheaf)
+open import Concurrency.Algebras.CategoryApplicative using (module ApplicativeView)
+open import Concurrency.Hybrid.FinitePresheaf using (FiniteFramePresheaf)
 open import Concurrency.Hybrid.FiniteDescent
-open import Concurrency.Hybrid.EventProductSheaf using (event-product-sheaf)
 
 module _ {ℓA : Level} (AB : ActorBase ℓA)
-         {ℓV ℓH : Level} (V : StarAutonomous ℓV ℓH)
+         {ℓV ℓH : Level} (C : Category ℓV ℓH)
          {ℓE ℓR : Level} where
 
-  open StarAutonomous V
+  open ApplicativeView C
   open FiniteFramePresheaf
 
   private
@@ -80,7 +87,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
     Frame = FiniteFrame AB ℓE ℓR
 
     Psh : Type (ℓ-suc (ℓ-max ℓA (ℓ-max ℓE (ℓ-max ℓR (ℓ-max ℓV ℓH)))))
-    Psh = FiniteFramePresheaf AB V {ℓE} {ℓR}
+    Psh = FiniteFramePresheaf AB C {ℓE} {ℓR}
 
   ----------------------------------------------------------------------
   -- Morphisms of presheaves: natural families of V-morphisms.
@@ -149,7 +156,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
 
   module _ {ℓI : Level} (P : Psh) where
 
-    isPropIsSeparated : isProp (IsSeparated AB V {ℓE} {ℓR} {ℓI} P)
+    isPropIsSeparated : isProp (IsSeparated AB C {ℓE} {ℓR} {ℓI} P)
     isPropIsSeparated a b i = record
       { cover-jointly-monic = λ {F} c {X} x y hyp →
           Hom-set x y
@@ -160,9 +167,9 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
     -- family is a proposition: the section is unique by joint monicity,
     -- and the restriction property is a hom-set path.
     amalgΣ-isProp :
-      (sep : IsSeparated AB V {ℓE} {ℓR} {ℓI} P)
+      (sep : IsSeparated AB C {ℓE} {ℓR} {ℓI} P)
       {F : Frame} (c : FiniteCover AB ℓI F) {X : Ob}
-      (m : MatchingFamily AB V P c X)
+      (m : MatchingFamily AB C P c X)
       → isProp (Σ[ s ∈ Hom X (value P F) ]
                   ((i : FiniteCover.Index c)
                     → restrict P F (FiniteCover.patch c i) (FiniteCover.embed c i) ∘ s
@@ -176,15 +183,15 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
                 (λ i → ps i ∙ sym (ps' i))
 
     isPropHasAmalgamation :
-      IsSeparated AB V {ℓE} {ℓR} {ℓI} P
-      → isProp (HasAmalgamation AB V {ℓE} {ℓR} {ℓI} P)
+      IsSeparated AB C {ℓE} {ℓR} {ℓI} P
+      → isProp (HasAmalgamation AB C {ℓE} {ℓR} {ℓI} P)
     isPropHasAmalgamation sep a b i = record
       { amalgamate = λ {F} c {X} m →
           amalgΣ-isProp sep {F} c {X} m
             (HasAmalgamation.amalgamate a c m)
             (HasAmalgamation.amalgamate b c m) i }
 
-    isPropIsSheaf : isProp (IsSheaf AB V {ℓE} {ℓR} {ℓI} P)
+    isPropIsSheaf : isProp (IsSheaf AB C {ℓE} {ℓR} {ℓI} P)
     isPropIsSheaf a b i = record
       { separated    = sepPath i
       ; amalgamating =
@@ -205,22 +212,4 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
         (ℓ-max (ℓ-suc (ℓ-max ℓA (ℓ-max ℓE ℓR))) ℓH)
   FiniteSheafCategory ℓI =
     FullSubcategory FiniteFramePresheafCategory
-      (λ P → IsSheaf AB V {ℓE} {ℓR} {ℓI} P)
-
-  ----------------------------------------------------------------------
-  -- Sanity: the event-product sheaf is a concrete object, so the
-  -- category is non-vacuous (it has at least one object and its
-  -- identity morphism).
-  ----------------------------------------------------------------------
-
-  module _ (FP : HasFiniteProducts V) (P₀ : Ob) {ℓI : Level} where
-
-    event-product-object : Category.ob (FiniteSheafCategory ℓI)
-    event-product-object =
-      event-product-presheaf AB V FP P₀ , event-product-sheaf AB V FP P₀
-
-    event-product-object-id :
-      Category.Hom[_,_] (FiniteSheafCategory ℓI)
-        event-product-object event-product-object
-    event-product-object-id =
-      Category.id (FiniteSheafCategory ℓI) {event-product-object}
+      (λ P → IsSheaf AB C {ℓE} {ℓR} {ℓI} P)

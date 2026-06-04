@@ -1,10 +1,19 @@
 {-# OPTIONS --cubical --guardedness #-}
 
--- Finite additive products on a `StarAutonomous` value category.
+-- Finite products over an arbitrary Cubical `Category`.
 --
--- This is *milestone 1* of the B-side value-category enrichment that
+-- Terminal object plus binary product, as a genuine categorical product
+-- (projections, pairing, β and η), generic over any `Category C` (via the
+-- applicative view in `CategoryApplicative`). It carries no value-category
+-- structure beyond the underlying 1-category, so it instantiates at both
+-- `StarAutonomous→Category V` — where it is read as the *additive* product
+-- `&` / `⊤ₚ` dual to the linear/session structure (the instance-specific
+-- motivation the comments below describe) — and at `SET`, where it is the
+-- cartesian product `×` / `Unit` (`SetFiniteProducts.agda`).
+--
+-- This was *milestone 1* of the B-side value-category enrichment that
 -- unlocks an honest, non-degenerate descent witness (the event-indexed
--- session presheaf, "B2(a)") and, in the same stroke, the empty-cover
+-- presheaf, "B2(a)") and, in the same stroke, the empty-cover
 -- normalization rung of the sheaf condition. The design call (recorded
 -- in the workflow discussion preceding this file) was:
 --
@@ -97,14 +106,19 @@
 -- non-constant slot forces index-dependent codomains.
 --
 -- Scope guardrails:
---   * Generic over any `StarAutonomous` target `V`; no session syntax,
---     no operad imports, no actor/site imports. This is pure
---     value-category structure.
---   * Uses only the underlying category of `V` (`Ob`, `Hom`, `∘`, the
---     unit/associativity laws). It does *not* touch `⊗`, `^⊥`, or any
---     other `*`-autonomous field — additive products are orthogonal to
---     the multiplicative structure, and keeping the record dependent
---     only on the bare category makes that orthogonality visible.
+--   * Generic over any Cubical `Category` `C`; no session syntax, no
+--     operad imports, no actor/site imports. This is pure value-category
+--     structure. (Originally parameterized over `StarAutonomous`; the
+--     record only ever used the underlying 1-category, so it is now over
+--     a plain `Category` — the same move as the descent/sheaf framework —
+--     which lets it be instantiated at both `StarAutonomous→Category V`
+--     (linear V side) and `SET` (cartesian Set side).)
+--   * Uses only the underlying category of `C` (`Ob`, `Hom`, `∘`, and
+--     associativity, via the applicative view in `CategoryApplicative`).
+--     For a linear value category this means it does *not* touch `⊗`,
+--     `^⊥`, or any `*`-autonomous field — additive products are
+--     orthogonal to the multiplicative structure, and depending only on
+--     the bare category makes that orthogonality visible.
 
 module Concurrency.Algebras.FiniteProducts where
 
@@ -113,10 +127,11 @@ open import Cubical.Data.Nat using (ℕ ; zero ; suc)
 open import Cubical.Data.FinData
   using (Fin) renaming (zero to fzero ; suc to fsuc)
 
-open import Concurrency.Algebras.StarAutonomous using (StarAutonomous)
+open import Cubical.Categories.Category.Base using (Category)
+open import Concurrency.Algebras.CategoryApplicative using (module ApplicativeView)
 
-module _ {ℓ ℓ' : Level} (V : StarAutonomous ℓ ℓ') where
-  open StarAutonomous V
+module _ {ℓ ℓ' : Level} (C : Category ℓ ℓ') where
+  open ApplicativeView C
 
   ----------------------------------------------------------------------
   -- HasFiniteProducts: terminal object + binary product, as a genuine

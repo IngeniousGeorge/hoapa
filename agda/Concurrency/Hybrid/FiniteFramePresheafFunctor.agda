@@ -1,7 +1,7 @@
 {-# OPTIONS --cubical --guardedness #-}
 
--- Bridge: every `FiniteFramePresheaf` record is a genuine library
--- `Functor (FiniteFrameCategory ^op) (StarAutonomous→Category V)`.
+-- Bridge: every `FiniteFramePresheaf` record (over a value category `C`)
+-- is a genuine library `Functor (FiniteFrameCategory ^op) C`.
 --
 -- Why a bridge rather than a re-expression. The finite event-product
 -- descent stack (`EventProductPresheaf`, `FiniteDescent`,
@@ -32,8 +32,9 @@
 -- `((FiniteFrameCategory) ^op) [F,G] = FrameHom (frame G) (frame F)`,
 -- which is exactly the argument `restrict F G` expects.
 --
--- Scope guardrails: generic over any `StarAutonomous V`; no session
--- syntax, no operad imports, no descent files modified.
+-- Scope guardrails: generic over any Cubical `Category C`; no value-
+-- category structure beyond the underlying 1-category, no session syntax,
+-- no operad imports, no descent files modified.
 
 module Concurrency.Hybrid.FiniteFramePresheafFunctor where
 
@@ -44,20 +45,18 @@ open import Cubical.Categories.Functor.Base using (Functor)
 open import Concurrency.Sites.ActorBase using (ActorBase)
 open import Concurrency.Sites.FiniteFrame using (FiniteFrame)
 open import Concurrency.Sites.FiniteFrameCategory using (FiniteFrameCategory)
-open import Concurrency.Algebras.StarAutonomous using (StarAutonomous)
-open import Concurrency.Algebras.StarAutonomousCategory using (StarAutonomous→Category)
-open import Concurrency.Hybrid.EventProductPresheaf using (FiniteFramePresheaf)
+open import Concurrency.Hybrid.FinitePresheaf using (FiniteFramePresheaf)
 
 module _ {ℓA : Level} (AB : ActorBase ℓA)
-         {ℓV ℓH : Level} (V : StarAutonomous ℓV ℓH)
+         {ℓV ℓH : Level} (C : Category ℓV ℓH)
          {ℓE ℓR : Level} where
 
   open FiniteFramePresheaf
 
   -- The categorical view of a finite-frame presheaf.
   presheaf→Functor :
-      FiniteFramePresheaf AB V {ℓE} {ℓR}
-    → Functor ((FiniteFrameCategory AB ℓE ℓR) ^op) (StarAutonomous→Category V)
+      FiniteFramePresheaf AB C {ℓE} {ℓR}
+    → Functor ((FiniteFrameCategory AB ℓE ℓR) ^op) C
   presheaf→Functor P = record
     { F-ob  = value P
     ; F-hom = λ {x} {y} φ → restrict P x y φ

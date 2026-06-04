@@ -148,8 +148,14 @@ open import Concurrency.Algebras.Valuation
 open import Concurrency.Algebras.OperadAlgebra
   using ( OperadAlgebra )
 -- New dependency (B2(a) descent enrichment, 2026-06-04): the additive
--- finite-product interface the event-product sheaf consumes. No cycle —
--- `FiniteProducts` depends only on `StarAutonomous`.
+-- finite-product interface the event-product sheaf consumes. Now
+-- parameterized over a Cubical `Category`, so the products bundle is
+-- exposed over `Sessions-Cat`'s underlying category (`StarAutonomous→
+-- Category`); the field bodies are unchanged (definitionally the same
+-- `Ob`/`Hom`/`∘`). No cycle — both helpers depend only on the library /
+-- `StarAutonomous`.
+open import Concurrency.Algebras.StarAutonomousCategory
+  using ( StarAutonomous→Category )
 open import Concurrency.Algebras.FiniteProducts
   using ( HasFiniteProducts )
 
@@ -380,7 +386,7 @@ module _ {ℓv ℓ' : Level} (Payload : Type ℓv) where
   -- exactly as `FiniteProducts.agda` documents.
   ------------------------------------------------------------------------
 
-  Sessions-HasFiniteProducts : HasFiniteProducts Sessions-Cat
+  Sessions-HasFiniteProducts : HasFiniteProducts (StarAutonomous→Category Sessions-Cat)
   Sessions-HasFiniteProducts .HasFiniteProducts.⊤ₚ              = ⊤ₛ
   Sessions-HasFiniteProducts .HasFiniteProducts.terminal        = terminal-h
   Sessions-HasFiniteProducts .HasFiniteProducts.terminal-unique = terminal-unique-h

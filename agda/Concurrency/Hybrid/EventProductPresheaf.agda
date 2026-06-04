@@ -62,10 +62,12 @@
 --     finite frames are passed explicitly (unlike the implicit style of
 --     `Presheaf.agda`'s `FramePresheaf`).
 --
--- Scope guardrails: generic over any `StarAutonomous` target `V` with
--- `HasFiniteProducts V`; no session syntax, no operad imports. The
--- concrete Sessions instantiation (the "B2(a)" landing) is a later
--- milestone gated on adding additive constructors to session syntax.
+-- Scope guardrails: generic over any Cubical `Category C` with
+-- `HasFiniteProducts C`; no value-category structure beyond the
+-- underlying 1-category plus finite products, no session syntax, no
+-- operad imports. Instantiated at `StarAutonomous→Category V` (linear V
+-- side, `SessionEventProductSheaf.agda`) and `SET` (cartesian Set side,
+-- `SetEventProductSheaf.agda`).
 
 module Concurrency.Hybrid.EventProductPresheaf where
 
@@ -75,53 +77,35 @@ open import Cubical.Foundations.Equiv
 open import Cubical.Data.Nat using (ℕ)
 open import Cubical.Data.FinData using (Fin)
 
+open import Cubical.Categories.Category.Base using (Category)
 open import Concurrency.Sites.ActorBase using (ActorBase)
 open import Concurrency.Sites.ActorCausal
   using ( LocalFrame ; FrameHom ; frame-id ; _∘ᶠ_ )
 open import Concurrency.Sites.FiniteFrame using (FiniteFrame)
-open import Concurrency.Algebras.StarAutonomous using (StarAutonomous)
+open import Concurrency.Algebras.CategoryApplicative using (module ApplicativeView)
 open import Concurrency.Algebras.FiniteProducts
   using ( HasFiniteProducts ; module FiniteProductAPI )
+open import Concurrency.Hybrid.FinitePresheaf using (FiniteFramePresheaf)
 
 module _ {ℓA : Level} (AB : ActorBase ℓA)
-         {ℓV ℓH : Level} (V : StarAutonomous ℓV ℓH) where
+         {ℓV ℓH : Level} (C : Category ℓV ℓH) where
 
-  open StarAutonomous V
-
-  ----------------------------------------------------------------------
-  -- FiniteFramePresheaf: a contravariant functor on the finite-frame
-  -- subsite, valued in `V`. The finite-frame analogue of `FramePresheaf`
-  -- (which ranges over all `LocalFrame`s). Morphisms are `FrameHom`s
-  -- between the underlying frames; the two finite frames are explicit
-  -- arguments of `restrict` (see header).
-  ----------------------------------------------------------------------
-
-  record FiniteFramePresheaf {ℓE ℓR : Level}
-       : Type (ℓ-suc (ℓ-max ℓA (ℓ-max ℓE (ℓ-max ℓR (ℓ-max ℓV ℓH))))) where
-    field
-      value :
-        FiniteFrame AB ℓE ℓR → Ob
-      restrict :
-        (F G : FiniteFrame AB ℓE ℓR)
-        → FrameHom AB (FiniteFrame.frame G) (FiniteFrame.frame F)
-        → Hom (value F) (value G)
-      restrict-id :
-        (F : FiniteFrame AB ℓE ℓR)
-        → restrict F F (frame-id AB (FiniteFrame.frame F)) ≡ id
-      restrict-comp :
-        (F G H : FiniteFrame AB ℓE ℓR)
-        (ψ : FrameHom AB (FiniteFrame.frame G) (FiniteFrame.frame H))
-        (φ : FrameHom AB (FiniteFrame.frame F) (FiniteFrame.frame G))
-        → restrict H F (_∘ᶠ_ AB ψ φ) ≡ restrict G F φ ∘ restrict H G ψ
+  open ApplicativeView C
+  open FiniteFramePresheaf
 
   --------------------------------------------------------------------
-  -- The event-product witness, for a value category with finite
-  -- products and a chosen slot object `P₀`.
+  -- The event-product witness, for a value category `C` with finite
+  -- products and a chosen slot object `P₀`. Generic over any Cubical
+  -- `Category` with `HasFiniteProducts`, exactly like the descent /
+  -- sheaf-category framework: leg 1 feeds `C := StarAutonomous→Category
+  -- V` (with `V`'s additive products), leg 2 feeds `C := SET` (with the
+  -- cartesian products of sets). Every operation below is `C`'s own,
+  -- via the applicative view and the finite-product API.
   --------------------------------------------------------------------
 
-  module _ (FP : HasFiniteProducts V) {ℓE ℓR : Level} (P₀ : Ob) where
+  module _ (FP : HasFiniteProducts C) {ℓE ℓR : Level} (P₀ : Ob) where
 
-    open FiniteProductAPI V FP
+    open FiniteProductAPI C FP
 
     private
       cnt : FiniteFrame AB ℓE ℓR → ℕ
@@ -209,7 +193,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
                        (reindex G F φ k)
 
     -- The witness.
-    event-product-presheaf : FiniteFramePresheaf {ℓE} {ℓR}
+    event-product-presheaf : FiniteFramePresheaf AB C {ℓE} {ℓR}
     event-product-presheaf = record
       { value         = val
       ; restrict      = res

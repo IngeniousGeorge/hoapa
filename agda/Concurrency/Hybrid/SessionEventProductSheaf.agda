@@ -6,8 +6,9 @@
 -- This is the concrete Sessions instantiation that the generic
 -- finite-site descent witness (`Concurrency/Hybrid/EventProductSheaf.agda`)
 -- was built to receive. The generic `event-product-sheaf` is parametric
--- in a value category `V`, a `HasFiniteProducts V`, and a slot object
--- `P₀`; here we feed it
+-- in a Cubical `Category C`, a `HasFiniteProducts C`, and a slot object
+-- `P₀`; here we feed it the underlying category of the session value
+-- category (`StarAutonomous→Category Sessions-Cat`) —
 --
 --   * `V  := Sessions-Cat Payload`            (the session value category)
 --   * `FP := Sessions-HasFiniteProducts`      (its additive products)
@@ -60,10 +61,11 @@ open import Cubical.Foundations.Prelude
 
 open import Concurrency.Sites.ActorBase using (ActorBase)
 open import Concurrency.Algebras.StarAutonomous using (StarAutonomous)
+open import Concurrency.Algebras.StarAutonomousCategory using (StarAutonomous→Category)
 open import Concurrency.Algebras.Sessions
   using (Sessions-Cat ; Sessions-HasFiniteProducts)
-open import Concurrency.Hybrid.EventProductPresheaf
-  using (FiniteFramePresheaf ; event-product-presheaf)
+open import Concurrency.Hybrid.FinitePresheaf using (FiniteFramePresheaf)
+open import Concurrency.Hybrid.EventProductPresheaf using (event-product-presheaf)
 open import Concurrency.Hybrid.FiniteDescent using (IsSheaf)
 open import Concurrency.Hybrid.EventProductSheaf using (event-product-sheaf)
 
@@ -77,13 +79,16 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
     V : StarAutonomous ℓv (ℓ-max ℓv ℓ')
     V = Sessions-Cat {ℓv} {ℓ'} Payload
 
+    -- Its underlying category, where the framework records live.
+    Ĉ = StarAutonomous→Category V
+
   ----------------------------------------------------------------------
   -- The frame-varying session-valued presheaf: value F = P₀ ^ (events F).
   ----------------------------------------------------------------------
 
-  session-event-product-presheaf : FiniteFramePresheaf AB V {ℓE} {ℓR}
+  session-event-product-presheaf : FiniteFramePresheaf AB Ĉ {ℓE} {ℓR}
   session-event-product-presheaf =
-    event-product-presheaf AB V (Sessions-HasFiniteProducts Payload) P₀
+    event-product-presheaf AB Ĉ (Sessions-HasFiniteProducts Payload) P₀
 
   ----------------------------------------------------------------------
   -- The descent inhabitant at the Sessions target.
@@ -91,6 +96,6 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
 
   session-event-product-sheaf :
       {ℓI : Level}
-    → IsSheaf AB V {ℓE} {ℓR} {ℓI} session-event-product-presheaf
+    → IsSheaf AB Ĉ {ℓE} {ℓR} {ℓI} session-event-product-presheaf
   session-event-product-sheaf =
-    event-product-sheaf AB V (Sessions-HasFiniteProducts Payload) P₀
+    event-product-sheaf AB Ĉ (Sessions-HasFiniteProducts Payload) P₀

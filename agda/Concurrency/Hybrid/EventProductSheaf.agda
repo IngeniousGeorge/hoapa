@@ -35,10 +35,11 @@
 -- enumeration path is a plain `cong` in a fixed `Hom`-type — the regime
 -- in which the product API's `UnsupportedIndexedMatch` warning is inert.
 --
--- Scope guardrails: generic over any `StarAutonomous V` with
--- `HasFiniteProducts V` and a chosen slot `P₀`; no session syntax, no
--- operad imports. The concrete Sessions instantiation is a later
--- milestone.
+-- Scope guardrails: generic over any Cubical `Category C` with
+-- `HasFiniteProducts C` and a chosen slot `P₀`; no value-category
+-- structure beyond the underlying 1-category plus finite products, no
+-- session syntax, no operad imports. Instantiated at `StarAutonomous→
+-- Category V` (linear V side) and `SET` (cartesian Set side).
 
 module Concurrency.Hybrid.EventProductSheaf where
 
@@ -53,24 +54,25 @@ open import Concurrency.Sites.ActorCausal using (LocalFrame ; FrameHom)
 open import Concurrency.Sites.ActorPullback using (frame-pullback ; pb-π₁ ; pb-π₂)
 open import Concurrency.Sites.FiniteFrame using (FiniteFrame)
 open import Concurrency.Sites.FiniteCover using (FiniteCover)
-open import Concurrency.Algebras.StarAutonomous using (StarAutonomous)
+open import Cubical.Categories.Category.Base using (Category)
+open import Concurrency.Algebras.CategoryApplicative using (module ApplicativeView)
 open import Concurrency.Algebras.FiniteProducts
   using (HasFiniteProducts ; module FiniteProductAPI)
-open import Concurrency.Hybrid.EventProductPresheaf
-  using (FiniteFramePresheaf ; event-product-presheaf)
+open import Concurrency.Hybrid.FinitePresheaf using (FiniteFramePresheaf)
+open import Concurrency.Hybrid.EventProductPresheaf using (event-product-presheaf)
 open import Concurrency.Hybrid.FiniteDescent
 
 module _ {ℓA : Level} (AB : ActorBase ℓA)
-         {ℓV ℓH : Level} (V : StarAutonomous ℓV ℓH)
-         (FP : HasFiniteProducts V)
-         {ℓE ℓR : Level} (P₀ : StarAutonomous.Ob V) where
+         {ℓV ℓH : Level} (C : Category ℓV ℓH)
+         (FP : HasFiniteProducts C)
+         {ℓE ℓR : Level} (P₀ : Category.ob C) where
 
-  open StarAutonomous V
-  open FiniteProductAPI V FP
+  open ApplicativeView C
+  open FiniteProductAPI C FP
 
   private
-    P : FiniteFramePresheaf AB V {ℓE} {ℓR}
-    P = event-product-presheaf AB V FP P₀
+    P : FiniteFramePresheaf AB C {ℓE} {ℓR}
+    P = event-product-presheaf AB C FP P₀
 
   open FiniteFramePresheaf P
 
@@ -108,7 +110,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
   -- Separatedness.
   ----------------------------------------------------------------------
 
-  event-product-separated : {ℓI : Level} → IsSeparated AB V {ℓE} {ℓR} {ℓI} P
+  event-product-separated : {ℓI : Level} → IsSeparated AB C {ℓE} {ℓR} {ℓI} P
   event-product-separated {ℓI} = record { cover-jointly-monic = sep }
     where
       sep :
@@ -149,14 +151,14 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
   -- Amalgamation.
   ----------------------------------------------------------------------
 
-  event-product-amalgamation : {ℓI : Level} → HasAmalgamation AB V {ℓE} {ℓR} {ℓI} P
+  event-product-amalgamation : {ℓI : Level} → HasAmalgamation AB C {ℓE} {ℓR} {ℓI} P
   event-product-amalgamation {ℓI} = record { amalgamate = amal }
     where
       amal :
         {F : FiniteFrame AB ℓE ℓR}
         (c : FiniteCover AB ℓI F)
         {X : Ob}
-        (m : MatchingFamily AB V P c X)
+        (m : MatchingFamily AB C P c X)
         → Σ[ s ∈ Hom X (value F) ]
             ((i : FiniteCover.Index c)
               → restrict F (FiniteCover.patch c i) (FiniteCover.embed c i) ∘ s
@@ -265,7 +267,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
   -- The witness.
   ----------------------------------------------------------------------
 
-  event-product-sheaf : {ℓI : Level} → IsSheaf AB V {ℓE} {ℓR} {ℓI} P
+  event-product-sheaf : {ℓI : Level} → IsSheaf AB C {ℓE} {ℓR} {ℓI} P
   event-product-sheaf = record
     { separated    = event-product-separated
     ; amalgamating = event-product-amalgamation
