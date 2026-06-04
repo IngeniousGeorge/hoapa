@@ -11,6 +11,14 @@ Defaults this file rules out, in particular:
 - "The concurrency / 3-marked-points leg is decorative." — Rejected. It is a co-equal conjecture (community-of-agents, actor model + session types); the full scope is what makes the math conjecture provable rather than opinion. See "On 3 marked points" + "On the structural conjecture".
 - "The synthetic side alone is enough." — Rejected. The analytic two-track exists because both instigator and agent need machine-checked grounding during development, and the eventual presentation can't rest on postulates alone. See "3 roles".
 
+Additional fast-track corrections:
+
+- "The current Sessions sheaf is full event-dependent B2(a)." — Rejected. The landed Sessions witness is constant-slot: arity varies by finite frame, but every event carries the same fixed slot `P₀`. Event-dependent session content is future work.
+- "Event-dependent slots block R4 or the cross-site adjunction." — Rejected. They refine the value assignment; `_Topos._SheafCategory`, R4, and `Allow ⊣ Require` should be built generically over `FiniteFramePresheaf` / `IsSheaf`, not over the constant-slot witness.
+- "The tiny finite cover example must compute by `refl` to count." — Rejected. The landed witness is proof-level: restriction/amalgamation equations and separatedness hold propositionally. Definitional computation is a bonus only if it falls out naturally and yields reusable lemmas.
+- "The arc now has four functors." — Rejected. Current grounding is the adjoint pair `Allow ⊣ Require` with five anchors (Complexity, Evolution, Praxis, Anthropic, Care). Triple, ambidextrous, or quadruple structures are future extras only if earned.
+- "Finite descent means the topos is done." — Rejected. Finite event-product descent has landed; `_Topos._SheafCategory`, internal logic, R4, and the actual cross-site functors remain pending.
+
 If you find yourself drifting toward one of these defaults, that is the moment to re-read the corresponding instigator prompt below.
 
 ---
