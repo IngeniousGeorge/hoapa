@@ -20,7 +20,7 @@ The first concrete typed-content instance is now shipped: `Concurrency/Algebras/
 
 The actor-causal locality leg is now shipped: `Concurrency/Sites/{ActorBase,ActorCausal}.agda` makes R6 concrete with opaque unityped actors, Lamport-style event causality, local frames, strict-reflecting frame embeddings, basis covers, and a Bool-based non-trivial cover witness. Promotion of a completed conversation into an actor-like node is deliberately not a `FrameHom`; it is reserved as a future morphism class for the `MO_1` / conversation-of-conversations stage.
 
-Hybrid v1 shipped the first adapter layer (`Presheaf.agda`, `SessionPresheaf.agda`): generic frame presheaves, zero-postulate separatedness, and constant session-valued witnesses. The fast-track finite layer has now landed on the finite-frame subsite: `FiniteProducts.agda`, `FiniteFrame.agda`, `FiniteCover.agda`, `TinyFiniteCover.agda`, `EventProductPresheaf.agda`, `FiniteDescent.agda`, `EventProductSheaf.agda`, `SessionEventProductSheaf.agda`, and `TinyEventProductExample.agda` give full finite-site event-product descent, including the Sessions constant-slot instantiation and the first concrete two-point finite-cover validation. The next packaging leg also landed: `StarAutonomousCategory.agda`, `FiniteFrameCategory.agda`, `FiniteFramePresheafFunctor.agda`, and `FiniteSheafCategory.agda` assemble the V-valued finite sheaf/value category `Sh_fin(site,V)` using Cubical `Category`, a bridge-not-reexpress strategy, and a proof that `IsSheaf` is propositional. This is not the event-dependent session target, not the Set-valued locality topos, and not R4; it is the first non-degenerate finite sheaf witness plus its V-valued category packaging.
+Hybrid v1 shipped the first adapter layer (`Presheaf.agda`, `SessionPresheaf.agda`): generic frame presheaves, zero-postulate separatedness, and constant session-valued witnesses. The fast-track finite layer has now landed on the finite-frame subsite: `FiniteFrame.agda`, `FiniteCover.agda`, `TinyFiniteCover.agda`, and the `Hybrid/` finite-descent files give full finite-site event-product descent, including the Sessions constant-slot instantiation and the first concrete two-point finite-cover validation. The value-axis refactor has also landed: `CategoryApplicative.agda`, `FinitePresheaf.agda`, `FiniteDescent.agda`, `FiniteFramePresheafFunctor.agda`, and `FiniteSheafCategory.agda` now run over Cubical `Category`, with `StarAutonomousCategory.agda` feeding the V-valued/session side and `SetFiniteSheafCategory.agda` feeding the `SET` side. `FiniteProducts.agda` is likewise category-generic; `SetFiniteProducts.agda` and `SetEventProductSheaf.agda` provide a concrete Set-valued event-product object. This is not event-dependent session content, not a Cubical `Coverage` / library `Sheaf` comparison yet, and not R4; it is one finite sheaf construction instantiated concretely at both `StarAutonomous→Category V` and `SET`.
 
 `MO_1` (the modular envelope of `O_1`, closure under self-gluing at marked points, raises genus to produce operations at every `(g, n)`) is the long-horizon target. `O_1` is staged toward it but does not commit to it. Eventual landing: evaluation at `(0, 3)` — the universal trinion, the 3-pointed sphere where dessins / Belyi / Esquisse machinery live.
 
@@ -60,9 +60,9 @@ Duality (`A ↔ A^⊥`) cross-cuts all three.
 
 Canonical decomposition (a sheaf is a presheaf satisfying descent).
 
-- `_Sheaf._Presheaf` — shipped in two layers: `FramePresheaf` over arbitrary actor-local frames, and `FiniteFramePresheaf` over enumerated finite frames. `SessionPresheaf` is the original constant-frame adapter; `SessionEventProductSheaf` is the finite, frame-varying, constant-slot Sessions witness.
+- `_Sheaf._Presheaf` — shipped in two layers: `FramePresheaf` over arbitrary actor-local frames, and category-generic `FiniteFramePresheaf` over enumerated finite frames. `SessionPresheaf` is the original constant-frame adapter; `SessionEventProductSheaf` and `SetEventProductSheaf` are the finite, frame-varying, constant-slot witnesses on the V-valued/session and Set-valued/cartesian sides.
 - `_Sheaf._Separatedness` — shipped as property records. The original `IsSeparatedPresheaf` remains generic over basis covers; the finite event-product witness proves separatedness over `FiniteCover`s.
-- `_Sheaf._Descent` — landed for the finite event-product presheaf: matching families, overlap compatibility, amalgamation, and separatedness over finite covers. V-valued finite sheaves have also been packaged as `FiniteSheafCategory`; the Set-valued locality/topos side is still pending.
+- `_Sheaf._Descent` — landed for the finite event-product presheaf: matching families, overlap compatibility, amalgamation, and separatedness over finite covers. The framework is now category-generic and packaged as `FiniteSheafCategory`; it is instantiated at both `StarAutonomous→Category V` and `SET`. The Cubical `Coverage` bridge, library `Sheaf` comparison, and full topos/internal-logic development remain pending.
 
 The first value category `V` is `Sessions-Cat Payload`; later versions may replace or lift this to richer session categories or presheaves valued in `OperadAlgebra`.
 
@@ -70,7 +70,7 @@ The first value category `V` is `Sessions-Cat Payload`; later versions may repla
 
 Canonical first three pieces, plus a cohesion-adapted fourth.
 
-- `_Topos._SheafCategory` — `Sh(_Site._Category, _Site._Topology)` as an object. Current status: V-valued finite sheaf/value category landed; Set-valued locality sheaves/topos interface still pending.
+- `_Topos._SheafCategory` — `Sh(_Site._Category, _Site._Topology)` as an object. Current status: finite sheaf categories over both V-valued/session and Set-valued/cartesian value categories have landed in the hand-rolled finite framework, with concrete event-product objects on both sides. The Set side is not yet connected to Cubical `Coverage` / library `Sheaf`, and no internal-logic/topos theorem is claimed yet.
 - `_Topos._InternalLogic` — subobject classifier Ω, internal language, predicates.
 - `_Topos._GeometricMorphisms` — relations to other topoi (notably: embedding into cubical sets, shared substrate with ModalHoTT).
 - `_Topos._InfinityLift` — the 1-topos → ∞-topos move.
@@ -145,7 +145,7 @@ Near-term Agda-bound subset that brings the operadic layer to the hybrid substra
 ##### Integration with hybrid  <!-- concept:integration -->
 
 - `_Algebras._Sessions` now supplies the first value category `V` of the hybrid's `_Sheaf`: `SessionPresheaf = FramePresheaf AB (Sessions-Cat Payload)`.
-- `_Site` supplies the actor-causal frame category over which `_Algebras._Sessions` varies as values. The finite descent layer takes `ActorBase`, `FiniteFrame`, and `FiniteCover`; pullback overlaps are supplied by `ActorPullback.agda`, while Set-valued locality and R4 work should stay generic over finite sheaves.
+- `_Site` supplies the actor-causal frame category over which `_Algebras._Sessions` varies as values. The finite descent layer takes `ActorBase`, `FiniteFrame`, and `FiniteCover`; pullback overlaps are supplied by `ActorPullback.agda`. The Set-valued finite endpoint now exists in the same generic framework; Coverage/library comparison and R4 work should continue to consume finite sheaf/category interfaces rather than the constant-slot witnesses directly.
 - `boundary-swap-structural` supplies the categorical / operadic R8 face that cross-cuts the existing `_Algebra._SyntacticCategory`; the bridge to syntactic session duality is deferred (R8).
 
 This is the commitment frontier for `O_1`: enough operadic structure to name the interaction algebra of the hybrid; no commitments beyond cyclic-operad-without-modular-envelope.
@@ -156,8 +156,8 @@ Named, like modules. R1–R6 are from the hybrid substrate's level-2 scoping; R7
 
 **Live now.**
 
-- **R1 — Valuation.** v1 landed in `Concurrency/Hybrid/{Presheaf,SessionPresheaf}.agda`: `FramePresheaf` is the generic functorial assignment `_Site._Category^op → V`, and `SessionPresheaf` instantiates `V = Sessions-Cat Payload`. Full finite-site event-product sheaf valuation has landed, and the V-valued finite sheaf/value category is now packaged in `FiniteSheafCategory.agda`.
-- **R2 — Indexing.** `_Sheaf` lives over `_Site`: presheaf + descent against `_Site._Topology`. The finite event-product sheaf layer and its V-valued category packaging are shipped. The remaining load-bearing step is the Set-valued/cartesian locality side, preferably aligned with Cubical `Coverage` / `Site` / `Sheaf` machinery, not proving the constant-slot witness again.
+- **R1 — Valuation.** v1 landed in `Concurrency/Hybrid/{Presheaf,SessionPresheaf}.agda`: `FramePresheaf` is the generic functorial assignment `_Site._Category^op → V`, and `SessionPresheaf` instantiates `V = Sessions-Cat Payload`. Full finite-site event-product sheaf valuation has landed in a category-generic framework, with concrete instances at `StarAutonomous→Category V` and `SET`.
+- **R2 — Indexing.** `_Sheaf` lives over `_Site`: presheaf + descent against `_Site._Topology`. The finite event-product sheaf layer, its V-valued category packaging, and its Set-valued category/object endpoint are shipped. The remaining load-bearing site-axis step is the `FiniteCover` → Cubical `Coverage` bridge and library `Sheaf` comparison; that work should not duplicate the constant-slot witness.
 - **R3 — Generation.** `_Topos = Sh(_Site._Category, _Site._Topology)`. No freedom; the topos is generated from site + sheaves.
 - **R4 — Interpretation.** `_Topos._InternalLogic ↔ _Algebra._Connectives` / `_Algebras._Sessions`. Topos logic is cartesian by default; the algebra is linear. Compatibility (or its principled absence) is its own piece of work.
 - **R5 — Embedding.** `_Topos._GeometricMorphisms → cubical sets`. The mathematical form of "both sides share an ambient `(∞,1)`-topos."
@@ -165,7 +165,7 @@ Named, like modules. R1–R6 are from the hybrid substrate's level-2 scoping; R7
 - **R7 — Algebra-over-Operad.** `_Algebras` evaluates `_Operad`. Landed as `StarAutonomous` + `Valuation` + structural `OperadAlgebra`, and concretely instantiated by `Sessions.agda` for the typed-content layer. Closely interacts with R1 (the value category for both must agree).
 - **R8 — Involution-Duality.** `Sessions.agda` now contains both faces: syntactic `dual-involutive` and categorical / operadic `boundary-swap-at-gen` (a specialization of `boundary-swap-structural`). The bridge between them remains a deferred project claim, not a computational reduction.
 
-**Most load-bearing now:** finite-site event-product descent, its constant-slot Sessions instantiation, the concrete tiny finite-cover validation, and the V-valued finite sheaf/value category have landed. The next hinge is the Set-valued/cartesian locality side over the same finite site, preferably by refactoring or bridging `FiniteCover` into Cubical coverage and then using Cubical `Site` / `Sheaf` machinery. R4 is the Benton/LNL-shaped adapter between the Set-valued locality side and the V-valued linear/session side. The cross-site adjunction waits on that B-internal adapter plus an A-side category of modal contexts, not on event-dependent slots.
+**Most load-bearing now:** finite-site event-product descent, its constant-slot Sessions instantiation, the concrete tiny finite-cover validation, the V-valued finite sheaf/value category, and the Set-valued finite sheaf category/object have landed as one category-generic construction. The next hinge is site-axis legitimacy: bridge `FiniteCover` into Cubical `Coverage` over `FiniteFrameCategory`, then compare the framework-at-`SET` sheaf condition with Cubical library `Sheaf`. R4 is the Benton/LNL-shaped adapter between the Set-valued locality side and the V-valued linear/session side. The cross-site adjunction waits on that B-internal adapter plus an A-side category of modal contexts, not on event-dependent slots.
 
 **Deferred (live at `MO_1` stage).**
 
@@ -202,7 +202,7 @@ When bandwidth returns to the A side, the iteration's input type lifts from `B�
 
 The substrate is the actor-causal + session-type-values hybrid: a Grothendieck site of actor-causal frames (GR-inspired actor model, Lamport partial-order at `_Site._Category`, shipped in `Concurrency/Sites/{ActorBase,ActorCausal}.agda`), with Caires-Pfenning session-type structures as the natural values (sheaves) on it (canonical source: `deep_context/arc/02_concurrency_anchor.md`). Separation of concerns is structural (modularity = sheaf-gluing); typed data lives in the values, unityped agents in the base topology.
 
-Hybrid now has two strata. The original adapter implements arbitrary-frame presheaf/restriction and separatedness. The fast-track finite layer implements full event-product descent over `FiniteCover`s, with a constant-slot Sessions instantiation: arity varies by frame event count, but every event carries the same fixed session slot `P₀`. It now also packages finite sheaves into a Cubical `Category`-based V-valued sheaf/value category. Event-dependent session content is deferred; it is not a blocker for the Set-valued locality side, R4, or the cross-site `Allow ⊣ Require` statement if those layers stay generic over `FiniteFramePresheaf` / `IsSheaf`.
+Hybrid now has two strata. The original adapter implements arbitrary-frame presheaf/restriction and separatedness. The fast-track finite layer implements full event-product descent over `FiniteCover`s in a category-generic framework, with constant-slot instantiations at both the Sessions value category and `SET`: arity varies by frame event count, but every event carries the same fixed slot `P₀`. It also packages finite sheaves into Cubical `Category`-based sheaf categories. Event-dependent session content is deferred; it is not a blocker for the Coverage bridge, R4, or the cross-site `Allow ⊣ Require` statement if those layers stay generic over `FiniteFramePresheaf` / `IsSheaf`.
 
 The interaction algebra layered on top is `O_1` (cyclic operad with one binary generator + cyclic action) — see "Where we landed." The hybrid is what `O_1`'s algebras live over.
 
@@ -240,17 +240,19 @@ Analytic-side mirror is future work; whether the `agda/Analytic/` pattern from M
 | 2026-05-20 | Actor-site identity and transitivity covers are generic; stability named as the v1 gap | `identity-cover-canonical` and `transitivity-cover-canonical` are constructed. `stability-cover-postulate` was named and flagged; `ActorPullback.agda` later supplies the generic pullback-stability construction while `ActorCausal.agda` keeps the legacy fallback to avoid an import cycle. |
 | 2026-05-20 | Actor-site tiny witness upgraded to non-trivial Bool cover | `TinyAB` uses `Fin 2`; `TinyCausal` uses `Bool` events with `false ≤ true`; `PointFrame` embeds by `embed-point false` / `embed-point true`; `two-point-cover` exercises non-trivial index, patch, embedding, and event-lift data |
 | 2026-05-20 | Hybrid v1 shipped as adapter layer | `Concurrency/Hybrid/Presheaf.agda` provides generic `FramePresheaf`, zero-postulate `IsSeparatedPresheaf`, and `const-presheaf`; `SessionPresheaf.agda` specializes to `Sessions-Cat Payload` and exposes both `const-𝟙ₛ-presheaf` and `const-⊥ₛ-presheaf`. This implements Adapter 1 (restriction) and names future adapter slots without faking descent or a unit/dualizing conversion |
-| 2026-05-21 | Reflexive Protocol Layer named; not implemented | Π = category of protocol versions; protocol edits = morphisms in Π. Promotion (Adapter 5) sharpened with operational role: closed meta-conversation reaching consensus → Π-morphism. Consensus framed as future colimit / coherent amalgamation in a patch-theoretic fragment category, with Pijul as primary implementation-facing candidate; precise categorical shape held open. `Concurrency/Hybrid/Reflexive.agda` reserved as future home. `MO_1` elevated to active roadmap without displacing the Set-valued locality / R4 path as the next technical step. Layer is new formal content, compatible with and anticipated by current scaffolds but not already implicit in them |
+| 2026-05-21 | Reflexive Protocol Layer named; not implemented | Π = category of protocol versions; protocol edits = morphisms in Π. Promotion (Adapter 5) sharpened with operational role: closed meta-conversation reaching consensus → Π-morphism. Consensus framed as future colimit / coherent amalgamation in a patch-theoretic fragment category, with Pijul as primary implementation-facing candidate; precise categorical shape held open. `Concurrency/Hybrid/Reflexive.agda` reserved as future home. `MO_1` elevated to active roadmap without displacing the B-side finite-sheaf / Coverage / R4 path as the next technical step. Layer is new formal content, compatible with and anticipated by current scaffolds but not already implicit in them |
 | 2026-06-04 | Finite event-product descent landed | Added finite additive products, finite frames/covers with carried overlap enumerations, generic finite event-product presheaf, and full finite-site descent (`IsSheaf`) over `FiniteCover`s. The result is non-degenerate by arity: `value F = P₀ ^ event-count(F)`, including empty-frame normalization by the terminal additive product. |
 | 2026-06-04 | Sessions constant-slot instantiation landed | `Sessions.agda` gained additive product syntax and laws; `SessionEventProductSheaf.agda` instantiates the generic finite witness at `Sessions-Cat Payload`. This is constant-slot B2(a), not event-dependent session content and not additive coproduct universal properties. |
 | 2026-06-04 | Tiny finite cover witness landed | `TinyFiniteCover.agda` and `TinyEventProductExample.agda` exercise the finite descent stack on the existing `TinyFrame` / `PointFrame` two-point cover. The proof-level target landed; definitional computation remains only an optional future bonus. |
 | 2026-06-04 | V-valued finite sheaf/value category landed | `StarAutonomousCategory.agda`, `FiniteFrameCategory.agda`, `FiniteFramePresheafFunctor.agda`, and `FiniteSheafCategory.agda` package the finite V-valued sheaf layer using Cubical `Category`, bridge existing `FiniteFramePresheaf` records to library functors without re-expressing descent, prove `IsSheaf` is propositional, and exhibit the event-product sheaf as a concrete object. |
+| 2026-06-04 | Finite sheaf framework generalized over Cubical `Category` | `CategoryApplicative.agda` and `FinitePresheaf.agda` split out the plain-category core. `FiniteDescent.agda`, `FiniteSheafCategory.agda`, and `FiniteFramePresheafFunctor.agda` now run over any Cubical `Category`, with the V side recovered through `StarAutonomous→Category V`. |
+| 2026-06-04 | Set-valued finite sheaf side inhabited | `FiniteProducts.agda` was generalized over `Category`; `SetFiniteProducts.agda`, `SetFiniteSheafCategory.agda`, `SetEventProductSheaf.agda`, and generic `EventProductSheafObject.agda` instantiate the same event-product construction at `SET`. This lands a concrete framework-at-SET object, not the Cubical `Coverage` bridge, library `Sheaf` comparison, or R4. |
 
 ## Blockers  <!-- tags: kind:state -->
 
 (Previous Open Questions archived to `deep_context/archived_blockers/2026-05-17.md`. Deferred items migrated to `future_work.md`.)
 
-Concurrency: none active. First B-side operad, algebra signatures, concrete typed-content `Sessions.agda` instance, actor-causal site v1, Hybrid v1 restriction, finite products, finite covers, finite event-product descent, the constant-slot Sessions sheaf, the concrete tiny finite-cover witness, and the V-valued finite sheaf/value category have shipped. Next substantive work is the Set-valued/cartesian locality side over the finite site, then R4 compatibility and the eventual cross-site adjunction.
+Concurrency: none active. First B-side operad, algebra signatures, concrete typed-content `Sessions.agda` instance, actor-causal site v1, Hybrid v1 restriction, finite products, finite covers, finite event-product descent, the constant-slot Sessions sheaf, the concrete tiny finite-cover witness, and both V-valued and Set-valued finite sheaf endpoints have shipped. Next substantive work is the C8/C9 Coverage bridge over `FiniteFrameCategory`, then the library sheaf comparison, R4 compatibility, and the eventual cross-site adjunction.
 ModalHoTT: none active (paused).
 
 ## Current B-side state  <!-- tags: kind:state -->
@@ -294,17 +296,20 @@ R8 should now refer to `boundary-swap` as the arity-2 / 1=2 theorem induced by c
 
 ### Algebras
 
-Shipped to `agda/Concurrency/Algebras/` (all files typecheck through `Sessions.agda`):
+Shipped to `agda/Concurrency/Algebras/`:
 
 | File | Role | Line count |
 |------|------|-----------:|
 | `StarAutonomous.agda` | Thin target-category signature: 1-category, tensor/unit, braiding, involutive duality; derives `⅋`, `⊥-par`, `⊸` | ~145 |
 | `StarAutonomousCategory.agda` | Adapter from the thin `StarAutonomous` signature to Cubical `Category`, isolating the `⋆` / `∘` convention flip | ~60 |
+| `CategoryApplicative.agda` | Applicative-law view of any Cubical `Category`, paired with `StarAutonomousCategory` for convention management | ~75 |
+| `FiniteProducts.agda` | Terminal object plus binary products over an arbitrary Cubical `Category`; read additively on the session side and cartesianly at `SET` | ~240 |
+| `SetFiniteProducts.agda` | Concrete finite-products instance for Cubical `SET` | ~50 |
 | `Valuation.agda` | Weak HIT valuation: `O n → Hom (ports Carrier n) ⊥-par`, with carrier self-duality | ~85 |
 | `OperadAlgebra.agda` | Structural Step-2 algebra: valuation plus `plug`, `shift`, `interp-compₒ`, `interp-rot`; derives `boundary-swap-structural` | ~135 |
-| `Sessions.agda` | Multiplicative session syntax, proved `dual-involutive`, inductive structural `Hom`, explicit `SessionO1Action`, `session-interp`, `Sessions-Val`, `Sessions-Alg`, and `boundary-swap-at-gen` | ~470 |
+| `Sessions.agda` | Multiplicative session syntax, proved `dual-involutive`, inductive structural `Hom`, explicit `SessionO1Action`, `session-interp`, `Sessions-Val`, `Sessions-Alg`, `boundary-swap-at-gen`, and additive products over `StarAutonomous→Category` | ~470 |
 
-`Valuation` is intentionally weaker than `OperadAlgebra`. The latter is the R7 interface to use downstream: it says operadic substitution factors through categorical `plug`, cyclic action factors through `shift`, and the derived `boundary-swap-structural` is the R8-relevant identity. `Sessions.agda` proves that this interface is inhabitable by the typed-content layer, while keeping the canonical derivation of `SessionO1Action` for future richer session-category work.
+`Valuation` is intentionally weaker than `OperadAlgebra`. The latter is the R7 interface to use downstream: it says operadic substitution factors through categorical `plug`, cyclic action factors through `shift`, and the derived `boundary-swap-structural` is the R8-relevant identity. `Sessions.agda` proves that this interface is inhabitable by the typed-content layer, while keeping the canonical derivation of `SessionO1Action` for future richer session-category work. `FiniteProducts.agda` is no longer StarAutonomous-specific; it is the shared finite-product interface used by both the session and Set event-product witnesses.
 
 ### Sites
 
@@ -336,15 +341,19 @@ Shipped to `agda/Concurrency/Hybrid/`:
 |------|------|-----------:|
 | `Presheaf.agda` | Generic arbitrary-frame adapter chassis: `FramePresheaf`, zero-postulate `IsSeparatedPresheaf`, and `const-presheaf` | ~250 |
 | `SessionPresheaf.agda` | Arbitrary-frame Sessions specialization and constant witnesses `const-𝟙ₛ-presheaf` / `const-⊥ₛ-presheaf` | ~135 |
-| `EventProductPresheaf.agda` | Finite-frame event-product presheaf: `value F = P₀ ^ event-count(F)`, restrictions by additive projections | ~220 |
-| `FiniteDescent.agda` | Generic finite-cover matching families, amalgamation, separatedness, and `IsSheaf` records over `FiniteFramePresheaf` | ~125 |
-| `EventProductSheaf.agda` | Generic proof that the event-product presheaf is a full finite-site sheaf over `FiniteCover`s | ~275 |
-| `FiniteFramePresheafFunctor.agda` | Bridge from existing `FiniteFramePresheaf` records to Cubical functors over `FiniteFrameCategory ^op`; descent files are not re-expressed | ~70 |
-| `FiniteSheafCategory.agda` | Cubical `Category` of finite presheaves, `isPropIsSheaf`, full subcategory of finite sheaves, and event-product sanity object | ~230 |
-| `SessionEventProductSheaf.agda` | Constant-slot Sessions instantiation of the generic finite event-product sheaf | ~100 |
-| `TinyEventProductExample.agda` | End-to-end concrete finite descent example: tiny matching families, amalgamation, separatedness, and Sessions specialization | ~170 |
+| `FinitePresheaf.agda` | Category-generic finite-frame presheaf record (`value`, `restrict`, identity, composition) | ~60 |
+| `EventProductPresheaf.agda` | Category-generic finite-frame event-product presheaf from `HasFiniteProducts C`: `value F = P₀ ^ event-count(F)` | ~200 |
+| `FiniteDescent.agda` | Category-generic finite-cover matching families, amalgamation, separatedness, and `IsSheaf` records over `FiniteFramePresheaf` | ~125 |
+| `EventProductSheaf.agda` | Category-generic proof that the event-product presheaf is a full finite-site sheaf over `FiniteCover`s | ~275 |
+| `EventProductSheafObject.agda` | Generic packaging of the event-product sheaf as an object of `FiniteSheafCategory` | ~45 |
+| `FiniteFramePresheafFunctor.agda` | Bridge from `FiniteFramePresheaf` records to Cubical functors over `FiniteFrameCategory ^op`; descent files are not re-expressed | ~65 |
+| `FiniteSheafCategory.agda` | Cubical `Category` of finite presheaves, `isPropIsSheaf`, and full subcategory of finite sheaves over an arbitrary target `Category` | ~215 |
+| `SetFiniteSheafCategory.agda` | Framework-at-`SET` endpoint: finite Set-valued sheaf category over the shared finite site | ~55 |
+| `SetEventProductSheaf.agda` | Concrete Set-valued event-product presheaf, sheaf proof, and object of `Sh-fin-Set` | ~70 |
+| `SessionEventProductSheaf.agda` | Constant-slot Sessions instantiation of the generic finite event-product sheaf via `StarAutonomous→Category` | ~100 |
+| `TinyEventProductExample.agda` | End-to-end concrete finite descent example: tiny matching families, amalgamation, separatedness, and Sessions specialization | ~175 |
 
-The arbitrary-frame Hybrid v1 files remain the adapter-layer scaffold. The finite layer adds the first full sheaf inhabitant and now assembles the V-valued finite sheaf/value category. It still does not construct the Set-valued locality topos or R4. The original restriction adapter shape is:
+The arbitrary-frame Hybrid v1 files remain the adapter-layer scaffold. The finite layer adds full sheaf inhabitants and now assembles both the V-valued/session finite sheaf category and the framework-at-`SET` finite sheaf category. It still does not bridge to Cubical `Coverage`, prove agreement with the library `Sheaf` condition, construct the full Set-valued locality topos/internal logic, or state R4. The original restriction adapter shape is:
 
 ```agda
 FrameHom AB G F → Hom (value F) (value G)
@@ -364,7 +373,7 @@ Design constraints held: no payloads or roles on actors, no promotion, no hidden
 
 The tiny finite-cover example validates the carried-overlap interface on a concrete non-trivial cover: diagonal overlaps are contractible, off-diagonal overlaps are empty, arbitrary local parts glue proof-level into a global 2-ary event product, and separatedness is exercised through `cover-jointly-monic`. No structural `FiniteCover` revision, transport machinery, or new postulate was needed.
 
-Verification record: `agda -l cubical -i agda agda/Concurrency/Sites/TinyFiniteCover.agda`, `agda -l cubical -i agda agda/Concurrency/Hybrid/TinyEventProductExample.agda`, `agda -l cubical -i agda agda/Concurrency/Algebras/StarAutonomousCategory.agda`, `agda -l cubical -i agda agda/Concurrency/Sites/FiniteFrameCategory.agda`, `agda -l cubical -i agda agda/Concurrency/Hybrid/FiniteFramePresheafFunctor.agda`, and `agda -l cubical -i agda agda/Concurrency/Hybrid/FiniteSheafCategory.agda` all exit 0. The only warnings are inherited `UnsupportedIndexedMatch` sites from finite-product / finite-enumeration helpers; they remain inert under the proof-level API discipline.
+Verification record: the finite-site stack and both endpoints typecheck green, including `TinyFiniteCover`, `CategoryApplicative`, `FiniteProducts`, `SetFiniteProducts`, `StarAutonomousCategory`, `FiniteFrameCategory`, `FinitePresheaf`, `FiniteDescent`, `EventProductPresheaf`, `EventProductSheaf`, `EventProductSheafObject`, `FiniteFramePresheafFunctor`, `FiniteSheafCategory`, `SetFiniteSheafCategory`, `SetEventProductSheaf`, `SessionEventProductSheaf`, `TinyEventProductExample`, `Presheaf`, `SessionPresheaf`, and `Sessions`. The only warnings are inherited `UnsupportedIndexedMatch` sites from finite-product / finite-enumeration helpers; they remain inert under the proof-level API discipline.
 
 ### Reflexive Protocol Layer  <!-- tags: kind:reference -->
 
@@ -384,19 +393,20 @@ The framework treats some conversations as *meta-conversations*: special convers
 **Roadmap impact.**
 
 - **Promotion (Adapter 5)** gets a concrete job description; header sharpened in `Hybrid/Presheaf.agda`.
-- **`MO_1` / modular envelope** elevated from "held loose" to active roadmap as the natural home for self-gluing / conversation-of-conversations. This does *not* displace the Set-valued locality / R4 path as the next technical step — `MO_1` becomes the natural next slot once the Hybrid Set-valued locality/R4 bridge is stable enough to support modular-envelope work; the cross-site adjunction and bar-construction comparison remain downstream.
+- **`MO_1` / modular envelope** elevated from "held loose" to active roadmap as the natural home for self-gluing / conversation-of-conversations. This does *not* displace the Coverage / comparison / R4 path as the next technical step — `MO_1` becomes the natural next slot once the Hybrid site-axis and R4 bridge are stable enough to support modular-envelope work; the cross-site adjunction and bar-construction comparison remain downstream.
 - **B-side dual of T_recursion iteration** (deferred per `future_work.md` "until `ND` has non-trivial content") becomes statable once the reflexive layer gives `ND` operational meaning.
 
 **Where it goes in the Agda tree.** `Concurrency/Hybrid/Reflexive.agda` reserved as the future module slot. Kept inside the Hybrid layer because the protocol-version structure reads as one more adapter (between the current Hybrid instance and the next), and because the project avoids premature folder proliferation. If the file later grows into a genuinely higher-order protocol calculus, it can be split out to `Concurrency/Meta/` at that point.
 
-**Trigger for opening `Hybrid/Reflexive.agda` v0.** Two conditions, both required: (a) Set-valued locality / R4 stable enough that the Hybrid chassis is no longer moving, and (b) the fragment-category candidate (Pijul or alternative) honest enough to state in Agda.
+**Trigger for opening `Hybrid/Reflexive.agda` v0.** Two conditions, both required: (a) Coverage / library comparison / R4 stable enough that the Hybrid chassis is no longer moving, and (b) the fragment-category candidate (Pijul or alternative) honest enough to state in Agda.
 
 ### Next frontier
 
-1. **Set-valued finite locality sheaves** — refactor or bridge `FiniteCover` into Cubical `Coverage`, then use Cubical `Site` / `Sheaf` machinery for the cartesian `Sh_fin(site,Set)` side. Keep this over the finite common site for v1.
-2. **R4 compatibility** — state the Benton/LNL-shaped adapter between `Sh_fin(site,Set)` and the landed V-valued `FiniteSheafCategory`. Do not identify this B-internal adapter with the cross-site adjunction.
-3. **Cross-site `Allow ⊣ Require`** — define the A-side category of modal contexts, then the actual functors, unit, counit, and triangle identities; instantiate the generic iteration scaffold only after that.
-4. **A-side return plan** (lift `Bℤ → S¹`, switch η-iteration → cyclic bar) — on hold until the cross-site adjunction is statable.
+1. **C8/C9 Coverage bridge** — map `FiniteCover` into Cubical `Cover` / generated `Coverage` over `FiniteFrameCategory`. The real proof obligation is pullback-stability in sieve-refinement form.
+2. **Library sheaf comparison** — prove that the framework-at-`SET` `IsSheaf` agrees with Cubical library `Sheaf` for the generated finite coverage. This is legitimacy work and is decoupled from R4 timing.
+3. **R4 compatibility** — state the Benton/LNL-shaped adapter between `Sh_fin(site,Set)` and the V-valued `FiniteSheafCategory`. Do not identify this B-internal adapter with the cross-site adjunction.
+4. **Cross-site `Allow ⊣ Require`** — define the A-side category of modal contexts, then the actual functors, unit, counit, and triangle identities; instantiate the generic iteration scaffold only after that.
+5. **A-side return plan** (lift `Bℤ → S¹`, switch η-iteration → cyclic bar) — on hold until the cross-site adjunction is statable.
 
 ### Held-loose long-horizon items (no near-term action)
 
@@ -409,64 +419,222 @@ The detailed rot-compₒ discussion that led to the 2026-05-18 cyclic-equivarian
 
 ## Next step
 
+### Codex
+
+• Next session should do the site-axis Coverage bridge, not R4 yet.
+
+  What
+  Build the bridge from the project’s finite-cover basis to Cubical’s site machinery:
+
+  1. Inspect Cubical’s Coverage, Cover, Sieve, and Sheaf APIs.
+  2. Define the direct adapter from FiniteCover over FiniteFrameCategory into the closest Cubical cover/sieve object.
+  3. Build the generated Coverage over FiniteFrameCategory.
+  4. Prove or isolate the real obligation: pullback-stability in sieve-refinement form.
+  5. Stop before R4 unless the bridge and its stability story are clean.
+
+  Why
+  The value-axis is now in good shape: Sh_fin(site,V) and Sh_fin(site,Set) are one generic construction at two value categories, both concretely inhabited. The remaining weakness is not the Set
+  endpoint itself; it is site legitimacy. We still need to show that our finite-cover descent is connected to Cubical’s standard coverage/sheaf machinery.
+
+  This prevents a future R4 from resting on a hand-rolled topology with no comparison path. It also keeps R4 clean: R4 should bridge cartesian Set-valued locality and linear/session V-valued content,
+  not also carry the burden of explaining two unrelated site notions.
+
+  How
+  Claude should treat this as a proof/API-integration session:
+
+  - Keep SetFiniteSheafCategory as the canonical R4 endpoint.
+  - Do not replace our IsSheaf with Cubical library Sheaf yet.
+  - Do not duplicate the finite descent framework.
+  - Do not start R4.
+  - Use the existing finite site files first: FiniteFrameCategory, FiniteCover, TinyFiniteCover, and ActorPullback.
+  - If full generated Coverage is too large, land a clean C8 waypoint: FiniteCover → Cubical cover/sieve with the remaining C9 stability theorem sharply named and localized.
+
+  Success criterion: a typechecked module that makes FiniteCover visible to Cubical site/coverage machinery, with the pullback-stability obligation either proved or reduced to one explicit, well-
+  named theorem. Then the following session can do the framework-at-SET vs library Sheaf comparison.
+
 ### Claude
 
-● Here's my assessment for whoever picks this up next. I'll lead with the recommendation, then the reasoning, the genuine fork, and the thing to not rush.
+❯ Alright, please give the stakes, the options and for each the costs and benefits, for the C8->C9 Coverage bridge, and how all this relates to R4.                                                    
 
-  Primary recommendation: leg 2 (the Set-valued cartesian locality side) — and build it as the same construction as leg 1, not a parallel one
+● Quick briefing on the C8→C9 Coverage bridge — stakes, options with costs/benefits, and the R4 relationship.
 
-  The converged 3-leg plan has leg 2 = Sh_fin(site, Set) next, then leg 3 = the R4 Benton/LNL adapter. I'd keep that order, because building the cartesian side concretely is what makes R4's decision
-  informed rather than abstract — exactly the "surface the tension, then decide" posture that worked for leg 1.
+  The stakes
 
-  But building leg 1 surfaced an insight that should reshape how leg 2 is done:
+  The Coverage bridge moves the B-side from our basis-form FiniteCover to the library's sieve/Grothendieck-topology presentation (Cubical.Categories.Site.{Cover, Coverage, Sieve, Sheaf}). Four things
+  ride on it:
+  
+  1. The E2 transition — long-flagged since the ActorCausal work: the semantic endpoint of a topology is the generated sieve, not the basis. This is standing debt.
+  2. Library-grade legitimacy — our hand-rolled FiniteDescent vs. the library's element-based isSheaf. To cubical-Agda reviewers, our descent reads as reinvented machinery until it connects to
+  Coverage/Sheaf. 
+  3. "Topos" honesty — calling Sh-fin-Set a topos wants the standard site/sheaf apparatus behind it.
+  4. Downstream unlock — library Sheafification, Yoneda, and geometric-morphism machinery (which the arc/08 federation/Yoneda story eventually needs) all live over Coverage.
 
-  The entire leg-1 stack is already generic over a plain category — the linear structure is never used. EventProductPresheaf, FiniteDescent, and my FiniteSheafCategory all open StarAutonomous V but
-  only ever touch Ob, Hom, Hom-set, id, _∘_, the unit/assoc laws, and (for the event-product witness specifically) HasFiniteProducts. None of them touch ⊗, ⅋, or _^⊥. So the descent layer and the
-  sheaf-category packaging are secretly the same construction over any category with hom-sets — and legs 1 and 2 are that one construction instantiated at two value categories (linear V on one side,
-  Set/hSet on the other).
+  The cost is concentrated in one obligation: pullbackStability in sieve form. The library's Coverage wants, for each cover of c and each f : d → c, an ∃ cover of d refining the pulled-back generated
+  sieve. We have the raw material — ActorPullback's pullback frames are exactly the overlaps that would furnish stability — but it's currently postulate-backed for the bundled tiny site
+  (stability-cover-postulate), and casting it into the library's sieve-refinement shape (generatedSieve, pulledBackSieve, coverRefinesSieve) is the genuine new proof work. C8 (just Cover = a family
+  of arrows) is nearly free; C9 (Coverage) carries this proof.
 
-  This matters because it's the move that makes R4 clean: if both sheaf categories are produced by one generic construction over the shared FiniteFrameCategory, then R4 bridges only the
-  cartesian-vs-linear difference in the value category — not a presentation gap layered on top of it (the Tension 4 / D2 trap arc/09 warns against). It's also the project's own "factor through the
-  more abstract object" instinct (the rising-sea regulative principle from arc/02) showing up concretely.
+  Options
 
-  Concretely, I'd suggest the next agent:
+  ┌──────────────────┬───────────────────────────────────────────────┬─────────────────────────────────────────────────────┬──────────────────────────────────────────────────────────────────────┐
+  │      Option      │                 What it does                  │                        Cost                         │                               Benefit                                │
+  ├──────────────────┼───────────────────────────────────────────────┼─────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────┤
+  │                  │ FiniteCover → library Cover (forget overlaps, │                                                     │ Lands "our covers are library covers." But it's half a brick: a bare │
+  │ A — C8 only      │  keep index + (patch, embed) as arrows into   │ Minimal, no proof obligation.                       │  Cover can't feed library Sheaf, doesn't reach a Coverage, doesn't   │
+  │                  │ F).                                           │                                                     │ honor E2.                                                            │
+  ├──────────────────┼───────────────────────────────────────────────┼─────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────┤
+  │ B — C8→C9,       │ Full Coverage, discharging pullbackStability  │ The real proof: sieve/generated-sieve bookkeeping,  │ The actual E2 landing; an honest site; feeds library Sheaf; retires  │
+  │ constructed      │ from ActorPullback's pullback frames in sieve │ fiddly cubical work, touches the site layer.        │ a postulate (budget win); unlocks library machinery.                 │
+  │ stability        │  form; retire the legacy postulate.           │ Genuine risk it's a substantial session.            │                                                                      │
+  ├──────────────────┼───────────────────────────────────────────────┼─────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────┤
+  │ C — C9,          │ Build the Coverage but leave                  │ Adds/keeps a postulate in a budget-conscious        │ Gets the Coverage/Sheaf interface available fast (library machinery  │
+  │ stability        │ pullbackStability as a named postulate; defer │ project; "honest topos" becomes postulate-relative. │ unlocked at interface level); honest about the gap; mirrors how      │
+  │ postulated       │  the sieve proof.                             │                                                     │ SessionO1Action/StarAutonomous were handled.                         │
+  ├──────────────────┼───────────────────────────────────────────────┼─────────────────────────────────────────────────────┼──────────────────────────────────────────────────────────────────────┤
+  │                  │ All of B, plus prove our probe-form IsSheaf   │ Largest; the comparison theorem may be its own      │ Strongest legitimacy: our descent notion proved equivalent to the    │
+  │ D — C8→C9→C6     │ at SET agrees with the library's element-form │ serious session on top of C9.                       │ standard one.                                                        │
+  │                  │  isSheaf for the generated coverage.          │                                                     │                                                                      │
+  └──────────────────┴───────────────────────────────────────────────┴─────────────────────────────────────────────────────┴──────────────────────────────────────────────────────────────────────┘
 
-  1. Decide the refactor-vs-duplicate call (this is the real fork, and it's the same shape as the bridge decision we just made): either re-parameterize
-  FiniteFramePresheaf/FiniteDescent/FiniteSheafCategory over a plain library Category (we already have StarAutonomous→Category to feed the linear side in), which churns landed files but yields one
-  generic construction; or build leg 2's Set side as a thin parallel construction, accepting some duplication. My lean: extract a small value-category interface and re-parameterize — the churn is
-  bounded (those files don't use linearity, so the refactor is mechanical), and the payoff is a genuinely symmetric R4. But it should be a deliberate task, not smuggled in.
-  2. Instantiate the Set side — most likely via the library's SET/hSet as the value category, and check our FiniteCover finite descent agrees with (or generates) the library's coverage/sieve notion.
-  Unifying our FiniteCover basis with a library Coverage is the long-flagged E2 transition in status.md, and doing it here gives legs 1 and 2 a shared descent notion too — another R4-cleanliness win.
-  3. Stop at the exposed tension and let R4 be its own session (see below).
+  My lean, if the Coverage bridge is what's next: B, because it both lands E2 and retires a postulate — but with C as the fallback if the sieve-stability proof proves heavier than ActorPullback makes
+  it look. C6/option D is explicitly not now — it's decoupled from R4 (below) and front-loads a second proof.
 
-  The genuine strategic fork to flag
+  How it relates to R4
 
-  There are two things on the critical path to T1 (Allow ⊣ Require), and only one can be the immediate focus:
+  This is the load-bearing clarification, and it's the resolved "tension 1" from our discussion:
 
-  - Continue B-side (leg 2 → R4): finishes making K "itself." Momentum is here; the patterns are fresh; R4 is the highest-stakes conceptual hinge.
-  - Start the A-side M as a category: the adjunction's other endpoint. It is currently entirely absent — the A-side has the Iteration.agda scaffold and the paused de Rham work, but no "category of
-  modal contexts." Even after R4, we cannot state Allow ⊣ Require without M.
+  - R4 is B-internal — the Benton/LNL adapter between cartesian Sh-fin(site, Set) and linear Sh-fin(site, V). It is not the cross-site Allow ⊣ Require.
+  - The canonical R4 endpoints are our framework at SET and at V — both now concrete and green (this is exactly what brick 2 delivered). So R4 does not depend on the Coverage bridge. R4 is already
+  unblocked.
+  - The Coverage bridge is parallel legitimacy (E2 + library + the eventual comparison), decoupled from R4 timing. It can land before or after R4 without affecting R4's cleanliness.
+  - The discipline to hold: keep R4 bridging our-SET ↔ our-V. If the library Coverage/Sheaf is ever treated as the Set side and R4 is made to bridge library-SET ↔ our-V, then the C6 comparison
+  theorem silently becomes an R4 prerequisite and R4 inherits the presentation gap — the arc/09 D2 trap. Coverage stays parallel; R4 stays over our framework.
 
-  My lean is continue B-side (leg 2) next, because it's the cheaper, more tractable step that de-risks the expensive one (R4), and because M-as-category is a larger open-ended A-side question better
-  taken up when A-side bandwidth returns (it couples to the Bℤ → S¹ / cyclic-bar plan). But I'd flag M-as-category explicitly as the parallel track, because it's the thing that, together with the
-  cross-functors, still gates T1 after all of R4 lands — and it can proceed independently if someone has A-side bandwidth.
+  So the genuine higher-level fork now is what to do next, not what blocks what:
+  - Path 1 — Coverage bridge next (B/C): pays down E2 and legitimacy while the finite-site patterns are fresh; proof-bearing.
+  - Path 2 — R4 next (interface-first): the higher-stakes conceptual hinge, and a decision session (the D1–D4 calls: Benton vs Chu/Seely; B-internal vs cross-site; !-exponential assumed vs built; how
+  much Ω/cartesian-closed structure). Both legs being concrete is exactly the precondition that makes R4's decisions informed rather than abstract.
+  
+  Net: the Coverage bridge is important but not gating — its value is E2 + legitimacy + downstream unlock, and its single hard part is sieve-form pullback-stability. R4 is independently unblocked and
+  is the higher-stakes hinge. Either can go next; they don't block each other, provided R4 stays disciplined to our-framework endpoints.
 
-  What to not rush: R4 is a decision session, not a coding session
+  The one genuinely supportive slice — and it is the bridge's front half
 
-  When R4 is reached, the status.md dialogue already laid out the decisions but didn't settle them — and these should be settled deliberately before code:
+  There are two thin, site-layer items that would de-risk C9 and stand alone as the long-flagged E2 work:
 
-  - D1: is the bridge the Benton LNL adjunction (the leading candidate, gestured at in arc/03 §E and arc/06), or a Chu/Dialectica or Seely alternative? Commit consciously.
-  - D2 (highest stakes): is the B-internal cartesian↔linear adapter the same adjunction as the cross-site Allow ⊣ Require, or genuinely distinct? Conflating same-shaped adjunctions at different
-  altitudes is the conservation-law trap arc/09 names. Keep R4 B-internal.
-  - D3: state the LNL adapter as an assumed interface record (mirroring how SessionO1Action/StarAutonomous were handled) and defer the !-exponential construction — the non-rushing path.
-  - D4: how much of the Set-side Ω/cartesian-closed structure to actually build vs. assume.
+  - (a) Retire the legacy stability-cover-postulate. It still sits in ActorCausal as an in-file fallback for the bundled tiny site (to dodge an import cycle), even though ActorPullback discharges it
+  generically. Routing the tiny site through the constructed stability closes the last actor-site postulate — a standalone budget win — so C9 inherits a postulate-free stability story.
+  - (b) A "sieve-of / FiniteCover ↔ library Cover/generatedSieve" connective lemma. This turns C9's pullbackStability into a re-expression of stability-cover-pullback rather than a fresh proof — the
+  "bridge, don't re-express" pattern at the site layer.
 
-  Smaller surfaced items worth carrying forward
+  But notice: these two are the front (site-layer) half of the Coverage bridge itself, done as a self-contained, postulate-retiring deliverable. They're a good, low-risk way to start the bridge from
+  its foundational end — not a detour away from it.
 
-  - Fork B still open and deferred: leg 1 is the bare 1-category; the value category's *-autonomous structure is not enriched onto K (no Day-convolution linear structure on the sheaf category yet).
-  That stays interface-first until R4 or the cross-site adjunction actually needs it.
-  - Level signatures in the four new files are hand-spelled and verbose; the value-category refactor above would simplify them.
-  - Concurrency/Topos/ is reserved (not yet created) for the Set side + R4 — consistent with Codex's "keep the word topos for the cartesian side" naming discipline.
+  Where cascade/adapter work is foundational, it serves R4, not the bridge
 
-  Net: the single highest-leverage next move is leg 2 done as a generic re-instantiation of the leg-1 construction, because it simultaneously delivers the cartesian locality side and pre-positions R4
-  to be a clean cartesian↔linear bridge rather than a tangled one — and the decision it forces (refactor the value-category parameter vs. duplicate) is concrete and answerable now.
+  If the real goal is "pause fast-tracking and build foundation," the productive target is the hinge that comes after the bridge: R4. Two value-side adapters are buildable now and genuinely de-risk
+  R4:
+  - the duality / mix adapter (𝟙ₛ ↔ ⊥ₛ, the unit-vs-dualizing-object relationship) — R4's cartesian↔linear bridge has to understand exactly this;
+  - the no-leak / erasure adapter made explicit (session content doesn't refine actor identity) — structural hygiene the unityping claim and several downstream layers lean on.
+
+  Net
+
+  - Refocusing on the cascade layers won't support the Coverage bridge — they presuppose it.
+  - The bridge's foundations (stability math, sieve-of) are already shipped; what's left is plumbing.
+  - If you want to pause productively, the two coherent options are: (i) start the bridge from its foundational end — retire the stability postulate + the sieve-mapping lemma (low-risk,
+  postulate-retiring, is C9's front half); or (ii) build the R4-supporting value-side adapters (duality/mix, no-leak), which are real foundation for the next hinge.
+
+  Both are better uses of a pause than climbing into the cascade, which sits on top of the very bridge you're weighing.
+
+ The one genuinely supportive slice — and it is the bridge's front half
+
+  There are two thin, site-layer items that would de-risk C9 and stand alone as the long-flagged E2 work:
+
+  - (a) Retire the legacy stability-cover-postulate. It still sits in ActorCausal as an in-file fallback for the bundled tiny site (to dodge an import cycle), even though ActorPullback discharges it
+  generically. Routing the tiny site through the constructed stability closes the last actor-site postulate — a standalone budget win — so C9 inherits a postulate-free stability story.
+  - (b) A "sieve-of / FiniteCover ↔ library Cover/generatedSieve" connective lemma. This turns C9's pullbackStability into a re-expression of stability-cover-pullback rather than a fresh proof — the
+  "bridge, don't re-express" pattern at the site layer.
+
+  But notice: these two are the front (site-layer) half of the Coverage bridge itself, done as a self-contained, postulate-retiring deliverable. They're a good, low-risk way to start the bridge from
+  its foundational end — not a detour away from it.
+
+  Where cascade/adapter work is foundational, it serves R4, not the bridge
+
+  If the real goal is "pause fast-tracking and build foundation," the productive target is the hinge that comes after the bridge: R4. Two value-side adapters are buildable now and genuinely de-risk
+  R4:
+  - the duality / mix adapter (𝟙ₛ ↔ ⊥ₛ, the unit-vs-dualizing-object relationship) — R4's cartesian↔linear bridge has to understand exactly this;
+  - the no-leak / erasure adapter made explicit (session content doesn't refine actor identity) — structural hygiene the unityping claim and several downstream layers lean on.
+
+  Net
+
+  - Refocusing on the cascade layers won't support the Coverage bridge — they presuppose it.
+  - The bridge's foundations (stability math, sieve-of) are already shipped; what's left is plumbing.
+  - If you want to pause productively, the two coherent options are: (i) start the bridge from its foundational end — retire the stability postulate + the sieve-mapping lemma (low-risk,
+  postulate-retiring, is C9's front half); or (ii) build the R4-supporting value-side adapters (duality/mix, no-leak), which are real foundation for the next hinge.
+
+### Codex (where D is a reference to the D in Claude's table just above)
+
+❯ I think D is what we should target. Aside from requiring more work, do you see any reason to not do it?
+
+• No fundamental reason not to target D. It is the highest-quality target.
+
+  The reason to be cautious is not “more work” in the abstract; it is that D can accidentally fuse three separable claims:
+
+  1. FiniteCover can be seen as Cubical cover/sieve data.
+  2. Those covers generate a valid Cubical Coverage.
+  3. Our IsSheaf at SET agrees with Cubical library Sheaf.
+
+  Those should land as separate named theorems/modules. If Claude tries to prove “D” as one monolithic bridge, the risk is muddy interfaces and hard-to-review proof debt.
+
+  I’d endorse D with this discipline:
+
+  - Target D as the session objective.
+  - Stage it as C8 → C9 → C5/C6.
+  - Keep R4 explicitly out of scope.
+  - If C6 gets heavy, land C8+C9 plus a one-direction comparison theorem, with the reverse direction sharply named.
+
+  The main technical risk is proof-shape mismatch. Our sheaf condition is project-specific finite-cover descent; Cubical’s library Sheaf is likely phrased through sieves / covering families /
+  elementwise matching. The comparison may require proving a basis-vs-generated-coverage theorem, not just rewriting definitions. That is worthwhile, but it should not force changes back into the
+  generic finite sheaf framework unless the mismatch reveals a real bug.
+
+  So my position:
+
+  D is the right ambition. Just don’t make “D or nothing” the coding standard for the session. The success ladder should be:
+
+  1. C8 adapter lands.
+  2. C9 Coverage lands, ideally with constructed stability.
+  3. Our SET sheaf implies library sheaf, or vice versa.
+  4. Full iff/agreement if it stays tractable.
+
+  That preserves quality without letting comparison proof complexity distort the clean framework we just built.
+
+
+› How would Grothendieck approach D, and would he have chosen this path at all?
+
+
+• Grothendieck would likely approve the mathematical instinct behind D, but not if it becomes a library-integration exercise for its own sake.
+
+  He would probably see our current FiniteCover setup as a basis/pretopology, not the final object. His move would be:
+
+  1. Define the finite covering families as a basis on FiniteFrameCategory.
+  2. Generate the Grothendieck topology/sieve coverage from that basis.
+  3. Prove the basis is stable under pullback.
+  4. Prove a comparison theorem: sheaves for the basis are equivalent to sheaves for the generated topology.
+
+  That is essentially D, but phrased as a comparison lemma for a basis of a topology, not as “make our code agree with Cubical’s code.”
+
+  Would he have chosen this path? I think yes, if the goal is to honestly say “site,” “sheaf,” and eventually “topos.” He would not be satisfied with a hand-rolled finite descent condition left
+  disconnected from the generated topology. The generated topology is the real geometric object; basis covers are a presentation.
+
+  But he might not choose it as the next path if R4 were the conceptual bottleneck. Grothendieck often tolerated provisional presentations while the real structure was still forming. If the question
+  were “what unlocks the next mathematical idea?”, he might say: state the right category/topos and functorial problem first. If the question is “what makes the current B-side sheaf layer honest?”,
+  then D is exactly the Grothendieck move.
+
+  The main Grothendieckian correction to D is: don’t prove an ad hoc equivalence between two definitions by brute force. Prove the more general statement:
+
+  > finite covering families form a basis/pretopology whose generated coverage has the same sheaves.
+
+  Then our IsSheaf at SET becomes a basis-sheaf condition, and Cubical Sheaf becomes the generated-topology sheaf condition. Their agreement is a theorem of presentation-independence.
+
+  So my answer: yes, he likely would choose D eventually, and probably before any serious claim of “topos.” But he would insist that D be done at the level of topology generated by a basis, not as a
+  local patch between two APIs.
