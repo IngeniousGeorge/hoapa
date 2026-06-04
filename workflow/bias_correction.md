@@ -14,10 +14,13 @@ Defaults this file rules out, in particular:
 Additional fast-track corrections:
 
 - "The current Sessions sheaf is full event-dependent B2(a)." — Rejected. The landed Sessions witness is constant-slot: arity varies by finite frame, but every event carries the same fixed slot `P₀`. Event-dependent session content is future work.
-- "Event-dependent slots block R4 or the cross-site adjunction." — Rejected. They refine the value assignment; `_Topos._SheafCategory`, R4, and `Allow ⊣ Require` should be built generically over `FiniteFramePresheaf` / `IsSheaf`, not over the constant-slot witness.
+- "Event-dependent slots block R4 or the cross-site adjunction." — Rejected. They refine the value assignment; Set-valued locality sheaves, R4, and `Allow ⊣ Require` should be built generically over `FiniteFramePresheaf` / `IsSheaf`, not over the constant-slot witness.
 - "The tiny finite cover example must compute by `refl` to count." — Rejected. The landed witness is proof-level: restriction/amalgamation equations and separatedness hold propositionally. Definitional computation is a bonus only if it falls out naturally and yields reusable lemmas.
 - "The arc now has four functors." — Rejected. Current grounding is the adjoint pair `Allow ⊣ Require` with five anchors (Complexity, Evolution, Praxis, Anthropic, Care). Triple, ambidextrous, or quadruple structures are future extras only if earned.
-- "Finite descent means the topos is done." — Rejected. Finite event-product descent has landed; `_Topos._SheafCategory`, internal logic, R4, and the actual cross-site functors remain pending.
+- "Finite descent means the topos is done." — Rejected. Finite event-product descent and the V-valued finite sheaf/value category have landed; the Set-valued locality topos/internal logic, R4, and the actual cross-site functors remain pending.
+- "`Sh_fin(site,V)` is a topos." — Rejected. The landed V-valued side is a linear/session sheaf-value category. Reserve "topos" for the Set-valued/cartesian locality side unless the relevant structure is explicitly proved or assumed.
+- "R4 is the cross-site `Allow ⊣ Require` adjunction." — Rejected. R4 is B-internal: the adapter between Set-valued locality sheaves and V-valued linear/session sheaves. The cross-site adjunction relates ModalHoTT-side contexts to the structured Concurrency side.
+- "The V-valued and Set-valued sheaf categories should be collapsed." — Rejected. Keep both and bridge them with a named adapter; no hidden cast between locality logic and session content.
 
 If you find yourself drifting toward one of these defaults, that is the moment to re-read the corresponding instigator prompt below.
 

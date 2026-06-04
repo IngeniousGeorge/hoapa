@@ -62,7 +62,7 @@ The eventual quality target is stronger: replace the action assumption with a ca
 Expected ladder:
 
 1. **Done:** `Sessions.agda` v1: minimal session syntax, inductive structural `Hom`, and an explicit `SessionO1Action` assumption.
-2. **Done at finite-descent scaffold level:** Hybrid integration now has arbitrary-frame `FramePresheaf` / `SessionPresheaf`, zero-postulate separatedness, finite additive products, finite frames/covers, generic finite event-product descent, the constant-slot Sessions sheaf, and proof-level tiny finite-cover validation. General `_Topos._SheafCategory`, R4, and event-dependent slots remain pending.
+2. **Done at finite-descent and V-valued category level:** Hybrid integration now has arbitrary-frame `FramePresheaf` / `SessionPresheaf`, zero-postulate separatedness, finite additive products, finite frames/covers, generic finite event-product descent, the constant-slot Sessions sheaf, proof-level tiny finite-cover validation, and the V-valued finite sheaf/value category. The Set-valued locality sheaf/topos side, R4, and event-dependent slots remain pending.
 3. Richer session category: add proof terms or an equivalent categorical semantics, cut as composition, cut-elimination/equality, closed structure/evaluation, and enough tensor/braiding coherence to manipulate long tensor strings.
 4. Canonical `O_1` action: define `SessionO1Action` rather than assume it. `shift` should come from coherent cyclic permutation of tensor factors; `plug` should come from closed/evaluation/cut structure composing two morphisms into the dualizing object.
 5. Only then push hard on `MO_1`: extend the canonical `O_1` action toward self-gluing / conversation-promotion / modular closure.
@@ -83,7 +83,7 @@ Pieces deferred:
 
 - **Richer concrete site witnesses.** The Bool tiny-site exercises non-trivial covers but still discharges site stability by the postulate. A future v2 witness should compute pullback stability explicitly against `embed-point false` and `embed-point true`, or against a slightly richer finite causal frame.
 
-## Regarding Hybrid finite descent and the next sheaf steps
+## Regarding Hybrid finite descent, V-valued sheaf category, and next sheaf steps
 
 `Concurrency/Hybrid/{Presheaf,SessionPresheaf}.agda` remains the arbitrary-frame adapter layer: generic restriction along `FrameHom`, zero-postulate separatedness as a property, and constant Sessions witnesses. The fast-track finite layer is now separate and stronger:
 
@@ -94,10 +94,14 @@ Pieces deferred:
 - `Concurrency/Hybrid/EventProductSheaf.agda` proves full finite-site descent for the generic event-product presheaf.
 - `Concurrency/Hybrid/SessionEventProductSheaf.agda` instantiates the generic witness at `Sessions-Cat Payload`.
 - `Concurrency/Sites/TinyFiniteCover.agda` and `Concurrency/Hybrid/TinyEventProductExample.agda` validate the carried-overlap interface on the concrete two-point cover.
+- `Concurrency/Algebras/StarAutonomousCategory.agda` adapts the thin `StarAutonomous` interface to Cubical `Category`.
+- `Concurrency/Sites/FiniteFrameCategory.agda` packages the finite-frame subsite as a Cubical `Category`.
+- `Concurrency/Hybrid/FiniteFramePresheafFunctor.agda` bridges existing `FiniteFramePresheaf` records to Cubical functors without re-expressing descent.
+- `Concurrency/Hybrid/FiniteSheafCategory.agda` proves `IsSheaf` is propositional and builds the full subcategory of finite V-valued sheaves, with the event-product sheaf as a concrete object.
 
 This is a real sheaf landing, but it is deliberately scoped:
 
-- It is finite-site descent, not the full `_Topos._SheafCategory`.
+- It is finite-site descent plus V-valued finite sheaf/category packaging, not the Set-valued locality topos and not R4.
 - It is constant-slot Sessions: arity varies by event count, but every event carries the same slot `P₀`.
 - It does not claim event-dependent session content.
 - It does not claim additive coproduct universal properties.
@@ -114,7 +118,7 @@ The target for the tiny finite cover example is proof-level, not definitional, c
 - Do not engineer the example around definitional normalization unless the resulting lemma is reusable beyond the tiny cover.
 - Failure to obtain definitional computation is not a weakness of the framework; the finite descent stack is intentionally stated through product universal properties (`bigβ`, `bigη`, `terminal-unique`) and propositional equality.
 
-The global framework should not depend on tiny-cover normalization. `_Topos._SheafCategory`, R4, and `Allow ⊣ Require` should consume sheaf interfaces and proof-level laws.
+The global framework should not depend on tiny-cover normalization. Set-valued locality sheaves, R4, and `Allow ⊣ Require` should consume sheaf/category interfaces and proof-level laws.
 
 Outcome: Option A landed. The witness proves propositional restriction/amalgamation equations and separatedness on the concrete cover. Option B, a definitional or `refl` computing witness, remains a future opportunistic enhancement only if a later example exposes reusable normalization lemmas; it is not required for the framework.
 
@@ -141,9 +145,10 @@ When resumed, event-dependent slots should live in a new module, likely `Concurr
 
 ### Next sheaf steps
 
-1. Build `_Topos._SheafCategory` generically over finite sheaves.
-2. State R4 over that sheaf/category interface, not over the constant-slot witness.
-3. Only then state the cross-site `Allow ⊣ Require` functors, unit, counit, and triangle identities.
+1. Refactor or bridge `FiniteCover` into Cubical `Coverage` over `FiniteFrameCategory`. This should be done before building the Set-valued side so the framework uses Cubical site/sheaf machinery directly where it matters.
+2. Build the Set-valued finite locality sheaf/topos interface, `Sh_fin(site,Set)`, over the same finite common site. Do not silently mix full actor-causal Set sheaves with finite V-valued sheaves in v1.
+3. State R4 as a Benton/LNL-shaped adapter between `Sh_fin(site,Set)` and the landed V-valued finite sheaf/value category. Keep R4 B-internal and distinct from the cross-site `Allow ⊣ Require` adjunction.
+4. Only then state the A-side category of modal contexts and the cross-site `Allow ⊣ Require` functors, unit, counit, and triangle identities.
 
 ## Beyond fracture: the differential-cohesion gap
 
@@ -209,11 +214,11 @@ What lands after this round. The synthetic side of the de Rham arc is complete a
 
 ## Concurrency-side layers of complexity (planned)
 
-The Concurrency side, at the time of writing, has shipped the actor-causal site, pullback overlaps, the cyclic operad `O_1` and its `*`-autonomous algebra interface, the Sessions instance, the Hybrid v1 presheaf/restriction adapter, finite-site event-product descent with a constant-slot Sessions instance, and the concrete tiny finite-cover validation. The live frontier is `_Topos._SheafCategory`, then R4. Several additional layers are committed in design but not yet in code. This section is the catalogue of those layers, with for each: what it does for the protocol's operational use in the human world (possibly with LLMs as participants), what mathematical structure it commits to (or, where the choice is open, what the candidates are), and what currently shipped scaffolds it presupposes.
+The Concurrency side, at the time of writing, has shipped the actor-causal site, pullback overlaps, the cyclic operad `O_1` and its `*`-autonomous algebra interface, the Sessions instance, the Hybrid v1 presheaf/restriction adapter, finite-site event-product descent with a constant-slot Sessions instance, the concrete tiny finite-cover validation, and the V-valued finite sheaf/value category. The live frontier is the Set-valued/cartesian locality side, then R4. Several additional layers are committed in design but not yet in code. This section is the catalogue of those layers, with for each: what it does for the protocol's operational use in the human world (possibly with LLMs as participants), what mathematical structure it commits to (or, where the choice is open, what the candidates are), and what currently shipped scaffolds it presupposes.
 
 A unifying disciplinary commitment behind all the layers below: **praxis is part of the theory**. The protocol's use by a community of equal-standing participants is constitutive of the framework, not an applied addendum to an underlying mathematics. This is what distinguishes the framework's combination from each of the historical precedents catalogued in `related_structures.md` — at least one of (mathematical depth, theory-of-community, runnable protocol, self-validation through use, recursive co-evolution structure) was missing in each of them.
 
-The five layers below are listed in build-dependence order: each presupposes its predecessor, either as substrate or as the object it operates on. The dependency chain in compact form: Hybrid finite descent (shipped at constant-slot level) → `_Topos._SheafCategory` / R4 → **Layer 1 (Π)** → **Layer 2 (Λ)** → **Layer 3** (field-theoretic dynamics on Λ) → **Layer 4** (Federation, requiring all four previous). **Layer 5** (information-cohomological complexity) reads off Layer 2's content topos and is independent of Layers 3–4 in code, though it composes cleanly with Layer 3's action functional.
+The five layers below are listed in build-dependence order: each presupposes its predecessor, either as substrate or as the object it operates on. The dependency chain in compact form: Hybrid finite descent plus V-valued finite sheaf category (shipped at constant-slot level) → Set-valued finite locality sheaves / R4 → **Layer 1 (Π)** → **Layer 2 (Λ)** → **Layer 3** (field-theoretic dynamics on Λ) → **Layer 4** (Federation, requiring all four previous). **Layer 5** (information-cohomological complexity) reads off Layer 2's content topos and is independent of Layers 3–4 in code, though it composes cleanly with Layer 3's action functional.
 
 They are all "Committed" — held as planned future content of the framework, with the existing scaffolds already designed to receive them, but with no Agda content shipped yet. A separate appendix at the end gathers three *reframings* — sharper readings of structure the framework already commits to. The reframings are of a different nature from the layers; they affect what to aim for, not what to additionally construct.
 
@@ -262,7 +267,7 @@ A message currently carries only a session-type tag — its "how" (request, resp
 
 **Mathematical structure.** The concept category Λ. Objects are concepts; 1-morphisms are concept-relations (subsumption, specialization, paraphrase, refinement, contradiction-witness); higher morphisms are coherences and obstructions. Likely a 2-category or (∞,1)-category to host the homotopy structure of refinements honestly. The tagging structure on values: in the simplest reading, `SessionPresheaf` is generalized from `Sessions-Cat` values to `Sessions-Cat × Λ` values (parallel layers, with the how/what split preserved). A fibred or full Grothendieck construction over Λ is the natural alternative if content needs to vary contextually with concepts; the design call is parallel-vs-refining. Seed inclusion: external languages enter as initial presented theories embedded into Λ. Three presentation candidates with different operational consequences — Lawvere theory for the cleanest categorical model, categorial grammar (Lambek) for natural-language bridges, dependent type theory for the eventual self-hosted version — likely all three end up needed. A language-generation functor / monad packages how conversation data refines Λ; meta-conversations of the reflexive kind act on Λ via this functor.
 
-**Trigger / dependencies.** Hybrid finite descent plus the future sheaf-category/R4 layer: the bulk layer's "compatible local content glues into shared global content" reading uses the sheaf-descent half of the Hybrid layer, not just the presheaf/restriction half. The Reflexive layer Π: language edits and protocol edits interact, and some content-layer edits will be sequenced through meta-conversations. Sessions-Cat stays untouched at the `*`-autonomous level; the bulk layer sits above it as additional structure on the values, not as a refinement of session syntax.
+**Trigger / dependencies.** Hybrid finite descent plus the future Set-valued locality/R4 layer: the bulk layer's "compatible local content glues into shared global content" reading uses the sheaf-descent half of the Hybrid layer, not just the presheaf/restriction half. The Reflexive layer Π: language edits and protocol edits interact, and some content-layer edits will be sequenced through meta-conversations. Sessions-Cat stays untouched at the `*`-autonomous level; the bulk layer sits above it as additional structure on the values, not as a refinement of session syntax.
 
 **Open questions / deferred pieces.** Parallel content category vs refinement of Sessions (lean: parallel). Set-truncated vs homotopy-typed (lean: ship set-truncated as first witness, target homotopy-typed). Seed-language choice (Lawvere / categorial grammar / dependent type theory). Whether Λ has its own operad `O_C` whose generators are concept-formation operations (define, refine, identify, split, contradict), and if so whether `O_C` is structurally similar to `O_1` (cyclic, ribbon, planar) or genuinely different (commutative, branching, tree-like). The interaction with the actor-causal site: which concepts are local to which frames, how the cover structure interacts with the indexing.
 
@@ -298,7 +303,7 @@ A single protocol that succeeded at every previous layer would, if left in isola
 
 **Open questions / deferred pieces.** The precise sense in which M is anabelian (anabelian theorems are genuinely hard; even Mochizuki's dimension-one proof is technical and contested in parts; we promise the structural commitment and the roadmap, not the theorem). Whether Π and Π* unify or persist as parallel structures. Whether a future Mediate-style federation reading unifies with the structural / content / cross-leg readings, or stays as a distinct altitude. The project's discipline of self-application here is structural rather than rhetorical: Hoapa itself is one protocol among many — one attempt at a framework, currently being built by one small community-of-inquiry — and must expose typed translation interfaces to adjacent communities (HoTT/UF, factorization-algebra theorists, AI alignment groups, Pask-descended conversation theorists, autopoiesis-influenced researchers, the Bennequin / Belfiore / Laforgue topos-for-cognition line) rather than claiming to resolve them.
 
-**Agda tree slot.** `Concurrency/Federation/{Protocol,Translation,MetaTopos}.agda`, reserved as future home. Opens far downstream of `_Topos._SheafCategory` / R4 / `MO_1`.
+**Agda tree slot.** `Concurrency/Federation/{Protocol,Translation,MetaTopos}.agda`, reserved as future home. Opens far downstream of Set-valued locality sheaves / R4 / `MO_1`.
 
 *Originating design conversations:* `deep_context/arc/06_the_hybrid_as_a_door_to_field_theories.md` (cobordism dictionary, Sketch-of-a-Program connection); federation discipline and Yoneda + anabelian / GT-action reading captured in workflow conversation logs.
 
@@ -358,3 +363,32 @@ Brief definitions of recurring terms in the layers / reframings section above, f
 - **Meta-topos** — the (2-)presheaf topos over the category of protocols (Layer 4); itself a Hoapa-structure at one level up, which is what makes the federation construction iterate.
 
 For broader project-wide terms (cohesion, modal adjoint pair, actor-causal site, sheaf descent, etc.), see `motivation.md` and `arc.md`.
+
+## Future steps
+
+### B-side category and R4
+
+The V-valued finite sheaf/value category has landed. The next high-quality treatment is:
+
+1. Refactor or bridge `FiniteCover` into Cubical `Coverage` over `FiniteFrameCategory`.
+2. Use Cubical `Site` / `Sheaf` machinery for the Set-valued finite locality side `Sh_fin(site,Set)`.
+3. State R4 as a Benton/LNL-shaped adapter between `Sh_fin(site,Set)` and `Sh_fin(site,V)`, interface-first.
+
+This keeps the two B-side poles separate: Set-valued locality sheaves carry cartesian/internal-logic structure; V-valued sheaves carry linear/session content. R4 is the named adapter between them, not a collapse and not the cross-site `Allow ⊣ Require` adjunction.
+
+Deferred inside this leg: enriching `Sh_fin(site,V)` with inherited linear / star-autonomous structure, constructing the free/forgetful Set-to-session adjunction rather than assuming it, and extending from the finite common site to the full actor-causal Set-valued topos.
+
+### A-side category options
+
+The A-side analogue of the actor/content divide is the cohesive split between discrete/formal structure and cohesive/spatial structure. The cohesive adjoints are the A-side adapter system. Options for `M` remain:
+
+1. Native modal-HoTT category: types or modal types with functions. Cheapest, closest to current Agda, but weak as final architecture.
+2. Semantic `Sh(Bℤ,Set)` / ℤ-action style category. Concrete, but risks overfitting the analytic Bℤ model.
+3. Cohesive package: cartesian/discrete core plus cohesive total context plus the cohesion bridge. Preferred target, staged as an interface.
+4. Category of modal contexts / cohesive topoi. Natural long-term, too heavy now.
+
+Current lean: package A as cartesian/discrete core + cohesive context + cohesion adapter, mirroring B as Set-valued locality + V-valued linear content + R4 adapter. Do not hard-wire the exact flat/sharp/shape to typed/unityped/protocol slot assignment yet; T4 still needs a conscious settlement.
+
+### Cross-site adjunction threshold
+
+A stated `Allow ⊣ Require` interface alone is scaffolding. It becomes mathematically interesting when the functors are constructed from the ingredients and accompanied by a non-trivial example or theorem. First target the structured-package comparison, with a cartesian shadow and later enrichment-compatibility laws. The first compelling theorems would be non-collapse, nontrivial iteration of `Require ∘ Allow`, separation preservation/detection, R4 compatibility, or a concrete finite actor-causal example that crosses the adjunction and returns with controlled loss.
