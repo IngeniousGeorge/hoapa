@@ -84,7 +84,7 @@
 --   anticipated by the current scaffolds but not already implicit
 --   in them: nothing in this file or its siblings represents
 --   protocol versions, edit morphisms, or version-indexing. Trigger
---   for opening `Hybrid/Reflexive.agda` v0: (a) descent / R4 stable
+--   for opening `Hybrid/Reflexive.agda` v0: (a) descent / the linear–nonlinear bridge stable
 --   enough that the Hybrid chassis is not moving under the new
 --   layer, and (b) the fragment-category candidate honest enough to
 --   state in Agda. Canonical source:

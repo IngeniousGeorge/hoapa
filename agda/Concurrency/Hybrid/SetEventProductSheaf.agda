@@ -18,11 +18,11 @@
 -- plus its packaging as an object of `Sh-fin-Set`. That leg 1 (linear,
 -- session-valued) and leg 2 (cartesian, set-valued) are the *same* witness
 -- at two value categories is the concrete payoff of the value-category
--- refactor: it is exactly the symmetry the R4 adapter will bridge.
+-- refactor: it is exactly the symmetry the linear–nonlinear adapter will bridge.
 --
 -- Scope guardrails: constant-slot only (every event carries the same
 -- fixed `P₀`); no Coverage bridge, no comparison with the library's
--- element-based `isSheaf`, no R4.
+-- element-based `isSheaf`, no bridge adapter.
 
 module Concurrency.Hybrid.SetEventProductSheaf where
 

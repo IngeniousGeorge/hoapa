@@ -7,9 +7,9 @@
 -- three-leg program by change of value category: leg 1 (V-valued, linear)
 -- is this construction at `C := StarAutonomous→Category V`; leg 2
 -- (Set-valued, cartesian) is the same construction at `C := SET` (see
--- `Concurrency/Hybrid/SetFiniteSheafCategory.agda`); leg 3 is the R4
+-- `Concurrency/Hybrid/SetFiniteSheafCategory.agda`); leg 3 is the linear–nonlinear
 -- Benton / linear-non-linear adapter between them. Being one construction
--- at two value categories is what keeps R4 a clean cartesian-vs-linear
+-- at two value categories is what keeps the linear–nonlinear adapter a clean cartesian-vs-linear
 -- bridge rather than a presentation gap. The sheaf category is the object
 -- the cross-site `Require : K → M` must land in and `Allow : M → K` map
 -- out of — the "K as a category" arc/09 names as the gating prerequisite
@@ -54,7 +54,7 @@
 -- category's structure (when it has any, e.g. the linear `*`-autonomous
 -- structure on the V side) is *not* enriched onto the sheaf category
 -- (Fork B / the Day-convolution structure on K is deferred, interface-
--- first). No Coverage bridge and no R4 adapter here.
+-- first). No Coverage bridge and no linear–nonlinear bridge here.
 
 module Concurrency.Hybrid.FiniteSheafCategory where
 

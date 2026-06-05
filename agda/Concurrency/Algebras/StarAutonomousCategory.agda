@@ -5,10 +5,10 @@
 --
 -- Why this exists. The sheaf-category program (the V-valued linear
 -- sheaf category `Sh_fin(site, V)`, then later the cartesian locality
--- side and the R4 Benton bridge) is deliberately built inside the
+-- side and the linear–nonlinear Benton bridge) is deliberately built inside the
 -- cubical-library category ecosystem (`Category`, `Functor`,
 -- `NaturalTransformation`, `FullSubcategory`, `Adjoint`), because the
--- forward path — R4 and then the cross-site `Allow ⊣ Require` — is
+-- forward path — the linear–nonlinear bridge and then the cross-site `Allow ⊣ Require` — is
 -- adjunction-heavy and should not be re-implemented outside that
 -- ecosystem. This file is the first, smallest brick: it turns the
 -- hand-rolled `StarAutonomous` signature (whose underlying category is

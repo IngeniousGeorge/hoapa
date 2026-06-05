@@ -16,7 +16,7 @@
 -- (`SetFiniteSheafCategory.agda`) import `FiniteSheafCategory` without
 -- transitively pulling in the finite-product witness machinery.
 --
--- Scope guardrails: non-vacuity witness only; no Coverage, no R4.
+-- Scope guardrails: non-vacuity witness only; no Coverage, no bridge adapter.
 
 module Concurrency.Hybrid.EventProductSheafObject where
 

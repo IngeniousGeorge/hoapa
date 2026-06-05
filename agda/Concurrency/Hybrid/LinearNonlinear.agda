@@ -1,21 +1,23 @@
 {-# OPTIONS --cubical --guardedness #-}
 
--- The value-level Benton / Linear-Non-Linear adapter — R4's interface,
--- interface-first.
+-- The value-level Benton / Linear-Non-Linear adapter — the linear–nonlinear
+-- sheaf bridge's interface, interface-first.
 --
--- R4 is the B-internal cartesian↔linear bridge between the two finite
+-- The linear–nonlinear sheaf bridge is the B-internal cartesian↔linear
+-- bridge between the two finite
 -- sheaf endpoints `Sh_fin(site, Set)` (cartesian/locality) and
 -- `Sh_fin(site, V)` (linear/session). The Grothendieckian reading we
--- committed to: R4 is *change of base along a value-level adjunction*
+-- committed to: the bridge is *change of base along a value-level adjunction*
 -- `Cart ⇄ V`, lifted to the sheaf categories. This module states that
 -- value-level adjunction; `ChangeOfBase.agda` is the lifting engine;
--- `R4Adapter.agda` assembles them and sorts what survives to the sheaf
--- level (G yes, F only via sheafification / a named obligation).
+-- `LinearNonlinearSheafAdapter.agda` assembles them and sorts what survives
+-- to the sheaf level (G yes, F only via sheafification / a named obligation).
 --
 -- *Interface-first, deliberately.* `Cart` is an abstract cartesian value
 -- category (`HasFiniteProducts`), instantiated at Cubical `SET` later;
 -- `V` is any `StarAutonomous`, instantiated at `Sessions-Cat` later. The
--- record's fields are *consumed by a generic proof*: `R4Adapter`'s Tier 2
+-- record's fields are *consumed by a generic proof*:
+-- `LinearNonlinearSheafAdapter`'s Tier 2
 -- `G-preserves-sheaf` uses the adjunction `F⊣G`'s natural bijection
 -- (`adjIso` / `adjNatInD` / `adjNatInD'`) to transport descent — which is
 -- what keeps this a Grothendieckian "abstract structure first, instances
@@ -26,11 +28,11 @@
 -- follow-up, not yet in this file.
 --
 -- Benton, not Seely or Chu (decision this session). Benton is the
--- relationship shape R4 needs (two categories + a monoidal adjunction,
--- with `!` derived as `F∘G`); it also rehearses the cross-site
+-- relationship shape this bridge needs (two categories + a monoidal
+-- adjunction, with `!` derived as `F∘G`); it also rehearses the cross-site
 -- `Allow ⊣ Require` shape one level down. Chu is deferred to where its
 -- intrinsic process/context duality is load-bearing (the Λ content layer
--- / the deeper form of `V`), not R4. See `future_work.md`.
+-- / the deeper form of `V`), not this bridge. See `future_work.md`.
 --
 -- Coherence deferred (thin-signature discipline, like `StarAutonomous`).
 -- The strong-monoidal structure of `F` is recorded as the two comparison

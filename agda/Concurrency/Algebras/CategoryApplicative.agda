@@ -11,7 +11,7 @@
 -- value-category program re-parameterizes that framework over a plain
 -- library `Category` so that legs 1 (V-valued, linear) and 2 (Set-valued,
 -- cartesian) are *one* construction at two value categories — which is
--- what keeps R4 a clean cartesian-vs-linear bridge.
+-- what keeps the cartesian-vs-linear bridge clean.
 --
 -- A library `Category` is spelled *diagrammatically* (`_⋆_`, `f ⋆ g` =
 -- "f then g") and already derives an applicative `_∘_` with `g ∘ f =

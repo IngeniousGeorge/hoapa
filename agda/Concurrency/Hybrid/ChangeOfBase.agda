@@ -2,16 +2,18 @@
 
 -- Change of base for the finite-frame presheaf framework.
 --
--- The decision-light *engine* under R4. A functor of value categories
+-- The decision-light *engine* under the linear–nonlinear sheaf bridge.
+-- A functor of value categories
 -- `Φ : C → D` induces, by postcomposition, a functor of finite-frame
 -- presheaf categories
 --
 --   Sh-presheaf-cat(site, C)  →  Sh-presheaf-cat(site, D)
 --
--- on the *presheaf* level — unconditionally, with no postulates. R4 is
--- then "feed the value-level `Set ⇄ V` adjunction (`F`, `G`) through this
+-- on the *presheaf* level — unconditionally, with no postulates. The bridge
+-- is then "feed the value-level `Set ⇄ V` adjunction (`F`, `G`) through this
 -- engine"; the genuinely Benton-specific content (which lift preserves
--- sheaves) lives in `R4Adapter.agda`, not here. This file makes no
+-- sheaves) lives in `LinearNonlinearSheafAdapter.agda`, not here. This file
+-- makes no
 -- adjunction claim and no sheaf claim: it is exactly the
 -- value-functoriality of the presheaf category, mirroring how the C6
 -- comparison was floated by proving the general lifting first.
@@ -22,7 +24,7 @@
 -- `FrameHom` restriction shape, and covers are passed through unchanged.
 -- This is the `frame-noninterference` refl-lemma below. The *semantic*
 -- half — session roles/payloads do not refine actor identity — is a
--- named interpretive law of the R4 interface, NOT proved by
+-- named interpretive law of the linear–nonlinear sheaf bridge, NOT proved by
 -- functoriality, and lives in `LinearNonlinear.agda`.
 --
 -- Scope guardrails: generic over any two Cubical `Category`s and any

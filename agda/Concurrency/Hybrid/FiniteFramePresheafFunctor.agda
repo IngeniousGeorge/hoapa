@@ -15,7 +15,7 @@
 --
 --   * the *working* representation stays the record + `IsSheaf`;
 --   * this file provides the *categorical view* as a thin conversion,
---     `presheaf→Functor`, so that R4 and the later geometric-morphism
+--     `presheaf→Functor`, so that the linear–nonlinear bridge and the later geometric-morphism
 --     machinery have an honest `Functor` interface to consume.
 --
 -- The conversion is direct: `F-ob = value`, `F-hom = restrict`,

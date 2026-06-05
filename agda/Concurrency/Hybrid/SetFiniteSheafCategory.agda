@@ -9,7 +9,7 @@
 -- linear sheaf category (`FiniteSheafCategory` at `StarAutonomous→
 -- Category V`) also produces a Set-valued cartesian sheaf category when
 -- fed the library's `SET` — i.e. legs 1 and 2 are *one* construction at
--- two value categories, which is what keeps the eventual R4 adapter a
+-- two value categories, which is what keeps the eventual linear–nonlinear sheaf bridge a
 -- clean cartesian-vs-linear bridge rather than a presentation gap. It
 -- builds:
 --
@@ -28,11 +28,11 @@
 -- (the E2 step), or prove agreement between this hand-rolled descent
 -- notion and the library's element-based `isSheaf`. Per the workflow
 -- decision, *this* category — the framework instantiated at `SET` — is
--- the canonical R4 endpoint on the locality side; the library
--- Coverage/Sheaf comparison is parallel legitimacy, decoupled from R4
+-- the canonical linear–nonlinear bridge endpoint on the locality side; the library
+-- Coverage/Sheaf comparison is parallel legitimacy, decoupled from the bridge
 -- timing.
 --
--- Scope guardrails: no Coverage bridge, no comparison theorem, no R4.
+-- Scope guardrails: no Coverage bridge, no comparison theorem, no bridge adapter.
 
 module Concurrency.Hybrid.SetFiniteSheafCategory where
 
@@ -50,7 +50,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA) (ℓ : Level) {ℓE ℓR : Level} 
   Sh-fin-Set-presheaves : Category _ _
   Sh-fin-Set-presheaves = FiniteFramePresheafCategory AB (SET ℓ) {ℓE} {ℓR}
 
-  -- The Set-valued finite sheaf category — the canonical R4 endpoint on
+  -- The Set-valued finite sheaf category — the canonical linear–nonlinear bridge endpoint on
   -- the locality side.
   Sh-fin-Set : (ℓI : Level) → Category _ _
   Sh-fin-Set ℓI = FiniteSheafCategory AB (SET ℓ) {ℓE} {ℓR} ℓI

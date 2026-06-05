@@ -22,7 +22,7 @@
 --     value F → ∏ value Gᵢ ⇉ ∏ value (Gᵢ ×_F Gⱼ)
 --
 -- is not even statable here without enriching the value category (which
--- would also pre-empt the cartesian-vs-linear R4 question). Instead we
+-- would also pre-empt the cartesian-vs-linear bridge question). Instead we
 -- use the *probe form*: a matching family is a family of morphisms
 -- `Hom X (value (patch i))` out of an arbitrary probe `X`, compatible on
 -- overlaps, amalgamating to a unique `Hom X (value F)`. This is the

@@ -1,11 +1,12 @@
 {-# OPTIONS --cubical --guardedness #-}
 
--- R4 — the B-internal cartesian↔linear adapter, assembled.
+-- The linear–nonlinear sheaf bridge — the B-internal cartesian↔linear
+-- adapter, assembled.
 --
 -- This file feeds the value-level Benton/LNL adjunction
 -- (`LinearNonlinear.LNLAdjunction`) through the change-of-base engine
 -- (`ChangeOfBase.changeOfBase`), and sorts the result into the four tiers
--- agreed in the R4 design discussion. The point of the sort is honesty
+-- agreed in the design discussion. The point of the sort is honesty
 -- about what is proved vs owed: the presheaf-level lifts are
 -- unconditional; the sheaf level splits into a tractable right-adjoint
 -- direction and a genuinely separate left-adjoint problem.
@@ -30,18 +31,24 @@
 --           interface's adjunction field "consumed by a theorem", not a
 --           label. (`G-PreservesSheaf` is kept as the obligation type.)
 --
---   Tier 3  (named obligation `F-PreservesSheaf`): the left adjoint `F`
---           does NOT preserve descent for free. The sheaf-level left
---           functor needs either an `F`-preservation proof (special to
---           the instance) or a sheafification reflector. Named here as a
---           *distinct* obligation precisely so it is not mistaken for a
---           corollary of Tier 2.
+--   Tier 3  (named obligation `F-PreservesSheaf`): preservation of
+--           descent by the left adjoint `F` is NOT available from this
+--           interface, and is not expected generically — descent is
+--           limit-shaped, `F` is a left adjoint, and the LNL `mon-bin`
+--           comparison carries the cartesian product `&` to the linear
+--           tensor `⊗` rather than to the descent product. The sheaf-level
+--           left functor therefore goes through a sheafification reflector
+--           rather than an `F`-preservation proof. The reflector interface
+--           lives in `FiniteSheafification.agda`; `F-PreservesSheaf` is
+--           kept here as a *distinct* obligation type precisely so it is
+--           not mistaken for a corollary of Tier 2.
 --
---   Tier 4  (derivable from 1.5 + 2 + 3, not yet): the genuine
---           *sheaf-level* adjunction, by restricting the presheaf-level
---           adjunction to the `IsSheaf` full subcategories once both
---           preservation directions hold. Deferred; documented, not
---           asserted.
+--   Tier 4  (PROVED conditionally, `LinearNonlinearSheafAdjunction.agda`):
+--           the genuine *sheaf-level* adjunction, by restricting the
+--           presheaf-level adjunction to the `IsSheaf` full subcategories,
+--           with the left functor mediated by the sheafification reflector.
+--           Conditional on a `FiniteSheafification` instance; the
+--           construction of that instance stays deferred.
 --
 -- No postulates. Tiers 2 and 3 are stated as *types* (the obligations a
 -- later module discharges), in the project's "property record / named
@@ -54,7 +61,7 @@
 -- (instantiated at `Sessions-Cat` later); endpoints stay the project's
 -- own finite sheaf categories, never the library presentation.
 
-module Concurrency.Hybrid.R4Adapter where
+module Concurrency.Hybrid.LinearNonlinearSheafAdapter where
 
 open import Cubical.Foundations.Prelude
 open import Cubical.Foundations.Isomorphism using (Iso ; isoInvInjective)
