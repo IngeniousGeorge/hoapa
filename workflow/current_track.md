@@ -79,8 +79,80 @@
   4. Give one concrete finite actor-causal example that passes through the bridge.
   5. Write a short mathematical note explaining the construction independent of Hoapa vocabulary.
 
-  Pitfall: full sheafification may require colimits/equalizers/coequalizers that current V does not expose. If construction becomes too much, the publishable fallback is still good: the exact
-  obstruction theorem/interface: right adjoints preserve descent, left adjoints need sheafification; the finite actor-causal site makes this visible in a session-typed setting.
+  Pitfall for the full actor-causal site: generic sheafification may still require colimits/equalizers/coequalizers that current V does not expose. The active point-generated route is the finite-product special case; if the full-site construction becomes too much, the publishable fallback is still good: the exact
+  obstruction theorem/interface plus the point-generated reflector, showing right adjoints preserve descent while left adjoints need sheafification in a session-typed setting.
 
   I would not reach first for MO_1, Chu, Reflexive Π, or the cross-site Allow ⊣ Require. Those are more ambitious, but less likely to become a crisp 3-6 session mathematical artifact. The
   sheafification bridge is the nearest thing to a compact theorem with external mathematical legibility.
+
+› Now, just a quick question before you go: in 'current_track', do the proposition 1. of Claude and Codex's "Construct / inhabit finite sheafification for the finite actor-causal site, then use it
+  to turn the conditional R4 bridge into a concrete theorem." converge to the same idea? Please be brief with your answer.
+
+• Yes. Claude’s #1 and Codex’s proposal converge on the same target:
+
+  construct/inhabit the finite sheafification reflector for the finite actor-causal site, then use it to remove the FiniteSheafification hypothesis from the conditional R4/LNL sheaf bridge.
+
+  Minor difference: Claude phrases it more as “make the sheaf-level Benton bridge unconditional and recover !,” while Codex phrases it more operationally as “build the reflector, instantiate the
+  bridge, add an example/note.” Same mathematical idea.
+
+  › And could this be advertised as "the first humble result in a framework that could potentially produce a lot more, and a lot more interesting ones"?
+
+
+• Yes, with careful wording.
+
+  I’d say something like:
+
+  > This is a first modest theorem in a broader framework: finite actor-causal sheaves provide a concrete semantics for local session-like interaction, and the sheafification/LNL bridge gives the
+  > first machine-checked adjunction in that setting. The result is intentionally small, but it fixes the site, descent, and bridge machinery on which more ambitious cross-site and recursive
+  > constructions can later be built.
+
+  Avoid “humble” in formal advertising; use “modest,” “first concrete,” or “foundational.” It reads better to mathematicians.
+
+› Does that involve our modal side in any way, and if not, how could we get it involved cheaply, and if not, could that be part of the advertising for the "a lot more interesting", because for now
+  we're only talking about 'operational', and later we'll be looking at how 'operational' and 'praxis/foundations' relate to one another?
+
+
+• Not really. The finite sheafification/R4 result is B-side: operational concurrency, actor-causal locality, session-valued or linear sheaves, descent, and LNL structure. The modal side is motivation
+  and future target, not part of the theorem.
+
+  Cheap honest ways to involve it:
+
+  1. In the paper/note framing, say this constructs the operational category K needed for the future cross-site Allow ⊣ Require : M ⇄ K.
+  2. Add a short “future bridge” section: once K is concrete, the next problem is to relate it to the modal/foundational side M, where praxis is expected to appear as unit iteration η : id_M ⇒
+     Require ∘ Allow.
+  3. Maybe include an appendix with the generic adjunction-iteration scaffold, but only as target shape, not as a proved cross-site theorem.
+
+  I would not force modal content into the theorem itself. Better advertising:
+
+  > This first result is deliberately operational: it builds the B-side site, descent, sheafification, and linear-nonlinear bridge. Its importance in the larger framework is that it makes one side of
+  > the future praxis/foundations adjunction concrete. Later work asks how this operational world relates to modal foundations through Allow ⊣ Require and its recursive unit dynamics.
+
+  That is honest and actually stronger than pretending the modal bridge is already present.
+
+### Current subtrack — point-generated R4 reflector
+
+The broad Claude/Codex convergence above remains the active publishable target, but the reflector route has sharpened.
+
+The immediate construction is no longer "generic finite sheafification over the full finite actor-causal site" in one step. The live route is the **point-generated / supported finite actor-causal site**:
+
+1. Event-points are single-event subframes.
+2. A pointification spike has landed in `Concurrency/Sites/EventPoint.agda`, `Concurrency/Hybrid/EnumeratedProduct.agda`, and `Concurrency/Hybrid/Pointification.agda`.
+3. The spike proves the risky variable-slot functoriality for arbitrary value category `C` with finite products and arbitrary finite-frame presheaf `P`:
+
+   ```text
+   a(P)(F) = ∏_{e ∈ events F} P(pt_e)
+   ```
+
+4. The transport problem is now localized in the enumerated-product API (`projE`, `tupleE`, `βE`, `ηE`, `extE`), not spread through the reflector proof.
+
+The next coding target is:
+
+```text
+point cover → PointLocal ↔ IsSheaf → a ⊣ ι → point-generated R4 bridge
+```
+
+Advertising discipline:
+
+- This discharges the **reflector** condition for the point-generated/event-discrete R4 site, not for the full finite actor-causal site.
+- The resulting sheaf-level Benton bridge is still relative to a value-level `lnl : LNLAdjunction`; it removes the `shf : FiniteSheafification ...` hypothesis, not the value-level Benton hypothesis.
+- This is the deliberately modest first operational theorem. The later, more interesting work is re-enriching the site so causality and actor incidence become descent content, then relating the resulting operational side to the modal/foundational side through `Allow ⊣ Require`.

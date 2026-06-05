@@ -23,9 +23,35 @@ Each target: claim, what's needed to state it cleanly, what's needed to verify i
 
 ### Progress
 
-ModalHoTT-side adjunctions are formalised synthetically as hom-set equivalences with named transposes in `agda/ModalHoTT/Modalities/Adjunctions.agda` (♭ ⊣ ♯ and ʃ ⊣ ♭); `flat-modality-idempotent` is a theorem, while `sharp-modality-idempotent` and `shape-modality-idempotent` are postulated. The cross-site `Allow ⊣ Require` pair is not yet stated. The B side has now matured past raw presheaf scoping: finite event-product descent, the constant-slot Sessions instantiation, the concrete tiny finite-cover validation, the V-valued finite sheaf/value category, and the framework-at-`SET` finite sheaf category/object have landed as one category-generic construction. The finite Coverage bridge and library sheaf comparison have landed. Remaining gates are constructing or inhabiting the finite sheafification reflector for R4, the A-side category of modal contexts, and then the actual `Allow` / `Require` functors.
+ModalHoTT-side adjunctions are formalised synthetically as hom-set equivalences with named transposes in `agda/ModalHoTT/Modalities/Adjunctions.agda` (♭ ⊣ ♯ and ʃ ⊣ ♭); `flat-modality-idempotent` is a theorem, while `sharp-modality-idempotent` and `shape-modality-idempotent` are postulated. The cross-site `Allow ⊣ Require` pair is not yet stated. The B side has now matured past raw presheaf scoping: finite event-product descent, the constant-slot Sessions instantiation, the concrete tiny finite-cover validation, the V-valued finite sheaf/value category, and the framework-at-`SET` finite sheaf category/object have landed as one category-generic construction. The finite Coverage bridge and library sheaf comparison have landed. The current R4 gate has sharpened to the point-generated reflector route: `EventPoint.agda`, `EnumeratedProduct.agda`, and `Pointification.agda` have landed the variable-slot functorial core; still pending are point cover, `PointLocal ↔ IsSheaf`, `a ⊣ ι`, and point-generated bridge wiring. After that come the A-side category of modal contexts and the actual `Allow` / `Require` functors.
 
 T_recursion (below) is downstream of T1: once `Allow ⊣ Require` is stated, its unit instantiates the generic-adjunction iteration scaffold in `agda/ModalHoTT/Modalities/Iteration.agda`. The naturality piece flagged in "To state cleanly" is load-bearing for T_recursion's `η^-coherent` lemma — bridged currently by a postulated `η-naturality` on the generic-adjunction interface.
+
+### Current R4 Subtarget: Point-Generated Finite Sheafification
+
+**Claim.** On the point-generated / supported finite actor-causal site, event-points form the dense basis for the first R4 reflector. For any value category `C` with finite products and any finite-frame presheaf `P`, pointification has the object formula:
+
+```text
+a(P)(F) = ∏_{e ∈ events F} P(pt_e)
+```
+
+The spike has landed the variable-slot functorial core in `Concurrency/Sites/EventPoint.agda`, `Concurrency/Hybrid/EnumeratedProduct.agda`, and `Concurrency/Hybrid/Pointification.agda`.
+
+**To state cleanly.**
+- Work over the point-generated/event-discrete site, not the full finite actor-causal site.
+- Use supported/incident point covers; do not claim event-points cover actor-only frames.
+- State `PointLocal` and prove `PointLocal ↔ IsSheaf` for the point-generated site.
+- Package `a ⊣ ι` as the point-generated sheafification reflector.
+- Feed that reflector to the R4 bridge, still relative to a value-level `lnl : LNLAdjunction`.
+
+**To verify.**
+- Point cover.
+- `PointLocal ↔ IsSheaf`.
+- `a(P)` is a sheaf.
+- Unit/counit or hom-bijection for `a ⊣ ι`.
+- W3-style point-generated R4 bridge wiring.
+
+This is a bounded stepping stone toward broader R4, not a replacement for the full actor-causal sheafification problem where causal order and actor incidence become descent content.
 
 ---
 
