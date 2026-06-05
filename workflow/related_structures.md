@@ -128,6 +128,14 @@ That is also a defensive point for the project. The natural skeptical response t
 
 ---
 
+## Chu spaces / FCA / information flow — deferred duality candidate
+
+Chu spaces over a dualizing object `k` package an object as points, states, and an evaluation/incidence pairing. Their duality swaps points and states, making process/context reversal intrinsic rather than an external operation. This is why Chu has real appeal for the project: it speaks directly to the Care axis, formal concept analysis (extension/intension), Barwise-Seligman information flow, and the cobordism-style cup/cap dictionary.
+
+**Relation to our arc.** Chu is not the current R4 bridge. R4 relates the already-built Set-valued locality endpoint to the V-valued linear/session endpoint, so Benton/LNL is the correct relationship shape. Chu is a later candidate for what the linear value category `V` might become, for a comparison target for `Sessions-Cat`, or for the content layer Λ where extension/intension and incidence are first-class. Deferring Chu avoids redesigning `V` while R4 is still establishing the bridge between endpoints.
+
+**Watch for.** Places where an object naturally decomposes into extension/intension, points/states, observations/situations, or process/context; places where the Care involution needs to be internal to objects rather than a separate operation; information-flow constructions that look like incidence pairings. These are Chu signals. They should be logged for the Chu phase, not smuggled into R4.
+
 ## Template for future entries
 
 **Who.**

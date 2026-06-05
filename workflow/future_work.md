@@ -62,7 +62,7 @@ The eventual quality target is stronger: replace the action assumption with a ca
 Expected ladder:
 
 1. **Done:** `Sessions.agda` v1: minimal session syntax, inductive structural `Hom`, and an explicit `SessionO1Action` assumption.
-2. **Done at finite-descent and finite sheaf-category level:** Hybrid integration now has arbitrary-frame `FramePresheaf` / `SessionPresheaf`, zero-postulate separatedness, category-generic finite products, finite frames/covers, category-generic finite event-product descent, the constant-slot Sessions sheaf, proof-level tiny finite-cover validation, the V-valued finite sheaf/value category, and the framework-at-`SET` finite sheaf category with a concrete Set event-product object. The finite Coverage/library comparison has landed; R4 and event-dependent slots remain pending.
+2. **Done at finite-descent and finite sheaf-category level:** Hybrid integration now has arbitrary-frame `FramePresheaf` / `SessionPresheaf`, zero-postulate separatedness, category-generic finite products, finite frames/covers, category-generic finite event-product descent, the constant-slot Sessions sheaf, proof-level tiny finite-cover validation, the V-valued finite sheaf/value category, and the framework-at-`SET` finite sheaf category with a concrete Set event-product object. The finite Coverage/library comparison has landed, and R4 tiers 1/1.5/2 have landed; R4 Tier 3 and event-dependent slots remain pending.
 3. Richer session category: add proof terms or an equivalent categorical semantics, cut as composition, cut-elimination/equality, closed structure/evaluation, and enough tensor/braiding coherence to manipulate long tensor strings.
 4. Canonical `O_1` action: define `SessionO1Action` rather than assume it. `shift` should come from coherent cyclic permutation of tensor factors; `plug` should come from closed/evaluation/cut structure composing two morphisms into the dualizing object.
 5. Only then push hard on `MO_1`: extend the canonical `O_1` action toward self-gluing / conversation-promotion / modular closure.
@@ -146,10 +146,27 @@ When resumed, event-dependent slots should live in a new module, likely `Concurr
 
 ### Next sheaf steps
 
-1. State R4 as a Benton/LNL-shaped adapter between `Sh_fin(site,Set)` and the V-valued finite sheaf/value category. Keep R4 B-internal and distinct from the cross-site `Allow ⊣ Require` adjunction.
-2. Decide the minimum value-side adapter assumptions R4 needs: no-leak/erasure, unit-vs-dualizing (`𝟙ₛ` vs `⊥ₛ`), and whether a `!`-like modality is assumed, constructed, or postponed.
+1. R4 tiers 1/1.5/2 have landed: `ChangeOfBase.agda` gives value-functorial finite-presheaf change of base; `LinearNonlinear.agda` states the interface-first Benton/LNL value adapter; `R4Adapter.agda` proves the presheaf-level lifted adjunction and right-adjoint sheaf preservation.
+2. The next sheaf step is Tier 3: decide the left-adjoint side. Options to evaluate explicitly: add `F-PreservesSheaf` as an interface assumption; construct a sheafification reflector; prove preservation only for a concrete instance; or weaken the left-side R4 claim.
 3. Keep `SetFiniteSheafCategory` as the canonical cartesian endpoint for R4; use `SetSheafComparison` as the proof that this endpoint agrees with the Cubical library presentation at `SET`.
-4. Only then state the A-side category of modal contexts and the cross-site `Allow ⊣ Require` functors, unit, counit, and triangle identities.
+4. Only after Tier 3 lands should Tier 4 state the sheaf-level R4 adjunction. Only after that should the A-side category of modal contexts and the cross-site `Allow ⊣ Require` functors, unit, counit, and triangle identities be stated.
+
+## Chu construction
+
+Chu is deferred, not rejected. Benton/LNL is the right R4 choice because R4 is a relationship between already-existing B-side endpoints: cartesian Set-valued locality sheaves and V-valued linear/session sheaves. Chu answers a different question: what the linear value category might be internally, and how process/context duality should be built into its objects.
+
+**Why not now.** Opening Chu during R4 would relocate the work from bridging `Sh_fin(site,Set)` and `Sh_fin(site,V)` to redesigning or comparing the value category `V` itself. That would force early choices of a dualizing object `k`, a comparison between `Sessions-Cat` and `Chu(Set,k)`, or a replacement of the current session value category. It would also make no-leak harder to state, because Chu objects carry both point and state components. R4 needs the forgetful/cartesian-to-linear axis first; Chu lives on the Care / process-context-duality axis.
+
+**What Chu buys later.** A Chu object `(A⁺, A⁻, r : A⁺ × A⁻ → k)` makes extension/intension, point/state, process/context reversal, and duality intrinsic. This is a natural home for formal concept analysis, Barwise-Seligman-style information flow, and the cobordism / cup-cap dictionary attached to the Care involution. It is also a strong candidate for the deeper shape of the value category once the content layer Λ and information-cohomological pairing become active.
+
+**Likely entry points.**
+
+- As a candidate instance satisfying the Benton/R4 interface after Tier 3 stabilizes.
+- As a comparison target for `Sessions-Cat` when the project asks what the session value category really is, rather than how to bridge it to Set-valued locality.
+- Inside the Bulk/Content layer Λ, where extension/intension and incidence are the subject rather than auxiliary structure.
+- In the field-theoretic / cobordism dictionary, where process/context reversal and dualizing objects are load-bearing.
+
+**Agda slot.** Do not create a Chu module during R4. When triggered, likely homes are `Concurrency/Algebras/Chu.agda` for the value-category construction, or `Concurrency/Content/Chu.agda` if the first use is content/FCA rather than session semantics.
 
 ## Beyond fracture: the differential-cohesion gap
 
@@ -215,11 +232,11 @@ What lands after this round. The synthetic side of the de Rham arc is complete a
 
 ## Concurrency-side layers of complexity (planned)
 
-The Concurrency side, at the time of writing, has shipped the actor-causal site, pullback overlaps, the cyclic operad `O_1` and its `*`-autonomous algebra interface, the Sessions instance, the Hybrid v1 presheaf/restriction adapter, finite-site event-product descent with constant-slot Sessions and Set instances, the concrete tiny finite-cover validation, finite sheaf categories at both `StarAutonomous→Category V` and `SET`, and the finite Coverage/SET library sheaf comparison. The live frontier is R4. Several additional layers are committed in design but not yet in code. This section is the catalogue of those layers, with for each: what it does for the protocol's use in the human world (possibly with LLMs as participants), what mathematical structure it commits to (or, where the choice is open, what the candidates are), and what currently shipped scaffolds it presupposes.
+The Concurrency side, at the time of writing, has shipped the actor-causal site, pullback overlaps, the cyclic operad `O_1` and its `*`-autonomous algebra interface, the Sessions instance, the Hybrid v1 presheaf/restriction adapter, finite-site event-product descent with constant-slot Sessions and Set instances, the concrete tiny finite-cover validation, finite sheaf categories at both `StarAutonomous→Category V` and `SET`, the finite Coverage/SET library sheaf comparison, and the first R4 Benton/LNL pass (presheaf-level change of base, presheaf-level adjunction, and right-adjoint sheaf preservation). The live frontier is R4 Tier 3: the left-adjoint preservation / sheafification design. Several additional layers are committed in design but not yet in code. This section is the catalogue of those layers, with for each: what it does for the protocol's use in the human world (possibly with LLMs as participants), what mathematical structure it commits to (or, where the choice is open, what the candidates are), and what currently shipped scaffolds it presupposes.
 
 A unifying disciplinary commitment behind all the layers below: **praxis is part of the theory**. The protocol's use by a community of equal-standing participants is constitutive of the framework, not an applied addendum to an underlying mathematics. This is what distinguishes the framework's combination from each of the historical precedents catalogued in `related_structures.md` — at least one of (mathematical depth, theory-of-community, runnable protocol, self-validation through use, recursive co-evolution structure) was missing in each of them.
 
-The five layers below are listed in build-dependence order: each presupposes its predecessor, either as substrate or as the object it operates on. The dependency chain in compact form: Hybrid finite descent plus V-valued and Set-valued finite sheaf endpoints plus finite Coverage/library comparison (shipped at constant-slot level) → R4 → **Layer 1 (Π)** → **Layer 2 (Λ)** → **Layer 3** (field-theoretic dynamics on Λ) → **Layer 4** (Federation, requiring all four previous). **Layer 5** (information-cohomological complexity) reads off Layer 2 content topos and is independent of Layers 3–4 in code, though it composes cleanly with Layer 3 action functional.
+The five layers below are listed in build-dependence order: each presupposes its predecessor, either as substrate or as the object it operates on. The dependency chain in compact form: Hybrid finite descent plus V-valued and Set-valued finite sheaf endpoints plus finite Coverage/library comparison (shipped at constant-slot level) → R4 Tier 3 and then sheaf-level R4 → **Layer 1 (Π)** → **Layer 2 (Λ)** → **Layer 3** (field-theoretic dynamics on Λ) → **Layer 4** (Federation, requiring all four previous). **Layer 5** (information-cohomological complexity) reads off Layer 2 content topos and is independent of Layers 3–4 in code, though it composes cleanly with Layer 3 action functional.
 
 They are all "Committed" — held as planned future content of the framework, with the existing scaffolds already designed to receive them, but with no Agda content shipped yet. A separate appendix at the end gathers three *reframings* — sharper readings of structure the framework already commits to. The reframings are of a different nature from the layers; they affect what to aim for, not what to additionally construct.
 
@@ -235,7 +252,7 @@ They are all "Committed" — held as planned future content of the framework, wi
 
 To set honest expectations and prevent scope-creep:
 
-- *Implementation-track infrastructure.* The actual protocol kernel as running software, the verification runtime, the persistence / cryptographic / consensus backend, the LLM-tooling integration shape — none of these are catalogued here. They are a separate track, downstream of several v1 layers below.
+- *Implementation-track infrastructure.* The actual protocol kernel as running software, the verification runtime, the persistence / cryptographic / consensus backend, and the LLM-tooling integration shape are not part of the five mathematical layers below. They are tracked separately in the implementation-track section that follows this scope note.
 - *UI / UX decisions.* What a participant's interface to the protocol looks like; how messages are composed; how meta-conversations are surfaced.
 - *Specific Lagrangian weights of Layer 3.* Each term is a normative commitment about what makes a language "good" and will need explicit calibration; the calibration itself is implementation-and-deployment work, not framework work.
 - *Specific seed-language choices for Layer 2.* Lawvere theory vs categorial grammar vs dependent-type theory — the architectural commitment is that one or more of these is used; which is decided per-deployment.
@@ -243,6 +260,36 @@ To set honest expectations and prevent scope-creep:
 - *Below-kernel infrastructure.* Networking, distribution, storage, retry semantics. The framework's kernel is type- and category-theoretic; the infrastructure that runs the kernel is engineering work the kernel does not constrain except by interface.
 
 These exclusions are not deficiencies. They are the right scope for a workflow document calibrated to the mathematical-content track of the project.
+
+### Implementation track — Elixir runtime, Agda trace kernel, Pijul-shaped persistence
+
+This section distills the separate `workflow/elixir.md` transcript into future-work form. The transcript remains untouched for archiving; this is the durable plan.
+
+The implementation should not wait for the full cross-site `Allow ⊣ Require`, `MO_1`, Reflexive Π, or Bulk Λ layers. Waiting for all long-horizon mathematics would stall the runtime behind work whose first implementation can already produce useful trace data. But the implementation also should not pretend to be verified before Agda has a small trace-checker-facing kernel.
+
+**Minimum Agda trace kernel before meaningful Elixir work.** Open a `Concurrency/Protocol/` layer only when we are ready to specify finite traces directly:
+
+- `Trace.agda` — finite raw traces: actor ids, event ids, causal parents, local frame membership, session action, payload/document hash.
+- `SessionStep.agda` — enough syntax-level send/receive/dual endpoint checking to validate runtime messages.
+- `Restriction.agda` — trace projection to local views, aligned with `FrameHom`, with functorial laws.
+- `Auditability.agda` — no-leak and unityped-actor invariants for traces: session roles, payloads, and content must not refine actor identity.
+- `Certificate.agda` — a small validation/certificate interface so an external checker can accept or reject runtime traces.
+
+The first concrete target is a tiny trace example over the existing two-point finite cover. This keeps the implementation grounded in already-shipped finite-site machinery without requiring event-dependent session slots or the cross-site adjunction.
+
+**Runtime split.** Elixir should own actors, supervision, message routing, durable event logs, and operator-facing runtime behavior. Agda should own the specification of well-formed traces and the laws the checker validates. A checker should sit between them: Elixir emits traces or certificates; the checker accepts or rejects them according to the Agda-pinned predicates. Do not try to extract the whole application from Agda.
+
+**Pijul stance.** Build the Elixir system as Pijul-compatible / Pijul-shaped, not as a hard Pijul extension or fork at first. Pijul matches the arc because patches with dependencies, commuting independent changes, conflicts as first-class data, and partial clones line up with actor-causal/descent structure: local views, dependency structure, gluing obstructions, and coherent repair events. But Pijul is a VCS over file/change structure, while the kernel needs typed protocol traces. Semantic validity remains the checker’s job, not the VCS’s job.
+
+Practical architecture:
+
+1. Elixir runtime: actors, supervision, message routing, durable event log.
+2. Agda specification: trace validity, restriction, session compatibility, auditability/no-leak.
+3. Checker: validates traces or certificates emitted by Elixir.
+4. Pijul-shaped patch layer: stores document/protocol changes, dependencies, conflicts, resolutions, and partial views when that representation fits.
+5. Later libpijul/Rust integration only after the trace schema and patch-theoretic fragment category are honest enough; do not over-couple the first runtime to Pijul internals.
+
+**Trigger.** Start the implementation track once the trace schema and first Agda well-formedness predicate are stable. It can proceed in parallel with remaining R4 work, but it must not claim verification beyond the trace predicates Agda actually states.
 
 ### 1. Reflexive Protocol Layer (Π)
 
@@ -369,11 +416,11 @@ For broader project-wide terms (cohesion, modal adjoint pair, actor-causal site,
 
 ### B-side category and R4
 
-The finite sheaf framework now has both endpoints: `Sh_fin(site,V)` via `StarAutonomous→Category V` and `Sh_fin(site,Set)` via Cubical `SET`, each with a concrete constant-slot event-product object. The finite site-axis legitimacy work has also landed: `FiniteFrameCoverage` supplies the Cubical coverage, and `SetSheafComparison` proves the framework-at-`SET` sheaf condition agrees with the library condition. The next high-quality treatment is R4: state a Benton/LNL-shaped adapter between `Sh_fin(site,Set)` and `Sh_fin(site,V)`, interface-first.
+The finite sheaf framework now has both endpoints: `Sh_fin(site,V)` via `StarAutonomous→Category V` and `Sh_fin(site,Set)` via Cubical `SET`, each with a concrete constant-slot event-product object. The finite site-axis legitimacy work has also landed: `FiniteFrameCoverage` supplies the Cubical coverage, and `SetSheafComparison` proves the framework-at-`SET` sheaf condition agrees with the library condition. The first R4 treatment has landed interface-first: `ChangeOfBase.agda`, `LinearNonlinear.agda`, and `R4Adapter.agda` prove presheaf-level Benton change of base, the presheaf-level lifted adjunction, and right-adjoint sheaf preservation.
 
 This keeps the two B-side poles separate: Set-valued locality sheaves carry cartesian/internal-logic structure; V-valued sheaves carry linear/session content. R4 is the named adapter between them, not a collapse and not the cross-site `Allow ⊣ Require` adjunction. The framework-at-`SET` category remains the canonical R4 endpoint; the library comparison is its legitimacy theorem, not a replacement endpoint.
 
-Deferred inside this leg: enriching `Sh_fin(site,V)` with inherited linear / star-autonomous structure, constructing the free/forgetful Set-to-session adjunction rather than assuming it, proving full topos/internal-logic structure for the Set endpoint, and extending from the finite common site to the full actor-causal Set-valued topos.
+Deferred inside this leg: Tier 3 (`F`-preservation / sheafification / instance-only preservation / weakened left claim), Tier 4 (the actual sheaf-level adjunction), enriching `Sh_fin(site,V)` with inherited linear / star-autonomous structure, constructing the free/forgetful Set-to-session adjunction rather than assuming it, proving full topos/internal-logic structure for the Set endpoint, and extending from the finite common site to the full actor-causal Set-valued topos.
 
 ### A-side category options
 

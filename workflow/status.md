@@ -20,7 +20,7 @@ The first concrete typed-content instance is now shipped: `Concurrency/Algebras/
 
 The actor-causal locality leg is now shipped: `Concurrency/Sites/{ActorBase,ActorCausal}.agda` makes R6 concrete with opaque unityped actors, Lamport-style event causality, local frames, strict-reflecting frame embeddings, basis covers, and a Bool-based non-trivial cover witness. Promotion of a completed conversation into an actor-like node is deliberately not a `FrameHom`; it is reserved as a future morphism class for the `MO_1` / conversation-of-conversations stage.
 
-Hybrid v1 shipped the first adapter layer (`Presheaf.agda`, `SessionPresheaf.agda`): generic frame presheaves, zero-postulate separatedness, and constant session-valued witnesses. The fast-track finite layer has now landed on the finite-frame subsite: `FiniteFrame.agda`, `FiniteCover.agda`, `TinyFiniteCover.agda`, and the `Hybrid/` finite-descent files give full finite-site event-product descent, including the Sessions constant-slot instantiation and the first concrete two-point finite-cover validation. The value-axis refactor has also landed: `CategoryApplicative.agda`, `FinitePresheaf.agda`, `FiniteDescent.agda`, `FiniteFramePresheafFunctor.agda`, and `FiniteSheafCategory.agda` now run over Cubical `Category`, with `StarAutonomousCategory.agda` feeding the V-valued/session side and `SetFiniteSheafCategory.agda` feeding the `SET` side. `FiniteProducts.agda` is likewise category-generic; `SetFiniteProducts.agda` and `SetEventProductSheaf.agda` provide a concrete Set-valued event-product object. Strategy D has now landed on the finite site: lean finite basis covers, a Cubical `Coverage` over `FiniteFrameCategory`, and a SET comparison theorem between the project `IsSheaf` record and the Cubical library `isSheaf`. This is still not event-dependent session content and not R4; it is one finite sheaf construction instantiated concretely at both `StarAutonomous→Category V` and `SET`, now connected to the library site/sheaf presentation at `SET`.
+Hybrid v1 shipped the first adapter layer (`Presheaf.agda`, `SessionPresheaf.agda`): generic frame presheaves, zero-postulate separatedness, and constant session-valued witnesses. The fast-track finite layer has now landed on the finite-frame subsite: `FiniteFrame.agda`, `FiniteCover.agda`, `TinyFiniteCover.agda`, and the `Hybrid/` finite-descent files give full finite-site event-product descent, including the Sessions constant-slot instantiation and the first concrete two-point finite-cover validation. The value-axis refactor has also landed: `CategoryApplicative.agda`, `FinitePresheaf.agda`, `FiniteDescent.agda`, `FiniteFramePresheafFunctor.agda`, and `FiniteSheafCategory.agda` now run over Cubical `Category`, with `StarAutonomousCategory.agda` feeding the V-valued/session side and `SetFiniteSheafCategory.agda` feeding the `SET` side. `FiniteProducts.agda` is likewise category-generic; `SetFiniteProducts.agda` and `SetEventProductSheaf.agda` provide a concrete Set-valued event-product object. Strategy D has now landed on the finite site: lean finite basis covers, a Cubical `Coverage` over `FiniteFrameCategory`, and a SET comparison theorem between the project `IsSheaf` record and the Cubical library `isSheaf`. The first R4 pass has also landed: `ChangeOfBase.agda`, `LinearNonlinear.agda`, and `R4Adapter.agda` give the interface-first Benton/LNL adapter at presheaf level, prove the presheaf-level lifted adjunction, and prove right-adjoint (`G`) sheaf preservation. This is still not event-dependent session content and not the full sheaf-level R4 adjunction: the left-adjoint (`F`) sheaf-preservation / sheafification problem remains the next R4 design gate.
 
 `MO_1` (the modular envelope of `O_1`, closure under self-gluing at marked points, raises genus to produce operations at every `(g, n)`) is the long-horizon target. `O_1` is staged toward it but does not commit to it. Eventual landing: evaluation at `(0, 3)` — the universal trinion, the 3-pointed sphere where dessins / Belyi / Esquisse machinery live.
 
@@ -62,7 +62,7 @@ Canonical decomposition (a sheaf is a presheaf satisfying descent).
 
 - `_Sheaf._Presheaf` — shipped in two layers: `FramePresheaf` over arbitrary actor-local frames, and category-generic `FiniteFramePresheaf` over enumerated finite frames. `SessionPresheaf` is the original constant-frame adapter; `SessionEventProductSheaf` and `SetEventProductSheaf` are the finite, frame-varying, constant-slot witnesses on the V-valued/session and Set-valued/cartesian sides.
 - `_Sheaf._Separatedness` — shipped as property records. The original `IsSeparatedPresheaf` remains generic over basis covers; the finite event-product witness proves separatedness over `FiniteCover`s.
-- `_Sheaf._Descent` — landed for the finite event-product presheaf: matching families, overlap compatibility, amalgamation, and separatedness over finite covers. The framework is now category-generic and packaged as `FiniteSheafCategory`; it is instantiated at both `StarAutonomous→Category V` and `SET`. The finite Cubical `Coverage` bridge and SET library `Sheaf` comparison have landed through `FiniteBasisCover`, `FiniteFrameCoverage`, and `SetSheafComparison`. Full topos/internal-logic development and R4 remain pending.
+- `_Sheaf._Descent` — landed for the finite event-product presheaf: matching families, overlap compatibility, amalgamation, and separatedness over finite covers. The framework is now category-generic and packaged as `FiniteSheafCategory`; it is instantiated at both `StarAutonomous→Category V` and `SET`. The finite Cubical `Coverage` bridge and SET library `Sheaf` comparison have landed through `FiniteBasisCover`, `FiniteFrameCoverage`, and `SetSheafComparison`. R4 has begun as a Benton/LNL change-of-base layer: presheaf-level lifts and the presheaf-level adjunction are proved, and `G` preserves finite sheaves; the `F` preservation / sheafification problem and full sheaf-level adjunction remain pending.
 
 The first value category `V` is `Sessions-Cat Payload`; later versions may replace or lift this to richer session categories or presheaves valued in `OperadAlgebra`.
 
@@ -157,15 +157,15 @@ Named, like modules. R1–R6 are from the hybrid substrate's level-2 scoping; R7
 **Live now.**
 
 - **R1 — Valuation.** v1 landed in `Concurrency/Hybrid/{Presheaf,SessionPresheaf}.agda`: `FramePresheaf` is the generic functorial assignment `_Site._Category^op → V`, and `SessionPresheaf` instantiates `V = Sessions-Cat Payload`. Full finite-site event-product sheaf valuation has landed in a category-generic framework, with concrete instances at `StarAutonomous→Category V` and `SET`.
-- **R2 — Indexing.** `_Sheaf` lives over `_Site`: presheaf + descent against `_Site._Topology`. The finite event-product sheaf layer, its V-valued category packaging, its Set-valued category/object endpoint, and the finite Cubical `Coverage` / library `Sheaf` comparison are shipped. The next load-bearing hinge is R4 compatibility; it should not duplicate the constant-slot witness or collapse the Set and V endpoints.
+- **R2 — Indexing.** `_Sheaf` lives over `_Site`: presheaf + descent against `_Site._Topology`. The finite event-product sheaf layer, its V-valued category packaging, its Set-valued category/object endpoint, and the finite Cubical `Coverage` / library `Sheaf` comparison are shipped. The next load-bearing hinge is R4 Tier 3; it should not duplicate the constant-slot witness or collapse the Set and V endpoints.
 - **R3 — Generation.** `_Topos = Sh(_Site._Category, _Site._Topology)`. No freedom; the topos is generated from site + sheaves.
-- **R4 — Interpretation.** `_Topos._InternalLogic ↔ _Algebra._Connectives` / `_Algebras._Sessions`. Topos logic is cartesian by default; the algebra is linear. Compatibility (or its principled absence) is its own piece of work.
+- **R4 — Interpretation.** `_Topos._InternalLogic ↔ _Algebra._Connectives` / `_Algebras._Sessions`. Topos logic is cartesian by default; the algebra is linear. The current formal shape is interface-first Benton/LNL change of base between `Cart` and `StarAutonomous→Category V`: presheaf-level `liftF`, `liftG`, and `liftF ⊣ liftG` are proved, and the right adjoint `G` is proved to preserve finite sheaves. The left-adjoint side (`F` preserves sheaves, or a sheafification reflector supplies the left sheaf functor) is the remaining R4 gate before a sheaf-level adjunction can be claimed.
 - **R5 — Embedding.** `_Topos._GeometricMorphisms → cubical sets`. The mathematical form of "both sides share an ambient `(∞,1)`-topos."
 - **R6 — Parametrization (Causality).** Causality → `_Site`. Landed in `Concurrency/Sites/{ActorBase,ActorCausal}.agda`: Lamport partial-order events, actor-local frames, strict-reflecting frame embeddings, basis covers, and a Bool-based non-trivial cover witness. `ActorPullback.agda` supplies pullback overlaps and a pullback-stability construction downstream; `ActorCausal.agda` still keeps its legacy in-file stability fallback for the bundled tiny site.
 - **R7 — Algebra-over-Operad.** `_Algebras` evaluates `_Operad`. Landed as `StarAutonomous` + `Valuation` + structural `OperadAlgebra`, and concretely instantiated by `Sessions.agda` for the typed-content layer. Closely interacts with R1 (the value category for both must agree).
 - **R8 — Involution-Duality.** `Sessions.agda` now contains both faces: syntactic `dual-involutive` and categorical / operadic `boundary-swap-at-gen` (a specialization of `boundary-swap-structural`). The bridge between them remains a deferred project claim, not a computational reduction.
 
-**Most load-bearing now:** finite-site event-product descent, its constant-slot Sessions instantiation, the concrete tiny finite-cover validation, the V-valued finite sheaf/value category, the Set-valued finite sheaf category/object, and the finite Cubical `Coverage` / SET library `Sheaf` comparison have landed as one category-generic construction plus a library-presentation bridge. The next hinge is R4: the Benton/LNL-shaped adapter between the Set-valued locality side and the V-valued linear/session side. The cross-site adjunction waits on that B-internal adapter plus an A-side category of modal contexts, not on event-dependent slots.
+**Most load-bearing now:** finite-site event-product descent, its constant-slot Sessions instantiation, the concrete tiny finite-cover validation, the V-valued finite sheaf/value category, the Set-valued finite sheaf category/object, and the finite Cubical `Coverage` / SET library `Sheaf` comparison have landed as one category-generic construction plus a library-presentation bridge. R4 is now partly formalized: `ChangeOfBase` proves value-functoriality on finite presheaf categories; `LinearNonlinear` states the Benton/LNL value interface; `R4Adapter` proves the presheaf-level lifted adjunction and `G`-preservation of sheaves. The next hinge is Tier 3: decide the left-adjoint side (`F`-preservation, sheafification, instance-only preservation, or a weakened left claim). The cross-site adjunction waits on that B-internal adapter plus an A-side category of modal contexts, not on event-dependent slots.
 
 **Deferred (live at `MO_1` stage).**
 
@@ -248,12 +248,14 @@ Analytic-side mirror is future work; whether the `agda/Analytic/` pattern from M
 | 2026-06-04 | Finite sheaf framework generalized over Cubical `Category` | `CategoryApplicative.agda` and `FinitePresheaf.agda` split out the plain-category core. `FiniteDescent.agda`, `FiniteSheafCategory.agda`, and `FiniteFramePresheafFunctor.agda` now run over any Cubical `Category`, with the V side recovered through `StarAutonomous→Category V`. |
 | 2026-06-04 | Set-valued finite sheaf side inhabited | `FiniteProducts.agda` was generalized over `Category`; `SetFiniteProducts.agda`, `SetFiniteSheafCategory.agda`, `SetEventProductSheaf.agda`, and generic `EventProductSheafObject.agda` instantiate the same event-product construction at `SET`. This landed the concrete framework-at-SET object that Strategy D later compares to the library sheaf condition. |
 | 2026-06-05 | Strategy D landed: finite Coverage plus SET sheaf comparison | `FramePullbackUniversal.agda`, `FiniteFramePullback.agda`, `FiniteBasisCover.agda`, `FiniteFrameCoverage.agda`, and `SetSheafComparison.agda` complete C8→C9→C6 for the finite site. The sequence is postulate-free; it uses a lean basis cover for the topology, derives finite pullback patches, proves Cubical `Coverage` pullback stability, and compares project `IsSheaf` with library `isSheaf` at the actual `FiniteFrameCoverage`. |
+| 2026-06-05 | Benton/LNL chosen for R4; Chu deferred | R4 is the B-internal cartesian↔linear / forgetful-axis bridge between `Sh_fin(site,Set)` and `Sh_fin(site,V)`, so Benton is the native relationship shape. Chu is not rejected: it is reserved for the Care / process-context-duality axis, deeper value-category candidates, the Λ content layer, and information-flow / field-theory readings. |
+| 2026-06-05 | R4 tiers 1/1.5/2 landed; Tier 3 next | `ChangeOfBase.agda`, `LinearNonlinear.agda`, and `R4Adapter.agda` land an interface-first Benton adapter: presheaf change-of-base, the presheaf-level lifted adjunction `liftF ⊣ liftG`, and right-adjoint sheaf preservation `G-preserves-sheaf`. The left-adjoint side remains a named design problem: prove `F-PreservesSheaf`, add sheafification, restrict to an instance, or weaken the left claim. |
 
 ## Blockers  <!-- tags: kind:state -->
 
 (Previous Open Questions archived to `deep_context/archived_blockers/2026-05-17.md`. Deferred items migrated to `future_work.md`.)
 
-Concurrency: none active. First B-side operad, algebra signatures, concrete typed-content `Sessions.agda` instance, actor-causal site v1, Hybrid v1 restriction, finite products, finite covers, finite event-product descent, the constant-slot Sessions sheaf, the concrete tiny finite-cover witness, and both V-valued and Set-valued finite sheaf endpoints have shipped. The finite C8/C9 Coverage bridge and C6 SET library comparison are complete. Next substantive work is R4 compatibility, then the A-side category of modal contexts and the eventual cross-site adjunction.
+Concurrency: none active. First B-side operad, algebra signatures, concrete typed-content `Sessions.agda` instance, actor-causal site v1, Hybrid v1 restriction, finite products, finite covers, finite event-product descent, the constant-slot Sessions sheaf, the concrete tiny finite-cover witness, both V-valued and Set-valued finite sheaf endpoints, the finite C8/C9 Coverage bridge, and the C6 SET library comparison have shipped. R4 tiers 1/1.5/2 have also shipped. Next substantive work is R4 Tier 3: the left-adjoint sheaf-preservation / sheafification design, then the A-side category of modal contexts and the eventual cross-site adjunction.
 ModalHoTT: none active (paused).
 
 ## Current B-side state  <!-- tags: kind:state -->
@@ -358,8 +360,11 @@ Shipped to `agda/Concurrency/Hybrid/`:
 | `SessionEventProductSheaf.agda` | Constant-slot Sessions instantiation of the generic finite event-product sheaf via `StarAutonomous→Category` | ~100 |
 | `TinyEventProductExample.agda` | End-to-end concrete finite descent example: tiny matching families, amalgamation, separatedness, and Sessions specialization | ~175 |
 | `SetSheafComparison.agda` | C6: project SET `IsSheaf` iff Cubical library `isSheaf` for `FiniteFrameCoverage`; split into pullback-UP content and SET pointwise well-pointedness | ~295 |
+| `ChangeOfBase.agda` | Generic value-functorial change of base on finite presheaf categories; structural frame-noninterference lemma | ~115 |
+| `LinearNonlinear.agda` | Interface-first Benton/LNL value adapter: `F ⊣ G`, strong-monoidal comparisons for `F`, `!` named as `F∘G`, no mix map | ~125 |
+| `R4Adapter.agda` | R4 assembly: presheaf lifts, presheaf-level `liftF ⊣ liftG`, `G` sheaf preservation, and explicit Tier 3 `F` obligation | ~230 |
 
-The arbitrary-frame Hybrid v1 files remain the adapter-layer scaffold. The finite layer adds full sheaf inhabitants and now assembles both the V-valued/session finite sheaf category and the framework-at-`SET` finite sheaf category. It now bridges the finite site to Cubical `Coverage` and proves agreement with the library `Sheaf` condition at `SET`. It still does not construct the full Set-valued locality topos/internal logic or state R4. The original restriction adapter shape is:
+The arbitrary-frame Hybrid v1 files remain the adapter-layer scaffold. The finite layer adds full sheaf inhabitants and now assembles both the V-valued/session finite sheaf category and the framework-at-`SET` finite sheaf category. It now bridges the finite site to Cubical `Coverage` and proves agreement with the library `Sheaf` condition at `SET`. R4 is partially stated and proved as a Benton/LNL change-of-base layer: presheaf-level change-of-base and the presheaf-level adjunction are complete, and the right adjoint preserves finite sheaves. It still does not construct the full Set-valued locality topos/internal logic, prove the left-adjoint sheaf-preservation / sheafification leg, or claim the full sheaf-level R4 adjunction. The original restriction adapter shape is:
 
 ```agda
 FrameHom AB G F → Hom (value F) (value G)
@@ -408,8 +413,8 @@ The framework treats some conversations as *meta-conversations*: special convers
 
 ### Next frontier
 
-1. **R4 compatibility** — state the Benton/LNL-shaped adapter between `Sh_fin(site,Set)` and the V-valued `FiniteSheafCategory`. Keep this B-internal: it is not the cross-site `Allow ⊣ Require` adjunction and it should not replace the project finite sheaf endpoints with the library presentation.
-2. **Value-side adapter decisions for R4** — decide the minimal interface for cartesian-to-linear interpretation: no-leak/erasure, the unit-vs-dualizing relation, and whether any `!`-like modality is assumed, constructed, or deliberately postponed.
+1. **R4 Tier 3** — decide the left-adjoint side of the Benton adapter: prove `F-PreservesSheaf` as an extra interface assumption, construct a sheafification reflector, restrict to a concrete instance where `F` preserves finite sheaves, or weaken the left-side R4 claim. This is a design phase, not a routine continuation of the already-proved right-adjoint leg.
+2. **R4 Tier 4** — once Tier 3 is settled, restrict the presheaf-level `liftF ⊣ liftG` to the finite sheaf subcategories and state the actual sheaf-level R4 adjunction.
 3. **Cross-site `Allow ⊣ Require`** — define the A-side category of modal contexts, then the actual functors, unit, counit, and triangle identities; instantiate the generic iteration scaffold only after that.
 4. **A-side return plan** (lift `Bℤ → S¹`, switch η-iteration → cyclic bar) — on hold until the cross-site adjunction is statable.
 
@@ -424,62 +429,14 @@ The detailed rot-compₒ discussion that led to the 2026-05-18 cyclic-equivarian
 
 ## Next step
 
-### Codex
+Next coding session should focus on **R4 Tier 3**, not more finite-site legitimacy and not the cross-site `Allow ⊣ Require` adjunction yet.
 
-Next session should do R4 compatibility, not more site-axis legitimacy and not the cross-site adjunction yet.
+Tier state after the 2026-06-05 R4 pass:
 
-What to build first:
+1. **Tier 1 — proved.** `ChangeOfBase.agda` lifts any value-category functor to finite presheaf categories and records structural frame-noninterference.
+2. **Tier 1.5 — proved.** `R4Adapter.liftF⊣liftG` is the presheaf-level Benton adjunction, pointwise from the value-level `F ⊣ G`.
+3. **Tier 2 — proved.** `R4Adapter.G-preserves-sheaf` shows the right adjoint sends V-valued finite sheaves to cartesian finite sheaves by transporting probe-form descent across the natural-bijection adjunction.
+4. **Tier 3 — next.** The left adjoint does not preserve sheaves for free. Choose among: add `F-PreservesSheaf` as a formal interface assumption; construct/use sheafification; prove preservation only for a concrete instance; or weaken the left-side R4 claim.
+5. **Tier 4 — blocked on Tier 3.** Only after the left side lands can the presheaf-level adjunction be restricted to a genuine sheaf-level R4 adjunction.
 
-1. State an interface-first Benton/LNL-shaped adapter between the project finite Set-valued sheaf endpoint and the V-valued finite sheaf category.
-2. Keep the endpoints as the project framework: `SetFiniteSheafCategory` / `Sh_fin(site,Set)` on the cartesian side and `FiniteSheafCategory` over `StarAutonomous→Category V` on the linear side. The Cubical library comparison is legitimacy for the Set endpoint, not a replacement endpoint for R4.
-3. Decide the smallest value-side assumptions R4 needs: no-leak/erasure, the unit-vs-dualizing relation (`𝟙ₛ` vs `⊥ₛ`), and whether a `!`-like modality is assumed, constructed, or postponed.
-4. Do not open the reflexive protocol layer, content-dependent event slots, or the cross-site `Allow ⊣ Require` functors unless the R4 interface forces a precise placeholder.
-
-Success criterion: a small Agda interface or design file that makes the cartesian-to-linear bridge explicit enough that later `Allow ⊣ Require` work can consume it without confusing B-internal interpretation with the A/B cross-site adjunction.
-
-### Claude
-
-● Here's my genuine read on the next step — not just "R4 because the doc says so," but where the dependency order, the bandwidth, and our own methodology actually point.
-
-  The hinge is R4, and it's now genuinely unblocked
-
-  With the site-axis legitimacy banked (C8→C9→C6), the next substantive piece is R4 — the B-internal cartesian↔linear adapter between Sh_fin(site, Set) and Sh_fin(site, V). Three reasons it's the
-  right next step and not something else:
-
-  - Dependency order. The cross-site Allow ⊣ Require needs two prerequisites: the B-side structured (R4) and an A-side category of modal contexts. R4 is the B-internal one, it fits the current
-  B-bandwidth, and both its endpoints are already concrete and green. The A-side return (Bℤ→S¹, cyclic bar) is gated behind the cross-site statement being expressible, so it can't go first.
-  - The Coverage work didn't gate it. We always said R4 was decoupled from the Coverage bridge — that's now vindicated, and we lost nothing by doing legitimacy first. R4 starts clean.
-  - Everything else is genuinely downstream or sideways. Reflexive layer is gated on R4 being stable; event-dependent session slots are an enrichment the docs explicitly say don't block R4; library
-  sheafification/Yoneda over the new Coverage is "because we can," not on the arc's critical path.
-
-  The framing that keeps it Grothendieckian — and the on-ramp
-
-  R4 is most honestly read as change of base along a value-level adjunction Set ⇄ V, lifted to the sheaf categories. That's the relative point of view again: not "compare two unrelated categories,"
-  but "a functor of value categories induces a functor of sheaf categories, and the adjunction lifts." The Benton LNL structure (! = F∘G comonad) then is the lifted adjunction — G = underlying-set of
-  a session type, F = free session object on a set.
-
-  This framing tells us how to raise the water before reaching for the full adjunction — exactly the move that made C6 float (prove the UP and finiteness first, then the comparison was a corollary).
-  The two foundational pieces, both buildable now:
-
-  1. The value-level adjunction Set ⇄ V — the underlying-set functor on StarAutonomous V and its free adjoint, including the duality/mix understanding (𝟙ₛ ↔ ⊥ₛ, unit vs dualizing object). This is the
-  literal water: adjoint functors on values lift to adjoint functors on presheaves/sheaves, so once it's in, the sheaf-level R4 falls out rather than being hand-built.
-  2. The no-leak / erasure adapter made explicit — session content doesn't refine actor identity. Structural hygiene the unityping claim leans on, and the bridge has to respect it.
-
-  Do those two first, and R4-proper should be a lifting argument, not a from-scratch construction.
-
-  The one call that's yours
-
-  R4's formulation has real mathematical consequences, so it's a decision session before a coding session — the genuine fork is Benton LNL adjunction vs Seely linear-category-with-! vs 
-  Chu/Dialectica. My lean is Benton LNL: it's the cleanest "two categories + a symmetric monoidal adjunction" shape, it matches the change-of-base story directly, and it doesn't force us to
-  hand-build ! (it falls out of F∘G). Seely front-loads the exponential; Chu is heavier and pulls us toward a construction rather than a relationship. But that's exactly the kind of choice I'd want
-  you and Codex to weigh before I write the first signature.
-
-  What to actively avoid
-
-  - The D2 trap: keep R4 bridging our Sh_fin(site,Set) ↔ our Sh_fin(site,V). The moment the library Coverage/Sheaf is treated as "the Set side," the C6 comparison silently becomes an R4 prerequisite
-  and R4 inherits a presentation gap. Coverage stays parallel legitimacy; R4 stays over our framework.
-  - Don't jump to the full sheaf-level adjunction without the value-level water — that's the hammer-and-chisel failure mode we just avoided.
-  - Don't open the A-side or reflexive layer yet — both are gated behind R4.
-
-  So: R4 next, framed as change-of-base, opened with the value-level Set ⇄ V adjunction + no-leak adapter as the de-risking water, and a formulation decision (Benton LNL is my lean) to settle with 
-  you first. If you agree, the natural first concrete deliverable is the value-level adjunction signature — small, decision-light, and the thing everything else lifts from.
+Success criterion for the next code pass: a conscious Tier 3 design and, if possible, its first typed Agda shape. Do not open Chu, event-dependent slots, Reflexive Π, Bulk Λ, or the cross-site functors unless Tier 3 forces a narrow placeholder.
