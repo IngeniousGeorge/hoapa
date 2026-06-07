@@ -61,16 +61,19 @@ Unit*≃Fin1 = isoToEquiv (iso (λ _ → fzero) (λ _ → tt*) sec ret)
     ret : (u : Unit*) → tt* ≡ u
     ret _ = refl
 
+-- Relation level fixed to `ℓA` (the actor level): incident point frames
+-- (`EventPoint.agda`) require `ℓR = ℓA`, so the reflector route runs over
+-- finite frames whose incidence level equals the actor level.
 module _ {ℓA : Level} (AB : ActorBase ℓA)
          {ℓ ℓ' : Level} (C : Category ℓ ℓ') (FP : HasFiniteProducts C)
-         {ℓR : Level} (P : FiniteFramePresheaf AB C {ℓ-zero} {ℓR}) where
+         (P : FiniteFramePresheaf AB C {ℓ-zero} {ℓA}) where
 
   open ApplicativeView C
   private module Pp = FiniteFramePresheaf P
 
   private
     FF : Type _
-    FF = FiniteFrame AB ℓ-zero ℓR
+    FF = FiniteFrame AB ℓ-zero ℓA
 
     Ev : FF → Type
     Ev F = LocalFrame.Event (FiniteFrame.frame F)
@@ -207,7 +210,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
           ∙ ∘-assoc (prj F d) (ares G F φ) (ares H G ψ)
 
   -- The point-product presheaf.
-  pointify : FiniteFramePresheaf AB C {ℓ-zero} {ℓR}
+  pointify : FiniteFramePresheaf AB C {ℓ-zero} {ℓA}
   pointify = record
     { value         = aval
     ; restrict      = ares

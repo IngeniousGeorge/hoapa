@@ -20,14 +20,27 @@
 --     the event map is the unique `Unit* → Unit*`, and the causal fields
 --     are trivial (the point order is the single `Unit*`-loop).
 --
--- Spike note (variable-slot sheafification reflector). For the spike,
--- `ActorIn := F.ActorIn` (so `point-embed`/`point-hom`'s `actor-pres` is
--- `φ`'s directly). This choice is irrelevant to presheaf *functoriality*
--- (which never inspects `ActorIn`); the cover-facing refinement
--- `ActorIn := F.touches e` (Codex's incidence point, for `actor-covered`
--- of the point cover) is deferred to the point-cover step, where it is
--- what makes point patches active and where the `ℓA`-vs-`ℓR` level
--- question is resolved.
+-- Incidence (landed). A point frame `point-frame e` carries the
+-- *event-supported* actor predicate `ActorIn := λ a → F.touches e a`:
+-- its actors are exactly those `e` touches, not all of `F`'s actors.
+-- This is the cover-facing refinement (Codex's incidence point) that
+-- makes `point-frame e` an event-generated frame and makes the point
+-- cover's `actor-covered` provable from supportedness. It also turns the
+-- morphism `actor-pres` fields into *derived* data: `point-embed`'s is
+-- `F.touches-in-frame`, and `point-hom`'s is `φ.touches-pres` (the
+-- support helper of `EventSupported.agda`) — never an independent
+-- `actor-pres`.
+--
+-- This is the inhabitant-level edit anticipated by the pointification
+-- spike note; it does not touch the `LocalFrame` / `FrameHom` records.
+-- Functoriality of the reflector is `ActorIn`-agnostic, so the green
+-- `Pointification.agda` survives, narrowed only at the relation level.
+--
+-- Level. Incident `ActorIn := touches e : Actor → Type ℓR` must inhabit
+-- `LocalFrame.ActorIn : Actor → Type ℓA`, so this route fixes `ℓR = ℓA`
+-- (the relation/incidence level equals the actor level). The event level
+-- `ℓE` is independent and is `ℓ-zero` on the point-reflector route by the
+-- `EnumeratedProduct` wrapper, not by anything here.
 --
 -- Scope guardrails: pure site / locality machinery; no value / content /
 -- operad imports.
@@ -44,13 +57,15 @@ module _ {ℓA : Level} (AB : ActorBase ℓA) where
 
   ------------------------------------------------------------------
   -- The single-event sub-frame at an event of a frame.
+  --
+  -- `ℓR = ℓA` so the incident `ActorIn := touches e` is well-typed.
   ------------------------------------------------------------------
 
-  module _ {ℓE ℓR : Level} (F : LocalFrame AB ℓE ℓR) where
+  module _ {ℓE : Level} (F : LocalFrame AB ℓE ℓA) where
     private module Fm = LocalFrame F
 
     -- The trivial causal order on a single (`Unit*`) event.
-    point-causal : CausalOrder ℓE ℓR
+    point-causal : CausalOrder ℓE ℓA
     point-causal = record
       { Event     = Unit*
       ; Event-set = isSetUnit*
@@ -61,20 +76,22 @@ module _ {ℓA : Level} (AB : ActorBase ℓA) where
       ; ≤-isProp  = λ {_} {_} → isPropUnit*
       }
 
-    point-frame : Fm.Event → LocalFrame AB ℓE ℓR
+    -- Event-supported: the point's actors are exactly `touches e`.
+    point-frame : Fm.Event → LocalFrame AB ℓE ℓA
     point-frame e = record
       { causal           = point-causal
-      ; ActorIn          = Fm.ActorIn
-      ; ActorIn-isProp   = Fm.ActorIn-isProp
+      ; ActorIn          = λ a → Fm.touches e a
+      ; ActorIn-isProp   = λ a → Fm.touches-isProp e a
       ; touches          = λ _ a → Fm.touches e a
       ; touches-isProp   = λ _ a → Fm.touches-isProp e a
-      ; touches-in-frame = λ {_} {a} t → Fm.touches-in-frame t
+      ; touches-in-frame = λ {_} {a} t → t
       }
 
-    -- The sub-view embedding `point-frame e ↪ F`.
+    -- The sub-view embedding `point-frame e ↪ F`. Its `actor-pres` is the
+    -- support map `touches e a → F.ActorIn a`, i.e. `F.touches-in-frame`.
     point-embed : (e : Fm.Event) → FrameHom AB (point-frame e) F
     point-embed e = record
-      { actor-pres   = λ x → x
+      { actor-pres   = λ t → Fm.touches-in-frame t
       ; event-map    = λ _ → e
       ; touches-pres = λ t → t
       ; causal-pres  = λ _ → Fm.≤-refl e
@@ -85,19 +102,20 @@ module _ {ℓA : Level} (AB : ActorBase ℓA) where
   -- The point-to-point morphism induced by a frame morphism.
   ------------------------------------------------------------------
 
-  module _ {ℓE₁ ℓR₁ ℓE₂ ℓR₂ : Level}
-           (G : LocalFrame AB ℓE₁ ℓR₁) (F : LocalFrame AB ℓE₂ ℓR₂)
+  module _ {ℓE₁ ℓE₂ : Level}
+           (G : LocalFrame AB ℓE₁ ℓA) (F : LocalFrame AB ℓE₂ ℓA)
            (φ : FrameHom AB G F) where
     private
       module Gm = LocalFrame G
       module Fm = LocalFrame F
       module φm = FrameHom φ
 
-    -- Lands at `event-map φ d` exactly: no enumeration round-trip.
+    -- Lands at `event-map φ d` exactly: no enumeration round-trip. With
+    -- incident actors, `actor-pres` is the support map `φ.touches-pres`.
     point-hom : (d : Gm.Event)
               → FrameHom AB (point-frame G d) (point-frame F (φm.event-map d))
     point-hom d = record
-      { actor-pres   = φm.actor-pres
+      { actor-pres   = φm.touches-pres
       ; event-map    = λ _ → tt*
       ; touches-pres = φm.touches-pres
       ; causal-pres  = λ _ → tt*

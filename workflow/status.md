@@ -20,7 +20,7 @@ The first concrete typed-content instance is now shipped: `Concurrency/Algebras/
 
 The actor-causal locality leg is now shipped: `Concurrency/Sites/{ActorBase,ActorCausal}.agda` makes R6 concrete with opaque unityped actors, Lamport-style event causality, local frames, strict-reflecting frame embeddings, basis covers, and a Bool-based non-trivial cover witness. Promotion of a completed conversation into an actor-like node is deliberately not a `FrameHom`; it is reserved as a future morphism class for the `MO_1` / conversation-of-conversations stage.
 
-Hybrid v1 shipped the first adapter layer (`Presheaf.agda`, `SessionPresheaf.agda`): generic frame presheaves, zero-postulate separatedness, and constant session-valued witnesses. The fast-track finite layer has now landed on the finite-frame subsite: `FiniteFrame.agda`, `FiniteCover.agda`, `TinyFiniteCover.agda`, and the `Hybrid/` finite-descent files give full finite-site event-product descent, including the Sessions constant-slot instantiation and the first concrete two-point finite-cover validation. The value-axis refactor has also landed: `CategoryApplicative.agda`, `FinitePresheaf.agda`, `FiniteDescent.agda`, `FiniteFramePresheafFunctor.agda`, and `FiniteSheafCategory.agda` now run over Cubical `Category`, with `StarAutonomousCategory.agda` feeding the V-valued/session side and `SetFiniteSheafCategory.agda` feeding the `SET` side. `FiniteProducts.agda` is likewise category-generic; `SetFiniteProducts.agda` and `SetEventProductSheaf.agda` provide a concrete Set-valued event-product object. Strategy D has now landed on the finite site: lean finite basis covers, a Cubical `Coverage` over `FiniteFrameCategory`, and a SET comparison theorem between the project `IsSheaf` record and the Cubical library `isSheaf`. R4 has advanced through the Benton/LNL finite-sheaf bridge: `ChangeOfBase.agda`, `LinearNonlinear.agda`, and `LinearNonlinearSheafAdapter.agda` give presheaf-level change of base, the lifted adjunction `liftF ⊣ liftG`, and right-adjoint (`G`) sheaf preservation; `FiniteSheafification.agda` states the finite-site reflector interface, and `LinearNonlinearSheafAdjunction.agda` assembles the sheaf-level adjunction conditionally on a V-side reflector. This is still not event-dependent session content and does not construct the full reflector. The live R4 route has sharpened to point-generated sheafification: `EventPoint.agda`, `EnumeratedProduct.agda`, and `Pointification.agda` now land the variable-slot pointification functor `a(P)(F) = ∏_e P(pt_e)` for arbitrary `C` with finite products and arbitrary finite-frame presheaf `P`. The next R4 gate is the point cover, `PointLocal ↔ IsSheaf`, the adjunction `a ⊣ ι`, and W3 wiring to the point-generated sheaf bridge.
+Hybrid v1 shipped the first adapter layer (`Presheaf.agda`, `SessionPresheaf.agda`): generic frame presheaves, zero-postulate separatedness, and constant session-valued witnesses. The fast-track finite layer has now landed on the finite-frame subsite: `FiniteFrame.agda`, `FiniteCover.agda`, `TinyFiniteCover.agda`, and the `Hybrid/` finite-descent files give full finite-site event-product descent, including the Sessions constant-slot instantiation and the first concrete two-point finite-cover validation. The value-axis refactor has also landed: `CategoryApplicative.agda`, `FinitePresheaf.agda`, `FiniteDescent.agda`, `FiniteFramePresheafFunctor.agda`, and `FiniteSheafCategory.agda` now run over Cubical `Category`, with `StarAutonomousCategory.agda` feeding the V-valued/session side and `SetFiniteSheafCategory.agda` feeding the `SET` side. `FiniteProducts.agda` is likewise category-generic; `SetFiniteProducts.agda` and `SetEventProductSheaf.agda` provide a concrete Set-valued event-product object. Strategy D has now landed on the finite site: lean finite basis covers, a Cubical `Coverage` over `FiniteFrameCategory`, and a SET comparison theorem between the project `IsSheaf` record and the Cubical library `isSheaf`. R4 has advanced through the Benton/LNL finite-sheaf bridge: `ChangeOfBase.agda`, `LinearNonlinear.agda`, and `LinearNonlinearSheafAdapter.agda` give presheaf-level change of base, the lifted adjunction `liftF ⊣ liftG`, and right-adjoint (`G`) sheaf preservation; `FiniteSheafification.agda` states the finite-site reflector interface, and `LinearNonlinearSheafAdjunction.agda` assembles the sheaf-level adjunction conditionally on a V-side reflector. This is still not event-dependent session content and does not construct the generic full finite actor-causal reflector. The live R4 route has now constructed the point-generated sheafification over the supported subsite. `EventPoint.agda`, `EnumeratedProduct.agda`, and `Pointification.agda` land the variable-slot pointification spike; `EventSupported.agda`, `PointOverlap.agda`, and `PointCover.agda` supply the supported point-cover geometry; `SupportedFiniteFrameCategory.agda`, `SupportedPresheafCategory.agda`, and `RestrictToSupported.agda` package the supported subsite; `SupportedPointProduct.agda` gives the abstract slot-indexed point-product API; `SupportedPointification.agda` and `SupportedPointDescent.agda` give pointification and the point-sheaf/point-local comparison; `PointifyIsSheaf.agda`, `PointSheafCategory.agda`, `PointSheafification.agda`, and `PointSheafAdjunction.agda` prove that pointification lands in point sheaves and assemble the reflector adjunction `a ⊣ ι`. The next R4 gate is W3 wiring to the point-generated sheaf bridge, still relative to a value-level `lnl : LNLAdjunction`.
 
 `MO_1` (the modular envelope of `O_1`, closure under self-gluing at marked points, raises genus to produce operations at every `(g, n)`) is the long-horizon target. `O_1` is staged toward it but does not commit to it. Eventual landing: evaluation at `(0, 3)` — the universal trinion, the 3-pointed sphere where dessins / Belyi / Esquisse machinery live.
 
@@ -62,7 +62,7 @@ Canonical decomposition (a sheaf is a presheaf satisfying descent).
 
 - `_Sheaf._Presheaf` — shipped in two layers: `FramePresheaf` over arbitrary actor-local frames, and category-generic `FiniteFramePresheaf` over enumerated finite frames. `SessionPresheaf` is the original constant-frame adapter; `SessionEventProductSheaf` and `SetEventProductSheaf` are the finite, frame-varying, constant-slot witnesses on the V-valued/session and Set-valued/cartesian sides.
 - `_Sheaf._Separatedness` — shipped as property records. The original `IsSeparatedPresheaf` remains generic over basis covers; the finite event-product witness proves separatedness over `FiniteCover`s.
-- `_Sheaf._Descent` — landed for the finite event-product presheaf: matching families, overlap compatibility, amalgamation, and separatedness over finite covers. The framework is now category-generic and packaged as `FiniteSheafCategory`; it is instantiated at both `StarAutonomous→Category V` and `SET`. The finite Cubical `Coverage` bridge and SET library `Sheaf` comparison have landed through `FiniteBasisCover`, `FiniteFrameCoverage`, and `SetSheafComparison`. R4 now has presheaf-level Benton/LNL change of base, right-adjoint sheaf preservation, a finite-sheafification reflector interface, and a conditional sheaf-level adjunction. The full reflector construction remains pending. The pointification spike has landed the variable-slot functorial core; next is the point-generated cover/`PointLocal`/adjunction layer.
+- `_Sheaf._Descent` — landed for the finite event-product presheaf: matching families, overlap compatibility, amalgamation, and separatedness over finite covers. The framework is now category-generic and packaged as `FiniteSheafCategory`; it is instantiated at both `StarAutonomous→Category V` and `SET`. The finite Cubical `Coverage` bridge and SET library `Sheaf` comparison have landed through `FiniteBasisCover`, `FiniteFrameCoverage`, and `SetSheafComparison`. R4 now has presheaf-level Benton/LNL change of base, right-adjoint sheaf preservation, a finite-sheafification reflector interface, and a conditional sheaf-level adjunction. The full finite actor-causal reflector construction remains pending. The point-generated route has now built the supported-subsite reflector: abstract point products, pointification, point-sheaf locality, the point-sheaf category, reflector functor, and `a ⊣ ι` adjunction. Next is W3 wiring of that point-generated reflector into the R4 bridge.
 
 The first value category `V` is `Sessions-Cat Payload`; later versions may replace or lift this to richer session categories or presheaves valued in `OperadAlgebra`.
 
@@ -157,15 +157,15 @@ Named, like modules. R1–R6 are from the hybrid substrate's level-2 scoping; R7
 **Live now.**
 
 - **R1 — Valuation.** v1 landed in `Concurrency/Hybrid/{Presheaf,SessionPresheaf}.agda`: `FramePresheaf` is the generic functorial assignment `_Site._Category^op → V`, and `SessionPresheaf` instantiates `V = Sessions-Cat Payload`. Full finite-site event-product sheaf valuation has landed in a category-generic framework, with concrete instances at `StarAutonomous→Category V` and `SET`.
-- **R2 — Indexing.** `_Sheaf` lives over `_Site`: presheaf + descent against `_Site._Topology`. The finite event-product sheaf layer, its V-valued category packaging, its Set-valued category/object endpoint, and the finite Cubical `Coverage` / library `Sheaf` comparison are shipped. R4 should keep consuming the finite sheaf/category interfaces; the remaining reflector work should not duplicate the constant-slot witness or collapse the Set and V endpoints.
+- **R2 — Indexing.** `_Sheaf` lives over `_Site`: presheaf + descent against `_Site._Topology`. The finite event-product sheaf layer, its V-valued category packaging, its Set-valued category/object endpoint, and the finite Cubical `Coverage` / library `Sheaf` comparison are shipped. R4 should keep consuming the finite sheaf/category interfaces; remaining full-site reflector or bridge work should not duplicate the constant-slot witness or collapse the Set and V endpoints.
 - **R3 — Generation.** `_Topos = Sh(_Site._Category, _Site._Topology)`. No freedom; the topos is generated from site + sheaves.
-- **R4 — Interpretation.** `_Topos._InternalLogic ↔ _Algebra._Connectives` / `_Algebras._Sessions`. Topos logic is cartesian by default; the algebra is linear. The current formal shape is interface-first Benton/LNL change of base between `Cart` and `StarAutonomous→Category V`: presheaf-level `liftF`, `liftG`, and `liftF ⊣ liftG` are proved, the right adjoint `G` preserves finite sheaves, `FiniteSheafification` names the left reflector interface, and `LinearNonlinearSheafAdjunction` gives the sheaf-level adjunction conditional on that reflector. The remaining R4 gate has sharpened to constructing the point-generated reflector: point cover, `PointLocal ↔ IsSheaf`, `a ⊣ ι`, and then the point-generated R4 bridge.
+- **R4 — Interpretation.** `_Topos._InternalLogic ↔ _Algebra._Connectives` / `_Algebras._Sessions`. Topos logic is cartesian by default; the algebra is linear. The current formal shape is interface-first Benton/LNL change of base between `Cart` and `StarAutonomous→Category V`: presheaf-level `liftF`, `liftG`, and `liftF ⊣ liftG` are proved, the right adjoint `G` preserves finite sheaves, `FiniteSheafification` names the left reflector interface, and `LinearNonlinearSheafAdjunction` gives the sheaf-level adjunction conditional on that reflector. The point-generated reflector is now constructed over the supported subsite: `PointifyIsSheaf`, `PointSheafification`, and `PointSheafAdjunction` give pointification as a point sheaf, the reflector functor, and `a ⊣ ι`. The remaining R4 gate is W3 wiring of this reflector into the point-generated sheaf bridge.
 - **R5 — Embedding.** `_Topos._GeometricMorphisms → cubical sets`. The mathematical form of "both sides share an ambient `(∞,1)`-topos."
 - **R6 — Parametrization (Causality).** Causality → `_Site`. Landed in `Concurrency/Sites/{ActorBase,ActorCausal}.agda`: Lamport partial-order events, actor-local frames, strict-reflecting frame embeddings, basis covers, and a Bool-based non-trivial cover witness. `ActorPullback.agda` supplies pullback overlaps and a pullback-stability construction downstream; `ActorCausal.agda` still keeps its legacy in-file stability fallback for the bundled tiny site.
 - **R7 — Algebra-over-Operad.** `_Algebras` evaluates `_Operad`. Landed as `StarAutonomous` + `Valuation` + structural `OperadAlgebra`, and concretely instantiated by `Sessions.agda` for the typed-content layer. Closely interacts with R1 (the value category for both must agree).
 - **R8 — Involution-Duality.** `Sessions.agda` now contains both faces: syntactic `dual-involutive` and categorical / operadic `boundary-swap-at-gen` (a specialization of `boundary-swap-structural`). The bridge between them remains a deferred project claim, not a computational reduction.
 
-**Most load-bearing now:** finite-site event-product descent, its constant-slot Sessions instantiation, the concrete tiny finite-cover validation, the V-valued finite sheaf/value category, the Set-valued finite sheaf category/object, and the finite Cubical `Coverage` / SET library `Sheaf` comparison have landed as one category-generic construction plus a library-presentation bridge. R4 is now conditionally formalized: `ChangeOfBase` proves value-functoriality on finite presheaf categories; `LinearNonlinear` states the Benton/LNL value interface; `LinearNonlinearSheafAdapter` proves the presheaf-level lifted adjunction and `G`-preservation of sheaves; `FiniteSheafification` names the reflector interface; `LinearNonlinearSheafAdjunction` assembles the sheaf-level adjunction from a V-side reflector. The next hinge is the point-generated reflector route: point cover, `PointLocal ↔ IsSheaf`, `a ⊣ ι`, and then W3 wiring to the R4 bridge. The cross-site adjunction waits on that B-internal adapter plus an A-side category of modal contexts, not on event-dependent slots.
+**Most load-bearing now:** finite-site event-product descent, its constant-slot Sessions instantiation, the concrete tiny finite-cover validation, the V-valued finite sheaf/value category, the Set-valued finite sheaf category/object, and the finite Cubical `Coverage` / SET library `Sheaf` comparison have landed as one category-generic construction plus a library-presentation bridge. R4 is now conditionally formalized: `ChangeOfBase` proves value-functoriality on finite presheaf categories; `LinearNonlinear` states the Benton/LNL value interface; `LinearNonlinearSheafAdapter` proves the presheaf-level lifted adjunction and `G`-preservation of sheaves; `FiniteSheafification` names the reflector interface; `LinearNonlinearSheafAdjunction` assembles the sheaf-level adjunction from a V-side reflector. The next hinge is W3 wiring of the constructed point-generated reflector into the R4 bridge. The cross-site adjunction waits on that B-internal adapter plus an A-side category of modal contexts, not on event-dependent slots.
 
 **Deferred (live at `MO_1` stage).**
 
@@ -249,14 +249,17 @@ Analytic-side mirror is future work; whether the `agda/Analytic/` pattern from M
 | 2026-06-04 | Set-valued finite sheaf side inhabited | `FiniteProducts.agda` was generalized over `Category`; `SetFiniteProducts.agda`, `SetFiniteSheafCategory.agda`, `SetEventProductSheaf.agda`, and generic `EventProductSheafObject.agda` instantiate the same event-product construction at `SET`. This landed the concrete framework-at-SET object that Strategy D later compares to the library sheaf condition. |
 | 2026-06-05 | Strategy D landed: finite Coverage plus SET sheaf comparison | `FramePullbackUniversal.agda`, `FiniteFramePullback.agda`, `FiniteBasisCover.agda`, `FiniteFrameCoverage.agda`, and `SetSheafComparison.agda` complete C8→C9→C6 for the finite site. The sequence is postulate-free; it uses a lean basis cover for the topology, derives finite pullback patches, proves Cubical `Coverage` pullback stability, and compares project `IsSheaf` with library `isSheaf` at the actual `FiniteFrameCoverage`. |
 | 2026-06-05 | Benton/LNL chosen for R4; Chu deferred | R4 is the B-internal cartesian↔linear / forgetful-axis bridge between `Sh_fin(site,Set)` and `Sh_fin(site,V)`, so Benton is the native relationship shape. Chu is not rejected: it is reserved for the Care / process-context-duality axis, deeper value-category candidates, the Λ content layer, and information-flow / field-theory readings. |
-| 2026-06-05 | R4 Tier 3 interface and conditional Tier 4 landed | `ChangeOfBase.agda`, `LinearNonlinear.agda`, and `LinearNonlinearSheafAdapter.agda` land the Benton/LNL presheaf bridge: presheaf change-of-base, `liftF ⊣ liftG`, and right-adjoint sheaf preservation `G-preserves-sheaf`. `FiniteSheafification.agda` names the finite-site reflector `a ⊣ ι`; `LinearNonlinearSheafAdjunction.agda` gives the sheaf-level adjunction conditionally on a V-side reflector. The full-site reflector remains pending, but the pointification spike has landed: `EventPoint.agda`, `EnumeratedProduct.agda`, and `Pointification.agda` construct the variable-slot functorial core of `a(P)(F) = ∏_e P(pt_e)`. The next R4 gate is point cover → `PointLocal ↔ IsSheaf` → `a ⊣ ι` → point-generated bridge wiring. |
-| 2026-06-05 | Pointification spike landed for R4 reflector route | `EventPoint.agda` generalizes event-point subframes and point-to-point morphisms; `EnumeratedProduct.agda` isolates variable finite-product transport behind `projE`/`tupleE`/`βE`/`ηE`/`extE`; `Pointification.agda` constructs the functorial core `a(P)(F) = ∏_e P(pt_e)` for arbitrary value category `C` with finite products and arbitrary finite-frame presheaf `P`. This retires the variable-slot transport risk for the point-generated reflector route. Remaining work: point cover with incident/supported actors, `PointLocal ↔ IsSheaf`, `a ⊣ ι`, and point-generated R4 bridge wiring. |
+| 2026-06-05 | R4 Tier 3 interface and conditional Tier 4 landed | `ChangeOfBase.agda`, `LinearNonlinear.agda`, and `LinearNonlinearSheafAdapter.agda` land the Benton/LNL presheaf bridge: presheaf change-of-base, `liftF ⊣ liftG`, and right-adjoint sheaf preservation `G-preserves-sheaf`. `FiniteSheafification.agda` names the finite-site reflector `a ⊣ ι`; `LinearNonlinearSheafAdjunction.agda` gives the sheaf-level adjunction conditionally on a V-side reflector. The full-site reflector remains pending, but the pointification spike has landed: `EventPoint.agda`, `EnumeratedProduct.agda`, and `Pointification.agda` construct the variable-slot functorial core of `a(P)(F) = ∏_e P(pt_e)`. The then-open R4 gate after the spike was point-cover geometry and the point-descent/locality route; the 2026-06-06 entries below record those pieces landing and leave `a ⊣ ι` plus point-generated bridge wiring as the live follow-up. |
+| 2026-06-05 | Pointification spike landed for R4 reflector route | `EventPoint.agda` generalizes event-point subframes and point-to-point morphisms; `EnumeratedProduct.agda` isolates variable finite-product transport behind `projE`/`tupleE`/`βE`/`ηE`/`extE`; `Pointification.agda` constructs the functorial core `a(P)(F) = ∏_e P(pt_e)` for arbitrary value category `C` with finite products over finite frames at event level `ℓ-zero` and incidence level `ℓA`. This retires the variable-slot transport risk for the point-generated reflector route. Remaining work at that stage was point-cover geometry and the point-descent/locality comparison; the 2026-06-06 entries below record those pieces landing and left `a ⊣ ι` plus point-generated R4 bridge wiring as the then-live follow-up; the 2026-06-07 row records the reflector landing. |
+| 2026-06-06 | Point-cover geometry scaffold landed for point-generated R4 | `EventSupported.agda`, `PointOverlap.agda`, and `PointCover.agda` implement the Option-2 geometry: event-supported wrappers, incident/event-supported point overlaps, finite event-discrete point covers, and canonical point cover data. This deliberately avoids `FiniteCover` raw actor-intersection overlaps. |
+| 2026-06-06 | Point-descent/locality biconditional landed | `PointDescent.agda` mirrors `FiniteDescent` with product-free descent over the canonical point cover, then in a finite-products scope defines `PointLocal`, proves zero-event subterminality, `local→sheaf`, and `sheaf→local`. This lands `IsPointSheaf P ↔ PointLocal P` for the point-generated site. At that checkpoint the remaining work was `pointify` as a point sheaf, `a ⊣ ι`, and W3 bridge wiring; the 2026-06-07 row records the reflector landing. |
+| 2026-06-07 | Point-generated reflector constructed | The supported-subsite route now has the abstract slot-indexed point-product API (`SupportedPointProduct.agda`), rebuilt pointification (`SupportedPointification.agda`), pointification-is-point-sheaf (`PointifyIsSheaf.agda`), the point-sheaf full subcategory and inclusion (`PointSheafCategory.agda`), the reflector functor (`PointSheafification.agda`), and the unit, hom-set bijection, naturality fields, and assembled adjunction `a ⊣ ι` (`PointSheafAdjunction.agda`). The full finite actor-causal reflector remains a later enrichment; the live next step is W3 wiring of this point-generated reflector into the R4 bridge, still relative to value-level `lnl : LNLAdjunction`. |
 
 ## Blockers  <!-- tags: kind:state -->
 
 (Previous Open Questions archived to `deep_context/archived_blockers/2026-05-17.md`. Deferred items migrated to `future_work.md`.)
 
-Concurrency: none active. First B-side operad, algebra signatures, concrete typed-content `Sessions.agda` instance, actor-causal site v1, Hybrid v1 restriction, finite products, finite covers, finite event-product descent, the constant-slot Sessions sheaf, the concrete tiny finite-cover witness, both V-valued and Set-valued finite sheaf endpoints, the finite C8/C9 Coverage bridge, and the C6 SET library comparison have shipped. R4 now has the presheaf bridge, right-adjoint sheaf preservation, the finite sheafification interface, and the conditional sheaf-level adjunction. Next substantive work is the point-generated reflector sequence: point cover, `PointLocal ↔ IsSheaf`, the adjunction `a ⊣ ι`, then W3 wiring into the R4 bridge. The A-side category of modal contexts and eventual cross-site adjunction remain downstream.
+Concurrency: none active. First B-side operad, algebra signatures, concrete typed-content `Sessions.agda` instance, actor-causal site v1, Hybrid v1 restriction, finite products, finite covers, finite event-product descent, the constant-slot Sessions sheaf, the concrete tiny finite-cover witness, both V-valued and Set-valued finite sheaf endpoints, the finite C8/C9 Coverage bridge, and the C6 SET library comparison have shipped. R4 now has the presheaf bridge, right-adjoint sheaf preservation, the finite sheafification interface, the conditional sheaf-level adjunction, and the concrete point-generated reflector adjunction over the supported subsite. Next substantive work is W3 wiring of that reflector into the point-generated R4 bridge. The A-side category of modal contexts and eventual cross-site adjunction remain downstream.
 ModalHoTT: none active (paused).
 
 ## Current B-side state  <!-- tags: kind:state -->
@@ -326,13 +329,17 @@ Shipped to `agda/Concurrency/Sites/`:
 | `ActorPullback.agda` | Pullback/overlap frames for pairs of `FrameHom`s, projections `pb-π₁` / `pb-π₂`, pullback square, and pullback-stability construction | ~315 |
 | `FiniteFrame.agda` | Finite-frame subsite object: `LocalFrame` plus chosen event count and `Event ≃ Fin event-count` enumeration | ~60 |
 | `FiniteFrameCategory.agda` | Finite-frame subsite as a Cubical `Category`; `isSetHom` follows from event-map into a set and prop-valued frame-hom laws | ~120 |
+| `SupportedFiniteFrameCategory.agda` | Supported finite-frame subsite as a Cubical `Category`, reusing finite-frame morphisms and restricting objects by chosen event support | 73 |
 | `FiniteCover.agda` | Finite covers with finite patches and carried finite enumerations of every actual pullback overlap | ~90 |
 | `TinyFiniteCover.agda` | Concrete finite lift of the existing Bool two-point cover, including `Bool≃Fin2`, `Unit≃Fin1`, and four-case overlap enumeration | ~190 |
 | `FramePullbackUniversal.agda` | Universal property of `frame-pullback`: mediating morphism, projection laws, and uniqueness; supplies the all-cones bridge used by C6 | ~140 |
 | `FiniteFramePullback.agda` | Pullback of finite frames is finite with a chosen untruncated enumeration; derives finite pullback patches for the finite coverage | ~125 |
 | `FiniteBasisCover.agda` | Lean finite covering-family basis, forgets/completes `FiniteCover`, and adapts to Cubical `Cover` | ~130 |
 | `FiniteFrameCoverage.agda` | Cubical `Coverage` over `FiniteFrameCategory`; pullback stability by finite pullback and `pb-square` | ~105 |
-| `EventPoint.agda` | General event-point subframes, point embeddings, and induced point-to-point morphisms for the pointification spike | 113 |
+| `EventPoint.agda` | Incident event-point subframes (`ActorIn := touches e`), point embeddings, and induced point-to-point morphisms; narrows the point route to incidence level `ℓA` | 131 |
+| `EventSupported.agda` | Event-supported frame predicate, chosen support for covers, support-derived actor preservation, P-free point-shape helpers, and support proofs for incident point frames | 171 |
+| `PointOverlap.agda` | Event-supported point overlaps replacing raw actor-intersection pullbacks; off-diagonal overlaps become actor-empty through support | 133 |
+| `PointCover.agda` | Parallel canonical point-cover interface over finite event-discrete frames with event-supported overlaps, projections, and supported-point packaging | 203 |
 
 The actor site deliberately does not import `Sessions.agda` or operad files. Its job is locality: actor membership, event incidence, causal sub-view embeddings, and local-frame covers. Typed content, `O_1` operations, and conversation-promotion stay out of the carrier.
 
@@ -366,11 +373,21 @@ Shipped to `agda/Concurrency/Hybrid/`:
 | `ChangeOfBase.agda` | Generic value-functorial change of base on finite presheaf categories; structural frame-noninterference lemma | ~115 |
 | `LinearNonlinear.agda` | Interface-first Benton/LNL value adapter: `F ⊣ G`, strong-monoidal comparisons for `F`, `!` named as `F∘G`, no mix map | ~125 |
 | `LinearNonlinearSheafAdapter.agda` | R4 / Benton-LNL assembly: presheaf lifts, presheaf-level `liftF ⊣ liftG`, `G` sheaf preservation, and explicit `F-PreservesSheaf` obligation type | ~240 |
-| `Pointification.agda` | Point-product presheaf `a(P)(F) = ∏_e P(pt_e)` for arbitrary `C` with finite products and arbitrary finite-frame presheaf `P`; proves functoriality | 216 |
+| `Pointification.agda` | Point-product presheaf `a(P)(F) = ∏_e P(pt_e)` for arbitrary `C` with finite products over `ℓ-zero` events / `ℓA` incidence; proves functoriality | 219 |
+| `SupportedPresheafCategory.agda` | Category-generic presheaves over the supported finite-frame subsite, with natural transformations and composition laws | 142 |
+| `RestrictToSupported.agda` | Restriction functor from finite-frame presheaves to supported finite-frame presheaves | 88 |
+| `SupportedPointProduct.agda` | Abstract slot-indexed point-product API; keeps `pointProduct SF slot` opaque so Agda does not reconstruct frames from `sfCount`/`sfEnum` | 97 |
+| `SupportedPointification.agda` | Pointification over the supported subsite, rebuilt on the abstract point-product API; exposes point projections, unit, unwrap, and projection naturality | 244 |
+| `SupportedPointDescent.agda` | Supported point-cover descent, `PointLocal`, point-sheaf/point-local comparison, and point-family matching for the adjunction | 417 |
+| `PointifyIsSheaf.agda` | Proof that supported pointification is point-local / a point sheaf | 155 |
+| `PointSheafCategory.agda` | Full subcategory of supported point sheaves and the inclusion functor `ιP` | 61 |
+| `PointSheafification.agda` | Reflector functor `a : SupportedPresheafCategory → PointSheafCategory` | 190 |
+| `PointSheafAdjunction.agda` | Unit, hom-set bijection, naturality fields, and assembled point-generated reflector adjunction `a ⊣ ι` | 368 |
+| `PointDescent.agda` | Product-free point-cover descent, `PointLocal`, zero-event subterminality, and `IsPointSheaf P ↔ PointLocal P` over finite products | 426 |
 | `FiniteSheafification.agda` | Generic finite-site sheafification reflector interface `a ⊣ ι` over a value category | ~90 |
 | `LinearNonlinearSheafAdjunction.agda` | Conditional sheaf-level Benton/LNL adjunction from `liftF ⊣ liftG`, `G` sheaf preservation, and a V-side finite sheafification reflector | ~130 |
 
-The arbitrary-frame Hybrid v1 files remain the adapter-layer scaffold. The finite layer adds full sheaf inhabitants and now assembles both the V-valued/session finite sheaf category and the framework-at-`SET` finite sheaf category. It now bridges the finite site to Cubical `Coverage` and proves agreement with the library `Sheaf` condition at `SET`. R4 is stated and proved conditionally as a Benton/LNL finite-sheaf bridge: presheaf-level change-of-base and the presheaf-level adjunction are complete, the right adjoint preserves finite sheaves, the left side is mediated by the `FiniteSheafification` reflector interface, and the sheaf-level adjunction is assembled from those ingredients. It still does not construct the full Set-valued locality topos/internal logic or construct/inhabit the finite sheafification reflector. The original restriction adapter shape is:
+The arbitrary-frame Hybrid v1 files remain the adapter-layer scaffold. The finite layer adds full sheaf inhabitants and now assembles both the V-valued/session finite sheaf category and the framework-at-`SET` finite sheaf category. It now bridges the finite site to Cubical `Coverage` and proves agreement with the library `Sheaf` condition at `SET`. R4 is stated and proved conditionally as a Benton/LNL finite-sheaf bridge: presheaf-level change-of-base and the presheaf-level adjunction are complete, the right adjoint preserves finite sheaves, the left side is mediated by the `FiniteSheafification` reflector interface, and the sheaf-level adjunction is assembled from those ingredients. The point-generated supported route now constructs the parallel reflector adjunction `a ⊣ ι`, using the abstract `SupportedPointProduct` API as a load-bearing elaboration boundary. It still does not construct the full Set-valued locality topos/internal logic or the generic full finite actor-causal sheafification reflector. The original restriction adapter shape is:
 
 ```agda
 FrameHom AB G F → Hom (value F) (value G)
@@ -390,7 +407,7 @@ Design constraints held: no payloads or roles on actors, no promotion, no hidden
 
 The tiny finite-cover example validates the carried-overlap interface on a concrete non-trivial cover: diagonal overlaps are contractible, off-diagonal overlaps are empty, arbitrary local parts glue proof-level into a global 2-ary event product, and separatedness is exercised through `cover-jointly-monic`. No structural `FiniteCover` revision, transport machinery, or new postulate was needed.
 
-Verification record: the finite-site stack, both endpoints, and the Strategy D bridge typecheck green, including `TinyFiniteCover`, `FramePullbackUniversal`, `FiniteFramePullback`, `FiniteBasisCover`, `FiniteFrameCoverage`, `SetSheafComparison`, `CategoryApplicative`, `FiniteProducts`, `SetFiniteProducts`, `StarAutonomousCategory`, `FiniteFrameCategory`, `FinitePresheaf`, `FiniteDescent`, `EventProductPresheaf`, `EventProductSheaf`, `EventProductSheafObject`, `FiniteFramePresheafFunctor`, `FiniteSheafCategory`, `SetFiniteSheafCategory`, `SetEventProductSheaf`, `SessionEventProductSheaf`, `TinyEventProductExample`, `Presheaf`, `SessionPresheaf`, and `Sessions`. The only warnings are inherited `UnsupportedIndexedMatch` sites from finite-product / finite-enumeration helpers; they remain inert under the proof-level API discipline.
+Verification record: the finite-site stack, both endpoints, the Strategy D bridge, and the supported point-generated reflector stack typecheck green, including `TinyFiniteCover`, `FramePullbackUniversal`, `FiniteFramePullback`, `FiniteBasisCover`, `FiniteFrameCoverage`, `SetSheafComparison`, `CategoryApplicative`, `FiniteProducts`, `SetFiniteProducts`, `StarAutonomousCategory`, `FiniteFrameCategory`, `FinitePresheaf`, `FiniteDescent`, `EventProductPresheaf`, `EventProductSheaf`, `EventProductSheafObject`, `FiniteFramePresheafFunctor`, `FiniteSheafCategory`, `SetFiniteSheafCategory`, `SetEventProductSheaf`, `SessionEventProductSheaf`, `TinyEventProductExample`, `Presheaf`, `SessionPresheaf`, `PointSheafAdjunction`, and `Sessions`. The only warnings are inherited `UnsupportedIndexedMatch` sites from finite-product / finite-enumeration helpers; they remain inert under the proof-level API discipline.
 
 ### Reflexive Protocol Layer  <!-- tags: kind:reference -->
 
@@ -419,7 +436,7 @@ The framework treats some conversations as *meta-conversations*: special convers
 
 ### Next frontier
 
-1. **Point-generated R4 reflector** — finish the event-discrete route now opened by `EventPoint.agda`, `EnumeratedProduct.agda`, and `Pointification.agda`: point cover with incident/supported actors, `PointLocal ↔ IsSheaf`, `a ⊣ ι`, and W3 wiring to the point-generated R4 bridge. This discharges the reflector condition for that site, not the full actor-causal site, and remains relative to a value-level `lnl`.
+1. **Point-generated R4 bridge wiring** — consume the constructed supported-subsite reflector (`PointSheafification.a` and `PointSheafAdjunction.a⊣ι`) to assemble the event-discrete Benton/LNL sheaf bridge. This discharges the reflector condition for that site, not the full actor-causal site, and remains relative to a value-level `lnl`.
 2. **Full actor-causal reflector enrichment** — later, decide whether to extend the point-generated construction to richer covers where causality and actor incidence become descent content. This is where colimit/exactness questions may return.
 3. **Cross-site `Allow ⊣ Require`** — define the A-side category of modal contexts, then the actual functors, unit, counit, and triangle identities; instantiate the generic iteration scaffold only after the B-side R4 bridge is available.
 4. **A-side return plan** (lift `Bℤ → S¹`, switch η-iteration → cyclic bar) — on hold until the cross-site adjunction is statable.
@@ -435,92 +452,122 @@ The detailed rot-compₒ discussion that led to the 2026-05-18 cyclic-equivarian
 
 ## Next step
 
-Next coding session should focus on **the point-generated R4 reflector route**, not generic full-site sheafification, not more finite-site legitimacy, and not the cross-site `Allow ⊣ Require` adjunction yet.
+Next coding session should focus on **Brick 4 of the point-generated R4 route**: W3-wire the constructed point-generated reflector into the Benton/LNL sheaf bridge. It should consume the supported-subsite reflector `a ⊣ ι`; it should not return to generic full-site sheafification, finite-site legitimacy, or the cross-site `Allow ⊣ Require` adjunction yet.
 
-Tier state after the 2026-06-05 R4 passes and pointification spike:
+Tier state after the 2026-06-07 point-generated reflector pass:
 
 1. **Tier 1 — proved.** `ChangeOfBase.agda` lifts any value-category functor to finite presheaf categories and records structural frame-noninterference.
 2. **Tier 1.5 — proved.** `LinearNonlinearSheafAdapter.liftF⊣liftG` is the presheaf-level Benton adjunction, pointwise from the value-level `F ⊣ G`.
 3. **Tier 2 — proved.** `LinearNonlinearSheafAdapter.G-preserves-sheaf` shows the right adjoint sends V-valued finite sheaves to cartesian finite sheaves by transporting probe-form descent across the natural-bijection adjunction.
 4. **Tier 3 — interface landed.** `FiniteSheafification.agda` names the full finite-site reflector interface `a ⊣ ι`. The generic full-site construction remains open.
-5. **Tier 3p — point-generated route in progress.** `EventPoint.agda`, `EnumeratedProduct.agda`, and `Pointification.agda` land the variable-slot functorial core `a(P)(F) = ∏_e P(pt_e)` for arbitrary `C` with finite products and arbitrary finite-frame presheaf `P`. The transport risk is isolated in the enumerated-product API.
-6. **Tier 4 — proved conditionally.** `LinearNonlinearSheafAdjunction.agda` restricts/assembles the presheaf-level bridge into a sheaf-level adjunction, conditional on a V-side `FiniteSheafification` instance. The point-generated route should produce the analogous concrete bridge over the point-generated/event-discrete site, still relative to a value-level `lnl`.
+5. **Tier 3p — proved for the point-generated supported site.** `PointifyIsSheaf.agda`, `PointSheafCategory.agda`, `PointSheafification.agda`, and `PointSheafAdjunction.agda` prove pointification lands in point sheaves, package the point-sheaf category and inclusion, construct the reflector functor, and assemble `a ⊣ ι`.
+6. **Tier 4 — proved conditionally for the finite-site bridge.** `LinearNonlinearSheafAdjunction.agda` restricts/assembles the presheaf-level bridge into a sheaf-level adjunction, conditional on a V-side `FiniteSheafification` instance. Brick 4 should produce the analogous concrete bridge over the point-generated/event-discrete site, still relative to a value-level `lnl`.
 
 Immediate success criterion for the next code pass:
 
 ```text
-point cover → PointLocal ↔ IsSheaf → a ⊣ ι → point-generated R4 bridge
+point-generated R4 bridge wiring
+  using PointSheafAdjunction.a⊣ι
+  still relative to lnl : LNLAdjunction
 ```
 
 Guardrails:
 
-- Use incident/supported point covers; do not pretend event-points cover arbitrary actor-only frames.
-- Keep the theorem scoped to the point-generated/event-discrete site until the full actor-causal site is re-enriched.
+- Use `PointSheafAdjunction.agda` as the reflector source; do not re-prove `pointify` is a point sheaf or reconstruct `a ⊣ ι`.
+- Keep the theorem scoped to the supported point-generated/event-discrete site until the full actor-causal site is re-enriched and a normalized-pullback / stability layer gives a full `Coverage` upgrade.
+- Do not de-abstract `SupportedPointProduct.agda`; that abstraction is load-bearing for Agda elaboration.
 - Do not claim a concrete Sessions Benton adjunction; the bridge remains relative to `lnl : LNLAdjunction`.
-- Do not open Chu, Reflexive Π, Bulk Λ, or the cross-site functors unless the reflector construction forces a narrow placeholder.
+- Do not open Chu, Reflexive Π, Bulk Λ, or the cross-site functors unless the bridge construction forces a narrow placeholder.
 
-### Claude
+### Current point-generated handoff
 
-● Spike complete — all green. Here's the result.
+Brick 3 has landed. The supported point-generated route now has the abstract point-product API, pointification over the supported subsite, point-sheaf descent/locality, the point-sheaf category and inclusion, the reflector functor, and the full adjunction `a ⊣ ι`. The whole stack typechecks with only inherited `UnsupportedIndexedMatch` warnings.
 
-  What landed (3 files, all typecheck clean)
+Technical tips for Brick 4:
 
-  ┌───────────────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┬────────┐
-  │                   File                    │                                                            Role                                                            │ Status │
-  ├───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┤
-  │ Concurrency/Sites/EventPoint.agda         │ General point sub-frame point-frame F e, embedding point-embed, and induced point-hom φ d (lands at event-map φ d exactly) │ ✅     │
-  ├───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┤
-  │ Concurrency/Hybrid/EnumeratedProduct.agda │ The variable finite-product wrapper (Codex #6): type-indexed product ∏E with projE/tupleE/βE/ηE/extE                       │ ✅     │
-  ├───────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┼────────┤
-  │ Concurrency/Hybrid/Pointification.agda    │ a(P)(F) = ∏_{e} P(pt_e) for an arbitrary presheaf P, with restrict-id + restrict-comp proved (step 4)                      │ ✅     │
-  └───────────────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┴────────┘
+1. Mirror `LinearNonlinearSheafAdjunction.agda`, but replace the conditional `FiniteSheafification` input with `PointSheafAdjunction.a⊣ι` and the point-sheaf inclusion.
+2. Keep the value-level hypothesis explicit: the bridge is still relative to `lnl : LNLAdjunction`, not a construction of the value-level Benton adjunction.
+3. Stay on the supported subsite. `SupportedFiniteFrame` is essential because the reflector fails on inactive actor-only frames.
+4. Consume public interfaces from Brick 3 (`PointSheafification.a`, `PointSheafCategory.ιP`, `PointSheafAdjunction.a⊣ι`) rather than unfolding the abstract product or pointification internals.
+5. Full Cubical `Coverage`, normalized-pullback stability, the full actor-causal reflector, and the A-side modal-context category remain later upgrades.
 
-  No new warnings — only the inherited inert UnsupportedIndexedMatch on bigπ/bigβ.
+### Claude's assessment
 
-  The key finding (answering Codex's pushback #2)
+  Assessment: what Brick 4 is and why it's next
 
-  The enum-transport mud is real but confines to a single coherence lemma, projE-fin (relating the type-indexed projection to the underlying Fin-projection). And its one hard step is free: because
-  enum : T ≃ Fin n makes the event-index type T a set, the two competing paths-in-T are equal by isSetT _ _ _ _. No EquivJ, no half-adjoint zigzag. Everything downstream is clean:
+  Brick 3 constructed the reflector a ⊣ ι that the R4 bridge had left deferred as the FiniteSheafification hypothesis. Brick 4 cashes that in: assemble the sheaf-level Benton/LNL adjunction over the
+  point-generated site, now unconditional in the reflector (still relative to the value-level lnl : LNLAdjunction).
 
-  - βE needs no coherence at all — substCommSlice + bigβ + fromPathP.
-  - With the event-indexed API, the reflector's restrict-id/restrict-comp reduce via extE + βE to frame-local facts about point morphisms — point-hom of the identity is the identity, point-hom of a
-  composite is the composite — each a one-line FrameHom≡. The genuinely variable slot never re-leaks transport into the functoriality proof.
+  End product, mirroring LinearNonlinearSheafAdjunction but over the supported/point categories:
+  - Rpoint = liftG restricted to point sheaves (right adjoint, preserves point-locality);
+  - Lpoint = a ∘F liftF ∘F ιP (the constructed reflector lands it in point sheaves);
+  - Lpoint ⊣ Rpoint, recovering the linear exponential ! = Lpoint ∘ Rpoint at the point-sheaf level.
 
-  So per Codex's own gate — "if step 4 lands cleanly, the rest is credible" — it landed cleanly. The reflector route is viable; no need for the Ran-formulation fallback.
+  Difficulty: moderate. The scary part (the reflector + its elaboration wall) is done. The assembly step is "almost entirely definitional" in the existing template (library Compose.LF⊣GR +
+  fst-reindexing). The one genuinely new proof is G-preserves-point-sheaf.
 
-  Honest scope of what was tested
+  The three real pieces
 
-  - Genuinely generic where it matters: arbitrary value category C with finite products, arbitrary presheaf P, genuinely non-constant slot e ↦ P(pt_e) — exactly the regime Codex insisted on, not a
-  reassuring constant-slot/SET special case.
-  - Scoped, as planned: event level fixed to ℓ-zero (the wrapper indexes over Type₀ event sets — a later orthogonal lift); and ActorIn := F.ActorIn in the spike, since functoriality never inspects
-  ActorIn. The ActorIn := touches incidence refinement (Codex #1) is deferred to the point-cover step, where actor-covered actually needs it and where the ℓA-vs-ℓR level question gets resolved.
+  1. Re-lift liftF/liftG over the supported categories. The existing LinearNonlinearSheafAdapter lifts the value-level F ⊣ G over FiniteFramePresheafCategory (the full site). Brick 4 needs them over
+  SupportedPresheafCategory. Design fork: either re-do the lift directly over supported presheaves (probably cleanest), or route through RestrictToSupported (the functor FiniteFramePresheafCategory →
+  SupportedPresheafCategory I already built and which Codex foresaw as exactly this glue). Scope this with Codex first.
+  2. liftF ⊣ liftG at the supported-presheaf level — pointwise from the value-level F ⊣ G, a direct mirror of Ad.liftF⊣liftG.
+  3. G-preserves-point-sheaf (the new lemma): liftG sends point sheaves to point sheaves. Point-locality is the comparison cone being an iso — a limit-shaped condition a right adjoint preserves.
+  Design fork: prove it via PointLocal (cone iso) directly, or via the public IsPointSheaf (separated + amalgamate) interface — I'd lean toward the latter, since the whole Brick-3 experience showed
+  the public descent interface is the friction-free path and avoids the private cone. Mirror Ad.G-preserves-sheaf's "transport probe-form descent across the natural bijection."
 
-  Not yet built (the next stages, now de-risked)
+  Then the assembly is the LinearNonlinearSheafAdjunction move verbatim: Rpoint = MapFullSubcategory liftG (G-preserves-point-sheaf), Lpoint = a ∘F liftF ∘F ιP, and Lpoint ⊣ Rpoint = Compose.LF⊣GR 
+  liftF⊣liftG a⊣ι reindexed along the Cart-side inclusion by fst.
 
-  Point cover (with ActorIn := touches + actor-covered) → IsSheaf ↔ PointLocal → the adjunction a ⊣ ι → W3 wiring to the R4 bridge.
+  Tips for the next instance
 
-  This is a good handoff point: the load-bearing risk is retired.
+  Read first (templates, in order): LinearNonlinearSheafAdjunction.agda and LinearNonlinearSheafAdapter.agda (the exact assembly to mirror), LinearNonlinear.agda / ChangeOfBase.agda
+  (value-functoriality), FiniteSheafification.agda (the conditional interface you're discharging), then PointSheafAdjunction.agda (a⊣ι, the reflector you plug in) and RestrictToSupported.agda (the
+  bridge functor).
 
-❯ Please briefly write down any tips you may have for the next instance who's going to continue the work.                                                                                              
+  Plug in PointSheafAdjunction.a⊣ι — it's a genuine NaturalBijection._⊣_, so it drops into Compose.LF⊣GR where the old file used the conditional FiniteSheafification Σ-record's reflector.
 
-● Here are the tips I'd hand the next instance — concise, focused on what isn't obvious from the code alone:
+  Stay behind the abstract product API — this is now load-bearing infra, not cleanup. Anything touching value (pointify P) must go through pointTuple/pointβ/pointProj/pointExt
+  (SupportedPointProduct), never raw ∏E/bigProduct. If you ever see a blocked on _SG.fin.event-count metavariable, it means the pointProduct head went transparent somewhere — that's the exact wall
+  the abstract block resolves. Do not de-abstract it.
 
-  Technical
-  1. The transport crux is solved by set-truncation, not equivalence gymnastics. projE-fin works because the event-index type T ≃ Fin n is a set, so the competing enum paths are equal by isSetT _ _ _
-  _. When an enum round-trip coherence reappears, that's the move. Do not reach for EquivJ — idEquiv's invEq/retEq don't reduce definitionally; it's a dead end (I burned a cycle there).
-  2. Stay inside the event-indexed wrapper API (projE/tupleE/βE/extE in EnumeratedProduct.agda). Never drop back to bare bigπ/bigβ in reflector/sheaf proofs — that re-leaks the zigzag the wrapper
-  exists to absorb. All new proofs go through extE+βE + frame-local FrameHom≡ facts.
-  3. Point-morphism coherences are one-line FrameHom≡ (event-map path only; other fields are props). point-hom-id/point-hom-comp are the template: event-map of point homs is always λ _ → tt*, so
-  composites are refl, identity needs funExt + isPropUnit*.
+  Category swap is the main mechanical difference from the full-site files: FiniteFramePresheafCategory→SupportedPresheafCategory, FiniteSheafCategory→PointSheafCategory,
+  IsSheaf→PointLocal/IsPointSheaf. Frame helpers are the P-free sfFrame/sfEv/sfCount/sfEnum (in EventSupported) and pt₀/slotOf/supported-point.
 
-  Still owed / watch-outs
-  4. ActorIn := touches is deferred to the point-cover step, where actor-covered needs the witnessing event. Mind the level mismatch (ActorIn : Type ℓA vs touches : Type ℓR); the spike fixed event
-  level to ℓ-zero. Decide uniform-levels vs Lift then.
-  5. a ⊣ ι fails on inactive (actor-only, zero-event) frames — the universal property genuinely breaks there. Build over the supported/active subsite as parallel modules (W3); do not refactor the
-  full-site R4 stack (W2 risks the whole budget). The result inhabits the point-generated-site FiniteSheafification, not the existing full-site one — advertise as the event-discrete first site.
-  6. For a(P) is-a-sheaf: mirror EventProductSheaf.agda's component-by-component reconstruction with the variable slot via the wrapper; you still prove descent over arbitrary given covers, not just
-  the point cover. For a ⊣ ι: both Psh[P,ιS] and Sh[aP,S] are determined by point-component families (S point-local); unit η_P = tupleE of point-restrictions.
+  Consider both legs early: the full-site FiniteSheafCategory is instantiated at both StarAutonomous→Category V (linear) and SET (cartesian). The point bridge will want the same — point-V-sheaves and
+  point-Set-sheaves. Check whether PointSheafCategory instantiates cleanly at SET, and whether you need a point analogue of the event-product witness for non-vacuity.
 
-  Practical
-  7. Agda 2.8.0, run from agda/, silent on success. The UnsupportedIndexedMatch warnings are inherited from FiniteProducts and inert — we never rely on bigπ reducing under transport. Import locations
-  that cost me grep time: EquivJ→Foundations.Univalence, substCommSlice→Foundations.Transport, isSetFin→Data.FinData.Properties.
+  Process: incremental typecheck per piece; the cd into agda/ resets between Bash calls, so prefix with cd /home/ig/Code/hoapa/agda &&. Filter the inherited UnsupportedIndexedMatch warnings (grep -v)
+  — they're benign and documented.
+
+  Scoping/advertising guardrails (from status.md/current_track.md):
+  - The bridge stays relative to lnl : LNLAdjunction; it removes the reflector hypothesis, not the value-level Benton hypothesis. Do not claim a concrete Sessions Benton adjunction.
+  - It discharges the reflector for the point-generated / event-discrete site, not the full actor-causal site. No full Coverage/topos claim.
+  - Don't open Chu, Reflexive Π, bulk Λ, or cross-site Allow ⊣ Require.
+
+  My recommendation
+
+  Take the two design forks (re-lift vs RestrictToSupported; PointLocal vs IsPointSheaf for G-preservation) to a short Claude–Codex–ig scoping round before coding, exactly as every brick has gone —
+  those choices shape the file structure. And note that Brick 3 (the constructed reflector) is already a complete, citable standalone unit; Brick 4 is what makes the bridge unconditional and produces
+  the "first modest operational theorem" that current_track.md targets.
+
+### Codex on the design fork
+
+• Yes, Claude’s fork is the right outlook.
+
+  I’d lean toward redoing the lift directly over SupportedPresheafCategory, with RestrictToSupported kept as compatibility glue, not as the main construction.
+
+  Reason: Brick 4’s target lives entirely over supported presheaves and point sheaves. The full-site liftF/liftG plus RestrictToSupportedF gives useful commuting intuition, but routing the main proof
+  through the full finite site risks dragging back inactive frames and full-site sheaf predicates that the point reflector explicitly avoids. Direct supported lifts should be mostly a copy of
+  ChangeOfBase.agda: postcompose value, restrict, natural families, and prove functor laws. Then prove the supported presheaf-level adjunction pointwise, just like liftF⊣liftG.
+
+  Best shape:
+
+  1. Add a supported change-of-base module, e.g. SupportedChangeOfBase.agda.
+  2. Define supportedLiftF, supportedLiftG, and supportedLiftF⊣supportedLiftG directly over SupportedPresheafCategory.
+  3. Optionally prove or at least document the commuting square:
+     RestrictToSupportedF ∘ fullLift ≈ supportedLift ∘ RestrictToSupportedF.
+  4. Use PointSheafAdjunction.a⊣ι as the reflector for the left side in the Brick 4 bridge.
+
+  So: Claude’s fork is right, but I would not make RestrictToSupported the central route unless the direct supported lift unexpectedly becomes noisy. It is better as an adapter for importing existing
+  full-site objects, not as the foundation for the point-generated bridge.
