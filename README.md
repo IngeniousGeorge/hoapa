@@ -1,16 +1,15 @@
-# Hoapa protocols as the "pure form" of communication systems
+# Hoapa protocols as the *pure form* of communication systems
 
 ## Scope
 
 The Hoapa project is composed of several layers:
 
-- a communication system (written in Elixir, a programming language optimized for concurrency)
-- a model verifier which checks the mathematical properties of the system (written in Agda, a programming language that can check mathematical proofs)
-- a pedagogical explanation of what each code-base accomplishes and how
-- a documentation of what it is in theory (/communication) and how it develops in practice (/workflow)
+- a communication system 
+- a model verifier which checks the mathematical properties of the system
+- a pedagogical explanation of what it accomplishes and how
+- a documentation of what it is in theory and how it develops in practice
 
-The project belongs to a broad category of "informational architectures" which has been studied by disciplines such as:  
-(Here from the most holistic to the most mechanistic)  
+The project belongs to a broad category of "informational architectures" which has been studied by disciplines such as:
 
 - Cybernetics/systems theory
 - Collective intelligence
@@ -20,7 +19,7 @@ The project belongs to a broad category of "informational architectures" which h
 - Concurrency (in computer science)
 - Information theory
 
-Our framework assumes the point of view of yet another: Applied Category Theory. Where category theory is the most abstract branch of mathematics, the study of how things relate, regardless of what they are. It asks: "What patterns of connection, transformation, and composition appear everywhere?" Applied Category Theory (ACT) takes those formal patterns and uses them to:
+Our framework assumes the point of view of yet another: Applied Category Theory. Where category theory is the most abstract branch of mathematics, the study of how things relate, regardless of what they are. It asks: "What patterns of connection, transformation, and composition appear everywhere?" Applied Category Theory takes those formal patterns and uses them to:
 
 - Design better communication systems (with guarantees about their behavior)
 - Model complex interactions compositionally—building up systems from verified pieces
@@ -30,21 +29,23 @@ Our framework assumes the point of view of yet another: Applied Category Theory.
 Which more or less mirrors the four layers of our project: the system, its verification, its explanation and its working documentation.
 
 Examples of Hoapa's relatives include:
-The internet, the universal postal union, supply-chain logistics networks, road signaling systems, a distributed computing system, the genetic code, the vast underground fungal forest network, a flock of starlings in murmurations, nervous systems, immune systems, wikipedia, social media, citizen assemblies, the scientific method, a conversation…
+The internet, the universal postal union, supply-chain logistics networks, road signaling systems, distributed computing systems, the genetic code, the vast underground fungal forest network, a flock of starlings in murmurations, nervous systems, immune systems, wikipedia, social media, citizen assemblies, the scientific method, a conversation…
 
 ## Synopsis
 
 ### Objective
 
-The main objective of this project is to demonstrate the optimality of Hoapa protocols. We do so by leveraging the universality and expressiveness of category theory to recognize it as a distinguished element in its domain.
+The main objective of this project is to demonstrate the optimality of Hoapa protocols.
+
+We do so by leveraging the universality and expressiveness of category theory to recognize it as a distinguished element in its domain.
 
 Category theory is made out of categories, which are like webs of family relations (morphisms) between similar enough things (objects). The existence of a "new" category is often revealed by a bridge (adjunction) between two "prior" categories, and this bridge also identifies certain objects as being the "original incarnation" of the family members (initial object), their "final incarnation" (terminal object), or their "default incarnation" (free object).
 
-This is the story we're trying to tell here: there is a "pure form" of communication architecture whose social, engineering or scientific characteristics reflect its advantageous mathematical properties.
+This is the story we're trying to tell here: there is a "pure form" of communication architecture whose advantageous social, engineering or scientific characteristics is reflected in its mathematical properties.
 
 This can be used practically in two ways:
 
-- The optimality to organize collective work
+- The optimality to organize any kind of collective work
 - The "naturality" to start it uncontroversially
 
 Just like many games and sports start at the center of the field of play, Hoapa can be the center from which productive communication starts. (The fact that Hoapa protocols are absolutely decentralized, autonomous and capable of self-modifications to adapt to their context makes them all the more suitable for the role.)
@@ -53,18 +54,24 @@ Just like many games and sports start at the center of the field of play, Hoapa 
 
 The two categories our bridge will connect are:
 
-**Op:** The operational structure of Hoapa networks
+**Op:** The operational structure of Hoapa networks  
 **Ct:** The context in which they are optimal
 
-The operational side **Op** is an intricate construction because it must navigate several trade-offs to ensure optimality and obtain decentralization, autonomy, openness to peers, expressiveness, transparency, scalability or self-reflection. But all of them are answered with the same strategy: separation of concerns. And they all descend from an original separation which encapsulates the entire system, between:
+#### Op - the operational
+
+The **Op** side is necessarily an intricate construction because it must navigate several trade-offs to ensure optimality and obtain decentralization, autonomy, openness to peers, expressiveness, transparency, scalability and self-reflection. But all of them are won with the same strategy: separation of concerns, or modularity—each part of the system must only do one thing. And they all descend from an original separation which encapsulates the entire system, between:
 
 - a community of *unityped* communicating agents,
-- and layers of *typed* documentation their communication produces.
+- and layers of *typed* documentation produced by the agents' communication.
 
 This has a precise meaning in computer science, which is more or less the double specification that:
 
-- All participants must "play by the same rules" (like basketball players, and unlike goal keepers vs fields players in sports with goals), meaning the communication system can never distinguish between them. To the system, participants are computational resources, and whenever it needs resources, it taps into its reserves at random. Importantly, this should not be interpreted as "the system wants all participants to be the same", on the contrary, the whole point of this is to welcome diversity.
-- Whatever the participants produce, it should be put in meaningful containers and properly labelled. And here, contrary to the participants who are all of the same type, the multiplicity of types is the crucial mechanism through which the system copes with complexity.
+- All participants must "play by the same rules" (like basketball players, and unlike goal keepers vs fields players in sports with goals), meaning the communication system can never distinguish between them. To the system, participants are computational resources, and whenever it needs resources, it taps into its reserves at random.
+- Whatever the participants produce, it should be put in meaningful containers and properly labelled. Here, contrary to the participants who are all of the same type, the multiplicity of types is the crucial mechanism through which the system copes with *complexity of output*.
+
+Importantly, "unityping" should not be interpreted as "the system wants all participants to be the same", on the contrary, the whole point of this is to welcome and make use of diversity: it is the crucial mechanism through which the system copes with *diversity of input*.
+
+#### Ct - the contextual
 
 At the integrated level, the context **Ct** becomes the recognition that the world is profoundly perspectival: all assertions must be evaluated as points of view, never from a supposedly neutral or absolute standpoint.
 
@@ -115,3 +122,13 @@ motivation -> adjunction
 
 implementation (in Elixir, for which the Agda code is a verification layer)
 
+---
+
+## Repo struct
+
+The Hoapa project is composed of several layers:
+
+- a communication system (written in Elixir, a programming language optimized for concurrency)
+- a model verifier which checks the mathematical properties of the system (written in Agda, a programming language that can check mathematical proofs)
+- a pedagogical explanation of what each code-base accomplishes and how
+- a documentation of what it is in theory (/communication) and how it develops in practice (/workflow)
