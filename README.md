@@ -16,10 +16,12 @@ The project belongs to a broad category of "informational architectures" which h
 - Protocol studies
 - Semiotics
 - Network science
-- Concurrency (in computer science)
+- Concurrency (computer science)
 - Information theory
 
-Our framework assumes the point of view of yet another: Applied Category Theory. Where category theory is the most abstract branch of mathematics, the study of how things relate, regardless of what they are. It asks: "What patterns of connection, transformation, and composition appear everywhere?" Applied Category Theory takes those formal patterns and uses them to:
+Our framework assumes the point of view of yet another: Applied Category Theory. Where category theory is the most abstract branch of mathematics, the study of how things relate, regardless of what they are. It asks: "What patterns of connection, transformation, and composition appear everywhere?"
+
+Applied Category Theory takes those formal patterns and uses them to:
 
 - Design better communication systems (with guarantees about their behavior)
 - Model complex interactions compositionally—building up systems from verified pieces
@@ -28,14 +30,14 @@ Our framework assumes the point of view of yet another: Applied Category Theory.
 
 Which more or less mirrors the four layers of our project: the system, its verification, its explanation and its working documentation.
 
-Examples of Hoapa's relatives include:
-The internet, the universal postal union, supply-chain logistics networks, road signaling systems, distributed computing systems, the genetic code, the vast underground fungal forest network, a flock of starlings in murmurations, nervous systems, immune systems, wikipedia, social media, citizen assemblies, the scientific method, a conversation…
+Examples of Hoapa's relatives include:  
+The internet, the universal postal union, supply-chain logistics networks, road signaling systems, distributed computing systems, the genetic code, underground fungal forest networks, flocks of starlings in murmurations, nervous systems, immune systems, wikipedia, social media, citizen assemblies, the scientific method, conversations…
 
 ## Synopsis
 
 ### Objective
 
-The main objective of this project is to demonstrate the optimality of Hoapa protocols.
+The main objective of this project is to demonstrate the optimality and accessibility of Hoapa protocols.
 
 We do so by leveraging the universality and expressiveness of category theory to recognize it as a distinguished element in its domain.
 
@@ -52,7 +54,7 @@ Just like many games and sports start at the center of the field of play, Hoapa 
 
 ### Construction
 
-The two categories our bridge will connect are:
+The two categories our bridge **Adj** will connect are:
 
 **Op:** The operational structure of Hoapa networks  
 **Ct:** The context in which they are optimal
@@ -71,30 +73,83 @@ This has a precise meaning in computer science, which is more or less the double
 
 Importantly, "unityping" should not be interpreted as "the system wants all participants to be the same", on the contrary, the whole point of this is to welcome and make use of diversity: it is the crucial mechanism through which the system copes with *diversity of input*.
 
+Partial and compact versions of the operational side exist in this world, in the field of participative/direct democracy: citizen assemblies, and they've proved their worth and efficiency time and time again. In a sense they represent the purest form of conversation, with the appropriate conditions, stakes, relational complexity and freedom that are systematically eliminated in representative democracy, and even more so in authoritative regimes.
+
+Hoapa would be the "networkization" of such units into an open and autonomous protocol, embedded in a socio-political context which reflects its philosophy, pacified and circular, which it can shape by co-evolution.
+
 #### Ct - the contextual
 
-At the integrated level, the context **Ct** becomes the recognition that the world is profoundly perspectival: all assertions must be evaluated as points of view, never from a supposedly neutral or absolute standpoint.
+At the integrated level, the context **Ct** becomes the recognition that the world is profoundly perspectival: all assertions must be evaluated as points of view, never from a supposedly neutral or absolute standpoint, simply because those don't exist.
 
-The bridge is then the statement that the generative complexity emerging from such perspectival contexts is what **allows** concurrent architectures like Hoapa to **unfold**, while the operational layer of Hoapa is what is **required** by this context to **persist**. (Where the context is represented by the organization of a community of agents living in this context, or how we can view an ecosystem as a network of relations between organisms.)
+Perspectivism is represented mathematically in our framework by *(modal) homotopy type theory*, starting in *sheaf theory*. To its advocates, it's the best foundations we have for the whole of mathematics at the moment, both for its theory and practice. It is in particular much more capable of reasoning about relations and equality, while the long established *set theory*, of which it is an extension, focuses on objects viewed in isolation.
 
-Perspectivism is represented mathematically in our framework by *(modal) homotopy type theory*. To its advocates, it's the best foundations we have for the whole of mathematics at the moment. It is in particular much more capable of reasoning about relations and equality, while the long established *set theory*, to which it is an extension, focuses on objects viewed in isolation.
+#### Adj - the structural relation
 
-The bridge is still conjectural at this point. But while building for it, we've extracted a first theorem which can be interpreted as "there are no privileged points of view on the operational side of our construction".
+The bridge is then the statement that the generative complexity emerging from such perspectival contexts is what **allows** concurrent architectures like Hoapa to **unfold**, while the operational layer of Hoapa is what is **required** by this context to **map itself**, and eventually attain recursion. (Where the context is represented by the organization of a community of agents embedded in this context, or how we can view an ecosystem as a network of relations between organisms.)
+
+In a sense, the two ends are quite self-evident:
+
+- That modalities/perspectivalism allows complexity to develop is trivial in both abstract mathematics and philosophy.
+- That typed data is more robust, readable, literate… is trivial in any domain concerned with information transfer, such as programming, whereas unityped agents are most adapted to handle complexity is trivial in concurrency theory.
+
+What the bridge brings to the table is simply the recognition that those facts are intimately linked. 
+
+The relation is still conjectural at this point. But while building for it, we've extracted a first theorem which can be interpreted as "there are no privileged points of view on the operational side of our construction". In mathematical terms it is _.
+
+## Summary of Hoapa in four steps
+
+### Eternal
+
+The protocol has certain **invariant** mathematical properties which translate into engineering features as a system, into social dynamics as a communication system, and even allows students of Nature to recognize its signature in many systems occurring at all scales in the universe.
+
+### Initial
+
+Those properties make it particularly adapted to be the **starting point** of any collective endeavour, because it has this "default configuration" aspect that favors no one, and this "initial configuration" which is the most welcoming to future change and complexity.
+
+### Work
+
+The protocol is then the place where communication **unfolds** to collect and refine information about a shared context and produce a useful output in the form of a documentation. Both the protocol and the documentation think of themselves as being part of a network of similar objects, they are constantly working on their external relations as much as their internal growth. 
+
+### Self-evolution
+
+As it is doing its work of mapping its context, the protocol is also continuously monitoring itself and using its resources to enact its own **evolution**. Technically, it randomly creates conversations which have the special capacity to edit the code on which the system runs.
 
 ---
 
-## ToC
+## Table of Content
 
-Context for more info
-Extended abstract for where we are in the math
-Aims and Potential Impact
-Repository folder structure
+**1. Context**, for more information about the project  
+**1.a Its name**  
+**1.b Its history**
+
+**Extended abstract** of the first theorem, for more about information about the mathematics
+
+
+**Aims and Potential Impact** 
+**Repository folder structure**
 
 ---
 
-## Context
+## 1. Context
 
+## 1.a Name
 
+### Hoapa
+
+This term means "everything" in Koehkoeh, chosen for 3 reasons:
+
+- The surface area of the concept is so large, modular and decentralized that it's not possible to select an element or a viewpoint and call it the essence of the system. The backup plan is then to point to the very multiplicity of the concept as its name.
+- As an homage to San culture, which has been a wonderful source of inspiration for this work. In many ways they are the first human practitioners of Hoapa, so the name should come out of their language.
+- It is easy and new to the general public and research community alike, so no one will be jumping conclusion when they encounter it.
+
+I append the term "protocol" to it, which in my view is the antithesis of "hero". We live in a world which is still waiting for a particular individual or entity to "save the day" with 
+
+### Naming
+
+Naming as a practice allows me to introduce three other main influences for my own work, which all have talked about the difficulties and importance of the exercise:
+
+- Software developers who take pride in writing "clean code":  
+    Naming is the name of chapter 1 of the foundational book on the subject, and in it  
 
 ## Place in current research
 
