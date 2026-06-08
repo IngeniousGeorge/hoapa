@@ -147,11 +147,12 @@ The immediate construction is no longer "generic finite sheafification over the 
 5. Brick 1 of the Option-2 geometry has landed: incident point frames, event-supported frame support, event-supported point overlaps, and a parallel canonical `PointCover` interface. This is deliberately not a reuse of `FiniteCover`, because the old finite-cover overlap is the raw actor-intersection pullback.
 6. Brick 2 has landed in `Concurrency/Hybrid/PointDescent.agda`: product-free descent over the canonical point cover, `PointLocal`, zero-event subterminality, and the biconditional `IsPointSheaf P ↔ PointLocal P` over `HasFiniteProducts C`.
 7. Brick 3 has landed over the supported subsite. `SupportedPointProduct.agda` gives the abstract slot-indexed product API that keeps frame arguments solvable; `PointifyIsSheaf.agda` proves pointification lands in point sheaves; `PointSheafCategory.agda` packages the full subcategory and inclusion; `PointSheafification.agda` constructs the reflector functor; and `PointSheafAdjunction.agda` proves the unit, hom-set bijection, naturality fields, and assembled `a ⊣ ι`.
+8. Brick 4 has landed. `SupportedChangeOfBase.agda`, `SupportedLinearNonlinearSheafAdapter.agda`, and `PointLinearNonlinearAdjunction.agda` lift Benton/LNL change-of-base over supported presheaves, prove right-adjoint preservation of point sheaves, and assemble `Lpoint ⊣ Rpoint` over point-sheaf categories, relative to `lnl : LNLAdjunction` and `vProd : HasFiniteProducts (StarAutonomous→Category V)`.
 
 The next coding target is:
 
 ```text
-point-generated R4 bridge wiring
+extended abstract for the point-generated R4 theorem
 ```
 
 Advertising discipline:
@@ -159,7 +160,7 @@ Advertising discipline:
 - The route now discharges the **reflector** condition for the point-generated/event-discrete R4 site, not for the full finite actor-causal site.
 - The near-term descent claim is over the canonical event-point cover with event-supported overlaps, not yet a full Cubical `Coverage` / library-sheaf theorem. The normalized-pullback and stability upgrade is later work.
 - The zero-event result currently used is subterminality/uniqueness of maps into `value F`; do not advertise a stronger terminal-object package unless existence is later built.
-- The next sheaf-level Benton bridge is still relative to a value-level `lnl : LNLAdjunction`; it removes the `shf : FiniteSheafification ...` hypothesis for the point-generated site, not the value-level Benton hypothesis.
+- The sheaf-level Benton bridge is now machine-checked for the point-generated site, relative to `lnl : LNLAdjunction` and `vProd`; it removes the `shf : FiniteSheafification ...` hypothesis there, not the value-level Benton hypothesis.
 - Do not de-abstract `SupportedPointProduct.agda`: the abstract boundary is load-bearing for Agda elaboration of the functor and adjunction proofs.
 - This is the deliberately modest first operational theorem. The later, more interesting work is re-enriching the site so causality and actor incidence become descent content, then relating the resulting operational side to the modal/foundational side through `Allow ⊣ Require`.
 
