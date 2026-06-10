@@ -2,35 +2,35 @@
 
 ## Table of Contents
 
-1. Foundations
-1.1 Scope
-1.2 Objective
-1.3 Mathematical construction
-1.3.1 Op - the operational
-1.3.2 Ct - the contextual
-1.3.3 Adj - the structural relation
-2. Implementation
-2.1 Stack / programming languages
-2.2 Implementation details
-3. Use cases
-3.1 A park
-3.2 Open source
-3.3 Science
-3.4 Mathematics
-3.5 Generalized permaculture
-3.6 Care
-3.7 Networks
-3.8 Justice and police
-4. Related experiments
-5. Summary of Hoapa protocols in four steps
-5.1 Eternal
-5.2 Initial
-5.3 (Net)work
-5.4 Self-evolution
-6. Name
-7. Repository
-7.1 Folder structure
-7.2 Documents of interest
+1. Foundations  
+1.1 Scope  
+1.2 Objective  
+1.3 Mathematical construction  
+1.3.1 Op - the operational  
+1.3.2 Ct - the contextual  
+1.3.3 Adj - the structural relation  
+2. Implementation  
+2.1 Stack / programming languages  
+2.2 Implementation details  
+3. Use cases  
+3.1 A park  
+3.2 Open source  
+3.3 Science  
+3.4 Mathematics  
+3.5 Generalized permaculture  
+3.6 Care  
+3.7 Networks  
+3.8 Justice and police  
+4. Related experiments  
+5. Summary of Hoapa protocols in four steps  
+5.1 Eternal  
+5.2 Initial  
+5.3 (Net)work  
+5.4 Self-evolution  
+6. Name  
+7. Repository  
+7.1 Folder structure  
+7.2 Documents of interest  
 
 ---
 
@@ -346,18 +346,18 @@ As it is doing its work of mapping its context, the protocol is also continuousl
 
 ## 7.1 Folder structure
 
-[/agda](https://codeberg.org/doc2cog/hoapa/src/branch/main/agda) — the code files for the verification layer
-[/communication]() — all files related to the presentation of the project
-[/elixir]() — the code files for the module of the protocol concerned with communication between agents
-[/pedagogy]() — mirrors the /agda folder and walks the reader through what the code does chunk by chunk
-[/workflow]() — the files used and written by LLM coding agents to track the progress of the project
+[/agda](https://codeberg.org/doc2cog/hoapa/src/branch/main/agda) — the code files for the verification layer  
+[/communication]() — all files related to the presentation of the project  
+[/elixir]() — the code files for the module of the protocol concerned with communication between agents  
+[/pedagogy]() — mirrors the /agda folder and walks the reader through what the code does chunk by chunk  
+[/workflow]() — the files used and written by LLM coding agents to track the progress of the project  
 
 ## 7.2 Documents of interest
 
-[Letter of Recommendation](https://codeberg.org/doc2cog/hoapa/src/branch/main/communication/reference_zalamea.pdf) — From Fernando Zalamea
-[]() — 
-[]() — 
-[]() — 
-[]() — 
+[Letter of Recommendation](https://codeberg.org/doc2cog/hoapa/src/branch/main/communication/reference_zalamea.pdf) — From Fernando Zalamea  
+[]() —   
+[]() —   
+[]() —   
+[]() —   
 
 ---
