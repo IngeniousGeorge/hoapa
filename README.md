@@ -113,7 +113,7 @@ Importantly, "unityping" should not be interpreted as "the system wants all part
 
 Partial and compact versions of the operational side exist in this world, in the field of participative/direct democracy: citizen assemblies, and they've proved their worth and efficiency time and time again. A small number of participants are selected from the entire electoral register, they're given ample time and resources to study and deliberate, they write a report of their conclusions by consensus only.
 
-In a sense they restore the purest form of conversation that existed before the formation of states or colonialism, with the appropriate conditions, stakes, relational complexity and freedom that are systematically eliminated in representative democracy, capitalism, and even more so in authoritative regimes and their victims.
+In a sense they restore the purest form of conversation that existed before the formation of states or colonialism, with the appropriate conditions, stakes, relational complexity and freedom that are systematically eliminated in representative democracy, capitalism, and even more so in authoritarian regimes and their victims.
 
 Hoapa would be the "networkization" of such units into an open and autonomous protocol. Ideally, it would be embedded in a socio-political context which reflects its philosophy, pacified and circular (unlike the one we have now, but which it can shape by co-evolution).
 
@@ -129,10 +129,10 @@ The bridge is then the statement that the generative complexity emerging from su
 
 In a sense, the two ends are quite self-evident:
 
-- That modalities/perspectivism allows complexity to develop is trivial in both abstract mathematics (Yuri Manin, Bill Lawvere) and philosophy (Gilles Deleuze).
+- That modalities/perspectivism allow complexity to develop is trivial in both abstract mathematics (Yuri Manin, Bill Lawvere) and philosophy (Gilles Deleuze).
 - That typed data is more robust, readable, literate, composable… is trivial in any domain concerned with information transfer, such as programming, whereas the fact that large numbers of unityped agents are most adapted to handle complexity is trivial in concurrency theory.
 
-What the bridge brings to the table is simply the recognition that those facts are intimately linked. 
+The bridge simply establishes the recognition that those facts are intimately linked. 
 
 The relation is still conjectural at this point. But while building for it, we've extracted a first theorem which can be interpreted as "there are no privileged points of view on the operational side of the construction". In mathematical terms it is _.
 
@@ -151,7 +151,7 @@ While the mathematical verification program is written in Agda, a math-oriented 
 
 ### 2.2 Implementation details
 
-The actor model of concurrency is very simple, all agents have the same privileges and they can:
+The actor model of concurrency is straightforward, all agents have the same privileges and they can:
 
 - *send messages*
 - *receive messages and update their internal state accordingly*
@@ -188,9 +188,9 @@ Hoapa can also operate at small scales and with only the "base layer of complexi
 
 ### 3.1 A park
 
-For instance we could have a neighborhood "manage" its local park by having a protocol in which the motivated residents discuss how it could be enhanced, and produce a to-do list for its maintenance. 
+For instance we could have a neighborhood "managing" its local park via a protocol in which the motivated residents discuss how it could be enhanced, and produce a to-do list for its maintenance. 
 
-Here it is crucial to understand that the system can only preserve its nice mathematical, social and engineering properties, if it is *only* a communication system, and not a full management system which also enacts in reality what has been discussed in the abstract. 
+Here it is crucial to understand that the system can only preserve its *nice* mathematical, social and engineering properties, if it is *only* a communication system, and not a full management system which also enacts in reality what has been discussed in the abstract. 
 
 Its task is to chart the world, not inhabit and certainly not control it. (That kills all the carefully crafted separations of concerns, starting with the unityping of agents, because it necessarily introduces some hierarchical structure and tension—for basically the same reasons you can share an idea with the entire world without losing it, but you can't do that with a loaf of bread.)
 
@@ -210,7 +210,7 @@ Which makes Hoapa protocols especially well suited to organize the open source e
 
 Because open source produces code, it "lives in the abstract" entirely, and it has historically, and by definition, only used voluntary labour.
 
-Hoapa is especially adapted to answer the main recurring problem open source projects face: scalability and continuation beyond the circle of core contributors, who are usually also the instigators of the project. Because every open source project is based on this "circles of knowledge/influence" architecture, which is in essence a hierarchy, it is destined to terminate the moment the inner circle quits (which, as humans, they're bound to do eventually).
+Hoapa is especially adapted to resolve the main recurring problem open source projects face: scalability and continuation beyond the circle of core contributors, who are usually also the instigators of the project. Because every open source project is based on this "circles of knowledge/influence" architecture, which is in essence a hierarchy, it is destined to terminate the moment the inner circle quits (which, as humans, they're bound to do eventually).
 
 Hoapa revokes the privileges of the inner circle, distributes the workload evenly and transfers all the essential knowledge from the original designer's head into a strictly typed and operational documentation. (As in the concept of literate programming by Donald Knuth, the great missed opportunity of software development.)
 
@@ -220,7 +220,7 @@ The same arguments can be used to suggest a reform of how science is conducted.
 
 ### 3.3 Science
 
-Universities are extremely hierarchical political machines whose ties to reality are clearly not behind buffers, which impair their capacity to describe the world they inhabit. While the scientific method prevents them from stating things that are wrong in the domains it is applicable, it doesn't prevent a mismanagement of efforts towards certain technologies at the expense of understanding, the disunion of the study of Nature into opposing departments, the spreading of opaque jargons, etc.
+Universities are extremely hierarchical political machines whose ties to reality are clearly not behind buffers, which impair their capacity to describe the world they inhabit. While the scientific method prevents them from stating things that are wrong in the domains it is applicable, it doesn't prevent a mismanagement of efforts towards certain technologies at the expense of understanding, the fragmentation of the study of Nature into opposing departments, the proliferation of opaque jargons, etc.
 
 Hoapa protocols, on the other hand, are ideal for the realization of what citizen science promised to be, but only marginally developed. In a very real and demonstrable sense, they are the extension of the Galilean scientific method.
 
@@ -238,7 +238,7 @@ Another liberating effect, for the specialists themselves, is that actual scienc
 
 All of the above applies in mathematics as well, but here things get even more interesting, because the protocol itself is built on the very mathematics that its practitioners claim is the correct foundations for the whole of mathematics (the aforementioned homotopy type theory and its modal variant, as the internal language of the more general setting of an ∞-topos).
 
-This could accomplish one of the many dreams of the main architect behind those structures, Alexander Grothendieck, whose memoirs are filled with intertwined reflections on creativity, mathematical practice and mathematics itself.
+This could accomplish one of the many dreams of the main architect behind those structures, Alexander Grothendieck, whose memoirs weave together reflections on creativity, mathematical practice and mathematics itself.
 
 The proof assistant we use in our framework, Agda, is a direct descendant of this history.
 
@@ -287,7 +287,7 @@ We've listed some of the most positive aspects of life in this presentation, but
 
 Again we can represent the Hoapa philosophy with a two step algorithm:
 
-1. The individual chooses to sign up for one of the multiple justice-protocol available
+1. The individual chooses to opt into one of the multiple justice-protocol available
 2. Each justice-protocol signs up for a police-protocol
 
 All individuals select the authority to which they want to respond, which exists as a documentation and can only be "instantiated" by a jury of peers (a random selection of people, just like in many existing judicial systems; in Hoapa, a typed conversation). The common legal system of two parties which have signed up for different justice protocols is a "*homotopical*" mixture between the two (preestablished by the typed conversations of the "openness to others" layer of each protocol).
@@ -304,7 +304,7 @@ While we can find in the history of all the domains just mentioned many examples
 
 This is the fate of most attempts at community-driven structures, especially when they were most active in the post WWII era until the 1970s. They would only exchange the formal hierarchical structures for informal ones, because the root cause of their emergence wasn't properly diagnosed and addressed at the organizational level.
 
-In Hoapa communities do the "dirty work" in a special place under strict conditions, voluntarily, in order to organize networks of solidarity, so that eventually all individuals can have both freedom and dignity in their lives.
+In Hoapa, communities do the "dirty work" in a special place under strict conditions, voluntarily, in order to organize networks of solidarity, so that eventually all individuals can have both freedom and dignity in their lives.
 
 As for the argument that hierarchical structures are part of "human nature", it simply doesn't match our history and evolution, contrary to deep-seated assumptions which only look at a partial rendering of the tail end of the story and often dress Nature in a grotesque 'only the strong survive' frame, which is the antithesis of its autonomous and distributed operational core—a worldview best represented by Herbert Spencer and still extremely influential today, especially in biology and economics.
 
@@ -350,7 +350,7 @@ As it is doing its work of mapping its context, the protocol is also continuousl
 
 [/agda](https://codeberg.org/doc2cog/hoapa/src/branch/main/agda) — The code files for the verification layer  
 [/communication](https://codeberg.org/doc2cog/hoapa/src/branch/main/communication) — All files related to the presentation of the project (see 7.2)  
-[/elixir](https://codeberg.org/doc2cog/hoapa/src/branch/main/elixir) — The code files for the module of the protocol concerned with communication between agents  
+[/elixir](https://codeberg.org/doc2cog/hoapa/src/branch/main/elixir) — The code files for the protocol's module concerned with communication between agents  
 [/pedagogy](https://codeberg.org/doc2cog/hoapa/src/branch/main/pedagogy) — Mirrors the /agda folder and walks the reader through what the code does chunk by chunk (AI generated and unfortunately largely inaccessible to non-mathematicians)  
 [/workflow](https://codeberg.org/doc2cog/hoapa/src/branch/main/workflow) — The files used and written by LLM coding agents to ground and track the progress of the project  
 
@@ -362,10 +362,10 @@ As it is doing its work of mapping its context, the protocol is also continuousl
 
 [Letter of Recommendation: From Fernando Zalamea](https://codeberg.org/doc2cog/hoapa/src/branch/main/communication/reference_zalamea.pdf) — From Fernando Zalamea, a mathematician and philosopher, leading expert on the work of Alexander Grothendieck and Charles S. Peirce
 
-[Article: "An Introduction to Grothendieck’s General Theory of Evolution"]() — For exact and natural scientists, about the dynamics our universe keeps on repeating, a sort of Hoapa-informed version of Philip Anderson's "More is Different"
+[Article: "An Introduction to Grothendieck’s General Theory of Evolution"](https://codeberg.org/doc2cog/hoapa/src/branch/main/communication/general_evolution.pdf) — For exact and natural scientists, about the dynamics our universe keeps on repeating, a sort of Hoapa-informed version of Philip Anderson's "More is Different"
 
-[Article: "Univocal Science — From Spinoza to Grothendieck, missed opportunities for a category-theory-driven scientific revolution"]() — For philosophers and philosophers of mathematics, the "seed" of the conjectured bridge
+[Article: "Univocal Science — From Spinoza to Grothendieck, missed opportunities for a category-theory-driven scientific revolution"](https://codeberg.org/doc2cog/hoapa/src/branch/main/communication/univocal_science.pdf) — For philosophers and philosophers of mathematics, the "seed" of the conjectured bridge
 
-[Manifesto: "Liberation engineering for resistance networks"]() — For social scientists, a diagnosis of institutional hierarchy as a "virus" in humanity's world-describing systems, and the argument for decentralized liberation networks as the remedy
+[Manifesto: "Liberation engineering for resistance networks"](https://codeberg.org/doc2cog/hoapa/src/branch/main/communication/liberation_engineering.pdf) — For social scientists, a diagnosis of institutional hierarchy as a "virus" in humanity's world-describing systems, and the argument for decentralized liberation networks as the remedy
 
 ---
