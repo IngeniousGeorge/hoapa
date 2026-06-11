@@ -1,7 +1,5 @@
 # Hoapa protocols as the *pure form* of communication systems
 
-## Table of Contents
-
 1. Foundations  
 1.1 Scope  
 1.2 Objective  
@@ -9,10 +7,10 @@
 1.3.1 Op - the operational  
 1.3.2 Ct - the contextual  
 1.3.3 Adj - the structural relation  
-2. Implementation  
+1. Implementation  
 2.1 Stack / programming languages  
 2.2 Implementation details  
-3. Use cases  
+1. Use cases  
 3.1 A park  
 3.2 Open source  
 3.3 Science  
@@ -21,14 +19,14 @@
 3.6 Care  
 3.7 Networks  
 3.8 Justice and police  
-4. Related experiments  
-5. Summary of Hoapa protocols in four steps  
+1. Related experiments  
+1. Summary of Hoapa protocols in four steps  
 5.1 Eternal  
 5.2 Initial  
 5.3 (Net)work  
 5.4 Self-evolution  
-6. Name  
-7. Repository  
+1. Name  
+1. Repository  
 7.1 Folder structure  
 7.2 Documents of interest  
 
@@ -48,11 +46,13 @@ The project belongs to a broad category of "informational architectures" which h
 
 - Cybernetics/systems theory
 - Collective intelligence
+- Process Philosophy
 - Protocol studies
 - Semiotics
-- Network science
+- Media ecology
 - Concurrency (computer science)
 - Information theory
+- Non-equilibrium Thermodynamics
 
 Our framework assumes the point of view of yet another: **Applied Category Theory**. Where category theory is the most abstract branch of mathematics, a silent and slow epistemic revolution happening behind closed doors, whose potential to profoundly change the way we perceive reality has been recognized by some insiders, ignored by most, and never really expanded beyond its mathematical origins, despite its universality. 
 
@@ -314,11 +314,11 @@ The lion has never been a king. Humans, on the other hand, have a 300,000 years 
 
 ## 5. Name
 
-'Hoapa' means "everything" in Khoekhoewab, to be pronounced like in English, chosen for 3 reasons:
+'Hoapa' means "everything" in Khoekhoewab (of the Khoe language family, spoken in Namibia, Botswana, and South Africa primarily by three ethnic groups: Namakhoen, ǂNūkhoen, and Haiǁomkhoen), to be pronounced like in English, and chosen for 3 reasons:
 
 - The surface area of the concept to be named is so large, modular and decentralized that it's not possible to select an element or a viewpoint and call it the essence of the system. The backup plan is then to point to the very multiplicity of the concept for its name.
-- As an homage to San culture, which has been a wonderful source of inspiration for this work. In many ways they are the last known human practitioners of Hoapa, along with the Hadza and some hunter-gatherers of the Congo Basin, so it's only natural the name should come out of (one of) their language.
-- It is easy and new to the general public and research community alike, so no one will be jumping to conclusion when they encounter it.
+- As an homage to San culture, which has been a wonderful source of inspiration for this work. In many ways they are the last known human practitioners of Hoapa, along with the Hadza and other hunter-gatherers of the Congo Basin, so it's only natural the name should come out of one of their languages.
+- It is easy and new to the general public and research community alike, so no one will be jumping to conclusions when they encounter it.
 
 ---
 
@@ -344,20 +344,23 @@ As it is doing its work of mapping its context, the protocol is also continuousl
 
 ## 7. Repository
 
+[The repository](https://codeberg.org/doc2cog/hoapa) — Hosted by Codeberg, a truly open source alternative to Microsoft's GitHub  
+
 ## 7.1 Folder structure
 
-[/agda](https://codeberg.org/doc2cog/hoapa/src/branch/main/agda) — the code files for the verification layer  
-[/communication]() — all files related to the presentation of the project  
-[/elixir]() — the code files for the module of the protocol concerned with communication between agents  
-[/pedagogy]() — mirrors the /agda folder and walks the reader through what the code does chunk by chunk  
-[/workflow]() — the files used and written by LLM coding agents to track the progress of the project  
+[/agda](https://codeberg.org/doc2cog/hoapa/src/branch/main/agda) — The code files for the verification layer  
+[/communication](https://codeberg.org/doc2cog/hoapa/src/branch/main/communication) — All files related to the presentation of the project (see 7.2)  
+[/elixir](https://codeberg.org/doc2cog/hoapa/src/branch/main/elixir) — The code files for the module of the protocol concerned with communication between agents  
+[/pedagogy](https://codeberg.org/doc2cog/hoapa/src/branch/main/pedagogy) — Mirrors the /agda folder and walks the reader through what the code does chunk by chunk (AI generated and unfortunately largely inaccessible to non-mathematicians)  
+[/workflow](https://codeberg.org/doc2cog/hoapa/src/branch/main/workflow) — The files used and written by LLM coding agents to ground and track the progress of the project  
 
 ## 7.2 Documents of interest
 
-[Letter of Recommendation](https://codeberg.org/doc2cog/hoapa/src/branch/main/communication/reference_zalamea.pdf) — From Fernando Zalamea  
-[]() —   
-[]() —   
-[]() —   
-[]() —   
+[Extended abstract: "A linear/non-linear adjunction of sheaves…"]() — For mathematicians, the first, deliberately modest theorem of the framework, fully machine-checked in cubical Agda  
+[Diagram: Construction map for the cross-side adjunction]() — A diagram presenting to mathematicians the conjectured adjunction, the bridge this project is trying to establish  
+[Letter of Recommendation: From Fernando Zalamea](https://codeberg.org/doc2cog/hoapa/src/branch/main/communication/reference_zalamea.pdf) — From Fernando Zalamea, a mathematician and philosopher, leading expert on the work of Alexander Grothendieck and Charles S. Peirce   
+[Article: "An Introduction to Grothendieck’s General Theory of Evolution"]() — For exact and natural scientists, about the dynamics our universe keeps on repeating, a sort of Hoapa-informed version of Philip Anderson's "More is Different"  
+[Article: "Univocal Science — From Spinoza to Grothendieck, missed opportunities for a category-theory-driven scientific revolution"]() — For philosophers and philosophers of mathematics, the "seed" of the conjectured bridge  
+[Manifesto: "Liberation engineering for resistance networks"]() — For social scientists, a diagnosis of institutional hierarchy as a "virus" in humanity's world-describing systems, and the argument for decentralized liberation networks as the remedy  
 
 ---
