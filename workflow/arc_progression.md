@@ -112,14 +112,18 @@ Actors/locality live in the site.
 Session types and duality live in the value/content algebra.
 O1 supplies interaction shape, not the whole world.
 Finite descent, finite sheaf categories, finite coverage, SET comparison,
-and a conditional Benton/LNL sheaf bridge have landed.
-The next active frontier is the finite sheafification reflector.
-The current track says that a bankable publishable target is the finite
-sheafification reflector and the unconditional sheaf-level Benton bridge
-that it would enable.
+and the conditional full finite-site Benton/LNL sheaf bridge have landed.
+The point-generated supported route has now constructed the reflector
+`a ⊣ ι` and the point-sheaf Benton/LNL bridge `Lpoint ⊣ Rpoint`, relative
+to the value-level `lnl` and `vProd` hypotheses.
+The current track says that the nearest bankable publishable target is
+exposition of this point-generated theorem, with optional instantiation
+checks; the generic full finite actor-causal reflector is a later
+enrichment.
 The fallback targets are a non-collapse theorem for `Require ∘ Allow` or a
 Lawvere-style asymmetry theorem.
-The recommendation is to pursue the finite sheafification reflector first.
+The recommendation is to expose the point-generated R4 theorem first,
+while keeping the full finite actor-causal reflector as later enrichment.
 `workflow/future_work.md` keeps the debt honest.
 The modal fracture story is still an over-approximation.
 The concrete bar/cyclic recursion story is not yet implemented.
@@ -141,7 +145,9 @@ It says not to treat concurrency as decorative.
 It says not to pretend synthetic cohesion alone solves the B-side.
 It says not to claim full event-dependent sheaf content is done.
 It says not to collapse Set-valued and V-valued sheaves.
-It says not to treat R4 as complete before the reflector exists.
+It says not to treat R4 as complete without scoping: the point-generated
+event-discrete bridge is concrete, while the generic full finite
+actor-causal bridge is still reflector-conditional.
 It says not to infer a hidden morphism `𝟙ₛ ↔ ⊥ₛ`.
 It says every warm word must hang from a structural fact.
 `workflow/naming.md` fixes terminology.
@@ -1490,9 +1496,10 @@ It briefly tries to make a four-functor myth out of Complexity, Evolution,
 Praxis, and Anthropic.
 It returns to one pair.
 The active mathematical spine is now:
-build finite actor-causal/session sheaf structure;
-construct the finite sheafification reflector;
-use it to make the sheaf-level LNL bridge unconditional;
+expose the point-generated R4 theorem clearly;
+optionally instantiate its remaining value-level hypotheses;
+later enrich from the supported event-discrete reflector toward the full
+finite actor-causal reflector and richer point topology;
 then use that stable B-side as the place from which cross-site
 `Allow ⊣ Require`, non-collapse, and `T_recursion` can become real.
 The active philosophical spine is:

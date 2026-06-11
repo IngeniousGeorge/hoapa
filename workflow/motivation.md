@@ -23,6 +23,8 @@ Then:
 Philosophically: the category which hosts this structure is capable of ? (World understanding and world creation)
 Mathematically: something about covers/coverings, recursion, a form of contribution to a developing infinite network...
 
+Current first checked fragment: on the operational side, the project now has a point-generated sheafification reflector and a sheaf-level Benton/LNL adjunction over the supported event-discrete actor-causal site. This is not yet the cross-site `Allow ⊣ Require` adjunction; it is the first modest B-internal theorem that makes one side of that future adjunction concrete.
+
 The last item is the mathematical fragment, interesting for its own sake in mathematics, of a foundational statement in the space of interdisciplinary theories.
 
 ¹: and it is the basis of the actor model (and only in this relatively new domain because it is in friction with a foundational assumption of modernity, that complexity is based on specialisation)

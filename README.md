@@ -356,11 +356,16 @@ As it is doing its work of mapping its context, the protocol is also continuousl
 
 ## 7.2 Documents of interest
 
-[Extended abstract: "A linear/non-linear adjunction of sheaves…"]() — For mathematicians, the first, deliberately modest theorem of the framework, fully machine-checked in cubical Agda  
-[Diagram: Construction map for the cross-side adjunction]() — A diagram presenting to mathematicians the conjectured adjunction, the bridge this project is trying to establish  
-[Letter of Recommendation: From Fernando Zalamea](https://codeberg.org/doc2cog/hoapa/src/branch/main/communication/reference_zalamea.pdf) — From Fernando Zalamea, a mathematician and philosopher, leading expert on the work of Alexander Grothendieck and Charles S. Peirce   
-[Article: "An Introduction to Grothendieck’s General Theory of Evolution"]() — For exact and natural scientists, about the dynamics our universe keeps on repeating, a sort of Hoapa-informed version of Philip Anderson's "More is Different"  
-[Article: "Univocal Science — From Spinoza to Grothendieck, missed opportunities for a category-theory-driven scientific revolution"]() — For philosophers and philosophers of mathematics, the "seed" of the conjectured bridge  
-[Manifesto: "Liberation engineering for resistance networks"]() — For social scientists, a diagnosis of institutional hierarchy as a "virus" in humanity's world-describing systems, and the argument for decentralized liberation networks as the remedy  
+[Extended abstract: "A linear/non-linear adjunction of sheaves…"](https://codeberg.org/doc2cog/hoapa/src/branch/main/communication/linear_nonlinear_adjunction_abstract.pdf) — For mathematicians, the first, deliberately modest theorem of the framework, fully machine-checked in cubical Agda
+
+[Diagram: Construction map for the cross-side adjunction](https://codeberg.org/doc2cog/hoapa/src/branch/main/communication/adjunction_diagram.png) — A diagram presenting to mathematicians the conjectured adjunction, the bridge this project is trying to establish
+
+[Letter of Recommendation: From Fernando Zalamea](https://codeberg.org/doc2cog/hoapa/src/branch/main/communication/reference_zalamea.pdf) — From Fernando Zalamea, a mathematician and philosopher, leading expert on the work of Alexander Grothendieck and Charles S. Peirce
+
+[Article: "An Introduction to Grothendieck’s General Theory of Evolution"]() — For exact and natural scientists, about the dynamics our universe keeps on repeating, a sort of Hoapa-informed version of Philip Anderson's "More is Different"
+
+[Article: "Univocal Science — From Spinoza to Grothendieck, missed opportunities for a category-theory-driven scientific revolution"]() — For philosophers and philosophers of mathematics, the "seed" of the conjectured bridge
+
+[Manifesto: "Liberation engineering for resistance networks"]() — For social scientists, a diagnosis of institutional hierarchy as a "virus" in humanity's world-describing systems, and the argument for decentralized liberation networks as the remedy
 
 ---

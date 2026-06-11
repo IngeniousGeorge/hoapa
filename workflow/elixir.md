@@ -48,11 +48,11 @@
   Then Elixir can be meaningful: BEAM runs actors and conversations; it emits immutable typed event logs; Agda specifies what makes those logs valid; a checker validates traces or certificates. I
   would avoid trying to extract the whole app from Agda. The realistic architecture is Elixir runtime plus a small checker whose behavior is pinned to Agda.
 
-  So the practical split is:
+  So the practical split is now:
 
-  - Math track: finish library sheaf comparison and then R4.
-  - Implementation track: start the trace-kernel Agda layer now.
-  - Elixir track: begin once the trace schema and first Agda well-formedness predicate are stable, even before R4.
+  - Math track: point-generated R4 is landed; focus on exposition and optional instantiation (`vProd`, SET/Sessions-facing examples), with full actor-causal reflector enrichment deferred.
+  - Implementation track: start the trace-kernel Agda layer once the tiny trace schema is fixed.
+  - Elixir track: begin once the trace schema and first Agda well-formedness predicate are stable; do not wait for the cross-site adjunction or long-horizon layers.
 
 › Following the discussion in /arc on Pijul, would it make sense to make our Elixir codebase an extension of Pijul?
 

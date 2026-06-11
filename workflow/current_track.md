@@ -131,9 +131,9 @@
 
 ### Current subtrack — point-generated R4 reflector
 
-The broad Claude/Codex convergence above remains the active publishable target, but the reflector route has sharpened.
+The broad Claude/Codex convergence above remains the historical origin of the publishable target, but the full finite-site reflector route has been superseded for the current theorem by the supported point-generated route.
 
-The immediate construction is no longer "generic finite sheafification over the full finite actor-causal site" in one step. The live route is the **point-generated / supported finite actor-causal site**:
+The immediate construction is no longer "generic finite sheafification over the full finite actor-causal site" in one step. The theorem that has landed is over the **point-generated / supported finite actor-causal site**:
 
 1. Event-points are single-event subframes.
 2. A pointification spike landed in `Concurrency/Sites/EventPoint.agda`, `Concurrency/Hybrid/EnumeratedProduct.agda`, and `Concurrency/Hybrid/Pointification.agda`.
@@ -149,11 +149,13 @@ The immediate construction is no longer "generic finite sheafification over the 
 7. Brick 3 has landed over the supported subsite. `SupportedPointProduct.agda` gives the abstract slot-indexed product API that keeps frame arguments solvable; `PointifyIsSheaf.agda` proves pointification lands in point sheaves; `PointSheafCategory.agda` packages the full subcategory and inclusion; `PointSheafification.agda` constructs the reflector functor; and `PointSheafAdjunction.agda` proves the unit, hom-set bijection, naturality fields, and assembled `a ⊣ ι`.
 8. Brick 4 has landed. `SupportedChangeOfBase.agda`, `SupportedLinearNonlinearSheafAdapter.agda`, and `PointLinearNonlinearAdjunction.agda` lift Benton/LNL change-of-base over supported presheaves, prove right-adjoint preservation of point sheaves, and assemble `Lpoint ⊣ Rpoint` over point-sheaf categories, relative to `lnl : LNLAdjunction` and `vProd : HasFiniteProducts (StarAutonomous→Category V)`.
 
-The next coding target is:
+The current documentation target is:
 
 ```text
-extended abstract for the point-generated R4 theorem
+revise / polish the extended abstract for the point-generated R4 theorem
 ```
+
+Key verification status: `PointLinearNonlinearAdjunction.agda` is the theorem module for `Lpoint ⊣ Rpoint`; it typechecks with the known `UnsupportedIndexedMatch` warnings inherited from finite-product / finite-enumeration helpers.
 
 Advertising discipline:
 
@@ -161,6 +163,7 @@ Advertising discipline:
 - The near-term descent claim is over the canonical event-point cover with event-supported overlaps, not yet a full Cubical `Coverage` / library-sheaf theorem. The normalized-pullback and stability upgrade is later work.
 - The zero-event result currently used is subterminality/uniqueness of maps into `value F`; do not advertise a stronger terminal-object package unless existence is later built.
 - The sheaf-level Benton bridge is now machine-checked for the point-generated site, relative to `lnl : LNLAdjunction` and `vProd`; it removes the `shf : FiniteSheafification ...` hypothesis there, not the value-level Benton hypothesis.
+- The abstract should say the formal LNL layer is a thin Benton-style interface and that Sessions is the intended motivating instance, not a constructed specialization of this theorem.
 - Do not de-abstract `SupportedPointProduct.agda`: the abstract boundary is load-bearing for Agda elaboration of the functor and adjunction proofs.
 - This is the deliberately modest first operational theorem. The later, more interesting work is re-enriching the site so causality and actor incidence become descent content, then relating the resulting operational side to the modal/foundational side through `Allow ⊣ Require`.
 

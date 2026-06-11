@@ -431,19 +431,20 @@ The framework treats some conversations as *meta-conversations*: special convers
 **Roadmap impact.**
 
 - **Promotion (Adapter 5)** gets a concrete job description; header sharpened in `Hybrid/Presheaf.agda`.
-- **`MO_1` / modular envelope** elevated from "held loose" to active roadmap as the natural home for self-gluing / conversation-of-conversations. This does *not* displace the R4 path as the next technical step — `MO_1` becomes the natural next slot once the Hybrid site-axis and R4 bridge are stable enough to support modular-envelope work; the cross-site adjunction and bar-construction comparison remain downstream.
+- **`MO_1` / modular envelope** elevated from "held loose" to active roadmap as the natural home for self-gluing / conversation-of-conversations. This does *not* displace the immediate exposition / instantiation track for the point-generated R4 theorem — `MO_1` becomes the natural next slot only after the Hybrid site-axis, the point-generated bridge, and the intended instantiation story are stable enough to support modular-envelope work; the cross-site adjunction and bar-construction comparison remain downstream.
 - **B-side dual of T_recursion iteration** (deferred per `future_work.md` "until `ND` has non-trivial content") becomes statable once the reflexive layer gives `ND` operational meaning.
 
 **Where it goes in the Agda tree.** `Concurrency/Hybrid/Reflexive.agda` reserved as the future module slot. Kept inside the Hybrid layer because the protocol-version structure reads as one more adapter (between the current Hybrid instance and the next), and because the project avoids premature folder proliferation. If the file later grows into a genuinely higher-order protocol calculus, it can be split out to `Concurrency/Meta/` at that point.
 
-**Trigger for opening `Hybrid/Reflexive.agda` v0.** Two conditions, both required: (a) R4 stable enough that the Hybrid chassis is no longer moving, and (b) the fragment-category candidate (Pijul or alternative) honest enough to state in Agda.
+**Trigger for opening `Hybrid/Reflexive.agda` v0.** Two conditions, both required: (a) the point-generated R4 bridge and its exposition / instantiation boundary are stable enough that the Hybrid chassis is no longer moving, and (b) the fragment-category candidate (Pijul or alternative) honest enough to state in Agda.
 
 ### Next frontier
 
-1. **Point-generated R4 bridge wiring** — consume the constructed supported-subsite reflector (`PointSheafification.a` and `PointSheafAdjunction.a⊣ι`) to assemble the event-discrete Benton/LNL sheaf bridge. This discharges the reflector condition for that site, not the full actor-causal site, and remains relative to a value-level `lnl`.
-2. **Full actor-causal reflector enrichment** — later, decide whether to extend the point-generated construction to richer covers where causality and actor incidence become descent content. This is where colimit/exactness questions may return.
-3. **Cross-site `Allow ⊣ Require`** — define the A-side category of modal contexts, then the actual functors, unit, counit, and triangle identities; instantiate the generic iteration scaffold only after the B-side R4 bridge is available.
-4. **A-side return plan** (lift `Bℤ → S¹`, switch η-iteration → cyclic bar) — on hold until the cross-site adjunction is statable.
+1. **Exposition of the point-generated R4 theorem** — polish the extended abstract / point-generated theorem note. State the supported event-discrete site, the point reflector `a ⊣ ι`, the value-level LNL hypothesis, the resulting `Lpoint ⊣ Rpoint`, and the exact limitations. Avoid making the theorem sound full-site, session-specific, or cross-site.
+2. **Optional instantiation checks** — decide whether to add concrete SET/Sessions-facing examples, especially `vProd` for the intended linear value category and any lightweight examples that make the theorem non-vacuous without overcommitting to full session semantics.
+3. **Full actor-causal reflector enrichment** — later, decide whether to extend the point-generated construction to richer covers where causality and actor incidence become descent content. This is where colimit/exactness questions may return.
+4. **Cross-site `Allow ⊣ Require`** — define the A-side category of modal contexts, then the actual functors, unit, counit, and triangle identities; instantiate the generic iteration scaffold only after the B-internal adapter is stable enough to serve as the operational side.
+5. **A-side return plan** (lift `Bℤ → S¹`, switch η-iteration → cyclic bar) — on hold until the cross-site adjunction is statable.
 
 ### Held-loose long-horizon items (no near-term action)
 
@@ -481,8 +482,8 @@ What remains explicitly outside the theorem:
 Immediate documentation target:
 
 ```text
-communication/point_generated_r4_abstract.tex
-communication/point_generated_r4_abstract.pdf
+workflow/communication_drafts/ext_abstract.tex
+workflow/communication_drafts/point_generated_r4_abstract.tex
 ```
 
-Keep the abstract mathematical: state the site, the point reflector, the value-level LNL hypothesis, the resulting adjunction, and the exact limitations.
+Keep the abstract mathematical: state the site, the point reflector, the value-level LNL hypothesis, the resulting adjunction, and the exact limitations. In particular, present the formal `LNLAdjunction` as a thin Benton-style interface, and present Sessions as the motivating intended instance rather than part of the generic theorem.
