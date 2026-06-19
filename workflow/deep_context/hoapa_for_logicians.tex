@@ -1,0 +1,108 @@
+\documentclass[10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.72in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{enumitem}
+\usepackage[compact]{titlesec}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\UC}{\mathsf{UC}}
+\newcommand{\Ctx}{\mathsf{Ctx}}
+\newcommand{\Ag}{\mathsf{Ag}}
+\newcommand{\Sym}{\mathsf{Sym}}
+\newcommand{\Doc}{\mathsf{Doc}}
+\newcommand{\Evol}{\mathsf{Evol}}
+\newcommand{\Hoapa}{\mathsf{Hoapa}}
+
+\begin{document}
+\begin{center}
+  {\Large\bfseries Hoapa for Logicians}
+\end{center}
+\vspace{0.25em}
+
+\noindent
+This document is a typeset transcription of the handwritten note
+\texttt{hoapa\_for\_logicians.jpg}. The spatial layout has been normalized
+for readability. Question marks and the final editorial notes record marks
+whose reading or intended meaning remains uncertain.
+
+\section*{Universe of contexts}
+
+\[
+  \UC = \text{universe of contexts},
+  \qquad
+  \UC_n = \{\Ctx,\Ag,\Sym\}.
+\]
+
+Here
+\begin{align*}
+  \Ctx & = \text{context } n, \\
+  \Ag  & = \text{agents (unityped)}, \\
+  \Sym & = \text{set of symbols}.
+\end{align*}
+
+The upper-right sketch gives the emergence sequence
+\[
+  \Ctx \xrightarrow{\text{emergence}} \Ag
+       \xrightarrow{\text{emergence}} \Sym.
+\]
+The set of symbols is used for \emph{typed documentation}. Such
+documentation is about the context and is produced by the agents; it gives
+rise, by another emergence step, to the next universe of contexts:
+\[
+  \text{typed documentation}
+  \xrightarrow{\text{emergence}} \UC_{n+1}.
+\]
+
+\section*{Example in nature}
+
+\begin{align*}
+  \Ctx              & = \text{chemistry on Earth}, \\
+  d\text{-}c         & = \text{phenotypes}, \\
+  \Ag                & = \;?, \\
+  \Sym               & = \mathrm{ATCG}.
+\end{align*}
+
+\begin{quote}
+  Gills document / prove / witness water.
+\end{quote}
+
+\section*{\textquotedblleft Theory of everywhere\textquotedblright}
+
+The central evolution chain is
+\[
+  \UC_n \xrightarrow{\Ag} \Doc^{\mathrm{TT}}
+        \xrightarrow{\Evol} \UC_{n+1}.
+\]
+It is annotated as \emph{not a series, but a network}.
+
+The page then groups the following terms as a category, with the annotation
+\emph{objects, morphisms}:
+\[
+  \underbrace{\{\Evol,\UC_n,\Hoapa\}}_{\text{category}}
+  \qquad
+  (\text{objects, morphisms}).
+\]
+
+\section*{Condition}
+
+\[
+  \Ctx \quad \text{endowed with perspectivalism / modalities}.
+\]
+
+\section*{Editorial notes}
+
+\begin{itemize}[leftmargin=*,itemsep=0.1em]
+  \item The handwritten $d\text{-}c$ in the natural example is legible as
+        those characters, but its expansion is not given.
+  \item $\Doc^{\mathrm{TT}}$ is the most likely reading of the middle object
+        in the evolution chain; the superscript is handwritten as
+        \(\mathrm{TT}\).
+  \item The braces around $\{\Evol,\UC_n,\Hoapa\}$ and the label
+        \emph{category} preserve the page grouping without inferring which
+        listed terms are intended as objects and which as morphisms.
+\end{itemize}
+
+\end{document}

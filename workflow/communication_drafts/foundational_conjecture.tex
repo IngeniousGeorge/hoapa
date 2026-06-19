@@ -1,0 +1,195 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!45!black,
+  urlcolor=blue!45!black,
+  citecolor=blue!45!black,
+  pdftitle={Foundational Conjecture},
+  pdfauthor={Hoapa project}
+}
+
+\setlist[itemize]{leftmargin=1.6em,itemsep=0.35em,topsep=0.35em}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0pt}
+\sloppy
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\title{Motivation for the Arc\\[0.35em]\large The Foundational Conjecture}
+\author{Hoapa project}
+\date{June 2026}
+
+\begin{document}
+\maketitle
+
+\section*{The foundational conjecture}
+
+That modalities (perspectivalism encoded in HoTT) allows complexity to develop
+is trivial in abstract math [ModalHoTT].
+
+That typed data is more robust, readable, literate\ldots{} is trivial in any
+domain concerned with information transfer, such as programming (HoTT says in
+homotopic math as well) [SessionValues].
+
+That unityped agents are most adapted to handle complexity is trivial in
+concurrency theory\footnote{And it is the basis of the actor model (and only in
+this relatively new domain because it is in friction with a foundational
+assumption of modernity, that complexity is based on specialisation).} (a
+lesson of the Yoneda lemma, visible in the notion of comonads/coalgebras?)
+[ActorBase].
+
+The result we're targeting should show (encoded in category theory):
+
+\paragraph{If:}
+\begin{itemize}
+\item SessionValues and ActorBase follow separation of concern (independence,
+in the sense of modularity/clean code).
+
+\item ModalHoTT and SessionValues--ActorBase are in a requires--allows
+adjunction.
+
+\emph{codependency:}
+\begin{itemize}
+\item perspectives require (the optimality) typed data handled by unityped (or
+``univocal'' in spinozism) agents.
+\item persepctives allow typed data to be handled by unityped agents.
+\item the separation of concern between data and agents (more precisely, the
+optimality of the system, secured by that separation) requires
+perspectivalism (a modal network).
+\item it allows it.
+\end{itemize}
+\end{itemize}
+
+\paragraph{Then:}
+Philosophically: the category which hosts this structure is capable of ?
+(World understanding and world creation)
+
+Mathematically: something about covers/coverings, recursion, a form of
+contribution to a developing infinite network\ldots{}
+
+\par\medskip
+The last item is the mathematical fragment, interesting for its own sake in
+mathematics, of a foundational statement in the space of interdisciplinary
+theories, probably similar to the Yoneda lemma.
+
+\clearpage
+\section*{Current first checked fragment}
+
+On the operational side, the project now has a point-generated sheafification
+reflector and a sheaf-level Benton/LNL adjunction over the supported
+event-discrete actor-causal site. This is not yet the cross-site \(Allow \dashv
+Require\) adjunction; it is the first modest B-internal theorem that makes one
+side of that future adjunction concrete.
+
+\section*{The cascade of trade-offs: a praxis response to structural problems}
+
+The framework is, read operationally, a sequence of engineering trade-offs that
+the foundational commitments generate, together with the strategies that
+resolve them. The cascade is \emph{generative}: each resolution opens the next
+problem. The strategy applied at every step is the same shape---separation of
+concerns. The full layer-by-layer catalogue is in \texttt{future\_work.md};
+what follows is the compact picture.
+
+\begin{table}[htbp]
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{1.18}
+\begin{tabularx}{\linewidth}{@{}>{\bfseries}p{0.22\linewidth}Y Y@{}}
+\toprule
+Layer & Trade-off it navigates & Strategy \\
+\midrule
+Hybrid &
+Locality (actors operate in frames) vs globality (content must cohere across
+frames) &
+Sheaf descent: compatible local content glues to global \\
+\addlinespace
+Reflexive (\(\Pi\)) &
+Stability (the protocol must be reliable) vs adaptability (it must respond to
+change) &
+Meta-conversations propose, consensus ratifies, non-retroactivity protects the
+past \\
+\addlinespace
+Bulk (\(\Lambda\)) &
+Expressive power (rich vocabulary) vs transparency (decodable by every
+participant) &
+Protocol generates its own language; the reflexive layer maintains its
+transparency over time \\
+\addlinespace
+Field-theoretic dynamics &
+Exploration (proposal storm, high entropy) vs exploitation (stable mature
+language, low entropy) &
+RG flow with reflexive insertions; symmetry-breaking \(\to\) fluctuation
+\(\to\) stabilization phases \\
+\addlinespace
+Federation &
+Coherence within one protocol vs plurality across protocols &
+Typed translation interfaces, partial clones, conflict-as-data \\
+\addlinespace
+Information cohomology &
+Dense encoding (expert-economized) vs accessible encoding (decodable by the
+unityped receiver population) &
+Receiver-relative measurement of encoding cost; transparency taken as an
+engineering -ility on the same footing as performance and security \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The cascade is not a list of features added by choice. It is the sequence of
+problems the foundational commitments create, with each layer being the
+structural response to the problem the previous layer's resolution exposed.
+Hybrid's locality-vs-globality only becomes a problem because we committed to
+actors and sessions as separate legs. Reflexive's stability-vs-adaptability
+only becomes a problem because Hybrid gave us a maintainable artifact. Bulk's
+expressivity-vs-transparency only becomes a problem because Reflexive gave us a
+self-editing protocol that must now talk about things. Field-theoretic
+dynamics' exploration-vs-exploitation only becomes a problem because Bulk gave
+us a language that must evolve well. Federation's coherence-vs-plurality only
+becomes a problem because the four previous layers gave us a complete protocol
+that, in isolation, would re-create the one-true-framework failure the project
+was built to dissolve. Information cohomology's dense-vs-accessible encoding
+becomes salient as soon as Bulk produces a language, and acute as soon as
+Federation puts that language in front of multiple receiver populations.
+
+The strategy is uniform across the cascade. Every trade-off is resolved by
+separating the two concerns that are in tension, giving each its own
+categorical home, and providing the precise interface between them. Locality
+and content are separated by the sheaf; current protocol and its edits are
+separated by \(\Pi\); how and what are separated by the session/content split;
+content and dynamics are separated by the factorization-algebra-plus-RG-flow;
+interior and exterior of a protocol are separated by the meta-topos; content
+and its measurement are separated by the (co)homology pairing. The foundational
+commitments themselves---actor-vs-content on B, spatial-vs-discrete on A
+(cohesion), context-vs-system at the cross-site adjunction---are the same
+architectural move at the foundational floor.
+
+So separation of concerns is not an engineering principle the framework
+happens to use. It is the framework's primitive architectural move, applied
+recursively from the foundations upward, and the cascade of trade-offs is what
+makes that recursion necessary. The transparency-of-language trade-off
+(information cohomology) belongs on this list on the same footing as the
+others---not relegated to ``measurement''---because it is the encoding question
+the unityped commitment forces on the engineer: \emph{how is the unityped
+receiver going to understand the message?} That question is no less an
+engineering -ility than performance, security, or maintainability. It is just
+not currently on the engineer's radar, because the economy of expertise prefers
+density to transparency. The framework's commitment is to put it there.
+
+\par\bigskip
+\noindent\emph{Authorship note. The first section was authored by a human. The following two
+sections were authored by AI agents.}
+
+\end{document}

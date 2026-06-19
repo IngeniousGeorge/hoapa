@@ -437,3 +437,231 @@ Current lean: package A as cartesian/discrete core + cohesive context + cohesion
 ### Cross-site adjunction threshold
 
 A stated `Allow ⊣ Require` interface alone is scaffolding. It becomes mathematically interesting when the functors are constructed from the ingredients and accompanied by a non-trivial example or theorem. First target the structured-package comparison, with a cartesian shadow and later enrichment-compatibility laws. The first compelling theorems would be non-collapse, nontrivial iteration of `Require ∘ Allow`, separation preservation/detection, R4 compatibility, or a concrete finite actor-causal example that crosses the adjunction and returns with controlled loss.
+
+
+## Candidate addition under evaluation: provenance, accountable artifacts, and reversible import
+
+**Status and scope.** This section records a newly identified possibility, not a change to the committed five-layer catalogue above. It does not renumber those layers, alter their dependency order, change the current R4 frontier, reserve an Agda module, or commit the project to a new mathematical construction. It is deliberately self-contained because adopting the proposal could reorganize the cascade, patch-theoretic ownership, the implementation trace schema, and the relationship between Reflexive Π and Federation. Until that evaluation is complete, every structure and workflow below is a candidate.
+
+### Problem and motivating use
+
+The motivating use is not retrospective attribution for its own sake. It is the cost of repeated work in a network of protocols. Suppose protocol `P` has developed an artifact or concept and protocol `Q` needs substantially the same result. Without disciplined import, both derive it independently and then spend further conversations constructing and maintaining a bridge. A better path may be for `P` to do the derivational work once, for `Q` to adopt an explicitly cited and typed realization, and for `Q` to spend only the local conversation needed to translate or bridge it. Provenance does not itself eliminate conversations; it can make non-repetition acceptable by preserving what is needed to inspect, update, detach, or retract an import.
+
+The import is neither an unmarked copy nor an assertion that `Q` independently established the result. It should retain the source protocol, source artifact and version, derivational grounds, translation used by `Q`, explicit adoption decision, and local changes depending on it. Authority remains separated: `P` is authoritative for the source artifact and history; `Q` is authoritative for adoption, local interpretation, overlays, and forks. This is a *partial mirror by citation*, not silent absorption.
+
+The candidate trade-off is:
+
+> **clean, reusable artifact versus reconstructable, accountable artifact.**
+
+A protocol needs stable interfaces so it can use results without replaying their construction. It also needs enough account of origin, derivation, interpretation, and change to know what a result depends on and what happens if those grounds move. The candidate follows the framework's recurrent strategy: keep the live artifact separate from its account; divide the account into derivational and temporal faces; and state laws relating both faces to the artifact. Working names are *Accounted Artifact*, *Audit*, and *Accountability and Provenance*. “Audit” here concerns artifacts, derivations, and changes, not the typing or ranking of actors.
+
+### Human-world import lifecycle
+
+A candidate import record would contain:
+
+1. a stable source-protocol identifier;
+2. a stable artifact identifier and source-version identifier;
+3. a derivational account over event/document/artifact tokens;
+4. the typed translation or migration used locally;
+5. `Q`'s acceptance decision and applicable trust policy;
+6. the local materialization change introducing the imported view; and
+7. references from local bridges and overlays to that change.
+
+It should support distinct operations:
+
+- *adopt*: create a local cited realization;
+- *update*: import a newer version and reconcile downstream changes;
+- *retract*: invalidate or remove a realization whose grounds no longer support it;
+- *detach*: preserve the snapshot while ceasing to follow its source;
+- *fork*: retain ancestry while transferring future authority locally;
+- *rebase*: replay a local bridge and overlays over a newer realization; and
+- *supersede*: retain the old account while making a newer artifact current.
+
+Local edits should normally be overlays, bridges, or forks rather than mutations of the imported source. Provenance cannot promise that withdrawal is cheap: a heavily reused artifact may have a large downstream cone, and semantic repair may require conversations. The honest promise is narrower: compute and expose the structural dependency cone, preserve unrelated work, and let the protocol choose a repair policy. This localizes structural impact; it does not predict the full human cost.
+
+### Two faces and their interface
+
+**External / derivational face: provenance.** This records why an artifact is supported across protocol boundaries: which sources were used, which alternatives support it, and which grounds were required jointly. It supports citation, dependency analysis, trust filtering, and counterfactual questions such as whether support survives withdrawal of token `x`.
+
+**Internal / temporal face: accountable change.** This records how local protocol state changed: which import, edit, bridge, resolution, or supersession introduced the current state; which changes depend on earlier changes; which independent changes commute; and which combinations conflict. It supports versioning, non-retroactivity, compensation or local undo, and preservation of unrelated changes.
+
+**Materialization interface.** The dependency graphs are not the same. A semantic derivation may depend on an artifact without shared textual context, while a VCS change may depend on file context without expressing semantic justification. An import must carry or reference its derivational account, and its local materialization change must expose a checked relation to it. Provenance supplies grounds; accountable change supplies local transition and conflict handling; materialization makes them one capability.
+
+The central law must not identify provenance deletion with patch removal. The target is conditional commutation:
+
+```text
+materialize(recompute(provenance[x := 0]))
+  ≃
+incrementally-retract(materialize(provenance), import-change x)
+```
+
+The equivalence is observational, not syntactic, and is meaningful only after artifact, account, materialization, observation, and repair policy are typed. Side conditions govern overlays, alternative derivations, accepted versions, and unresolved conflicts. This interface law is the proposed content that could make the two faces one layer.
+
+Supporting obligations include:
+
+- **Origin preservation.** Materialization retains source artifact/version and translation.
+- **Dependency adequacy.** If a source token can affect a local artifact, its import change lies in the local dependency closure. Conservative adequacy may precede completeness.
+- **Materialization soundness.** The local artifact denotes the recorded translation applied to the recorded source version.
+- **Locality.** Retraction or update preserves changes outside the affected cone.
+- **Non-retroactivity.** Withdrawal creates a new invalidation, supersession, compensation, or conflict event; it does not rewrite what earlier participants saw.
+- **Alternative-support preservation.** Removing one derivation preserves an artifact still supported by another accepted derivation.
+- **No-leak erasure.** Erasing actor-identifying runtime information preserves what the trusted checker needs.
+- **Authority separation.** A source update does not silently enact local adoption or repair decisions.
+
+These laws are stronger than storing a dependency list and weaker than universal reversible computation. They are the candidate meaning of “editable and reversible import.”
+
+
+### Positive semiring provenance
+
+For a set `X` of source tokens, the standard positive provenance object is the free commutative semiring `ℕ[X]`. Addition represents alternative derivations; multiplication represents joint use; coefficients retain multiplicity. Evaluation produces an expression or, more practically, a shared circuit/DAG. A semiring homomorphism out of the free object specializes the same account to Boolean support, counting, costs, access conditions, trust values, or other coefficient systems when their laws apply. The value is “record once, interpret in multiple ways,” not a claim that every desired measurement is a semiring homomorphism.
+
+Withdrawing an input from a positive derivation does not require monus: assign its token `0` and reevaluate. That computes which justifications survive. It does not edit the importing protocol or decide how downstream artifacts should be repaired. Monus or other extra structure becomes relevant when the derivation/query language itself contains difference, negation, or other nonmonotone operations. The Badia–Kolaitis–Noguera work on Codd's theorem over semirings and the developing Badia–Noguera–Petreni–Portone–Tannen negative-information line therefore belong to a later extension, not the minimum reversible-import story.
+
+Circuits or shared DAGs should be preferred initially to expanded polynomials: expanded expressions can grow prohibitively, while circuits preserve sharing and admit multiple evaluations. Stable tokens are required, but hashes are only one implementation. Logical artifact identities plus explicit versions may be preferable where content changes without changing conceptual identity.
+
+### Descent and Applied Category Theory
+
+The phrase *accounted descent* is a candidate description, not a theorem. Existing Hybrid descent says when compatible local sections glue. A provenance refinement could annotate sections and derivations so a glued artifact retains an account of which local material supports it. This does not mean the existing proof discarded provenance, nor that a semiring annotation automatically forms a sheaf. Compatibility between restriction, gluing, and provenance evaluation must be stated.
+
+Relevant categorical constructions cover different parts:
+
+- A category of elements, displayed category, or Grothendieck construction can organize tokens and transport. It does not supply the additive/multiplicative algebra of alternative and joint derivations. Variance is open: covariant transport suggests an opfibration, contravariant restriction a fibration, and the full import situation may require a bifibration or profunctor.
+- Spivak-style functorial data migration supplies typed schema translation through `Σ ⊣ Δ ⊣ Π` and is a candidate for import/migration. The adjunctions do not automatically retain a persistent audit record, and a left Kan extension is not generally reversible.
+- Quantale-valued relations can be enriched matrices/profunctors. This is useful for suitable complete idempotent specializations, including Boolean, tropical, and some many-valued cases. It does not contain universal `ℕ[X]` provenance without changing or completing the coefficients.
+- Set-valued profunctors are proof-relevant relations, and a categorified derivation theory may connect to HoTT. `ℕ[X]` is at most a decategorified shadow: labeled monomials retain more than counts, but not full witness objects or higher identifications.
+- Functorial aggregation combines values over fibers. Its commutative-monoid operation resembles provenance addition algebraically but has a different semantic role. It may aggregate import costs later; it is not the provenance construction.
+- Lenses and optics may express update or repair propagation. They do not record derivational grounds.
+
+The conservative posture is positive semiring provenance first; an indexed/categorical transport layer once variance is known; functorial data migration for typed imports; and enriched or categorified refinements only when a theorem requires them. No commitment should yet be made to semimodule-valued sheaves or R4 enrichment: the needed `*`-autonomous, finite-product, and change-of-base interfaces have not been established.
+
+### Accountable change and the Pijul boundary
+
+Agda should specify an abstract accountable-change interface before the project commits to a version-control implementation. Candidate ingredients are artifact states, typed changes, dependencies, composition/application, partial commutation, conflict and resolution data, materialization, and an observation relation. The minimum interface should not assume every real change is invertible. Compensation, unrecording from selected history, and adding a change that marks older material dead are distinct operations.
+
+Mimram–Di Giusto's categorical theory of patches and Homotopical Patch Theory are formal resources: the former studies merge through pushouts and finite-colimit completion; the latter presents Darcs-style invertible patches through higher inductive types. Neither is a verified description of Pijul's append-only graph, alive/dead edges, contextual dependencies, or `unrecord` behavior. Pijul remains a strong implementation candidate because it provides stable change identities, explicit dependencies, partial clones, commutation of independent changes, and conflicts as stored data. The relationship should be refinement, not identification:
+
+```text
+Agda:    abstract accountable-change laws
+Pijul:   concrete storage and change semantics
+checker: evidence that emitted operations refine the abstract interface
+```
+
+This creates an open ownership question. If the candidate becomes a layer, it could own the accountable artifact/change substrate, with Reflexive Π consuming it for self-modification, promotion, and consensus. Alternatively, patch infrastructure could remain under Π and provenance remain cross-cutting. The materialization laws must earn an independent rung before existing ownership changes.
+
+### No-leak and security boundaries
+
+Standard provenance records people, institutions, agents, attribution, and responsibility; W3C PROV explicitly supports them. Hoapa's unityped/no-leak commitment therefore runs against the default grain of provenance systems and must be present from v1. Trusted tokens should identify events, documents, artifacts, protocol versions, translations, and derivation steps, not refine actor identity. Runtime infrastructure may need actor identifiers, but an erasure or pseudonymization theorem must show that the trusted account and certificate do not depend on them.
+
+The following guarantees remain separate:
+
+```text
+stable identity       is not necessarily content addressing
+content addressing    gives tamper evidence, not authorship
+signatures             attest control of keys, not semantic correctness
+provenance             records derivation, not authorization
+trust policy           governs adoption, not mathematical validity
+```
+
+Hashes may align with Pijul changes and typed documents but are not mandatory. Signatures, capabilities, revocation distribution, and key management belong at the security/infrastructure boundary. The mathematical layer should expose attachment points without deriving authenticity from provenance.
+
+### Language, documentation, and orchestration
+
+Provenance is language-agnostic. Existing systems range from relational query rewriting and provenance circuits in PostgreSQL/C/C++ to RDF/OWL interchange. The transferable requirements are structured accounts, stable identifiers, explicit versions and translations, deterministic evaluation, and checkable certificates, not a particular language or universal writer-monad encoding.
+
+A possible Hoapa split is:
+
+- Agda specifies circuits, erasure, accountable-change laws, materialization, and conditional coherence.
+- Elixir emits runtime events, import/adoption decisions, and provenance references as structured metadata.
+- A checker validates finite accounts/certificates against Agda-pinned predicates.
+- Pijul-shaped persistence stores local changes, dependencies, conflicts, resolutions, and partial views where its representation fits.
+- Typed documentation supplies artifact/version identities, typed references, canonical serialization where feasible, and explicit translation signatures.
+- The conversation-of-conversations orchestrator records which artifacts, proposals, and sub-conversations influenced each output.
+
+Provenance does not select the documentation or orchestration language. It constrains their interfaces: outputs must cite typed inputs and transformations without parsing informal prose, and orchestrated results must not become originless flattened summaries. Elixir can meet this if its schema is typed and checked; no new orchestration language follows automatically.
+
+
+### Possible cascade effect if adopted
+
+The strongest candidate placement is between Hybrid and Reflexive:
+
+```text
+Hybrid finite descent
+  → candidate Accounted Artifact / Audit layer
+  → Reflexive Π
+  → Bulk Λ
+  → field-theoretic dynamics
+  → Federation
+
+Information cohomology continues to read from the content side.
+```
+
+The generative argument would be: Hybrid produces coherent global artifacts, but usable abstraction hides origin and transformation history; Audit separates the artifact from its derivational and temporal accounts; Π can then revise a protocol over accountable changes without rewriting the past. The candidate would be localized in construction and cross-cutting in consumption.
+
+Potential downstream effects:
+
+- **Reflexive Π:** consumes accountable changes, dependencies, non-retroactivity, and conflicts; adds reflexive proposal, promotion, and consensus.
+- **Bulk Λ:** carries concept lineage and distinguishes inherited concepts, overlays, and forks.
+- **Field dynamics:** may use accounts as observables or costs, but numerical dynamics must not determine trusted provenance validity.
+- **Federation:** receives the main payoff: typed cited imports, partial mirrors, origin preservation, local adoption authority, and update/retraction behavior.
+- **Information cohomology:** may measure an account but is not subsumed by provenance; entropy is not generally a homomorphic specialization of `ℕ[X]`.
+
+This could permit a narrow Federation import vertical slice before the full anabelian/meta-topos layer: two protocols, one typed translation, one cited artifact, and one update/retraction scenario. It would test import, not claim full Federation. Conversely, the candidate may remain a cross-cutting kernel facility or Federation feature. It earns layer status only if the trade-off is generated by Hybrid, the two-face separation is necessary, and the materialization laws add formal content not already owned by Π.
+
+No current layer numbering or dependency claim changes while this remains open.
+
+### Staged investigation and possible build order
+
+The live R4 exposition and optional intended-value instantiation remain first. The candidate creates no immediate code obligation.
+
+**v1: positive derivational account.** Define finite stable tokens, positive provenance circuits/expressions, commutative-semiring evaluation, support, restriction/gluing compatibility, and no-leak erasure. Prove the homomorphism/evaluation law and alternative-support behavior. No monus, Pijul coupling, quantale enrichment, or reversible-local-state claim.
+
+**v2: accountable change and materialized import.** Specify the abstract change interface and typed import/materialization record. Prove origin preservation, materialization soundness, and conservative dependency adequacy. Define adoption, overlay, detach, and fork.
+
+**v3: update and retraction coherence.** Add source succession/invalidation, incremental impact, local preservation, compensation/conflict policies, and the conditional recompute-versus-incremental theorem. Only here would “reversible import” be justified.
+
+**v4: nonmonotone derivations and advanced specializations.** Add monus/difference or a better negative-information construction if needed. Separately evaluate quantale-enriched profunctors, many-valued specializations, categorified witnesses, and any R4 enrichment. These extensions are independent.
+
+A small falsifying example should drive all stages. Protocol `P` produces artifact `a` from tokens `x` and `y`, with alternative and jointly required derivations. Protocol `Q` imports `a` through a typed translation, adds one dependent bridge and one unrelated artifact, and then observes `P` withdraw `x` or publish a successor. The example must show which support survives, which changes are affected, which remain unchanged, what history remains, and what no-leak reveals. The existing two-point finite cover is a natural test if the descent connection proves real.
+
+### Decision gates and next discussions
+
+Before integration into the stable catalogue:
+
+1. **Capability:** Is accountable import a kernel capability or a Federation/runtime feature?
+2. **Layer:** Is clean artifact versus reconstructable account a generated cascade trade-off?
+3. **Ownership:** Should a candidate Audit layer own accountable change, or should Π retain it?
+4. **Categorical carrier:** What indexes tokens and translations, with what variance, and where does the circuit live?
+5. **Equivalence:** What observation makes recomputation and incremental retraction comparable?
+6. **No-leak:** Which identifiers survive into trusted certificates, and what erasure theorem is required?
+7. **Implementation:** Can Pijul operations refine the abstract interface without entering the kernel?
+8. **Economics:** In the finite example, does accountable reuse reduce conversations or verification work?
+
+The next discussions should first settle capability, layer, and ownership; then compare categorical carriers against the finite example; then specify the Pijul/checker refinement boundary; and finally decide whether to promote, retain cross-cutting, or reject the candidate. Promotion would require explicit later edits to the cascade, Π, Federation, implementation schema, and compact motivation table. Until then, this section is the sole roadmap for the idea.
+
+### Candidate implementation slots, not reservations
+
+If the proposal survives:
+
+```text
+Concurrency/Protocol/Provenance.agda
+Concurrency/Protocol/AccountableChange.agda
+Concurrency/Protocol/Materialization.agda
+Concurrency/Protocol/NoLeak.agda
+Concurrency/Protocol/Certificate.agda
+```
+
+These are illustrative. The planned `Auditability.agda` covers trace no-leak, while the candidate Audit capability is broader; integration would decide whether to rename, split, or reuse it. No file is reserved here.
+
+### Research anchors and cautions
+
+- Green–Karvounarakis–Tannen, *Provenance Semirings* (2007): free-semiring/K-relation foundation.
+- Grädel–Tannen, *Provenance Analysis and Semiring Semantics for First-Order Logic* (2024/2025): first-order extension and homomorphism/evaluation.
+- Green–Ives–Tannen, *Update Exchange with Mappings and Provenance*, and ORCHESTRA: closest precedent for autonomous-peer import/update, not the sole origin of provenance.
+- Badia–Kolaitis–Noguera, *Codd's Theorem for Databases over Semirings* (2025): monus/support/domain-independence, relevant for nonmonotone queries.
+- The Badia–Noguera–Petreni–Portone–Tannen negative-information work should be monitored when public; it should not be reconstructed from seminar metadata.
+- Spivak, *Functorial Data Migration*: typed migration, not automatically semiring how-provenance or persistent lineage.
+- Garner–Spivak–Fairbanks, *Functorial Aggregation*: aggregation over fibers and its naturality problem, not provenance addition.
+- Fujii, *Enriched Categories and Tropical Mathematics*: quantale enrichment and tropical/many-valued specializations, not a quantale presentation of `ℕ[X]`.
+- Mimram–Di Giusto, *A Categorical Theory of Patches*, and Angiuli–Morehouse–Licata–Harper, *Homotopical Patch Theory*: formal patch resources, not established Pijul models.
+- Pijul's graph/change semantics: implementation evidence for stable changes, dependencies, partial clones, and conflict-as-data; semantic validity remains outside the VCS.
+- W3C PROV: an interchange vocabulary and a reminder that standard provenance includes agents and attribution, where Hoapa requires an explicit no-leak divergence.

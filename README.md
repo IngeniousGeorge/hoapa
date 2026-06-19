@@ -330,11 +330,12 @@ The lion has never been a king. Humans, on the other hand, have a ~300,000 years
 
 ## 5. Name
 
-'Hoapa' means "everywhere" (every domain) in Khoekhoegowab (of the Khoe language family, spoken in Namibia, Botswana, and South Africa primarily by three ethnic groups: Namakhoen, ǂNūkhoen, and Haiǁomkhoen), to be pronounced like in English, and chosen for 3 reasons:
+'Hoapa' means "everywhere" (every domain) in Khoekhoegowab (of the Khoe language family, spoken in Namibia, Botswana, and South Africa primarily by three ethnic groups: Namakhoen, ǂNūkhoen, and Haiǁomkhoen), to be pronounced like in English, and chosen for 4 reasons:
 
 - The surface area of the concept to be named is so large, modular and decentralized that it's not possible to select an element or a viewpoint and call it the essence of the system. The alternative is to point to the very multiplicity of the concept for its name.
 - As an homage to San culture, which has been a wonderful source of inspiration for this work. In many ways they are the last known human practitioners of Hoapa, along with the Hadza and other hunter-gatherers of the Congo Basin, so it's only natural the name should come out of one of their languages.
 - It is easy and new to the general public and research community alike, so no one will be jumping to conclusions when they encounter it.
+- The general theory in which Hoapa is embedded as a crucial recursion-inducing element, where theory is understood as a point of view on the universe/Nature, can be said to be a "theory of everywhere". It has the same holistic scope as the currently proposed theories of everything, but doesn't claim describe everything. It only talks about an infinitesimal part of every thing, namely how it is connected to the rest of the theory through its context—its "where". It doesn't make the universe unsurprising, and every newly thing encountered by the wandering eye requires to be studied de novo.
 
 ---
 
