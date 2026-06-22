@@ -4,12 +4,13 @@ All aspects of the code that will need to be completed or corrected if we want t
 
 ## Reader's note
 
-This file documents two kinds of future work, in two styles:
+This file documents three kinds of future work, in three styles:
 
 - *Punchlist style.* The "Regarding X" sections (fracture, T_recursion iteration, Sessions, actor-causal site, Hybrid v1, Beyond fracture) catalogue deferred pieces *inside material that has already shipped*. They are item-by-item, code-grained, and read as ongoing maintenance / extension lists.
 - *Architectural style.* The "Concurrency-side layers of complexity (planned)" section catalogues *committed-but-unshipped* layers. It is prose-heavy, structured around a Function / Math anchor / Trigger / Open questions / Agda slot rhythm, and is calibrated to be readable by both future Claude/Codex agents picking up the project and humans being shown the work.
+- *Candidate-investigation style.* The provenance, Reality, and logical-presentation sections record structures whose absence or possible role has become visible but whose exact mathematical ownership is not settled. They state the motivating gap, nearest established mathematics, anti-overclaim discipline, falsifying tests, and decision gates. They do not alter the committed cascade or reserve implementation modules.
 
-Both styles are honest commitments. Neither category is implemented yet (in the punchlist style: not yet; in the architectural style: not yet *and* requires the punchlist items to be cleared first).
+All three styles are honest about status. Punchlist items extend shipped material; architectural items are committed but unshipped; candidate investigations may be promoted, revised, split, or rejected after their naturality tests.
 
 For the seed-level commitments these entries extend, see `motivation.md`. For the propositional decomposition (T1–T_recursion) they realize, see `arc.md` and `targets.md`. The implementation track — a real protocol kernel, a real verification runtime, LLM-tooling integration — is a separate concern, to be opened after several of the architectural layers below have landed at v1, and is not catalogued in this file.
 
@@ -665,3 +666,219 @@ These are illustrative. The planned `Auditability.agda` covers trace no-leak, wh
 - Mimram–Di Giusto, *A Categorical Theory of Patches*, and Angiuli–Morehouse–Licata–Harper, *Homotopical Patch Theory*: formal patch resources, not established Pijul models.
 - Pijul's graph/change semantics: implementation evidence for stable changes, dependencies, partial clones, and conflict-as-data; semantic validity remains outside the VCS.
 - W3C PROV: an interchange vocabulary and a reminder that standard provenance includes agents and attribution, where Hoapa requires an explicit no-leak divergence.
+
+## Candidate under evaluation: Reality and the protocol's constitutive exterior
+
+**Status and scope.** Like provenance, this is a **candidate under evaluation**, recorded because the concept is **present by its absence**: it does real work throughout the project but has never been named. It changes nothing in the live cascade — no renumbering, no new Agda module reserved. Crucially it is **not a cascade layer**. It sits at the *foundational floor* (the instigator's level "−1"), below the existing foundational separations (`actor-vs-content` on B, `spatial-vs-discrete` on A, `context-vs-system` at the cross-site adjunction); it adds one more, `reality-vs-protocol`. The originating discussion is preserved as a transcript in `arc/11_reality.md`. The separate logical-presentation / mode-theory track will eventually have to account for Reality; it is logged here as the present-by-absence gap, not folded into that track.
+
+### The absence/presence
+
+Reality (`R`) is the framework's **constitutive exterior**, and it is present in three asymmetric ways:
+
+- **Negatively, in the kernel** — almost every "the kernel must *not* do X" is an unnamed invocation of the `R|P` boundary: unityping / no-leak; the decision that actor-origin metadata lives *outside* the kernel; and the presentation's buffer / availability-only / non-enactment prose ("chart the world, not inhabit and certainly not control it").
+- **Positively, in the motivation** — the GR-inspired locality that motivates the Lamport-causal site, and the runtime↔reality boundary in the implementation-track plan (Elixir emits real events; the checker validates them).
+- **Absent, in the formal middle** — workflow, `targets.md`, and the Agda say nothing.
+
+Load-bearing fact: the kernel's identity *is* the boundary it maintains against Reality. Naming `R` is therefore mostly a *re-reading* — collecting the scattered refusals under one interface — not a new construction.
+
+### The identity filter
+
+There is **one barrier on the identity channel, two-way**, and the *contribution* channel passes freely through it. *What an actor is* (origin, status, identity) is filtered out at the `R|P` boundary; *what an actor brings* is not.
+
+- **Outward** (no-leak): documentation never encodes who an actor is.
+- **Inward** (anti-distortion): who an actor is never biases how their contribution is received — this is the original 2019 insight (hide the experts so the reasoning stands on its own legs), and the same anti-essentialism as receiver-relative complexity (Layer 5).
+
+### Reality's positive role
+
+Reality is not only a boundary; it is the **site where perspectives are formed**. Agents *explore* Reality and shape their own perspectives there (exploration in the attachment-theory sense: exploring from a secure base). The Protocol is then where formed perspectives *meet and glue* into useful, sheaf-theoretically-conglomerated perspectives — *add-but-separate*: it adds coherence that did not exist without invading (non-enactment). The **buffer** (work / greeting / opening statement) acquires its purpose here: it is the entry gate through which a Reality-formed perspective crosses into the Protocol to be glued. The Documentation is the glued output, which feeds the caring algorithm, which returns secure bases to Reality — closing the loop. See the bootstrap-of-the-care-loop appendix in `motivation.md` for the tie to the initial/free model.
+
+### How to deal with it
+
+The discipline is the **open-system interface**, **not an internal sort.** Formalizing the interior of the exterior is the category error the openness principle forbids (and would re-import the totalization the framework refuses). Reality's entire formal footprint is the interface: the operations that cross the boundary (request, demand, buffered entry, availability-only *pull*) and the negative constraints that do not (no actor identity; no enactment). In CBPV form: `P → Request(R)` exists, `P → Effect(R)` does not — an external handler, outside the theory, turns a request into real work.
+
+This yields a unification worth stating once: **openness at the top** (no total context, no topos of all toposes — Lawvere) and **non-enactment at the bottom** (no protocol encloses or controls Reality) are the *same* refusal-to-totalize, stated at two ends of the construction.
+
+- **Re-reading (now, low cost):** collect the existing kernel-refusals under one named `R|P` interface; state the top/bottom openness unification.
+- **Genuinely new (later, if earned):** the effect/capability discipline that makes non-enactment a *type-safety theorem* ("no well-typed protocol term has an unmediated reality-changing effect"); the buffered-entry model; the documented-demands ledger. All live at the runtime↔checker boundary (implementation track), and should be **co-designed with the Audit/provenance candidate** — the demands ledger and the no-leak erasure are shared between the two (provenance records *derivational* exterior dependence; Reality records *material/causal* exterior dependence).
+
+### Bulk/boundary duality (mention only; transcript in arc/11)
+
+A duality reading was explored: Reality and Documentation as two points of view related by a dualizing object — better named **Isbell/Gelfand duality** (space ↔ observables; Connes for the noncommutative/perspectival face) than holography, with a **Chu** realization `(Reality, Documentation, ⟨−,−⟩ : · → k)`. It is **non-reflexive** — the double-dual (Reality → observations → reconstruction) does not invert, and that non-invertibility *is* openness / the Anthropic anchor — so it is *not* a holographic equivalence. Full transcript in `arc/11_reality.md`. It would upgrade the **Connes** entry (from "loose" to load-bearing) and the **Chu** entry (from "deferred candidate" to "motivated by Reality") in `related_structures.md`. Held as a conjecture, not a result; in particular, whether its dualizing object `k` coincides with the session dualizing object `⊥ₛ` is **open** and must be written as a conjecture, never asserted.
+
+### Discipline / what this does not claim
+
+- **Teleology quarantine.** `raison-d'être` (R→P) and `care-toward-reality` (P→R) stay as *motivation / prose*, not formal arrows — the same discipline `arc/09` used to keep Care as structure, not purpose.
+- **No holographic equivalence** is claimed; the mirror is lossy by design.
+- Reality is **not** added as an internal sort.
+
+### Decision gates (before any promotion)
+
+1. Foundational-floor reframing only, or does it earn the new constructions (effect-discipline, buffer, demands ledger)?
+2. The "bulk" disambiguation: nested holographies (Reality | Documentation, then Λ | session) vs. renaming, since `arc/08` already calls the content layer `Λ` the "Bulk."
+3. Does the no-enactment effect-discipline become a stated safety theorem on the implementation track, and is it co-designed with Audit/provenance?
+4. Does the `k = ⊥ₛ` question resolve, or stay a permanent open conjecture?
+
+## Candidate logical-presentation track: mode theory and indexed context
+
+**Status and scope.** This section records the candidate research program for giving the **whole Hoapa framework** a mathematical-logical presentation. It is independent of the presentation's `R/P/A/D` conceptual diagram and of the Reality and provenance repairs above. Those concepts may eventually require types, effects, interfaces, or modalities in a Hoapa logic, but they do not determine that logic's modes in advance. This track is not a cascade layer, does not change T1–T_recursion, and reserves no Agda module. Its first task is discovery: identify the framework's genuine judgmental regimes and transformations before choosing an encoding.
+
+The current candidate is **mode theory** in the broad line from adjoint logic through the Licata–Shulman–Riley fibrational framework, Multimodal Dependent Type Theory (MTT), and Multimodal Adjoint Type Theory (MATT). These frameworks can generate a type theory from a small presentation of modes, modalities, and transformations, and supply general metatheory such as cut admissibility, normalization, consistency, or canonicity under their respective hypotheses. This makes mode theory a credible presentation language. It does **not** establish that any current Hoapa noun is a mode, that any philosophical reciprocity is an adjunction, or that one existing multimodal calculus already contains all of Hoapa.
+
+### Intended role
+
+The target is a logical grammar whose models can include:
+
+- the cohesive/modal A side;
+- the actor-causal, sheaf, session, and operadic B side;
+- the B-internal cartesian↔linear R4 bridge;
+- eventually, the cross-site `Allow ⊣ Require` pair and its iteration;
+- later extensions such as protocol versions, content, federation, provenance, and the Reality boundary, only after each earns a logical form.
+
+The logical presentation should expose which structures are primitive, which are derived, and which are properties of models. A higher cohesive realization and a lower logical shadow may later be related by explicit interpretations or reducts, but neither is fixed at this stage. In particular, the higher theory is not obtained by "undoing truncation" of a lower one, and the syntax's initial model would establish freeness or least commitment relative to chosen rules, not social or engineering optimality.
+
+### Three structures that must remain distinct
+
+#### 1. Contextual indexing: telescopes, slices, and descent
+
+Dependent type theory supplies the most natural current candidate for **context as point of view**. A telescope `Γ` is an iterated context extension; in categorical semantics, types in that context live over `Γ`, and in a topos or ∞-topos `ℰ` they are read in the slice `ℰ/Γ`. A substitution `f : Δ → Γ` induces base change `f* : ℰ/Γ → ℰ/Δ`, with the familiar dependent adjoints `Σ_f ⊣ f* ⊣ Π_f` when they exist.
+
+This gives a disciplined interpretation of one logical grammar varying over contexts and suggests an indexed family such as:
+
+```text
+Γ ↦ Hoapa-structures internal to ℰ/Γ
+```
+
+It does not yet give the project's full recursion. Ordinary extension from `Γ` to `Γ.A` makes a new type-theoretic context, but it does not by itself show that a completed covering, protocol, or documentation generates a new world of inquiry. Likewise, slices do not supply a Grothendieck topology, descent, or a network of distinct topoi without additional data. These are separate naturality obligations.
+
+#### 2. Operational phasing: CBPV and LNL
+
+Call-by-push-value (CBPV) supplies a candidate distinction between **stable values** and **effectful computations**, connected by an adjunction `F ⊣ U`. Benton linear/non-linear logic supplies a related cartesian↔linear adjunction, with the linear exponential obtained from its composite. The relationship is close but not identity: CBPV emphasizes evaluation and effects, while LNL emphasizes cartesian and linear resource disciplines.
+
+The checked point-generated R4 theorem is the grounded Hoapa fragment on this axis:
+
+```text
+Lpoint ⊣ Rpoint
+```
+
+over cartesian locality and linear/session-valued point sheaves, relative to the value-level LNL and finite-product hypotheses. This has the outer categorical shape needed for an LNL/CBPV investigation, but it is not yet a CBPV calculus, an operational semantics, or a process→artifact construction.
+
+A promising interpretation is that a live conversation or document-producing activity is a computation, while a completed, citable artifact is a value. This is a **candidate phase distinction**, not a result. The current Agda constructs linear session-valued sheaves and cartesian locality sheaves; it does not construct the claimed stabilized artifact phase. Before adoption, the track must identify the extra structure that makes completion, persistence, copying, citation, and provenance coherent with R4.
+
+#### 3. Framework-level modes and modalities
+
+A Hoapa mode must denote a genuine **regime of judgment**, not merely a component, stakeholder, or sort. For every candidate mode `m`, the project must be able to state:
+
+```text
+Γ ⊢_m A
+```
+
+and explain what propositions/types `A` mean, what hypotheses may occur in `Γ`, which structural rules apply, and which category or higher category interprets the judgments. A mode morphism must act on judgments/types; a 2-cell must compare such actions. If an adjunction is claimed, its natural hom-equivalence, unit, counit, and triangles must be exhibited in a model.
+
+This test deliberately does not preselect `R`, `Ag`, `P`, `D`, ModalHoTT, Concurrency, or the cascade layers as modes. Some may become modes; others may instead be effects, models, sorts, predicates, audits, factorization laws, or external interfaces. Reality in particular remains the constitutive exterior described in the preceding section, not an internal mode by default.
+
+### Piecewise naturality protocol
+
+Every proposed import into the logical presentation must be recorded in six parts:
+
+1. **Intrinsic claim.** State the Hoapa claim without imported technical vocabulary.
+2. **Mathematical kind.** Classify the required object: judgmental mode, modality, adjunction, effect, capability, factorization, descent condition, audit, transition, or model property.
+3. **Nearest established structure.** Name the existing theory that appears to carry it.
+4. **Exact gain.** State only what that theory supplies without further Hoapa assumptions.
+5. **Missing obligations.** List the functors, equations, coherence, model, or theorem still required.
+6. **Falsifier.** Give a small example or incompatibility that would show the proposed identification is wrong.
+
+For a candidate mode, add a **mode-legitimacy table** with judgment form, context discipline, structural rules, semantic category, and at least one non-syntactic model. For a candidate edge, record whether it is a modality, effect/computation, audit/relation, or factorization law; only the first class belongs automatically in a mode theory. Mediation and descent must never be conflated: factorization through an interface and unique gluing of compatible local data are different laws.
+
+### Grounded relationships, candidates, and rejected shortcuts
+
+**Grounded or literature-backed:**
+
+- mode theories can present interacting modal and substructural logics and can support reusable metatheory;
+- dependent contexts have slice/base-change semantics, with `Σ_f ⊣ f* ⊣ Π_f` under the usual hypotheses;
+- CBPV separates values from computations and factors effects through `F ⊣ U`;
+- LNL separates cartesian and linear regimes;
+- point-generated R4 is a machine-checked sheaf-level LNL adjunction under its stated hypotheses;
+- cohesive modalities are geometric/modal structure and must not be identified with operational roles without a theorem.
+
+**Candidates to test:**
+
+- a fixed Hoapa logical grammar interpreted in every contextual slice;
+- compatibility of that grammar with reindexing, covers, and descent;
+- an R4-supported CBPV interpretation of protocol execution;
+- a constructed transition from live linear processes to stable artifacts;
+- an indexed or fibred mode theory combining contextual and operational structure;
+- a later derivation or concrete model of `Allow ⊣ Require` from independently justified ingredients.
+
+**Rejected as present conclusions:**
+
+- `R/P/A/D` are already the four modes of Hoapa;
+- every reciprocal conceptual relation is an adjunction;
+- the contextual and operational structures are proved independent or orthogonal;
+- the CBPV value/computation distinction already solves the session/document distinction;
+- context extension `Γ.A` already is evolutionary context generation;
+- mediation already is sheaf descent;
+- R4 already is the cross-site adjunction;
+- the cross-site adjunction simply reads off from a mode diagram;
+- initiality or a free adjoint proves optimality;
+- one can reconstruct the higher framework uniquely from a lower logical reduct.
+
+### Candidate architecture, held loose
+
+The current least-committal shape is a context-indexed family of models of a not-yet-fixed Hoapa grammar:
+
+```text
+Γ ↦ Mod_Hoapa(ℰ/Γ)
+```
+
+with reindexing along context maps and, where a topology is present, descent along covers. Within each fiber there may be an operational value/computation or cartesian/linear adjunction. Cohesion may structure the ambient contextual geometry. None of these placements is yet an equality of structures.
+
+The central compatibility questions are likely Beck–Chevalley- or Frobenius-shaped: does contextual reindexing commute coherently with the operational adjunction, and do the resulting structures descend? These questions are more informative than selecting a large fixed mode graph in advance because they test whether the two candidate dimensions genuinely form one logical system.
+
+### Staged investigation
+
+1. **Claim inventory.** Extract the framework's actual judgmental distinctions and transformations from `motivation.md`, `arc.md`, `targets.md`, the Agda interfaces, and the candidate-hole sections. Do not translate them yet.
+2. **Legitimacy pass.** Apply the mode/edge tests and the six-part naturality protocol. Produce the smallest candidate grammar and record rejected identifications.
+3. **Toy semantics.** Construct a finite Set-valued or presheaf-valued model. The first goal is consistency and intelligibility, not coverage of the cascade.
+4. **R4↔CBPV test.** State exactly which extra action, enrichment, term, or effect data turns the point-generated LNL adjunction into a CBPV-like model, and construct or reject the process→artifact phase.
+5. **Context-indexing test.** Reindex the toy/R4 structure along a small family of context maps; formulate the relevant Beck–Chevalley/Frobenius comparisons; then test descent on a finite cover.
+6. **Framework choice.** Only after the toy models decide whether LSR-style adjoint logic, MTT, MATT, linear dependent type theory, dependent CBPV, an indexed combination, or a custom calculus is the natural host. The existing Cubical Agda development and external tools such as multimodal proof assistants are implementation options, not selection criteria.
+7. **Higher/lower comparison.** Once syntax and at least two semantics exist, define any reduct/interpretation explicitly and state what it forgets. Investigate an initial syntactic model and free/forgetful constructions without reading them as optimality results.
+8. **Cross-site instance.** Attempt `Allow ⊣ Require` only after the A-side modal-context semantics, B-side structured semantics, and their compatibility laws have independent definitions.
+
+### Possible theorem targets
+
+- soundness and normalization inherited from a host framework after an adequate encoding theorem;
+- adequacy of the toy model for the chosen Hoapa judgments;
+- stability of the operational adjunction under contextual reindexing;
+- Beck–Chevalley/Frobenius laws relating context change and operational phase change;
+- descent of Hoapa-model structure over a cover;
+- a universal property for process→artifact stabilization;
+- a preservation theorem for a later higher→lower reduct;
+- a concrete non-collapse or non-trivial-iteration witness for the cross-site instance.
+
+The first Hoapa-specific mathematical value is most likely to lie in one of the compatibility theorems, not in the bare declaration of modes. Novelty should be claimed only after comparison with multimodal, linear dependent, effectful, and indexed type theories.
+
+### Relationship to the candidate holes
+
+Reality and provenance remain independent candidate repairs. They should be consumed by the logical-presentation track only after their mathematical kinds are clear. Reality may contribute an external effect/capability boundary; provenance may contribute an audit, indexed history, or transition structure. Neither should fix the mode graph or dominate the logical presentation of the whole framework. Conversely, the mode-theory track must eventually explain how such interfaces attach if they are promoted, rather than treating their prose as primitive modalities.
+
+### Decision gates
+
+1. What are the first genuine Hoapa judgments, and which differences between them require distinct modes rather than distinct types or effects?
+2. Is the contextual organization one ambient `ℰ` with slices, a network of topoi, or a staged combination?
+3. Does R4 admit the extra structure required for a CBPV interpretation, and what exactly is a stabilized artifact?
+4. Do contextual reindexing and the operational adjunction satisfy coherent comparison laws?
+5. Which host framework expresses the smallest validated grammar without forcing unsupported structure?
+6. Which model beyond syntax demonstrates that the presentation is not merely a restatement of its rules?
+7. What precise property would make the eventual logical presentation foundational for Hoapa: initiality, classifying semantics, conservativity, theorem transport, or another universal property?
+
+### Research anchors
+
+- Licata–Shulman, *Adjoint Logic with a 2-Category of Modes*.
+- Licata–Shulman–Riley, *A Fibrational Framework for Substructural and Modal Logics*.
+- Gratzer–Kavvos–Nuyts–Birkedal, *Multimodal Dependent Type Theory*.
+- Shulman, *Semantics of Multimodal Adjoint Type Theory*.
+- Levy, *Call-By-Push-Value* and *Adjunction Models for Call-By-Push-Value with Stacks*.
+- Benton, *A Mixed Linear and Non-Linear Logic: Proofs, Terms and Models*.
+- Vákár, *A Framework for Dependent Types and Effects*.
+- Vákár, *Syntax and Semantics of Linear Dependent Types*.
