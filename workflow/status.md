@@ -457,33 +457,141 @@ The detailed rot-compₒ discussion that led to the 2026-05-18 cyclic-equivarian
 
 ## Next step
 
-Next work should focus on **exposition of the point-generated R4 theorem** and, after that, optional instantiation checks. The coding target that motivated this track is now complete in generic form.
+Phase 0 coefficient non-vacuity is implemented at `Chu(SET,Bool)`: the Chu
+finite products and Benton adjunction discharge the generic point-generated
+R4 hypotheses, yielding a concrete `Lpoint left-adjoint-to Rpoint` witness.
+The immediate cleanup is to remove the example transitive import of the
+legacy actor-site postulate, then update the two R4 abstracts with the
+concrete coefficient instance and its limitations.
 
-The proved theorem is the point-generated sheaf-level Benton/LNL adjunction:
+The next mathematical phase is the Sessions-to-Chu realization described
+below. It requires design agreement before implementation; it is not merely
+another theorem instantiation. Full actor-causal sheafification, the Cubical
+`Coverage` comparison, cross-site `Allow left-adjoint-to Require`, O1
+realization, and the Reality boundary remain later work.
 
-```text
-Lpoint ⊣ Rpoint
-```
+### Chu implementation convergence (Phase 0 complete)
 
-over point-sheaf categories on the supported event-discrete actor-causal site. It consumes:
+The long design discussion converged on the following decisions:
 
-- the value-level `lnl : LNLAdjunction Cart cartProd V`;
-- finite products on the linear value category, `vProd : HasFiniteProducts (StarAutonomous→Category V)`;
-- the constructed point-generated reflector `a ⊣ ι` from `PointSheafAdjunction.agda`.
+- Chu(SET,k) is the canonical semantic coefficient category for the R1/R7
+  route; the existing `Sessions-Cat` remains as postulate-relative syntax.
+- Non-vacuity has two grades. Phase 0 establishes coefficient non-vacuity:
+  the generic point-generated R4 theorem has a concrete mathematical model.
+  Sessions-in-Chu remains the intended-instance program.
+- Internal Chu duality is exact and involutive. Any lossy
+  Reality-to-protocol admission map is a separate later morphism.
+- Chu supplies closed/cut and symmetry machinery relevant to O1, but it does
+  not choose a self-dual carrier or trivalent cyclic/Frobenius generator.
+- The agreed sequence remains:
+  1. Phase 0: bare Chu/Benton instance and R4 specialization.
+  2. Phase 1: multiplicative/additive Sessions realization `J`.
+  3. Phase 2: concrete send/receive and payload semantics.
+  4. Phase 3: O1-in-Chu and reduction of the current action postulates.
+  5. Phase 4: Reality-boundary admission/erasure interface.
 
-What remains explicitly outside the theorem:
+#### Phase 0 delivered
 
-- no construction of the value-level Benton adjunction `lnl`;
-- no proof yet that the intended Sessions value category satisfies `vProd`;
-- no full finite actor-causal sheafification reflector;
-- no Cubical `Coverage`/library-sheaf comparison for the point topology;
-- no cross-site `Allow ⊣ Require`.
+Six new modules now type-check:
 
-Immediate documentation target:
+- `Concurrency/Algebras/Chu.agda`: `Chu(SET,k)` objects, morphisms, hom-sets,
+  and category laws, generic in `k : hSet`.
+- `Concurrency/Algebras/ChuFiniteProducts.agda`: terminal object and binary
+  products, with positive product and negative coproduct.
+- `Concurrency/Algebras/ChuMonoidal.agda`: the project thin
+  `StarAutonomous` instance. The decisive representation is
+  `TensorNeg A B = ChuHom A (dual B)`, so tensor action and its laws reuse
+  categorical composition instead of normalizing bespoke nested records.
+- `Concurrency/Hybrid/ChuLinearNonlinear.agda`: the constructive Benton
+  adjunction `SET <-> Chu(SET,k)`, with `G A = A+` and
+  `F X = (X, k^X, ev)`, including the strong-monoidal comparisons.
+- `Concurrency/Hybrid/ChuPointVProd.agda`: finite products at the exact
+  category type expected by the point theorem.
+- `Concurrency/Hybrid/ChuPointExample.agda`: specialization at `k = Bool`
+  and a concrete two-actor base. `Chu-nonvacuity` is the resulting
+  point-generated `Lpoint |- Rpoint` witness.
 
-```text
-workflow/communication_drafts/ext_abstract.tex
-workflow/communication_drafts/point_generated_r4_abstract.tex
-```
+All six new modules contain no postulates and import no Sessions axioms. The
+new Chu stack and final witness type-check. `Chu-nonvacuity` is left
+unannotated because Agda infers the intended adjunction in seconds, whereas
+repeating the fully expanded type causes pathological conversion checking.
+The implementation inhabits the current thin `StarAutonomous` interface; it
+does not yet formalize the omitted global coherence or tensor-hom universal
+property.
 
-Keep the abstract mathematical: state the site, the point reflector, the value-level LNL hypothesis, the resulting adjunction, and the exact limitations. In particular, present the formal `LNLAdjunction` as a thin Benton-style interface, and present Sessions as the motivating intended instance rather than part of the generic theorem.
+One cleanup remains before describing the witness as postulate-free in the
+strict transitive-import sense: `ChuPointExample` currently obtains `TinyAB`
+from `ActorCausal.agda`, a module that also contains an unrelated legacy
+stability postulate. `TinyAB` itself is constructive and does not use that
+postulate. Move the two-actor base to a postulate-free module or define it
+locally in the example.
+
+#### Phase 1 opening: Sessions-to-Chu realization (Codex)
+
+The natural continuation is a semantic interpretation
+`J : Sessions -> Chu(SET,k)`, preserving tensor, par, duality, units, and
+additives. This is a new design phase rather than a mechanical extension of
+Phase 0. Before implementation, settle four points:
+
+1. Source presentation: map the current postulate-relative `Sessions-Cat`,
+   or extract a postulate-free raw session presentation and validate its
+   equations directly in Chu. The preferred route is the latter; the former
+   is useful only as an explicitly relative prototype.
+2. Termination object: choose or parameterize the self-dual Chu object that
+   interprets `end`.
+3. Payload boundary: parameterize `Payload -> ChuObj` now, with concrete
+   send/receive semantics deferred to Phase 2. Since `send` and `recv` are
+   already constructors of `SessionType`, Phase 1 must either interpret them
+   parametrically or work with an explicit multiplicative/additive core
+   sublanguage.
+4. Strength of `J`: distinguish an object-level fold, an interpretation of
+   raw morphism constructors, and a genuine strong monoidal/additive functor.
+   Do not advertise the first as the third.
+
+Preferred first bounded deliverable: perform the strict postulate-import
+cleanup above, define a `SessionChuSignature` carrying the self-dual `end` and
+payload parameters, and construct an object-level fold `J0` whose structural
+connectives are preserved by construction. Then decide how the raw syntax is
+quotiented or presented before claiming a categorical functor. O1 and the
+Reality boundary remain out of scope for this phase.
+
+#### Claude closing statement
+
+ Phase 1 — Sessions-to-Chu realization J
+
+  Goal. A *-autonomous functor J : Sessions → Chu(SET, k) interpreting session types as Chu spaces, validating the session laws in Chu (so the postulate debt in Sessions.agda becomes theorems, not
+  transported axioms). This is grade-(ii) intended-instance non-vacuity; it does not replace Sessions-Cat (coexist: Sessions = syntax, Chu = semantics, J = the bridge).
+
+  Roadmap / order (Codex's fragment order — keep it):
+  1. Objects/connectives first: J on type formers — 𝟙ₛ↦𝟙, ⊗ₛ↦⊗, ^⊥↦dual, ⅋/⊸ derived, then additives &/⊕/⊤/0.
+  2. Then morphisms. Prefer fresh, postulate-free session syntax (a HIT or free-category presentation) whose equations you prove hold in Chu — not a functor out of the current postulate-relative
+  Sessions-Cat (that would just transport axioms and buy nothing). A postulate-relative J is acceptable only as an explicitly-labelled wiring scaffold, never the deliverable.
+  3. J(⊥ₛ) ≅ ⊥_Chu(k) should be derived from J preserving the tensor unit and duality (J(𝟙ₛ^⊥) ≅ J(𝟙ₛ)^⊥ ≅ I_Chu^⊥), not added as a separate field. The "same k also serves Reality" question stays
+  a flagged conjecture (Phase 4), not part of J.
+  4. send/receive payloads come after the categorical core; O₁ is Phase 3.
+
+  Concrete tips (hard-won from the Chu build — these will save the next instance days):
+  - Records, not Σ, for any object-indexed structured type. Index recovery from a Σ is non-pattern unification and blows up; a record recovers indices by constructor injectivity. This is why
+  ChuHom/TensorNeg are records.
+  - Direct field projections in computation-heavy definitions, not helper functions — the conversion checker reduces f .field but defers helper unfolding under refl.
+  - The single biggest lever: represent "compatible-pair" / hom-like negatives as ChuHom A (dual B) so actions become chu-seq/dual-hom composition and laws reduce to the cheap category laws
+  (chu-⋆IdL/R, chu-⋆Assoc, dual-id/comp) as named paths. If you find yourself writing bespoke records with ∙-chained compatibility proofs, stop and reach for the categorical/closed-structure form
+  first.
+  - Equality of structured morphisms: fill the propositional component pointwise in k (isSet→SquareP) or via Σ≡Prop; never transport a big Π.
+  - (A^⊥)^⊥ ≡ A definitionally and sym (sym p) ≡ p — exploit these; dual is its own inverse on morphisms for free.
+  - Name your parameterized modules (module Foo k where … open Lower k public) so downstream open Foo k once instead of threading k.
+  - Avoid writing out large instantiated types as annotations — Agda re-expands both sides and times out (this is what cost us the witness). Leave inferred, or use a named module so both sides
+  share syntactically.
+  - Exactly-typed adapters for coercions used deep inside generic constructions (like the vProd adapter), so the coercion is paid/cached once.
+  - .agdai caches live in agda/_build/; ChuMonoidal cold-builds ~205s — run one Agda process at a time (parallel runs caused the false "10-minute" pathology), and use untimed background builds for
+  anything that might exceed the 600s tool ceiling.
+
+  Watch-outs:
+  - Don't let Phase-1 files import Sessions.agda into anything Phase-0 depends on; keep the dependency one-directional (Chu stack stays Sessions-free).
+  - The project's StarAutonomous is a thin interface (named isos, no Mac Lane coherence). J only needs to hit those fields — don't over-prove coherence unless a later layer demands it.
+  - Additives: Chu(SET,k)'s & is (A⁺×B⁺, A⁻⊎B⁻) (in ChuFiniteProducts); ⊕/0 are the De Morgan duals. Make sure J's additive clauses land on the proved-universal-property product, not just the
+  objects.
+  - Verify incrementally (one connective at a time); a full ChuMonoidal-style file is buildable but slow, so structure J so each fragment caches.
+
+  Available interface (from open Monoidal k): Chu-StarAutonomous, dual/dual-hom, _⊗_, chuUnit, ⊗-hom, plus all of Construction (ChuObj, chuHom, chu-seq, ChuHom≡, positive/negative/evaluate, …).
+  Chu-LNL and the closed witness are the templates to imitate for style.
