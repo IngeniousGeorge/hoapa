@@ -142,3 +142,166 @@ Chu spaces over a dualizing object `k` package an object as points, states, and 
 **What they use.**
 **What it models.**
 **Relation to our arc.**
+
+---
+
+## Appendix — inventory of structures mentioned during the logical-presentation discussion
+
+Below is a deduplicated inventory of the named mathematical, logical, computational, and philosophical structures in the three files. I exclude ordinary primitives such as “category” or “functor” unless a particular construction was proposed.
+
+Status: **grounded** = already represented in Hoapa; **candidate** = worth testing; **analogy** = suggestive only; **rejected identification** = explicitly cautioned against.
+
+**Logical Presentation**
+- Ordinary first-order theories: signature + axioms + Tarskian models.
+- Many-sorted first-order logic.
+- Essentially algebraic theories.
+- Geometric logic and geometric theories.
+- Regular, coherent, higher-order, dependent, and homotopy logic as a lattice of doctrines.
+- Sequent calculi, natural deduction, and multi-zone substructural calculi.
+- Curry–Howard: proofs as programs/processes.
+- Syntax–semantics correspondence: syntactic categories, internal languages, and classifying topoi.
+- `Mod ⊣ Th`: the Galois connection between classes of models and theories.
+- Initial/free syntactic models and free-forgetful adjunctions.
+- Reducts, interpretations, conservative extensions, and theorem transport.
+- Institutions, institution morphisms/comorphisms, and the satisfaction condition.
+- Lawvere hyperdoctrines, doctrines, and 2-categorical logic.
+- Computads, polygraphs, directed sketches, and free 2-categories with adjunctions.
+- Game semantics.
+- Adjoint modal-linear logic and its posetal/Galois shadow.
+
+**Mode-Theoretic Family**
+- Mode theory in the general sense.
+- Adjoint logic with a 2-category of modes, from Licata–Shulman.
+- Licata–Shulman–Riley’s fibrational framework for substructural and modal logics.
+- Multimodal Dependent Type Theory, or MTT.
+- Multimodal Adjoint Type Theory, or MATT.
+- Indexed or fibred mode theory.
+- Linear dependent type theory.
+- Dependent type theory with effects.
+- Dependent call-by-push-value.
+- Custom combinations of dependent, linear, modal, and effectful calculi.
+- Mode-legitimacy semantics: judgments, context disciplines, structural rules, semantic categories, modalities, and 2-cells.
+
+**Context And Geometry**
+- Dependent contexts as telescopes and iterated comprehension `Γ.A`.
+- Slice semantics `ℰ/Γ`.
+- Dependent base change `Σ_f ⊣ f* ⊣ Π_f`.
+- Comprehension/indexed categories and fibrations.
+- Beck–Chevalley conditions.
+- Frobenius reciprocity conditions.
+- Sites, Grothendieck topologies, presheaves, and sheaves.
+- Restriction, compatibility, descent, and unique gluing.
+- Čech nerves, hypercovers, and ∞-descent.
+- Kripke–Joyal semantics.
+- `(∞,1)`-toposes and HoTT as their internal language.
+- Slicing and left-exact localization of topoi.
+- The `(∞,2)`-category of slices.
+- `Topos∞` and networks of topoi connected by geometric morphisms.
+- Yoneda/functor-of-points semantics.
+- Univalence as equivalence of viewpoints.
+- Points and enough-points conditions.
+- Cohesive HoTT and `ʃ ⊣ ♭ ⊣ ♯`.
+- Synthetic differential geometry and differential cohesion `ℜ ⊣ ℑ ⊣ &`.
+- Fracture modalities and modal subuniverses.
+- Lawvere’s fixed-point theorem, universe hierarchies, and non-totalization.
+- The actor-causal site and its finite/event-discrete/point-generated topologies. **Grounded**
+- Point-generated R4 and its sheaf-level adjunction. **Grounded**
+
+**Operational And Resource Structures**
+- Call-by-push-value, with values/computations related by `F ⊣ U`.
+- Benton linear/non-linear logic and its cartesian↔linear adjunction. **Grounded conditionally through R4**
+- Linear logic and its exponentials `!` and `?`.
+- `*`-autonomous categories and multiplicative linear logic.
+- Propositions-as-sessions and cut-as-communication.
+- Binary and multiparty session types; global-to-local projection.
+- Polycategories and sequent-style interaction composition.
+- Cut elimination, normalization, progress, and deadlock freedom.
+- Effect systems, capability systems, handlers, and effect safety.
+- Open-system interfaces, spans, and cospans.
+- Categorical systems theory and polynomial functors.
+- Profunctors as mediated or proof-relevant interfaces.
+- Lenses and optics for update/repair propagation.
+- Traced monoidal categories.
+- Guarded recursion and the later modality `▷`.
+- Coalgebraic and temporal logics.
+- Causal transition systems, trace systems, and event structures.
+- Double categories, adhesive categories, and partial-commutation structures.
+- The Actor model as a uniform process model.
+
+**Symmetry And No-Leak**
+- Nominal sets and Fraenkel–Mostowski-style equivariant semantics.
+- Renaming equivariance: renaming actors produces an isomorphic model.
+- Parametricity and logical relations.
+- Definability/noninterference.
+- Actor-identity erasure and observational no-leak.
+- Team semantics.
+- Dependence and independence logics.
+- Semiring-valued team semantics.
+- Two-sorted model theory separating actors from artifacts.
+
+**Provenance And Change**
+- Provenance semirings and K-relations.
+- The free commutative semiring `ℕ[X]`.
+- Provenance circuits and shared derivation DAGs.
+- First-order semiring semantics.
+- Monus and negative-information provenance.
+- W3C PROV.
+- Categories of elements, displayed categories, and Grothendieck constructions.
+- Fibrations, opfibrations, bifibrations, and profunctorial transport.
+- Functorial data migration `Σ ⊣ Δ ⊣ Π`.
+- Functorial aggregation.
+- Quantale-valued relations, enriched matrices, and enriched profunctors.
+- Tropical and many-valued specializations.
+- Set-valued profunctors and categorified derivation witnesses.
+- Semimodule-valued sheaves.
+- Categorical patch theory.
+- Homotopical Patch Theory using higher inductive types.
+- Pijul-style change graphs, partial clones, dependency and conflict data.
+- The protocol-version category `Π`.
+
+**Duality And Physics**
+- Chu spaces and Chu categories.
+- Formal Concept Analysis and Barwise–Seligman information flow.
+- Isbell and Gelfand dualities.
+- Connes-style noncommutative geometry.
+- Non-reflexive double-dualization through a dualizing object.
+- Bordism categories and Atiyah–Segal TQFTs.
+- The cobordism hypothesis and fully dualizable objects.
+- Cups, caps, zig-zag identities, and adjointability towers.
+- Factorization algebras.
+- Wilsonian renormalization-group flow.
+- Smooth ∞-stacks, jet ∞-stacks, and moduli of fields.
+- BV–BRST and derived critical loci.
+- Twisted differential cohomology.
+- Holography and AdS/CFT. **Analogy only; holographic equivalence explicitly rejected**
+
+**Operadic And Higher Layers**
+- The cyclic operad `O₁` and its session action. **Grounded**
+- The modular envelope `MO₁`.
+- Cyclic bar constructions.
+- Planar cyclic associative `Ass_cyc` versus symmetric `Com_cyc`.
+- The proposed content operad `O_C`.
+- Sequential colimits of monad iteration and dual limits of comonad iteration.
+- The concept category `Λ`.
+- Lawvere theories, Lambek/categorial grammar, and dependent type theory as candidate seed-language presentations.
+- Bicategories or `(∞,2)`-categories of protocols.
+- Presheaf meta-topoi.
+- Grothendieck–Teichmüller actions, dessins, Belyi presentations, and anabelian reconstruction.
+- Information cohomology: Shannon entropy as a 1-cocycle and mutual information as a 2-cocycle.
+- Homology/cohomology pairings.
+- MDL, rate-distortion theory, information bottleneck, information geometry, Wasserstein metrics, and language-model perplexity.
+
+**Philosophical/Formal Analogues**
+- Spencer-Brown’s calculus of distinctions and Luhmannian distinction.
+- Peirce’s community of inquiry.
+- Austin’s performative/constative distinction.
+- Brandom–Sellars inferentialism, commitments, entitlements, and deontic scorekeeping.
+- Kant’s transcendental deduction and `quid juris`.
+- Lewis Carroll’s regress and Wittgensteinian rule-following/form-of-life.
+- Leibnizian monads and Nietzschean perspectivism.
+- Scotus–Spinoza–Deleuze univocity.
+- Attachment theory’s secure-base/exploration/care structure.
+
+The most important **rejected identifications** are: buffer = `!`; mediation = descent; reciprocal arrows = adjunctions; R4 = `Allow ⊣ Require`; R/P/A/D = cohesive modalities; session involution = full dualizability; initiality = practical optimality; disciplined boundary = field theory; no-leak = RG boundary condition.
+
+Sources: [human_signature.md](/home/ig/Code/hoapa/workflow/deep_context/human_signature.md), [atempted_philosophical_roots_of_provenance.md](/home/ig/Code/hoapa/workflow/deep_context/atempted_philosophical_roots_of_provenance.md), and [future_work.md](/home/ig/Code/hoapa/workflow/future_work.md:721).
