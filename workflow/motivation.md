@@ -23,7 +23,7 @@ Then:
 Philosophically: the category which hosts this structure is capable of ? (World understanding and world creation)
 Mathematically: something about covers/coverings, recursion, a form of contribution to a developing infinite network...
 
-Current first checked fragment: on the operational side, the project now has a point-generated sheafification reflector and a sheaf-level Benton/LNL adjunction over the supported event-discrete actor-causal site. This is not yet the cross-site `Allow ⊣ Require` adjunction; it is the first modest B-internal theorem that makes one side of that future adjunction concrete.
+Current first checked fragment: on the operational side, the project now has a point-generated sheafification reflector and a sheaf-level Benton/LNL adjunction over the supported event-discrete actor-causal site. `Chu(SET,Bool)` supplies a concrete coefficient witness for that bridge, and the first Sessions-to-Chu `J0`/`J1` realization interprets the postulate-free session object/morphism syntax. This is not yet the cross-site `Allow ⊣ Require` adjunction; it is the first modest B-internal theorem plus value-model instance that makes one side of that future adjunction concrete.
 
 The last item is the mathematical fragment, interesting for its own sake in mathematics, of a foundational statement in the space of interdisciplinary theories.
 

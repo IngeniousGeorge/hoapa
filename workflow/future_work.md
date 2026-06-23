@@ -62,27 +62,52 @@ The eventual quality target is stronger: replace the action assumption with a ca
 
 Expected ladder:
 
-1. **Done:** `Sessions.agda` v1: minimal session syntax, inductive structural `Hom`, and an explicit `SessionO1Action` assumption.
-2. **Done at finite-descent, finite sheaf-category, and point-generated R4 level:** Hybrid integration now has arbitrary-frame `FramePresheaf` / `SessionPresheaf`, zero-postulate separatedness, category-generic finite products, finite frames/covers, category-generic finite event-product descent, the constant-slot Sessions sheaf, proof-level tiny finite-cover validation, the V-valued finite sheaf/value category, and the framework-at-`SET` finite sheaf category with a concrete Set event-product object. The finite Coverage/library comparison has landed, and R4 now has the Benton/LNL presheaf bridge, right-adjoint sheaf preservation, a finite-sheafification interface, a conditional full finite-site sheaf-level adjunction, the point-generated supported reflector, and the point-generated supported bridge `Lpoint ⊣ Rpoint`; event-dependent slots and the generic full finite actor-causal reflector remain pending.
-3. Richer session category: add proof terms or an equivalent categorical semantics, cut as composition, cut-elimination/equality, closed structure/evaluation, and enough tensor/braiding coherence to manipulate long tensor strings.
-4. Canonical `O_1` action: define `SessionO1Action` rather than assume it. `shift` should come from coherent cyclic permutation of tensor factors; `plug` should come from closed/evaluation/cut structure composing two morphisms into the dualizing object.
-5. Only then push hard on `MO_1`: extend the canonical `O_1` action toward self-gluing / conversation-promotion / modular closure.
+1. **Done:** split the Sessions layer. `SessionSyntax.agda` now owns the
+   postulate-free object grammar, `SessionMorphismSyntax.agda` owns the
+   set-truncated morphism HIT, and `Sessions.agda` packages the remaining
+   explicit `SessionO1Action` assumption.
+2. **Done:** build the Sessions-to-target realization. `SessionObjectModel.agda`
+   defines `J0`, `J0-dual`, `J1`, and the underlying Cubical functor; the
+   `Chu(SET,Bool)` instance lives in `SessionChuModel.agda`.
+3. **Done at finite-descent, finite sheaf-category, point-generated R4, and
+   Chu-coefficient level:** Hybrid integration now has arbitrary-frame
+   `FramePresheaf` / `SessionPresheaf`, zero-postulate separatedness,
+   category-generic finite products, finite frames/covers, category-generic
+   finite event-product descent, the constant-slot Sessions sheaf, proof-level
+   tiny finite-cover validation, the V-valued finite sheaf/value category, and
+   the framework-at-`SET` finite sheaf category with a concrete Set
+   event-product object. The finite Coverage/library comparison has landed,
+   and R4 now has the Benton/LNL presheaf bridge, right-adjoint sheaf
+   preservation, a finite-sheafification interface, a conditional full
+   finite-site sheaf-level adjunction, the point-generated supported reflector,
+   the point-generated supported bridge `Lpoint ⊣ Rpoint`, and a concrete
+   `Chu(SET,Bool)` coefficient witness.
+4. Richer session category: add proof terms or an equivalent categorical
+   semantics, cut as composition, cut-elimination/equality, closed
+   structure/evaluation, and enough tensor/braiding coherence to manipulate
+   long tensor strings.
+5. Canonical `O_1` action: define `SessionO1Action` rather than assume it.
+   `shift` should come from coherent cyclic permutation of tensor factors;
+   `plug` should come from closed/evaluation/cut structure composing two
+   morphisms into the dualizing object.
+6. Only then push hard on `MO_1`: extend the canonical `O_1` action toward
+   self-gluing / conversation-promotion / modular closure.
 
 Practical trigger: when the session target can state and use an evaluation/cut map of the form `eval : Hom ((A ⊸ B) ⊗ A) B` (or the equivalent polycategorical/sequent form) and can coherently rotate tensor factors, the deferred derivation of `gen`, `plug`, and `shift` should return to the top of the B-side queue.
 
 ## Regarding the actor-causal site
 
-`Concurrency/Sites/{ActorBase,ActorCausal}.agda` v1 landed the R6 locality leg: opaque unityped actors, Lamport-style event causality, actor-local frames, strict-reflecting `FrameHom`, basis-form covers, `sieve-of`, generic identity / transitivity cover constructions, and a Bool-based non-trivial witness (`TinyAB`, `TinyCausal`, `PointFrame`, `embed-point false` / `embed-point true`, `two-point-cover`). This was enough for Hybrid v1's restriction adapter to land.
+`Concurrency/Sites/{ActorBase,ActorCausal}.agda` v1 landed the R6 locality leg: opaque unityped actors, Lamport-style event causality, actor-local frames, strict-reflecting `FrameHom`, basis-form covers, `sieve-of`, generic identity / transitivity cover constructions, and constructive tiny frame/cover witnesses. `TinyActorBase.agda` now owns the postulate-free two-actor base, and `TinyActorCausalSite.agda` assembles the bundled tiny site using `ActorPullback.agda`'s constructed stability path. The actor-causal site no longer contains a real project postulate.
 
 Pieces deferred:
 
-- **Stability without legacy fallback.** `ActorPullback.agda` now gives the generic pullback frame construction and `stability-cover-pullback`. `ActorCausal.agda` still keeps `stability-cover-postulate` as an in-file fallback for the bundled `tiny-site`, because moving the bundled site to the pullback proof would create an import cycle. Future concrete site modules should import `ActorPullback` and use the constructed stability path rather than adding new postulates.
+- **Full-site pullback / stability presentation.** `ActorPullback.agda` gives the generic pullback frame construction and `stability-cover-pullback`, and the bundled tiny site now uses that constructed path. What remains deferred is not a legacy fallback but the broader presentation work: decide when the non-finite actor-causal site needs a full generated-sieve Grothendieck topology rather than the current basis-form `Cover` plus `sieve-of` bridge.
 
 - **E2 sieve / Grothendieck topology presentation.** On the finite subsite, the library-site presentation has landed: `FiniteBasisCover` strips finite covers to base-stable covering-family data, `FiniteFrameCoverage` gives a Cubical `Coverage` over `FiniteFrameCategory`, and `SetSheafComparison` proves the SET sheaf-condition agreement. For the full non-finite actor-causal site, `Cover` remains basis-form and `sieve-of` remains the bridge artifact; add a full generated-sieve topology only when a later construction needs the non-finite site.
 
 - **Promotion morphism class.** Strict `FrameHom` reflection deliberately prevents quotienting or reifying a sub-conversation as a single event / actor. The conversation-as-actor move belongs to a future promotion morphism class, coordinated with `MO_1` and the program-verification / conversation-of-conversations track.
 
-- **Richer concrete site witnesses.** The bundled Bool tiny-site still discharges `ActorCausalSite` stability by the legacy postulate. The Strategy D finite coverage path does not depend on that fallback: it derives finite pullback patches and Cubical pullback stability directly. A future v2 witness may still route the bundled tiny site through constructed stability if the import-cycle issue is resolved.
+- **Richer concrete site witnesses.** The bundled Bool tiny-site is now postulate-free. Future witnesses should add genuinely richer actor/event/causality shapes, not merely re-prove the two-point case.
 
 ## Regarding Hybrid finite descent, finite sheaf categories, and next sheaf steps
 
@@ -155,20 +180,21 @@ When resumed, event-dependent slots should live in a new module, likely `Concurr
 
 ## Chu construction
 
-Chu is deferred, not rejected. Benton/LNL is the right R4 choice because R4 is a relationship between already-existing B-side endpoints: cartesian Set-valued locality sheaves and V-valued linear/session sheaves. Chu answers a different question: what the linear value category might be internally, and how process/context duality should be built into its objects.
+Chu is now live, but still scoped. Benton/LNL remains the right R4 bridge shape because R4 relates cartesian Set-valued locality sheaves to V-valued linear/session sheaves. Chu entered as a concrete value category `V`, not as a replacement for the bridge: `Chu(SET,Bool)` now supplies a postulate-free coefficient model for the point-generated R4 theorem, and Phase 1 builds a Sessions-to-Chu realization over postulate-free session syntax.
 
-**Why not now.** Opening Chu during R4 would relocate the work from bridging `Sh_fin(site,Set)` and `Sh_fin(site,V)` to redesigning or comparing the value category `V` itself. That would force early choices of a dualizing object `k`, a comparison between `Sessions-Cat` and `Chu(Set,k)`, or a replacement of the current session value category. It would also make no-leak harder to state, because Chu objects carry both point and state components. R4 needs the forgetful/cartesian-to-linear axis first; Chu lives on the Care / process-context-duality axis.
+**What has landed.** `Concurrency/Algebras/Chu.agda`, `ChuFiniteProducts.agda`, and `ChuMonoidal.agda` construct `Chu(SET,k)` as a category with finite products and the project's thin `StarAutonomous` structure. `Concurrency/Hybrid/ChuLinearNonlinear.agda`, `ChuPointVProd.agda`, and `ChuPointExample.agda` instantiate the point-generated R4 hypotheses at `k = Bool`. The actor-site cleanup split `TinyActorBase.agda` and `TinyActorCausalSite.agda`, so the final `Chu-nonvacuity` witness has no project postulate in its transitive import closure.
 
-**What Chu buys later.** A Chu object `(A⁺, A⁻, r : A⁺ × A⁻ → k)` makes extension/intension, point/state, process/context reversal, and duality intrinsic. This is a natural home for formal concept analysis, Barwise-Seligman-style information flow, and the cobordism / cup-cap dictionary attached to the Care involution. It is also a strong candidate for the deeper shape of the value category once the content layer Λ and information-cohomological pairing become active.
+**Sessions realization.** `SessionSyntax.agda` and `SessionMorphismSyntax.agda` extract the postulate-free object and morphism syntax. `SessionObjectModel.agda` defines `J0`, `J0-dual`, `J1`, and the underlying Cubical functor into any `SessionObjectModel`; `SessionChuModel.agda` instantiates that interface at `Chu(SET,Bool)`. This turns the syntactic duality face into a semantic isomorphism theorem, not a transported Sessions postulate. `Sessions.agda` now reuses the morphism HIT for its structural categorical/product laws; its remaining postulate is the operadic `session-O1-action`.
 
-**Likely entry points.**
+**What Chu still buys later.** A Chu object `(A⁺, A⁻, r : A⁺ × A⁻ → k)` makes extension/intension, point/state, process/context reversal, and duality intrinsic. That is now both implemented as value-category infrastructure and still a future guide for formal concept analysis, Barwise-Seligman-style information flow, the cobordism / cup-cap dictionary attached to Care, and the Reality/Documentation boundary.
 
-- As a candidate value-category instance once the Benton/R4 reflector construction stabilizes.
-- As a comparison target for `Sessions-Cat` when the project asks what the session value category really is, rather than how to bridge it to Set-valued locality.
-- Inside the Bulk/Content layer Λ, where extension/intension and incidence are the subject rather than auxiliary structure.
-- In the field-theoretic / cobordism dictionary, where process/context reversal and dualizing objects are load-bearing.
+**Remaining Chu phases.**
 
-**Agda slot.** Do not create a Chu module during R4. When triggered, likely homes are `Concurrency/Algebras/Chu.agda` for the value-category construction, or `Concurrency/Content/Chu.agda` if the first use is content/FCA rather than session semantics.
+- Phase 2: concrete send/receive and payload semantics. The current payload map is parametric/nonconstant; it is not operational communication semantics.
+- Phase 3: O1-in-Chu, if earned. Removing `session-O1-action` requires real structure for `gen`, `plug`, `shift`, and their laws, likely closed/evaluation/cut or coherent tensor-rotation data. Do not discharge it by adding aliases or moving the postulate sideways.
+- Phase 4: Reality-boundary admission/erasure. Chu's point/state/evaluation shape is the natural formal carrier for Documentation as protocol observables over Reality, but Reality itself must not become an internal sort.
+
+**Agda slot.** The value-category construction lives under `Concurrency/Algebras/Chu*.agda`; the point-generated R4 instantiation lives under `Concurrency/Hybrid/Chu*.agda`; the Sessions realization lives under `Concurrency/Algebras/Session*.agda`. A later Reality/Documentation boundary should start as an interface over existing Chu objects and trace/audit data, not as a core `Reality` type.
 
 ## Beyond fracture: the differential-cohesion gap
 
@@ -677,7 +703,7 @@ Reality (`R`) is the framework's **constitutive exterior**, and it is present in
 
 - **Negatively, in the kernel** — almost every "the kernel must *not* do X" is an unnamed invocation of the `R|P` boundary: unityping / no-leak; the decision that actor-origin metadata lives *outside* the kernel; and the presentation's buffer / availability-only / non-enactment prose ("chart the world, not inhabit and certainly not control it").
 - **Positively, in the motivation** — the GR-inspired locality that motivates the Lamport-causal site, and the runtime↔reality boundary in the implementation-track plan (Elixir emits real events; the checker validates them).
-- **Absent, in the formal middle** — workflow, `targets.md`, and the Agda say nothing.
+- **Absent as a theorem in the formal middle** — workflow and `targets.md` now name the boundary, and Chu supplies a live point/state/evaluation carrier, but no Agda module yet formalizes Reality admission, erasure, or no-enactment.
 
 Load-bearing fact: the kernel's identity *is* the boundary it maintains against Reality. Naming `R` is therefore mostly a *re-reading* — collecting the scattered refusals under one interface — not a new construction.
 
@@ -703,7 +729,7 @@ This yields a unification worth stating once: **openness at the top** (no total 
 
 ### Bulk/boundary duality (mention only; transcript in arc/11)
 
-A duality reading was explored: Reality and Documentation as two points of view related by a dualizing object — better named **Isbell/Gelfand duality** (space ↔ observables; Connes for the noncommutative/perspectival face) than holography, with a **Chu** realization `(Reality, Documentation, ⟨−,−⟩ : · → k)`. It is **non-reflexive** — the double-dual (Reality → observations → reconstruction) does not invert, and that non-invertibility *is* openness / the Anthropic anchor — so it is *not* a holographic equivalence. Full transcript in `arc/11_reality.md`. It would upgrade the **Connes** entry (from "loose" to load-bearing) and the **Chu** entry (from "deferred candidate" to "motivated by Reality") in `related_structures.md`. Held as a conjecture, not a result; in particular, whether its dualizing object `k` coincides with the session dualizing object `⊥ₛ` is **open** and must be written as a conjecture, never asserted.
+A duality reading was explored: Reality and Documentation as two points of view related by a dualizing object — better named **Isbell/Gelfand duality** (space ↔ observables; Connes for the noncommutative/perspectival face) than holography, with a **Chu** realization `(Reality, Documentation, ⟨−,−⟩ : · → k)`. Chu is now implemented as value-category infrastructure and as the Sessions realization target, which makes this reading technically credible as an interface shape. It is still **non-reflexive** — the double-dual (Reality → observations → reconstruction) does not invert, and that non-invertibility *is* openness / the Anthropic anchor — so it is *not* a holographic equivalence. Full transcript in `arc/11_reality.md`. The current code supports the boundary/evaluation pattern; it does not yet prove a Reality-boundary theorem. Held as a conjecture, not a result; in particular, whether its dualizing object `k` coincides with the session dualizing object `⊥ₛ` is **open** and must be written as a conjecture, never asserted.
 
 ### Discipline / what this does not claim
 

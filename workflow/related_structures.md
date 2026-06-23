@@ -128,13 +128,15 @@ That is also a defensive point for the project. The natural skeptical response t
 
 ---
 
-## Chu spaces / FCA / information flow — deferred duality candidate
+## Chu spaces / FCA / information flow — live value model and boundary candidate
 
 Chu spaces over a dualizing object `k` package an object as points, states, and an evaluation/incidence pairing. Their duality swaps points and states, making process/context reversal intrinsic rather than an external operation. This is why Chu has real appeal for the project: it speaks directly to the Care axis, formal concept analysis (extension/intension), Barwise-Seligman information flow, and the cobordism-style cup/cap dictionary.
 
-**Relation to our arc.** Chu is not the current R4 bridge. R4 relates the already-built Set-valued locality endpoint to the V-valued linear/session endpoint, so Benton/LNL is the correct relationship shape. Chu is a later candidate for what the linear value category `V` might become, for a comparison target for `Sessions-Cat`, or for the content layer Λ where extension/intension and incidence are first-class. Deferring Chu avoids redesigning `V` while R4 is still establishing the bridge between endpoints.
+**Relation to our arc.** Chu is not the R4 bridge shape; Benton/LNL remains the bridge between Set-valued locality and V-valued linear/session sheaves. But Chu is now a live value model: `Chu(SET,Bool)` supplies the concrete coefficient instance for the point-generated R4 theorem, and the Sessions-to-Chu `J0`/`J1` realization validates the session object/morphism syntax in that semantic setting. So Chu has moved from "deferred candidate" to "implemented coefficient/value model, with further uses still candidate."
 
-**Watch for.** Places where an object naturally decomposes into extension/intension, points/states, observations/situations, or process/context; places where the Care involution needs to be internal to objects rather than a separate operation; information-flow constructions that look like incidence pairings. These are Chu signals. They should be logged for the Chu phase, not smuggled into R4.
+**Watch for.** Places where an object naturally decomposes into extension/intension, points/states, observations/situations, or process/context; places where the Care involution needs to be internal to objects rather than a separate operation; information-flow constructions that look like incidence pairings. These are Chu signals. The implemented Chu stack makes such readings technically available, but the guardrail remains: do not confuse the coefficient/value model with full session operational semantics, O1-in-Chu, or a Reality-reconstruction theorem.
+
+**Reality / Documentation reading.** The Reality discussion re-derived the Chu motivation from another angle: Reality-points, Documentation-states/tests, and an evaluation into `k`. This is better read as Isbell/Gelfand/Chu space-observables duality than holography. The round trip is intentionally lossy: Documentation can preserve the protocol kernel under its tests without reconstructing Reality. Whether the outer Reality/Documentation dualizing object `k` coincides with the inner session dualizing object remains an open conjecture.
 
 ## Template for future entries
 

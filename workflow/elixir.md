@@ -10,8 +10,7 @@
   - Strict sub-view FrameHoms and covers: agda/Concurrency/Sites/ActorCausal.agda:167.
   - Finite frames, finite covers, pullback overlaps, and finite Coverage: agda/Concurrency/Sites/FiniteFrame.agda:54, agda/Concurrency/Sites/FiniteCover.agda:54, agda/Concurrency/Sites/
     FiniteFrameCoverage.agda:91.
-  - Session syntax with proved dual involution, but categorical laws and the O_1 action are still assumed: agda/Concurrency/Algebras/Sessions.agda:168, agda/Concurrency/Algebras/Sessions.agda:209,
-    agda/Concurrency/Algebras/Sessions.agda:278, agda/Concurrency/Algebras/Sessions.agda:522.
+  - Session syntax with proved dual involution and a postulate-free morphism HIT; the remaining assumed piece is the O_1 action (`session-O1-action`): agda/Concurrency/Algebras/SessionSyntax.agda, agda/Concurrency/Algebras/SessionMorphismSyntax.agda, agda/Concurrency/Algebras/Sessions.agda.
   - Finite event-product sheaf/descent and a concrete tiny example: agda/Concurrency/Hybrid/FiniteDescent.agda:120, agda/Concurrency/Hybrid/EventProductSheaf.agda:270, agda/Concurrency/Hybrid/
     TinyEventProductExample.agda:138.
   - Modal iteration scaffolding exists, but remains synthetic/postulate-relative: agda/ModalHoTT/Modalities/Iteration.agda:42, agda/ModalHoTT/Modalities/Iteration.agda:92.
@@ -50,7 +49,7 @@
 
   So the practical split is now:
 
-  - Math track: point-generated R4 is landed; focus on exposition and optional instantiation (`vProd`, SET/Sessions-facing examples), with full actor-causal reflector enrichment deferred.
+  - Math track: point-generated R4 is landed, with `Chu(SET,Bool)` as a concrete coefficient witness and Sessions-to-Chu `J0`/`J1` as a separate realization; focus on exposition and the next deliberate choice, with full actor-causal reflector enrichment deferred.
   - Implementation track: start the trace-kernel Agda layer once the tiny trace schema is fixed.
   - Elixir track: begin once the trace schema and first Agda well-formedness predicate are stable; do not wait for the cross-site adjunction or long-horizon layers.
 

@@ -16,7 +16,7 @@ The Concurrency-side has converged after a cycle of reframes: icosahedral (A_5 /
 
 The interaction algebra is `O_1` — the cyclic operad with one binary generator and a cyclic action. Three structural matches with actor/session content land cleanly: one binary operation = actor's single interaction primitive (Hewitt-style); the derived boundary-swap theorem = session-type duality `S ↔ S^⊥` = 1=2 perspective swap; three cyclic ports = sender / receiver / channel = trinion. The free cyclic operad on this data is small and finitely presented — Agda-reachable directly.
 
-The first concrete typed-content instance is now shipped: `Concurrency/Algebras/Sessions.agda` instantiates the `O_1` algebra layer with multiplicative session syntax. It contains both R8 faces in Agda: syntactic `dual-involutive` and categorical / operadic `boundary-swap-at-gen`. The bridge between those faces is explicitly deferred to richer session-categorical structure; v1 records the two faces without overclaiming their identity.
+The first concrete typed-content instance is now shipped and partially de-postulated. `Concurrency/Algebras/SessionSyntax.agda` carries the postulate-free object grammar; `SessionMorphismSyntax.agda` carries a set-truncated morphism HIT with the 17 structural/additive formers and 21 laws as path constructors; `Sessions.agda` reuses those layers to instantiate the `O_1` algebra interface. It contains both R8 faces in Agda: syntactic `dual-involutive` and categorical / operadic `boundary-swap-at-gen`. The bridge between those faces is explicitly deferred to richer session-categorical structure; the only remaining Sessions postulate is the chosen `session-O1-action`.
 
 The actor-causal locality leg is now shipped: `Concurrency/Sites/{ActorBase,ActorCausal}.agda` makes R6 concrete with opaque unityped actors, Lamport-style event causality, local frames, strict-reflecting frame embeddings, basis covers, and a Bool-based non-trivial cover witness. Promotion of a completed conversation into an actor-like node is deliberately not a `FrameHom`; it is reserved as a future morphism class for the `MO_1` / conversation-of-conversations stage.
 
@@ -137,7 +137,7 @@ Near-term Agda-bound subset that brings the operadic layer to the hybrid substra
 - `_Algebras._Free` — universal cyclic-operad algebra on no data.
 - `_Algebras._Valuation` — weak HIT interpretations of `O_1` into the dualizing object of a target category.
 - `_Algebras._OperadAlgebra` — structural algebra layer: valuations plus `plug` / `shift` operations and axioms connecting them to `compₒ` / `rot`.
-- `_Algebras._Sessions` — shipped v1 in `Sessions.agda`: multiplicative session syntax, structural duality, thin categorical `Hom`, explicit `SessionO1Action`, `session-interp`, `Sessions-Val`, `Sessions-Alg`, and `boundary-swap-at-gen`.
+- `_Algebras._Sessions` — shipped in three layers: `SessionSyntax.agda` for the postulate-free grammar, `SessionMorphismSyntax.agda` for the set-truncated morphism HIT, and `Sessions.agda` for the remaining `O_1` action instance (`SessionO1Action`, `session-interp`, `Sessions-Val`, `Sessions-Alg`, and `boundary-swap-at-gen`).
 - `_Algebras._Actors` — held as the future algebraic/operadic reading of actor structures. The current actor-locality commitment lives under `_Site`, not under `_Algebras`.
 
 `_Algebras._CutElimination` deferred — full Caires-Pfenning dynamics is post-`MO_1`.
@@ -161,11 +161,11 @@ Named, like modules. R1–R6 are from the hybrid substrate's level-2 scoping; R7
 - **R3 — Generation.** `_Topos = Sh(_Site._Category, _Site._Topology)`. No freedom; the topos is generated from site + sheaves.
 - **R4 — Interpretation.** `_Topos._InternalLogic ↔ _Algebra._Connectives` / `_Algebras._Sessions`. Topos logic is cartesian by default; the algebra is linear. The current formal shape is interface-first Benton/LNL change of base between `Cart` and `StarAutonomous→Category V`: presheaf-level `liftF`, `liftG`, and `liftF ⊣ liftG` are proved, the right adjoint `G` preserves finite sheaves, `FiniteSheafification` names the left reflector interface, and `LinearNonlinearSheafAdjunction` gives the sheaf-level adjunction conditional on that reflector. The point-generated reflector is now constructed over the supported subsite: `PointifyIsSheaf`, `PointSheafification`, and `PointSheafAdjunction` give pointification as a point sheaf, the reflector functor, and `a ⊣ ι`. The point-generated sheaf bridge is now wired by `PointLinearNonlinearAdjunction.Lpoint⊣Rpoint`.
 - **R5 — Embedding.** `_Topos._GeometricMorphisms → cubical sets`. The mathematical form of "both sides share an ambient `(∞,1)`-topos."
-- **R6 — Parametrization (Causality).** Causality → `_Site`. Landed in `Concurrency/Sites/{ActorBase,ActorCausal}.agda`: Lamport partial-order events, actor-local frames, strict-reflecting frame embeddings, basis covers, and a Bool-based non-trivial cover witness. `ActorPullback.agda` supplies pullback overlaps and a pullback-stability construction downstream; `ActorCausal.agda` still keeps its legacy in-file stability fallback for the bundled tiny site.
+- **R6 — Parametrization (Causality).** Causality → `_Site`. Landed in `Concurrency/Sites/{ActorBase,ActorCausal}.agda`: Lamport partial-order events, actor-local frames, strict-reflecting frame embeddings, basis covers, and constructive tiny frame/cover witnesses. `ActorPullback.agda` supplies pullback overlaps and a pullback-stability construction. The old in-file stability fallback has been removed from `ActorCausal.agda`; `TinyActorBase.agda` owns the tiny base, and `TinyActorCausalSite.agda` assembles the bundled tiny site using the constructed stability path.
 - **R7 — Algebra-over-Operad.** `_Algebras` evaluates `_Operad`. Landed as `StarAutonomous` + `Valuation` + structural `OperadAlgebra`, and concretely instantiated by `Sessions.agda` for the typed-content layer. Closely interacts with R1 (the value category for both must agree).
 - **R8 — Involution-Duality.** `Sessions.agda` now contains both faces: syntactic `dual-involutive` and categorical / operadic `boundary-swap-at-gen` (a specialization of `boundary-swap-structural`). The bridge between them remains a deferred project claim, not a computational reduction.
 
-**Most load-bearing now:** finite-site event-product descent, its constant-slot Sessions instantiation, the concrete tiny finite-cover validation, the V-valued finite sheaf/value category, the Set-valued finite sheaf category/object, and the finite Cubical `Coverage` / SET library `Sheaf` comparison have landed as one category-generic construction plus a library-presentation bridge. R4 is now conditionally formalized: `ChangeOfBase` proves value-functoriality on finite presheaf categories; `LinearNonlinear` states the Benton/LNL value interface; `LinearNonlinearSheafAdapter` proves the presheaf-level lifted adjunction and `G`-preservation of sheaves; `FiniteSheafification` names the reflector interface; `LinearNonlinearSheafAdjunction` assembles the sheaf-level adjunction from a V-side reflector. The next hinge is exposition and optional instantiation: the point-generated R4 bridge is now machine-checked, still relative to value-level `lnl` and `vProd`. The cross-site adjunction waits on that B-internal adapter plus an A-side category of modal contexts, not on event-dependent slots.
+**Most load-bearing now:** finite-site event-product descent, its constant-slot Sessions instantiation, the concrete tiny finite-cover validation, the V-valued finite sheaf/value category, the Set-valued finite sheaf category/object, the finite Cubical `Coverage` / SET library `Sheaf` comparison, and the point-generated R4 bridge have landed. Phase 0 then instantiated the bridge at `Chu(SET,Bool)` and removed the actor-site postulate from the witness import closure. Phase 1 built the Sessions-to-Chu object/morphism realization over the postulate-free syntax. R4 is therefore concrete in the point-generated coefficient-nonvacuity sense, while the cross-site adjunction still waits on an A-side category of modal contexts.
 
 **Deferred (live at `MO_1` stage).**
 
@@ -232,12 +232,12 @@ Analytic-side mirror is future work; whether the `agda/Analytic/` pattern from M
 | 2026-05-18 | Port bookkeeping split between `Concurrency/Operads/PortGluing.agda` and `Concurrency/Operads/PortRotation.agda` | `Ports.agda` stays minimal (Port type, cyclic-group arithmetic); `PortGluing.agda` owns delete / split / associativity reindexing, while `PortRotation.agda` owns boundary rotation and rotation-side helpers. Sibling files, not subdirectories (`feedback_analytic_folder_structure`) |
 | 2026-05-19 | `StarAutonomous.agda` landed as a thin target signature, not a full coherence package | Records the operations needed by the algebra layer: underlying 1-category, tensor/unit, symmetric braiding, contravariant involutive duality; derives `⅋`, `⊥-par`, and `⊸`. Omits pentagon/hexagon/triangle, naturality, and the universal property of `⊸`; add fields only when proofs need them |
 | 2026-05-19 | Algebra layer split into `Valuation.agda` and structural `OperadAlgebra.agda` | `Valuation` is the weak HIT interpretation `O n → Hom (ports Carrier n) ⊥-par`; codomain is the dualizing object, not tensor unit `𝟙`. `OperadAlgebra` adds `plug`, `shift`, and axioms `⟦ compₒ ... ⟧ = plug ...`, `⟦ rot ... ⟧ = shift ...`, then derives `boundary-swap-structural`. Generic derivation of `plug`/`shift` from arbitrary `StarAutonomous` is deferred |
-| 2026-05-19 | `Sessions.agda` v1 landed with explicit `SessionO1Action` | Keeps `Hom` to the 13 categorical constructors, packages `gen` / `plug` / `shift` plus six operadic laws as chosen action data, defines `session-interp` by HIT recursion, closes `Sessions-Val` and `Sessions-Alg`, and names both R8 faces (`dual-involutive`, `boundary-swap-at-gen`). Canonical derivation of the action from richer session-categorical structure is deferred |
+| 2026-05-19 | `Sessions.agda` v1 landed with explicit `SessionO1Action` | Initially kept `Hom` as structural syntax and packaged `gen` / `plug` / `shift` plus six operadic laws as chosen action data. Later Phase 1 work moved the object grammar to `SessionSyntax.agda`, replaced structural `Hom` laws by the `SessionMorphismSyntax.agda` HIT, and left `session-O1-action` as the single remaining Sessions postulate. |
 | 2026-05-20 | Actor-causal site split into `Concurrency/Sites/ActorBase.agda` and `Concurrency/Sites/ActorCausal.agda` | `ActorBase` owns the opaque unityped carrier and Lamport `CausalOrder`; `ActorCausal` owns `LocalFrame`, `FrameHom`, covers, topology fields, and witnesses. Keeps primitive locality separate from site structure while avoiding over-splitting |
 | 2026-05-20 | Actor carrier is opaque and unityped | The verified communication kernel cannot distinguish humans, LLMs, or future promoted conversations. Actor-origin metadata belongs outside the kernel; no roles, payloads, sessions, or message syntax appear in the actor site |
 | 2026-05-20 | `FrameHom` uses strict causality reflection | A frame morphism is a sub-view embedding: causality is preserved and reflected. Promotion of a completed conversation into an actor-like node is therefore a future quotient/reification morphism class, not a `FrameHom` |
 | 2026-05-20 | Actor-site covers use basis form, with `sieve-of` exposed for the E2 transition | Basis covers match implementation-facing local observations and concrete finite witnesses. The semantic endpoint remains the generated sieve / Grothendieck-topology presentation; prove equivalence later rather than starting Actors v1 at the sieve level |
-| 2026-05-20 | Actor-site identity and transitivity covers are generic; stability named as the v1 gap | `identity-cover-canonical` and `transitivity-cover-canonical` are constructed. `stability-cover-postulate` was named and flagged; `ActorPullback.agda` later supplies the generic pullback-stability construction while `ActorCausal.agda` keeps the legacy fallback to avoid an import cycle. |
+| 2026-05-20 | Actor-site identity and transitivity covers are generic; stability later discharged | `identity-cover-canonical` and `transitivity-cover-canonical` are constructed. `ActorPullback.agda` supplies the generic pullback-stability construction. The old `stability-cover-postulate` has been removed from `ActorCausal.agda`; the bundled tiny site now lives in `TinyActorCausalSite.agda` and uses constructed stability. |
 | 2026-05-20 | Actor-site tiny witness upgraded to non-trivial Bool cover | `TinyAB` uses `Fin 2`; `TinyCausal` uses `Bool` events with `false ≤ true`; `PointFrame` embeds by `embed-point false` / `embed-point true`; `two-point-cover` exercises non-trivial index, patch, embedding, and event-lift data |
 | 2026-05-20 | Hybrid v1 shipped as adapter layer | `Concurrency/Hybrid/Presheaf.agda` provides generic `FramePresheaf`, zero-postulate `IsSeparatedPresheaf`, and `const-presheaf`; `SessionPresheaf.agda` specializes to `Sessions-Cat Payload` and exposes both `const-𝟙ₛ-presheaf` and `const-⊥ₛ-presheaf`. This implements Adapter 1 (restriction) and names future adapter slots without faking descent or a unit/dualizing conversion |
 | 2026-05-21 | Reflexive Protocol Layer named; not implemented | Π = category of protocol versions; protocol edits = morphisms in Π. Promotion (Adapter 5) sharpened with operational role: closed meta-conversation reaching consensus → Π-morphism. Consensus framed as future colimit / coherent amalgamation in a patch-theoretic fragment category, with Pijul as primary implementation-facing candidate; precise categorical shape held open. `Concurrency/Hybrid/Reflexive.agda` reserved as future home. `MO_1` elevated to active roadmap without displacing the B-side R4 path as the next technical step. Layer is new formal content, compatible with and anticipated by current scaffolds but not already implicit in them |
@@ -248,19 +248,20 @@ Analytic-side mirror is future work; whether the `agda/Analytic/` pattern from M
 | 2026-06-04 | Finite sheaf framework generalized over Cubical `Category` | `CategoryApplicative.agda` and `FinitePresheaf.agda` split out the plain-category core. `FiniteDescent.agda`, `FiniteSheafCategory.agda`, and `FiniteFramePresheafFunctor.agda` now run over any Cubical `Category`, with the V side recovered through `StarAutonomous→Category V`. |
 | 2026-06-04 | Set-valued finite sheaf side inhabited | `FiniteProducts.agda` was generalized over `Category`; `SetFiniteProducts.agda`, `SetFiniteSheafCategory.agda`, `SetEventProductSheaf.agda`, and generic `EventProductSheafObject.agda` instantiate the same event-product construction at `SET`. This landed the concrete framework-at-SET object that Strategy D later compares to the library sheaf condition. |
 | 2026-06-05 | Strategy D landed: finite Coverage plus SET sheaf comparison | `FramePullbackUniversal.agda`, `FiniteFramePullback.agda`, `FiniteBasisCover.agda`, `FiniteFrameCoverage.agda`, and `SetSheafComparison.agda` complete C8→C9→C6 for the finite site. The sequence is postulate-free; it uses a lean basis cover for the topology, derives finite pullback patches, proves Cubical `Coverage` pullback stability, and compares project `IsSheaf` with library `isSheaf` at the actual `FiniteFrameCoverage`. |
-| 2026-06-05 | Benton/LNL chosen for R4; Chu deferred | R4 is the B-internal cartesian↔linear / forgetful-axis bridge between `Sh_fin(site,Set)` and `Sh_fin(site,V)`, so Benton is the native relationship shape. Chu is not rejected: it is reserved for the Care / process-context-duality axis, deeper value-category candidates, the Λ content layer, and information-flow / field-theory readings. |
+| 2026-06-05 | Benton/LNL chosen for R4; Chu reserved for coefficient/value semantics | R4 is the B-internal cartesian↔linear / forgetful-axis bridge between `Sh_fin(site,Set)` and `Sh_fin(site,V)`, so Benton is the native relationship shape. Chu was not the bridge shape itself; it later entered as a concrete `V`, yielding the `Chu(SET,Bool)` point-generated non-vacuity witness and then the Sessions-to-Chu realization. |
 | 2026-06-05 | R4 Tier 3 interface and conditional Tier 4 landed | `ChangeOfBase.agda`, `LinearNonlinear.agda`, and `LinearNonlinearSheafAdapter.agda` land the Benton/LNL presheaf bridge: presheaf change-of-base, `liftF ⊣ liftG`, and right-adjoint sheaf preservation `G-preserves-sheaf`. `FiniteSheafification.agda` names the finite-site reflector `a ⊣ ι`; `LinearNonlinearSheafAdjunction.agda` gives the sheaf-level adjunction conditionally on a V-side reflector. The full-site reflector remains pending, but the pointification spike has landed: `EventPoint.agda`, `EnumeratedProduct.agda`, and `Pointification.agda` construct the variable-slot functorial core of `a(P)(F) = ∏_e P(pt_e)`. The then-open R4 gate after the spike was point-cover geometry and the point-descent/locality route; the 2026-06-06 entries below record those pieces landing and leave `a ⊣ ι` plus point-generated bridge wiring as the live follow-up. |
 | 2026-06-05 | Pointification spike landed for R4 reflector route | `EventPoint.agda` generalizes event-point subframes and point-to-point morphisms; `EnumeratedProduct.agda` isolates variable finite-product transport behind `projE`/`tupleE`/`βE`/`ηE`/`extE`; `Pointification.agda` constructs the functorial core `a(P)(F) = ∏_e P(pt_e)` for arbitrary value category `C` with finite products over finite frames at event level `ℓ-zero` and incidence level `ℓA`. This retires the variable-slot transport risk for the point-generated reflector route. Remaining work at that stage was point-cover geometry and the point-descent/locality comparison; the 2026-06-06 entries below record those pieces landing and left `a ⊣ ι` plus point-generated R4 bridge wiring as the then-live follow-up; the 2026-06-07 row records the reflector landing. |
 | 2026-06-06 | Point-cover geometry scaffold landed for point-generated R4 | `EventSupported.agda`, `PointOverlap.agda`, and `PointCover.agda` implement the Option-2 geometry: event-supported wrappers, incident/event-supported point overlaps, finite event-discrete point covers, and canonical point cover data. This deliberately avoids `FiniteCover` raw actor-intersection overlaps. |
 | 2026-06-06 | Point-descent/locality biconditional landed | `PointDescent.agda` mirrors `FiniteDescent` with product-free descent over the canonical point cover, then in a finite-products scope defines `PointLocal`, proves zero-event subterminality, `local→sheaf`, and `sheaf→local`. This lands `IsPointSheaf P ↔ PointLocal P` for the point-generated site. At that checkpoint the remaining work was `pointify` as a point sheaf, `a ⊣ ι`, and W3 bridge wiring; the 2026-06-07 row records the reflector landing. |
 | 2026-06-07 | Point-generated reflector constructed | The supported-subsite route now has the abstract slot-indexed point-product API (`SupportedPointProduct.agda`), rebuilt pointification (`SupportedPointification.agda`), pointification-is-point-sheaf (`PointifyIsSheaf.agda`), the point-sheaf full subcategory and inclusion (`PointSheafCategory.agda`), the reflector functor (`PointSheafification.agda`), and the unit, hom-set bijection, naturality fields, and assembled adjunction `a ⊣ ι` (`PointSheafAdjunction.agda`). The full finite actor-causal reflector remains a later enrichment; the live next step is W3 wiring of this point-generated reflector into the R4 bridge, still relative to value-level `lnl : LNLAdjunction`. |
 | 2026-06-07 | Point-generated R4 bridge landed | `SupportedChangeOfBase.agda` lifts value-category functors over `SupportedPresheafCategory`; `SupportedLinearNonlinearSheafAdapter.agda` constructs `supportedLiftF`, `supportedLiftG`, `supportedLiftF⊣supportedLiftG`, and proves `G` preserves point sheaves; `PointLinearNonlinearAdjunction.agda` assembles the point-sheaf Benton/LNL adjunction `Lpoint⊣Rpoint`. The result is generic and reflector-unconditional over the supported point-generated site, while remaining relative to `lnl : LNLAdjunction` and `vProd : HasFiniteProducts (StarAutonomous→Category V)`. |
+| 2026-06-23 | Chu coefficient instance and Sessions realization landed | `Chu.agda`, `ChuFiniteProducts.agda`, `ChuMonoidal.agda`, `ChuLinearNonlinear.agda`, `ChuPointVProd.agda`, and `ChuPointExample.agda` instantiate the point-generated R4 hypotheses at `Chu(SET,Bool)`. `SessionSyntax.agda`, `SessionMorphismSyntax.agda`, `SessionObjectModel.agda`, and `SessionChuModel.agda` then give the postulate-free object/morphism Sessions-to-Chu realization (`J0`, `J0-dual`, `J1`, and the underlying Cubical functor). `Sessions.agda` now relies on the morphism HIT for its categorical laws; only `session-O1-action` remains postulated. |
 
 ## Blockers  <!-- tags: kind:state -->
 
 (Previous Open Questions archived to `deep_context/archived_blockers/2026-05-17.md`. Deferred items migrated to `future_work.md`.)
 
-Concurrency: none active. First B-side operad, algebra signatures, concrete typed-content `Sessions.agda` instance, actor-causal site v1, Hybrid v1 restriction, finite products, finite covers, finite event-product descent, the constant-slot Sessions sheaf, the concrete tiny finite-cover witness, both V-valued and Set-valued finite sheaf endpoints, the finite C8/C9 Coverage bridge, and the C6 SET library comparison have shipped. R4 now has the presheaf bridge, right-adjoint sheaf preservation, the finite sheafification interface, the conditional sheaf-level adjunction, the concrete point-generated reflector adjunction, and the point-generated sheaf-level Benton/LNL bridge over the supported subsite. Next substantive work is exposition and optional instantiation (`vProd` for the intended V, SET/Sessions examples). The A-side category of modal contexts and eventual cross-site adjunction remain downstream.
+Concurrency: none active. First B-side operad, algebra signatures, concrete typed-content `Sessions.agda` instance, actor-causal site v1, Hybrid v1 restriction, finite products, finite covers, finite event-product descent, the constant-slot Sessions sheaf, the concrete tiny finite-cover witness, both V-valued and Set-valued finite sheaf endpoints, the finite C8/C9 Coverage bridge, the C6 SET library comparison, the point-generated R4 bridge, the `Chu(SET,Bool)` coefficient witness, and the Sessions-to-Chu object/morphism realization have shipped. The next substantive choice is no longer a mechanical R4 continuation: either pursue O1-in-Chu / `session-O1-action` by adding earned categorical structure, or open the Reality/Documentation/Chu boundary track. The A-side category of modal contexts and eventual cross-site adjunction remain downstream.
 ModalHoTT: none active (paused).
 
 ## Current B-side state  <!-- tags: kind:state -->
@@ -315,7 +316,11 @@ Shipped to `agda/Concurrency/Algebras/`:
 | `SetFiniteProducts.agda` | Concrete finite-products instance for Cubical `SET` | ~50 |
 | `Valuation.agda` | Weak HIT valuation: `O n → Hom (ports Carrier n) ⊥-par`, with carrier self-duality | ~85 |
 | `OperadAlgebra.agda` | Structural Step-2 algebra: valuation plus `plug`, `shift`, `interp-compₒ`, `interp-rot`; derives `boundary-swap-structural` | ~135 |
-| `Sessions.agda` | Multiplicative session syntax, proved `dual-involutive`, inductive structural `Hom`, explicit `SessionO1Action`, `session-interp`, `Sessions-Val`, `Sessions-Alg`, `boundary-swap-at-gen`, and additive products over `StarAutonomous→Category` | ~470 |
+| `SessionSyntax.agda` | Postulate-free session object grammar, structural duality `_^⊥ₛ`, and proved `dual-involutive` | ~80 |
+| `SessionMorphismSyntax.agda` | Set-truncated session morphism HIT: 17 formers, 21 structural/additive laws as path constructors, and hom-set truncation | ~110 |
+| `Sessions.agda` | Reuses the syntax/HIT layers to package `Sessions-Cat`, finite products, explicit `SessionO1Action`, `session-interp`, `Sessions-Val`, `Sessions-Alg`, and `boundary-swap-at-gen`; only `session-O1-action` remains postulated | ~400 |
+| `SessionObjectModel.agda` | Generic Sessions-to-target interpretation: iso calculus, `SessionObjectModel`, `J0`, `J0-dual`, `J1`, and underlying Cubical functor | ~380 |
+| `SessionChuModel.agda` | Concrete `Chu(SET,Bool)` Sessions model with self-dual `end`, nonconstant payload map, and J0/J1 sanity witnesses | ~100 |
 
 `Valuation` is intentionally weaker than `OperadAlgebra`. The latter is the R7 interface to use downstream: it says operadic substitution factors through categorical `plug`, cyclic action factors through `shift`, and the derived `boundary-swap-structural` is the R8-relevant identity. `Sessions.agda` proves that this interface is inhabitable by the typed-content layer, while keeping the canonical derivation of `SessionO1Action` for future richer session-category work. `FiniteProducts.agda` is no longer StarAutonomous-specific; it is the shared finite-product interface used by both the session and Set event-product witnesses.
 
@@ -326,8 +331,10 @@ Shipped to `agda/Concurrency/Sites/`:
 | File | Role | Line count |
 |------|------|-----------:|
 | `ActorBase.agda` | Opaque unityped `ActorBase` carrier plus Lamport `CausalOrder`; derives `Concurrent` and `≤-bidir-equal` | ~160 |
-| `ActorCausal.agda` | Actor-local frames, strict-reflecting `FrameHom`, frame category laws, basis `Cover`, `sieve-of`, generic identity / transitivity covers, `ActorCausalSite`, legacy `stability-cover-postulate`, and Bool-based non-trivial tiny witness | ~790 |
+| `ActorCausal.agda` | Actor-local frames, strict-reflecting `FrameHom`, frame category laws, basis `Cover`, `sieve-of`, generic identity / transitivity covers, `ActorCausalSite`, and constructive tiny frame/cover witnesses; no project postulates | ~760 |
 | `ActorPullback.agda` | Pullback/overlap frames for pairs of `FrameHom`s, projections `pb-π₁` / `pb-π₂`, pullback square, and pullback-stability construction | ~315 |
+| `TinyActorBase.agda` | Postulate-free two-actor base `TinyAB` shared by examples | ~30 |
+| `TinyActorCausalSite.agda` | Bundled tiny actor-causal site assembled from `TinyAB`, `ActorCausal`, and constructed pullback stability | ~40 |
 | `FiniteFrame.agda` | Finite-frame subsite object: `LocalFrame` plus chosen event count and `Event ≃ Fin event-count` enumeration | ~60 |
 | `FiniteFrameCategory.agda` | Finite-frame subsite as a Cubical `Category`; `isSetHom` follows from event-map into a set and prop-valued frame-hom laws | ~120 |
 | `SupportedFiniteFrameCategory.agda` | Supported finite-frame subsite as a Cubical `Category`, reusing finite-frame morphisms and restricting objects by chosen event support | 73 |
@@ -346,7 +353,7 @@ The actor site deliberately does not import `Sessions.agda` or operad files. Its
 
 `FrameHom` is strict: causality is preserved and reflected, making it a sub-view embedding rather than an arbitrary monotone map. This preserves the future distinction between embedding a local view and promoting a completed conversation into an actor-like node.
 
-`Cover` is basis-form (E1), and `sieve-of` remains the bridge artifact for a full actor-site sieve/Grothendieck-topology presentation. On the finite subsite, E2 has landed as `FiniteFrameCoverage`: pullback stability is constructed from finite pullbacks and `pb-square`. The identity and transitivity cover axioms have generic constructions; `stability-cover-postulate` is now a legacy in-file fallback in `ActorCausal.agda`, while the Strategy D finite coverage path is postulate-free.
+`Cover` is basis-form (E1), and `sieve-of` remains the bridge artifact for a full actor-site sieve/Grothendieck-topology presentation. On the finite subsite, E2 has landed as `FiniteFrameCoverage`: pullback stability is constructed from finite pullbacks and `pb-square`. The identity and transitivity cover axioms have generic constructions; the former actor-site stability postulate has been eliminated, and the bundled tiny site uses `ActorPullback.agda`'s constructed stability.
 
 The G3 witness is non-trivial: `TinyAB` has two actors (`Fin 2`), `TinyCausal` has two Bool events with `false ≤ true`, `PointFrame` embeds into `TinyFrame` via `embed-point false` and `embed-point true`, and `two-point-cover` covers `TinyFrame` by the two event-patches.
 
@@ -457,35 +464,40 @@ The detailed rot-compₒ discussion that led to the 2026-05-18 cyclic-equivarian
 
 ## Next step
 
-Phase 0 coefficient non-vacuity is implemented at `Chu(SET,Bool)`: the Chu
-finite products and Benton adjunction discharge the generic point-generated
-R4 hypotheses, yielding a concrete `Lpoint left-adjoint-to Rpoint` witness.
-The immediate cleanup is to remove the example transitive import of the
-legacy actor-site postulate, then update the two R4 abstracts with the
-concrete coefficient instance and its limitations.
+Phase 0 and Phase 1 of the Chu program have landed. Phase 0 gives coefficient
+non-vacuity for the point-generated R4 theorem at `Chu(SET,Bool)`. Phase 1
+gives the Sessions-to-Chu object/morphism realization over postulate-free
+session syntax. The immediate writing task is to update the R4 abstracts and
+public workflow descriptions with the concrete coefficient instance, the
+Sessions realization, and their limitations.
 
-The next mathematical phase is the Sessions-to-Chu realization described
-below. It requires design agreement before implementation; it is not merely
-another theorem instantiation. Full actor-causal sheafification, the Cubical
-`Coverage` comparison, cross-site `Allow left-adjoint-to Require`, O1
-realization, and the Reality boundary remain later work.
+The next mathematical step is a genuine crossroad, not a mechanical follow-up.
+One route is O1-in-Chu / `session-O1-action`, which would require earned
+closed/evaluation/cut or cyclic-rotation structure rather than another
+technical relabeling. The other route is the Reality/Documentation/Chu boundary
+track, using Chu's point/state/evaluation shape to formalize what the protocol
+can document, test, and preserve without reconstructing Reality. Full
+actor-causal sheafification, cross-site `Allow left-adjoint-to Require`, and
+the A-side cyclic-bar return plan remain later work.
 
-### Chu implementation convergence (Phase 0 complete)
+### Chu implementation convergence (Phases 0-1 complete)
 
-The long design discussion converged on the following decisions:
+The design discussion converged on the following durable decisions:
 
 - Chu(SET,k) is the canonical semantic coefficient category for the R1/R7
-  route; the existing `Sessions-Cat` remains as postulate-relative syntax.
+  route. `Sessions-Cat` remains the syntactic/operadic instance, now with its
+  structural categorical laws supplied by the postulate-free morphism HIT.
 - Non-vacuity has two grades. Phase 0 establishes coefficient non-vacuity:
   the generic point-generated R4 theorem has a concrete mathematical model.
-  Sessions-in-Chu remains the intended-instance program.
+  Phase 1 establishes the object/morphism Sessions-to-Chu realization.
 - Internal Chu duality is exact and involutive. Any lossy
   Reality-to-protocol admission map is a separate later morphism.
 - Chu supplies closed/cut and symmetry machinery relevant to O1, but it does
   not choose a self-dual carrier or trivalent cyclic/Frobenius generator.
 - The agreed sequence remains:
   1. Phase 0: bare Chu/Benton instance and R4 specialization.
-  2. Phase 1: multiplicative/additive Sessions realization `J`.
+  2. Phase 1: multiplicative/additive Sessions realization `J` through objects,
+     morphisms, and an underlying Cubical functor.
   3. Phase 2: concrete send/receive and payload semantics.
   4. Phase 3: O1-in-Chu and reduction of the current action postulates.
   5. Phase 4: Reality-boundary admission/erasure interface.
@@ -519,79 +531,73 @@ The implementation inhabits the current thin `StarAutonomous` interface; it
 does not yet formalize the omitted global coherence or tensor-hom universal
 property.
 
-One cleanup remains before describing the witness as postulate-free in the
-strict transitive-import sense: `ChuPointExample` currently obtains `TinyAB`
-from `ActorCausal.agda`, a module that also contains an unrelated legacy
-stability postulate. `TinyAB` itself is constructive and does not use that
-postulate. Move the two-actor base to a postulate-free module or define it
-locally in the example.
+The cleanup is complete: `TinyAB` lives in `TinyActorBase.agda`, `tiny-site`
+lives in `TinyActorCausalSite.agda`, and `ActorCausal.agda` no longer contains
+a real project postulate. `ChuPointExample`'s project import closure is now
+strictly postulate-free, modulo the trusted Cubical library base.
 
-#### Phase 1 opening: Sessions-to-Chu realization (Codex)
+#### Phase 1 delivered (Codex)
 
-The natural continuation is a semantic interpretation
-`J : Sessions -> Chu(SET,k)`, preserving tensor, par, duality, units, and
-additives. This is a new design phase rather than a mechanical extension of
-Phase 0. Before implementation, settle four points:
+Phase 1A extracted the postulate-free session object grammar and built the
+generic object interpretation:
 
-1. Source presentation: map the current postulate-relative `Sessions-Cat`,
-   or extract a postulate-free raw session presentation and validate its
-   equations directly in Chu. The preferred route is the latter; the former
-   is useful only as an explicitly relative prototype.
-2. Termination object: choose or parameterize the self-dual Chu object that
-   interprets `end`.
-3. Payload boundary: parameterize `Payload -> ChuObj` now, with concrete
-   send/receive semantics deferred to Phase 2. Since `send` and `recv` are
-   already constructors of `SessionType`, Phase 1 must either interpret them
-   parametrically or work with an explicit multiplicative/additive core
-   sublanguage.
-4. Strength of `J`: distinguish an object-level fold, an interpretation of
-   raw morphism constructors, and a genuine strong monoidal/additive functor.
-   Do not advertise the first as the third.
+- `Concurrency/Algebras/SessionSyntax.agda` owns `SessionType`, structural
+  `_^⊥ₛ`, and the proved `dual-involutive` theorem.
+- `Concurrency/Algebras/SessionObjectModel.agda` defines the target-generic
+  `SessionObjectModel`, an iso calculus over the thin `StarAutonomous`
+  interface, the object fold `J0 : SessionType -> Ob`, and the theorem
+  `J0-dual : J0 (S ^⊥ₛ) ≅ (J0 S ^⊥)`. This is deliberately an isomorphism,
+  not object equality.
+- `Concurrency/Algebras/SessionChuModel.agda` instantiates the model at
+  `Chu(SET,Bool)` with a definitionally self-dual `end` object and a
+  nonconstant payload map.
 
-Preferred first bounded deliverable: perform the strict postulate-import
-cleanup above, define a `SessionChuSignature` carrying the self-dual `end` and
-payload parameters, and construct an object-level fold `J0` whose structural
-connectives are preserved by construction. Then decide how the raw syntax is
-quotiented or presented before claiming a categorical functor. O1 and the
-Reality boundary remain out of scope for this phase.
+Phase 1B added the morphism layer and made the realization functorial:
 
-#### Claude closing statement
+- `Concurrency/Algebras/SessionMorphismSyntax.agda` is a postulate-free
+  set-truncated morphism HIT with 17 structural/additive formers, 21 laws as
+  path constructors, and hom-set truncation.
+- `SessionObjectModel.agda` defines
+  `J1 : SessionHom A B -> Hom (J0 A) (J0 B)`, discharging every HIT path law
+  from the target `StarAutonomous` / `HasFiniteProducts` fields. Duality is
+  interpreted by conjugating through the `J0-dual` endpoint isomorphisms.
+- The final polish packages `J0`/`J1` as the underlying Cubical `Functor` from
+  the session HIT category to `StarAutonomous->Category V`. This is an honest
+  underlying 1-functor; it is not yet a packaged strong monoidal/additive or
+  fully coherent star-autonomous functor.
+- `Sessions.agda` now adopts the syntax/HIT layers. The old 21 categorical /
+  product-law postulates and `Hom-is-set` postulate are gone; the only
+  remaining project postulate in `Sessions.agda` is `session-O1-action`.
 
- Phase 1 — Sessions-to-Chu realization J
+Verification: the Phase 1 modules, `Sessions.agda`, `SessionPresheaf`,
+`SessionEventProductSheaf`, `TinyEventProductExample`, and the Chu session
+instance typecheck with only the inherited inert `UnsupportedIndexedMatch`
+warnings. Phase 1 does not yet supply concrete send/receive operational
+payload semantics, an O1-in-Chu `gen`/`plug`/`shift` construction, cut
+elimination/progress/deadlock-freedom, or a Reality-boundary theorem.
 
-  Goal. A *-autonomous functor J : Sessions → Chu(SET, k) interpreting session types as Chu spaces, validating the session laws in Chu (so the postulate debt in Sessions.agda becomes theorems, not
-  transported axioms). This is grade-(ii) intended-instance non-vacuity; it does not replace Sessions-Cat (coexist: Sessions = syntax, Chu = semantics, J = the bridge).
+#### Next-phase crossroad
 
-  Roadmap / order (Codex's fragment order — keep it):
-  1. Objects/connectives first: J on type formers — 𝟙ₛ↦𝟙, ⊗ₛ↦⊗, ^⊥↦dual, ⅋/⊸ derived, then additives &/⊕/⊤/0.
-  2. Then morphisms. Prefer fresh, postulate-free session syntax (a HIT or free-category presentation) whose equations you prove hold in Chu — not a functor out of the current postulate-relative
-  Sessions-Cat (that would just transport axioms and buy nothing). A postulate-relative J is acceptable only as an explicitly-labelled wiring scaffold, never the deliverable.
-  3. J(⊥ₛ) ≅ ⊥_Chu(k) should be derived from J preserving the tensor unit and duality (J(𝟙ₛ^⊥) ≅ J(𝟙ₛ)^⊥ ≅ I_Chu^⊥), not added as a separate field. The "same k also serves Reality" question stays
-  a flagged conjecture (Phase 4), not part of J.
-  4. send/receive payloads come after the categorical core; O₁ is Phase 3.
+Phase 1 is closed at the intended grade: object syntax, morphism HIT, generic
+`J0`/`J1`, concrete Chu instance, and underlying Cubical functor packaging.
+Workflow and abstract updates remain writing work, not mathematical Phase 1
+debt.
 
-  Concrete tips (hard-won from the Chu build — these will save the next instance days):
-  - Records, not Σ, for any object-indexed structured type. Index recovery from a Σ is non-pattern unification and blows up; a record recovers indices by constructor injectivity. This is why
-  ChuHom/TensorNeg are records.
-  - Direct field projections in computation-heavy definitions, not helper functions — the conversion checker reduces f .field but defers helper unfolding under refl.
-  - The single biggest lever: represent "compatible-pair" / hom-like negatives as ChuHom A (dual B) so actions become chu-seq/dual-hom composition and laws reduce to the cheap category laws
-  (chu-⋆IdL/R, chu-⋆Assoc, dual-id/comp) as named paths. If you find yourself writing bespoke records with ∙-chained compatibility proofs, stop and reach for the categorical/closed-structure form
-  first.
-  - Equality of structured morphisms: fill the propositional component pointwise in k (isSet→SquareP) or via Σ≡Prop; never transport a big Π.
-  - (A^⊥)^⊥ ≡ A definitionally and sym (sym p) ≡ p — exploit these; dual is its own inverse on morphisms for free.
-  - Name your parameterized modules (module Foo k where … open Lower k public) so downstream open Foo k once instead of threading k.
-  - Avoid writing out large instantiated types as annotations — Agda re-expands both sides and times out (this is what cost us the witness). Leave inferred, or use a named module so both sides
-  share syntactically.
-  - Exactly-typed adapters for coercions used deep inside generic constructions (like the vProd adapter), so the coercion is paid/cached once.
-  - .agdai caches live in agda/_build/; ChuMonoidal cold-builds ~205s — run one Agda process at a time (parallel runs caused the false "10-minute" pathology), and use untimed background builds for
-  anything that might exceed the 600s tool ceiling.
+The next coding phase should be chosen deliberately:
 
-  Watch-outs:
-  - Don't let Phase-1 files import Sessions.agda into anything Phase-0 depends on; keep the dependency one-directional (Chu stack stays Sessions-free).
-  - The project's StarAutonomous is a thin interface (named isos, no Mac Lane coherence). J only needs to hit those fields — don't over-prove coherence unless a later layer demands it.
-  - Additives: Chu(SET,k)'s & is (A⁺×B⁺, A⁻⊎B⁻) (in ChuFiniteProducts); ⊕/0 are the De Morgan duals. Make sure J's additive clauses land on the proved-universal-property product, not just the
-  objects.
-  - Verify incrementally (one connective at a time); a full ChuMonoidal-style file is buildable but slow, so structure J so each fragment caches.
+- **O1-in-Chu / `session-O1-action`.** This is the postulate-elimination route.
+  It should start by identifying the minimal extra target structure required
+  for `gen`, `plug`, `shift`, and their laws: closed/evaluation/cut structure,
+  coherent tensor rotation, or a carefully scoped concrete Chu action. Do not
+  solve it by adding aliases, extra HIT constructors, or a renamed parameter.
+- **Reality/Documentation/Chu boundary.** This uses the new Chu
+  point/state/evaluation machinery to formalize Documentation as protocol
+  observables over Reality, with lossy admission/erasure and trace-kernel /
+  audit tests. This is a new vertical slice, not Phase 1C.
+- **Full finite actor-causal reflector.** This would enrich the
+  point-generated theorem toward covers where causality and actor incidence
+  carry descent content. It is separate from the Sessions-to-Chu work.
 
-  Available interface (from open Monoidal k): Chu-StarAutonomous, dual/dual-hom, _⊗_, chuUnit, ⊗-hom, plus all of Construction (ChuObj, chuHom, chu-seq, ChuHom≡, positive/negative/evaluate, …).
-  Chu-LNL and the closed witness are the templates to imitate for style.
+Preferred next move: update the extended abstract first, then decide whether
+the next code sprint is the postulate-elimination route (`session-O1-action`)
+or the Reality/Documentation boundary route.
