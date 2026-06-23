@@ -12,7 +12,7 @@ This file documents three kinds of future work, in three styles:
 
 All three styles are honest about status. Punchlist items extend shipped material; architectural items are committed but unshipped; candidate investigations may be promoted, revised, split, or rejected after their naturality tests.
 
-For the seed-level commitments these entries extend, see `motivation.md`. For the propositional decomposition (T1–T_recursion) they realize, see `arc.md` and `targets.md`. The implementation track — a real protocol kernel, a real verification runtime, LLM-tooling integration — is a separate concern, to be opened after several of the architectural layers below have landed at v1, and is not catalogued in this file.
+For the seed-level commitments these entries extend, see `motivation.md`. For the propositional decomposition (T1–T_recursion) they realize, see `arc.md` and `targets.md`. The implementation track — a real protocol kernel, a real verification runtime, LLM-tooling integration — is a separate concern tracked canonically in `workflow/implementation.md`; this file keeps only cross-references and future-work implications.
 
 ## Regarding fracture
 
@@ -289,35 +289,15 @@ To set honest expectations and prevent scope-creep:
 
 These exclusions are not deficiencies. They are the right scope for a workflow document calibrated to the mathematical-content track of the project.
 
-### Implementation track — Elixir runtime, Agda trace kernel, Pijul-shaped persistence
+### Implementation track — runtime, checker boundary, and protocol contract
 
-This section distills the separate `workflow/elixir.md` transcript into future-work form. The transcript remains untouched for archiving; this is the durable plan.
+The durable implementation-track plan now lives in `workflow/implementation.md`. That file replaces the old top-level `workflow/elixir.md` transcript, which has been archived under `workflow/deep_context/`.
 
-The implementation should not wait for the full cross-site `Allow ⊣ Require`, `MO_1`, Reflexive Π, or Bulk Λ layers. Waiting for all long-horizon mathematics would stall the runtime behind work whose first implementation can already produce useful trace data. But the implementation also should not pretend to be verified before Agda has a small trace-checker-facing kernel.
+Current rule: use a rising-sea method. Do not open a `Concurrency/Protocol/` Agda layer until the contract nouns and invariants are stable enough that the first module is forced by existing substrate. In particular, do not harden the prose word "snapshot" into a code name.
 
-**Minimum Agda trace kernel before meaningful Elixir work.** Open a `Concurrency/Protocol/` layer only when we are ready to specify finite traces directly:
+The implementation should not wait for the full cross-site `Allow ⊣ Require`, `MO_1`, Reflexive Π, or Bulk Λ layers. It also should not claim verification beyond the finite trace/run predicates Agda actually states. Elixir owns runtime behavior; Agda owns the specification of well-formed traces and boundary laws; a checker validates emitted traces, and later certificates.
 
-- `Trace.agda` — finite raw traces: actor ids, event ids, causal parents, local frame membership, session action, payload/document hash.
-- `SessionStep.agda` — enough syntax-level send/receive/dual endpoint checking to validate runtime messages.
-- `Restriction.agda` — trace projection to local views, aligned with `FrameHom`, with functorial laws.
-- `Auditability.agda` — no-leak and unityped-actor invariants for traces: session roles, payloads, and content must not refine actor identity.
-- `Certificate.agda` — a small validation/certificate interface so an external checker can accept or reject runtime traces.
-
-The first concrete target is a tiny trace example over the existing two-point finite cover. This keeps the implementation grounded in already-shipped finite-site machinery without requiring event-dependent session slots or the cross-site adjunction.
-
-**Runtime split.** Elixir should own actors, supervision, message routing, durable event logs, and operator-facing runtime behavior. Agda should own the specification of well-formed traces and the laws the checker validates. A checker should sit between them: Elixir emits traces or certificates; the checker accepts or rejects them according to the Agda-pinned predicates. Do not try to extract the whole application from Agda.
-
-**Pijul stance.** Build the Elixir system as Pijul-compatible / Pijul-shaped, not as a hard Pijul extension or fork at first. Pijul matches the arc because patches with dependencies, commuting independent changes, conflicts as first-class data, and partial clones line up with actor-causal/descent structure: local views, dependency structure, gluing obstructions, and coherent repair events. But Pijul is a VCS over file/change structure, while the kernel needs typed protocol traces. Semantic validity remains the checker’s job, not the VCS’s job.
-
-Practical architecture:
-
-1. Elixir runtime: actors, supervision, message routing, durable event log.
-2. Agda specification: trace validity, restriction, session compatibility, auditability/no-leak.
-3. Checker: validates traces or certificates emitted by Elixir.
-4. Pijul-shaped patch layer: stores document/protocol changes, dependencies, conflicts, resolutions, and partial views when that representation fits.
-5. Later libpijul/Rust integration only after the trace schema and patch-theoretic fragment category are honest enough; do not over-couple the first runtime to Pijul internals.
-
-**Trigger.** Start the implementation track once the trace schema and first Agda well-formedness predicate are stable. It can proceed in parallel with remaining R4 work, but it must not claim verification beyond the trace predicates Agda actually states.
+See `workflow/implementation.md` for the substrate-readiness audit, runtime split, naming guardrails, and next contract decisions.
 
 ### 1. Reflexive Protocol Layer (Π)
 

@@ -601,3 +601,179 @@ The next coding phase should be chosen deliberately:
 Preferred next move: update the extended abstract first, then decide whether
 the next code sprint is the postulate-elimination route (`session-O1-action`)
 or the Reality/Documentation boundary route.
+
+#### Considering the future implementation track
+
+Current workflow note: this subsection preserves the discussion that led to the
+implementation track. The canonical implementation plan, naming guardrails, and
+substrate-readiness audit now live in `workflow/implementation.md`. In
+particular, "snapshot" was only a temporary prose word and should not become an
+Agda module name.
+
+##### Codex
+
+› Now, before I clear, about the next phase. My instinct tells me we should be thorough with the introduction of Chu structures in the framework, and there's probably more to do there, wouldn't
+  you agree? Also, I want to start with the implementation soon, so that in future work the bandwidth is split between implementation (and its verification layer) and the conjecture. What could
+  we do in the next 1~3 sessions to start this in the best conditions possible? (I imagine the implementation to be of a "snapshot" of the protocol, not in its initial phase but in its
+  infancy--we stub about 1000 participants, 100 content types, 10 sibling protocols..., and with only the actors, conversations, session types, and content types, maybe some provenence, and then
+  we progressively add new features)
+
+
+• Yes, I agree with the instinct, with one constraint: “be thorough with Chu” should mean stabilize the interface and examples, not immediately try to solve all of O1-in-Chu.
+
+  The best next 1-3 sessions should set up two tracks that can run in parallel afterward:
+
+  1. Math/conjecture track: Chu as value model, Sessions semantics, and Reality/Documentation boundary.
+  2. Implementation track: a small protocol snapshot plus an Agda-checkable trace/audit kernel.
+
+  Recommended 1-3 Session Plan
+
+  Session 1: Chu Consolidation And Exposition
+  Goal: make Chu’s role unambiguous before implementation starts.
+
+  Deliverables:
+
+  - Update the extended abstract to mention:
+      - point-generated R4 has a concrete Chu(SET,Bool) coefficient witness;
+      - Sessions-to-Chu J0/J1 exists through objects, morphisms, and functor packaging;
+      - this is not yet full operational session semantics or O1-in-Chu.
+
+  - Add one or two small Chu/Sessions examples if Claude thinks cheap:
+      - a nontrivial session type interpreted by J0;
+      - one J1 sanity morphism beyond the already added check;
+      - maybe a documented “this is the intended value-model interface” module/comment.
+
+  - Do not yet attack session-O1-action unless a minimal missing structure becomes obvious.
+
+  Reasoning: this makes Chu credible and present in the framework without turning the next phase into a deep categorical redesign.
+
+  Session 2: Protocol Snapshot Schema
+  Goal: define the implementation object before writing much runtime code.
+
+  This should be a design artifact first, probably workflow plus maybe a thin Agda skeleton.
+
+  Snapshot contents:
+
+  - ProtocolId
+  - ProtocolVersion
+  - ActorId or anonymous actor token, with trusted erasure boundary
+  - ConversationId
+  - EventId
+  - causal parents / Lamport order
+  - session type assigned to a conversation
+  - content type tag
+  - document/artifact id
+  - optional provenance token
+  - sibling protocol references/imports
+
+  For your imagined stub:
+
+  - 1000 participants
+  - 100 content types
+  - 10 sibling protocols
+  - many conversations/events
+  - no real identity semantics inside the trusted kernel
+  - synthetic payloads/document refs only
+
+  The key rule: the implementation can know messy runtime identity, but the trusted snapshot should not.
+
+  Session 3: Trace Kernel v0
+  Goal: make implementation verifiable from day one.
+
+  Agda-side target, small and boring:
+
+  Concurrency/Protocol/Snapshot.agda
+  Concurrency/Protocol/Trace.agda
+  Concurrency/Protocol/Boundary.agda
+  Concurrency/Protocol/Certificate.agda
+
+  First predicates:
+
+  - event ids are unique;
+  - causal parents point backward;
+  - each event belongs to a conversation;
+  - each conversation has a protocol version and session type;
+  - trusted trace does not expose actor identity;
+  - provenance tokens mention artifacts/protocols/events, not persons;
+  - boundary events are requests/observations, not direct Reality effects.
+
+  Runtime-side target:
+
+  - generate a synthetic snapshot;
+  - export it as JSON/EDN;
+  - write a simple checker or parser scaffold;
+  - later align checker behavior with Agda predicates.
+
+  My Preferred Next Move
+
+  I would not choose between “more Chu” and “implementation.” I’d do this:
+
+  1. One short Chu consolidation session.
+  2. Then immediately start the protocol snapshot/trace-kernel implementation track.
+  3. Keep session-O1-action as the next serious math target, but do not block implementation on it.
+
+  That gives you the right split: implementation starts from an infancy snapshot, while the conjectural/math side keeps climbing through Chu, O1, Reality boundary, and eventually cross-site Allow
+  ⊣ Require.
+
+##### Claude
+
+› Now, before I clear, about the next phase. My instinct tells me we should be thorough with the introduction of Chu structures in the framework, and there's probably more to do there, wouldn't 
+    you agree? Also, I want to start with the implementation soon, so that in future work the bandwidth is split between implementation (and its verification layer) and the conjecture. What could 
+    we do in the next 1~3 sessions to start this in the best conditions possible? (I imagine the implementation to be of a "snapshot" of the protocol, not in its initial phase but in its          
+    infancy--we stub about 1000 participants, 100 content types, 10 sibling protocols..., and with only the actors, conversations, session types, and content types, maybe some provenence, and     
+  then                                                                                                                                                                                              
+    we progressively add new features)                                                                                                                                                              
+
+● Yes, I agree on both counts — and the useful realization is that Chu thoroughness and the implementation are not competing; they converge on the same layer (content/duality). Let me give you
+  both a "do I agree" and a concrete 1–3 session kickoff you can carry into the next session.
+
+  On Chu: yes, there's more — and it's load-bearing, not polish
+
+  What we have is the category + thin monoidal + Benton adjunction + the non-vacuity witness. What's genuinely missing is exactly the structure Chu actually has but our thin StarAutonomous
+  deliberately doesn't expose:
+
+  - Closed / internal-hom structure (eval : Hom ((A ⊸ B) ⊗ A) B, the ⊗ ⊣ ⊸ adjunction). Chu(SET,k) is *-autonomous, so this is real and — per the ChuMonoidal note — tractable, because the
+  negatives are already ChuHom A (dual B).
+  - Additive coproduct universal property (right now ⊕/0 are objects only).
+  - Whatever coherence a downstream proof actually forces (don't chase full Mac Lane pentagon/hexagon speculatively — keep the project's "add fields when a proof needs them" discipline).
+
+  Why this matters and isn't a detour: the closed structure is the lever that discharges the last postulate session-O1-action (Phase 3 derives plug/shift/gen from eval/cut + coherent tensor
+  rotation), and it's what gives send/recv real semantics (Phase 2). And separately, Chu's points/states/incidence is the flagged home for the content layer Λ — i.e. the semantic model for content
+  types in your snapshot. So "be thorough with Chu" = "unlock Phase 2/3 and build the value category your implementation's content types will eventually use." That's the convergence.
+
+  Bounded scope so it doesn't sprawl: internal-hom + eval in Chu, then derive the O₁ action (discharge session-O1-action). Stop there; coproduct UP and Reality-boundary (Phase 4) are later.
+
+  On starting implementation in the best conditions
+
+  The single most important principle: the schema is the shared contract between the Elixir runtime and the Agda checker. Get that right first, and the bandwidth split you want becomes possible
+  because both sides develop against a stable interface. Concretely:
+
+  1. Anchor the schema on the stable substrate, parameterize over the moving parts. Stable and shipped: the actor-causal site (opaque/unityped ActorBase, Lamport CausalOrder, LocalFrame, finite
+  frames/covers) and the now-postulate-free session grammar. In flux: O₁ action, cross-site adjunction, Chu closed structure, MO₁. Build the snapshot schema only on the stable layer, with the
+  in-flux semantics as parameters. This is what protects the implementation from schema churn while the conjecture-side keeps moving.
+  2. Your "infancy snapshot" instinct is right — with one calibration. Scale (1000 actors / 100 content types / 10 siblings) belongs in the Elixir stub generator; the Agda instance must be tiny (a
+  handful), because Agda won't typecheck/compute a 1000-actor instance. So: schema parametric in sizes, one small concrete instance for the checker, the at-scale stub on the runtime side.
+  3. Reuse existing vocabulary, don't invent a parallel data model. Actors = ActorBase ids; conversations/events = causal events + frame membership; "how" = SessionType tags; "what" = a new opaque
+  content-tag type (the Λ stub — opaque now, Chu-valued later, mirroring how actors are unityped); provenance = origin edges (actor/event/source-protocol) on content + edits; siblings = a
+  ProtocolId + stub typed translation interfaces.
+  4. Thin checker, not extraction (per elixir.md): Elixir owns the runtime + durable event log; Agda specifies well-formedness; a small checker validates emitted traces. Don't generate the app
+  from Agda.
+
+  Proposed 1–3 session plan
+
+  - Session 1 — the contract. New agda/Concurrency/Protocol/: Snapshot.agda / Trace.agda — finite snapshot record (actors, causal events, frames, session-typed actions, content tags, provenance
+  edges, sibling refs), parametric in sizes, plus one tiny concrete well-formed instance. Deliverable: schema typechecks + tiny instance. This alone unblocks Elixir to start.
+  - Session 2 — first predicate + Elixir skeleton. Agda WellFormedSnapshot (causal acyclicity, unique event ids, unityped actors, valid local views, a no-leak stub) proven on the tiny instance;
+  Elixir BEAM skeleton (supervised actors + durable event log) emitting the schema's serialization; a checker stub that round-trips one tiny trace.
+  - Session 3 — bounded Chu thoroughness (conjecture-side, in parallel): internal-hom/eval in Chu → derive the O₁ action → discharge session-O1-action. This is the steady-state you described:
+  implementation track + conjecture track running side by side.
+
+  Two decisions worth settling before Session 1
+
+  - Checker boundary: validate full traces (simplest/most honest to start) vs compact certificates the runtime produces. I'd start with full-trace validation on tiny instances and add certificates
+  later — confirm?
+  - Content types now: opaque tags + provenance fields from day one, with Chu as their eventual value category deferred to the Λ phase. Agree, or do you want content types Chu-valued from the
+  start (heavier, couples the implementation to the in-flux Chu work)?
+
+  My recommendation: schema-first (Session 1) is the highest-leverage thing you can do to start well — it's the contract that lets implementation and conjecture proceed in parallel without drift.
+  Want me to draft the Snapshot.agda schema proposal (types only, grounded in ActorBase/SessionType, parametric sizes) as the first concrete artifact next session?
