@@ -80,7 +80,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
   -- `SessionsV`."
   ----------------------------------------------------------------------
 
-  SessionsV : StarAutonomous ℓv (ℓ-max ℓv ℓ')
+  SessionsV : StarAutonomous ℓv ℓv
   SessionsV = Sessions-Cat {ℓ' = ℓ'} Payload
 
   ----------------------------------------------------------------------
@@ -96,7 +96,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
   SessionPresheaf : {ℓE ℓR : Level}
     → Type (ℓ-suc (ℓ-max ℓA
                     (ℓ-max ℓE
-                      (ℓ-max ℓR (ℓ-max ℓv ℓ')))))
+                      (ℓ-max ℓR ℓv))))
   SessionPresheaf {ℓE} {ℓR} = FramePresheaf AB SessionsV {ℓE} {ℓR}
 
   IsSeparatedSessionPresheaf :
@@ -105,7 +105,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
     → Type (ℓ-suc (ℓ-max ℓA
                     (ℓ-max ℓE
                       (ℓ-max ℓR
-                        (ℓ-max ℓI (ℓ-max ℓv ℓ'))))))
+                        (ℓ-max ℓI ℓv)))))
   IsSeparatedSessionPresheaf {ℓE} {ℓR} {ℓI} P =
     IsSeparatedPresheaf AB SessionsV {ℓE} {ℓR} {ℓI} P
 

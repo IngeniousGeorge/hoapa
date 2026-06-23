@@ -8,17 +8,14 @@
 --
 --   * Session-type syntax (multiplicative-only) and structural duality
 --     (the syntactic R8 face: `dual-involutive`, proved).
---   * An inductive `Hom` over `SessionType` with 17 categorical
---     constructors of a symmetric *-autonomous-style category (13
---     multiplicative / structural + 4 additive-product: `terminal-h`,
---     `proj₁-h`, `proj₂-h`, `pair-h`). The operadic interaction
---     primitives are *not* constructors of `Hom` — see SessionO1Action
---     below.
---   * Postulated categorical laws (21): the 17 multiplicative /
---     structural laws bounded by the `StarAutonomous` record fields,
---     plus 4 additive-product universal-property laws bounded by
---     `HasFiniteProducts`.
---   * `Sessions-Cat : StarAutonomous ℓv (ℓ-max ℓv ℓ')` defined by
+--   * `Hom` over `SessionType` = the set-truncated morphism HIT
+--     `Morph.SessionHom` (`SessionMorphismSyntax.agda`): 17 categorical
+--     morphism formers (13 multiplicative / structural + 4
+--     additive-product) with the 21 categorical/product laws as *path
+--     constructors*. The laws therefore hold by construction — the
+--     previous 21-law postulate block is gone. The operadic interaction
+--     primitives are *not* formers of `Hom` — see SessionO1Action below.
+--   * `Sessions-Cat : StarAutonomous ℓv ℓv` defined by
 --     copattern matching so projections reduce.
 --   * A bundled record `SessionO1Action` packaging the operadic
 --     interaction data — `gen-morph`, `plug-morph`, `shift-morph` —
@@ -107,7 +104,8 @@
 --   * **Additive *products* now in scope; coproducts only as objects.**
 --     As of 2026-06-04 (the B2(a) descent enrichment), the additive
 --     conjunction `_&ₛ_` and its unit `⊤ₛ` are added as syntax with a
---     genuine categorical-product universal property (postulated laws),
+--     genuine categorical-product universal property (now HIT path
+--     constructors of the morphism syntax, no longer postulated),
 --     bundled as `Sessions-HasFiniteProducts : HasFiniteProducts
 --     Sessions-Cat`. This is exactly the structure the event-product
 --     sheaf consumes to land descent at the Sessions value category. The
@@ -119,10 +117,10 @@
 --     elimination, proof terms, the additive *coproduct* universal
 --     property, exponentials (!, ?), and recursive session types remain
 --     out of scope. The file presents the syntactic *-autonomous-style
---     category over session types (now with additive products) with
---     structural fields postulated, plus a chosen `O_1` action bundled as
---     `SessionO1Action`. A richer Caires–Pfenning-style instance is
---     post-`MO_1` work.
+--     category over session types (now with additive products) whose
+--     structural laws are HIT path constructors of `Morph.SessionHom`,
+--     plus a chosen `O_1` action bundled as `SessionO1Action`. A richer
+--     Caires–Pfenning-style instance is post-`MO_1` work.
 
 module Concurrency.Algebras.Sessions where
 
@@ -131,6 +129,8 @@ open import Cubical.Data.Nat                using (ℕ ; zero ; suc ; _+_)
 open import Cubical.Data.Nat.Properties     using (+-assoc ; +-comm)
 open import Cubical.Data.Sum                using (inl ; inr)
 
+import Concurrency.Algebras.SessionSyntax as SessionSyntax
+open import Concurrency.Algebras.SessionMorphismSyntax using (module Morph)
 open import Concurrency.Operads.Ports
 open import Concurrency.Operads.CyclicAssociative
   using ( O ; gen ; compₒ ; rot ; rot-zero ; rot-compose
@@ -162,166 +162,39 @@ open import Concurrency.Algebras.FiniteProducts
 module _ {ℓv ℓ' : Level} (Payload : Type ℓv) where
 
   ------------------------------------------------------------------------
-  -- Session-type syntax.
-  ------------------------------------------------------------------------
-
-  data SessionType : Type ℓv where
-    end  : SessionType
-    send : Payload → SessionType → SessionType
-    recv : Payload → SessionType → SessionType
-    _⊗_  : SessionType → SessionType → SessionType
-    _⅋_  : SessionType → SessionType → SessionType
-    𝟙ₛ   : SessionType
-    ⊥ₛ   : SessionType
-    -- Additives (B2(a) descent enrichment, 2026-06-04). `&ₛ`/`⊤ₛ` are
-    -- the additive product / its unit, instantiated below as the
-    -- `HasFiniteProducts` structure the event-product sheaf consumes.
-    -- `⊕ₛ`/`𝟘ₛ` are their De Morgan duals — present as *objects* so that
-    -- `_^⊥ₛ` stays total and involutive; the additive coproduct
-    -- universal property is *not* asserted (matching `FiniteProducts.agda`
-    -- D6: only `&` / `⊤ₚ` are primitive).
-    _&ₛ_ : SessionType → SessionType → SessionType
-    _⊕ₛ_ : SessionType → SessionType → SessionType
-    ⊤ₛ   : SessionType
-    𝟘ₛ   : SessionType
-
-  ------------------------------------------------------------------------
-  -- Duality.
-  ------------------------------------------------------------------------
-
-  _^⊥ₛ : SessionType → SessionType
-  end       ^⊥ₛ = end
-  send P S  ^⊥ₛ = recv P (S ^⊥ₛ)
-  recv P S  ^⊥ₛ = send P (S ^⊥ₛ)
-  (S ⊗ T)   ^⊥ₛ = (S ^⊥ₛ) ⅋ (T ^⊥ₛ)
-  (S ⅋ T)   ^⊥ₛ = (S ^⊥ₛ) ⊗ (T ^⊥ₛ)
-  𝟙ₛ        ^⊥ₛ = ⊥ₛ
-  ⊥ₛ        ^⊥ₛ = 𝟙ₛ
-  (S &ₛ T)  ^⊥ₛ = (S ^⊥ₛ) ⊕ₛ (T ^⊥ₛ)
-  (S ⊕ₛ T)  ^⊥ₛ = (S ^⊥ₛ) &ₛ (T ^⊥ₛ)
-  ⊤ₛ        ^⊥ₛ = 𝟘ₛ
-  𝟘ₛ        ^⊥ₛ = ⊤ₛ
-
-  ------------------------------------------------------------------------
-  -- Duality is involutive (the syntactic face of R8).
-  ------------------------------------------------------------------------
-
-  dual-involutive : (S : SessionType) → (S ^⊥ₛ) ^⊥ₛ ≡ S
-  dual-involutive end        = refl
-  dual-involutive (send P S) = cong (send P) (dual-involutive S)
-  dual-involutive (recv P S) = cong (recv P) (dual-involutive S)
-  dual-involutive (S ⊗ T)    = cong₂ _⊗_ (dual-involutive S) (dual-involutive T)
-  dual-involutive (S ⅋ T)    = cong₂ _⅋_ (dual-involutive S) (dual-involutive T)
-  dual-involutive 𝟙ₛ         = refl
-  dual-involutive ⊥ₛ         = refl
-  dual-involutive (S &ₛ T)   = cong₂ _&ₛ_ (dual-involutive S) (dual-involutive T)
-  dual-involutive (S ⊕ₛ T)   = cong₂ _⊕ₛ_ (dual-involutive S) (dual-involutive T)
-  dual-involutive ⊤ₛ         = refl
-  dual-involutive 𝟘ₛ         = refl
-
-  ------------------------------------------------------------------------
-  -- Inductive Hom: 17 categorical constructors.
+  -- Session-type syntax, duality, and `dual-involutive`.
   --
-  -- The first 13 mirror the structural fields of `StarAutonomous`; the
-  -- final 4 (added 2026-06-04) are the additive-product maps bundled
-  -- below as `Sessions-HasFiniteProducts`. The operadic interaction
-  -- primitives are not declared here — see `SessionO1Action` below.
+  -- The object grammar now lives in `Concurrency/Algebras/SessionSyntax`
+  -- (postulate-free), re-exported here so downstream importers and the
+  -- rest of this file see `SessionType`, the connectives, `_^⊥ₛ`, and
+  -- `dual-involutive` unchanged.
   ------------------------------------------------------------------------
 
-  data Hom : SessionType → SessionType → Type (ℓ-max ℓv ℓ') where
-
-    -- Underlying category.
-    id-h  : ∀ {S} → Hom S S
-    _∘-h_ : ∀ {A B C} → Hom B C → Hom A B → Hom A C
-
-    -- Symmetric monoidal structure.
-    ⊗-h               : ∀ {A B C D} → Hom A C → Hom B D
-                      → Hom (A ⊗ B) (C ⊗ D)
-    α-h               : ∀ {A B C} → Hom ((A ⊗ B) ⊗ C) (A ⊗ (B ⊗ C))
-    α-inv-h           : ∀ {A B C} → Hom (A ⊗ (B ⊗ C)) ((A ⊗ B) ⊗ C)
-    leftUnitor-h      : ∀ {A} → Hom (𝟙ₛ ⊗ A) A
-    leftUnitor-inv-h  : ∀ {A} → Hom A (𝟙ₛ ⊗ A)
-    rightUnitor-h     : ∀ {A} → Hom (A ⊗ 𝟙ₛ) A
-    rightUnitor-inv-h : ∀ {A} → Hom A (A ⊗ 𝟙ₛ)
-    braid-h           : ∀ {A B} → Hom (A ⊗ B) (B ⊗ A)
-
-    -- Involutive duality.
-    dual-h         : ∀ {A B} → Hom A B → Hom (B ^⊥ₛ) (A ^⊥ₛ)
-    inv-dual-h     : ∀ {A} → Hom A ((A ^⊥ₛ) ^⊥ₛ)
-    inv-dual-inv-h : ∀ {A} → Hom ((A ^⊥ₛ) ^⊥ₛ) A
-
-    -- Additive product (terminal + binary &). These are genuine terms
-    -- of the syntactic category, so they are `Hom` constructors here
-    -- (not floating postulates); their universal-property laws are
-    -- postulated alongside the other categorical laws below, and the
-    -- bundle is exposed as `Sessions-HasFiniteProducts`. The dual
-    -- additive coproduct maps are deliberately absent (see SessionType).
-    terminal-h : ∀ {A} → Hom A ⊤ₛ
-    proj₁-h    : ∀ {A B} → Hom (A &ₛ B) A
-    proj₂-h    : ∀ {A B} → Hom (A &ₛ B) B
-    pair-h     : ∀ {A B C} → Hom C A → Hom C B → Hom C (A &ₛ B)
-
-  infixr 9 _∘-h_
+  open SessionSyntax.Syntax Payload public
 
   ------------------------------------------------------------------------
-  -- Postulated categorical laws (21).
+  -- Morphisms: the postulate-free HIT from `SessionMorphismSyntax`.
   --
-  -- The first 17 each map to a `StarAutonomous`-record field; the final
-  -- 4 (added 2026-06-04) are the additive-product universal-property
-  -- laws mapping to `HasFiniteProducts` fields. Pentagon, hexagon, and
-  -- triangle coherence are not unpacked here (matching
-  -- `StarAutonomous.agda`'s thin signature). `Hom-is-set` doubles as
-  -- the set-truncation discharge for `O`'s `trunc` constructor in
-  -- `session-interp` below.
+  -- The 17 categorical/product morphism formers and the 21 laws — once
+  -- an inductive `Hom` with the laws *postulated* here — now come from
+  -- the set-truncated HIT `Morph.SessionHom`, whose path constructors
+  -- *are* those laws. So the laws hold by construction and the previous
+  -- 21-postulate block (plus `Hom-is-set`) is gone; the only remaining
+  -- postulate in this file is the chosen `O_1` action below. The
+  -- constructor/law names are re-exported (`open Morph … public`), so
+  -- `Sessions-Cat`, `Sessions-HasFiniteProducts`, and the rest of this
+  -- file refer to them unchanged.
   ------------------------------------------------------------------------
 
-  postulate
-    -- Category laws.
-    Hom-is-set : ∀ {A B} → isSet (Hom A B)
-    id-l       : ∀ {A B} (f : Hom A B) → id-h ∘-h f ≡ f
-    id-r       : ∀ {A B} (f : Hom A B) → f ∘-h id-h ≡ f
-    ∘-assoc    : ∀ {A B C D} (f : Hom C D) (g : Hom B C) (h : Hom A B)
-               → (f ∘-h g) ∘-h h ≡ f ∘-h (g ∘-h h)
+  open Morph Payload public
 
-    -- ⊗ bifunctoriality.
-    ⊗-h-id-pres : ∀ {A B} → ⊗-h (id-h {A}) (id-h {B}) ≡ id-h
-    ⊗-h-∘-pres  : ∀ {A B C D E F}
-                  (f : Hom C E) (g : Hom A C)
-                  (h : Hom D F) (k : Hom B D)
-                → ⊗-h (f ∘-h g) (h ∘-h k) ≡ ⊗-h f h ∘-h ⊗-h g k
+  Hom : SessionType → SessionType → Type ℓv
+  Hom = SessionHom
 
-    -- Associator / unitor iso laws.
-    α-iso-l           : ∀ {A B C} → α-inv-h {A} {B} {C} ∘-h α-h ≡ id-h
-    α-iso-r           : ∀ {A B C} → α-h {A} {B} {C} ∘-h α-inv-h ≡ id-h
-    leftUnitor-iso-l  : ∀ {A} → leftUnitor-inv-h {A} ∘-h leftUnitor-h ≡ id-h
-    leftUnitor-iso-r  : ∀ {A} → leftUnitor-h {A} ∘-h leftUnitor-inv-h ≡ id-h
-    rightUnitor-iso-l : ∀ {A} → rightUnitor-inv-h {A} ∘-h rightUnitor-h ≡ id-h
-    rightUnitor-iso-r : ∀ {A} → rightUnitor-h {A} ∘-h rightUnitor-inv-h ≡ id-h
-
-    -- Braid.
-    braid-involutive : ∀ {A B} → braid-h {B} {A} ∘-h braid-h {A} {B} ≡ id-h
-
-    -- Duality functoriality.
-    dual-h-id-pres : ∀ {A} → dual-h (id-h {A}) ≡ id-h
-    dual-h-∘-pres  : ∀ {A B C} (f : Hom B C) (g : Hom A B)
-                   → dual-h (f ∘-h g) ≡ dual-h g ∘-h dual-h f
-
-    -- Involutive-duality iso laws.
-    inv-dual-iso-l : ∀ {A} → inv-dual-inv-h {A} ∘-h inv-dual-h ≡ id-h
-    inv-dual-iso-r : ∀ {A} → inv-dual-h {A} ∘-h inv-dual-inv-h ≡ id-h
-
-    -- Additive-product universal property (maps to `HasFiniteProducts`'s
-    -- fields). `⊤ₛ` is terminal; `_&ₛ_` is a genuine categorical product
-    -- (β on each projection, η/uniqueness of the pairing). These are the
-    -- exact laws the event-product descent proof reads off (`bigβ` to
-    -- recover a component, `bigη`/`bigProduct-ext` for separatedness).
-    terminal-unique-h : ∀ {A} (f : Hom A ⊤ₛ) → f ≡ terminal-h
-    &ₛ-β₁ : ∀ {A B C} (f : Hom C A) (g : Hom C B)
-          → proj₁-h ∘-h pair-h f g ≡ f
-    &ₛ-β₂ : ∀ {A B C} (f : Hom C A) (g : Hom C B)
-          → proj₂-h ∘-h pair-h f g ≡ g
-    &ₛ-η  : ∀ {A B C} (h : Hom C (A &ₛ B))
-          → pair-h (proj₁-h ∘-h h) (proj₂-h ∘-h h) ≡ h
+  -- Set-truncation, under the name the copattern `Sessions-Cat` and
+  -- `session-interp` already use (`trunc` is the HIT constructor).
+  Hom-is-set : ∀ {A B} → isSet (Hom A B)
+  Hom-is-set = trunc
 
   ------------------------------------------------------------------------
   -- Sessions-Cat.
@@ -331,7 +204,7 @@ module _ {ℓv ℓ' : Level} (Payload : Type ℓv) where
   -- like `Sessions-Cat._⊗_` reduce in downstream type-checking.
   ------------------------------------------------------------------------
 
-  Sessions-Cat : StarAutonomous ℓv (ℓ-max ℓv ℓ')
+  Sessions-Cat : StarAutonomous ℓv ℓv
   Sessions-Cat .StarAutonomous.Ob                  = SessionType
   Sessions-Cat .StarAutonomous.Hom                 = Hom
   Sessions-Cat .StarAutonomous.Hom-set             = Hom-is-set
@@ -371,8 +244,9 @@ module _ {ℓv ℓ' : Level} (Payload : Type ℓv) where
   ------------------------------------------------------------------------
   -- Sessions-HasFiniteProducts: the additive finite-product enrichment.
   --
-  -- Bundles `⊤ₛ` and `_&ₛ_` (with their postulated universal-property
-  -- laws above) into the `HasFiniteProducts` extension record over
+  -- Bundles `⊤ₛ` and `_&ₛ_` (with their universal-property laws, the
+  -- additive path constructors of `Morph.SessionHom`) into the
+  -- `HasFiniteProducts` extension record over
   -- `Sessions-Cat`. This is the structure that `event-product-presheaf` /
   -- `event-product-sheaf` consume to land the B2(a) descent witness at
   -- the Sessions value category (see

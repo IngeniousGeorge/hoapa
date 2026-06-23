@@ -42,7 +42,7 @@ open import Cubical.Data.Bool using (Bool ; isSetBool)
 open import Cubical.Categories.Adjoint using (module NaturalBijection)
 open import Cubical.Categories.Instances.Sets using (SET)
 
-open import Concurrency.Sites.ActorCausal using (TinyAB)
+open import Concurrency.Sites.TinyActorBase using (TinyAB)
 open import Concurrency.Algebras.FiniteProducts using (HasFiniteProducts)
 open import Concurrency.Algebras.StarAutonomousCategory using (StarAutonomous→Category)
 open import Concurrency.Algebras.SetFiniteProducts using (SET-HasFiniteProducts)

@@ -84,12 +84,12 @@ open import Cubical.Foundations.Prelude
 open import Cubical.Foundations.HLevels using (isPropΠ ; isProp×)
 open import Cubical.Data.Sigma  using (Σ-syntax ; _×_ ; _,_ ; fst ; snd)
 open import Cubical.Data.Nat    using (ℕ ; zero ; suc)
-open import Cubical.Data.Fin    using (Fin ; fzero ; fsuc)
 open import Cubical.Data.Empty  using (⊥ ; rec)
 open import Cubical.Data.Unit   using (Unit ; tt ; isSetUnit)
 open import Cubical.Relation.Nullary using (¬_)
 
 open import Concurrency.Sites.ActorBase
+open import Concurrency.Sites.TinyActorBase using (TinyAB) public
 
 ------------------------------------------------------------------------
 -- Module parameterization.
@@ -503,46 +503,23 @@ module _ {ℓA : Level} (AB : ActorBase ℓA) where
                   g ∘ᶠ Cover.embed d j ≡ Cover.embed c i ∘ᶠ h)
 
 ------------------------------------------------------------------------
--- Stability postulate (SUPERSEDED downstream — see note).
+-- Stability of covers — constructed downstream, not postulated here.
 --
 -- A generic Agda construction of pullback-stability needs FrameCategory
 -- equipped with pullbacks of FrameHoms, which this file's signature
--- does not provide on its own.
+-- does not provide on its own. That construction lives in
+-- `Concurrency/Sites/ActorPullback.agda`: `stability-cover-pullback` is a
+-- genuine *proof* of the stability data. Sites should use it for their
+-- `stability-cover` field.
 --
--- **Update 2026-06-02.** That construction now exists:
--- `Concurrency/Sites/ActorPullback.agda` builds frame pullbacks and
--- derives `stability-cover-pullback`, a genuine *proof* of the
--- stability data. New sites should use it for their `stability-cover`
--- field instead of this postulate.
---
--- Why this postulate nonetheless remains in *this* file: `ActorPullback`
--- imports `ActorCausal`, so `ActorCausal` cannot import `ActorPullback`
--- without a cycle. `tiny-site` below therefore still discharges its
--- `stability-cover` field with this in-file postulate (a concrete
--- pullback-based `tiny-site` would have to live in a third file that
--- imports both). The postulate is kept as a *legacy in-file fallback*,
--- not as the project's stability story — the construction in
--- `ActorPullback` is.
---
--- Identity and transitivity (the other two site axioms per F1) have
--- generic constructions above (`identity-cover-canonical`,
--- `transitivity-cover-canonical`); they are not postulated. Stability
--- was the only v1 axiom-gap, and it is now closed by construction
--- downstream.
+-- `ActorPullback` imports `ActorCausal`, so the bundled `tiny-site`
+-- cannot use the constructed stability from within this file without a
+-- cycle. It therefore lives in `Concurrency/Sites/TinyActorCausalSite.agda`,
+-- a third module importing both. This file is now postulate-free:
+-- identity and transitivity have generic constructions
+-- (`identity-cover-canonical`, `transitivity-cover-canonical`), and
+-- stability is supplied by construction downstream.
 ------------------------------------------------------------------------
-
-postulate
-  stability-cover-postulate :
-      {ℓA : Level} (AB : ActorBase ℓA)
-      {ℓE ℓR ℓI : Level}
-    → {F G : LocalFrame AB ℓE ℓR}
-      (g : FrameHom AB G F) (c : Cover AB ℓI F)
-    → Σ[ d ∈ Cover AB ℓI G ]
-        ((j : Cover.Index d) →
-          Σ[ i ∈ Cover.Index c ]
-            Σ[ h ∈ FrameHom AB (Cover.patch d j) (Cover.patch c i) ]
-              _∘ᶠ_ AB g (Cover.embed d j)
-                ≡ _∘ᶠ_ AB (Cover.embed c i) h)
 
 ------------------------------------------------------------------------
 -- A small concrete site (G3).
@@ -575,9 +552,11 @@ postulate
 --                       non-trivial: distinct patches, distinct
 --                       embeddings, distinct event lifts in
 --                       `event-covered`.
---   * `tiny-site`     — the bundled ActorCausalSite filled with the
---                       two canonical constructions plus the
---                       stability postulate.
+--   * `tiny-site`     — the bundled ActorCausalSite, assembled in
+--                       `Concurrency/Sites/TinyActorCausalSite.agda` from
+--                       the two canonical cover constructions plus the
+--                       constructed pullback stability (kept out of this
+--                       file to avoid the `ActorPullback` import cycle).
 --
 -- Why two events with a causal arrow rather than one: with one event,
 -- causality is trivial and every FrameHom is the identity on events.
@@ -587,17 +566,14 @@ postulate
 -- `Cover` (Index non-trivial, patch non-constant, embed non-identity,
 -- actor-covered and event-covered each return non-default witnesses).
 --
--- What is *still* not exercised at v1: pullback stability over a
--- non-identity FrameHom into TinyFrame. The stability field is
--- discharged by the top-level postulate. A future witness here would
--- be a concrete pullback computation; held loose with the rest of the
--- E2 transition work in future_work.
+-- Pullback stability over a non-identity FrameHom into TinyFrame is
+-- discharged by construction (`stability-cover-pullback`) where the
+-- bundled site is assembled, in `TinyActorCausalSite.agda`.
 ------------------------------------------------------------------------
 
 open import Cubical.Data.Bool             using (Bool ; true ; false)
 open import Cubical.Data.Bool.Properties  using (isSetBool)
 open import Cubical.Data.Empty.Properties using (isProp⊥)
-open import Cubical.Data.Fin.Properties   using (isSetFin)
 open import Cubical.Data.Unit.Properties  using (isPropUnit)
 
 ------------------------------------------------------------------------
@@ -635,14 +611,11 @@ private
   ⊑-isProp {true}  {true}  = isPropUnit
 
 ------------------------------------------------------------------------
--- TinyAB.
+-- TinyAB is re-exported from `Concurrency.Sites.TinyActorBase` (imported
+-- `public` above) so that the constructive two-actor base lives in a
+-- postulate-free module while existing `ActorCausal.TinyAB` importers keep
+-- working unchanged.
 ------------------------------------------------------------------------
-
-TinyAB : ActorBase ℓ-zero
-TinyAB = record
-  { Actor     = Fin 2
-  ; Actor-set = isSetFin {k = 2}
-  }
 
 ------------------------------------------------------------------------
 -- TinyCausal: Event = Bool with the order `false ⊑ true`.
@@ -750,12 +723,9 @@ tiny-id-cover = identity-cover-canonical TinyAB ℓ-zero TinyFrame
 TinyId : FrameHom TinyAB TinyFrame TinyFrame
 TinyId = frame-id TinyAB TinyFrame
 
-tiny-site : ActorCausalSite TinyAB ℓ-zero ℓ-zero ℓ-zero
-tiny-site = record
-  { identity-cover     = identity-cover-canonical     TinyAB ℓ-zero
-  ; transitivity-cover = transitivity-cover-canonical TinyAB
-  ; stability-cover    = stability-cover-postulate    TinyAB
-  }
+-- The bundled `tiny-site` is assembled in
+-- `Concurrency/Sites/TinyActorCausalSite.agda` (it needs `ActorPullback`
+-- for the constructed stability field, which would cycle here).
 
 ------------------------------------------------------------------------
 -- Sanity checks.
@@ -793,8 +763,4 @@ private
 
   _ : Cover TinyAB ℓ-zero TinyFrame
   _ = two-point-cover
-
-  -- Full site.
-  _ : ActorCausalSite TinyAB ℓ-zero ℓ-zero ℓ-zero
-  _ = tiny-site
 

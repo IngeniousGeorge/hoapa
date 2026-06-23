@@ -163,12 +163,12 @@ module _ {ℓv ℓ' : Level} (Payload : Type ℓv)
          (P₀ : StarAutonomous.Ob (Sessions-Cat {ℓv} {ℓ'} Payload)) where
 
   private
-    Vs : StarAutonomous ℓv (ℓ-max ℓv ℓ')
+    Vs : StarAutonomous ℓv ℓv
     Vs = Sessions-Cat {ℓv} {ℓ'} Payload
 
     -- Its underlying category, fed to the generic tiny witnesses.
     Ĉs = StarAutonomous→Category Vs
 
-  session-tiny-sheaf      = tiny-sheaf      Ĉs (Sessions-HasFiniteProducts Payload) P₀
-  session-tiny-amalgamate = tiny-amalgamate Ĉs (Sessions-HasFiniteProducts Payload) P₀
-  session-tiny-separated  = tiny-separated  Ĉs (Sessions-HasFiniteProducts Payload) P₀
+  session-tiny-sheaf      = tiny-sheaf      Ĉs (Sessions-HasFiniteProducts {ℓ' = ℓ'} Payload) P₀
+  session-tiny-amalgamate = tiny-amalgamate Ĉs (Sessions-HasFiniteProducts {ℓ' = ℓ'} Payload) P₀
+  session-tiny-separated  = tiny-separated  Ĉs (Sessions-HasFiniteProducts {ℓ' = ℓ'} Payload) P₀

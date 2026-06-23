@@ -76,7 +76,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
 
   private
     -- The session value category and its additive finite products.
-    V : StarAutonomous ℓv (ℓ-max ℓv ℓ')
+    V : StarAutonomous ℓv ℓv
     V = Sessions-Cat {ℓv} {ℓ'} Payload
 
     -- Its underlying category, where the framework records live.
@@ -88,7 +88,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
 
   session-event-product-presheaf : FiniteFramePresheaf AB Ĉ {ℓE} {ℓR}
   session-event-product-presheaf =
-    event-product-presheaf AB Ĉ (Sessions-HasFiniteProducts Payload) P₀
+    event-product-presheaf AB Ĉ (Sessions-HasFiniteProducts {ℓ' = ℓ'} Payload) P₀
 
   ----------------------------------------------------------------------
   -- The descent inhabitant at the Sessions target.
@@ -98,4 +98,4 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
       {ℓI : Level}
     → IsSheaf AB Ĉ {ℓE} {ℓR} {ℓI} session-event-product-presheaf
   session-event-product-sheaf =
-    event-product-sheaf AB Ĉ (Sessions-HasFiniteProducts Payload) P₀
+    event-product-sheaf AB Ĉ (Sessions-HasFiniteProducts {ℓ' = ℓ'} Payload) P₀
