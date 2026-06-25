@@ -2,7 +2,7 @@
 
 ## Where This File Sits
 
-`agda/Concurrency/Sites/ActorBase.agda` is the small primitive substrate for the actor-causal site. It plays for Sites roughly the role `Ports.agda` played for Operads: it defines the minimal vocabulary that the larger site file consumes.
+`formal/Concurrency/Sites/ActorBase.agda` is the small primitive substrate for the actor-causal site. It plays for Sites roughly the role `Ports.agda` played for Operads: it defines the minimal vocabulary that the larger site file consumes.
 
 The file has two records:
 

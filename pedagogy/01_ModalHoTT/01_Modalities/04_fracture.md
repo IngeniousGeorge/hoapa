@@ -2,7 +2,7 @@
 
 ## Where this file sits
 
-`agda/ModalHoTT/Modalities/Fracture.agda` states the fracture theorem for the synthetic cohesive setting. This is one of the first places where the three-console rack does something genuinely geometric.
+`formal/ModalHoTT/Modalities/Fracture.agda` states the fracture theorem for the synthetic cohesive setting. This is one of the first places where the three-console rack does something genuinely geometric.
 
 The picture is a square:
 

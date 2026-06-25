@@ -23,9 +23,9 @@ Each target: claim, what's needed to state it cleanly, what's needed to verify i
 
 ### Progress
 
-ModalHoTT-side adjunctions are formalised synthetically as hom-set equivalences with named transposes in `agda/ModalHoTT/Modalities/Adjunctions.agda` (♭ ⊣ ♯ and ʃ ⊣ ♭); `flat-modality-idempotent` is a theorem, while `sharp-modality-idempotent` and `shape-modality-idempotent` are postulated. The cross-site `Allow ⊣ Require` pair is not yet stated. The B side has now matured past raw presheaf scoping: finite event-product descent, the constant-slot Sessions instantiation, the concrete tiny finite-cover validation, the V-valued finite sheaf/value category, and the framework-at-`SET` finite sheaf category/object have landed as one category-generic construction. The finite Coverage bridge and library sheaf comparison have landed. The current R4 gate has advanced through the point-generated route: the variable-slot pointification spike, supported point-cover geometry, supported presheaf category, abstract point-product API, pointification-as-point-sheaf proof, point-sheaf category, reflector functor, adjunction `a ⊣ ι`, supported Benton/LNL lifts, and point-sheaf bridge adjunction `Lpoint ⊣ Rpoint` have landed. `Chu(SET,Bool)` now supplies a concrete coefficient instance for that bridge, and the Sessions-to-Chu `J0`/`J1` realization validates the postulate-free session syntax at the object/morphism level. After that come the A-side category of modal contexts and the actual `Allow` / `Require` functors.
+ModalHoTT-side adjunctions are formalised synthetically as hom-set equivalences with named transposes in `formal/ModalHoTT/Modalities/Adjunctions.agda` (♭ ⊣ ♯ and ʃ ⊣ ♭); `flat-modality-idempotent` is a theorem, while `sharp-modality-idempotent` and `shape-modality-idempotent` are postulated. The cross-site `Allow ⊣ Require` pair is not yet stated. The B side has now matured past raw presheaf scoping: finite event-product descent, the constant-slot Sessions instantiation, the concrete tiny finite-cover validation, the V-valued finite sheaf/value category, and the framework-at-`SET` finite sheaf category/object have landed as one category-generic construction. The finite Coverage bridge and library sheaf comparison have landed. The current R4 gate has advanced through the point-generated route: the variable-slot pointification spike, supported point-cover geometry, supported presheaf category, abstract point-product API, pointification-as-point-sheaf proof, point-sheaf category, reflector functor, adjunction `a ⊣ ι`, supported Benton/LNL lifts, and point-sheaf bridge adjunction `Lpoint ⊣ Rpoint` have landed. `Chu(SET,Bool)` now supplies a concrete coefficient instance for that bridge, and the Sessions-to-Chu `J0`/`J1` realization validates the postulate-free session syntax at the object/morphism level. After that come the A-side category of modal contexts and the actual `Allow` / `Require` functors.
 
-T_recursion (below) is downstream of T1: once `Allow ⊣ Require` is stated, its unit instantiates the generic-adjunction iteration scaffold in `agda/ModalHoTT/Modalities/Iteration.agda`. The naturality piece flagged in "To state cleanly" is load-bearing for T_recursion's `η^-coherent` lemma — bridged currently by a postulated `η-naturality` on the generic-adjunction interface.
+T_recursion (below) is downstream of T1: once `Allow ⊣ Require` is stated, its unit instantiates the generic-adjunction iteration scaffold in `formal/ModalHoTT/Modalities/Iteration.agda`. The naturality piece flagged in "To state cleanly" is load-bearing for T_recursion's `η^-coherent` lemma — bridged currently by a postulated `η-naturality` on the generic-adjunction interface.
 
 ### Current R4 Subtarget: Point-Generated R4 Theorem and Exposition
 
@@ -58,7 +58,7 @@ This is a bounded stepping stone toward broader R4, not a replacement for the fu
 
 *Arc anchor: `arc.md` §5.*
 
-*To restate.* Original claim (cohesion on A_5-equivariant icosahedral S²) retired with the icosahedral framing. The reformulated question — whether cohesion lifts to the Concurrency topos (actor-causal + session-type-values hybrid) — needs restatement against the new construction. See `deep_context/arc/02_concurrency_anchor.md` and the Concurrency status in `status.md`. Original archived.
+*To restate.* Original claim (cohesion on A_5-equivariant icosahedral S²) retired with the icosahedral framing. The reformulated question — whether cohesion lifts to the Concurrency topos (actor-causal + session-type-values hybrid) — needs restatement against the new construction. See `deep_context/arc/02_concurrency_anchor.md` and the Concurrency status in `status_formal.md`. Original archived.
 
 ---
 
@@ -79,7 +79,7 @@ This is a bounded stepping stone toward broader R4, not a replacement for the fu
 
 ### Refinement: differential cohesion sharpens the asymmetry
 
-If the differential rung lands on the A side (`ℜ ⊣ ℑ ⊣ &`), the binary fixed-point / no-fixed-point distinction refines into three flavors. `ℑ` (infinitesimal shape) is distinct from `ʃ` (homotopy shape); the asymmetry now has *provable* / *smooth-creative* / *wild-creative*, not two. This is one of the ways differential cohesion becomes load-bearing for the cross-site bridge in the new outlook (see `future_work.md` "Beyond fracture" and `status.md` ModalHoTT plan).
+If the differential rung lands on the A side (`ℜ ⊣ ℑ ⊣ &`), the binary fixed-point / no-fixed-point distinction refines into three flavors. `ℑ` (infinitesimal shape) is distinct from `ʃ` (homotopy shape); the asymmetry now has *provable* / *smooth-creative* / *wild-creative*, not two. This is one of the ways differential cohesion becomes load-bearing for the cross-site bridge in the new outlook (see `future_work.md` "Beyond fracture" and `status_formal.md` ModalHoTT plan).
 
 ---
 
@@ -123,14 +123,14 @@ The original formulation — A_5 simple-and-transitive on the 12 icosahedral ver
 
 *Arc anchor: `arc.md` §6 (the math fragment that fracture/de Rham instantiates).*
 
-**Claim.** The fracture theorem (status.md current task) and the de Rham separation result (status.md arc target) witness ModalHoTT alone — that cohesion is necessary for stating things plain HoTT cannot state. They are pieces of T1's "Allow direction" (perspectives unfold into structure), specifically on the ModalHoTT-side.
+**Claim.** The fracture theorem (status_formal.md current task) and the de Rham separation result (status_formal.md arc target) witness ModalHoTT alone — that cohesion is necessary for stating things plain HoTT cannot state. They are pieces of T1's "Allow direction" (perspectives unfold into structure), specifically on the ModalHoTT-side.
 
 **To state cleanly.**
 - Locate fracture and de Rham within T1's adjunction structure: which unit/counit/triangle do they instance?
 - Distinguish what they witness (cohesion's necessity for ModalHoTT) from what they don't (the requires-allows coupling with Concurrency).
 
 **To verify.**
-- Already partially scoped in status.md. The bridge work is articulating, not proving — the proofs are status.md's job.
+- Already partially scoped in status_formal.md. The bridge work is articulating, not proving — the proofs are status_formal.md's job.
 
 ### Progress
 
@@ -151,7 +151,7 @@ The fracture theorem and the de Rham structural / named-coefficient / differenti
 - State the colimit's homotopy invariant: an analogue of the Grothendieck–Teichmüller-tower homotopy type, scaled to whatever finite combinatorial data the Concurrency site commits to.
 
 **To verify.**
-- *Iteration-alone layer (cheaper, Agda-reachable now).* The scaffold in `agda/ModalHoTT/Modalities/Iteration.agda` provides `T`, `T-map`, `T^_`, `η^_`, `η^-coherent` (derived from a postulated `η-naturality`), and the developing-network type `ND : Type → Type` as a sequential colimit. Specializing to the A-side ʃ ⊣ ♭ should collapse `ND` to `♭(ʃ A)` by idempotency; at `A := Bℤ` this should yield `ND Bℤ ≃ ℤ` via the analytic-side computation in `Analytic/.../Cohesion.agda`. This is the cheapest non-trivial content from the scaffold.
+- *Iteration-alone layer (cheaper, Agda-reachable now).* The scaffold in `formal/ModalHoTT/Modalities/Iteration.agda` provides `T`, `T-map`, `T^_`, `η^_`, `η^-coherent` (derived from a postulated `η-naturality`), and the developing-network type `ND : Type → Type` as a sequential colimit. Specializing to the A-side ʃ ⊣ ♭ should collapse `ND` to `♭(ʃ A)` by idempotency; at `A := Bℤ` this should yield `ND Bℤ ≃ ℤ` via the analytic-side computation in `Analytic/.../Cohesion.agda`. This is the cheapest non-trivial content from the scaffold.
 - *Operad / hybrid layer (partial — syntax, algebra signatures, Sessions v1, actor site v1, and Hybrid v1 shipped).* The cyclic associative operad `O_1` syntax is in Agda (`Concurrency/Operads/CyclicAssociative.agda`: generator, substitution, cyclic action, sequential + parallel associativity, full cyclic equivariance via `rot-compₒ-a-block` / `rot-compₒ-b-block`, and derived `boundary-swap`; port bookkeeping split across `PortGluing.agda` and `PortRotation.agda`). The algebra interface is also in place (`Concurrency/Algebras/{StarAutonomous,Valuation,OperadAlgebra}.agda`): thin `*`-autonomous target signature, weak HIT valuation into `⊥-par`, and structural Step-2 operad algebra with `plug`, `shift`, and `boundary-swap-structural`. The Sessions layer is now split: `SessionSyntax.agda` gives the postulate-free object grammar, `SessionMorphismSyntax.agda` gives the set-truncated morphism HIT, and `Sessions.agda` instantiates the operadic interface with a bundled `SessionO1Action`, `session-interp`, `Sessions-Val`, and `Sessions-Alg`; the only remaining Sessions postulate is `session-O1-action`. `Concurrency/Sites/{ActorBase,ActorCausal}.agda` supplies the actor-causal base with no project postulates after the `TinyActorBase` / `TinyActorCausalSite` cleanup. `Concurrency/Hybrid/{Presheaf,SessionPresheaf}.agda` supplies the original arbitrary-frame adapter layer. The fast-track finite layer adds category-generic finite products, finite frames/covers, `FinitePresheaf`, `EventProductPresheaf`, `FiniteDescent`, `EventProductSheaf`, `EventProductSheafObject`, `FiniteFramePresheafFunctor`, `FiniteSheafCategory`, `SessionEventProductSheaf`, `SetFiniteSheafCategory`, `SetEventProductSheaf`, `TinyEventProductExample`, `FramePullbackUniversal`, `FiniteFramePullback`, `FiniteBasisCover`, `FiniteFrameCoverage`, and `SetSheafComparison`: full finite-site event-product descent, constant-slot Sessions and Set instantiations, proof-level concrete validation on the two-point cover, finite sheaf categories at both `StarAutonomous→Category V` and `SET`, Cubical `Coverage` for the finite site, and the SET library sheaf comparison. R8 is present with both faces in Agda: syntactic `dual-involutive` and categorical / operadic `boundary-swap-at-gen`; the bridge between them is deliberately deferred to richer session-categorical structure. R4 is concretely landed for the supported point-generated/event-discrete route, with `Chu(SET,Bool)` as a postulate-free coefficient witness and Sessions-to-Chu `J0`/`J1` as the intended-instance realization through morphisms. Still pending are the generic full finite actor-causal reflector, the A-side category of modal contexts, and then the cross-site adjunction `Allow ⊣ Require`, which instantiates the iteration module against this operadic/session layer.
 
 ### Philosophical anti-drift invariant: do not let R8 consume R∞
@@ -164,7 +164,7 @@ The failure mode is stopping at session-flavored cyclic operads. `O_1` is not th
 
 ### Progress
 
-The iteration scaffold is in place: `agda/ModalHoTT/Modalities/Iteration.agda` defines the generic-adjunction `Iteration` module (`T`, `T-map`, `T^_`, `η^_`, `η-naturality` postulate, `η^-coherent` derived, `T-sequence`, `ND`). A-side sanity check `agda/ModalHoTT/Modalities/IterationCohesion.agda` instantiates with ʃ ⊣ ♭: refl-level `T-as-flat-shape` and `η^1-is-unit`, plus the first-level collapse `η-equiv-at-T : T A ≃ T(T A)` derived via the `Discrete.agda` bridge (`T A` is flat-modal definitionally and shape-modal by the bridge, so the next iterate-step is an equivalence). Cross-site adjunction not yet stated (waits on Concurrency-side scoping). Deferred items (B-side dual, cyclic-involution layer, full sequential-colimit convergence `ND A ≃ T A`) flagged in `future_work.md` "Regarding T_recursion iteration."
+The iteration scaffold is in place: `formal/ModalHoTT/Modalities/Iteration.agda` defines the generic-adjunction `Iteration` module (`T`, `T-map`, `T^_`, `η^_`, `η-naturality` postulate, `η^-coherent` derived, `T-sequence`, `ND`). A-side sanity check `formal/ModalHoTT/Modalities/IterationCohesion.agda` instantiates with ʃ ⊣ ♭: refl-level `T-as-flat-shape` and `η^1-is-unit`, plus the first-level collapse `η-equiv-at-T : T A ≃ T(T A)` derived via the `Discrete.agda` bridge (`T A` is flat-modal definitionally and shape-modal by the bridge, so the next iterate-step is an equivalence). Cross-site adjunction not yet stated (waits on Concurrency-side scoping). Deferred items (B-side dual, cyclic-involution layer, full sequential-colimit convergence `ND A ≃ T A`) flagged in `future_work.md` "Regarding T_recursion iteration."
 
 B-side operadic syntax shipped 2026-05-18 (`Concurrency/Operads/CyclicAssociative.agda`: `O_1` as a cyclic associative HIT with `compₒ-assoc-seq`, `compₒ-assoc-par`, full cyclic equivariance via `rot-compₒ-a-block` / `rot-compₒ-b-block`, and derived `boundary-swap`; `PortRotation.agda` owns rotation-side port bookkeeping). The first algebra layer shipped 2026-05-19: `StarAutonomous.agda` is a thin target signature, `Valuation.agda` names weak HIT interpretations into `⊥-par`, and `OperadAlgebra.agda` adds `plug`/`shift` structural fields plus `boundary-swap-structural`. The Sessions layer now splits syntax, morphism HIT, semantic realization, and operadic action: structural session laws are postulate-free, while `session-O1-action` remains the explicit deferred action assumption. The actor-causal site shipped 2026-05-20 and has since had its legacy stability postulate removed; tiny examples use the `TinyActorBase` / `TinyActorCausalSite` split. The 2026-06-04 finite layer and 2026-06-05 Strategy D landing add the finite event-product and Coverage/SET bridge. The 2026-06 point-generated R4 route plus `Chu(SET,Bool)` and Sessions-to-Chu Phase 1 remove the old non-vacuity objection. The active missing work is no longer descent, finite sheaf-category packaging, site-axis legitimacy, presheaf-level R4, point-generated R4 bridge wiring, or session structural-law semantics; it is the next deliberate choice between O1-in-Chu / `session-O1-action`, the Reality/Documentation/Chu boundary, the generic full finite actor-causal reflector, and later the A-side modal-context category with the cross-site adjunction.
 
@@ -175,7 +175,7 @@ B-side operadic syntax shipped 2026-05-18 (`Concurrency/Operads/CyclicAssociativ
 - **Distinct from T6** ("two-sided above") — T6 is the snapshot of mutual constitution; T_recursion is its dynamics.
 - **Esquisse pointer.** T_recursion is the natural target for the Grothendieck-Esquisse mapping the arc discussion log named: the modular-operad form of the moduli-tower recursion, surviving the retirement of the A_5 / icosahedral example. See `deep_context/arc/01_arc_discussion_log-2026-05-08.md` Turn 21.
 
-**Completed — synthetic side (`agda/ModalHoTT/`).**
+**Completed — synthetic side (`formal/ModalHoTT/`).**
 
 - `Modalities/Cohesion.agda` — three cohesion modalities postulated as axioms (operators, units/counits, induction principles, modal-type definitions); includes `flat-counit-intro` β-rule.
 - `Modalities/Adjunctions.agda` — ♭ ⊣ ♯ and ʃ ⊣ ♭ as hom-set equivalences with coherence; named transpose operations; `IsFlatModal (♭A)` proved; ♯/ʃ idempotency postulated.
@@ -184,7 +184,7 @@ B-side operadic syntax shipped 2026-05-18 (`Concurrency/Operads/CyclicAssociativ
 - `Modalities/Discrete.agda` — bridge `IsFlatModal A ↔ IsShapeModal A` drafted (both directions postulated); **not imported anywhere**, held in reserve.
 - `Cohomology/FlatCoefficients.agda` — structural rung of the de Rham depth ladder; `flat-coefficients-factor-pin` proves the canonical equivalence pins to `λ f → f ∘ shape-unit` via a four-step chain.
 
-**Completed — analytic side (`agda/Analytic/ModalHoTT/`).**
+**Completed — analytic side (`formal/Analytic/ModalHoTT/`).**
 
 - `Modalities/Cohesion.agda` — full 3×2 grid of ♭/ʃ/♯ instances for ℤ (all trivial) and Bℤ. Centrepiece: `¬-IsFlatModal-delooping` (machine-checked proof that Bℤ is not flat-modal). DeloopingOfIntegers HIT, deck transformations, universal cover, and `Ω(Bℤ) ≃ ℤ` all live in this file.
 - `Modalities/Adjunctions.agda` — ℤ adjunctions as `idEquiv`; for Bℤ, the diagnostic lemma `maps-into-integers : (DeloopingOfIntegers → ℤ) ≃ ℤ` (companion to the free-loop-space obstruction `(Bℤ → Bℤ) ≃ Bℤ × ℤ`). Documents the type-level adjunction failure at (Bℤ, Bℤ); no postulates.
@@ -192,7 +192,7 @@ B-side operadic syntax shipped 2026-05-18 (`Concurrency/Operads/CyclicAssociativ
 - `Modalities/Fracture.agda` — analytic ℤ; pullback collapses definitionally to `Σ ℤ singl`; canonical map sends `n` to `(n, n, refl)`; `isEquiv` via `isoToEquiv` on `fst` as inverse. No postulates. Bℤ excluded (♯(Bℤ) undefined).
 - `Cohomology/FlatCoefficients.agda` — analytic mirror at the structural rung.
 
-**Paused next step.** Postulate a cohesive type ℝ and instantiate the structural equivalence at `B := ♭ℝ` — the named-coefficient rung. Open design call: postulate ℝ as a bare type plus `IsFlatModal ♭ℝ`, or as a single bundled record. Tautological as a "de Rham theorem" (see `future_work.md`); the content-bearing differential level is deferred to `agda/AnalyticTest/`.
+**Paused next step.** Postulate a cohesive type ℝ and instantiate the structural equivalence at `B := ♭ℝ` — the named-coefficient rung. Open design call: postulate ℝ as a bare type plus `IsFlatModal ♭ℝ`, or as a single bundled record. Tautological as a "de Rham theorem" (see `future_work.md`); the content-bearing differential level is deferred to `formal/AnalyticTest/`.
 
 ### Unlocking ♯ — what it costs and what it buys
 
@@ -233,7 +233,7 @@ In short: **♯ is the door to the de Rham story, which is the door to the separ
 
 ## Dependency sketch
 
-*To restate, in tandem with T2–T5.* T1 remains foundational; T6 and T7 remain downstream of T1. The site question for the Concurrency side has migrated from T2 to `deep_context/arc/02_concurrency_anchor.md` and the level-2 inventory in `status.md`. Original archived.
+*To restate, in tandem with T2–T5.* T1 remains foundational; T6 and T7 remain downstream of T1. The site question for the Concurrency side has migrated from T2 to `deep_context/arc/02_concurrency_anchor.md` and the level-2 inventory in `status_formal.md`. Original archived.
 
 ---
 

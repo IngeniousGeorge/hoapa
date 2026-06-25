@@ -2,7 +2,7 @@
 
 ## Where This File Sits
 
-`agda/Concurrency/Operads/PortRotation.agda` is the sibling of `PortGluing.agda`. The previous file handled deletion, splitting, and associativity reindexing. This one handles the small amount of port arithmetic needed to state how rotation interacts with substitution.
+`formal/Concurrency/Operads/PortRotation.agda` is the sibling of `PortGluing.agda`. The previous file handled deletion, splitting, and associativity reindexing. This one handles the small amount of port arithmetic needed to state how rotation interacts with substitution.
 
 The file is intentionally short. It defines:
 

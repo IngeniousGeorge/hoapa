@@ -2,7 +2,7 @@
 
 ## Where this file sits
 
-`agda/ModalHoTT/Modalities/Properties.agda` is the first file after the two adjunctions are installed. `01_cohesion.md` gave us the three consoles: flat, shape, and sharp. `02_adjunctions.md` patched them together and proved the one idempotency theorem that the current eliminators can support. This file asks the next ordinary question: if a modality acts on types, how does it act on functions?
+`formal/ModalHoTT/Modalities/Properties.agda` is the first file after the two adjunctions are installed. `01_cohesion.md` gave us the three consoles: flat, shape, and sharp. `02_adjunctions.md` patched them together and proved the one idempotency theorem that the current eliminators can support. This file asks the next ordinary question: if a modality acts on types, how does it act on functions?
 
 For a function `f : A -> B`, each modality should produce a lifted function:
 

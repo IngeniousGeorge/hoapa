@@ -42,7 +42,7 @@ mathematician, and neither are you, but the proof checker is. When we present ou
 And also during the developement phase of our work, you and I both need the checking capability of Agda to make sure we're not confidently walking on thin ice and into false statements.     
 Now, I agree the synthetic approach is what we want ideally, and eventually how we want to present our result to the community that will be interested in it, because that they're prefered   
 approach also, for good reasons. But I believe we should have, maybe in parallel, a more grounded, with step-by-step verification, version of our construction and claims. I'm thinking we    
-should actually have two folders inside of /agda, /synthetic and /analytic. /synthetic is what we have been doing so far, and how you suggest we tackle the fracture result. But we should    
+should actually have two folders inside of /formal, /synthetic and /analytic. /synthetic is what we have been doing so far, and how you suggest we tackle the fracture result. But we should    
 also work on the analytic folder, in which we basically derive all the postulates that go in the synthetic construction, to work as a kind of "test suite" for what we're doing.
 
 ### Instigator - Goal & first step
@@ -66,7 +66,7 @@ Then it has more chances of being provable. It needs this full scope to be compl
 
 ### Agent - Synthetic structure
 
-Synthetic/axiomatic — postulate the cohesion modalities (shape ʃ, flat ♭, sharp ♯) as axioms and develop modal HoTT from there. This is how Wellen, Myers, and Shulman have actually worked in Agda/Coq. The site never appears as a Agda object — it lives in the semantic background justifying the axioms. ... agda/ModalHoTT/Modalities/ is the right starting point, with the cohesion modalities postulated as axioms. That's the first real Agda file — something like Cohesion.agda postulating shape, flat, and sharp with their units and the key adjunctions. Keeping in mind that Bℤ is the intended semantic model for the axioms.
+Synthetic/axiomatic — postulate the cohesion modalities (shape ʃ, flat ♭, sharp ♯) as axioms and develop modal HoTT from there. This is how Wellen, Myers, and Shulman have actually worked in Agda/Coq. The site never appears as a Agda object — it lives in the semantic background justifying the axioms. ... formal/ModalHoTT/Modalities/ is the right starting point, with the cohesion modalities postulated as axioms. That's the first real Agda file — something like Cohesion.agda postulating shape, flat, and sharp with their units and the key adjunctions. Keeping in mind that Bℤ is the intended semantic model for the axioms.
 
 ### Instigator
 

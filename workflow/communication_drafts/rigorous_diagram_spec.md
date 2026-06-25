@@ -262,9 +262,9 @@ results are derived; others are postulated.
 Code paths:
 
 ```text
-agda/ModalHoTT/Modalities/Cohesion.agda
-agda/ModalHoTT/Modalities/Adjunctions.agda
-agda/ModalHoTT/Modalities/Properties.agda
+formal/ModalHoTT/Modalities/Cohesion.agda
+formal/ModalHoTT/Modalities/Adjunctions.agda
+formal/ModalHoTT/Modalities/Properties.agda
 ```
 
 ### 7.2 Analytic diagnostics inset (separate from the fragment column)
@@ -303,9 +303,9 @@ axiomatization is stronger than the analytic model can deliver.
 Code paths:
 
 ```text
-agda/Analytic/ModalHoTT/Modalities/Cohesion.agda
-agda/Analytic/ModalHoTT/Modalities/Adjunctions.agda
-agda/Analytic/ModalHoTT/Modalities/Properties.agda
+formal/Analytic/ModalHoTT/Modalities/Cohesion.agda
+formal/Analytic/ModalHoTT/Modalities/Adjunctions.agda
+formal/Analytic/ModalHoTT/Modalities/Properties.agda
 ```
 
 ### 7.3 Fracture square
@@ -344,7 +344,7 @@ from the cohesive HoTT literature rather than derived from the current Agda axio
 Code path:
 
 ```text
-agda/ModalHoTT/Modalities/Fracture.agda
+formal/ModalHoTT/Modalities/Fracture.agda
 ```
 
 ### 7.4 Adjunction iteration
@@ -373,8 +373,8 @@ collapse for ʃ ⊣ ♭.
 Code paths:
 
 ```text
-agda/ModalHoTT/Modalities/Iteration.agda
-agda/ModalHoTT/Modalities/IterationCohesion.agda
+formal/ModalHoTT/Modalities/Iteration.agda
+formal/ModalHoTT/Modalities/IterationCohesion.agda
 ```
 
 ### 7.5 Flat-coefficient cohomology
@@ -403,8 +403,8 @@ postulates. This is not yet differential de Rham theory.
 Code paths:
 
 ```text
-agda/ModalHoTT/Cohomology/FlatCoefficients.agda
-agda/Analytic/ModalHoTT/Cohomology/FlatCoefficients.agda
+formal/ModalHoTT/Cohomology/FlatCoefficients.agda
+formal/Analytic/ModalHoTT/Cohomology/FlatCoefficients.agda
 ```
 
 ---
@@ -454,8 +454,8 @@ Cover stability is presently postulated.
 Code paths:
 
 ```text
-agda/Concurrency/Sites/ActorBase.agda
-agda/Concurrency/Sites/ActorCausal.agda
+formal/Concurrency/Sites/ActorBase.agda
+formal/Concurrency/Sites/ActorCausal.agda
 ```
 
 ### 8.2 Cyclic operad `O₁`
@@ -483,9 +483,9 @@ One-generator cyclic interaction grammar with rotation and gluing operations.
 Code paths:
 
 ```text
-agda/Concurrency/Operads/CyclicAssociative.agda
-agda/Concurrency/Operads/PortGluing.agda
-agda/Concurrency/Operads/PortRotation.agda
+formal/Concurrency/Operads/CyclicAssociative.agda
+formal/Concurrency/Operads/PortGluing.agda
+formal/Concurrency/Operads/PortRotation.agda
 ```
 
 ### 8.3 `*`-autonomous session target
@@ -514,8 +514,8 @@ not yet developed in full.
 Code paths:
 
 ```text
-agda/Concurrency/Algebras/StarAutonomous.agda
-agda/Concurrency/Algebras/Sessions.agda
+formal/Concurrency/Algebras/StarAutonomous.agda
+formal/Concurrency/Algebras/Sessions.agda
 ```
 
 ### 8.4 `O₁`-algebra on session values
@@ -544,9 +544,9 @@ the current session category.
 Code paths:
 
 ```text
-agda/Concurrency/Algebras/Valuation.agda
-agda/Concurrency/Algebras/OperadAlgebra.agda
-agda/Concurrency/Algebras/Sessions.agda
+formal/Concurrency/Algebras/Valuation.agda
+formal/Concurrency/Algebras/OperadAlgebra.agda
+formal/Concurrency/Algebras/Sessions.agda
 ```
 
 Render a small inline annotation in this box: `(operadic lift to presheaves planned)`. The box has inbound arrows (`O₁`, session target) and no outbound arrow, which honestly reflects that the operad-algebra is built but not yet lifted to the presheaf layer; the annotation preempts misreading the missing outbound arrow as an omission. The future connection is the planned-construction label `Operadic valuation over frame presheaves` in the lower band.
@@ -577,7 +577,7 @@ Separatedness is stated as a property record but unproved; descent and gluing ar
 Code path:
 
 ```text
-agda/Concurrency/Hybrid/Presheaf.agda
+formal/Concurrency/Hybrid/Presheaf.agda
 ```
 
 ### 8.6 Session-valued frame presheaves
@@ -606,7 +606,7 @@ Sessions-Cat imports the postulate-supported session semantics.
 Code path:
 
 ```text
-agda/Concurrency/Hybrid/SessionPresheaf.agda
+formal/Concurrency/Hybrid/SessionPresheaf.agda
 ```
 
 The visible diagram label must not be `Hybrid v1`.

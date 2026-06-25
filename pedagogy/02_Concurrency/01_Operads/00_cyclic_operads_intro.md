@@ -78,7 +78,7 @@ fsuc (fsuc fzero)
 Those are the three values of `Fin 3`. The notation is clunky, but it prevents out-of-range mistakes. A value of `Fin 3` cannot be accidentally equal to `3`; the type rules it out.
 
 > **References**
-> - [Cubical Agda: `Cubical.Data.Fin`](https://agda.github.io/cubical/Cubical.Data.Fin.Base.html) — finite types in the cubical library.
+> - [Cubical Agda: `Cubical.Data.Fin`](https://formal.github.io/cubical/Cubical.Data.Fin.Base.html) — finite types in the cubical library.
 
 ## Rotation is modular arithmetic
 
@@ -111,7 +111,7 @@ port-inv
 That rename matters for readability. Later proofs should read as "rotate by the inverse port offset," not as "apply the finite arithmetic library's additive inverse."
 
 > **References**
-> - [Cubical Agda: `Cubical.Data.Fin.Arithmetic`](https://agda.github.io/cubical/Cubical.Data.Fin.Arithmetic.html) — modular arithmetic on finite types.
+> - [Cubical Agda: `Cubical.Data.Fin.Arithmetic`](https://formal.github.io/cubical/Cubical.Data.Fin.Arithmetic.html) — modular arithmetic on finite types.
 > - [nLab: cyclic group](https://ncatlab.org/nlab/show/cyclic+group) — the abstract group behind modular rotation.
 
 ## Generated syntax and built-in equations

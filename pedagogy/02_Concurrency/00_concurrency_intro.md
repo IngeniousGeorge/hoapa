@@ -96,7 +96,7 @@ The project uses this to keep auditability local. We do not assume every partici
 
 ## The Current Agda Layers
 
-The current `agda/Concurrency/` tree has four folders.
+The current `formal/Concurrency/` tree has four folders.
 
 `Operads` builds the interaction-shape layer. It defines finite cyclic ports, raw generated syntax, gluing arithmetic, rotation helpers, and finally the cyclic associative operad `O_1`.
 

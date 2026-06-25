@@ -2,7 +2,7 @@
 
 ## Where this file sits
 
-`agda/ModalHoTT/Cohomology/FlatCoefficients.agda` is the first cohomology-side companion in the synthetic ModalHoTT track. It is not in `Modalities/` because it is no longer just building the modal machinery. It uses that machinery to state a structural cohomology fact.
+`formal/ModalHoTT/Cohomology/FlatCoefficients.agda` is the first cohomology-side companion in the synthetic ModalHoTT track. It is not in `Modalities/` because it is no longer just building the modal machinery. It uses that machinery to state a structural cohomology fact.
 
 The file defines:
 

@@ -2,7 +2,7 @@
 
 ## Where this file sits
 
-`agda/Concurrency/Operads/RawCyclicOperad.agda` is the first file where the operad itself appears. `00_cyclic_operads_intro.md` gave the common picture: one binary generator, three cyclic ports, substitution by gluing, and rotation by modular port offsets. `01_ports.md` made the port arithmetic available in Agda.
+`formal/Concurrency/Operads/RawCyclicOperad.agda` is the first file where the operad itself appears. `00_cyclic_operads_intro.md` gave the common picture: one binary generator, three cyclic ports, substitution by gluing, and rotation by modular port offsets. `01_ports.md` made the port arithmetic available in Agda.
 
 This file now defines the raw syntax:
 
@@ -51,7 +51,7 @@ The project import is the real dependency: `Concurrency.Operads.Ports`. That bri
 -- the actor/session interaction primitive. One binary operation
 -- (`gen`); planar / cyclic-associative (not fully symmetric); a
 -- ℤ/(n+1) cyclic action on the n+1 ports of each n-ary operation.
--- R8 in workflow/status.md ties the cyclic rotation at arity 2 to
+-- R8 in workflow/status_formal.md ties the cyclic rotation at arity 2 to
 -- session-type duality, but session duality is a *separate*
 -- involutive equivalence on the algebra side — not encoded here.
 --
@@ -206,8 +206,8 @@ The two proof obligations are exactly the two round trips:
 Both reduce to the same pattern: compose rotations, cancel the port offsets, then use `rot-zero`.
 
 > **References**
-> - [Cubical Agda: `Cubical.Foundations.Isomorphism`](https://agda.github.io/cubical/Cubical.Foundations.Isomorphism.html) — `Iso`, `iso`, and `isoToEquiv`.
-> - [Cubical Agda: `Cubical.Foundations.Equiv`](https://agda.github.io/cubical/Cubical.Foundations.Equiv.html) — equivalences and their projections.
+> - [Cubical Agda: `Cubical.Foundations.Isomorphism`](https://formal.github.io/cubical/Cubical.Foundations.Isomorphism.html) — `Iso`, `iso`, and `isoToEquiv`.
+> - [Cubical Agda: `Cubical.Foundations.Equiv`](https://formal.github.io/cubical/Cubical.Foundations.Equiv.html) — equivalences and their projections.
 
 ## Chunk 6 — the right inverse proof
 

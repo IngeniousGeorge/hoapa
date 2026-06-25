@@ -10,7 +10,7 @@ metadata:
 
 This file is the handoff manual for the `pedagogy/` side project. Treat it as the first thing to read when context has been cleared and the user asks you to continue the pedagogy work.
 
-The short version: `pedagogy/` explains the Agda formalization to humans who are mathematically curious but not type theorists. It mirrors `agda/` where possible. Each source companion walks one `.agda` file chunk by chunk, with enough context that a motivated reader can understand what the formalization is doing and why the project made the choices it made.
+The short version: `pedagogy/` explains the Agda formalization to humans who are mathematically curious but not type theorists. It mirrors `formal/` where possible. Each source companion walks one `.agda` file chunk by chunk, with enough context that a motivated reader can understand what the formalization is doing and why the project made the choices it made.
 
 Do not treat this as agent-facing architecture. The workflow files are for that. This file is about how to write the human-facing explanations.
 
@@ -18,8 +18,8 @@ Do not treat this as agent-facing architecture. The workflow files are for that.
 
 The main repository develops two mathematical sides:
 
-- `agda/ModalHoTT/`: the cohesive/modal HoTT side, currently synthetic and axiomatic.
-- `agda/Concurrency/`: the concurrency side, currently actor-causal locality plus session-valued content plus an operadic interaction layer.
+- `formal/ModalHoTT/`: the cohesive/modal HoTT side, currently synthetic and axiomatic.
+- `formal/Concurrency/`: the concurrency side, currently actor-causal locality plus session-valued content plus an operadic interaction layer.
 
 The `pedagogy/` folder runs beside the code. Its job is not to prove new results. Its job is to make the Agda readable to the instigator and to adjacent readers who care about the ideas but cannot parse cubical Agda directly.
 
@@ -91,13 +91,13 @@ pedagogy/
 
 The numbering is reader order, not Agda module order. It was introduced because readers need to know where to start.
 
-Mirror `agda/` as much as possible inside those numbered folders:
+Mirror `formal/` as much as possible inside those numbered folders:
 
 ```text
-agda/ModalHoTT/Modalities/Cohesion.agda
+formal/ModalHoTT/Modalities/Cohesion.agda
 pedagogy/01_ModalHoTT/01_Modalities/01_cohesion.md
 
-agda/Concurrency/Operads/Ports.agda
+formal/Concurrency/Operads/Ports.agda
 pedagogy/02_Concurrency/01_Operads/01_ports.md
 ```
 
@@ -130,7 +130,7 @@ pedagogy/01_ModalHoTT/01_Modalities/02_adjunctions.pdf
 
 `pedagogy/**/*.pdf` is gitignored. Do not worry about PDFs unless the user asks to render them.
 
-Concurrency pedagogy is complete for the current `agda/Concurrency/` tree:
+Concurrency pedagogy is complete for the current `formal/Concurrency/` tree:
 
 ```text
 pedagogy/02_Concurrency/00_concurrency_intro.md
@@ -140,21 +140,21 @@ pedagogy/02_Concurrency/03_Sites/
 pedagogy/02_Concurrency/04_Hybrid/
 ```
 
-Do not continue into `agda/Analytic/` or `agda/AnalyticTest/` for pedagogy unless the user explicitly changes the plan. The user has said not to cover the Analytic track in the pedagogy files for now.
+Do not continue into `formal/Analytic/` or `formal/AnalyticTest/` for pedagogy unless the user explicitly changes the plan. The user has said not to cover the Analytic track in the pedagogy files for now.
 
 ## Current Modal Source Inventory
 
 As of this handoff, current ModalHoTT source files are:
 
 ```text
-agda/ModalHoTT/Modalities/Cohesion.agda
-agda/ModalHoTT/Modalities/Adjunctions.agda
-agda/ModalHoTT/Modalities/Discrete.agda
-agda/ModalHoTT/Modalities/Properties.agda
-agda/ModalHoTT/Modalities/Fracture.agda
-agda/ModalHoTT/Modalities/Iteration.agda
-agda/ModalHoTT/Modalities/IterationCohesion.agda
-agda/ModalHoTT/Cohomology/FlatCoefficients.agda
+formal/ModalHoTT/Modalities/Cohesion.agda
+formal/ModalHoTT/Modalities/Adjunctions.agda
+formal/ModalHoTT/Modalities/Discrete.agda
+formal/ModalHoTT/Modalities/Properties.agda
+formal/ModalHoTT/Modalities/Fracture.agda
+formal/ModalHoTT/Modalities/Iteration.agda
+formal/ModalHoTT/Modalities/IterationCohesion.agda
+formal/ModalHoTT/Cohomology/FlatCoefficients.agda
 ```
 
 Already covered:
@@ -221,13 +221,13 @@ Before writing any new Modal companion, read:
 4. relevant workflow context:
 
 ```text
-workflow/status.md
+workflow/status_formal.md
 workflow/future_work.md
 workflow/targets.md
 workflow/arc.md
 ```
 
-You do not need to bulk-read all of `workflow/deep_context/`. Use it only if a source header points there or if a term in `status.md` is unclear.
+You do not need to bulk-read all of `workflow/deep_context/`. Use it only if a source header points there or if a term in `status_formal.md` is unclear.
 
 Useful workflow facts:
 
@@ -551,7 +551,7 @@ The right explanation: this file checks that the iteration scaffold composes wit
 
 ### FlatCoefficients.agda
 
-This is in `agda/ModalHoTT/Cohomology/`, not `Modalities/`.
+This is in `formal/ModalHoTT/Cohomology/`, not `Modalities/`.
 
 It defines:
 
@@ -592,7 +592,7 @@ Do not claim the current ModalHoTT files prove the classical de Rham theorem. Th
 
 ## What Not To Do
 
-Do not cover `agda/Analytic/` or `agda/AnalyticTest/` in pedagogy unless the user explicitly asks. The current instruction is to skip Analytic pedagogy.
+Do not cover `formal/Analytic/` or `formal/AnalyticTest/` in pedagogy unless the user explicitly asks. The current instruction is to skip Analytic pedagogy.
 
 Do not add pedagogy pointers to `workflow/`, `CLAUDE.md`, or status files unless specifically asked. `pedagogy/` is deliberately downstream and human-facing.
 
@@ -633,7 +633,7 @@ When asked to continue the pedagogy:
 1. Check the current source tree:
 
 ```bash
-find agda/ModalHoTT -type f | sort
+find formal/ModalHoTT -type f | sort
 find pedagogy/01_ModalHoTT -maxdepth 4 -type f | sort
 ```
 
@@ -651,7 +651,7 @@ pedagogy/01_ModalHoTT/01_Modalities/02_adjunctions.md
 5. Read relevant workflow status:
 
 ```text
-workflow/status.md
+workflow/status_formal.md
 workflow/future_work.md
 workflow/targets.md
 ```
@@ -673,7 +673,7 @@ workflow/targets.md
 ```bash
 find pedagogy -maxdepth 4 -type f | sort
 wc -l pedagogy/01_ModalHoTT/01_Modalities/*.md
-rg -n "AnalyticTest|agda/Analytic|pedagogy/ModalHoTT|pedagogy/Concurrency" pedagogy
+rg -n "AnalyticTest|formal/Analytic|pedagogy/ModalHoTT|pedagogy/Concurrency" pedagogy
 git status --short pedagogy
 ```
 

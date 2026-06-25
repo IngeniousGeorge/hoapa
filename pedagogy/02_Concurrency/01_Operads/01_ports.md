@@ -2,7 +2,7 @@
 
 ## Where this file sits
 
-`agda/Concurrency/Operads/Ports.agda` is the first source companion in the Concurrency operads folder. The common picture is in `00_cyclic_operads_intro.md`: we are building the small cyclic operad artifact whose binary generator has three cyclic boundary ports.
+`formal/Concurrency/Operads/Ports.agda` is the first source companion in the Concurrency operads folder. The common picture is in `00_cyclic_operads_intro.md`: we are building the small cyclic operad artifact whose binary generator has three cyclic boundary ports.
 
 This file does not define the operad itself. It fixes the finite cyclic arithmetic the rest of the folder will use. That makes it a vocabulary file: what counts as a port, how ports rotate, and how to name the inverse rotation.
 
@@ -48,7 +48,7 @@ open import Cubical.Data.Fin.Arithmetic
         ; +ₘ-lCancel ; +ₘ-rCancel) public
 ```
 
-The module line gives the Agda module name. The path mirrors it under `agda/`.
+The module line gives the Agda module name. The path mirrors it under `formal/`.
 
 All imports are `public`, so a later file can import `Concurrency.Operads.Ports` and get this vocabulary too. This is deliberate. The port layer is the doorway through which later files receive natural numbers, finite port indices, modular addition, modular inverse, and cancellation laws.
 

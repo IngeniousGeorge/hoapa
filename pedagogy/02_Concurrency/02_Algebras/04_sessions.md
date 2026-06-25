@@ -2,7 +2,7 @@
 
 ## Where This File Sits
 
-`agda/Concurrency/Algebras/Sessions.agda` is the concrete typed-content instance of the algebra layer. It specializes the abstract interfaces to a minimal multiplicative session-type syntax.
+`formal/Concurrency/Algebras/Sessions.agda` is the concrete typed-content instance of the algebra layer. It specializes the abstract interfaces to a minimal multiplicative session-type syntax.
 
 This file is long because it does several jobs:
 

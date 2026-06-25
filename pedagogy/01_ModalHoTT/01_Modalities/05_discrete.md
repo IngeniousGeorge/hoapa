@@ -2,7 +2,7 @@
 
 ## Where this file sits
 
-`agda/ModalHoTT/Modalities/Discrete.agda` is a small bridge file. It is not part of the main path from functoriality to fracture. It records a cohesive fact that becomes useful for iteration: flat-modal types and shape-modal types pick out the same class of "discrete" types.
+`formal/ModalHoTT/Modalities/Discrete.agda` is a small bridge file. It is not part of the main path from functoriality to fracture. It records a cohesive fact that becomes useful for iteration: flat-modal types and shape-modal types pick out the same class of "discrete" types.
 
 In symbols, it postulates two conversions:
 

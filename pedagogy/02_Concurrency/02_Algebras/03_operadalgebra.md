@@ -2,7 +2,7 @@
 
 ## Where This File Sits
 
-`agda/Concurrency/Algebras/OperadAlgebra.agda` strengthens `Valuation.agda`. A valuation can interpret operations. An operad algebra says those interpretations factor through categorical operations corresponding to operadic substitution and cyclic rotation.
+`formal/Concurrency/Algebras/OperadAlgebra.agda` strengthens `Valuation.agda`. A valuation can interpret operations. An operad algebra says those interpretations factor through categorical operations corresponding to operadic substitution and cyclic rotation.
 
 The two new operations are:
 

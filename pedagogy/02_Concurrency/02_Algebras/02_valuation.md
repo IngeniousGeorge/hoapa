@@ -2,7 +2,7 @@
 
 ## Where This File Sits
 
-`agda/Concurrency/Algebras/Valuation.agda` defines the first interpretation layer. Given a star-autonomous target category `T`, a valuation assigns each operation of `O_1` a morphism in `T`.
+`formal/Concurrency/Algebras/Valuation.agda` defines the first interpretation layer. Given a star-autonomous target category `T`, a valuation assigns each operation of `O_1` a morphism in `T`.
 
 This is intentionally weaker than an algebra. A valuation knows how to interpret operations, but it does not yet say that interpreting substitution is the same as a categorical plugging operation, or that interpreting rotation is the same as a categorical shift.
 

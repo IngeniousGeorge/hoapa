@@ -2,7 +2,7 @@
 
 ## Where this file sits
 
-`agda/ModalHoTT/Modalities/Cohesion.agda` is the floor of the whole synthetic (axiomatic) track. Everything downstream — the adjunctions, the properties files, the fracture theorem, the de Rham work the project is currently pointed at — ultimately leans on the three modalities introduced here. If you only ever read one file from `agda/`, this is the one that buys you the most context per line.
+`formal/ModalHoTT/Modalities/Cohesion.agda` is the floor of the whole synthetic (axiomatic) track. Everything downstream — the adjunctions, the properties files, the fracture theorem, the de Rham work the project is currently pointed at — ultimately leans on the three modalities introduced here. If you only ever read one file from `formal/`, this is the one that buys you the most context per line.
 
 A few things to hold in mind before we go in.
 
@@ -34,7 +34,7 @@ You'll meet each in turn below. The fact that all three exist on the same type, 
 > - [nLab: cohesive (∞,1)-topos](https://ncatlab.org/nlab/show/cohesive+%28infinity%2C1%29-topos)
 > - [nLab: real-cohesive homotopy type theory](https://ncatlab.org/nlab/show/real-cohesive+homotopy+type+theory)
 
-**What the file actually does.** It postulates these three modalities. *Postulates*, not constructs. The project is openly upfront about this: in a more refined type theory (real-cohesive HoTT, à la Shulman), most of what's postulated here would be either derivable or built into the type theory's rules. Agda doesn't have those rules. So we declare what we want with the type signatures we'd expect, and trust the rest of the math to behave. The analytic track (`agda/Analytic/`) exists in parallel precisely to check that the postulates aren't vacuous — that they actually distinguish what they're supposed to distinguish.
+**What the file actually does.** It postulates these three modalities. *Postulates*, not constructs. The project is openly upfront about this: in a more refined type theory (real-cohesive HoTT, à la Shulman), most of what's postulated here would be either derivable or built into the type theory's rules. Agda doesn't have those rules. So we declare what we want with the type signatures we'd expect, and trust the rest of the math to behave. The analytic track (`formal/Analytic/`) exists in parallel precisely to check that the postulates aren't vacuous — that they actually distinguish what they're supposed to distinguish.
 
 The semantic intent (which never appears as an Agda object in this file) is that all this is happening on the site Bℤ — the delooping of the integers, which you can read as the one-object groupoid built from the group ℤ. You don't need to fully unpack that yet. Just know there's a specific intended model behind the axioms, and that's what justifies which axioms we postulate and which we don't.
 
@@ -58,7 +58,7 @@ The `{-# OPTIONS ... #-}` line is a *pragma*: an instruction to Agda about how t
 > - [Cohen–Coquand–Huber–Mörtberg, *Cubical Type Theory: a constructive interpretation of the univalence axiom*, 2018 (arXiv)](https://arxiv.org/abs/1611.02108)
 > - [nLab: cubical type theory](https://ncatlab.org/nlab/show/cubical+type+theory)
 
-`module ModalHoTT.Modalities.Cohesion where` declares the file's identity. Agda's module system maps onto folders: the dots are directories, so this is the file at `agda/ModalHoTT/Modalities/Cohesion.agda`. Other files in the project import this module by its full name.
+`module ModalHoTT.Modalities.Cohesion where` declares the file's identity. Agda's module system maps onto folders: the dots are directories, so this is the file at `formal/ModalHoTT/Modalities/Cohesion.agda`. Other files in the project import this module by its full name.
 
 ## Chunk 2 — the file's own preamble comment
 
@@ -77,7 +77,7 @@ Worth reading slowly — it's doing real work.
 
 "Postulated as axioms" is the strong claim. We're not constructing anything in this file; we're declaring axioms by writing type signatures with no implementations.
 
-"The site is not an Agda type" is the honest disclaimer. The intended *meaning* of everything we postulate is grounded in Bℤ, but Bℤ itself never shows up in the code. We're writing in the language of cohesive types, and Bℤ is the model that justifies the axioms. Think of it as the file's silent partner. (The comment notes that Bℤ ≃ S¹ as ∞-groupoids — they're the same homotopy type — but the project deliberately foregrounds the algebraic side of ℤ rather than the topological side of S¹. That's a project-wide decision; see `workflow/status.md` and `workflow/conversation.md` if you want the reasoning.)
+"The site is not an Agda type" is the honest disclaimer. The intended *meaning* of everything we postulate is grounded in Bℤ, but Bℤ itself never shows up in the code. We're writing in the language of cohesive types, and Bℤ is the model that justifies the axioms. Think of it as the file's silent partner. (The comment notes that Bℤ ≃ S¹ as ∞-groupoids — they're the same homotopy type — but the project deliberately foregrounds the algebraic side of ℤ rather than the topological side of S¹. That's a project-wide decision; see `workflow/status_formal.md` and `workflow/conversation.md` if you want the reasoning.)
 
 The last line previews the bigger picture: the three modalities aren't independent. They sit in two adjunctions — `♭ ⊣ ♯` and `ʃ ⊣ ♭`, where `⊣` is the standard category-theory notation for "is left adjoint to." That structure is what makes them *cohesive* rather than three separate operations. This file sets the modalities up; `Adjunctions.agda` ties them together.
 
@@ -193,7 +193,7 @@ A type `A` is flat-modal when the counit `flat-counit : ♭A → A` is an equiva
 
 `isEquiv` is from the cubical library. In HoTT, an equivalence is more subtle than a bijection — you need not just an inverse but coherence data showing the inverse plays well with paths. The library packages that for us, and for now you can read `isEquiv f` as "f has an inverse, with all the right coherences."
 
-A forward pointer worth giving here: `IsFlatModal` becomes the workhorse type in the downstream files. The big *negative* result of the analytic track is that `Bℤ` (our intended site) is *not* flat-modal — the counit at `Bℤ` is not an equivalence — which is exactly what you'd want, since `Bℤ` is supposed to be a non-discrete space. That negative result is the strongest claim the analytic track can make without crisp-context infrastructure. (See `agda/Analytic/ModalHoTT/Modalities/Cohesion.agda` if you want to chase it.)
+A forward pointer worth giving here: `IsFlatModal` becomes the workhorse type in the downstream files. The big *negative* result of the analytic track is that `Bℤ` (our intended site) is *not* flat-modal — the counit at `Bℤ` is not an equivalence — which is exactly what you'd want, since `Bℤ` is supposed to be a non-discrete space. That negative result is the strongest claim the analytic track can make without crisp-context infrastructure. (See `formal/Analytic/ModalHoTT/Modalities/Cohesion.agda` if you want to chase it.)
 
 That closes the flat block. Across chunks 4–9 we declared a fixed set of operations — operator, counit, intro, induction, β-rule, η-rule on the counit, plus the question `IsFlatModal` — without constructing any of them. Shape and sharp follow the same template, and starting at chunk 10 we'll have a sharper picture for how to see it.
 
@@ -236,7 +236,7 @@ The shape modality (ʃ) is one such console — or more precisely, a *family* of
 
 **5. A calibration LED.** `shape-rec-β`. A guarantee about how the entry and exit jacks compose. Take a raw `a : A`, run it through the entry jack to get `shape-unit a`, then run *that* through the output jack with handler `f` — and you get back exactly `f a`. The roundtrip "enter, then exit-with-this-handler" is the identity on raw inputs. Without this rule, the entry and exit jacks could be wired to different things behind the panel and we wouldn't notice; with it, the console is calibrated to itself.
 
-**An unsoldered slot.** Flat had `flat-ind`, an exit rule that lets you map `♭A` into a *family* of types varying over `♭A`. The shape console doesn't ship with the corresponding `shape-ind`. The comment in the file names the reason: a dependent eliminator would require fiberwise modality conditions — at every fiber of the family, the type sitting there has to itself be shape-modal — and the project hasn't pinned those down. It's tracked as an open question in `workflow/status.md`. The consequence ripples: several maps in `Properties.agda` that *would* be theorems if `shape-ind` were installed are stuck as postulates instead. Any `shape-` postulate downstream with a comment about "blocked on dependent induction" originates at this empty slot.
+**An unsoldered slot.** Flat had `flat-ind`, an exit rule that lets you map `♭A` into a *family* of types varying over `♭A`. The shape console doesn't ship with the corresponding `shape-ind`. The comment in the file names the reason: a dependent eliminator would require fiberwise modality conditions — at every fiber of the family, the type sitting there has to itself be shape-modal — and the project hasn't pinned those down. It's tracked as an open question in `workflow/status_formal.md`. The consequence ripples: several maps in `Properties.agda` that *would* be theorems if `shape-ind` were installed are stuck as postulates instead. Any `shape-` postulate downstream with a comment about "blocked on dependent induction" originates at this empty slot.
 
 ## Chunk 11 — sharp modality (♯): installing the sharp console
 
@@ -265,7 +265,7 @@ The sharp modality (♯). Structurally a near-mirror of the shape console: same 
 
 Shape projects onto the homotopy skeleton — keep the paths between points, forget the geometry. Sharp does something different: it makes the type maximally connected, "codiscrete." Every point becomes path-connected to every other point. If shape forgets geometry by *keeping the skeleton*, sharp forgets local distinctions by *gluing everything together*. Same console layout, different intended semantics behind the panel.
 
-The honest current state of the sharp leg: in this project, it's the weakest of the three. Synthetically (this file) the postulates are no harder than for shape. Analytically (the parallel file `agda/Analytic/ModalHoTT/Modalities/Cohesion.agda`) the sharp console is *deferred entirely* — there is no concrete cubical Agda construction known for `♯(Bℤ)` that's compatible with the rest of the cohesive picture. `workflow/status.md` has a section "Unlocking ♯ — what it costs and what it buys" laying out what would change if the sharp leg got built out and what stories it would open: differential cohomology, the Poincaré lemma, the de Rham separation result the project is currently pointed at. If you're reading this file because you're chasing the de Rham arc, the underdevelopment of sharp is the rate-limiting step downstream.
+The honest current state of the sharp leg: in this project, it's the weakest of the three. Synthetically (this file) the postulates are no harder than for shape. Analytically (the parallel file `formal/Analytic/ModalHoTT/Modalities/Cohesion.agda`) the sharp console is *deferred entirely* — there is no concrete cubical Agda construction known for `♯(Bℤ)` that's compatible with the rest of the cohesive picture. `workflow/status_formal.md` has a section "Unlocking ♯ — what it costs and what it buys" laying out what would change if the sharp leg got built out and what stories it would open: differential cohomology, the Poincaré lemma, the de Rham separation result the project is currently pointed at. If you're reading this file because you're chasing the de Rham arc, the underdevelopment of sharp is the rate-limiting step downstream.
 
 ## Chunk 12 — adjunction stubs (closing comment)
 

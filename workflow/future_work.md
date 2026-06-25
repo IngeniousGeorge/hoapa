@@ -12,7 +12,7 @@ This file documents three kinds of future work, in three styles:
 
 All three styles are honest about status. Punchlist items extend shipped material; architectural items are committed but unshipped; candidate investigations may be promoted, revised, split, or rejected after their naturality tests.
 
-For the seed-level commitments these entries extend, see `motivation.md`. For the propositional decomposition (T1–T_recursion) they realize, see `arc.md` and `targets.md`. The implementation track — a real protocol kernel, a real verification runtime, LLM-tooling integration — is a separate concern tracked canonically in `workflow/implementation.md`; this file keeps only cross-references and future-work implications.
+For the seed-level commitments these entries extend, see `motivation.md`. For the propositional decomposition (T1–T_recursion) they realize, see `arc.md` and `targets.md`. The implementation track — a real protocol kernel, a real verification runtime, LLM-tooling integration — is a separate concern tracked canonically in `workflow/status_implementation.md`; this file keeps only cross-references and future-work implications.
 
 ## Regarding fracture
 
@@ -40,7 +40,7 @@ A useful frame: we are building a *consistent axiomatic stance* and naming the g
 
 ## Regarding T_recursion iteration
 
-`agda/ModalHoTT/Modalities/Iteration.agda` lands the iteration scaffold for T_recursion on the A-side: generic-adjunction-parameterized monad iteration `T^n`, iterated unit `η^_n`, operadic associator `η^-coherent` (derived from a postulated `η-naturality`), and the developing-network type `ND A` as the sequential colimit of `A → TA → T²A → …`. `agda/ModalHoTT/Modalities/IterationCohesion.agda` provides the A-side sanity check at ʃ ⊣ ♭, including the first-level collapse `η-equiv-at-T : T A ≃ T(T A)` derived via the `Discrete.agda` bridge.
+`formal/ModalHoTT/Modalities/Iteration.agda` lands the iteration scaffold for T_recursion on the A-side: generic-adjunction-parameterized monad iteration `T^n`, iterated unit `η^_n`, operadic associator `η^-coherent` (derived from a postulated `η-naturality`), and the developing-network type `ND A` as the sequential colimit of `A → TA → T²A → …`. `formal/ModalHoTT/Modalities/IterationCohesion.agda` provides the A-side sanity check at ʃ ⊣ ♭, including the first-level collapse `η-equiv-at-T : T A ≃ T(T A)` derived via the `Discrete.agda` bridge.
 
 Pieces deferred:
 
@@ -48,7 +48,7 @@ Pieces deferred:
 
 - **Cyclic-operad involution.** The 1=2 perspective-swap "cared-for = caregiver" would be a path constructor (or separate HIT) on top of `SeqColim`, encoding that the iteration is cyclic / self-dual on each level. Deferred for the same reason as the dual: adding the involution to a scaffold that hasn't yet produced non-trivial iteration content is premature.
 
-- **`η-naturality` postulate.** Load-bearing for `η^-coherent`. Same shape and same resolution path as `shape-flat-natural-B` in `Properties.agda` — becomes a theorem once adjunction-naturality is recorded (status.md Open Questions). Not new scope; folds into the existing naturality gap.
+- **`η-naturality` postulate.** Load-bearing for `η^-coherent`. Same shape and same resolution path as `shape-flat-natural-B` in `Properties.agda` — becomes a theorem once adjunction-naturality is recorded (status_formal.md Open Questions). Not new scope; folds into the existing naturality gap.
 
 - **Full sequential-colimit convergence.** `IterationCohesion.agda` proves the first-level collapse `T A ≃ T(T A)`. Lifting this to `ND A ≃ T A` (the colimit's value, not just the step) requires a "convergent sequence has colimit at the convergence point" lemma against cubical's `Sequence` / `SeqColim` infrastructure (`Cubical.Data.Sequence.converges`). Straightforward but heavier than the step lemma; left as a follow-up if a downstream use forces it (e.g. when stating the 1=2 identity via the B-side dual).
 
@@ -214,7 +214,7 @@ What an upgrade to the differential level would need:
 
 Scope: a separate phase, comparable in size to the entire plain-cohesion phase we have just finished.
 
-**Under the three-track strategy:** the differential rung is deferred to `agda/AnalyticTest/` (see folder README); structural and named-coefficient remain on synthetic + `Analytic/`. The "future work" framing above is updated accordingly — differential is deferred to a specific track, not indefinitely.
+**Under the three-track strategy:** the differential rung is deferred to `formal/AnalyticTest/` (see folder README); structural and named-coefficient remain on synthetic + `Analytic/`. The "future work" framing above is updated accordingly — differential is deferred to a specific track, not indefinitely.
 
 ## Discussion of the next step when the bandwidth was still on the modal side
 
@@ -291,13 +291,21 @@ These exclusions are not deficiencies. They are the right scope for a workflow d
 
 ### Implementation track — runtime, checker boundary, and protocol contract
 
-The durable implementation-track plan now lives in `workflow/implementation.md`. That file replaces the old top-level `workflow/elixir.md` transcript, which has been archived under `workflow/deep_context/`.
+The durable implementation-track plan lives in `workflow/status_implementation.md`. That file replaces the old top-level `workflow/elixir.md` transcript, which has been archived under `workflow/deep_context/`.
 
-Current rule: use a rising-sea method. Do not open a `Concurrency/Protocol/` Agda layer until the contract nouns and invariants are stable enough that the first module is forced by existing substrate. In particular, do not harden the prose word "snapshot" into a code name.
+The first rising-sea gate has been crossed narrowly. The project did not open a broad `Concurrency/Protocol/` layer; it opened `/formal/RuntimeContract/Trace.agda` plus the smallest serialization/runtime boundary that the existing substrate forced. The v0 contract now has a formal predicate, a fixture corpus, generated Agda raw terms, a concrete tiny-trace realization witness, a vendored runtime artifact, and an Elixir `hoapa_contract` codec suite.
 
-The implementation should not wait for the full cross-site `Allow ⊣ Require`, `MO_1`, Reflexive Π, or Bulk Λ layers. It also should not claim verification beyond the finite trace/run predicates Agda actually states. Elixir owns runtime behavior; Agda owns the specification of well-formed traces and boundary laws; a checker validates emitted traces, and later certificates.
+This means the contract/export/runtime-codec harness is no longer future work. Future implementation work now begins after loop-1 cleanup:
 
-See `workflow/implementation.md` for the substrate-readiness audit, runtime split, naming guardrails, and next contract decisions.
+- close the trace-format validation gap in the runtime codec;
+- keep generated and vendored contract artifacts clean under the `Makefile` drift gates;
+- commit the generated/vendored artifacts so clean regeneration/export can pass;
+- add `hoapa_checker` only when there is a real runtime-emitted trace to validate one-by-one;
+- add the minimal OTP event log in `hoapa_core`, then the synthetic generator, then `hoapa_store` and its Pijul port boundary, and only then Phoenix/`hoapa_web` as an edge adapter.
+
+The implementation still should not wait for the full cross-site `Allow ⊣ Require`, `MO_1`, Reflexive Π, or Bulk Λ layers. It also should not claim verification beyond the finite trace/run predicates Agda actually states. Elixir owns runtime behavior; Agda owns the specification of well-formed traces and boundary laws; the top-level checker boundary currently orchestrates formal and runtime tests, with compact certificates and richer audit/provenance semantics deferred.
+
+See `workflow/status_implementation.md` for the substrate-readiness audit, runtime split, naming guardrails, verification commands, and next contract decisions.
 
 ### 1. Reflexive Protocol Layer (Π)
 
@@ -355,7 +363,7 @@ A single protocol that succeeded at every previous layer would, if left in isola
 
 **Mathematical structure.** A (2- or (∞,2)-)category of protocols. Objects: protocols, each one a Hoapa-structure (cohesive ∞-topos + actor-causal site + sessions + hybrid + reflexive Π + bulk Λ + field-theoretic dynamics). 1-morphisms: Hoapa-respecting geometric morphisms between the underlying toposes — translations that preserve actor-causal locality, content category, and reflexive-layer structure. 2-morphisms: comparisons between translation functors with coherent composition. Yoneda gives `P ≃ Hom(–, P)` in the (2-)presheaf topos over the category of protocols; this is the formal content of "one among many." The presheaf topos `M` over the category of protocols is the *meta-topos*; it inherits cohesion, factorization-algebra structure, and the rest of the Hoapa-structure from the protocols, making it itself a Hoapa-structure at one level up. The construction therefore iterates — ecosystems of ecosystems, etc. — with no privileged top altitude. A canonical Grothendieck–Teichmüller-group action on M, inherited from each protocol's `MO_1`: translations are GT-equivariant, and the recovery of a protocol from its translation surface is GT-equivariant. In the strong target form, M is *anabelian* in the relevant sense: protocols are recoverable from their Yoneda data equipped with GT-action; two protocols are equivalent iff they sit in the same GT-orbit. Dessins-like combinatorial presentations of individual protocols are the analog of dessins ↔ Belyi pairs. A sibling `Π*` for inter-protocol relations completes the picture: intra-protocol edits in Π compose with inter-protocol translations in Π* in a larger 2-categorical structure. Goguen / Burstall institutions are a useful published precedent for the morphisms-of-internal-languages level.
 
-**Trigger / dependencies.** All four previous layers at v1 (Π for intra-protocol edits to translate; Λ for the content surface; field-theoretic dynamics for the comparison data correlators supply). `MO_1` for the GT-action. The R11 structuring relation (arithmetic action), currently deferred in `status.md` to the `MO_1` stage, is reclassified by this layer from "late-stage decoration" to "structural backbone of inter-protocol coherence" — without R11 the ecosystem of protocols is a discrete pile of unrelated structures, with it the ecosystem has a single canonical group of automorphisms relating all the translations.
+**Trigger / dependencies.** All four previous layers at v1 (Π for intra-protocol edits to translate; Λ for the content surface; field-theoretic dynamics for the comparison data correlators supply). `MO_1` for the GT-action. The R11 structuring relation (arithmetic action), currently deferred in `status_formal.md` to the `MO_1` stage, is reclassified by this layer from "late-stage decoration" to "structural backbone of inter-protocol coherence" — without R11 the ecosystem of protocols is a discrete pile of unrelated structures, with it the ecosystem has a single canonical group of automorphisms relating all the translations.
 
 **Open questions / deferred pieces.** The precise sense in which M is anabelian (anabelian theorems are genuinely hard; even Mochizuki's dimension-one proof is technical and contested in parts; we promise the structural commitment and the roadmap, not the theorem). Whether Π and Π* unify or persist as parallel structures. Whether a future Mediate-style federation reading unifies with the structural / content / cross-leg readings, or stays as a distinct altitude. The project's discipline of self-application here is structural rather than rhetorical: Hoapa itself is one protocol among many — one attempt at a framework, currently being built by one small community-of-inquiry — and must expose typed translation interfaces to adjacent communities (HoTT/UF, factorization-algebra theorists, AI alignment groups, Pask-descended conversation theorists, autopoiesis-influenced researchers, the Bennequin / Belfiore / Laforgue topos-for-cognition line) rather than claiming to resolve them.
 
@@ -650,14 +658,14 @@ The next discussions should first settle capability, layer, and ownership; then 
 If the proposal survives:
 
 ```text
-Concurrency/Protocol/Provenance.agda
-Concurrency/Protocol/AccountableChange.agda
-Concurrency/Protocol/Materialization.agda
-Concurrency/Protocol/NoLeak.agda
-Concurrency/Protocol/Certificate.agda
+formal/RuntimeContract/Audit/Provenance.agda
+formal/RuntimeContract/Audit/AccountableChange.agda
+formal/RuntimeContract/Audit/Materialization.agda
+formal/RuntimeContract/Audit/NoLeak.agda
+formal/RuntimeContract/Certificate.agda
 ```
 
-These are illustrative. The planned `Auditability.agda` covers trace no-leak, while the candidate Audit capability is broader; integration would decide whether to rename, split, or reuse it. No file is reserved here.
+These are illustrative. The future `RuntimeContract/Audit` area would cover trace no-leak and accountable provenance if the candidate survives; integration would decide whether to rename, split, or keep the broader Audit capability separate from compact certificates. No file is reserved here.
 
 ### Research anchors and cautions
 

@@ -34,7 +34,7 @@ This leg is currently on pause; bandwidth has shifted to leg B, where the active
 
 A category of *actor-causal frames* glued together by sheaves of *session types*. The site is built bottom-up, with strict separation between the carrier (who participates, in what causal order) and the typed content (what is being exchanged).
 
-- **Actors are opaque and unityped.** No constructors distinguish a human from a large language model from a promoted sub-conversation. The verified communication kernel cannot branch on actor origin. This is the mathematical form of the political claim *participants are treated as equals*. (`agda/Concurrency/Sites/ActorBase.agda`.)
+- **Actors are opaque and unityped.** No constructors distinguish a human from a large language model from a promoted sub-conversation. The verified communication kernel cannot branch on actor origin. This is the mathematical form of the political claim *participants are treated as equals*. (`formal/Concurrency/Sites/ActorBase.agda`.)
 
 - **Causality is Lamport partial-order.** Events have a happens-before relation; that and the standard reflexive/antisymmetric/transitive proposition-valued discipline is the entire content of "time" in this kernel. No Lorentzian signature, no event structure, no privileged clock.
 
@@ -90,7 +90,7 @@ This project is opening to contribution. The single ask is plain: **come and par
 
 That declines into a list of concrete forms a contribution might take. None is privileged.
 
-- **Advise and consult.** Specific stuck points are documented in `workflow/status.md` and `workflow/future_work.md`. Weighing in on, for example, the choice of differential cohesion rung, the canonical derivation of the `O_1` action from richer session-categorical structure, or the right formulation of the cross-site adjunction, is real help.
+- **Advise and consult.** Specific stuck points are documented in `workflow/status_formal.md` and `workflow/future_work.md`. Weighing in on, for example, the choice of differential cohesion rung, the canonical derivation of the `O_1` action from richer session-categorical structure, or the right formulation of the cross-site adjunction, is real help.
 - **Review and co-author.** Pieces of the project will eventually need to be written for publication. The conjectural central theorem is collaborative work.
 - **Implement and extend.** Six of the seven adapter slots in the Hybrid layer (descent, unit-dualising bridge, operadic valuation, promotion, modal cross-site, no-leak) are sized for individual contributors. Full sheaf descent on the actor-causal site is the next live piece.
 - **Build the applied side.** A protocol-verification system on top of the formal kernel — running over Git, Pijul, or a fresh substrate, layering typed sessions on pull requests, requests-for-comment, and merges — is a substantial software project that would put the kernel to work. We have ideas; we do not have an implementation.
@@ -134,10 +134,10 @@ A formative external piece of feedback came from **Fernando Zalamea** (Universid
 
 ## Repository layout
 
-- `agda/` — the formalisation in cubical Agda.
-  - `agda/ModalHoTT/` — leg A (modal / cohesive HoTT around `Bℤ`).
-  - `agda/Concurrency/` — leg B (actor-causal site, cyclic operad `O_1`, session-typed values, Hybrid adapter layer).
-  - `agda/Analytic/` — an analytic mirror of leg A, documenting non-vacuity in a concrete model.
+- `formal/` — the formalisation in cubical Agda.
+  - `formal/ModalHoTT/` — leg A (modal / cohesive HoTT around `Bℤ`).
+  - `formal/Concurrency/` — leg B (actor-causal site, cyclic operad `O_1`, session-typed values, Hybrid adapter layer).
+  - `formal/Analytic/` — an analytic mirror of leg A, documenting non-vacuity in a concrete model.
 - `workflow/` — live state, motivation, target propositions, decision logs, deep-context conversation archives.
 - `pedagogy/` — narrative companions walking the Agda code chunk by chunk (in progress, with Codex).
 - `communication/` — outward-facing material, including this introduction and the Zalamea reference letter.

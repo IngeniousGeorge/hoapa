@@ -2,7 +2,7 @@
 
 ## Where This File Sits
 
-`agda/Concurrency/Algebras/StarAutonomous.agda` defines the kind of category in which `O_1` algebras can take values. It is a parameter signature: later files take a `StarAutonomous` record as an input and build valuations or algebras relative to it.
+`formal/Concurrency/Algebras/StarAutonomous.agda` defines the kind of category in which `O_1` algebras can take values. It is a parameter signature: later files take a `StarAutonomous` record as an input and build valuations or algebras relative to it.
 
 The file is explicitly thin. It names the operations and local isomorphism laws needed now, while leaving full coherence for later.
 

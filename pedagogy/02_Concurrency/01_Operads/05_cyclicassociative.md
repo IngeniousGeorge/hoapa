@@ -2,7 +2,7 @@
 
 ## Where This File Sits
 
-`agda/Concurrency/Operads/CyclicAssociative.agda` is the destination of the operads folder. The earlier files prepared the pieces:
+`formal/Concurrency/Operads/CyclicAssociative.agda` is the destination of the operads folder. The earlier files prepared the pieces:
 
 - `Ports.agda`: finite cyclic ports;
 - `RawCyclicOperad.agda`: generator, substitution, and rotation without the full laws;

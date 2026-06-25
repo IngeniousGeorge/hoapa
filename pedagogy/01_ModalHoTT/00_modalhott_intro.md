@@ -209,7 +209,7 @@ Not implemented yet:
 - dependent induction principles for shape and sharp;
 - a full adjunction package with all naturality data;
 - `♯` preserving finite limits as a general theorem;
-- analytic pedagogy for `agda/Analytic`;
+- analytic pedagogy for `formal/Analytic`;
 - named-coefficient and differential de Rham files;
 - the cross-site bridge to Concurrency;
 - the final `T_recursion` theorem for the cross-site adjunction.

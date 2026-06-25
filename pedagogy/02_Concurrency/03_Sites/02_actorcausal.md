@@ -2,7 +2,7 @@
 
 ## Where This File Sits
 
-`agda/Concurrency/Sites/ActorCausal.agda` builds the actor-causal site on top of `ActorBase.agda`.
+`formal/Concurrency/Sites/ActorCausal.agda` builds the actor-causal site on top of `ActorBase.agda`.
 
 This is the largest Concurrency file in the current pass. The through-line is still simple:
 

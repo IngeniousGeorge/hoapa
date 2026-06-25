@@ -2,7 +2,7 @@
 
 ## Where this file sits
 
-`agda/ModalHoTT/Modalities/Adjunctions.agda` is the second floor of the synthetic track. (01_§2) installed three consoles — `FlatModality`, `ShapeModality`, `SharpModality` — each on its own panel, with entry and exit jacks but no connections between them. This file runs the cables: two adjunctions, `♭ ⊣ ♯` and `ʃ ⊣ ♭`, plus the idempotency results that follow from having them. With the cables in place, the three consoles are no longer independent — they form a single coherent rack, and *that* rack is what we mean by *cohesive*. The closing chunk of the previous file (01_§12) previewed exactly this move.
+`formal/ModalHoTT/Modalities/Adjunctions.agda` is the second floor of the synthetic track. (01_§2) installed three consoles — `FlatModality`, `ShapeModality`, `SharpModality` — each on its own panel, with entry and exit jacks but no connections between them. This file runs the cables: two adjunctions, `♭ ⊣ ♯` and `ʃ ⊣ ♭`, plus the idempotency results that follow from having them. With the cables in place, the three consoles are no longer independent — they form a single coherent rack, and *that* rack is what we mean by *cohesive*. The closing chunk of the previous file (01_§12) previewed exactly this move.
 
 ## What an adjunction does, briefly
 
@@ -242,15 +242,15 @@ This is the moment two postulates from (01) earn their keep in five lines of pro
 **The `.snd` at the end.** `isoToEquiv theIso` produces a value of type `Σ` (forward function) (proof it's an equivalence) — equivalently, a pair `(forward, isEquiv-proof)`. We want the proof, which is the second projection: `.snd`.
 
 > **References**
-> - [Cubical Agda library: Foundations.Equiv](https://agda.github.io/cubical/Cubical.Foundations.Equiv.html) — `equivFun`, `invEq`, `retEq`, `secEq`, `isEquiv`
-> - [Cubical Agda library: Foundations.Isomorphism](https://agda.github.io/cubical/Cubical.Foundations.Isomorphism.html) — `Iso`, `iso`, `isoToEquiv`
+> - [Cubical Agda library: Foundations.Equiv](https://formal.github.io/cubical/Cubical.Foundations.Equiv.html) — `equivFun`, `invEq`, `retEq`, `secEq`, `isEquiv`
+> - [Cubical Agda library: Foundations.Isomorphism](https://formal.github.io/cubical/Cubical.Foundations.Isomorphism.html) — `Iso`, `iso`, `isoToEquiv`
 
 ## Chunk 8 — ♯ and ʃ idempotency: the unsoldered slots show through
 
 ```agda
 -- ♯ is idempotent: ♯A is always sharp-modal.
 -- Follows from ♭ ⊣ ♯ in the Bℤ model; derivation in the synthetic setting
--- requires dependent elimination for ♯ (deferred; see status.md).
+-- requires dependent elimination for ♯ (deferred; see status_formal.md).
 postulate
   sharp-modality-idempotent : {A : Type ℓ} → IsSharpModal (SharpModality A)
 
@@ -262,7 +262,7 @@ postulate
 
 The other two idempotency results. We'd *want* them as theorems, mirroring chunk 7. Instead they're postulates, and the reason is visible if we look back: (01_§10) and (01_§11) shipped the shape and sharp consoles with non-dependent recursors only (`shape-rec`, `sharp-rec`), and left empty slots where the dependent inductors (`shape-ind`, `sharp-ind`) would go.
 
-Chunk 7's proof of ♭-idempotency leaned on `flat-ind`'s *dependent* elimination — it built a path-valued family `(u : ♭(♭A)) → flat-intro (flat-counit u) ≡ u` and extended a pointwise check across it. With only non-dependent recursion, the corresponding move for ♯ and ʃ is blocked: a recursor that only lets you land in a fixed target type can't be used to inhabit a family of equality types varying with the input. The comments in the file say exactly this: "derivation requires ♯-ind" and "derivation requires ʃ-ind." Both are open items in `workflow/status.md`.
+Chunk 7's proof of ♭-idempotency leaned on `flat-ind`'s *dependent* elimination — it built a path-valued family `(u : ♭(♭A)) → flat-intro (flat-counit u) ≡ u` and extended a pointwise check across it. With only non-dependent recursion, the corresponding move for ♯ and ʃ is blocked: a recursor that only lets you land in a fixed target type can't be used to inhabit a family of equality types varying with the input. The comments in the file say exactly this: "derivation requires ♯-ind" and "derivation requires ʃ-ind." Both are open items in `workflow/status_formal.md`.
 
 The honest framing: in the intended semantic model (the cohesive ∞-topos on Bℤ), all three modalities are idempotent. We're not making something up; we're recording theorems-of-the-model that we can't yet derive *inside* the synthetic theory because the synthetic theory is missing two postulates from (01). Adding `shape-ind` and `sharp-ind` — as further postulates, in the shape of `flat-ind` — would turn both of these into theorems with proofs mechanically identical to chunk 7's.
 

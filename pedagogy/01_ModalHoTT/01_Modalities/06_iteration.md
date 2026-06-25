@@ -2,7 +2,7 @@
 
 ## Where this file sits
 
-`agda/ModalHoTT/Modalities/Iteration.agda` is generic infrastructure. It is not specific to the three cohesion modalities. It abstracts the following pattern:
+`formal/ModalHoTT/Modalities/Iteration.agda` is generic infrastructure. It is not specific to the three cohesion modalities. It abstracts the following pattern:
 
 ```text
 L ⊣ R gives T = R ∘ L

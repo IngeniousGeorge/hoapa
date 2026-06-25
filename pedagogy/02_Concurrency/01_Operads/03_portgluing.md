@@ -2,7 +2,7 @@
 
 ## Where This File Sits
 
-`agda/Concurrency/Operads/PortGluing.agda` is the first heavy bookkeeping file in the operads folder. `01_ports.md` gave the finite cyclic port type; `02_rawcyclicoperad.md` used it to define raw substitution and rotation. This file explains what happens to the *names of ports* when a substitution glues two ports together.
+`formal/Concurrency/Operads/PortGluing.agda` is the first heavy bookkeeping file in the operads folder. `01_ports.md` gave the finite cyclic port type; `02_rawcyclicoperad.md` used it to define raw substitution and rotation. This file explains what happens to the *names of ports* when a substitution glues two ports together.
 
 There are three jobs:
 

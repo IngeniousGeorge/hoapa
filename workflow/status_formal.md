@@ -2,7 +2,7 @@
 tags: [focus:cross-site, kind:state, level:scoping]
 ---
 
-# Project Status
+# Formal Status
 
 The arc is articulated in `arc.md` (now pair-first: `Allow ⊣ Require` with the five arc/09 anchors) and decomposed into propositions T1–T7 plus T_recursion in `targets.md`. Philosophical seed in `motivation.md`. Brainstorming archive: `deep_context/arc/`.
 
@@ -175,9 +175,9 @@ Named, like modules. R1–R6 are from the hybrid substrate's level-2 scoping; R7
 
 ## ModalHoTT  <!-- tags: focus:modalhott, level:scoping -->
 
-Paused at the de Rham named-coefficient rung. Synthetic-side fracture (`Modalities/Fracture.agda`) and structural pinning (`Cohomology/FlatCoefficients.agda`) have landed; the analytic mirror (`agda/Analytic/`) is bounded by `♯(Bℤ)` undefined. Postulate budget catalogued in `future_work.md`.
+Paused at the de Rham named-coefficient rung. Synthetic-side fracture (`Modalities/Fracture.agda`) and structural pinning (`Cohomology/FlatCoefficients.agda`) have landed; the analytic mirror (`formal/Analytic/`) is bounded by `♯(Bℤ)` undefined. Postulate budget catalogued in `future_work.md`.
 
-The iteration scaffold for T_recursion is in place: `agda/ModalHoTT/Modalities/Iteration.agda` (generic-adjunction `T`, `T-map`, `T^_`, `η^_`, postulated `η-naturality`, derived `η^-coherent`, `T-sequence`, `ND`) and the A-side sanity check `agda/ModalHoTT/Modalities/IterationCohesion.agda` (ʃ ⊣ ♭ instantiation; first-level collapse `η-equiv-at-T : T A ≃ T(T A)` via the `Discrete.agda` bridge). This is **iteration-by-collapse** — completed and statable at the toy level. It is *not* the material that the cross-site identity will eventually need extending; that is a different construction (cyclic bar) at a different input (`S¹`).
+The iteration scaffold for T_recursion is in place: `formal/ModalHoTT/Modalities/Iteration.agda` (generic-adjunction `T`, `T-map`, `T^_`, `η^_`, postulated `η-naturality`, derived `η^-coherent`, `T-sequence`, `ND`) and the A-side sanity check `formal/ModalHoTT/Modalities/IterationCohesion.agda` (ʃ ⊣ ♭ instantiation; first-level collapse `η-equiv-at-T : T A ≃ T(T A)` via the `Discrete.agda` bridge). This is **iteration-by-collapse** — completed and statable at the toy level. It is *not* the material that the cross-site identity will eventually need extending; that is a different construction (cyclic bar) at a different input (`S¹`).
 
 ### Plan when bandwidth returns
 
@@ -206,7 +206,7 @@ Hybrid now has two strata. The original adapter implements arbitrary-frame presh
 
 The interaction algebra layered on top is `O_1` (cyclic operad with one binary generator + cyclic action) — see "Where we landed." The hybrid is what `O_1`'s algebras live over.
 
-Analytic-side mirror is future work; whether the `agda/Analytic/` pattern from ModalHoTT transfers depends on the Concurrency-side base implementation.
+Analytic-side mirror is future work; whether the `formal/Analytic/` pattern from ModalHoTT transfers depends on the Concurrency-side base implementation.
 
 ## Decisions Log  <!-- tags: kind:decision -->
 
@@ -270,7 +270,7 @@ Older session-end snapshots and rot-comp planning are archived under `workflow/d
 
 ### Operads
 
-Shipped to `agda/Concurrency/Operads/` (all five files typecheck under `--cubical --guardedness`):
+Shipped to `formal/Concurrency/Operads/` (all five files typecheck under `--cubical --guardedness`):
 
 | File | Role | Line count |
 |------|------|-----------:|
@@ -305,7 +305,7 @@ R8 should now refer to `boundary-swap` as the arity-2 / 1=2 theorem induced by c
 
 ### Algebras
 
-Shipped to `agda/Concurrency/Algebras/`:
+Shipped to `formal/Concurrency/Algebras/`:
 
 | File | Role | Line count |
 |------|------|-----------:|
@@ -326,7 +326,7 @@ Shipped to `agda/Concurrency/Algebras/`:
 
 ### Sites
 
-Shipped to `agda/Concurrency/Sites/`:
+Shipped to `formal/Concurrency/Sites/`:
 
 | File | Role | Line count |
 |------|------|-----------:|
@@ -359,7 +359,7 @@ The G3 witness is non-trivial: `TinyAB` has two actors (`Fin 2`), `TinyCausal` h
 
 ### Hybrid
 
-Shipped to `agda/Concurrency/Hybrid/`:
+Shipped to `formal/Concurrency/Hybrid/`:
 
 | File | Role | Line count |
 |------|------|-----------:|
@@ -456,7 +456,7 @@ The framework treats some conversations as *meta-conversations*: special convers
 ### Held-loose long-horizon items (no near-term action)
 
 - **Pask-style human-implementation layer** — conversation-as-operadic-composition. Speculative until `MO_1` makes "conversation creates conversation" a literal operadic operation. Held in motivation only.
-- **Pedagogy track** — current for the synthetic ModalHoTT and Concurrency Agda trees as of 2026-05-21. `pedagogy/01_ModalHoTT/` now has a top-level intro, companions for all current synthetic `ModalHoTT/Modalities` files, and `02_Cohomology/01_flatcoefficients.md`; `pedagogy/02_Concurrency/` mirrors all current `agda/Concurrency/` folders. Analytic pedagogy remains intentionally out of scope unless explicitly requested.
+- **Pedagogy track** — current for the synthetic ModalHoTT and Concurrency Agda trees as of 2026-05-21. `pedagogy/01_ModalHoTT/` now has a top-level intro, companions for all current synthetic `ModalHoTT/Modalities` files, and `02_Cohomology/01_flatcoefficients.md`; `pedagogy/02_Concurrency/` mirrors all current `formal/Concurrency/` folders. Analytic pedagogy remains intentionally out of scope unless explicitly requested.
 
 ## Historical note
 
@@ -606,7 +606,7 @@ or the Reality/Documentation boundary route.
 
 Current workflow note: this subsection preserves the discussion that led to the
 implementation track. The canonical implementation plan, naming guardrails, and
-substrate-readiness audit now live in `workflow/implementation.md`. In
+substrate-readiness audit now live in `workflow/status_implementation.md`. In
 particular, "snapshot" was only a temporary prose word and should not become an
 Agda module name.
 
@@ -761,7 +761,7 @@ Agda module name.
 
   Proposed 1–3 session plan
 
-  - Session 1 — the contract. New agda/Concurrency/Protocol/: Snapshot.agda / Trace.agda — finite snapshot record (actors, causal events, frames, session-typed actions, content tags, provenance
+  - Session 1 — the contract. New formal/Concurrency/Protocol/: Snapshot.agda / Trace.agda — finite snapshot record (actors, causal events, frames, session-typed actions, content tags, provenance
   edges, sibling refs), parametric in sizes, plus one tiny concrete well-formed instance. Deliverable: schema typechecks + tiny instance. This alone unblocks Elixir to start.
   - Session 2 — first predicate + Elixir skeleton. Agda WellFormedSnapshot (causal acyclicity, unique event ids, unityped actors, valid local views, a no-leak stub) proven on the tiny instance;
   Elixir BEAM skeleton (supervised actors + durable event log) emitting the schema's serialization; a checker stub that round-trips one tiny trace.

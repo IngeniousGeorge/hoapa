@@ -2,7 +2,7 @@
 
 ## Where this file sits
 
-`agda/ModalHoTT/Modalities/IterationCohesion.agda` specializes the generic scaffold from `Iteration.agda` to the A-side adjunction `ʃ ⊣ ♭`.
+`formal/ModalHoTT/Modalities/IterationCohesion.agda` specializes the generic scaffold from `Iteration.agda` to the A-side adjunction `ʃ ⊣ ♭`.
 
 The result is intentionally not the final `T_recursion` theorem. It is a sanity check: if we instantiate the generic tower with the already-existing cohesion modalities, does the machinery compose, and does the iteration collapse in the expected trivial A-side way?
 

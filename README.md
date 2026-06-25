@@ -312,6 +312,8 @@ In Hoapa, communities do the "dirty work" in a special place under strict condit
 
 As for the argument that hierarchical structures are part of "human nature", it simply doesn't match our history and evolution, contrary to deep-seated assumptions which only look at a partial rendering of the tail end of the story and often dress Nature in a grotesque 'only the strong survive' frame, which is the antithesis of its autonomous and distributed operational core—a worldview best represented by Herbert Spencer and still extremely influential today, especially in biology and economics.
 
+~three phases, like phases of matter: open/horizontal, closed/vertical, hybrid/hybrid. Only open/horizontal is sustainable and preserves attachment, Hoapa formalizes it~
+
 The lion has never been a king. Humans, on the other hand, have a ~300,000 years long history of autonomous and distributed cooperative behavior, whose most outstanding payoff is certainly natural language. Hoapa suggests we keep on working on it, in those working conditions.
 
 ### 4.2 Theories

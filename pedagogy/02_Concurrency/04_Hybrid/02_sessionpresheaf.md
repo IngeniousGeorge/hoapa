@@ -2,7 +2,7 @@
 
 ## Where This File Sits
 
-`agda/Concurrency/Hybrid/SessionPresheaf.agda` specializes the generic Hybrid adapter to the session target.
+`formal/Concurrency/Hybrid/SessionPresheaf.agda` specializes the generic Hybrid adapter to the session target.
 
 The previous file was generic over any `StarAutonomous` category. This file chooses:
 

@@ -2,7 +2,7 @@
 
 ## Where This File Sits
 
-`agda/Concurrency/Hybrid/Presheaf.agda` is the generic core of the Hybrid layer.
+`formal/Concurrency/Hybrid/Presheaf.agda` is the generic core of the Hybrid layer.
 
 The file does one concrete thing: it turns sub-view embeddings of actor frames into restriction morphisms in a target category. That is Adapter 1 from the Hybrid intro.
 
