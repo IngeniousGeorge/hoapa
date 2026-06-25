@@ -1,4 +1,8 @@
-agda/_build/
+formal/_build/
+runtime/_build/
+runtime/deps/
+runtime/.elixir_ls/
+**/erl_crash.dump
 pedagogy/**/*.pdf
 workflow/communication_drafts/build/
 workflow/communication_drafts/contacts/

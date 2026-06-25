@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "hoapa.trace/0",
+  "title": "Hoapa runtime contract — Run (v0)",
+  "description": "Wire shape of one exported runtime execution. Meaning (well-formedness) is defined by RuntimeContract.Trace.valid?; this schema only fixes the serialized representation. Field names are camelCase on the wire.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["traceFormat", "runId", "protocolId", "siblingProtocolIds", "trace"],
+  "properties": {
+    "traceFormat": { "type": "string", "description": "Format tag. Any string is schema-valid; recognized values (v0: hoapa.trace/0) are checked semantically by RuntimeContract.Trace.valid?, not by the codec." },
+    "runId": { "type": "string" },
+    "protocolId": { "type": "string" },
+    "siblingProtocolIds": { "type": "array", "items": { "type": "string" } },
+    "trace": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actorIds", "conversations", "events"],
+      "properties": {
+        "actorIds": { "type": "array", "items": { "type": "string" } },
+        "conversations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["conversationId", "actorIds", "sessionTag"],
+            "properties": {
+              "conversationId": { "type": "string" },
+              "actorIds": { "type": "array", "items": { "type": "string" } },
+              "sessionTag": { "type": "string" }
+            }
+          }
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["eventId", "conversationId", "touches", "causalParents", "contentTag", "provenanceToken"],
+            "properties": {
+              "eventId": { "type": "string" },
+              "conversationId": { "type": "string" },
+              "touches": { "type": "array", "items": { "type": "string" } },
+              "causalParents": { "type": "array", "items": { "type": "string" } },
+              "contentTag": { "type": "string" },
+              "provenanceToken": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

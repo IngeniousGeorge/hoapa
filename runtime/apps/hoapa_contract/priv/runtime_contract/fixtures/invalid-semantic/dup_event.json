@@ -1,0 +1,16 @@
+{
+  "traceFormat": "hoapa.trace/0",
+  "runId": "run-0",
+  "protocolId": "proto-0",
+  "siblingProtocolIds": [],
+  "trace": {
+    "actorIds": ["a0"],
+    "conversations": [
+      { "conversationId": "c0", "actorIds": ["a0"], "sessionTag": "session.ping/0" }
+    ],
+    "events": [
+      { "eventId": "e0", "conversationId": "c0", "touches": ["a0"], "causalParents": [], "contentTag": "content.synthetic.0", "provenanceToken": "prov.synthetic.0" },
+      { "eventId": "e0", "conversationId": "c0", "touches": ["a0"], "causalParents": [], "contentTag": "content.synthetic.0", "provenanceToken": "prov.synthetic.0" }
+    ]
+  }
+}
