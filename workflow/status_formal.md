@@ -464,316 +464,237 @@ The detailed rot-compₒ discussion that led to the 2026-05-18 cyclic-equivarian
 
 ## Next step
 
-Phase 0 and Phase 1 of the Chu program have landed. Phase 0 gives coefficient
-non-vacuity for the point-generated R4 theorem at `Chu(SET,Bool)`. Phase 1
-gives the Sessions-to-Chu object/morphism realization over postulate-free
-session syntax. The immediate writing task is to update the R4 abstracts and
-public workflow descriptions with the concrete coefficient instance, the
-Sessions realization, and their limitations.
-
-The next mathematical step is a genuine crossroad, not a mechanical follow-up.
-One route is O1-in-Chu / `session-O1-action`, which would require earned
-closed/evaluation/cut or cyclic-rotation structure rather than another
-technical relabeling. The other route is the Reality/Documentation/Chu boundary
-track, using Chu's point/state/evaluation shape to formalize what the protocol
-can document, test, and preserve without reconstructing Reality. Full
-actor-causal sheafification, cross-site `Allow left-adjoint-to Require`, and
-the A-side cyclic-bar return plan remain later work.
-
-### Chu implementation convergence (Phases 0-1 complete)
-
-The design discussion converged on the following durable decisions:
-
-- Chu(SET,k) is the canonical semantic coefficient category for the R1/R7
-  route. `Sessions-Cat` remains the syntactic/operadic instance, now with its
-  structural categorical laws supplied by the postulate-free morphism HIT.
-- Non-vacuity has two grades. Phase 0 establishes coefficient non-vacuity:
-  the generic point-generated R4 theorem has a concrete mathematical model.
-  Phase 1 establishes the object/morphism Sessions-to-Chu realization.
-- Internal Chu duality is exact and involutive. Any lossy
-  Reality-to-protocol admission map is a separate later morphism.
-- Chu supplies closed/cut and symmetry machinery relevant to O1, but it does
-  not choose a self-dual carrier or trivalent cyclic/Frobenius generator.
-- The agreed sequence remains:
-  1. Phase 0: bare Chu/Benton instance and R4 specialization.
-  2. Phase 1: multiplicative/additive Sessions realization `J` through objects,
-     morphisms, and an underlying Cubical functor.
-  3. Phase 2: concrete send/receive and payload semantics.
-  4. Phase 3: O1-in-Chu and reduction of the current action postulates.
-  5. Phase 4: Reality-boundary admission/erasure interface.
-
-#### Phase 0 delivered
-
-Six new modules now type-check:
-
-- `Concurrency/Algebras/Chu.agda`: `Chu(SET,k)` objects, morphisms, hom-sets,
-  and category laws, generic in `k : hSet`.
-- `Concurrency/Algebras/ChuFiniteProducts.agda`: terminal object and binary
-  products, with positive product and negative coproduct.
-- `Concurrency/Algebras/ChuMonoidal.agda`: the project thin
-  `StarAutonomous` instance. The decisive representation is
-  `TensorNeg A B = ChuHom A (dual B)`, so tensor action and its laws reuse
-  categorical composition instead of normalizing bespoke nested records.
-- `Concurrency/Hybrid/ChuLinearNonlinear.agda`: the constructive Benton
-  adjunction `SET <-> Chu(SET,k)`, with `G A = A+` and
-  `F X = (X, k^X, ev)`, including the strong-monoidal comparisons.
-- `Concurrency/Hybrid/ChuPointVProd.agda`: finite products at the exact
-  category type expected by the point theorem.
-- `Concurrency/Hybrid/ChuPointExample.agda`: specialization at `k = Bool`
-  and a concrete two-actor base. `Chu-nonvacuity` is the resulting
-  point-generated `Lpoint |- Rpoint` witness.
-
-All six new modules contain no postulates and import no Sessions axioms. The
-new Chu stack and final witness type-check. `Chu-nonvacuity` is left
-unannotated because Agda infers the intended adjunction in seconds, whereas
-repeating the fully expanded type causes pathological conversion checking.
-The implementation inhabits the current thin `StarAutonomous` interface; it
-does not yet formalize the omitted global coherence or tensor-hom universal
-property.
-
-The cleanup is complete: `TinyAB` lives in `TinyActorBase.agda`, `tiny-site`
-lives in `TinyActorCausalSite.agda`, and `ActorCausal.agda` no longer contains
-a real project postulate. `ChuPointExample`'s project import closure is now
-strictly postulate-free, modulo the trusted Cubical library base.
-
-#### Phase 1 delivered (Codex)
-
-Phase 1A extracted the postulate-free session object grammar and built the
-generic object interpretation:
-
-- `Concurrency/Algebras/SessionSyntax.agda` owns `SessionType`, structural
-  `_^⊥ₛ`, and the proved `dual-involutive` theorem.
-- `Concurrency/Algebras/SessionObjectModel.agda` defines the target-generic
-  `SessionObjectModel`, an iso calculus over the thin `StarAutonomous`
-  interface, the object fold `J0 : SessionType -> Ob`, and the theorem
-  `J0-dual : J0 (S ^⊥ₛ) ≅ (J0 S ^⊥)`. This is deliberately an isomorphism,
-  not object equality.
-- `Concurrency/Algebras/SessionChuModel.agda` instantiates the model at
-  `Chu(SET,Bool)` with a definitionally self-dual `end` object and a
-  nonconstant payload map.
-
-Phase 1B added the morphism layer and made the realization functorial:
-
-- `Concurrency/Algebras/SessionMorphismSyntax.agda` is a postulate-free
-  set-truncated morphism HIT with 17 structural/additive formers, 21 laws as
-  path constructors, and hom-set truncation.
-- `SessionObjectModel.agda` defines
-  `J1 : SessionHom A B -> Hom (J0 A) (J0 B)`, discharging every HIT path law
-  from the target `StarAutonomous` / `HasFiniteProducts` fields. Duality is
-  interpreted by conjugating through the `J0-dual` endpoint isomorphisms.
-- The final polish packages `J0`/`J1` as the underlying Cubical `Functor` from
-  the session HIT category to `StarAutonomous->Category V`. This is an honest
-  underlying 1-functor; it is not yet a packaged strong monoidal/additive or
-  fully coherent star-autonomous functor.
-- `Sessions.agda` now adopts the syntax/HIT layers. The old 21 categorical /
-  product-law postulates and `Hom-is-set` postulate are gone; the only
-  remaining project postulate in `Sessions.agda` is `session-O1-action`.
+● Caught up on both tracks now. Here's the coordinated read.
 
-Verification: the Phase 1 modules, `Sessions.agda`, `SessionPresheaf`,
-`SessionEventProductSheaf`, `TinyEventProductExample`, and the Chu session
-instance typecheck with only the inherited inert `UnsupportedIndexedMatch`
-warnings. Phase 1 does not yet supply concrete send/receive operational
-payload semantics, an O1-in-Chu `gen`/`plug`/`shift` construction, cut
-elimination/progress/deadlock-freedom, or a Reality-boundary theorem.
+  The implementation work reshaped the formal landscape
 
-#### Next-phase crossroad
+  When the crossroad was framed (in status_formal), there were three formal options: O1-in-Chu, Reality/Documentation, full reflector. The implementation track has since added a fourth, and it 
+  sits between the two legs: the Realization / junction theorem — WellFormed RawTrace → LocalFrame, plus renaming and valid-reordering invariance. TinyTrace.agda is currently a concrete witness of
+  this; the generic version is deferred-by-design.
 
-Phase 1 is closed at the intended grade: object syntax, morphism HIT, generic
-`J0`/`J1`, concrete Chu instance, and underlying Cubical functor packaging.
-Workflow and abstract updates remain writing work, not mathematical Phase 1
-debt.
+  So the formal side now splits into two sub-tracks, and it's worth being explicit about which is which:
 
-The next coding phase should be chosen deliberately:
+  - Verification-layer formal work (the junction): Realization + invariance. This is the Agda that makes the runtime contract mean something in the actor-causal substrate. It belongs to the
+  "implementation + its verification layer" leg of the bandwidth split you wanted.
+  - Pure-conjecture formal work (the crossroad): O1-in-Chu, Reality/Documentation/Chu, full reflector — eventually cross-site Allow ⊣ Require. This is "this side" — the side we worked this
+  session.
 
-- **O1-in-Chu / `session-O1-action`.** This is the postulate-elimination route.
-  It should start by identifying the minimal extra target structure required
-  for `gen`, `plug`, `shift`, and their laws: closed/evaluation/cut structure,
-  coherent tensor rotation, or a carefully scoped concrete Chu action. Do not
-  solve it by adding aliases, extra HIT constructors, or a renamed parameter.
-- **Reality/Documentation/Chu boundary.** This uses the new Chu
-  point/state/evaluation machinery to formalize Documentation as protocol
-  observables over Reality, with lossy admission/erasure and trace-kernel /
-  audit tests. This is a new vertical slice, not Phase 1C.
-- **Full finite actor-causal reflector.** This would enrich the
-  point-generated theorem toward covers where causality and actor incidence
-  carry descent content. It is separate from the Sessions-to-Chu work.
+  My recommendation, in priority order
 
-Preferred next move: update the extended abstract first, then decide whether
-the next code sprint is the postulate-elimination route (`session-O1-action`)
-or the Reality/Documentation boundary route.
+  1. Next formal step: prove renaming / valid-reordering invariance of raw traces (the forced half of the junction). This is the single highest-leverage Agda artifact right now, and crucially it's
+  rising-sea-forced: the v0 contract already claims it informally ("causal parents point backward by list position, independent of the numeric ID"). Right now that's an unbacked claim. A theorem
+  closes the honest gap Claude-impl named — that the two legs agree today only because they share a hand-authored fixture corpus, not because of a theorem. And it's not busywork on the conjecture:
+  renaming invariance is exactly the unityped-actors commitment made precise ("meaningless IDs ⇒ isomorphic model"), which is core to the whole arc. Hold the generic RawTrace → LocalFrame bridge
+  until a second trace shape forces it (per the file's own rising-sea note).
 
-#### Considering the future implementation track
+  2. Then, on the pure-conjecture side: Reality/Documentation/Chu over O1-in-Chu. Among the three crossroad options, Reality/Documentation is the one that coordinates with where implementation is 
+  heading: the implementation track's deferred Boundary / Audit / Certificate files and its B-status "no-leak / Reality boundary / erasure" vocabulary are exactly what the
+  Reality/Documentation/Chu formal slice would give meaning to. Doing it next means the two tracks converge on a shared boundary notion rather than drifting. O1-in-Chu stays the named deep target,
+  but it's a self-contained research problem (needs earned closed/eval/cut structure) that doesn't coordinate with the implementation — so it's the wrong thing to spend the "convergence" window
+  on. The full reflector is later.
 
-Current workflow note: this subsection preserves the discussion that led to the
-implementation track. The canonical implementation plan, naming guardrails, and
-substrate-readiness audit now live in `workflow/status_implementation.md`. In
-particular, "snapshot" was only a temporary prose word and should not become an
-Agda module name.
+  Rising-sea caveat on #2: don't open a heavy Reality/Boundary module until the implementation's boundary vocabulary forces it. The implementation track itself says Boundary/Audit should "earn
+  their own files." So #2 is the direction for the conjecture bandwidth, but the forced next move is #1.
 
-##### Codex
-
-› Now, before I clear, about the next phase. My instinct tells me we should be thorough with the introduction of Chu structures in the framework, and there's probably more to do there, wouldn't
-  you agree? Also, I want to start with the implementation soon, so that in future work the bandwidth is split between implementation (and its verification layer) and the conjecture. What could
-  we do in the next 1~3 sessions to start this in the best conditions possible? (I imagine the implementation to be of a "snapshot" of the protocol, not in its initial phase but in its
-  infancy--we stub about 1000 participants, 100 content types, 10 sibling protocols..., and with only the actors, conversations, session types, and content types, maybe some provenence, and then
-  we progressively add new features)
-
-
-• Yes, I agree with the instinct, with one constraint: “be thorough with Chu” should mean stabilize the interface and examples, not immediately try to solve all of O1-in-Chu.
-
-  The best next 1-3 sessions should set up two tracks that can run in parallel afterward:
-
-  1. Math/conjecture track: Chu as value model, Sessions semantics, and Reality/Documentation boundary.
-  2. Implementation track: a small protocol snapshot plus an Agda-checkable trace/audit kernel.
-
-  Recommended 1-3 Session Plan
-
-  Session 1: Chu Consolidation And Exposition
-  Goal: make Chu’s role unambiguous before implementation starts.
-
-  Deliverables:
-
-  - Update the extended abstract to mention:
-      - point-generated R4 has a concrete Chu(SET,Bool) coefficient witness;
-      - Sessions-to-Chu J0/J1 exists through objects, morphisms, and functor packaging;
-      - this is not yet full operational session semantics or O1-in-Chu.
-
-  - Add one or two small Chu/Sessions examples if Claude thinks cheap:
-      - a nontrivial session type interpreted by J0;
-      - one J1 sanity morphism beyond the already added check;
-      - maybe a documented “this is the intended value-model interface” module/comment.
-
-  - Do not yet attack session-O1-action unless a minimal missing structure becomes obvious.
-
-  Reasoning: this makes Chu credible and present in the framework without turning the next phase into a deep categorical redesign.
-
-  Session 2: Protocol Snapshot Schema
-  Goal: define the implementation object before writing much runtime code.
-
-  This should be a design artifact first, probably workflow plus maybe a thin Agda skeleton.
-
-  Snapshot contents:
-
-  - ProtocolId
-  - ProtocolVersion
-  - ActorId or anonymous actor token, with trusted erasure boundary
-  - ConversationId
-  - EventId
-  - causal parents / Lamport order
-  - session type assigned to a conversation
-  - content type tag
-  - document/artifact id
-  - optional provenance token
-  - sibling protocol references/imports
-
-  For your imagined stub:
-
-  - 1000 participants
-  - 100 content types
-  - 10 sibling protocols
-  - many conversations/events
-  - no real identity semantics inside the trusted kernel
-  - synthetic payloads/document refs only
-
-  The key rule: the implementation can know messy runtime identity, but the trusted snapshot should not.
-
-  Session 3: Trace Kernel v0
-  Goal: make implementation verifiable from day one.
-
-  Agda-side target, small and boring:
-
-  Concurrency/Protocol/Snapshot.agda
-  Concurrency/Protocol/Trace.agda
-  Concurrency/Protocol/Boundary.agda
-  Concurrency/Protocol/Certificate.agda
-
-  First predicates:
-
-  - event ids are unique;
-  - causal parents point backward;
-  - each event belongs to a conversation;
-  - each conversation has a protocol version and session type;
-  - trusted trace does not expose actor identity;
-  - provenance tokens mention artifacts/protocols/events, not persons;
-  - boundary events are requests/observations, not direct Reality effects.
-
-  Runtime-side target:
-
-  - generate a synthetic snapshot;
-  - export it as JSON/EDN;
-  - write a simple checker or parser scaffold;
-  - later align checker behavior with Agda predicates.
-
-  My Preferred Next Move
-
-  I would not choose between “more Chu” and “implementation.” I’d do this:
-
-  1. One short Chu consolidation session.
-  2. Then immediately start the protocol snapshot/trace-kernel implementation track.
-  3. Keep session-O1-action as the next serious math target, but do not block implementation on it.
-
-  That gives you the right split: implementation starts from an infancy snapshot, while the conjectural/math side keeps climbing through Chu, O1, Reality boundary, and eventually cross-site Allow
-  ⊣ Require.
-
-##### Claude
-
-› Now, before I clear, about the next phase. My instinct tells me we should be thorough with the introduction of Chu structures in the framework, and there's probably more to do there, wouldn't 
-    you agree? Also, I want to start with the implementation soon, so that in future work the bandwidth is split between implementation (and its verification layer) and the conjecture. What could 
-    we do in the next 1~3 sessions to start this in the best conditions possible? (I imagine the implementation to be of a "snapshot" of the protocol, not in its initial phase but in its          
-    infancy--we stub about 1000 participants, 100 content types, 10 sibling protocols..., and with only the actors, conversations, session types, and content types, maybe some provenence, and     
-  then                                                                                                                                                                                              
-    we progressively add new features)                                                                                                                                                              
-
-● Yes, I agree on both counts — and the useful realization is that Chu thoroughness and the implementation are not competing; they converge on the same layer (content/duality). Let me give you
-  both a "do I agree" and a concrete 1–3 session kickoff you can carry into the next session.
-
-  On Chu: yes, there's more — and it's load-bearing, not polish
-
-  What we have is the category + thin monoidal + Benton adjunction + the non-vacuity witness. What's genuinely missing is exactly the structure Chu actually has but our thin StarAutonomous
-  deliberately doesn't expose:
-
-  - Closed / internal-hom structure (eval : Hom ((A ⊸ B) ⊗ A) B, the ⊗ ⊣ ⊸ adjunction). Chu(SET,k) is *-autonomous, so this is real and — per the ChuMonoidal note — tractable, because the
-  negatives are already ChuHom A (dual B).
-  - Additive coproduct universal property (right now ⊕/0 are objects only).
-  - Whatever coherence a downstream proof actually forces (don't chase full Mac Lane pentagon/hexagon speculatively — keep the project's "add fields when a proof needs them" discipline).
-
-  Why this matters and isn't a detour: the closed structure is the lever that discharges the last postulate session-O1-action (Phase 3 derives plug/shift/gen from eval/cut + coherent tensor
-  rotation), and it's what gives send/recv real semantics (Phase 2). And separately, Chu's points/states/incidence is the flagged home for the content layer Λ — i.e. the semantic model for content
-  types in your snapshot. So "be thorough with Chu" = "unlock Phase 2/3 and build the value category your implementation's content types will eventually use." That's the convergence.
-
-  Bounded scope so it doesn't sprawl: internal-hom + eval in Chu, then derive the O₁ action (discharge session-O1-action). Stop there; coproduct UP and Reality-boundary (Phase 4) are later.
-
-  On starting implementation in the best conditions
-
-  The single most important principle: the schema is the shared contract between the Elixir runtime and the Agda checker. Get that right first, and the bandwidth split you want becomes possible
-  because both sides develop against a stable interface. Concretely:
-
-  1. Anchor the schema on the stable substrate, parameterize over the moving parts. Stable and shipped: the actor-causal site (opaque/unityped ActorBase, Lamport CausalOrder, LocalFrame, finite
-  frames/covers) and the now-postulate-free session grammar. In flux: O₁ action, cross-site adjunction, Chu closed structure, MO₁. Build the snapshot schema only on the stable layer, with the
-  in-flux semantics as parameters. This is what protects the implementation from schema churn while the conjecture-side keeps moving.
-  2. Your "infancy snapshot" instinct is right — with one calibration. Scale (1000 actors / 100 content types / 10 siblings) belongs in the Elixir stub generator; the Agda instance must be tiny (a
-  handful), because Agda won't typecheck/compute a 1000-actor instance. So: schema parametric in sizes, one small concrete instance for the checker, the at-scale stub on the runtime side.
-  3. Reuse existing vocabulary, don't invent a parallel data model. Actors = ActorBase ids; conversations/events = causal events + frame membership; "how" = SessionType tags; "what" = a new opaque
-  content-tag type (the Λ stub — opaque now, Chu-valued later, mirroring how actors are unityped); provenance = origin edges (actor/event/source-protocol) on content + edits; siblings = a
-  ProtocolId + stub typed translation interfaces.
-  4. Thin checker, not extraction (per elixir.md): Elixir owns the runtime + durable event log; Agda specifies well-formedness; a small checker validates emitted traces. Don't generate the app
-  from Agda.
-
-  Proposed 1–3 session plan
-
-  - Session 1 — the contract. New formal/Concurrency/Protocol/: Snapshot.agda / Trace.agda — finite snapshot record (actors, causal events, frames, session-typed actions, content tags, provenance
-  edges, sibling refs), parametric in sizes, plus one tiny concrete well-formed instance. Deliverable: schema typechecks + tiny instance. This alone unblocks Elixir to start.
-  - Session 2 — first predicate + Elixir skeleton. Agda WellFormedSnapshot (causal acyclicity, unique event ids, unityped actors, valid local views, a no-leak stub) proven on the tiny instance;
-  Elixir BEAM skeleton (supervised actors + durable event log) emitting the schema's serialization; a checker stub that round-trips one tiny trace.
-  - Session 3 — bounded Chu thoroughness (conjecture-side, in parallel): internal-hom/eval in Chu → derive the O₁ action → discharge session-O1-action. This is the steady-state you described:
-  implementation track + conjecture track running side by side.
-
-  Two decisions worth settling before Session 1
-
-  - Checker boundary: validate full traces (simplest/most honest to start) vs compact certificates the runtime produces. I'd start with full-trace validation on tiny instances and add certificates
-  later — confirm?
-  - Content types now: opaque tags + provenance fields from day one, with Chu as their eventual value category deferred to the Λ phase. Agree, or do you want content types Chu-valued from the
-  start (heavier, couples the implementation to the in-flux Chu work)?
-
-  My recommendation: schema-first (Session 1) is the highest-leverage thing you can do to start well — it's the contract that lets implementation and conjecture proceed in parallel without drift.
-  Want me to draft the Snapshot.agda schema proposal (types only, grounded in ActorBase/SessionType, parametric sizes) as the first concrete artifact next session?
+  One-liner
+
+  The next formal step is the renaming-invariance / junction theorem — it's forced, it's high-credence, it backs a claim the contract already makes, and it's the unityping commitment made precise;
+  with Reality/Documentation/Chu as the conjecture-side direction after it, chosen specifically because it converges with the implementation's coming audit/boundary layer rather than diverging
+  from it.
+
+  This is a recommendation for you and Codex to weigh — I've written nothing. Want me to draft the precise Agda statement of the renaming/reordering-invariance theorem (signature only, against
+  RuntimeContract/Trace.agda and the substrate) for review before any code?
+
+✻ Crunched for 1m 44s · 4 shells still running
+
+❯ Can you please read /arc/12_corresp* and tell me if it changes something to your recomendations for the next steps, in either direction?                                                          
+
+● I'll read that arc file.
+
+● Bash(cd /home/ig/Code/hoapa/workflow/deep_context/arc 2>/dev/null && ls -la 12_corresp* 2>/dev/null || find /home/ig/Code/hoapa/workflow -ipath '*arc*12_corresp*' |…)
+  ⎿  -rw-rw-r-- 1 ig ig 16553 Jun 25 15:53 /home/ig/Code/hoapa/workflow/arc/12_correspondence_math_runtime.md
+
+  Read 1 file (ctrl+o to expand)
+
+● Yes — arc/12 changes my recommendation, in a specific and useful direction. It's the most relevant document for this question, because it's about exactly the junction I was circling. Here's the
+  honest update.
+
+  What it changes
+
+  1. It elevates the generic Realization theorem from "defer until forced" to "the next formal step" — by reframing what "forced" means. My prior recommendation leaned on the implementation
+  track's rising-sea rule ("don't prove generic RawTrace → LocalFrame until a second trace shape forces it") and so I said: do cheap renaming invariance now, defer the generic bridge. arc/12
+  argues the forcing here isn't a second trace shape at all — it's credence: until Realization exists, "the runtime emits evidence that realizes an actor-causal object in the very topos the 
+  conjecture is about" is prose, not a theorem. For the conjecture side specifically, that is the forcing. arc/12 calls this "the most important question in the whole implementation track" and
+  "the credence mechanism" separating hoapa from the slogan-level universal theories related_structures.md warns about. That's a stronger argument than my rising-sea deferral, and I'm updating
+  toward it.
+
+  2. It splits "renaming invariance" into two levels, and the valuable one needs Realization first. I had treated renaming invariance as the cheap, forced next step. arc/12 shows that's only half
+  true:
+  - The predicate-level version — WellFormed(σ·t) ↔ WellFormed(t) for an ID bijection σ — is cheap, substrate-free, provable at Trace.agda now. Backs the contract's claim, but it's the modest
+  version.
+  - The version arc/12 is excited about is univalent renaming invariance of the realized object: a renaming is an equivalence of presentations, so the realized substrate objects are equal, not 
+  merely iso. That one needs the generic Realization to even state — and it's the one carrying the three big payoffs: it's the runtime-boundary instance of univalence, it's unityping-as-a-theorem
+  ("any actor renamed to any other, object unchanged"), and it's the positive core of the deferred no-leak theorem.
+  
+  So my "cheap forced renaming invariance is next" was understated: the prize requires Realization.
+
+  3. It unifies my two recommendations. I'd given (1) the junction and (2) "Reality/Documentation/Chu on the conjecture side" as separate. arc/12 makes them the same line: renaming invariance is
+  "a genuine piece of the deferred semantic no-leak theorem," and no-leak is the Reality/Documentation boundary's core. So the junction + renaming invariance is the first concrete rung of the
+  no-leak/Reality direction I recommended — not a detour from it. And arc/12 notes Realization is structurally "J for traces" — the same syntax → interpretation → semantics shape as SessionSyntax 
+  → SessionObjectModel → Chu (J0/J1), so it reuses machinery we just built.
+
+  What it confirms
+
+  The junction over O1-in-Chu (O1-in-Chu stays the self-contained deep target, not the coordinating move), and renaming invariance as the conceptual prize.
+
+  Caveats it adds (from Codex, worth heeding)
+
+  - Realization is real proof work, not "near-mechanical": building CausalOrder from parent edges needs reflexive-transitive closure + antisymmetry + propositionality; LocalFrame needs
+  ActorIn/touches/touches-in-frame packaging.
+  - It must be parameterized by a session-tag environment (raw sessionTag : ℕ → real SessionType); content/provenance stay opaque.
+  - Phrase the payoff narrowly first: "this well-formed trace realizes a finite actor-causal frame/object," not "lives in the full topos" — the sheaf/R4 transport comes only once the realized
+  object satisfies the finite-site hypotheses.
+  - Tier-0 correspondence (the audit table) is prose-backed traceability, not proof; the proof starts at Realization. (So don't let the abstract or status say "provably mirrors" yet.)
+
+  The one tension to surface
+
+  arc/12 (credence argument: build the junction next) sits against the implementation track's explicit "defer generic realization until forced" + Codex-impl's "do not implement generic realization
+  in the loop-1 session." These aren't contradictory once you separate bandwidth: the implementation bandwidth should still close loop 1 + first emission (Codex/Claude-impl converge there); the
+  conjecture bandwidth — "this side," what you asked about — should go to the Realization junction, because that's where arc/12's credence argument applies.
+
+  Revised recommendation
+
+  Next formal step (conjecture side): the generic Realization theorem — WellFormed RawTrace → finite actor-causal object of ActorCausalSite, tag-environment-parameterized, content/provenance
+  opaque — capped by univalent renaming/valid-reordering invariance. That single result is the junction where the two legs meet, it's the first provable rung of the no-leak/Reality direction, and
+  it converts "the protocol is an instance of the mathematics" from analogy to theorem. O1-in-Chu and the full reflector stay later; the cheap predicate-level renaming lemma is an optional
+  warm-up, not the target.
+
+  Net: arc/12 didn't reverse me, but it moved the generic Realization from "defer" to "do next," and showed my #1 and #2 are one thing. Want me to draft the precise Agda statement (signature + the
+  tag-environment parameter + the narrow payoff type), holed, against Trace.agda and ActorCausal/FiniteFrame, for you and Codex to review before any proof work?
+
+✻ Brewed for 1m 53s · 4 shells still running
+
+※ recap: Goal: ship the Chu-upgraded extended abstract and pick the next formal step. The abstract is reviewed and near-done; I recommend the generic Realization junction theorem (with renaming 
+  invariance) next. Next action: on your go, I draft its Agda signature for review.
+
+❯ Do you agree with that:                                                                                                                                                                           
+                                                                                                                                                                                                    
+  {                                                                                                                                                                                                 
+  • I agree with Claude’s update in direction, with two important brakes.                                                                                                                           
+                                                                                                                                                                                                    
+    Arc/12 does change the next step: the immediate formal priority is now the runtime-to-substrate junction, not O1-in-Chu and not a fresh Reality/Documentation module. Trace.agda already names  
+    this correctly: raw traces are decidable presentations, substrate-free, with RuntimeContract/Realization.agda as the deferred bridge (formal/RuntimeContract/Trace.agda:20). And TinyTrace.agda 
+    already proves the first concrete witness, while explicitly saying it is not the generic bridge because it reuses TinyCausal instead of deriving causality from causalParents (formal/          
+    RuntimeContract/Realization/TinyTrace.agda:19).                                                                                                                                                 
+                                                                                                                                                                                                    
+    My amendment: do not make the next sprint “full generic Realization plus univalent renaming equality” in one bite. The rising-sea version is:                                                   
+                                                                                                                                                                                                    
+    1. Mark loop 1 as actually green in workflow. I ran make test; generation/freshness, Agda, TinyTrace.agda, and Elixir tests all pass.                                                           
+    2. Open the generic realization track, but first prove the machinery it needs: Boolean predicate reflection, finite carriers from validated IDs, parent-edge reachability/closure, and a        
+       CausalOrder generated from backward parents.                                                                                                                                                 
+                                                                                                                                                                                                    
+    3. Then prove WellFormed r -> RealizedFrame r or equivalent, narrowly: “this trace presents a finite actor-causal object.” Not “the runtime lives in the full topos” yet.                       
+    4. Then prove invariance in stages: predicate-level renaming/reordering first if cheap; realized-object equivalence next; univalent equality only after the packaging makes that natural.       
+                                                                                                                                                                                                    
+    I also think Claude slightly overstates the session-tag environment as part of the minimal bridge. It is needed for a richer realized contract, but LocalFrame itself does not contain session  
+    tags. The first bridge can be actor-causal only; session assignment can be a separate layer over realized conversations.                                                                        
+                                                                                                                                                                                                    
+    So my next-step recommendation is:                                                                                                                                                              
+                                                                                                                                                                                                    
+    - Verification/implementation direction: generic Realization is next, staged as above. This is the real meeting point of the implementation and formal legs.                                    
+    - Pure conjecture direction: Reality/Documentation/Chu remains the better next conceptual direction after that, because Realization and renaming invariance are already the first               
+  no-leak/boundary                                                                                                                                                                                  
+      rung.                                                                                                                                                                                         
+                                                                                                                                                                                                    
+    - Do not prioritize O1-in-Chu now: it remains the serious postulate-elimination target, but it does not coordinate with the runtime bridge as directly.                                         
+    - Do not prioritize full reflector enrichment now: useful later, but the trace-to-frame bridge is more forced.                                                                                  
+                                                                                                                                                                                                    
+    One workflow note: workflow/arc/12_correspondence_math_runtime.md is currently untracked, and status_implementation.md still has some stale “loop 1 open” prose despite the tests passing.      
+                                                                                                                                                                                                    
+  ─ Worked for 8m 26s                                                                                                                                                                               
+  ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────                  
+                                                                                                                                                                                                    
+                                                                                                                                                                                                    
+  › Wouldn't it be more accurate to state that we have actually 3 directions:                                                                                                                       
+    A. Pure implementation (Elixir, Rust)                                                                                                                                                           
+    B. Runtime-to-substrate junction (Agda that looks at E/R)                                                                                                                                       
+    C. Pure conjecture chasing (Agda)                                                                                                                                                               
+    ?                                                                                                                                                                                               
+                                                                                                                                                                                                    
+    And I would organize sessions C-B-A, where A echoes/uses B, and C is sort of indepencently developing.                                                                                          
+                                                                                                                                                                                                    
+                                                                                                                                                                                                    
+  • Yes. That is more accurate.                                                                                                                                                                     
+                                                                                                                                                                                                    
+    The real split is three lanes:                                                                                                                                                                  
+                                                                                                                                                                                                    
+    - A. Pure implementation: Elixir/Rust/runtime engineering. Event log, codecs, stubs, persistence, checker invocation, later UI.                                                                 
+    - B. Runtime-to-substrate junction: Agda interpretation layer. It consumes runtime-shaped evidence and proves it realizes actor-causal substrate objects. This is not pure implementation and   
+  not                                                                                                                                                                                               
+      pure conjecture; it is the hinge.                                                                                                                                                             
+                                                                                                                                                                                                    
+    - C. Pure conjecture chasing: Agda/math development not directly forced by current runtime artifacts: Reality/Documentation/Chu, O1-in-Chu, full reflector enrichment, later cross-site work.   
+                                                                                                                                                                                                    
+    I also like C-B-A as a session rhythm, with one caveat: B should remain the discipline point. C can develop independently, but A should not chase C directly. A should echo B, because B is     
+  where                                                                                                                                                                                             
+    “what the runtime emits” becomes “what the mathematics recognizes.”                                                                                                                             
+                                                                                                                                                                                                    
+    So the dependency graph is:                                                                                                                                                                     
+                                                                                                                                                                                                    
+    C develops future formal vocabulary and possible targets.                                                                                                                                       
+    B only imports from C once a stable theorem/interface is actually useful.                                                                                                                       
+    A implements against B’s current contract and produces evidence B can validate.                                                                                                                 
+                                                                                                                                                                                                    
+    That keeps rising-sea intact. C raises distant formal land; B raises the verified shoreline; A builds on the part of the shore that is already exposed.                                         
+                                                                                                                                                                                                    
+    For the next cycle, I would frame it as:                                                                                                                                                        
+                                                                                                                                                                                                    
+    1. C session: choose and bound the conjecture direction, probably Reality/Documentation/Chu, without opening a big boundary module prematurely.                                                 
+    2. B session: start generic Realization in staged form, beginning with causal-order-from-parents and WellFormed -> finite actor-causal object.                                                  
+    3. A session: extend runtime only where it gives B better evidence: more fixtures, emitted traces, checker boundary, maybe a second trace shape.                                                
+                                                                                                                                                                                                    
+    That is cleaner than “implementation vs formal.” B deserves its own name.                                                                                                                       
+  }                                                                                                                                                                                                 
+                                                                                                                                                                                                    
+  ?                                                                                                                                                                                                 
+
+● Yes — I agree, and two of Codex's corrections are genuine improvements to what I said, not just hedges. Let me be specific about where I concede and the one place I'd refine.
+
+  Where Codex corrects me, and I concede
+
+  The staging brake is right; my "draft the whole thing" was too big a bite. "Full generic Realization + univalent renaming equality in one sprint" is exactly the over-reach rising-sea is meant to
+  prevent. Codex's order is correct:
+  1. machinery first — finite carriers from validated IDs, parent-edge reachability/closure, and CausalOrder from backward parents;
+  2. then WellFormed r → RealizedFrame r narrowly ("presents a finite actor-causal object"); 
+  3. then invariance in stages — predicate-level renaming/reordering first, realized-object equivalence next, univalent equality last, once the packaging makes it natural.
+
+  And the load-bearing rung is unambiguous: deriving _≤_ from backward parents means reflexive-transitive closure, antisymmetry from the backward-by-position acyclicity, and prop-truncating
+  reachability to satisfy ≤-isProp. That single lemma is most of the "real proof work" Codex flagged; everything else (Fin n carriers are sets, RealizedFrame packaging) hangs off it. So univalent
+  equality as the capstone, not the opening move — agreed.
+
+  The session-tag environment: Codex is right, I over-included it. I checked LocalFrame's fields — causal, ActorIn, touches, touches-in-frame — there is no session content in it. So the minimal
+  bridge (WellFormed → finite actor-causal frame) needs no tag environment at all; session assignment is a strictly later layer over realized conversations. That actually makes the first bridge
+  leaner (one fewer parameter), which is more rising-sea, not less. The tag environment only re-enters when we extend the bridge past locality into session content. I withdraw it from the minimal
+  target.
+
+  Where I strongly endorse the reframe
+
+  Naming B as its own lane is better than my "two formal sub-tracks." The junction is neither pure implementation nor pure conjecture — it's the hinge, and it's the discipline point where "what
+  the runtime emits" becomes "what the mathematics recognizes." That's the credence mechanism, so it deserves its own name. The dependency DAG is exactly right: A → B (A implements against B's
+  current contract and produces evidence B validates), B ⇠ C only when a C-result becomes a stable, useful interface, and C runs free. "A echoes B, never chases C directly" is the precise
+  anti-drift rule — it's what stops the implementation outrunning the mathematics, which is the failure mode related_structures.md catalogues.
+
+  My one refinement
+
+  Distinguish the lane DAG (hard) from the C-B-A rhythm (soft). The DAG is a real constraint. "C-B-A every cycle, C first" is a default cadence, not a dependency — and for the immediate next cycle
+  I'd weight it toward B, because B (staged Realization, starting at CausalOrder-from-parents) is the forced, highest-credence move right now, while C (bounding Reality/Documentation/Chu) is "the
+  better conceptual direction after Realization" by Codex's own analysis. So I wouldn't read C-B-A as "always open a C session first"; I'd read the three lanes as ordered by distance from exposed
+  shore, and right now B is the shoreline to build. C can precede or run in parallel, but it shouldn't delay B. (This is consistent with Codex — its priority list says generic Realization is next
+  and Reality/Documentation comes after — just making the rhythm-vs-DAG distinction explicit so we don't rigidify "C first.")
+
+  The two workflow-hygiene items Codex raised (arc/12 untracked; status_implementation.md still says "loop 1 open" though make test passes) are real and are his files to fix — agreed they should
+  be cleaned so the gates report only meaningful drift.
+
+  Net: I agree with the three-lane model and the staged B-first plan, with the session-tag environment dropped from the minimal bridge and "univalent equality" demoted to the capstone. If you
+  want, my next concrete contribution is to draft — signature/holes only, for you and Codex to review — the first rung: CausalOrder derived from a WellFormed trace's backward parents (the closure
+  + order-laws lemma), since that's the forced bottom of the B staging and everything else depends on it.

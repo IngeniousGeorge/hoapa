@@ -297,7 +297,7 @@ The first rising-sea gate has been crossed narrowly. The project did not open a 
 
 This means the contract/export/runtime-codec harness is no longer future work. Future implementation work now begins after loop-1 cleanup:
 
-- close the trace-format validation gap in the runtime codec;
+- align trace-format validation across schema, codec, and Agda by treating unsupported v0 formats as semantic-invalid fixtures;
 - keep generated and vendored contract artifacts clean under the `Makefile` drift gates;
 - commit the generated/vendored artifacts so clean regeneration/export can pass;
 - add `hoapa_checker` only when there is a real runtime-emitted trace to validate one-by-one;

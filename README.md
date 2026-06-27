@@ -1,5 +1,7 @@
 # Hoapa protocols as the *pure form* of communication systems
 
+0.0 Preliminary insight  
+0.1 Roadmap  
 1. Foundations  
 1.1 Scope  
 1.2 Objective  
@@ -21,7 +23,8 @@
 3.8 Justice and police  
 1. Related structures   
 4.1 Experiments  
-4.2 Theories  
+4.2 History
+4.3 Theories  
 1. Summary of Hoapa protocols in four steps  
 5.1 Eternal  
 5.2 Initial  
@@ -33,6 +36,83 @@
 7.2 Documents of interest  
 
 ---
+
+## 0.0 Preliminary insight
+
+### 0.0.1 Unityping for taming complexity
+
+In 'The Little Prince', Antoine de Saint-Exupéry betrays the mind of a good engineer when he envisions tiny planets with one occupant each, for whom everybody else is of the same *type*. He thinks in the same foundational abstractions on which many complex modern frameworks are built.
+
+On asteroid 325 there is only a king, and to him everybody else is a subject:
+
+> "Ah! Here is a subject," exclaimed the king, when he saw the little prince coming
+
+In Linux, or rather from the point of view of Linux, everything is a file: folders are files that list other files, programs are executable files, and hardware devices are files that you can read from and write to. In HTTP, everything is a resource addressed through standard verbs: GET, POST, DELETE… In Erlang, the programming language of choice for scalable concurrency, everything is a process (as you would be inside a Hoapa protocol).
+
+And not just in engineering: in living organisms every constituent is a cell, in Legos everything is a brick. They all standardize the container to liberate the content. This *unityping* of the right concept lets a system tame its own internal complexity.
+
+### 0.0.2 Geographer/explorer separation of roles
+
+The little prince visits several of those population:1 celestial objects, and one of them is very close in spirit to Hoapa protocols: asteroid 330, whose lone resident is a geographer. Hoapa and this geographer have the same task: to chart their world, and the same inputs: explorers. And both will produce "voluminous books", except the Hoapa ones will welcome a lot more diversity and nuance while being a lot more accessible and pedagogical than the old fashioned atlases.
+
+The little prince is surprised to see his geographer doesn't know anything about the planet he inhabits:
+
+> "Exactly," the geographer said. "But I am not an explorer. I haven't a single explorer on my planet. It is not the geographer who goes out to count the towns, the rivers, the mountains, the seas, the oceans, and the deserts. The geographer is much too important to go loafing about. He does not leave his desk. But he receives the explorers in his study. He asks them questions, and he notes down what they recall of their travels. And if the recollections of any one among them seem interesting to him, the geographer orders an inquiry into that explorer's moral character."
+
+Hoapa protocols are autonomous computer programs that can emulate the geographer to produce a decentralized form of citizen science. And they are in the same empty/waiting state at the moment: (almost) ready to do their work, but without input to work with.
+
+Obviously, with those allegories, Saint-Exupéry is criticizing modern tendencies for uniformity, non-humanity and non-experimentalism. Yet this is exactly what Hoapa embraces and uses to its advantage to achieve another kind of architectural harmony: separation of concerns. So the protocol *reflects* reality but never *touches* it.
+
+In order to enjoy all the unique pluralism, humanness and experiences that make life beautiful, any group of explorers should have a separate system in which to encapsulate the "dirty work" of geography, but also philosophy and all sciences, such that this enterprise and a life of freedom don't interfere with one another. Like the fox’s rites in the story, separation of concerns gives each activity its proper time and place. (Fittingly, Hoapa’s mathematical incarnation is a topos, a 'place' in ancient Greek).
+
+### 0.0.3 Democratic evolutionary conversations for truth verification
+
+The shape of this insulated system is not arbitrary. Once a designer has chosen the egalitarian and freedom-preserving path—unitype the participants, separate the map from the territory—the rest of the architecture lights up ahead like a landing strip at night. Across disciplines, it compels a very coherent, satisfying and voluble network of self-reflecting, conversation-inviting concepts. All in the name of fairness and legitimacy.
+
+This is reflected in the contrasting ways the geographer of asteroid 330 and the community of explorers in Hoapa protocols verify truth:
+
+- The geographer *looks inward and back* when presented with new information: first he decides what is worthy of interest, then orders inquiries into the life of contributors, and will later demand proofs of their claims. Truth is decided at the scale of the individual proposition, who comes under a scrutiny organized by the geographer himself.
+- Hoapa *projects forward* and submits any new data to an informational ecosystem regulated by an evolutionary game, where randomly selected explorers are the referees. Truth is decided at the scale of the group, which uses its dynamics to filter out the mistaken and irrelevant as it refines and composes the remainder.
+
+This evolutionary game is again unityped like Legos: to it every process is a *conversation*. Those are shaped exactly like the citizen assemblies/conventions of participative democracy: select a few citizens at random, give them ample time and resources to study their topic, let them write a document of their findings by consensus and, most importantly, take their work seriously and use it. (Randomness is here the most democratic strategy, since everyone is actually on the same footing.) This strategy is field-proven and has shown time and time again how men and women "in the street", when put in the right context, can efficiently mobilize expert knowledge while preserving the well-being of communities. In a very real sense Hoapa has ethics baked-in at its base.
+
+Hoapa protocols therefore take in the full extent of the explorers' knowledge and *process* it without ever turning either the input or its carrier into an object of *judgment*.
+
+### 0.0.4 The mathematics of adequate growth
+
+All this is preserved and amplified in the mathematics that composes those bricks of processing to scale gracefully to possibly infinite structures, without ever letting the system bloat. In three major ways—evolvability, expressivity and multiplicity:
+
+- Protocols are always evolving, not just in terms of what they produce but also as engineering constructions. The computer code they're made of is automatically and regularly subjected to modifications by conversations, organized just like the others but with the special mandate to edit the code if they see fit. So they evolve autonomously, without managers.
+- The documentation protocols produce also becomes the language they use. The concepts they map are given names with accessibility, pedagogy, interoperability and overall coherence as top priorities. Two related concepts, especially across domains, will have their relation reflected in their names, aiming at a "learn once, express everywhere" convention. Eventually every new member coming into the protocol is asked an equivalent effort, minimized by design, to engage with its concepts.
+- From their own perspective as engineering constructions, protocols are "aware of" their neighbors and "want to be part of" networks. They always "think of themselves" as members of a multiplicity. (The Yoneda philosophy, after arguably the most beautiful result in abstract mathematics which says mathematical objects remember their friends when they're separated).
+
+In a nice duality with the *unityping* of participants, most of this composition is encapsulated in *type theories*. Mathematical structures which have also proven their worth in several fields, as a way to organize computation, meaning, existence, proofs or equality. 
+
+Interestingly, most of the mathematics Hoapa networks use have been discovered by an unusual geometer and obstinate ecologist who wrote volumes about the creativity of one's inner innocent child, Alexander Grothendieck. (They stand at the opposite end of the spectrum from the simplistic models used by mainstream economists to justify the exploitation of Nature and populations, or by some evolutionary biologists to deny the true complexity of ecosystems.)
+
+### 0.0.5 Nutshell and opening
+
+In summary, Hoapa are based on a double separation of worlds:
+
+- The *protocols* are separate from *reality*: they want to "tell its story" but in order to tell it faithfully they must never be part of it.
+- The participants are all strictly *unityped* in the eyes of the protocol, no judgement at this stage but only the *welcoming* of complexity; while the voluminous documentation the participants produce collectively is in effect a multilayered *type theory*, the form it must take to adequately *render* the complexity processed by the system.
+
+Saint-Exupéry's text found a universal echo because his tale is about care, or love, and renders in prose what Bowlby would later name attachment: the bond that lets a small creature explore the world unafraid, and return to a secure community. An expensive evolutionary strategy invented by mammals, that the human species has considerably gambled on to great success, until the social structures it was generating closed, turned against one another, and fell into unbounded growth by exploitation.
+
+What Hoapa networks promise to achieve through their sound logic and efficient engineering, once fully mature, is to fix our broken algorithm of care. They can do so by being both a secure base for exploration at the scale of whole communities, and a network whose openness is guaranteed by contract.
+
+## 0.1 Roadmap
+
+The sense of my work is twofold:
+
+- To make the system fully ready to receive its first explorers (the implementation)
+- To make the system legitimate enough to motivate participation (the verifiable theory)
+
+The first is straightforward once Hoapa is clearly defined. Then it's just a matter of building and arranging modules and libraries together. No new problems surface in the implementation, nothing needs to be invented for this. This is the obvious objective of this project, covered in section 4.
+
+The second is more sophisticated. In the current progress of my work it takes the form of a theorem-rich mathematical theory of Hoapa protocols, which is the main topic of the section 3. I believe the mathematical model also supports Hoapa's claim to engineering efficiency, innovative social structure, and to "naturality" via correspondences to several descriptions of Nature, most notably physical field theories. It is the substantial objective of this project.
+
+Eventually we could pursue the true validation: the testing of the effects of the protocols on reality at scale. (Readers not interested in technical details may skip to section 5.)
 
 ## 1. Foundations
 
@@ -106,7 +186,7 @@ All the structural properties descend from an original separation which encapsul
 
 This has a precise meaning in computer science (known as "untyped/typed"), which is roughly the double specification that:
 
-- *All participants must "play by the same rules" (like basketball players, and unlike goal keepers vs fields players in sports with goals—or unityped checkers vs multityped chess pieces), meaning the communication system can't distinguish them. To the system, participants are computational resources with all the same characteristics. Whenever it needs resources, it taps into its reserves at random.*
+- *All participants must "play by the same rules", meaning the communication system can't distinguish them (like basketball players, and unlike goal keepers vs fields players in sports with goals—or unityped checkers vs multityped chess pieces). To the system, participants are computational resources with all the same characteristics. Whenever it needs resources, it taps into its reserves at random.*
 - *Whatever the participants produce, it should be put in meaningful containers and properly labelled. Those labelled containers describe the data they enclose and guarantee it has certain properties, so we can safely run certain operations on them (if you know you have two numbers, you know you can add them).*
 
 Here, contrary to the participants who are all of the same type, the multiplicity of types is the crucial mechanism through which the system copes with *complexity of output*.
@@ -134,7 +214,7 @@ In a sense, the two ends are quite self-evident:
 
 The bridge simply establishes the recognition that those facts are intimately linked. 
 
-The relation is still conjectural at this point. But while building for it, we've extracted a first theorem which can be interpreted as "there are no privileged points of view on the operational side of the construction". In mathematical terms it is *a machine-checked adjunction of sheaves over a site of causal interaction contexts, exhibiting every globally coherent state as the free/canonical gluing of its event-local views, and lifting the resource-sensitive logic of the data, in Benton's linear/non-linear sense, up to that same global level from values to sheaves*.
+The relation is still conjectural at this point. But while building for it, we've extracted a first theorem which can be interpreted as "there are no privileged points of view on the operational side of the construction". In mathematical terms it is *a machine-checked adjunction of sheaves over a site of causal interaction contexts, exhibiting every globally coherent state as the free/canonical gluing of its event-local views, and lifting the resource-sensitive logic of the data, in Benton's linear/non-linear sense, up to that same global level from values to sheaves; with the linear/non-linear hypotheses now concretely realized in a Chu(Set, Bool) coefficient model, making it an instantiated theorem*.
 
 ---
 
@@ -142,7 +222,7 @@ The relation is still conjectural at this point. But while building for it, we'v
 
 To establish the accessibility and optimality of Hoapa protocols we must also produce and test them at scale. 
 
-A certain amount of scientific recognition is necessary to justify the collective efforts needed for an initial implementation—which it can obtain through the clear, fruitful and inspiring theoretical framework this project aspires to be. But the true test of the validity of the conjecture lies in its realization.
+A certain amount of scientific recognition is necessary to justify the collective efforts needed for an initial implementation, but the true test of the validity of the conjecture lies in its realization.
 
 ### 2.1 Stack / programming languages
 
@@ -159,7 +239,7 @@ The actor model of concurrency is straightforward, all agents have the same priv
 - *receive messages and update their internal state accordingly*
 - *create new actors (for instance if they "feel overworked")*
 
-Every human participant will be considered an actor in the sense that they can talk/write, listen/read, think and update their worldview accordingly, and tell their friends about the protocol. And the door will always be open for any volunteer to come in, or come out of the protocol.
+Every human participant will be considered an actor in the sense that they can talk/write, listen/read, think and update their worldview accordingly, and tell their friends about the protocol. And the door will always be open for any volunteer to come in or come out of the protocol.
 
 However, in our framework, the true actors, or "units of computation", are not the individuals but the conversations.
 
@@ -200,9 +280,9 @@ Hoapa protocols can interact with the world only behind buffers which respect in
 
 - If it needs something it simply asks for it, and expects those needs to be met (for instance, if it uses the internet, it states via a self-reflective conversation how much bandwidth it needs, and specifies the characteristics of its network). Individuals or communities, outside of the protocol, would then respond to those needs without compensation.
 - If it wants something to be known it simply makes it as available and accessible as possible, which includes a pedagogical effort in presentation and terminology. But it can't advertise, at the risk of favoring certain targets over others.
-- In some cases, if it wants something to be done it also asks for it, by creating a conversation of a special type, whose members, still selected at random, are charged with the task of pushing for the realization of the desired outcome, again without compensation for themselves or the specialists they convince to do the work. (But philosophically, protocols "prefer" to focus on the documentation and let free individuals and communities decide what they want to do with it.)
+- In some cases, if it wants something to be done it also asks for it, by creating a conversation of a special type whose members, still selected at random, are charged with the task of pushing for the realization of the desired outcome, again without compensation for themselves or the specialists they convince to do the work. (But philosophically, protocols "prefer" to focus on the documentation and let free individuals and communities decide what they want to do with it.)
 
-In either direction, we can think of Hoapa as a coach in sports: its domain of action is preparation and strategy, but it can never enter the field of play or control the players. Only the players play.
+In either direction, we can think of Hoapa as a coach in sports: its domain of action is preparation and strategy, but it can never enter the field of play or control the players. The game belongs to the players.
 
 In the park example, we can imagine an institution/Hoapa hybrid in which the city government has delegated the supervision of the park to the protocol, but it's still the paid workforce of gardeners which will perform the tasks suggested by the protocol. But ideally, in the spirit of the protocol, it would be only voluntary work, suggested by the protocol but decided at the level of the individuals and communities.
 
@@ -210,9 +290,11 @@ Which makes Hoapa protocols especially well suited to organize the open source e
 
 ### 3.2 Open source
 
-Because open source produces code, it "lives in the abstract" entirely. Historically, and by definition, only it has only used voluntary labour.
+Because open source produces code, it "lives in the abstract" entirely. Historically, and by definition, it has only used voluntary labour.
 
-Hoapa is especially adapted to resolve the main recurring problem open source projects face: scalability and continuation beyond the circle of core contributors, usually the instigators of the project. Because every open source project is based on this "circles of knowledge/influence" architecture, which is in essence a hierarchy, it is destined to terminate the moment the inner circle quits (which, as humans, they're bound to do eventually).
+Hoapa is especially adapted to resolve the main recurring problem open source projects face: scalability and continuation beyond the circle of core contributors, usually the instigators of the project.
+
+Because every open source project is based on this "circles of knowledge/influence" architecture, which is in essence a hierarchy, it is destined to terminate the moment the inner circle quits (which, as humans, they're bound to do eventually).
 
 Hoapa revokes the privileges of the inner circle, distributes the workload evenly and transfers all the essential knowledge from the original designer's mind into a strictly typed and operational documentation. (As in *literate programming*, by Donald Knuth, the great missed opportunity of software development.)
 
@@ -224,7 +306,7 @@ The same arguments can be used to suggest a reform of how science is conducted.
 
 Universities are extremely hierarchical political machines whose ties to reality are clearly not behind buffers, which impair their capacity to describe the world they inhabit.
 
-While the scientific method prevents them from stating things that are wrong in the domains it is applicable, it doesn't prevent a mismanagement of efforts towards certain technologies at the expense of understanding, the fragmentation of the study of Nature into opposing departments, the proliferation of opaque jargons, etc.
+While the scientific method, in the domains it is applicable, prevents them from stating things that are wrong, it doesn't prevent other types of evils. Notably a mismanagement of efforts towards certain technologies at the expense of understanding, the fragmentation of the study of Nature into opposing departments, the proliferation of opaque jargons, etc.
 
 Hoapa protocols, on the other hand, are ideal for the realization of what citizen science promised to be, but only marginally developed. In a very real and demonstrable sense, they are the extension of the Galilean scientific method.
 
@@ -232,11 +314,9 @@ Hoapa protocols, on the other hand, are ideal for the realization of what citize
 
 In our protocol that would be the types of the orchestration layer, here transposed to a relation to Nature.
 
-In the Hoapa extension, we also define how scientists are supposed to converse among themselves, how they should refine information and eventually store it into a strictly typed and operational technical language which, like the pan-genome is the emanation of chemistry at the surface the planet, would be the reflection of the world we inhabit in language. (Importantly, we can use the amazing properties of homotopy theory to federate all jargons into a "learn once, use everywhere" terminology.)
+In the Hoapa extension, we also define how scientists are supposed to converse among themselves, as unityped equals, and how they should refine and store information into a strictly typed and operational technical language. The essence of our conjecture states this would truly be the reflection of the world we inhabit, encoded in language.
 
-Practically, one has to visualize a system in which the randomly selected participants, when faced with a technical problem, find and contact the specialists of the domain in question. This is exactly what happens in all citizen assemblies, and again, it's working extremely well in that setting, with both parties reporting high levels of engagement, communication and commitment to understanding.
-
-However, when specialists imagine a world in which the main mode of organization doesn't recognize specialization, they conclude that all the benefits of specialization are lost. But it's not recognition that made them experts in the first place, it's education. And Hoapa protocols are designed for education, as part of their mandate to treat everybody on an equal footing. What is removed with the status is not the knowledge, but the hunt for the status, and at the same time it resituates the obligation to make one's specialized knowledge accessible to others.
+Hoapa protocols are designed for education, as part of their mandate to treat everybody on an equal footing. What is removed with the status is not the knowledge, but the hunt for the status, and at the same time it resituates the obligation to make one's specialized knowledge accessible to others.
 
 Crucially, each individual practitioner gets to decide what questions are worth pursuing.
 
@@ -268,8 +348,8 @@ Care can be defined rigorously by another simple 2-step algorithm, which can be 
 
 Because it is a recursive and self-reflective pattern (step 1 = step 2, or more appropriately 1 ↔ 2), we also find traces of *caring* in the technicalities of our framework:
 
-- on the side of perspectivism, where we model the context in which the agents operate, in what makes this structure cyclical (*the unit of the adjunction*)
-- on the operational side, where we model the conversation between agents, in what makes this structure reciprocal (*operadic boundary-swap*)
+- on the side of perspectivism, when we model the context in which the agents operate, in what makes this structure cyclical (*the unit of the adjunction*)
+- on the operational side, when we model the conversation between agents, in what makes this structure reciprocal (*operadic boundary-swap*)
 
 Hoapa can serve as the "↔" in "1 ↔ 2", and in fact our conjecture is that it is both required and optimal for this caring algorithm.
 
@@ -310,13 +390,25 @@ This is the fate of most attempts at community-driven structures, especially whe
 
 In Hoapa, communities do the "dirty work" in a special place under strict conditions, voluntarily, in order to organize networks of solidarity, so that eventually all individuals can have both freedom and dignity in their lives.
 
+### 4.2 History
+
 As for the argument that hierarchical structures are part of "human nature", it simply doesn't match our history and evolution, contrary to deep-seated assumptions which only look at a partial rendering of the tail end of the story and often dress Nature in a grotesque 'only the strong survive' frame, which is the antithesis of its autonomous and distributed operational core—a worldview best represented by Herbert Spencer and still extremely influential today, especially in biology and economics.
 
-~three phases, like phases of matter: open/horizontal, closed/vertical, hybrid/hybrid. Only open/horizontal is sustainable and preserves attachment, Hoapa formalizes it~
+In fact, if we accept Hoapa as an optimal cooperative strategy and notice it was:
 
-The lion has never been a king. Humans, on the other hand, have a ~300,000 years long history of autonomous and distributed cooperative behavior, whose most outstanding payoff is certainly natural language. Hoapa suggests we keep on working on it, in those working conditions.
+- accessible as soon as humans acquired language
+- applied quite precisely by recent "stable" cultures (African Egalitarianism for Woodburn)
+- most probably lost for many cultures during the Neolithic
 
-### 4.2 Theories
+Then we can divide the history of humanity in three distinct phases:
+
+- open / cooperative / distributed
+- closed / conflictual / hierarchal
+- hybrid / hybrid / hierarchical
+
+Only open/distributed is sustainable and preserves attachment, Hoapa formalizes it. With it humanity could resume its long history of autonomous and distributed cooperative behavior.
+
+### 4.3 Theories
 
 - Charles S. Peirce's — community of inquiry  
 - Gordon Pask — conversation theory  
@@ -332,12 +424,12 @@ The lion has never been a king. Humans, on the other hand, have a ~300,000 years
 
 ## 5. Name
 
-'Hoapa' means "everywhere" (every domain) in Khoekhoegowab (of the Khoe language family, spoken in Namibia, Botswana, and South Africa primarily by three ethnic groups: Namakhoen, ǂNūkhoen, and Haiǁomkhoen), to be pronounced like in English, and chosen for 4 reasons:
+'Hoapa' means "everywhere" (every domain) in Khoekhoegowab, of the Khoe language family, spoken in Namibia, Botswana, and South Africa primarily by three ethnic groups: Namakhoen, ǂNūkhoen, and Haiǁomkhoen, to be pronounced like in English, and chosen for 4 reasons:
 
 - The surface area of the concept to be named is so large, modular and decentralized that it's not possible to select an element or a viewpoint and call it the essence of the system. The alternative is to point to the very multiplicity of the concept for its name.
 - As an homage to San culture, which has been a wonderful source of inspiration for this work. In many ways they are the last known human practitioners of Hoapa, along with the Hadza and other hunter-gatherers of the Congo Basin, so it's only natural the name should come out of one of their languages.
 - It is easy and new to the general public and research community alike, so no one will be jumping to conclusions when they encounter it.
-- The general theory in which Hoapa is embedded as a crucial recursion-inducing element, where theory is understood as a point of view on the universe/Nature, can be said to be a "theory of everywhere". It has the same holistic scope as the currently proposed theories of everything, but doesn't claim describe everything. It only talks about an infinitesimal part of every thing, namely how it is connected to the rest of the theory through its context—its "where". It doesn't make the universe unsurprising, and every newly thing encountered by the wandering eye requires to be studied de novo.
+- As a reference to the more general theory Hoapa is a part of, which can be said to be a "theory of everywhere", understood as a more humble equivalent to the theories of everything with which it shares an infinite scope.
 
 ---
 

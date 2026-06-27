@@ -1,5 +1,108 @@
 ### 0.0 Preliminary insight
 
+#### Slender
+
+**Unityping for taming complexity**
+
+In 'The Little Prince', Antoine de Saint-Exupéry betrays the mind of a good engineer when he envisions tiny planets with one occupant each, for whom everybody else is of the same *type*. He thinks in the same foundational abstractions on which many complex modern frameworks are built.
+
+On asteroid 325 there is only a king, and to him everybody else is a subject:
+
+> "Ah! Here is a subject," exclaimed the king, when he saw the little prince coming
+
+In Linux, or rather from the point of view of Linux, everything is a file: folders are files that list other files, programs are executable files, and hardware devices are files that you can read from and write to. In HTTP, everything is a resource addressed through standard verbs: GET, POST, DELETE… In Erlang, the programming language of choice for scalable concurrency, everything is a process (as you would be inside a Hoapa protocol).
+
+And not just in engineering: in living organisms every constituent is a cell, in Legos everything is a brick. They all standardize the container to liberate the content. This *unityping* of the right concept lets a system tame its own internal complexity.
+
+**Geographer/explorer separation of roles**
+
+The little prince visits several of those population:1 celestial objects, and one of them is very close in spirit to Hoapa protocols: asteroid 330, whose lone resident is a geographer. Hoapa and this geographer have the same task: to chart their world, and the same inputs: explorers. And both will produce "voluminous books", except the Hoapa ones will welcome a lot more diversity and nuance while being a lot more accessible and pedagogical than the old fashioned atlases.
+
+The little prince is surprised to see his geographer doesn't know anything about the planet he inhabits:
+
+> "Exactly," the geographer said. "But I am not an explorer. I haven't a single explorer on my planet. It is not the geographer who goes out to count the towns, the rivers, the mountains, the seas, the oceans, and the deserts. The geographer is much too important to go loafing about. He does not leave his desk. But he receives the explorers in his study. He asks them questions, and he notes down what they recall of their travels. And if the recollections of any one among them seem interesting to him, the geographer orders an inquiry into that explorer's moral character."
+
+Hoapa protocols are autonomous computer programs that can emulate the geographer to produce a decentralized form of citizen science. And they are in the same empty/waiting state at the moment: (almost) ready to do their work, but without input to work with.
+
+Obviously, with those allegories, Saint-Exupéry is criticizing modern tendencies for uniformity, non-humanity and non-experimentalism. Yet this is exactly what Hoapa embraces and uses to its advantage to achieve another kind of architectural harmony: separation of concerns. So the protocol *reflects* reality but never *touches* it.
+
+In order to enjoy all the unique pluralism, humanness and experiences that make life beautiful, any group of explorers should have a separate system in which to encapsulate the "dirty work" of geography, but also philosophy and all sciences, such that this enterprise and a life of freedom don't interfere with one another. Like the fox’s rites in the story, separation of concerns gives each activity its proper time and place. (Fittingly, Hoapa’s mathematical incarnation is a topos, a 'place' in ancient Greek).
+
+**Democratic evolutionary conversations for truth verification**
+
+The shape of this insulated system is not arbitrary. Once a designer has chosen the egalitarian and freedom-preserving path—unitype the participants, separate the map from the territory—the rest of the architecture lights up ahead like a landing strip at night. Across disciplines, it compels a very coherent, satisfying and voluble network of self-reflecting, conversation-inviting concepts. All in the name of fairness and legitimacy.
+
+This is reflected in the contrasting ways the geographer of asteroid 330 and the community of explorers in Hoapa protocols verify truth:
+
+- The geographer *looks inward and back* when presented with new information: first he decides what is worthy of interest, then orders inquiries into the life of contributors, and will later demand proofs of their claims. Truth is decided at the scale of the individual proposition, who comes under a scrutiny organized by the geographer himself.
+- Hoapa *projects forward* and submits any new data to an informational ecosystem regulated by an evolutionary game, where randomly selected explorers are the referees. Truth is decided at the scale of the group, which uses its dynamics to filter out the mistaken and irrelevant as it refines and composes the remainder.
+
+This evolutionary game is again unityped like Legos: to it every process is a *conversation*. Those are shaped exactly like the citizen assemblies/conventions of participative democracy: select a few citizens at random, give them ample time and resources to study their topic, let them write a document of their findings by consensus and, most importantly, take their work seriously and use it. (Randomness is here the most democratic strategy, since everyone is actually on the same footing.) This strategy is field-proven and has shown time and time again how men and women "in the street", when put in the right context, can efficiently mobilize expert knowledge while preserving the well-being of communities. In a very real sense Hoapa has ethics baked-in at its base.
+
+Hoapa protocols therefore take in the full extent of the explorers' knowledge and *process* it without ever turning either the input or its carrier into an object of *judgment*.
+
+**The mathematics of adequate growth**
+
+All this is preserved and amplified in the mathematics that composes those bricks of processing to scale gracefully to possibly infinite structures, without ever letting the system bloat. In three major ways—evolvability, expressivity and multiplicity:
+
+- Protocols are always evolving, not just in terms of what they produce but also as engineering constructions. The computer code they're made of is automatically and regularly subjected to modifications by conversations, organized just like the others but with the special mandate to edit the code if they see fit. So they evolve autonomously, without managers.
+- The documentation protocols produce also becomes the language they use. The concepts they map are given names with accessibility, pedagogy, interoperability and overall coherence as top priorities. Two related concepts, especially across domains, will have their relation reflected in their names, aiming at a "learn once, express everywhere" convention. Eventually every new member coming into the protocol is asked an equivalent effort, minimized by design, to engage with its concepts.
+- From their own perspective as engineering constructions, protocols are "aware of" their neighbors and "want to be part of" networks. They always "think of themselves" as members of a multiplicity. (The Yoneda philosophy, after arguably the most beautiful result in abstract mathematics which says mathematical objects remember their friends when they're separated).
+
+In a nice duality with the *unityping* of participants, most of this composition is encapsulated in *type theories*. Mathematical structures which have also proven their worth in several fields, as a way to organize computation, meaning, existence, proofs or equality. 
+
+Interestingly, most of the mathematics Hoapa networks use have been discovered by an unusual geometer and obstinate ecologist who wrote volumes about the creativity of one's inner innocent child, Alexander Grothendieck. (They stand at the opposite end of the spectrum from the simplistic models used by mainstream economists to justify the exploitation of Nature and populations, or by some evolutionary biologists to deny the true complexity of ecosystems.)
+
+**Nutshell and opening**
+
+In summary, Hoapa are based on a double separation of worlds:
+
+- The *protocols* are separate from *reality*: they want to "tell its story" but in order to tell it faithfully they must never be part of it.
+- The participants are all strictly *unityped* in the eyes of the protocol, no judgement at this stage but only the *welcoming* of complexity; while the voluminous documentation the participants produce collectively is in effect a multilayered *type theory*, the form it must take to adequately *render* the complexity processed by the system.
+
+Saint-Exupéry's text found a universal _ because his tale is about care, or love, and renders in prose what Bowlby would later name attachment: the bond that lets a small creature explore the world unafraid, and return to a secure community. An expensive evolutionary strategy invented by mammals, that the human species has gambled on to great success, until the social structures it was generating closed and turned against one another, and into unbounded growth by exploitation.
+
+What Hoapa networks promise to achieve through their sound logic and efficient engineering, when fully mature themselves, is to fix our broken algorithm of care, or more generally the strategy any network can use to ensure its continuity in time:
+
+1. In a given network, the evolution towards maturity of newer elements is taken care of by the
+mature elements already present in the network
+2. In turn, those newer elements become mature and take care of a new generation of elements
+
+This only works if the network is open, in the precise sense Hoapa is.
+
+#### 0.1 Roadmap
+
+The sense of my work is twofold:
+
+- To make the system fully ready to receive its first explorers (the implementation)
+- To make the system legitimate enough to motivate participation (the verifiable theory)
+
+see note
+
+The legitimacy comes from the minimalist -- separations of concern.
+
+-> separations of concern: "external" - protocol (dirty work) | reality (freedom to explore) ; "internal" - unityped agents | typed documentation (only ideas get "put in boxes", not people)
+
+, whose success has been credited to a "universal sense of ethics", which is because this work is about attachment
+-> theory of attachment, how the protocol eventually produces mature nodes to act as secure bases for further exploration
+
+used those absurd planets to
+
+as such (no looking back), And they aren't restricted to geography, they're interested in whatever the explorers want to talk about. -> hoapa means everywhere.
+
+They "move information around" without ever knowing what it is.
+
+Or modularity, how to design subsystems that will each perform one task well so that they form _ systems when composed together. To make simplicity local and complexity collective.
+
+It deals only with containers, without ever opening the boxes.
+
+(first theorem is about the bridge between the explorers and the orchestration of conversations).
+
+
+---
+
+#### Convoluted
+
 In 'The Little Prince', Antoine de Saint-Exupéry shows he thinks like a good engineer—with the same kind of foundational abstractions that Linux, HTTP or concurrent programming are based on—when he envisions tiny planets with one occupant each, for whom everybody else is of the same *type*.
 
 On asteroid 325 there is only a king, and to him everybody else is a subject:
