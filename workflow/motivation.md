@@ -25,6 +25,9 @@ Mathematically: something about covers/coverings, recursion, a form of contribut
 
 Current first checked fragment: on the operational side, the project now has a point-generated sheafification reflector and a sheaf-level Benton/LNL adjunction over the supported event-discrete actor-causal site. `Chu(SET,Bool)` supplies a concrete coefficient witness for that bridge, and the first Sessions-to-Chu `J0`/`J1` realization interprets the postulate-free session object/morphism syntax. This is not yet the cross-site `Allow ⊣ Require` adjunction; it is the first modest B-internal theorem plus value-model instance that makes one side of that future adjunction concrete.
 
+Current proof-near ethical fragment: the protocol protects participants not by recognizing a formal predicate of humanness, but by refusing actor-origin predicates in the trusted kernel. The theorem-shaped core is no-leak / actor-renaming invariance: changing actor labels should not change well-formedness, realized actor-causal structure, or later trusted documentation observations. The fuller ethical reading remains motivation; the B-lane target is the renaming theorem.
+
+
 The last item is the mathematical fragment, interesting for its own sake in mathematics, of a foundational statement in the space of interdisciplinary theories.
 
 ¹: and it is the basis of the actor model (and only in this relatively new domain because it is in friction with a foundational assumption of modernity, that complexity is based on specialisation)

@@ -233,6 +233,8 @@ Status: **grounded** = already represented in Hoapa; **candidate** = worth testi
 **Symmetry And No-Leak**
 - Nominal sets and Fraenkel–Mostowski-style equivariant semantics.
 - Renaming equivariance: renaming actors produces an isomorphic model.
+- Actor labels as gauge-like presentation data, not trusted observables.
+- Invariant-observation / quotient formulations of no-leak.
 - Parametricity and logical relations.
 - Definability/noninterference.
 - Actor-identity erasure and observational no-leak.
@@ -242,6 +244,7 @@ Status: **grounded** = already represented in Hoapa; **candidate** = worth testi
 - Two-sorted model theory separating actors from artifacts.
 
 **Provenance And Change**
+- Sheaf-theoretic contextuality as obstruction to gluing local support into a global hidden-variable account.
 - Provenance semirings and K-relations.
 - The free commutative semiring `ℕ[X]`.
 - Provenance circuits and shared derivation DAGs.
@@ -262,6 +265,8 @@ Status: **grounded** = already represented in Hoapa; **candidate** = worth testi
 - The protocol-version category `Π`.
 
 **Duality And Physics**
+- Categorical quantum mechanics and categorical no-cloning / no-deleting.
+- Gauge invariance, Noether/Ward-style constraints as interpretive homes for no-leak.
 - Chu spaces and Chu categories.
 - Formal Concept Analysis and Barwise–Seligman information flow.
 - Isbell and Gelfand dualities.
@@ -304,6 +309,6 @@ Status: **grounded** = already represented in Hoapa; **candidate** = worth testi
 - Scotus–Spinoza–Deleuze univocity.
 - Attachment theory’s secure-base/exploration/care structure.
 
-The most important **rejected identifications** are: buffer = `!`; mediation = descent; reciprocal arrows = adjunctions; R4 = `Allow ⊣ Require`; R/P/A/D = cohesive modalities; session involution = full dualizability; initiality = practical optimality; disciplined boundary = field theory; no-leak = RG boundary condition.
+The most important **rejected identifications** are: buffer = `!`; mediation = descent; reciprocal arrows = adjunctions; R4 = `Allow ⊣ Require`; R/P/A/D = cohesive modalities; session involution = full dualizability; initiality = practical optimality; disciplined boundary = field theory; no-leak = RG boundary condition; actor-renaming invariance = all-ID erasure; gauge analogy = QFT theorem; absence of actor order = no-ranking theorem.
 
 Sources: [human_signature.md](/home/ig/Code/hoapa/workflow/deep_context/human_signature.md), [atempted_philosophical_roots_of_provenance.md](/home/ig/Code/hoapa/workflow/deep_context/atempted_philosophical_roots_of_provenance.md), and [future_work.md](/home/ig/Code/hoapa/workflow/future_work.md:721).

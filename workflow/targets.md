@@ -138,6 +138,33 @@ The fracture theorem and the de Rham structural / named-coefficient / differenti
 
 ---
 
+
+## T_boundary. Runtime no-leak via actor-renaming invariance
+
+*Arc anchor: `arc/11`, `arc/12`, `arc/13`.*
+
+**Claim.** The proof-near core of "the system protects humanness by refusing to formalize it" is actor-renaming invariance. Actor identity is treated as presentation data at the trusted boundary: relabeling actors preserves well-formedness, and after generic realization it yields an equivalent actor-causal object. Trusted documentation or audit observations should depend only on contribution-structure visible to the protocol, not on actor origin, rank, or identity predicates.
+
+This is a boundary target, not a new philosophical layer. It is the runtime-contract version of unityping/no-leak and the positive theorem-shape behind the arc/13 gauge reading.
+
+**To state cleanly.**
+- Define actor renamings on `RuntimeContract.Trace` data. Keep actor renaming separate from event/conversation/protocol/content/provenance ID alpha-equivalence.
+- State Tier A as preservation or equivalence of `valid?` / `WellFormed` under bijective actor relabeling.
+- State Tier B only after generic realization exists: `WellFormed r -> RealizedFrame r`, with actor relabeling inducing a frame isomorphism/equivalence.
+- Define trusted observations before claiming any quotient/optimality theorem. Until then, "documentation as invariant quotient" is a theorem-shaped target, not a theorem.
+- Keep `Human`, `Designer`, expert status, runtime identity, and ranking predicates outside the trusted kernel.
+
+**To verify.**
+- Tier A: prove raw actor-renaming invariance of `valid?` / `WellFormed` in or near `RuntimeContract.Trace`.
+- Tier B: construct generic realization from well-formed traces to the actor-causal substrate, including causal order from backward parents, then prove actor-renaming equivalence of realized frames.
+- Tier C: optionally upgrade equivalence/isomorphism to equality by SIP/univalence for the packaged realized structure.
+- Tier D: only once provenance/audit/documentation observations exist, state no-leak for those observations and investigate the universal invariant-quotient reading.
+
+### Progress
+
+The substrate and v0 contract are already shaped for this target. `ActorBase.agda` supplies opaque unityped actors with no origin metadata or kernel decidable equality. `Trace.agda` uses meaningless finite coordinates at the serialization boundary and explicitly names renaming invariance as the north-star theorem. `TinyTrace.agda` gives one concrete realization witness, not the generic bridge. `status_implementation.md` now tracks the no-leak ladder as the next formal sequence after loop-1 cleanup.
+
+
 ## T_recursion. Iterable adjunction and the developing network
 
 *Arc anchor: `arc.md` §6.*

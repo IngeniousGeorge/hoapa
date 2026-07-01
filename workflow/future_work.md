@@ -8,7 +8,7 @@ This file documents three kinds of future work, in three styles:
 
 - *Punchlist style.* The "Regarding X" sections (fracture, T_recursion iteration, Sessions, actor-causal site, Hybrid v1, Beyond fracture) catalogue deferred pieces *inside material that has already shipped*. They are item-by-item, code-grained, and read as ongoing maintenance / extension lists.
 - *Architectural style.* The "Concurrency-side layers of complexity (planned)" section catalogues *committed-but-unshipped* layers. It is prose-heavy, structured around a Function / Math anchor / Trigger / Open questions / Agda slot rhythm, and is calibrated to be readable by both future Claude/Codex agents picking up the project and humans being shown the work.
-- *Candidate-investigation style.* The provenance, Reality, and logical-presentation sections record structures whose absence or possible role has become visible but whose exact mathematical ownership is not settled. They state the motivating gap, nearest established mathematics, anti-overclaim discipline, falsifying tests, and decision gates. They do not alter the committed cascade or reserve implementation modules.
+- *Candidate-investigation style.* The provenance, no-leak theorem ladder, Reality, and logical-presentation sections record structures whose absence or possible role has become visible but whose exact mathematical ownership is not settled. They state the motivating gap, nearest established mathematics, anti-overclaim discipline, falsifying tests, and decision gates. They do not alter the committed cascade or reserve implementation modules.
 
 All three styles are honest about status. Punchlist items extend shipped material; architectural items are committed but unshipped; candidate investigations may be promoted, revised, split, or rejected after their naturality tests.
 
@@ -680,6 +680,102 @@ These are illustrative. The future `RuntimeContract/Audit` area would cover trac
 - Mimram–Di Giusto, *A Categorical Theory of Patches*, and Angiuli–Morehouse–Licata–Harper, *Homotopical Patch Theory*: formal patch resources, not established Pijul models.
 - Pijul's graph/change semantics: implementation evidence for stable changes, dependencies, partial clones, and conflict-as-data; semantic validity remains outside the VCS.
 - W3C PROV: an interchange vocabulary and a reminder that standard provenance includes agents and attribution, where Hoapa requires an explicit no-leak divergence.
+
+
+## Candidate under evaluation: no-leak theorem ladder and humanness-as-refusal
+
+**Status and scope.** This section records the B-lane theorem ladder exposed by the arc/13 continuation. It is a candidate investigation, not a new cascade layer, not a new arc file, and not a reservation of Agda modules. The detailed conversational synthesis lives in `workflow/arc/13_catalysts_and_care.md`; this section extracts only the future-work consequences.
+
+The motivating formulation is:
+
+> The system protects humanness by refusing to formalize it.
+
+The formal reading must stay negative and boundary-shaped. The kernel should not recognize a `Human` predicate, an expert caste, a designer actor type, or a ranking of participants. It should instead prove that trusted protocol observations are insensitive to actor identity except through permitted participation structure. The proof-near core is therefore no-leak / actor-renaming invariance.
+
+### What is already grounded
+
+The substrate already carries the syntactic floor of the claim:
+
+- `Concurrency/Sites/ActorBase.agda` gives an opaque, unityped actor carrier with no constructors, no origin tags, no roles, no message syntax, no fresh-name operation, and no decidable equality in the kernel.
+- `RuntimeContract/Trace.agda` uses dense natural-number coordinates at the serializable boundary, while deliberately excluding person identity, network identity, runtime handles, semantic payload bodies, and identity-refining fields.
+- `RuntimeContract/Realization/TinyTrace.agda` gives one concrete trace-to-frame witness, explicitly labelled as a witness rather than the generic bridge.
+- `Hybrid/ChangeOfBase.agda` contains the structural half of no-leak as frame-noninterference under change of base.
+
+This is not yet the theorem. It is the reason the theorem is now statable without inventing new primitives.
+
+### The theorem ladder
+
+**Tier A: raw actor-renaming invariance.** Define actor renamings on raw traces and prove that `valid?` / `WellFormed` is invariant under bijective actor relabeling. The first theorem should be actor-specific:
+
+```text
+WellFormed r -> WellFormed (renameActors rho r)
+```
+
+with the converse following from the inverse renaming when `rho` is a bijection on the finite actor namespace. This is substrate-free and should live near `RuntimeContract.Trace` or a small sibling module. It is the cheap down-payment: strong enough to show that actor labels are not semantic, modest enough that a skeptic can read it as mostly by construction.
+
+Do not silently broaden this to all identifiers. Event IDs, conversation IDs, content tags, provenance tokens, run IDs, and protocol IDs have their own alpha-equivalence or stability questions. The humanness/no-leak theorem concerns the actor-identity channel.
+
+**Tier B: realized-object actor-renaming invariance.** Build the generic realization bridge:
+
+```text
+WellFormed r -> RealizedFrame r
+```
+
+where the realized object is a finite actor-causal `LocalFrame` or a packaged finite-frame object over the existing substrate. Then prove that actor relabeling induces an isomorphism/equivalence of realized frames. This is the substantive reading of "actor identity is gauge": relabeling changes the presentation, not the mathematical object seen by the trusted protocol.
+
+The hard rung is generic causal order from the trace: derive the reflexive-transitive closure of backward parent edges, prove antisymmetry from list-position acyclicity, and package `<=-isProp` and the event/actor carriers cleanly. This is real proof work, not merely a string of `refl` lemmas.
+
+**Tier C: univalent equality capstone.** Once Tier B has a well-packaged structure and equivalence notion, optionally upgrade frame isomorphism/equivalence to equality using SIP/univalence for the realized structure. This is mathematically attractive, but it should not block the more useful Tier B theorem.
+
+**Tier D: full humanness-as-refusal theorem schema.** The slogan-complete version would say that documentation is the universal actor-renaming-invariant observation of contribution-structure, and that the four protections below assemble into an optimal boundary discipline. This is research-scale and partly blocked on unshipped layers: trusted documentation observations, provenance/audit semantics, content-layer `Λ`, and a formal account of protocol-visible information.
+
+### Four protections and their current status
+
+| Protection | Formal reading | Current status | Guardrail |
+|---|---|---|---|
+| not ranked | actors remain unityped, unordered, and not internally classified | grounded by omission in `ActorBase` | not yet a theorem that no ranking observation is definable |
+| not exposed | trusted observations are invariant under actor relabeling | nearest theorem target | actor-renaming, not all-ID erasure |
+| not consumed | actor/catalyst carrier is preserved across contribution | candidate invariant | no runtime actor-token conservation theorem yet |
+| not copied | no natural diagonal copies the actor-carrier into documentation | process-theoretic analogy/candidate | no quantum claim unless modeled |
+
+The first formal target should be exposure/no-leak. The other protections are useful theorem-shapes, but they should not be pulled into Tier A or Tier B unless a runtime artifact forces them.
+
+### Relationship to provenance, contextuality, and Reality
+
+This ladder shares a boundary with the provenance and Reality candidates.
+
+- Provenance should record events, artifacts, versions, translations, derivation steps, and materialization changes, not trusted actor essence. A future provenance/no-leak theorem should show that erasing or relabeling actor identity preserves the trusted account.
+- Contextuality is a possible sheaf-theoretic bridge: local provenance support may fail to glue into a global account without adding forbidden hidden structure. That obstruction should be recorded as protocol information, not repaired by exposing actor identity.
+- Reality remains the constitutive exterior. The incubator or runtime may know messy facts, but the trusted kernel should only receive boundary evidence and invariant contribution-structure.
+
+The physics language stays interpretive: actor labels as gauge data is a useful reading of no-leak; it is not a claim that Hoapa has constructed a gauge field theory, Ward identities, or a QFT model.
+
+### Candidate implementation slots, not reservations
+
+If the ladder survives contact with the next B-lane work, possible file names include:
+
+```text
+formal/RuntimeContract/Renaming.agda
+formal/RuntimeContract/Realization.agda
+formal/RuntimeContract/NoLeak.agda
+formal/RuntimeContract/Audit/NoLeak.agda
+```
+
+These names are illustrative only. Tier A may fit in a small sibling of `Trace.agda`; Tier B may earn `Realization.agda`; audit-level no-leak should wait until audit/provenance semantics stop being opaque tokens.
+
+### Decision gates
+
+1. Does loop-1 cleanup finish first, so contract gates are quiet before Tier A starts?
+2. What exact finite actor-renaming object is used: total permutation of a namespace, bijection between actor lists, or structure-preserving map with inverse?
+3. Is Tier A stated as preservation, equivalence, or a universal quotient property?
+4. What is the first trusted observation map, if any, beyond `valid?` itself?
+5. Does generic realization target `LocalFrame`, `FiniteFrame`, or a new packaged `RealizedFrame` record?
+6. Is the Tier B equivalence an isomorphism of frames first, with univalent equality deferred?
+7. Which provenance identifiers survive no-leak, and which are actor-identity channels to erase?
+8. What falsifying fixture would demonstrate a leak: content/provenance/ranking behavior that changes under actor relabeling?
+
+The recommended order is: loop-1 cleanup, Tier A actor-renaming invariance, generic realization, Tier B realized-frame renaming invariance, then only later provenance/audit no-leak and any optimality formulation.
+
 
 ## Candidate under evaluation: Reality and the protocol's constitutive exterior
 

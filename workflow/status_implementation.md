@@ -201,7 +201,7 @@ Open before calling loop 1 fully closed:
 
 Deferred by design:
 
-- Generic `RawTrace -> LocalFrame` realization, renaming invariance, and valid-reordering invariance.
+- The no-leak ladder beyond v0: actor-renaming invariance for raw traces; generic `RawTrace -> LocalFrame` realization; realized-frame renaming invariance; optional valid-reordering invariance and SIP/univalence capstone.
 - A real `hoapa_checker` app that checks runtime-emitted traces one-by-one.
 - OTP event emission, synthetic large-run generation, Pijul-backed persistence, Phoenix/UI, compact certificates, and audit/provenance semantics beyond opaque tokens.
 
@@ -288,9 +288,11 @@ Immediate cleanup before declaring loop 1 closed:
 Next formal milestones:
 
 1. Keep `RuntimeContract/Realization/TinyTrace.agda` labelled as a concrete witness, not the generic bridge.
-2. Prove the generic `RawTrace -> LocalFrame` realization only when the next trace shape makes it forced.
-3. Add renaming invariance and valid-reordering invariance for raw traces; these are the philosophical bridge from meaningless IDs to substrate-level unityping.
-4. Let `Run`, `Boundary`, `Audit`, and `Certificate` earn separate Agda files only when their predicates stop fitting naturally in the current trace/run layer.
+2. Close Tier A of the no-leak ladder: prove raw actor-renaming invariance for `valid?` / `WellFormed`. This is the immediate theorem-shaped core of unityping; do not broaden it silently to all identifiers.
+3. Prove the generic `RawTrace -> LocalFrame` realization only when the next trace shape makes it forced.
+4. Close Tier B: prove that actor relabeling induces an isomorphism/equivalence of the realized actor-causal object.
+5. Add valid-reordering invariance and any SIP/univalence capstone only after the realization package is stable.
+6. Let `Run`, `Boundary`, `Audit`, and `Certificate` earn separate Agda files only when their predicates stop fitting naturally in the current trace/run layer.
 
 Next runtime milestones:
 

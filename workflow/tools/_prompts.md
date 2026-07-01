@@ -30,7 +30,7 @@ In this session _
 
 ## Discussion
 
-Please 
+This is the other agent's assessment, please review and come back to me with an updated assessment which details where there is convergence and where these is tension. In the latter case, please expose the situation: what is at stake ; what are our options ; what each option buys and costs us.
 
 ## Refactoring
 

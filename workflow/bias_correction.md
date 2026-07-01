@@ -31,6 +31,15 @@ Additional fast-track corrections:
 - "The last Sessions postulate can be removed by moving it into syntax." — Rejected. `session-O1-action` is the remaining real postulate. Removing it requires earned structure for `gen`, `plug`, `shift`, and their laws, likely closed/evaluation/cut or coherent tensor-rotation data. Adding aliases, extra HIT constructors, or a differently named parameter only moves the debt.
 - "Benton gives a `𝟙ₛ ↔ ⊥ₛ` conversion." — Rejected. `LinearNonlinear.agda` records strong-monoidal comparisons for `F` with the tensor unit and binary products; it deliberately introduces no mix map between `𝟙ₛ` and `⊥ₛ`. Any such bridge must be an explicit later structure.
 
+
+Additional no-leak / humanness corrections:
+
+- "Protecting humanness by refusing to formalize it is already proved." — Rejected. The grounded part is the kernel discipline: opaque unityped actors and no identity-refining fields in the trusted trace. The proof-near theorem is still the no-leak ladder, starting with actor-renaming invariance.
+- "Actor-renaming invariance means every identifier is meaningless." — Rejected. The humanness theorem concerns the actor-identity channel. Event IDs, conversation IDs, protocol IDs, content tags, and provenance tokens have separate stability and alpha-equivalence questions.
+- "No constructors or actor order already prove a no-ranking theorem." — Rejected. The current code omits ranking structure and actor classifiers; proving that no trusted observation can define a ranking is a stronger future theorem.
+- "Gauge/no-leak makes Hoapa a field theory." — Rejected. Gauge invariance is an interpretive home for actor identity as redundant presentation data. It is not a claim that Hoapa has constructed a gauge field theory, Ward identities, or a QFT model.
+
+
 If you find yourself drifting toward one of these defaults, that is the moment to re-read the corresponding instigator prompt below.
 
 ---
