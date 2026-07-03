@@ -18,6 +18,9 @@
 \newcommand{\Bool}{\mathsf{Bool}}
 \newcommand{\Chu}{\operatorname{Chu}}
 \newcommand{\op}{\mathrm{op}}
+\newcommand{\RepoURL}{https://codeberg.org/doc2cog/hoapa/src/branch/main}
+\newcommand{\RepoDir}[1]{\href{\RepoURL/#1}{\nolinkurl{#1/}}}
+\newcommand{\RepoFile}[1]{\href{\RepoURL/#1}{\nolinkurl{#1}}}
 
 \title{Event-Local Sheafification and a Linear/Non-Linear Adjunction\\
 with Chu Coefficients}
@@ -258,43 +261,72 @@ collapsing those regimes into one. These works share pieces of the structure
 below, but do not construct the actor-causal site, event-local sheafification,
 Benton lift, and Chu coefficient instance proved here.
 
-\section*{Formalization}
+\section*{Navigating the Agda formalization}
 
-The formalization splits into three compact layers.
-The role of Agda here is not only to record the statement: it checks that the
-reflector, lifted adjunction, finite-product witnesses, and Chu instance inhabit
-the same interfaces simultaneously.
+The repository is:
+\begin{center}
+\url{https://codeberg.org/doc2cog/hoapa}
+\end{center}
+The theorem is checked in the subtree:
+\begin{center}
+\RepoDir{formal/Concurrency}
+\end{center}
+The most direct way into the proof is to start from the theorem module:
+\begin{center}
+\RepoFile{formal/Concurrency/Hybrid/PointLinearNonlinearAdjunction.agda}
+\end{center}
+then follow the imports backwards through the reflector, the sheaf adapter, the
+site geometry, and finally the coefficient models.
+
+The formalization splits into three compact layers. The role of Agda here is
+not only to record the statement: it checks that the reflector, lifted
+adjunction, finite-product witnesses, and Chu instance inhabit the same
+interfaces simultaneously.
+
+\paragraph{Event-local reflector and lifted adjunction.}
+Folder: \RepoDir{formal/Concurrency/Hybrid}
 \begin{itemize}[leftmargin=1.4em,itemsep=2pt]
-\item The event-local reflector and lifted adjunction are formalized without
-postulates in:
-\begin{flushleft}
-\small\ttfamily
-SupportedChangeOfBase.agda\\
-SupportedLinearNonlinearSheafAdapter.agda\\
-PointSheafAdjunction.agda\\
-PointLinearNonlinearAdjunction.agda
-\end{flushleft}
-\item The concrete Chu stack is in:
-\begin{flushleft}
-\small\ttfamily
-Chu.agda\\
-ChuFiniteProducts.agda\\
-ChuMonoidal.agda\\
-ChuLinearNonlinear.agda\\
-ChuPointVProd.agda\\
-ChuPointExample.agda
-\end{flushleft}
+\item \RepoFile{formal/Concurrency/Hybrid/SupportedChangeOfBase.agda}
+\item \RepoFile{formal/Concurrency/Hybrid/SupportedLinearNonlinearSheafAdapter.agda}
+\item \RepoFile{formal/Concurrency/Hybrid/PointSheafAdjunction.agda}
+\item \RepoFile{formal/Concurrency/Hybrid/PointLinearNonlinearAdjunction.agda}
+\end{itemize}
+
+\paragraph{Event-local site geometry.}
+Folder: \RepoDir{formal/Concurrency/Sites}
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+\item \RepoFile{formal/Concurrency/Sites/EventPoint.agda}
+\item \RepoFile{formal/Concurrency/Sites/EventSupported.agda}
+\item \RepoFile{formal/Concurrency/Sites/PointCover.agda}
+\item \RepoFile{formal/Concurrency/Sites/PointOverlap.agda}
+\item \RepoFile{formal/Concurrency/Sites/SupportedFiniteFrameCategory.agda}
+\end{itemize}
+
+\paragraph{Concrete Chu coefficient stack.}
+Folders:
+\begin{itemize}[leftmargin=1.4em,itemsep=1pt]
+\item \RepoDir{formal/Concurrency/Algebras}
+\item \RepoDir{formal/Concurrency/Hybrid}
+\end{itemize}
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+\item \RepoFile{formal/Concurrency/Algebras/Chu.agda}
+\item \RepoFile{formal/Concurrency/Algebras/ChuFiniteProducts.agda}
+\item \RepoFile{formal/Concurrency/Algebras/ChuMonoidal.agda}
+\item \RepoFile{formal/Concurrency/Hybrid/ChuLinearNonlinear.agda}
+\item \RepoFile{formal/Concurrency/Hybrid/ChuPointVProd.agda}
+\item \RepoFile{formal/Concurrency/Hybrid/ChuPointExample.agda}
+\end{itemize}
 The final Agda witness is named \texttt{Chu-nonvacuity}; its fully expanded type
 is omitted because writing it out makes the type-checker expand definitions
 prohibitively.
-\item The session interpretation is in:
-\begin{flushleft}
-\small\ttfamily
-SessionSyntax.agda\\
-SessionMorphismSyntax.agda\\
-SessionObjectModel.agda\\
-SessionChuModel.agda
-\end{flushleft}
+
+\paragraph{Session syntax and Chu interpretation.}
+Folder: \RepoDir{formal/Concurrency/Algebras}
+\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
+\item \RepoFile{formal/Concurrency/Algebras/SessionSyntax.agda}
+\item \RepoFile{formal/Concurrency/Algebras/SessionMorphismSyntax.agda}
+\item \RepoFile{formal/Concurrency/Algebras/SessionObjectModel.agda}
+\item \RepoFile{formal/Concurrency/Algebras/SessionChuModel.agda}
 \end{itemize}
 
 \section*{Limitations}

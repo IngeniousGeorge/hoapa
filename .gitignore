@@ -4,5 +4,5 @@ runtime/deps/
 runtime/.elixir_ls/
 **/erl_crash.dump
 pedagogy/**/*.pdf
-workflow/communication_drafts/build/
-workflow/communication_drafts/contacts/
+workflow/deep_context/communication_drafts/build/
+workflow/deep_context/communication_drafts/contacts/

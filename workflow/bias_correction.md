@@ -35,6 +35,7 @@ Additional fast-track corrections:
 Additional no-leak / humanness corrections:
 
 - "Protecting humanness by refusing to formalize it is already proved." — Rejected. The grounded part is the kernel discipline: opaque unityped actors and no identity-refining fields in the trusted trace. The proof-near theorem is still the no-leak ladder, starting with actor-renaming invariance.
+- "The generic RuntimeContract Realization is complete." — Rejected. `BackwardRank.agda` and `CausalFromParents.agda` land the first global-frame rung: causal order from backward parents and one global `LocalFrame` for any well-formed run. Per-conversation locality, `FrameHom`s, actor-renaming/reordering invariance, session assignment, and audit/provenance no-leak remain pending.
 - "Actor-renaming invariance means every identifier is meaningless." — Rejected. The humanness theorem concerns the actor-identity channel. Event IDs, conversation IDs, protocol IDs, content tags, and provenance tokens have separate stability and alpha-equivalence questions.
 - "No constructors or actor order already prove a no-ranking theorem." — Rejected. The current code omits ranking structure and actor classifiers; proving that no trusted observation can define a ranking is a stronger future theorem.
 - "Gauge/no-leak makes Hoapa a field theory." — Rejected. Gauge invariance is an interpretive home for actor identity as redundant presentation data. It is not a claim that Hoapa has constructed a gauge field theory, Ward identities, or a QFT model.

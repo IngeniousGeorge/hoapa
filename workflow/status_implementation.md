@@ -176,7 +176,9 @@ Only after this contract/codecs/freshness loop is clean should the runtime grow 
 
 ## Contract Loop 1 Status
 
-Loop 1 has a narrow end-to-end shape, with a few cleanup gates still open.
+Loop 1 is closed and green. The contract now has a narrow end-to-end shape:
+formal predicate, serialization corpus, generated Agda raw terms, vendored
+runtime artifact, runtime codec tests, and drift gates all agree.
 
 Landed:
 
@@ -185,23 +187,28 @@ Landed:
 - `/formal/RuntimeContract/Generated/Raw/`: generated data-only Agda terms for valid and semantic-invalid fixtures.
 - `/formal/RuntimeContract/Tests/All.agda`: formal conformance runner; valid fixtures compute to accepted and semantic-invalid fixtures compute to rejected.
 - `/formal/RuntimeContract/Realization/TinyTrace.agda`: concrete tiny-trace realization witness into the existing actor-causal substrate. This is not the generic bridge theorem.
+- `/formal/RuntimeContract/Realization/BackwardRank.agda`: safe trace-level proof that a causal-parent edge strictly decreases first-occurrence event rank under `backwardOK`. This is the hard acyclicity lemma used by the generic realization rung.
+- `/formal/RuntimeContract/Realization/CausalFromParents.agda`: first generic runtime-to-substrate rung. It derives a `CausalOrder` from backward parent edges and packages any well-formed run as one global `LocalFrame` over realized actor/event carriers. Per-conversation locality, `FrameHom`s, session assignment, and renaming invariance remain later work.
 - `/runtime/apps/hoapa_contract/`: minimal Elixir umbrella app with structs, camelCase JSON codec, vendored contract artifact under `priv/runtime_contract/`, round-trip tests, fixture-category tests, and manifest integrity tests.
 - Top-level `Makefile`: cross-leg conductor for regeneration, freshness, formal tests, and runtime tests.
 
 Verified locally:
 
-- `make formal-test` checks `RuntimeContract/Tests/All.agda` and `RuntimeContract/Realization/TinyTrace.agda` from the `formal/` include root.
+- `make contract-check` regenerates raw Agda terms and reports no drift.
+- `make contract-fresh` re-exports the runtime artifact and reports no drift.
+- `make formal-test` checks `RuntimeContract/Tests/All.agda`, `RuntimeContract/Realization/TinyTrace.agda`, `RuntimeContract/Realization/BackwardRank.agda`, and `RuntimeContract/Realization/CausalFromParents.agda` from the `formal/` include root.
 - `make runtime-test` runs the Elixir codec/conformance suite against the vendored `priv/` artifact.
+- `make test` runs all of the above and passes.
 
-Open before calling loop 1 fully closed:
+Banked observations:
 
-- Align trace-format handling with the v0 semantic-boundary decision: relax `schema.json` to require `traceFormat` as a string, keep the runtime codec schema-permissive, add `invalid-semantic/wrong_trace_format.json`, and assert in Agda that `valid?` rejects it.
-- Ignore or clean runtime build artifacts such as `runtime/_build/` and crash dumps so they cannot pollute the contract gates.
-- Commit the generated Agda terms and vendored runtime artifact once reviewed. Before that first commit, `contract-check` and `contract-fresh` correctly report untracked generated/vendored files; after commit, clean regeneration/export should produce empty `git status --porcelain` output.
+- Trace-format Option B is implemented: the JSON schema accepts any string, while `valid?` rejects unsupported formats via the semantic-invalid `wrong_trace_format` fixture.
+- Runtime build/dependency/crash artifacts are ignored, so the contract gates report meaningful drift.
+- The rank/antisymmetry proof in `BackwardRank.agda` uses the `backwardOK` scan, not global event-ID distinctness. Event-ID distinctness still matters for faithful realization of event records as event-ID-generated objects.
 
 Deferred by design:
 
-- The no-leak ladder beyond v0: actor-renaming invariance for raw traces; generic `RawTrace -> LocalFrame` realization; realized-frame renaming invariance; optional valid-reordering invariance and SIP/univalence capstone.
+- The no-leak ladder beyond the first realization rung: actor-renaming invariance for raw traces; per-conversation realized frames and `FrameHom`s; realized-frame renaming invariance; optional valid-reordering invariance and SIP/univalence capstone.
 - A real `hoapa_checker` app that checks runtime-emitted traces one-by-one.
 - OTP event emission, synthetic large-run generation, Pijul-backed persistence, Phoenix/UI, compact certificates, and audit/provenance semantics beyond opaque tokens.
 
@@ -213,9 +220,9 @@ Use these as the implementation-track smoke tests:
 - `make contract-check`: regenerate and fail on generated-term drift or orphans via `git status --porcelain -- formal/RuntimeContract/Generated`.
 - `make contract-export`: copy the formal serialization corpus into `runtime/apps/hoapa_contract/priv/runtime_contract/` and write the per-file hash manifest.
 - `make contract-fresh`: re-export and fail if the vendored runtime artifact is stale.
-- `make formal-test`: run Agda from the `formal/` include root over `RuntimeContract/Tests/All.agda` and `RuntimeContract/Realization/TinyTrace.agda`.
+- `make formal-test`: run Agda from the `formal/` include root over `RuntimeContract/Tests/All.agda`, `RuntimeContract/Realization/TinyTrace.agda`, `RuntimeContract/Realization/BackwardRank.agda`, and `RuntimeContract/Realization/CausalFromParents.agda`.
 - `make runtime-test`: run `mix test` inside `/runtime`; tests read only the vendored `priv/` artifact.
-- `make test`: run all of the above. It is expected to become fully clean only after the generated and vendored artifacts are committed once.
+- `make test`: run all of the above.
 
 Do not invoke Agda from the repo root as `agda formal/RuntimeContract/Trace.agda`; the module root is `formal/`, so the module path is `RuntimeContract.Trace`.
 
@@ -277,102 +284,84 @@ The structural no-leak half exists as frame-noninterference under change of base
 
 ## Next Contract Work
 
-The minimal trace/run prose gate is satisfied and `/formal/RuntimeContract/Trace.agda` is open. The next contract work is no longer to open the first module; it is to close the v0 loop cleanly and choose the next waterline without pulling the whole runtime forward at once.
+The next work splits by lane.
 
-Immediate cleanup before declaring loop 1 closed:
+**B lane — runtime-to-substrate.**
 
-1. Align trace-format handling with the v0 semantic-boundary decision: schema accepts a string, the codec decodes it, and Agda rejects unsupported values via an `invalid-semantic/` fixture.
-2. Ignore or remove runtime build/crash artifacts from the working tree so contract gates report only meaningful drift.
-3. Commit the generated Agda terms and vendored runtime contract artifact, then verify that `make contract-check` and `make contract-fresh` pass from a clean tree.
+1. Realize per-conversation local frames from raw conversations.
+2. Construct `FrameHom`s from each conversation frame into the global frame built by `CausalFromParents.agda`.
+3. Prove these embeddings preserve touches and preserve/reflect the derived causal order.
+4. Then return to actor-renaming invariance: raw `valid?` invariance, realized-frame equivalence, and only later SIP/univalence.
+5. Add session-tag assignment only after the actor-causal locality bridge is stable; `LocalFrame` itself contains no session content.
 
-Next formal milestones:
+**A lane — runtime implementation.**
 
-1. Keep `RuntimeContract/Realization/TinyTrace.agda` labelled as a concrete witness, not the generic bridge.
-2. Close Tier A of the no-leak ladder: prove raw actor-renaming invariance for `valid?` / `WellFormed`. This is the immediate theorem-shaped core of unityping; do not broaden it silently to all identifiers.
-3. Prove the generic `RawTrace -> LocalFrame` realization only when the next trace shape makes it forced.
-4. Close Tier B: prove that actor relabeling induces an isomorphism/equivalence of the realized actor-causal object.
-5. Add valid-reordering invariance and any SIP/univalence capstone only after the realization package is stable.
-6. Let `Run`, `Boundary`, `Audit`, and `Certificate` earn separate Agda files only when their predicates stop fitting naturally in the current trace/run layer.
+1. Programmatically build a tiny valid run through the existing `hoapa_contract` structs/codecs and round-trip it through JSON.
+2. Keep validation corpus-locked to Agda. A runtime semantic checker or `hoapa_checker` earns its own app only once there is a real runtime-emitted trace to validate one-by-one.
+3. Add the minimal `hoapa_core` event log only after the tiny programmatic emission path is green.
+4. Add a synthetic generator after the tiny emitted-trace path is green.
+5. Add `hoapa_store` and the Pijul port/CLI boundary after the event log exists.
+6. Add Phoenix/`hoapa_web` last, as an edge adapter over an already-running core.
 
-Next runtime milestones:
+Let `Run`, `Boundary`, `Audit`, and `Certificate` earn separate Agda files only when their predicates stop fitting naturally in the current trace/run layer.
 
-1. Add `hoapa_checker` only when there is a real runtime-emitted trace to validate one-by-one against the formal boundary.
-2. Add the minimal `hoapa_core` event log that emits a trace accepted by the existing contract.
-3. Add a synthetic generator after the tiny emitted-trace path is green.
-4. Add `hoapa_store` and the Pijul port/CLI boundary after the event log exists.
-5. Add Phoenix/`hoapa_web` last, as an edge adapter over an already-running core.
+## Next step
 
-### Claude assessment
+### Codex
 
-● Here's my read on where the implementation track stands and what the next session should tackle.
-  
-  Where we are (the honest gap)
+› Next, I want you to give an assessment of what the next step in C-runtime should do
 
-  Loop‑1 closed the schema axis on both legs and the semantic axis on the formal leg only:
 
-  - The runtime codec judges shape (decodability) — it has no semantic check. It can't yet answer "is this trace well‑formed?", only "is it well‑shaped?".
-  - valid?/WellFormed (the semantic predicate) lives only in Agda.
-  - The two legs "agree" today only because they share a corpus of hand‑authored fixtures. Nothing yet produces a trace from behavior and validates that.
+• Assuming “C-runtime” means the pure implementation lane: the next step should be a tiny runtime-emitted trace, not OTP, not hoapa_checker, not Pijul/Rust yet.
 
-  So the genuine missing piece is: a runtime‑side semantic checker, and a first trace that the runtime itself emits and the checker validates.
+  The goal is to cross one specific boundary: today the runtime can decode/encode hand-authored contract fixtures; next it should construct a valid Run from code using hoapa_contract
+  structs/codecs, encode it to JSON, decode it back, and prove the round trip is stable in tests.
 
-  Recommended next session: the semantic checker mirror + first real emission
+  Recommended session target:
 
-  This is the moment hoapa_checker (which we deferred "until there's a real per‑trace check") earns its existence — and the right way to build it is not per‑trace Agda shelling, but a faithful 
-  Elixir mirror of the decidable valid?, conformance‑locked to Agda.
+  1. Inspect existing hoapa_contract structs/codecs and tests.
+  2. Add a small programmatic tiny-run builder, probably test-local first unless a production helper is naturally needed.
+  3. Build the same shape as the tiny valid fixture: small actor set, one conversation, two causally ordered events, valid touches/parents/format.
+  4. Test build -> encode JSON -> decode -> struct round trip.
+  5. Optionally compare the emitted JSON semantically against the existing tiny fixture, but do not overfit to field ordering or formatting.
+  6. Leave semantic validity authoritative in Agda. Do not create hoapa_checker until there are runtime-emitted traces that need per-trace validation.
 
-  Concretely, the session delivers:
+  What this buys: it proves the runtime can produce evidence in the contract language, rather than merely consume fixtures. It is the smallest honest bridge from codec layer toward
+  behavior.
 
-  1. hoapa_checker: Hoapa.Checker.well_formed?/1 over a decoded Run — a clause‑for‑clause port of Agda valid? (format recognition, set‑uniqueness incl. local lists, reference resolution, touches ⊆
-  conv ⊆ trace, backward‑by‑list‑position parents). Because valid? is decidable, this is a mechanical, testable mirror, not a reinterpretation.
-  2. The cross‑leg lock: a conformance test asserting well_formed?(fixture) matches the fixture's folder category for the whole corpus. Since the Agda Tests already pin Agda valid? to those same
-  categories, Elixir and Agda agree transitively through the corpus. (Optionally a make target that asserts both directly.)
-  3. First real end‑to‑end: a tiny programmatic Run builder (a synthetic 2‑actor/2‑event conversation), then build → encode → decode → well_formed? — the first trace not from a hand‑written
-  fixture, validated by the runtime's own checker.
+  What it avoids: duplicating Agda’s valid? in Elixir too early, opening OTP infrastructure before the data boundary is exercised, or letting runtime architecture outrun the formal
+  substrate.
 
-  That closes the loop the whole design was built around (emit → validate), gives the runtime a scalable checker (no Agda at runtime), and is the natural prerequisite for the OTP event log.
+  Success condition: a green runtime test that constructs a tiny valid run entirely in Elixir, serializes it through the existing contract codec, deserializes it, and verifies the
+  result is stable under the existing schema/codec boundary.
 
-  Scope guard (rising sea — don't overbuild)
+### Claude
 
-  Defer: OTP supervision / durable event log (hoapa_core), Phoenix, the at‑scale synthetic generator, and any content/provenance/session semantics (stay opaque strings). The emission in step 3 is
-  a hand‑built struct, not a running actor system — just enough to exercise the loop once.
+● Confirmed: hoapa_contract has the structs (Run/Trace/Event/Conversation) + a shape-only Codec (encode!/decode) + codec/manifest tests. No programmatic builder, no semantic checker.
+  That matches the documented gap.
 
-  The one discipline to get right
+  Next step in C (runtime) — compact assessment
 
-  A re‑implemented Elixir checker is a second source of meaning — exactly the drift risk we've been guarding against. The lock is: Agda stays authoritative; the Elixir checker is a corpus‑pinned 
-  mirror, and the durable rule becomes every new WellFormed clause in Agda must ship with (a) a mirrored Elixir clause and (b) corpus fixtures that exercise it, gated by CI. The decidable
-  predicate + the three‑category corpus is what makes the mirror faithful and the drift catchable. This rule is worth writing into the workflow prose (Codex) alongside recording loop‑1 as done.
+  Goal. First self-emitted trace, corpus-locked — the "emit" half of the emit→validate loop the whole design targets, using only the existing hoapa_contract app. This is the A-lane
+  echo of the B rung just landed (realizeFrame): B gave emitted evidence a formal meaning; C should now emit evidence.
 
-  Parallel note (formal, not implementation)
+  Do (three moves, all in hoapa_contract):
+  1. Programmatic builder — construct a Run/Trace from Elixir structs (not hand-JSON): a tiny 2-actor/2-event conversation with one backward-pointing causalParents edge — the same
+  shape as valid/tiny_trace.json.
+  2. Round-trip — struct → Codec.encode! → Codec.decode → assert structural equality (proves the builder is codec-consistent).
+  3. Corpus-lock — assert the encoded JSON matches the vendored priv/runtime_contract/fixtures/valid/tiny_trace.json, the fixture Agda already accepts as valid?. This ties the first
+  programmatic trace to an Agda-accepted example without re-implementing semantics, keeping Agda authoritative.
 
-  The highest‑credence next formal artifact remains the generic Realization (WellFormed RawRun → LocalFrame + renaming invariance) — the junction theorem proper, lifting TinyTrace's concrete
-  witness. That's conjecture‑side credence, a separate track from the implementation loop above; worth doing, but it isn't what advances the implementation.
+  Why this and not more. It's the smallest rising-sea-forced step: it produces the first trace that isn't a hand-written fixture and closes, at one point, the "the two legs agree
+  only via a shared hand-authored corpus" gap. It's also the prerequisite for a real OTP event log later.
 
-  If you want a one‑liner for the session goal: "give the runtime a faithful, corpus‑locked semantic checker and validate the first self‑emitted trace, end‑to‑end."
+  Scope guard (defer, not forced yet): no OTP supervision/event log, no Phoenix, no Pijul, no at-scale synthetic generator. The emission is a hand-built struct, not a running actor
+  system — just enough to turn the loop once.
 
-### Codex assessment
+  The one decision to flag for the runtime agent: the semantic checker — an Elixir well_formed? mirroring Agda's decidable valid? (i.e., hoapa_checker). Don't build it in this step.
+  It becomes forced the moment the runtime emits a trace it wants to judge rather than compare to a known fixture — and when it does, it must ship with the drift-guard discipline:
+  Agda valid? stays the single source of meaning; the Elixir mirror is corpus-pinned; every new WellFormed clause ships with a mirrored Elixir clause + fixtures, gated by CI.
+  Corpus-locking in move 3 is exactly what lets this step stay honest while deferring the mirror.
 
-  Next Session
-  The next implementation session should be a closure pass on loop 1, not a move into OTP or hoapa_checker yet.
-
-  Do this:
-
-  1. Implement traceFormat Option B:
-      - Relax schema.json from const to "type": "string".
-      - Update schema.md and codec moduledoc to say format recognition is semantic.
-      - Add fixtures/invalid-semantic/wrong_trace_format.json.
-      - Regenerate Agda terms.
-      - Add valid? wrongTraceFormat ≡ false in Tests/InvalidSemantic.agda.
-      - Re-export the runtime vendored contract.
-
-  2. Clean repo hygiene:
-      - Add ignores for runtime/_build/, runtime/deps/, .elixir_ls, and crash dumps.
-      - Remove generated build/crash artifacts from the working tree, not source artifacts.
-
-  3. Verify:
-      - make formal-test
-      - make runtime-test
-      - Then, once generated/vendored artifacts are committed, make contract-check and make contract-fresh.
-
-  Only after that is clean would I start the next real implementation wave: hoapa_core emitting a tiny actual trace accepted by the existing contract. hoapa_checker should come after there is a
-  runtime-emitted trace to check one-by-one.
+  One-liner to hand off: "Build one tiny Run programmatically from the contract structs, round-trip it through the codec, and lock it to the Agda-accepted tiny_trace fixture — no
+  OTP/Phoenix/Pijul, and no semantic checker until a trace needs judging rather than matching."

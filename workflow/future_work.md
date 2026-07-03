@@ -14,6 +14,8 @@ All three styles are honest about status. Punchlist items extend shipped materia
 
 For the seed-level commitments these entries extend, see `motivation.md`. For the propositional decomposition (T1–T_recursion) they realize, see `arc.md` and `targets.md`. The implementation track — a real protocol kernel, a real verification runtime, LLM-tooling integration — is a separate concern tracked canonically in `workflow/status_implementation.md`; this file keeps only cross-references and future-work implications.
 
+Current active summary, 2026-07-04: the point-generated R4 theorem is banked; runtime contract loop 1 is closed and green; the first generic runtime-to-substrate rung has landed in `RuntimeContract/Realization/BackwardRank.agda` and `RuntimeContract/Realization/CausalFromParents.agda`; the next runtime step is a programmatically emitted tiny valid run through `hoapa_contract`; the next B-lane return is per-conversation locality and `FrameHom`s into the global realized frame.
+
 ## Regarding fracture
 
 - flat-intro is unconditionally postulated — should be crisp-context-only. The codebase already flags this (Cohesion.agda comment, memory note). In our intended analytic interpretation it's
@@ -176,7 +178,7 @@ When resumed, event-dependent slots should live in a new module, likely `Concurr
 2. Tier 3 still has the generic full-site reflector interface in `FiniteSheafification.agda`, but the constructed route is now the point-generated/event-discrete supported site. `SupportedPointProduct.agda`, `SupportedPointification.agda`, `SupportedPointDescent.agda`, `PointifyIsSheaf.agda`, `PointSheafCategory.agda`, `PointSheafification.agda`, and `PointSheafAdjunction.agda` build the point-generated reflector and prove `a ⊣ ι`.
 3. Brick 4 has landed the W3-style point-generated R4 bridge wiring: `PointLinearNonlinearAdjunction.agda` consumes `PointSheafAdjunction.a⊣ι` and assembles `Lpoint ⊣ Rpoint` over point-sheaf categories. This remains scoped to the event-discrete supported site and remains relative to `lnl : LNLAdjunction` plus `vProd : HasFiniteProducts (StarAutonomous→Category V)`.
 4. Keep `SetFiniteSheafCategory` as the canonical cartesian endpoint for R4; use `SetSheafComparison` as the proof that this endpoint agrees with the Cubical library presentation at `SET`.
-5. Current near-term work after Brick 4: exposition, SET/Sessions or other instantiation checks, and `vProd` for the intended V. Deferred beyond that are normalized-pullback / stability for a full Cubical `Coverage` presentation of the point-generated topology, the full actor-causal finite sheafification reflector, event-dependent session slots, and the A-side modal-context category with cross-site `Allow ⊣ Require`.
+5. Current near-term status after Brick 4: the point-generated R4 theorem, Chu coefficient witness, and Sessions-to-Chu realization are banked. Optional exposition or instantiation checks remain useful, but the active bandwidth has moved to the runtime-to-substrate junction and runtime emission. Deferred beyond that are normalized-pullback / stability for a full Cubical `Coverage` presentation of the point-generated topology, the full actor-causal finite sheafification reflector, event-dependent session slots, and the A-side modal-context category with cross-site `Allow ⊣ Require`.
 
 ## Chu construction
 
@@ -260,7 +262,7 @@ What lands after this round. The synthetic side of the de Rham arc is complete a
 
 ## Concurrency-side layers of complexity (planned)
 
-The Concurrency side, at the time of writing, has shipped the actor-causal site, pullback overlaps, the cyclic operad `O_1` and its `*`-autonomous algebra interface, the Sessions instance, the Hybrid v1 presheaf/restriction adapter, finite-site event-product descent with constant-slot Sessions and Set instances, the concrete tiny finite-cover validation, finite sheaf categories at both `StarAutonomous→Category V` and `SET`, the finite Coverage/SET library sheaf comparison, and the R4 Benton/LNL finite-sheaf bridge through conditional Tier 4: presheaf-level change of base, presheaf-level adjunction, right-adjoint sheaf preservation, a finite-sheafification reflector interface, and the sheaf-level adjunction conditional on a V-side reflector. The point-generated reflector route has also landed over the supported subsite: event-supported frames, incident point frames, event-supported point overlaps, the canonical point cover, `IsPointSheaf P ↔ PointLocal P`, abstract point products, pointification as a point sheaf, the point-sheaf category, the reflector functor, and the adjunction `a ⊣ ι`. `PointLinearNonlinearAdjunction.agda` now consumes that reflector and assembles the point-generated sheaf-level Benton/LNL bridge `Lpoint ⊣ Rpoint`, relative to `lnl` and `vProd`. The live frontier is exposition and optional instantiation of the point-generated R4 theorem. Several additional layers are committed in design but not yet in code. This section is the catalogue of those layers, with for each: what it does for the protocol's use in the human world (possibly with LLMs as participants), what mathematical structure it commits to (or, where the choice is open, what the candidates are), and what currently shipped scaffolds it presupposes.
+The Concurrency side, at the time of writing, has shipped the actor-causal site, pullback overlaps, the cyclic operad `O_1` and its `*`-autonomous algebra interface, the Sessions instance, the Hybrid v1 presheaf/restriction adapter, finite-site event-product descent with constant-slot Sessions and Set instances, the concrete tiny finite-cover validation, finite sheaf categories at both `StarAutonomous→Category V` and `SET`, the finite Coverage/SET library sheaf comparison, and the R4 Benton/LNL finite-sheaf bridge through conditional Tier 4: presheaf-level change of base, presheaf-level adjunction, right-adjoint sheaf preservation, a finite-sheafification reflector interface, and the sheaf-level adjunction conditional on a V-side reflector. The point-generated reflector route has also landed over the supported subsite: event-supported frames, incident point frames, event-supported point overlaps, the canonical point cover, `IsPointSheaf P ↔ PointLocal P`, abstract point products, pointification as a point sheaf, the point-sheaf category, the reflector functor, and the adjunction `a ⊣ ι`. `PointLinearNonlinearAdjunction.agda` now consumes that reflector and assembles the point-generated sheaf-level Benton/LNL bridge `Lpoint ⊣ Rpoint`, relative to `lnl` and `vProd`. The point-generated R4 theorem is now banked rather than the live frontier. The live A/B frontier is the runtime-to-substrate junction plus the first runtime-emitted trace: per-conversation realization on the formal side, and a tiny programmatic `hoapa_contract` round trip on the runtime side. Several additional layers are committed in design but not yet in code. This section is the catalogue of those layers, with for each: what it does for the protocol's use in the human world (possibly with LLMs as participants), what mathematical structure it commits to (or, where the choice is open, what the candidates are), and what currently shipped scaffolds it presupposes.
 
 A unifying disciplinary commitment behind all the layers below: **praxis is part of the theory**. The protocol's use by a community of equal-standing participants is constitutive of the framework, not an applied addendum to an underlying mathematics. This is what distinguishes the framework's combination from each of the historical precedents catalogued in `related_structures.md` — at least one of (mathematical depth, theory-of-community, runnable protocol, self-validation through use, recursive co-evolution structure) was missing in each of them.
 
@@ -293,15 +295,14 @@ These exclusions are not deficiencies. They are the right scope for a workflow d
 
 The durable implementation-track plan lives in `workflow/status_implementation.md`. That file replaces the old top-level `workflow/elixir.md` transcript, which has been archived under `workflow/deep_context/`.
 
-The first rising-sea gate has been crossed narrowly. The project did not open a broad `Concurrency/Protocol/` layer; it opened `/formal/RuntimeContract/Trace.agda` plus the smallest serialization/runtime boundary that the existing substrate forced. The v0 contract now has a formal predicate, a fixture corpus, generated Agda raw terms, a concrete tiny-trace realization witness, a vendored runtime artifact, and an Elixir `hoapa_contract` codec suite.
+The first rising-sea gate has been crossed narrowly. The project did not open a broad `Concurrency/Protocol/` layer; it opened `/formal/RuntimeContract/Trace.agda` plus the smallest serialization/runtime boundary that the existing substrate forced. Loop 1 is closed and green: the v0 contract now has a formal predicate, a fixture corpus, generated Agda raw terms, a vendored runtime artifact, and an Elixir `hoapa_contract` codec suite. The first generic runtime-to-substrate rung has also landed: `BackwardRank.agda` derives the rank decrease from `backwardOK`, and `CausalFromParents.agda` derives a causal order and one global `LocalFrame` from a well-formed run.
 
-This means the contract/export/runtime-codec harness is no longer future work. Future implementation work now begins after loop-1 cleanup:
+This means the contract/export/runtime-codec harness is no longer future work. Future implementation work now begins with runtime emission, not more contract cleanup:
 
-- align trace-format validation across schema, codec, and Agda by treating unsupported v0 formats as semantic-invalid fixtures;
-- keep generated and vendored contract artifacts clean under the `Makefile` drift gates;
-- commit the generated/vendored artifacts so clean regeneration/export can pass;
-- add `hoapa_checker` only when there is a real runtime-emitted trace to validate one-by-one;
-- add the minimal OTP event log in `hoapa_core`, then the synthetic generator, then `hoapa_store` and its Pijul port boundary, and only then Phoenix/`hoapa_web` as an edge adapter.
+- programmatically build a tiny valid run through existing `hoapa_contract` structs/codecs and round-trip it through JSON;
+- keep validation corpus-locked to Agda, with `hoapa_checker` deferred until there is a real runtime-emitted trace to validate one-by-one;
+- add the minimal OTP event log in `hoapa_core` only after the tiny programmatic emission path is green;
+- then add the synthetic generator, then `hoapa_store` and its Pijul port boundary, and only then Phoenix/`hoapa_web` as an edge adapter.
 
 The implementation still should not wait for the full cross-site `Allow ⊣ Require`, `MO_1`, Reflexive Π, or Bulk Λ layers. It also should not claim verification beyond the finite trace/run predicates Agda actually states. Elixir owns runtime behavior; Agda owns the specification of well-formed traces and boundary laws; the top-level checker boundary currently orchestrates formal and runtime tests, with compact certificates and richer audit/provenance semantics deferred.
 
@@ -699,6 +700,8 @@ The substrate already carries the syntactic floor of the claim:
 - `Concurrency/Sites/ActorBase.agda` gives an opaque, unityped actor carrier with no constructors, no origin tags, no roles, no message syntax, no fresh-name operation, and no decidable equality in the kernel.
 - `RuntimeContract/Trace.agda` uses dense natural-number coordinates at the serializable boundary, while deliberately excluding person identity, network identity, runtime handles, semantic payload bodies, and identity-refining fields.
 - `RuntimeContract/Realization/TinyTrace.agda` gives one concrete trace-to-frame witness, explicitly labelled as a witness rather than the generic bridge.
+- `RuntimeContract/Realization/BackwardRank.agda` proves that a causal-parent edge strictly decreases first-occurrence rank under `backwardOK`; global event-ID distinctness is not load-bearing for that order lemma.
+- `RuntimeContract/Realization/CausalFromParents.agda` gives the first generic bridge checkpoint: any well-formed raw run determines a causal order and one global actor-causal `LocalFrame`.
 - `Hybrid/ChangeOfBase.agda` contains the structural half of no-leak as frame-noninterference under change of base.
 
 This is not yet the theorem. It is the reason the theorem is now statable without inventing new primitives.
@@ -715,15 +718,15 @@ with the converse following from the inverse renaming when `rho` is a bijection 
 
 Do not silently broaden this to all identifiers. Event IDs, conversation IDs, content tags, provenance tokens, run IDs, and protocol IDs have their own alpha-equivalence or stability questions. The humanness/no-leak theorem concerns the actor-identity channel.
 
-**Tier B: realized-object actor-renaming invariance.** Build the generic realization bridge:
+**Tier B: realized-object actor-renaming invariance.** The first generic realization checkpoint has landed:
 
 ```text
-WellFormed r -> RealizedFrame r
+WellFormed r -> global LocalFrame r
 ```
 
-where the realized object is a finite actor-causal `LocalFrame` or a packaged finite-frame object over the existing substrate. Then prove that actor relabeling induces an isomorphism/equivalence of realized frames. This is the substantive reading of "actor identity is gauge": relabeling changes the presentation, not the mathematical object seen by the trusted protocol.
+`CausalFromParents.agda` now derives the causal order from backward parent edges and packages one global actor-causal frame over realized actor/event carriers. The remaining Tier B locality work is narrower and more structural: realize each raw conversation as a local frame, construct `FrameHom`s into the global frame, and prove preservation plus reflection of the derived causal order. After that, prove that actor relabeling induces an isomorphism/equivalence of the realized frames. This is the substantive reading of "actor identity is gauge": relabeling changes the presentation, not the mathematical object seen by the trusted protocol.
 
-The hard rung is generic causal order from the trace: derive the reflexive-transitive closure of backward parent edges, prove antisymmetry from list-position acyclicity, and package `<=-isProp` and the event/actor carriers cleanly. This is real proof work, not merely a string of `refl` lemmas.
+The banked proof fact is that the order/antisymmetry rung uses the `backwardOK` scan, not global event-ID distinctness. Distinct event IDs still matter for faithful event-record realization.
 
 **Tier C: univalent equality capstone.** Once Tier B has a well-packaged structure and equivalence notion, optionally upgrade frame isomorphism/equivalence to equality using SIP/univalence for the realized structure. This is mathematically attractive, but it should not block the more useful Tier B theorem.
 
@@ -756,25 +759,26 @@ If the ladder survives contact with the next B-lane work, possible file names in
 
 ```text
 formal/RuntimeContract/Renaming.agda
-formal/RuntimeContract/Realization.agda
+formal/RuntimeContract/Realization/ConversationFrames.agda
+formal/RuntimeContract/Realization/FrameHoms.agda
 formal/RuntimeContract/NoLeak.agda
 formal/RuntimeContract/Audit/NoLeak.agda
 ```
 
-These names are illustrative only. Tier A may fit in a small sibling of `Trace.agda`; Tier B may earn `Realization.agda`; audit-level no-leak should wait until audit/provenance semantics stop being opaque tokens.
+These names are illustrative only. Tier A may fit in a small sibling of `Trace.agda`; the generic order/global-frame checkpoint already lives in `RuntimeContract/Realization/BackwardRank.agda` and `CausalFromParents.agda`; the next Tier B files should be opened only if per-conversation locality stops fitting cleanly there. Audit-level no-leak should wait until audit/provenance semantics stop being opaque tokens.
 
 ### Decision gates
 
-1. Does loop-1 cleanup finish first, so contract gates are quiet before Tier A starts?
+1. Loop-1 cleanup is finished and the first global realization checkpoint has landed. Does the next B-lane proof target per-conversation locality first, or raw actor-renaming invariance first?
 2. What exact finite actor-renaming object is used: total permutation of a namespace, bijection between actor lists, or structure-preserving map with inverse?
 3. Is Tier A stated as preservation, equivalence, or a universal quotient property?
 4. What is the first trusted observation map, if any, beyond `valid?` itself?
-5. Does generic realization target `LocalFrame`, `FiniteFrame`, or a new packaged `RealizedFrame` record?
+5. Does the remaining realization package target conversation `LocalFrame`s plus `FrameHom`s first, or introduce a new packaged `RealizedFrame` record?
 6. Is the Tier B equivalence an isomorphism of frames first, with univalent equality deferred?
 7. Which provenance identifiers survive no-leak, and which are actor-identity channels to erase?
 8. What falsifying fixture would demonstrate a leak: content/provenance/ranking behavior that changes under actor relabeling?
 
-The recommended order is: loop-1 cleanup, Tier A actor-renaming invariance, generic realization, Tier B realized-frame renaming invariance, then only later provenance/audit no-leak and any optimality formulation.
+The recommended order from here is: per-conversation locality and `FrameHom`s, Tier A actor-renaming invariance if it remains cheap and useful, Tier B realized-frame renaming invariance, and only later provenance/audit no-leak or any optimality formulation.
 
 
 ## Candidate under evaluation: Reality and the protocol's constitutive exterior

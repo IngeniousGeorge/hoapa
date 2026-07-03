@@ -11,9 +11,13 @@ Our working methodology is as follows:
     A. Pure conjecture chasing (Agda)
     B. Runtime-to-substrate junction (Agda that looks at Elixir/Rust)
     C. Pure implementation (Elixir, Rust)
-3. When we reach a consensus—and very importantly, in all cases, only after we have discussed and planned the next move—do we write to file. Claude is in charge of writing the code and Codex is in charge of editing the workflow files (only at the end of the session, after the refactor phase)
+3. When we reach a consensus—and very importantly, in all cases, only after we have discussed and planned the next move—do we write to file. Before any edits we create and name a new branch in git. Claude is in charge of git and writing the code and Codex is in charge of editing the workflow files (only at the end of the session, after the refactor phase)
 4. Refactoring phase, to make sure we leave a system in a clean state behind, and that we have respected all the principles we set for ourselves.
+5. Codex updates the workflow files and Claude commits (no push)
 In this session _
+
+In general:
+- Don't call things by their notation names, unless it has been firmly reestablished recently in the conversation. (Ex: don't evoke "R4" out of the blue, but introduce it as "Benton/LNL interface (R4)" or something meaningful, with a reference to the short version for future reference.)
 
 ### Thorough
 
@@ -31,6 +35,10 @@ In this session _
 ## Discussion
 
 This is the other agent's assessment, please review and come back to me with an updated assessment which details where there is convergence and where these is tension. In the latter case, please expose the situation: what is at stake ; what are our options ; what each option buys and costs us.
+
+## Coding
+
+Please go ahead and write the code. Don't hesitate to stop and start a new discussion if you meet any roadblock. Also, keep in mind to always use the principles of clean, modular code.
 
 ## Refactoring
 

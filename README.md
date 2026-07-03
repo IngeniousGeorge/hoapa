@@ -1,4 +1,4 @@
-# Hoapa protocols as the *pure form* of communication systems
+# Hoapa collaboration protocols as the *pure form* of communication systems
 
 0.0 Preliminary insight  
 0.1 Roadmap  

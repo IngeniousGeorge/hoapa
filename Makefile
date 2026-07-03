@@ -43,6 +43,8 @@ contract-fresh: contract-export
 formal-test:
 	@cd formal && agda RuntimeContract/Tests/All.agda
 	@cd formal && agda RuntimeContract/Realization/TinyTrace.agda
+	@cd formal && agda RuntimeContract/Realization/BackwardRank.agda
+	@cd formal && agda RuntimeContract/Realization/CausalFromParents.agda
 	@echo "formal-test OK"
 
 # Runtime codec + conformance tests (self-contained; reads only priv/).
