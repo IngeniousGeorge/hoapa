@@ -1,40 +1,34 @@
 {-# OPTIONS --cubical --guardedness #-}
 
--- The supported-subsite linear–nonlinear adapter — the point-route
--- parallel of `LinearNonlinearSheafAdapter.agda`.
+-- Lifting the linear/non-linear adjunction to presheaves, and the right
+-- adjoint's preservation of event-local sheaves.
 --
--- This file feeds the value-level Benton/LNL adjunction (`F ⊣ G : Cart ⇄
--- V`) through the *supported* change-of-base engine
--- (`SupportedChangeOfBase.changeOfBaseSupported`) and provides the two
--- pieces the point-generated bridge (`PointLinearNonlinearAdjunction.agda`)
--- needs that are not already in Brick 3:
+-- A Benton linear/non-linear adjunction  F ⊣ G : Cart ⇄ V  between
+-- coefficient categories lifts, by postcomposition (change of base), to
+-- the presheaf categories over the actor-causal site. This file assembles
+-- that lift together with the one preservation property the sheaf-level
+-- adjunction needs:
 --
---   * `supportedLiftF` / `supportedLiftG` — the presheaf-level lifts over
---     the supported subsite (Tier 1, change of base);
---   * `supportedLiftF⊣supportedLiftG` — the supported-presheaf-level
---     adjunction (Tier 1.5), a literal port of
---     `LinearNonlinearSheafAdapter.liftF⊣liftG`;
---   * `G-preserves-IsPointSheaf` — the new Tier-2 lemma: the right adjoint
---     `G` sends point sheaves to point sheaves. The proof is the
---     `Ad.G-preserves-sheaf` transport across the adjunction's natural
---     bijection, but over the *point* descent records
---     (`PointSeparated` / `PointAmalgamation` / `PointMatchingFamily`),
---     consuming the public `IsPointSheaf` interface rather than the private
---     comparison cone;
---   * `G-preserves-point-local` — its `PointLocal`-form, derived by
---     bracketing with the `point-sheaf⟺local` biconditional, which is the
---     shape `MapFullSubcategory` consumes in the assembled bridge.
+--   * `supportedLiftF` / `supportedLiftG` — the pointwise lifts of `F`
+--     and `G` to presheaves;
+--   * `supportedLiftF⊣supportedLiftG` — their adjunction at the presheaf
+--     level, transposed frame by frame from `F ⊣ G`;
+--   * `G-preserves-IsPointSheaf` — the right adjoint sends event-local
+--     sheaves to event-local sheaves. Descent along the single-event
+--     cover is transported across the adjunction bijection
+--     `Cart(X , G Y) ≅ V(F X , Y)`, exactly as in the abstract;
+--   * `G-preserves-point-local` — the same fact in the `PointLocal` form
+--     that the sheaf-level adjunction consumes.
 --
--- The bridge over the linear side needs `V` to carry finite products
--- (`vProd`), since the point reflector and `PointLocal` are stated via the
--- comparison cone into the finite point product in the value category.
--- That is the linear-side counterpart of `cartProd`; it is a bare module
--- parameter here, NOT a field of `LNLAdjunction` (the value-level Benton
--- structure does not need it).
+-- The linear side is asked to carry finite products (`vProd`): the
+-- event-local sheaf condition is phrased through the finite product of a
+-- presheaf's single-event values, so those products are needed in the
+-- value category too. This is the linear counterpart of `cartProd`, and a
+-- separate hypothesis — not part of the Benton data `LNLAdjunction`.
 --
--- No postulates. Scope guardrails as in the full-site adapter: generic
--- over an abstract cartesian `Cart` and `V : StarAutonomous`; endpoints
--- are the project's own supported / point categories.
+-- No postulates. Generic over an abstract cartesian category `Cart` and a
+-- *-autonomous `V`; the endpoints are the presheaf and event-local sheaf
+-- categories of this development.
 
 module Concurrency.Hybrid.SupportedLinearNonlinearSheafAdapter where
 
@@ -76,7 +70,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
   open NaturalBijection._⊣_ F⊣G
 
   --------------------------------------------------------------------
-  -- Tier 1 (PROVED): supported presheaf-level change-of-base lifts.
+  -- Presheaf-level lifts of F and G by change of base.
   --------------------------------------------------------------------
 
   -- Right adjoint `G : V → Cart` lifts to supported presheaves.
@@ -90,17 +84,20 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
   supportedLiftF = changeOfBaseSupported AB Cart Vcat F
 
   --------------------------------------------------------------------
-  -- Tier 2 (PROVED): the right adjoint G preserves point sheaves.
+  -- The right adjoint G preserves event-local sheaves.
   --
-  -- `Ad.G-preserves-sheaf` transported to the point descent records.
-  -- Separatedness: two Cart-sections `x y` into `G∘P` pull back to `x ♯`,
-  -- `y ♯` at probe `F X`; `adjNatInD'` turns the per-point restriction
-  -- hypothesis into the V-side hypothesis; `P`'s point-separatedness gives
-  -- `x ♯ ≡ y ♯`; `isoInvInjective` gives `x ≡ y`. Amalgamation: a
-  -- Cart-point-matching-family pulls back (via `_♯` + `adjNatInD'` for
-  -- overlap compatibility) to a V-point-matching-family at `F X`; `P`
-  -- amalgamates it; `_♭` pushes the section back, and `adjNatInD` + the
-  -- `♭`/`♯` section law recover the per-point equations.
+  -- Descent along the single-event cover is transported across the
+  -- adjunction bijection  Cart(X , G Y) ≅ V(F X , Y)  (its two directions
+  -- written `_♯` and `_♭`):
+  --   * separatedness — two Cart-sections `x y` into `G∘P` transpose to
+  --     `x ♯`, `y ♯` at the probe `F X`; `adjNatInD'` turns the
+  --     single-event restriction hypothesis into the V-side one; `P`'s
+  --     separatedness gives `x ♯ ≡ y ♯`; `isoInvInjective` gives `x ≡ y`;
+  --   * amalgamation — a Cart matching family transposes (via `_♯`, with
+  --     `adjNatInD'` for compatibility) to a V matching family at `F X`;
+  --     `P` amalgamates it; `_♭` transposes the glued section back, and
+  --     `adjNatInD` with the `♭`/`♯` laws recovers the single-event
+  --     equations.
   --------------------------------------------------------------------
 
   G-preserves-IsPointSheaf :
@@ -128,10 +125,10 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
                     ∙ cong _♭ (snd vs i)
                     ∙ Iso.sec adjIso (PointMatchingFamily.part m i)) } }
 
-  -- The `PointLocal`-form, which is what `MapFullSubcategory` consumes in
-  -- the assembled bridge. `PointLocal → IsPointSheaf →
-  -- G-preserves-IsPointSheaf → PointLocal`, via the `point-sheaf⟺local`
-  -- biconditional on each side.
+  -- The same fact in `PointLocal` form — the shape the sheaf-level
+  -- adjunction consumes (through `MapFullSubcategory`). It brackets
+  -- `G-preserves-IsPointSheaf` with the `point-sheaf⟺local` biconditional
+  -- on each side.
   G-preserves-point-local :
       (P : SupportedPresheaf AB Vcat)
     → PointLocal AB Vcat vProd P
@@ -142,13 +139,13 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
           (snd (point-sheaf⟺local AB Vcat vProd P) pl))
 
   --------------------------------------------------------------------
-  -- Tier 1.5 (PROVED): the supported presheaf-level adjunction
-  -- `supportedLiftF ⊣ supportedLiftG`.
+  -- The adjunction at the presheaf level:
+  --   `supportedLiftF ⊣ supportedLiftG`.
   --
-  -- Literal port of `Ad.liftF⊣liftG`: pointwise transpose by `adjIso`,
-  -- naturality by `adjNatInC'`/`adjNatInD` (forward) and
-  -- `adjNatInC`/`adjNatInD'` (back). Purely presheaf-level — independent
-  -- of point-locality.
+  -- Frame-by-frame transpose by the coefficient adjunction's bijection
+  -- `adjIso`; naturality from `adjNatInC'`/`adjNatInD` (forward) and
+  -- `adjNatInC`/`adjNatInD'` (back). Purely presheaf-level — it does not
+  -- mention the sheaf condition.
   --------------------------------------------------------------------
 
   supportedLiftF⊣supportedLiftG : supportedLiftF ⊣ supportedLiftG

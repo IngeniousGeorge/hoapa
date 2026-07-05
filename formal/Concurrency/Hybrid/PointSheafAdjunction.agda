@@ -1,32 +1,36 @@
 {-# OPTIONS --cubical --guardedness #-}
 
--- Brick 3b: the point-generated reflector adjunction `a ⊣ ι`.
+-- The sheafification reflector adjunction  a ⊣ ι  for the single-event
+-- (point) topology.
 --
--- The complete `NaturalBijection._⊣_` between the point-product reflector
--- `a` (`PointSheafification`) and the inclusion `ι` of point sheaves into
--- supported presheaves (`PointSheafCategory`). Full-subcategory homs are
--- parent homs, so the hom-set bijection is between ordinary presheaf
--- morphisms:
+-- Event-local sheaves form a reflective subcategory of presheaves on the
+-- actor-causal site. This file constructs the adjunction that witnesses
+-- it: the sheafification functor `a` (`PointSheafification`), which sends
+-- a presheaf to the product of its single-event values, is left adjoint
+-- to the inclusion `ι` (`PointSheafCategory`) of event-local sheaves into
+-- presheaves. This is the reflector  a ⊣ ι  on which the abstract builds
+-- the linear/non-linear bridge.
 --
---   adjIso : Iso (PtSh [ a P , S ]) (SPsh [ P , ι S ])
---          ≅ Iso (PshHom (pf P) S) (PshHom P S).
+-- Because event-local sheaves form a full subcategory, its homs are just
+-- presheaf morphisms, so the adjunction bijection is
 --
--- The pieces:
---   * unit `η_P SF = ⟨ restrict P SF (pt e) (point-embed e) ⟩_e`;
---   * forward transpose `g ↦ g ∘ η_P`;
---   * backward transpose `f ↦ f̄` (module `Bwd`): amalgamate the point
---     family `e ↦ f(pt_e) ∘ pointProj_P SF e` through `S`'s *public*
---     `IsPointSheaf` interface (`local→sheaf` + `point-family-matching`),
---     never the private `cone`;
---   * the two roundtrips, each by `S`-separatedness;
---   * `adjNatInD` = associativity of presheaf composition (per frame);
---     `adjNatInC` = naturality of the backward transpose by `S`-separatedness;
---     and the assembled `a⊣ι : a ⊣ ι`.
+--   adjIso : Hom(a P , S) ≅ Hom(P , ι S).
 --
--- Everything stays behind the abstract point-product API: nothing here
--- (unit, transposes, roundtrips, naturality) hits the frame-metavariable
--- elaboration wall that the abstract `pointProduct` resolved for the
--- functor.
+-- The construction:
+--   * unit `η_P` — at a frame `SF`, the tuple of restrictions from `SF`
+--     to each of its single-event subframes;
+--   * forward transpose  `g ↦ g ∘ η_P`;
+--   * backward transpose  `f ↦ f̄`  (module `Bwd`) — amalgamate the
+--     single-event family  `e ↦ f(ptₑ) ∘ (projection to e)`  through the
+--     event-local sheaf property of `S`, using only its public interface;
+--   * the two round-trips, each from `S` being separated;
+--   * naturality: `adjNatInD` from associativity of composition,
+--     `adjNatInC` from separatedness of `S`.
+--
+-- The finite products are used through an abstract interface: as the
+-- abstract notes, keeping them abstract stops the proof assistant from
+-- unfolding them into enumeration-dependent normal forms during
+-- unification.
 
 module Concurrency.Hybrid.PointSheafAdjunction where
 
@@ -69,17 +73,17 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
   open ApplicativeView C
 
   private
-    pf     = pointify AB C FP
-    ppnat  = point-proj-nat AB C FP
-    pProj  = pointProj AB C FP
-    pTup   = pointTuple AB C FP
-    pβ     = pointβ AB C FP
-    pExt   = pointExt AB C FP
-    sl     = slotOf AB C FP
-    ptz    = pt₀ AB C FP
-    unwrap = point-unwrap AB C FP
-    unit   = point-unit AB C FP
-    uwmono = point-unwrap-mono AB C FP
+    sheafify = pointify AB C FP
+    ppnat    = point-proj-nat AB C FP
+    pProj    = pointProj AB C FP
+    pTup     = pointTuple AB C FP
+    pβ       = pointβ AB C FP
+    pExt     = pointExt AB C FP
+    sl       = slotOf AB C FP
+    ptz      = pt₀ AB C FP
+    unwrap   = point-unwrap AB C FP
+    unit     = point-unit AB C FP
+    uwmono   = point-unwrap-mono AB C FP
 
     uf : SupportedFiniteFrame AB → LocalFrame AB ℓ-zero ℓA
     uf = sfFrame AB
@@ -91,16 +95,16 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
   -- The unit family and its naturality.
   ----------------------------------------------------------------------
 
-  ηfam : (P : SupportedPresheaf AB C) → NatFam AB C P (pf P)
+  ηfam : (P : SupportedPresheaf AB C) → NatFam AB C P (sheafify P)
   ηfam P SF =
     pTup SF (sl P SF) {X = SupportedPresheaf.value P SF}
       (λ e → SupportedPresheaf.restrict P SF (ptz SF e) (point-embed AB (uf SF) e))
 
-  ηnat : (P : SupportedPresheaf AB C) → isNat AB C P (pf P) (ηfam P)
+  ηnat : (P : SupportedPresheaf AB C) → isNat AB C P (sheafify P) (ηfam P)
   ηnat P {SF} {SG} φ =
     pExt SG (sl P SG) {X = SupportedPresheaf.value P SF}
       (ηfam P SG ∘ SupportedPresheaf.restrict P SF SG φ)
-      (SupportedPresheaf.restrict (pf P) SF SG φ ∘ ηfam P SF)
+      (SupportedPresheaf.restrict (sheafify P) SF SG φ ∘ ηfam P SF)
       per
     where
       rr = SupportedPresheaf.restrict P
@@ -108,7 +112,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
 
       per : (e : ev SG)
           → pProj SG (sl P SG) e ∘ (ηfam P SG ∘ SupportedPresheaf.restrict P SF SG φ)
-            ≡ pProj SG (sl P SG) e ∘ (SupportedPresheaf.restrict (pf P) SF SG φ ∘ ηfam P SF)
+            ≡ pProj SG (sl P SG) e ∘ (SupportedPresheaf.restrict (sheafify P) SF SG φ ∘ ηfam P SF)
       per e =
           sym (∘-assoc (pProj SG (sl P SG) e) (ηfam P SG)
                        (SupportedPresheaf.restrict P SF SG φ))
@@ -128,12 +132,12 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
         ∙ sym (∘-assoc (rr (ptz SF φe) (ptz SG e) ph) (pProj SF (sl P SF) φe) (ηfam P SF))
         ∙ cong (_∘ ηfam P SF) (sym (ppnat P SF SG φ e))
         ∙ ∘-assoc (pProj SG (sl P SG) e)
-                  (SupportedPresheaf.restrict (pf P) SF SG φ) (ηfam P SF)
+                  (SupportedPresheaf.restrict (sheafify P) SF SG φ) (ηfam P SF)
         where
           φe = FrameHom.event-map φ e
           ph = point-hom AB (uf SG) (uf SF) φ e
 
-  η : (P : SupportedPresheaf AB C) → PshHom AB C P (pf P)
+  η : (P : SupportedPresheaf AB C) → PshHom AB C P (sheafify P)
   η P = ηfam P , ηnat P
 
   ----------------------------------------------------------------------
@@ -156,27 +160,27 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
     rrP    = SupportedPresheaf.restrict P
 
     partf : (SF : SupportedFiniteFrame AB) (e : Idx AB C SF)
-          → Hom (SupportedPresheaf.value (pf P) SF) (SupportedPresheaf.value Sp (Pat AB C SF e))
+          → Hom (SupportedPresheaf.value (sheafify P) SF) (SupportedPresheaf.value Sp (Pat AB C SF e))
     partf SF e = ffam (ptz SF e) ∘ pProj SF (sl P SF) e
 
     amal : (SF : SupportedFiniteFrame AB)
-         → Σ[ s ∈ Hom (SupportedPresheaf.value (pf P) SF) (SupportedPresheaf.value Sp SF) ]
+         → Σ[ s ∈ Hom (SupportedPresheaf.value (sheafify P) SF) (SupportedPresheaf.value Sp SF) ]
              ((i : Idx AB C SF) → rπS SF i ∘ s ≡ partf SF i)
     amal SF = PointAmalgamation.amalgamate amalgS SF
                 (point-family-matching AB C Sp sepS SF (partf SF))
 
-    bfam : NatFam AB C (pf P) Sp
+    bfam : NatFam AB C (sheafify P) Sp
     bfam SF = fst (amal SF)
 
     bprop : (SF : SupportedFiniteFrame AB) (i : Idx AB C SF)
           → rπS SF i ∘ bfam SF ≡ partf SF i
     bprop SF = snd (amal SF)
 
-    bnat : isNat AB C (pf P) Sp bfam
+    bnat : isNat AB C (sheafify P) Sp bfam
     bnat {SF} {SG} φ =
       PointSeparated.cover-jointly-monic sepS SG (bfam SG ∘ rP) (rS ∘ bfam SF) hyp
       where
-        rP = SupportedPresheaf.restrict (pf P) SF SG φ
+        rP = SupportedPresheaf.restrict (sheafify P) SF SG φ
         rS = SupportedPresheaf.restrict Sp SF SG φ
 
         hyp : (e : Idx AB C SG) → rπS SG e ∘ (bfam SG ∘ rP) ≡ rπS SG e ∘ (rS ∘ bfam SF)
@@ -187,7 +191,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
             emb-SG = point-embed AB (uf SG) e
             emb-SF = point-embed AB (uf SF) φe
 
-            M : Hom (SupportedPresheaf.value (pf P) SF) (SupportedPresheaf.value Sp (ptz SG e))
+            M : Hom (SupportedPresheaf.value (sheafify P) SF) (SupportedPresheaf.value Sp (ptz SG e))
             M = rrS (ptz SF φe) (ptz SG e) ph ∘ (ffam (ptz SF φe) ∘ pProj SF (sl P SF) φe)
 
             lhsM : rπS SG e ∘ (bfam SG ∘ rP) ≡ M
@@ -216,14 +220,15 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
               ∙ ∘-assoc (rrS (ptz SF φe) (ptz SG e) ph) (rπS SF φe) (bfam SF)
               ∙ cong (rrS (ptz SF φe) (ptz SG e) ph ∘_) (bprop SF φe)
 
-    bwd : PshHom AB C (pf P) Sp
+    bwd : PshHom AB C (sheafify P) Sp
     bwd = bfam , bnat
 
   ----------------------------------------------------------------------
-  -- Two coherences of the unit at a point (needed by the left roundtrip).
+  -- Two coherences of the unit at a single-event subframe (needed for the
+  -- left round-trip).
   ----------------------------------------------------------------------
 
-  -- Unwrapping the unit at a point is the identity (point-of-point collapse).
+  -- The unit at a single-event subframe unwraps to the identity.
   unwrap∘η≡id : (P : SupportedPresheaf AB C) (SF : SupportedFiniteFrame AB) (e : ev SF)
               → unwrap P SF e ∘ ηfam P (ptz SF e) ≡ id
   unwrap∘η≡id P SF e =
@@ -237,20 +242,20 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
               (funExt (λ u → isPropUnit* tt* u)))
     ∙ SupportedPresheaf.restrict-id P (ptz SF e)
 
-  -- The unit at a point composed with the point projection is the
-  -- restriction to that point.
+  -- The unit composed with the projection to a single event is the
+  -- restriction to that single-event subframe.
   η-pProj : (P : SupportedPresheaf AB C) (SF : SupportedFiniteFrame AB) (e : ev SF)
           → ηfam P (ptz SF e) ∘ pProj SF (sl P SF) e
-            ≡ SupportedPresheaf.restrict (pf P) SF (ptz SF e) (point-embed AB (uf SF) e)
+            ≡ SupportedPresheaf.restrict (sheafify P) SF (ptz SF e) (point-embed AB (uf SF) e)
   η-pProj P SF e =
     uwmono P SF e
       (ηfam P (ptz SF e) ∘ pProj SF (sl P SF) e)
-      (SupportedPresheaf.restrict (pf P) SF (ptz SF e) (point-embed AB (uf SF) e))
+      (SupportedPresheaf.restrict (sheafify P) SF (ptz SF e) (point-embed AB (uf SF) e))
       h
     where
       h : unwrap P SF e ∘ (ηfam P (ptz SF e) ∘ pProj SF (sl P SF) e)
         ≡ unwrap P SF e
-            ∘ SupportedPresheaf.restrict (pf P) SF (ptz SF e) (point-embed AB (uf SF) e)
+            ∘ SupportedPresheaf.restrict (sheafify P) SF (ptz SF e) (point-embed AB (uf SF) e)
       h =
           sym (∘-assoc (unwrap P SF e) (ηfam P (ptz SF e)) (pProj SF (sl P SF) e))
         ∙ cong (_∘ pProj SF (sl P SF) e) (unwrap∘η≡id P SF e)
@@ -262,13 +267,13 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
   ----------------------------------------------------------------------
 
   adjIso : (P : SupportedPresheaf AB C) (S : Category.ob (PointSheafCategory AB C FP))
-         → Iso (PshHom AB C (pf P) (fst S)) (PshHom AB C P (fst S))
+         → Iso (PshHom AB C (sheafify P) (fst S)) (PshHom AB C P (fst S))
   adjIso P S = iso fwd (Bwd.bwd P S) rightInv leftInv
     where
       Sp = fst S
 
-      fwd : PshHom AB C (pf P) Sp → PshHom AB C P Sp
-      fwd g = compPsh AB C P (pf P) Sp (η P) g
+      fwd : PshHom AB C (sheafify P) Sp → PshHom AB C P Sp
+      fwd g = compPsh AB C P (sheafify P) Sp (η P) g
 
       rightInv : (f : PshHom AB C P Sp) → fwd (Bwd.bwd P S f) ≡ f
       rightInv f = Σ≡Prop (λ γ → isNat-isProp AB C P Sp γ) (funExt rfam)
@@ -292,8 +297,8 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
                                     (point-embed AB (uf SF) e')) e)
                 ∙ Bf.fnat {SF} {ptz SF e} (point-embed AB (uf SF) e)
 
-      leftInv : (g : PshHom AB C (pf P) Sp) → Bwd.bwd P S (fwd g) ≡ g
-      leftInv g = Σ≡Prop (λ γ → isNat-isProp AB C (pf P) Sp γ) (funExt lfam)
+      leftInv : (g : PshHom AB C (sheafify P) Sp) → Bwd.bwd P S (fwd g) ≡ g
+      leftInv g = Σ≡Prop (λ γ → isNat-isProp AB C (sheafify P) Sp γ) (funExt lfam)
         where
           module Bg = Bwd P S (fwd g)
           lfam : (SF : SupportedFiniteFrame AB)
@@ -311,7 +316,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
                 ∙ snd g {SF} {ptz SF e} (point-embed AB (uf SF) e)
 
   ----------------------------------------------------------------------
-  -- Stage 3: the two naturality fields, then the adjunction `a ⊣ ι`.
+  -- The two naturality fields, then the adjunction `a ⊣ ι`.
   ----------------------------------------------------------------------
 
   private
@@ -324,7 +329,7 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
             (g : PshHom AB C P (fst S)) (h : PshHom AB C P' P)
             (SF : SupportedFiniteFrame AB)
           → fst (Bwd.bwd P' S (compPsh AB C P' P (fst S) h g)) SF
-            ≡ fst (compPsh AB C (pf P') (pf P) (fst S)
+            ≡ fst (compPsh AB C (sheafify P') (sheafify P) (fst S)
                             (Functor.F-hom aF {P'} {P} h) (Bwd.bwd P S g)) SF
     ncFam P' P S g h SF =
       PointSeparated.cover-jointly-monic Bf'.sepS SF
@@ -363,6 +368,6 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
         Σ≡Prop (λ γ → isNat-isProp AB C P (fst S') γ)
           (funExt (λ SF → ∘-assoc (fst k SF) (fst f SF) (ηfam P SF)))
     ; adjNatInC = λ {P'} {P} {S} g h →
-        Σ≡Prop (λ γ → isNat-isProp AB C (pf P') (fst S) γ)
+        Σ≡Prop (λ γ → isNat-isProp AB C (sheafify P') (fst S) γ)
           (funExt (λ SF → ncFam P' P S g h SF))
     }

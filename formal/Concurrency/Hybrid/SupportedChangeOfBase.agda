@@ -1,28 +1,26 @@
 {-# OPTIONS --cubical --guardedness #-}
 
--- Change of base for the *supported-subsite* presheaf framework.
+-- Change of base for presheaves on the actor-causal site.
 --
--- The point-route parallel of `ChangeOfBase.agda`. A functor of value
--- categories `Φ : C → D` induces, by postcomposition, a functor of
--- supported-frame presheaf categories
+-- A functor of coefficient categories  Φ : C → D  induces, by
+-- postcomposition, a functor of presheaf categories
 --
---   SupportedPresheafCategory(C)  →  SupportedPresheafCategory(D)
+--   SupportedPresheafCategory C  →  SupportedPresheafCategory D
 --
--- unconditionally, with no postulates. This is the engine the
--- point-generated Benton/LNL bridge feeds the value-level `Cart ⇄ V`
--- adjunction through, exactly as `ChangeOfBase.agda` is for the full-site
--- bridge. Following Codex's Brick-4 decision, the supported lift is done
--- directly here rather than routed through `RestrictToSupported.agda`
--- (which stays as compatibility glue): the point bridge lives entirely
--- over supported presheaves, so the direct lift avoids dragging full-site
--- objects and inactive frames back in.
+-- with no postulates. This is the postcomposition lift by which the
+-- abstract carries the value-level functors F and G to presheaves; the
+-- linear/non-linear bridge feeds its coefficient-level adjunction
+-- Cart ⇄ V through this construction.
 --
--- No adjunction claim, no sheaf claim, no `HasFiniteProducts`: this is the
--- value-functoriality of the supported presheaf category and nothing more.
+-- The lift assumes only a functor between the coefficient categories: no
+-- adjunction, no sheaf condition, no finite products. It is exactly the
+-- functoriality of the presheaf construction in its coefficient category
+-- — only the value assigned to each context is transported, the site is
+-- untouched.
 --
--- Scope guardrails: generic over any two Cubical `Category`s and any
--- `Functor` between them; `C` and `D` may sit at different levels. The
--- supported subsite fixes event level `ℓ-zero`, actor level `ℓA`.
+-- Generic over any two coefficient categories C, D (which may sit at
+-- different universe levels) and any functor between them; the
+-- actor-causal site fixes event level `ℓ-zero` and actor level `ℓA`.
 
 module Concurrency.Hybrid.SupportedChangeOfBase where
 

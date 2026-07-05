@@ -1,44 +1,41 @@
 {-# OPTIONS --cubical --guardedness #-}
 
--- Brick 4: the point-generated sheaf-level linear–nonlinear adjunction.
+-- The sheaf-level linear/non-linear adjunction  L ⊣ R — the theorem of
+-- the extended abstract.
 --
--- The point-route parallel of `LinearNonlinearSheafAdjunction.agda`, but
--- with the conditional `FiniteSheafification` hypothesis discharged by the
--- *constructed* point-generated reflector `PointSheafAdjunction.a⊣ι`
--- (Brick 3). What was owed in the full-site Tier 4 — a left-adjoint
--- sheaf-level functor, since `liftF` is not known to land in sheaves — is
--- here supplied by the reflector that Brick 3 built, so the bridge over the
--- supported / event-discrete site is unconditional in the reflector. It
--- stays relative to the value-level Benton adjunction `lnl`:
+-- Over the actor-causal site with its single-event (point) topology, a
+-- Benton linear/non-linear adjunction  F ⊣ G : Cart ⇄ V  between
+-- coefficient categories is lifted to an adjunction between
+-- cartesian-valued and linear-valued event-local sheaves:
 --
---   Rpoint = supportedLiftG, restricted to point sheaves   (Tier 2)
---   Lpoint = a ∘ supportedLiftF ∘ ιP                        (reflector lands it)
---   Lpoint ⊣ Rpoint                                          (the bridge)
+--   R = supportedLiftG, restricted to event-local sheaves;
+--   L = a ∘ supportedLiftF ∘ ι;
+--   L ⊣ R.
 --
--- recovering the linear exponential `!` as `Lpoint ∘ Rpoint` at the
--- point-sheaf level. The assembly is the full-site move verbatim:
+-- The right adjoint restricts because `G` preserves event-local sheaves
+-- (the preservation lemma from the adapter). The left adjoint is made to
+-- land in sheaves by post-composing the lifted `F` with the sheafification
+-- reflector  a ⊣ ι  of `PointSheafAdjunction`. The induced comonad
+-- `L ∘ R` is the sheaf-level linear exponential `!`.
 --
---   * `Rpoint` is `MapFullSubcategory supportedLiftG G-preserves-point-local`,
---     the restriction of `supportedLiftG` to the point-sheaf full
---     subcategory.
---   * The supported-presheaf-level adjunction `(a ∘ supportedLiftF) ⊣
---     (supportedLiftG ∘ ιP_V)` is the library composite
+-- Assembly:
+--   * `R` (`Rpoint`) restricts `supportedLiftG` to the event-local-sheaf
+--     full subcategory (`MapFullSubcategory` with the preservation lemma).
+--   * The presheaf-level composite `(a ∘ supportedLiftF) ⊣
+--     (supportedLiftG ∘ ι)` is the library composite
 --     `Compose.LF⊣GR supportedLiftF⊣supportedLiftG a⊣ι`.
---   * Restricting the left adjoint's domain to point-`Cart`-sheaves along
---     the (identity-on-homs) full-subcategory inclusion `ιP_Cart` is pure
---     `fst`-reindexing.
+--   * Restricting the left adjoint's domain to cartesian event-local
+--     sheaves along the full-subcategory inclusion is definitional, since
+--     full-subcategory homs are the parent presheaf morphisms.
 --
--- The linear side needs `V` to carry finite products (`vProd`) — the
--- point reflector and `PointLocal` live over the comparison cone into the
--- finite point product in the value category. This is the linear-side
--- counterpart of `cartProd`; it is a bare module parameter, not added to
--- `LNLAdjunction`.
+-- The linear side carries finite products (`vProd`) for the same reason
+-- as in the adapter: the event-local sheaf condition is phrased through
+-- finite products of single-event values. It is a bare module parameter,
+-- not part of `LNLAdjunction`.
 --
--- Scope guardrails: supported point-generated / event-discrete site only —
--- no full `Coverage`, no stability upgrade, no cross-site `Allow ⊣ Require`.
--- The bridge stays relative to `lnl`; no concrete Sessions Benton
--- adjunction is claimed. SET / Sessions instantiation is out of scope for
--- this pass (the success criterion is the generic bridge typechecking).
+-- Scope: the single-event topology only — no general Grothendieck
+-- coverage, no cross-site `Allow ⊣ Require` adjunction. The result is
+-- generic in `F ⊣ G`; it does not exhibit a concrete session-type model.
 
 module Concurrency.Hybrid.PointLinearNonlinearAdjunction where
 
@@ -81,24 +78,24 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
     PtShC = PointSheafCategory AB Cart cartProd
     PtShV = PointSheafCategory AB Vcat vProd
 
-    -- The supported presheaf-level lifts, the supported-level adjunction,
-    -- and the right-adjoint point-sheaf preservation, from the adapter.
+    -- The presheaf-level lifts, their adjunction, and the right-adjoint
+    -- event-local-sheaf preservation, all from the adapter.
     supportedLiftF       = Ad.supportedLiftF AB Cart cartProd V vProd lnl
     supportedLiftG       = Ad.supportedLiftG AB Cart cartProd V vProd lnl
     supportedLiftF⊣supportedLiftG = Ad.supportedLiftF⊣supportedLiftG AB Cart cartProd V vProd lnl
     Gps                  = Ad.G-preserves-point-local AB Cart cartProd V vProd lnl
 
-    -- The Cart-side point-sheaf inclusion (full subcategory inclusion).
+    -- The cartesian-side inclusion of event-local sheaves into presheaves.
     ιC : Functor PtShC SPshC
     ιC = ιP AB Cart cartProd
 
-    -- The V-side reflector `a ⊣ ι` (Brick 3), the left side of the bridge.
+    -- The linear-side sheafification reflector `a ⊣ ι`, the left of the pair.
     aV   = a AB Vcat vProd
     ιV   = ιP AB Vcat vProd
     a⊣ιV = a⊣ι AB Vcat vProd
 
   ----------------------------------------------------------------------
-  -- The right functor: supportedLiftG restricted to point sheaves (Tier 2).
+  -- The right functor: supportedLiftG restricted to event-local sheaves.
   ----------------------------------------------------------------------
 
   Rpoint : Functor PtShV PtShC
@@ -108,17 +105,17 @@ module _ {ℓA : Level} (AB : ActorBase ℓA)
              supportedLiftG Gps
 
   ----------------------------------------------------------------------
-  -- The left functor: a ∘ supportedLiftF ∘ ιP (the reflector lands it).
+  -- The left functor: a ∘ supportedLiftF ∘ ι (sheafification lands it in sheaves).
   ----------------------------------------------------------------------
 
   Lpoint : Functor PtShC PtShV
   Lpoint = aV ∘F supportedLiftF ∘F ιC
 
   ----------------------------------------------------------------------
-  -- The bridge adjunction `Lpoint ⊣ Rpoint`.
+  -- The adjunction `Lpoint ⊣ Rpoint`.
   --
-  -- The supported-presheaf-level composite `(a ∘ supportedLiftF) ⊣
-  -- (supportedLiftG ∘ ιP_V)`, restricted along `ιP_Cart` by
+  -- The presheaf-level composite `(a ∘ supportedLiftF) ⊣
+  -- (supportedLiftG ∘ ι)`, restricted along the cartesian-side inclusion by
   -- `fst`-reindexing (definitional, full-subcategory homs are parent homs).
   ----------------------------------------------------------------------
 
