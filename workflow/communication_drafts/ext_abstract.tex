@@ -20,7 +20,7 @@
 \newcommand{\op}{\mathrm{op}}
 \newcommand{\RepoURL}{https://codeberg.org/doc2cog/hoapa/src/branch/main}
 \newcommand{\RepoDir}[1]{\href{\RepoURL/#1}{\nolinkurl{#1/}}}
-\newcommand{\RepoFile}[1]{\href{\RepoURL/#1}{\nolinkurl{#1}}}
+\newcommand{\RepoFile}[2]{\href{\RepoURL/#1}{\nolinkurl{#2}}}
 
 \title{Event-Local Sheafification and a Linear/Non-Linear Adjunction\\
 with Chu Coefficients}
@@ -71,7 +71,9 @@ The theorem has two parts. First, event-local observations freely generate a
 coherent global object. Second, that reconstruction respects the
 cartesian-linear structure of the values assigned to contexts: reusable data
 live on the cartesian side, resource-sensitive session-like data live on the
-linear side, and the Benton adjunction relates the two at the sheaf level.
+linear side, and the Benton adjunction relates the two at the sheaf level. Thus
+actor-uniformity belongs to the site, while resource-sensitivity belongs to the
+coefficient category; the construction keeps the two as independent axes.
 
 \section*{The event-local site}
 
@@ -229,13 +231,13 @@ to sheaves. The Chu instance adds non-vacuity: the general theorem is still
 stated parametrically, but there is now a concrete postulate-free coefficient
 model in which its hypotheses hold.
 
-In the wider programme, this fixes a bounded piece of the operational side of a
-larger conjectural architecture. Event-local observations freely generate a
-coherent global object, that reconstruction is compatible with
-resource-sensitive values, and one concrete Chu coefficient model realizes the
-required value-side structure. Claims about richer causal descent, operational
-session semantics, formal introduction of external data into the system, and
-cross-site modal adjunctions belong to later stages.
+In the wider programme, this site/coefficient separation fixes a bounded piece
+of the operational side of a larger conjectural architecture. Event-local
+observations freely generate a coherent global object, that reconstruction is
+compatible with resource-sensitive values, and one concrete Chu coefficient
+model realizes the required value-side structure. Claims about richer causal
+descent, operational session semantics, formal introduction of external data
+into the system, and cross-site modal adjunctions belong to later stages.
 
 \section*{Related work}
 
@@ -273,7 +275,7 @@ The theorem is checked in the subtree:
 \end{center}
 The most direct way into the proof is to start from the theorem module:
 \begin{center}
-\RepoFile{formal/Concurrency/Hybrid/PointLinearNonlinearAdjunction.agda}
+\RepoFile{formal/Concurrency/Hybrid/PointLinearNonlinearAdjunction.agda}{PointLinearNonlinearAdjunction.agda}
 \end{center}
 then follow the imports backwards through the reflector, the sheaf adapter, the
 site geometry, and finally the coefficient models.
@@ -283,24 +285,36 @@ not only to record the statement: it checks that the reflector, lifted
 adjunction, finite-product witnesses, and Chu instance inhabit the same
 interfaces simultaneously.
 
+Because the development is cubical, the function extensionality needed for
+naturality, functoriality, and the adjunction triangle identities is available
+as a theorem rather than as an extra postulate.
+
 \paragraph{Event-local reflector and lifted adjunction.}
 Folder: \RepoDir{formal/Concurrency/Hybrid}
-\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
-\item \RepoFile{formal/Concurrency/Hybrid/SupportedChangeOfBase.agda}
-\item \RepoFile{formal/Concurrency/Hybrid/SupportedLinearNonlinearSheafAdapter.agda}
-\item \RepoFile{formal/Concurrency/Hybrid/PointSheafAdjunction.agda}
-\item \RepoFile{formal/Concurrency/Hybrid/PointLinearNonlinearAdjunction.agda}
-\end{itemize}
+\begin{center}
+\small
+\setlength{\tabcolsep}{0.8em}
+\begin{tabular}{cc}
+\RepoFile{formal/Concurrency/Hybrid/SupportedChangeOfBase.agda}{SupportedChangeOfBase.agda} &
+\RepoFile{formal/Concurrency/Hybrid/PointSheafAdjunction.agda}{PointSheafAdjunction.agda} \\[8pt]
+\RepoFile{formal/Concurrency/Hybrid/SupportedLinearNonlinearSheafAdapter.agda}{SupportedLinearNonlinearSheafAdapter.agda} &
+\RepoFile{formal/Concurrency/Hybrid/PointLinearNonlinearAdjunction.agda}{PointLinearNonlinearAdjunction.agda}
+\end{tabular}
+\end{center}
 
 \paragraph{Event-local site geometry.}
 Folder: \RepoDir{formal/Concurrency/Sites}
-\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
-\item \RepoFile{formal/Concurrency/Sites/EventPoint.agda}
-\item \RepoFile{formal/Concurrency/Sites/EventSupported.agda}
-\item \RepoFile{formal/Concurrency/Sites/PointCover.agda}
-\item \RepoFile{formal/Concurrency/Sites/PointOverlap.agda}
-\item \RepoFile{formal/Concurrency/Sites/SupportedFiniteFrameCategory.agda}
-\end{itemize}
+\begin{center}
+\small
+\setlength{\tabcolsep}{1.0em}
+\begin{tabular}{ccc}
+\RepoFile{formal/Concurrency/Sites/EventPoint.agda}{EventPoint.agda} &
+\RepoFile{formal/Concurrency/Sites/EventSupported.agda}{EventSupported.agda} &
+\RepoFile{formal/Concurrency/Sites/PointCover.agda}{PointCover.agda} \\[8pt]
+\RepoFile{formal/Concurrency/Sites/PointOverlap.agda}{PointOverlap.agda} &
+\RepoFile{formal/Concurrency/Sites/SupportedFiniteFrameCategory.agda}{SupportedFiniteFrameCategory.agda} &
+\end{tabular}
+\end{center}
 
 \paragraph{Concrete Chu coefficient stack.}
 Folders:
@@ -308,26 +322,42 @@ Folders:
 \item \RepoDir{formal/Concurrency/Algebras}
 \item \RepoDir{formal/Concurrency/Hybrid}
 \end{itemize}
-\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
-\item \RepoFile{formal/Concurrency/Algebras/Chu.agda}
-\item \RepoFile{formal/Concurrency/Algebras/ChuFiniteProducts.agda}
-\item \RepoFile{formal/Concurrency/Algebras/ChuMonoidal.agda}
-\item \RepoFile{formal/Concurrency/Hybrid/ChuLinearNonlinear.agda}
-\item \RepoFile{formal/Concurrency/Hybrid/ChuPointVProd.agda}
-\item \RepoFile{formal/Concurrency/Hybrid/ChuPointExample.agda}
-\end{itemize}
+\begin{center}
+\small
+\setlength{\tabcolsep}{1.0em}
+\begin{tabular}{ccc}
+\RepoFile{formal/Concurrency/Algebras/Chu.agda}{Chu.agda} &
+\RepoFile{formal/Concurrency/Algebras/ChuFiniteProducts.agda}{ChuFiniteProducts.agda} &
+\RepoFile{formal/Concurrency/Algebras/ChuMonoidal.agda}{ChuMonoidal.agda} \\[8pt]
+\RepoFile{formal/Concurrency/Hybrid/ChuLinearNonlinear.agda}{ChuLinearNonlinear.agda} &
+\RepoFile{formal/Concurrency/Hybrid/ChuPointVProd.agda}{ChuPointVProd.agda} &
+\RepoFile{formal/Concurrency/Hybrid/ChuPointExample.agda}{ChuPointExample.agda}
+\end{tabular}
+\end{center}
 The final Agda witness is named \texttt{Chu-nonvacuity}; its fully expanded type
 is omitted because writing it out makes the type-checker expand definitions
 prohibitively.
 
 \paragraph{Session syntax and Chu interpretation.}
 Folder: \RepoDir{formal/Concurrency/Algebras}
-\begin{itemize}[leftmargin=1.4em,itemsep=2pt]
-\item \RepoFile{formal/Concurrency/Algebras/SessionSyntax.agda}
-\item \RepoFile{formal/Concurrency/Algebras/SessionMorphismSyntax.agda}
-\item \RepoFile{formal/Concurrency/Algebras/SessionObjectModel.agda}
-\item \RepoFile{formal/Concurrency/Algebras/SessionChuModel.agda}
-\end{itemize}
+\begin{center}
+\small
+\setlength{\tabcolsep}{1.0em}
+\begin{tabular}{cc}
+\RepoFile{formal/Concurrency/Algebras/SessionSyntax.agda}{SessionSyntax.agda} &
+\RepoFile{formal/Concurrency/Algebras/SessionMorphismSyntax.agda}{SessionMorphismSyntax.agda} \\[8pt]
+\RepoFile{formal/Concurrency/Algebras/SessionObjectModel.agda}{SessionObjectModel.agda} &
+\RepoFile{formal/Concurrency/Algebras/SessionChuModel.agda}{SessionChuModel.agda}
+\end{tabular}
+\end{center}
+
+\section*{A note on authorship}
+
+This abstract was drafted with the assistance of a language model and reviewed
+by the authors; the surrounding framework and its philosophical motivation are
+presented separately in the project repository. The formal claims reported here
+are backed by proofs that the cubical Agda type-checker accepts in the modules
+named above, with the scope limitations stated explicitly.
 
 \section*{Limitations}
 
@@ -353,14 +383,44 @@ required cyclic operadic action in Chu, and not an account of the formal
 introduction of external data into the system.
 \end{itemize}
 
-\section*{A note on authorship}
+\section*{Outlook: the arc from here}
 
-This abstract was drafted with the assistance of a language model and reviewed
-by the authors; the surrounding framework and its philosophical motivation are
-presented separately in the project repository at
-\url{https://codeberg.org/doc2cog/hoapa}. The formal claims reported here are
-backed by proofs that the cubical Agda type-checker accepts in the modules named
-above, with the scope limitations stated explicitly.
+The theorem constitutes one fragment of a larger conjectural architecture, and
+the limitations above double as its roadmap. Four moves lead outward:
+\begin{enumerate}[leftmargin=1.6em,itemsep=2pt]
+\item Richer causal descent: replace the single-event covers by a genuine
+Grothendieck coverage recording causal order and event overlaps.
+\item Operational session semantics: upgrade the Sessions-to-Chu functor to a
+coherent monoidal / $*$-autonomous interpretation with operational content,
+discharging the remaining cyclic operadic action.
+\item Introduction of external data: a formal account of how typed data enters
+the system from outside, to be tested at scale in a real-life implementation
+built in parallel with the formal side of the framework.
+\item The modal companion and the cross-site adjunction: construct the second
+cohesive site, of perspectives or modal structural contexts, in the cohesive
+homotopy-type-theoretic tradition, and the geometric morphism relating it to
+the actor-causal site inside one ambient $\infty$-topos.
+\end{enumerate}
+
+That last step is the target. The two sites are conjectured to sit in a single
+ambient $\infty$-topos as an adjoint pair
+\[
+  \mathsf{Allow} \dashv \mathsf{Require} :
+  \mathcal M \rightleftarrows \mathcal K,
+\]
+the left adjoint generative, the right reflective, whose unit
+$\eta:\mathrm{id}\Rightarrow\mathsf{Require}\circ\mathsf{Allow}$, iterated,
+is the developing network of a mathematical practice. The present theorem
+constructs, on the community side $\mathcal K$, the first event-local endpoint
+of that adjunction.
+
+If homotopy type theory is the right foundation for mathematics, then its modal,
+cohesive extension $\mathcal M$ is the right home for mathematics as a practice: the
+development of mathematics is the free iteration of a single adjunction
+$\mathsf{Allow}\dashv\mathsf{Require}$ between a cohesive site of perspectives
+and a community of communicating agents, inside one ambient $\infty$-topos.
+
+\newpage
 
 \begin{thebibliography}{20}
 \raggedright
