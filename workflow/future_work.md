@@ -14,7 +14,7 @@ All three styles are honest about status. Punchlist items extend shipped materia
 
 For the seed-level commitments these entries extend, see `motivation.md`. For the propositional decomposition (T1–T_recursion) they realize, see `arc.md` and `targets.md`. The implementation track — a real protocol kernel, a real verification runtime, LLM-tooling integration — is a separate concern tracked canonically in `workflow/status_implementation.md`; this file keeps only cross-references and future-work implications.
 
-Current active summary, 2026-07-04: the point-generated R4 theorem is banked; runtime contract loop 1 is closed and green; the first generic runtime-to-substrate rung has landed in `RuntimeContract/Realization/BackwardRank.agda` and `RuntimeContract/Realization/CausalFromParents.agda`; the next runtime step is a programmatically emitted tiny valid run through `hoapa_contract`; the next B-lane return is per-conversation locality and `FrameHom`s into the global realized frame.
+Status snapshot, 2026-07-05: the point-generated R4 theorem is banked; runtime contract loop 1 is closed and green; the first generic 2S runtime-to-substrate rung has landed in `RuntimeContract/Realization/BackwardRank.agda` and `RuntimeContract/Realization/CausalFromParents.agda`; the 3R tiny-run construction seam is banked in `hoapa_contract`. Active next steps live in `workflow/status_formal.md` and `workflow/status_implementation.md`.
 
 ## Regarding fracture
 
@@ -178,7 +178,7 @@ When resumed, event-dependent slots should live in a new module, likely `Concurr
 2. Tier 3 still has the generic full-site reflector interface in `FiniteSheafification.agda`, but the constructed route is now the point-generated/event-discrete supported site. `SupportedPointProduct.agda`, `SupportedPointification.agda`, `SupportedPointDescent.agda`, `PointifyIsSheaf.agda`, `PointSheafCategory.agda`, `PointSheafification.agda`, and `PointSheafAdjunction.agda` build the point-generated reflector and prove `a ⊣ ι`.
 3. Brick 4 has landed the W3-style point-generated R4 bridge wiring: `PointLinearNonlinearAdjunction.agda` consumes `PointSheafAdjunction.a⊣ι` and assembles `Lpoint ⊣ Rpoint` over point-sheaf categories. This remains scoped to the event-discrete supported site and remains relative to `lnl : LNLAdjunction` plus `vProd : HasFiniteProducts (StarAutonomous→Category V)`.
 4. Keep `SetFiniteSheafCategory` as the canonical cartesian endpoint for R4; use `SetSheafComparison` as the proof that this endpoint agrees with the Cubical library presentation at `SET`.
-5. Current near-term status after Brick 4: the point-generated R4 theorem, Chu coefficient witness, and Sessions-to-Chu realization are banked. Optional exposition or instantiation checks remain useful, but the active bandwidth has moved to the runtime-to-substrate junction and runtime emission. Deferred beyond that are normalized-pullback / stability for a full Cubical `Coverage` presentation of the point-generated topology, the full actor-causal finite sheafification reflector, event-dependent session slots, and the A-side modal-context category with cross-site `Allow ⊣ Require`.
+5. Current near-term status after Brick 4: the point-generated R4 theorem, Chu coefficient witness, and Sessions-to-Chu realization are banked. Optional exposition or instantiation checks remain useful, but the active bandwidth has moved to the 2S/3R boundary. Deferred beyond that are normalized-pullback / stability for a full Cubical `Coverage` presentation of the point-generated topology, the full actor-causal finite sheafification reflector, event-dependent session slots, and the A-side modal-context category with cross-site `Allow ⊣ Require`.
 
 ## Chu construction
 
@@ -189,6 +189,8 @@ Chu is now live, but still scoped. Benton/LNL remains the right R4 bridge shape 
 **Sessions realization.** `SessionSyntax.agda` and `SessionMorphismSyntax.agda` extract the postulate-free object and morphism syntax. `SessionObjectModel.agda` defines `J0`, `J0-dual`, `J1`, and the underlying Cubical functor into any `SessionObjectModel`; `SessionChuModel.agda` instantiates that interface at `Chu(SET,Bool)`. This turns the syntactic duality face into a semantic isomorphism theorem, not a transported Sessions postulate. `Sessions.agda` now reuses the morphism HIT for its structural categorical/product laws; its remaining postulate is the operadic `session-O1-action`.
 
 **What Chu still buys later.** A Chu object `(A⁺, A⁻, r : A⁺ × A⁻ → k)` makes extension/intension, point/state, process/context reversal, and duality intrinsic. That is now both implemented as value-category infrastructure and still a future guide for formal concept analysis, Barwise-Seligman-style information flow, the cobordism / cup-cap dictionary attached to Care, and the Reality/Documentation boundary.
+
+To check before using rhetorically: in the concrete LNL instance, the exponential `!A = F(G A)` appears to rebuild a copyable Chu object from the point carrier and replace the original state carrier `A⁻`; if verified, this is a useful explanation of how the copyable reflection forgets resource/context constraints.
 
 **Remaining Chu phases.**
 
@@ -262,7 +264,7 @@ What lands after this round. The synthetic side of the de Rham arc is complete a
 
 ## Concurrency-side layers of complexity (planned)
 
-The Concurrency side, at the time of writing, has shipped the actor-causal site, pullback overlaps, the cyclic operad `O_1` and its `*`-autonomous algebra interface, the Sessions instance, the Hybrid v1 presheaf/restriction adapter, finite-site event-product descent with constant-slot Sessions and Set instances, the concrete tiny finite-cover validation, finite sheaf categories at both `StarAutonomous→Category V` and `SET`, the finite Coverage/SET library sheaf comparison, and the R4 Benton/LNL finite-sheaf bridge through conditional Tier 4: presheaf-level change of base, presheaf-level adjunction, right-adjoint sheaf preservation, a finite-sheafification reflector interface, and the sheaf-level adjunction conditional on a V-side reflector. The point-generated reflector route has also landed over the supported subsite: event-supported frames, incident point frames, event-supported point overlaps, the canonical point cover, `IsPointSheaf P ↔ PointLocal P`, abstract point products, pointification as a point sheaf, the point-sheaf category, the reflector functor, and the adjunction `a ⊣ ι`. `PointLinearNonlinearAdjunction.agda` now consumes that reflector and assembles the point-generated sheaf-level Benton/LNL bridge `Lpoint ⊣ Rpoint`, relative to `lnl` and `vProd`. The point-generated R4 theorem is now banked rather than the live frontier. The live A/B frontier is the runtime-to-substrate junction plus the first runtime-emitted trace: per-conversation realization on the formal side, and a tiny programmatic `hoapa_contract` round trip on the runtime side. Several additional layers are committed in design but not yet in code. This section is the catalogue of those layers, with for each: what it does for the protocol's use in the human world (possibly with LLMs as participants), what mathematical structure it commits to (or, where the choice is open, what the candidates are), and what currently shipped scaffolds it presupposes.
+The Concurrency side, at the time of writing, has shipped the actor-causal site, pullback overlaps, the cyclic operad `O_1` and its `*`-autonomous algebra interface, the Sessions instance, the Hybrid v1 presheaf/restriction adapter, finite-site event-product descent with constant-slot Sessions and Set instances, the concrete tiny finite-cover validation, finite sheaf categories at both `StarAutonomous→Category V` and `SET`, the finite Coverage/SET library sheaf comparison, and the R4 Benton/LNL finite-sheaf bridge through conditional Tier 4: presheaf-level change of base, presheaf-level adjunction, right-adjoint sheaf preservation, a finite-sheafification reflector interface, and the sheaf-level adjunction conditional on a V-side reflector. The point-generated reflector route has also landed over the supported subsite: event-supported frames, incident point frames, event-supported point overlaps, the canonical point cover, `IsPointSheaf P ↔ PointLocal P`, abstract point products, pointification as a point sheaf, the point-sheaf category, the reflector functor, and the adjunction `a ⊣ ι`. `PointLinearNonlinearAdjunction.agda` now consumes that reflector and assembles the point-generated sheaf-level Benton/LNL bridge `Lpoint ⊣ Rpoint`, relative to `lnl` and `vProd`. The point-generated R4 theorem is now banked rather than the live frontier. The live 2S/3R boundary is now the runtime-to-substrate junction after the 3R tiny-run construction seam: per-conversation realization on the formal side is the next status-file target before broader runtime behavior grows. Several additional layers are committed in design but not yet in code. This section is the catalogue of those layers, with for each: what it does for the protocol's use in the human world (possibly with LLMs as participants), what mathematical structure it commits to (or, where the choice is open, what the candidates are), and what currently shipped scaffolds it presupposes.
 
 A unifying disciplinary commitment behind all the layers below: **praxis is part of the theory**. The protocol's use by a community of equal-standing participants is constitutive of the framework, not an applied addendum to an underlying mathematics. This is what distinguishes the framework's combination from each of the historical precedents catalogued in `related_structures.md` — at least one of (mathematical depth, theory-of-community, runnable protocol, self-validation through use, recursive co-evolution structure) was missing in each of them.
 
@@ -297,12 +299,7 @@ The durable implementation-track plan lives in `workflow/status_implementation.m
 
 The first rising-sea gate has been crossed narrowly. The project did not open a broad `Concurrency/Protocol/` layer; it opened `/formal/RuntimeContract/Trace.agda` plus the smallest serialization/runtime boundary that the existing substrate forced. Loop 1 is closed and green: the v0 contract now has a formal predicate, a fixture corpus, generated Agda raw terms, a vendored runtime artifact, and an Elixir `hoapa_contract` codec suite. The first generic runtime-to-substrate rung has also landed: `BackwardRank.agda` derives the rank decrease from `backwardOK`, and `CausalFromParents.agda` derives a causal order and one global `LocalFrame` from a well-formed run.
 
-This means the contract/export/runtime-codec harness is no longer future work. Future implementation work now begins with runtime emission, not more contract cleanup:
-
-- programmatically build a tiny valid run through existing `hoapa_contract` structs/codecs and round-trip it through JSON;
-- keep validation corpus-locked to Agda, with `hoapa_checker` deferred until there is a real runtime-emitted trace to validate one-by-one;
-- add the minimal OTP event log in `hoapa_core` only after the tiny programmatic emission path is green;
-- then add the synthetic generator, then `hoapa_store` and its Pijul port boundary, and only then Phoenix/`hoapa_web` as an edge adapter.
+This means the contract/export/runtime-codec harness is no longer future work. The 3R tiny-run construction seam has also landed: runtime-side code can reconstruct the Agda-accepted `tiny_trace.json` run from `hoapa_contract` structs, keep it corpus-locked by decoded-struct equality, and round-trip it through the codec. This is still an emission seam, not protocol behavior. The live implementation queue belongs in `workflow/status_implementation.md`, with `hoapa_checker` deferred until there is a real runtime-emitted trace from behavior to validate one-by-one.
 
 The implementation still should not wait for the full cross-site `Allow ⊣ Require`, `MO_1`, Reflexive Π, or Bulk Λ layers. It also should not claim verification beyond the finite trace/run predicates Agda actually states. Elixir owns runtime behavior; Agda owns the specification of well-formed traces and boundary laws; the top-level checker boundary currently orchestrates formal and runtime tests, with compact certificates and richer audit/provenance semantics deferred.
 
@@ -685,7 +682,7 @@ These are illustrative. The future `RuntimeContract/Audit` area would cover trac
 
 ## Candidate under evaluation: no-leak theorem ladder and humanness-as-refusal
 
-**Status and scope.** This section records the B-lane theorem ladder exposed by the arc/13 continuation. It is a candidate investigation, not a new cascade layer, not a new arc file, and not a reservation of Agda modules. The detailed conversational synthesis lives in `workflow/arc/13_catalysts_and_care.md`; this section extracts only the future-work consequences.
+**Status and scope.** This section records the 2S runtime-to-substrate theorem ladder exposed by the arc/13 continuation. It is a candidate investigation, not a new cascade layer, not a new arc file, and not a reservation of Agda modules. The detailed conversational synthesis lives in `workflow/arc/13_catalysts_and_care.md`; this section extracts only the future-work consequences.
 
 The motivating formulation is:
 
@@ -755,7 +752,7 @@ The physics language stays interpretive: actor labels as gauge data is a useful 
 
 ### Candidate implementation slots, not reservations
 
-If the ladder survives contact with the next B-lane work, possible file names include:
+If the ladder survives contact with the next 2S work, possible file names include:
 
 ```text
 formal/RuntimeContract/Renaming.agda
@@ -769,7 +766,7 @@ These names are illustrative only. Tier A may fit in a small sibling of `Trace.a
 
 ### Decision gates
 
-1. Loop-1 cleanup is finished and the first global realization checkpoint has landed. Does the next B-lane proof target per-conversation locality first, or raw actor-renaming invariance first?
+1. Loop-1 cleanup is finished and the first global realization checkpoint has landed. Does the next 2S proof target per-conversation locality first, or raw actor-renaming invariance first?
 2. What exact finite actor-renaming object is used: total permutation of a namespace, bijection between actor lists, or structure-preserving map with inverse?
 3. Is Tier A stated as preservation, equivalence, or a universal quotient property?
 4. What is the first trusted observation map, if any, beyond `valid?` itself?
@@ -996,3 +993,258 @@ Reality and provenance remain independent candidate repairs. They should be cons
 - Benton, *A Mixed Linear and Non-Linear Logic: Proofs, Terms and Models*.
 - Vákár, *A Framework for Dependent Types and Effects*.
 - Vákár, *Syntax and Semantics of Linear Dependent Types*.
+
+### Discussion of "truncate everything"
+
+#### Claude
+
+❯ Now, I want to briefly discuss, on a philosophical level, how the framework can use the analogy between unityping of actors and the distinguishability of elements of a set         
+  introduced by the axiom of choice. A target I have in the back of my head is to be able to "truncate everything in the framework" into a purely set theoretical setting, killing a  
+  large part of the structure, and crucially, what makes it implementable, but still be able to say something meaningful at this level and in this language. Truncation itself I      
+  think would be our main tool, but in some places we're probably going to have to be more subtle, and in the end construct a sort of Yoneda-like functor that retains something of   
+  the rich structure in the low structure, that truncation would have simply ignored.                                                                                                 
+  First, do you see this as a. interesting? b. feasible? c. possibily of some help for our conjecture? (since set theory is actually what most everyday-mathematicians want their     
+  math to be grounded upon, I think we should be able to have a meaningful portal from the rich & collective setting to the low & individual setting)                                 
+  
+● Short verdict: a. yes, genuinely; b. feasible, but only if you're precise about what "truncate" and "set-theoretic" mean; c. yes, but as a measuring/demonstration instrument for 
+  the conjecture, not as a proof of it. Let me give you the substance, including two places where I'd push on the framing.
+
+  The framing needs sharpening in two spots
+
+  1. "Truncation" is not one operation. What you're calling truncation is really a family of collapses along independent axes of richness, and only some are h-truncations:
+
+  - homotopical (h-levels): 0-truncation ‖-‖₀, a genuine modality in cubical, kills higher paths;
+  - cohesive/modal (the A-side): passing to discrete objects trivializes shape/flat;
+  - locality (the sheaf side): global sections Γ, or evaluation at a point, collapses descent;
+  - linear (the coefficient side): the Benton right adjoint G, which is exactly the "take the points" map — in Chu, G(A)=A⁺, discarding the state-carrier A⁻. That's the transcript's
+  !-erases-A⁻ observation, read as a truncation.
+
+  Treating these as one tool is where it would go wrong. They're distinct forgetful/reflective functors, and the interesting content is which invariants survive each.
+
+  2. "Purely set-theoretic" has to mean Set-valued, not bare sets. This is the crux, and it's exactly your Yoneda instinct made honest. You cannot retain rich structure in bare-set
+  objects — that's what "the higher structure is nontrivial" means. But you can retain all of it in Set-valued functors: Yoneda embeds any category faithfully into [C^op, Set]; the
+  nerve stores an ∞-category in simplicial sets; a symmetry-carrying set is a functor BG → Set. So the portal doesn't land in Set, it lands in presheaves / relational structures over
+  Set — ordinary mathematics, which is what everyday mathematicians actually mean by "grounded in sets," not a single bare set. With that reading your goal is achievable; with the
+  bare-set reading it's provably lossy, and the loss is the whole point.
+
+  Why it's more feasible than it looks: two portals are already built
+
+  The mature name for "truncate but keep an invariant" is decategorification (Baez–Dolan) — groupoid cardinality retaining what π₀ forgets is the prototype. And the framework already
+  contains two decategorification-style portals:
+
+  - The SET endpoint of the finite sheaf construction (you already instantiate the generic descent at coefficients = Set): the collective descent has a set-level shadow already.
+  - Chu(Set, Bool) is itself the portal for the linear axis. It is pure set-theoretic data — two sets and a Bool-valued pairing, i.e. a relation — that nonetheless carries
+  ⋆-autonomous structure. So the one axis where naive truncation must fail (linear structure can't live in cartesian Set objects) is precisely the one where the framework already
+  encodes the structure in set-level relational data. That's your Yoneda-like retention, concretely, and it's checked.
+
+  The genuinely beautiful part: the actor axis carries the conjecture's content
+
+  Here the AC analogy pays off exactly. Truncating to a classical, choice-holding Set setting is distinguishing the actors — Booleanization gives decidable equality, which
+  individuates them. So the passage rich→low is literally collective → individual: the uniform, unityped, no-privileged-viewpoint community collapses into a set of atomized,
+  choosable elements. And what breaks in that collapse is precisely the "no privileged points of view" / actor-renaming-invariance theorem.
+
+  That tells you what a faithful portal on this axis must retain: not the set of actors, but the relabeling symmetry acting on it — a G-set, a functor BG → Set, a presheaf on a
+  delooping. Which is exactly the homotopical richness bare-set truncation throws away, and it points straight at the modal side's Bℤ site: deloopings are the canonical retention of
+  the symmetry that sets forget. So the renaming-invariance theorem is not just a nice property; it is the obstruction that measures the collective→individual collapse. The portal's
+  failure to be faithful on the actor axis is the theorem.
+
+  For the conjecture
+
+  It helps in two honest ways, neither of which is "it proves T1":
+
+  - It makes the foundation/praxis split measurable. The kernel of the portal — what truncation kills — is exactly the praxis surplus: implementability, concurrency, the collective.
+  Foundation-adequacy = the statements survive to the set-level target; praxis-adequacy = the doing lives only upstairs. The portal turns the Grothendieck/Hersh thesis into a
+  comparison you can point at, rather than a slogan. That is strong, and it's aimed precisely at the set-minded reader you want to reach.
+  - It's structurally on-brand. rich⊣low and collective⊣individual are themselves adjunction-shaped, orthogonal to Allow ⊣ Require, and fit the framework's "every separation is an
+  adjunction" motif.
+
+  The caution: "truncate everything" can trivialize into "of course Set can host the statements," so the value is never the truncated object; it is the kernel and the
+  non-faithfulness. The creative act is choosing the retention invariant (which is not canonical — Yoneda retains everything but only into presheaves). Pick the wrong one and you get
+  a tautology; pick the right one (equivariance for actors, Chu for linearity, nerve for the homotopy) and you get a shadow theorem that says something.
+
+  Want me to try stating the portal as an actual functor — domain, codomain, and the one invariance it's required to preserve — and see whether it survives contact, the way the
+  outside instance offered to pressure-test the negative? That would tell us fast whether "meaningful shadow" or "tautology."
+
+#### Codex
+
+• This is a strong answer. I agree with most of it, with a few corrections to keep it from becoming too smooth.
+
+  The best part is the warning that “truncation” is not one operation. That is exactly right. In this framework we have at least:
+
+  - homotopy truncation;
+  - forgetting cohesive/modal structure;
+  - taking global sections or points of sheaves;
+  - forgetting linear structure through an adjoint;
+  - decategorifying operational traces;
+  - replacing equivariant/community structure by bare sets.
+
+  Those are different functors with different kernels. The interesting mathematics is not “we truncate everything,” but “which invariants survive which forgetful move?”
+
+  I also strongly agree with the “Set-valued, not bare sets” correction. A meaningful low-level portal should not usually land in an unstructured set. It should land in ordinary set-
+  based mathematics: presheaves, relations, graphs, G-sets, simplicial sets, Chu spaces, structures over Set. That is still “set-theoretic” in the everyday mathematical sense, but it
+  can retain shape, symmetry, incidence, duality, and observables. Bare-set truncation is mostly useful as a failure mode.
+
+  Where I’d be more cautious:
+
+  1. “Booleanization gives decidable equality, which individuates actors.”
+     This is philosophically useful, but technically it depends on where the actors live. In our current theorem, actor-uniformity is site-level/naturality/equivariance, not
+     undecidable equality inside a topos. Classical Set can distinguish elements, yes, but the more relevant loss is not just decidable equality. It is forgetting actor-renaming
+     symmetry and no-leak constraints.
+
+  2. “The portal’s failure to be faithful on the actor axis is the theorem.”
+     This is promising, but not yet a theorem. The honest theorem shape is something like actor-renaming invariance / no-leak: relabeling actors changes presentation, not trusted
+     observable content. Then a bare-set portal fails exactly because it remembers actor identity too strongly or forgets equivariance too aggressively, depending on the direction.
+
+  3. “Every separation is an adjunction.”
+     Useful slogan, dangerous as a rule. Some separations are adjunctions, some are fibrations, some are quotient/forgetful maps, some are noninterference constraints, some are just
+     interface boundaries. We should keep the adjunction motif, but not force it.
+
+  What I think is genuinely valuable here:
+
+  - It gives a good name to a future track: set-level shadows or ordinary-mathematics shadows.
+  - It clarifies that the goal is not to reduce Hoapa to Set, but to build controlled reducts into set-based structures.
+  - It says the real information lies in the kernel: what the reduct forgets, what it preserves, and what obstruction appears when you try to recover the upstairs structure.
+  - It links well to the next formal target: actor-renaming/no-leak as the first “shadow theorem.”
+
+  My suggested formulation of the direction:
+
+  > Build a family of named reducts from the rich Hoapa structures to set-based structures. Each reduct must state what it preserves, what it forgets, and which non-faithfulness or
+  > obstruction measures the lost praxis structure.
+
+  I would not yet try to make one grand Yoneda-like functor for the whole framework. Start with three portals:
+
+  1. Actor portal: from actor-causal contexts to equivariant set-based structures, preserving relabeling invariance.
+  2. Linear portal: from Chu/LNL coefficients to relational set-based data, preserving duality enough to witness the linear shadow.
+  3. Sheaf portal: from event-local sheaves to Set-valued sheaves or global sections, measuring what descent loses.
+
+  Then later ask whether they assemble into one doctrine-level reduct.
+
+  So: yes, interesting; yes, feasible in pieces; yes, useful for the conjecture as a measuring instrument. But it should be developed as a family of carefully named reducts, not as
+  “truncate everything” in one stroke.
+
+## Emails for extended abstract
+
+2. Email Plan
+
+  I’d write 3 core emails, with a possible 4th if we have a very specific target.
+
+  Audience A: Formalization / Cubical Agda / proof assistant people
+
+  Angle:
+  “This is a modest theorem, but a checked integration of Chu, Benton LNL, finite sheaf/descent, and cubical Agda infrastructure.”
+
+  Topics:
+
+  - postulate-free Chu coefficient model;
+  - Benton LNL interface;
+  - event-local sheafification;
+  - why Cubical Agda matters.
+
+  Ask:
+  “Does this look like reusable formalization infrastructure, and is there a natural venue/community for it?”
+
+  Response strategy:
+  Make the ask concrete: not “is Hoapa interesting?” but “is this formalization package legible/useful?”
+
+  Audience B: Categorical logic / linear logic / LNL people
+
+  Angle:
+  “We have a small checked Benton-style sheaf lift, with a concrete Chu coefficient instance.”
+
+  Topics:
+
+  - LNL adjunction lifted to event-local sheaves;
+  - Set ↔ Chu(Set,Bool);
+  - resource-sensitive coefficients vs cartesian locality;
+  - limitations explicitly stated.
+
+  Ask:
+  “Is the formulation mathematically honest, and are the hypotheses the right ones?”
+
+  Topics:
+
+  - actor-causal site;
+  - site/fiber separation;
+  - event-local descent;
+  - path toward richer causal descent and operational session semantics.
+
+  Ask:
+  “Does this site/fiber framing look like a useful categorical model of interaction, and what next theorem would make it compelling?”
+
+  Response strategy:
+  Aim for strategic feedback, not acceptance. They care about payoff.
+
+  Optional Audience D: HoTT / foundations / modal type theory
+
+  Angle:
+  “This is the first operational fragment of a larger modal/cohesive architecture.”
+
+  - the theorem as the K side;
+  - eventual M ↔ K adjunction;
+  - cubical/funext relevance;
+  - future mode-theoretic presentation.
+
+  Ask:
+  “Is the foundational Outlook coherent, or does it overstate what the checked theorem supports?”
+
+  Response strategy:
+  This email should be the most cautious. It risks sounding grand unless the modest theorem is foregrounded first.
+
+  General Email Dynamics
+
+  Each email should be short:
+
+  - one sentence of context;
+  - one paragraph stating the theorem;
+  - one paragraph saying why we’re contacting them specifically;
+  - one concrete question;
+  - links to PDF, repo, and theorem entry file.
+
+  The key tactic is to ask for a bounded judgment, not general approval. People answer specific questions; they ignore “what do you think of my framework?”
+
+  • The plan is basically sound, but it needs one correction and one sharpening.
+
+  First correction: the excerpt has a structural omission. Audience C is missing its header. The block beginning with:
+
+  > actor-causal site; site/fiber separation; event-local descent...
+
+  is clearly Audience C: Applied category theory / categorical concurrency. That needs to be restored, otherwise the plan jumps from B directly into topics without an angle.
+
+  Second correction: for emails, I would now use site/coefficient separation, not site/fiber separation, because we deliberately chose that vocabulary in the abstract. “Fiber” is
+  mathematically suggestive, but it is not introduced.
+
+  The general strategy is right: each audience gets a bounded ask, not a plea for validation. That is the most important thing. The recipient should know exactly what kind of reply
+  would help.
+
+  My assessment by audience:
+
+  A. Formalization / Cubical Agda
+  Strongest near-term email. This is where the work has the clearest concrete value. The ask should be about reusable infrastructure, proof style, and whether the Cubical Agda
+  packaging is legible. This is likely the best first batch.
+
+  B. Categorical Logic / Linear Logic / LNL
+  Useful, but should be humble. A specialist may find the theorem unsurprising, so the email should explicitly say “modest checked fragment” and ask whether the statement/hypotheses
+  are clean. Do not lead with novelty here.
+
+  C. ACT / Categorical Concurrency
+  Potentially the most conceptually aligned, but also the most demanding. They will care less that the assembly typechecks and more whether the actor-causal site and site/coefficient
+  separation pay off. The right ask is exactly: what next theorem would make this compelling?
+
+  D. HoTT / Foundations / Modal Type Theory
+  Highest risk, highest ceiling. The Outlook may interest them, but it can sound overextended. This should probably go only to people likely to tolerate speculative architecture, and
+  the email must foreground the checked theorem before mentioning M ↔ K.
+
+  One adjustment: I would not include all three links in every email if it makes the message look bulky. Use:
+
+  - PDF attached;
+  - repo link;
+  - one “entry module” link only if the audience is formalization or technically likely to click code.
+
+  Suggested send order:
+
+  1. Formalization people first.
+  2. Categorical logic/LNL second.
+  3. ACT/concurrency third, after seeing if the first replies surface issues.
+  4. HoTT/foundations last, and selectively.
+
+  The exchange is good overall. It gives us a disciplined outreach strategy: different audiences, different value proposition, one bounded question each.

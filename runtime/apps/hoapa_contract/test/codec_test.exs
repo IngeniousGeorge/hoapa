@@ -10,14 +10,10 @@ defmodule Hoapa.Contract.CodecTest do
   """
   use ExUnit.Case, async: true
 
-  alias Hoapa.Contract.Codec
-
-  defp priv, do: Path.join(:code.priv_dir(:hoapa_contract), "runtime_contract")
-
-  defp fixtures(category), do: Path.wildcard(Path.join(priv(), "fixtures/#{category}/*.json"))
+  alias Hoapa.Contract.{Codec, TestCorpus}
 
   test "valid fixtures decode and round-trip (struct equality, not JSON bytes)" do
-    files = fixtures("valid")
+    files = TestCorpus.fixture_paths("valid")
     assert files != []
 
     for f <- files do
@@ -27,7 +23,7 @@ defmodule Hoapa.Contract.CodecTest do
   end
 
   test "invalid-semantic fixtures are schema-valid: they decode and round-trip" do
-    files = fixtures("invalid-semantic")
+    files = TestCorpus.fixture_paths("invalid-semantic")
     assert files != []
 
     for f <- files do
@@ -37,7 +33,7 @@ defmodule Hoapa.Contract.CodecTest do
   end
 
   test "invalid-schema fixtures are rejected by the codec" do
-    files = fixtures("invalid-schema")
+    files = TestCorpus.fixture_paths("invalid-schema")
     assert files != []
 
     for f <- files do

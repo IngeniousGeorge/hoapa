@@ -447,11 +447,11 @@ The framework treats some conversations as *meta-conversations*: special convers
 
 ### Next frontier
 
-The immediate formal frontier is no longer the point-generated R4 bridge itself. That theorem, its Chu coefficient witness, and the Sessions-to-Chu object/morphism realization are landed. The active split is now three lanes:
+The immediate formal frontier is no longer the point-generated R4 bridge itself. That theorem, its Chu coefficient witness, and the Sessions-to-Chu object/morphism realization are landed. The active split uses the number+letter lane convention:
 
-- **A — pure implementation:** Elixir/Rust runtime work. It should echo the current B contract: first programmatically emit a tiny valid run through `hoapa_contract` structs/codecs and round-trip it through JSON. Broader OTP, Pijul, Phoenix, and checker-app work remain later.
-- **B — runtime-to-substrate junction:** Agda that interprets runtime-shaped evidence into the actor-causal substrate. The first generic rung has landed: `BackwardRank.agda` proves parent edges decrease first-occurrence rank under `backwardOK`, and `CausalFromParents.agda` derives a `CausalOrder` and one global `LocalFrame` for any well-formed run. The next B rung is per-conversation locality: realize raw conversations as local frames and construct `FrameHom`s into the global realized frame. Actor-renaming/no-leak follows after this locality package is stable.
-- **C — pure conjecture:** O1-in-Chu / `session-O1-action`, Reality/Documentation/Chu, full reflector enrichment, later cross-site `Allow ⊣ Require`, and the A-side cyclic-bar return. These remain real directions, but they should not displace the current A/B handoff.
+- **3R - runtime:** Elixir/Rust runtime work. The tiny-run construction seam is banked: `hoapa_contract` can reconstruct the Agda-accepted tiny run from structs and keep it corpus-locked by decoded-struct equality. Broader OTP, Pijul, Phoenix, and checker-app work remain later; the next runtime expansion should wait for the 2S locality package.
+- **2S - runtime-to-substrate:** Agda that interprets runtime-shaped evidence into the actor-causal substrate. The first generic rung has landed: `BackwardRank.agda` proves parent edges decrease first-occurrence rank under `backwardOK`, and `CausalFromParents.agda` derives a `CausalOrder` and one global `LocalFrame` for any well-formed run. The next 2S rung is per-conversation locality: realize raw conversations as local frames and construct `FrameHom`s into the global realized frame. Actor-renaming/no-leak follows after this locality package is stable.
+- **1C - pure conjecture:** O1-in-Chu / `session-O1-action`, Reality/Documentation/Chu, full reflector enrichment, later cross-site `Allow ⊣ Require`, and the A-side cyclic-bar return. These remain real directions, but they should not displace the current 2S/3R handoff.
 
 Important scope notes:
 

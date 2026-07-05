@@ -9,5 +9,11 @@ defmodule Hoapa.Contract.Run do
   @enforce_keys [:trace_format, :run_id, :protocol_id, :sibling_protocol_ids, :trace]
   defstruct @enforce_keys
 
-  @type t :: %__MODULE__{}
+  @type t :: %__MODULE__{
+          trace_format: String.t(),
+          run_id: String.t(),
+          protocol_id: String.t(),
+          sibling_protocol_ids: [String.t()],
+          trace: Hoapa.Contract.Trace.t()
+        }
 end

@@ -1,41 +1,31 @@
-# Current track - towards publishable material
+# Bandwidth organization
 
-## Current state (2026-07-04)
+This file describes how session bandwidth is organized. It is not the canonical next-step tracker. For up-to-date lane status and concrete next work, read:
 
-The point-generated R4 theorem is banked. The supported/event-discrete reflector `a ⊣ ι`, the point-sheaf Benton/LNL bridge `Lpoint ⊣ Rpoint`, the `Chu(SET,Bool)` coefficient instance, and the Sessions-to-Chu `J0`/`J1` realization have landed. This remains the first modest operational theorem, not the full actor-causal reflector or the cross-site `Allow ⊣ Require` adjunction.
+- `workflow/status_formal.md` for 1C pure conjecture and 2S runtime-to-substrate work.
+- `workflow/status_implementation.md` for 3R runtime work and the checker/runtime contract boundary.
 
-The runtime contract loop 1 is closed and green. The formal predicate, fixture corpus, generated Agda raw terms, vendored runtime artifact, Elixir codec tests, freshness gates, and `make test` all agree.
+## Lane convention
 
-The B-lane runtime-to-substrate junction has its first generic rung. `RuntimeContract/Realization/BackwardRank.agda` proves that parent edges decrease first-occurrence rank under `backwardOK`; `RuntimeContract/Realization/CausalFromParents.agda` derives a `CausalOrder` and one global `LocalFrame` for any well-formed run. This closes the TinyTrace order-reuse gap at the global-frame level, but does not yet provide per-conversation frames, `FrameHom`s, session assignment, or renaming/no-leak.
+The project uses a number+letter lane pattern. The number records logical-time progression; the letter names the lane.
 
-## Active lane split
+- **1C - pure conjecture:** Agda-first conjecture chasing: O1-in-Chu / `session-O1-action`, Reality/Documentation/Chu, full reflector enrichment, cross-site `Allow ⊣ Require`, and the A-side cyclic-bar return. This lane can develop independently, but 2S should import from it only after an interface has stabilized.
+- **2S - runtime-to-substrate:** Agda that interprets runtime-shaped evidence into the actor-causal substrate. This is the adapter/junction lane between the formal runtime contract and the concurrency substrate.
+- **3R - runtime:** Elixir/Rust runtime work. This lane emits executable evidence for the contract and should echo 2S rather than inventing substrate semantics ahead of it.
 
-- **A - pure implementation:** Elixir/Rust runtime work. The next useful runtime move is to programmatically build a tiny valid run through existing `hoapa_contract` structs/codecs and round-trip it through JSON.
-- **B - runtime-to-substrate junction:** Agda that interprets runtime-shaped evidence into the actor-causal substrate. The next B return should realize per-conversation local frames and construct `FrameHom`s into the global frame from `CausalFromParents.agda`.
-- **C - pure conjecture:** O1-in-Chu / `session-O1-action`, Reality/Documentation/Chu, full reflector enrichment, cross-site `Allow ⊣ Require`, and the A-side cyclic-bar return. These are real directions, but not the next bandwidth claim.
+Dependency discipline: **3R echoes 2S; 1C develops independently; 2S imports 1C only when a 1C result has become a stable interface.**
 
-Dependency discipline: A echoes B; C develops independently; B imports C only when a C result has become a stable interface.
+## Current bandwidth posture
 
-## Current recommendation
+The point-generated Benton/LNL interface (R4) theorem is banked: the supported/event-discrete reflector `a ⊣ ι`, the point-sheaf bridge `Lpoint ⊣ Rpoint`, the `Chu(SET,Bool)` coefficient instance, and the Sessions-to-Chu `J0`/`J1` realization have landed. This remains a B-internal theorem, not the full actor-causal reflector or the cross-site `Allow ⊣ Require` adjunction.
 
-After this workflow close, pass bandwidth back to A-lane runtime. Do not open broad OTP, Pijul, Phoenix, or `hoapa_checker` work yet. Build the smallest runtime-emitted valid trace first: construct the run with the existing contract structs, encode it, decode it, and prove the round trip stays inside the corpus-pinned contract boundary.
+The runtime contract loop 1 is closed and green. The tiny-run construction seam is now banked in 3R: runtime-side code can reconstruct the Agda-accepted `tiny_trace.json` run from `hoapa_contract` structs and keep it corpus-locked by decoded-struct equality. This is still an emission seam, not protocol behavior; the protocol kernel has not yet emitted a trace from a running event log.
 
-`hoapa_checker` earns a separate app only once there is a real runtime-emitted trace that needs per-trace semantic validation. Until then, Agda remains authoritative for semantic validity and the fixture corpus plus Makefile gates keep the runtime codec aligned.
+Bandwidth should generally pass through **2S** before the next 3R expansion. The next 2S status question is per-conversation locality: raw conversations should become local actor/event frames with `FrameHom`s into the global frame built by `CausalFromParents.agda`. Once that substrate meaning is stable, 3R can echo it with a minimal `hoapa_core` event log/export path.
 
-## Next B-lane return
+## Guardrails
 
-The next formal junction step is per-conversation locality:
-
-1. Extract each raw conversation as a local actor/event subframe.
-2. Construct a `FrameHom` from that conversation frame into the global frame built by `CausalFromParents.agda`.
-3. Prove preservation of touches and preservation/reflection of the derived causal order.
-4. Only then return to actor-renaming/no-leak: raw `valid?` invariance, realized-frame equivalence, and optional SIP/univalence capstone.
-
-Session-tag assignment stays later. `LocalFrame` itself contains no session content.
-
-## Advertising guardrails
-
-- Point-generated R4 is B-internal and event-discrete; it is not the full finite actor-causal reflector and not `Allow ⊣ Require`.
-- `CausalFromParents.agda` is the first generic runtime-to-substrate rung; it is not the complete Realization/no-leak theorem.
+- Point-generated R4 is event-discrete and B-internal; it is not the full finite actor-causal reflector and not `Allow ⊣ Require`.
+- `CausalFromParents.agda` is the first generic runtime-to-substrate rung; it is not the complete realization/no-leak theorem.
 - `Chu(SET,Bool)` is a concrete coefficient/value model and a Sessions realization target; it does not reconstruct Reality.
-- Runtime loop 1 is closed, but runtime behavior is still at the contract/codec boundary. The protocol kernel has not yet emitted a trace from behavior.
+- The 3R tiny-run construction seam is not runtime behavior. Keep `hoapa_checker`, broad OTP, Pijul, and Phoenix work behind the status-file gates.

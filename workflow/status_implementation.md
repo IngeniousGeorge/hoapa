@@ -2,7 +2,7 @@
 
 This file is the canonical workflow home for the implementation track: the runtime, the checker boundary, and the formal runtime contract.
 
-The current method is **rising sea**: raise the waterline only when the next executable/testable boundary is forced by the existing formal substrate. The first waterline has now crossed the trace/run contract: the formal predicate, serialization corpus, generated Agda terms, runtime codec, and cross-leg freshness gates exist in narrow v0 form.
+The current method is **rising sea**: raise the waterline only when the next executable/testable boundary is forced by the existing formal substrate. The first waterline has now crossed the trace/run contract: the formal predicate, serialization corpus, generated Agda terms, runtime codec, tiny-run construction seam, and cross-leg freshness gates exist in narrow v0 form.
 
 ## Directory Consensus
 
@@ -65,7 +65,7 @@ Still unresolved:
 - The exact fields and serialization details of `Boundary`, `Audit`, and `Certificate`; `Trace` and `Run` have the minimal v0 shape recorded below, with richer extensions left open.
 - The exact format-tag pattern for later serialized records (`hoapa.run/0`, `hoapa.boundary/0`, etc.); the v0 trace uses `traceFormat : "hoapa.trace/0"`.
 - Whether a future synthetic generator becomes its own umbrella app (`hoapa_generator`) or stays test/support code until it earns runtime status.
-- The exact future checker invocation path: direct Agda typecheck for tiny witnesses, a compiled/extracted checker, or a separate runtime parser that validates emitted runtime traces against Agda-pinned predicates. Loop 1 uses the top-level `Makefile` as the checker boundary; a `hoapa_checker` app is deferred until there is a real runtime-emitted trace to feed it.
+- The exact future checker invocation path: direct Agda typecheck for tiny witnesses, a compiled/extracted checker, or a separate runtime parser that validates emitted runtime traces against Agda-pinned predicates. Loop 1 uses the top-level `Makefile` as the checker boundary; a `hoapa_checker` app is deferred until there is a real runtime-emitted trace from behavior to feed it.
 - The exact Pijul adapter API inside `hoapa_store`; the folder ownership is settled, but the boundary type is not.
 - The internal split of `/formal/RuntimeContract/` after `Trace.agda`; start narrow and let `Run`, `Boundary`, `Audit`, and `Certificate` earn separate files.
 
@@ -189,7 +189,7 @@ Landed:
 - `/formal/RuntimeContract/Realization/TinyTrace.agda`: concrete tiny-trace realization witness into the existing actor-causal substrate. This is not the generic bridge theorem.
 - `/formal/RuntimeContract/Realization/BackwardRank.agda`: safe trace-level proof that a causal-parent edge strictly decreases first-occurrence event rank under `backwardOK`. This is the hard acyclicity lemma used by the generic realization rung.
 - `/formal/RuntimeContract/Realization/CausalFromParents.agda`: first generic runtime-to-substrate rung. It derives a `CausalOrder` from backward parent edges and packages any well-formed run as one global `LocalFrame` over realized actor/event carriers. Per-conversation locality, `FrameHom`s, session assignment, and renaming invariance remain later work.
-- `/runtime/apps/hoapa_contract/`: minimal Elixir umbrella app with structs, camelCase JSON codec, vendored contract artifact under `priv/runtime_contract/`, round-trip tests, fixture-category tests, and manifest integrity tests.
+- `/runtime/apps/hoapa_contract/`: minimal Elixir umbrella app with precise contract struct typespecs, camelCase JSON codec, vendored contract artifact under `priv/runtime_contract/`, a test-only corpus path helper, round-trip tests, fixture-category tests, manifest integrity tests, and the tiny-run construction seam corpus-locked to `fixtures/valid/tiny_trace.json` by decoded-struct equality.
 - Top-level `Makefile`: cross-leg conductor for regeneration, freshness, formal tests, and runtime tests.
 
 Verified locally:
@@ -209,8 +209,8 @@ Banked observations:
 Deferred by design:
 
 - The no-leak ladder beyond the first realization rung: actor-renaming invariance for raw traces; per-conversation realized frames and `FrameHom`s; realized-frame renaming invariance; optional valid-reordering invariance and SIP/univalence capstone.
-- A real `hoapa_checker` app that checks runtime-emitted traces one-by-one.
-- OTP event emission, synthetic large-run generation, Pijul-backed persistence, Phoenix/UI, compact certificates, and audit/provenance semantics beyond opaque tokens.
+- A real `hoapa_checker` app that checks runtime-emitted traces from behavior one-by-one.
+- Minimal `hoapa_core` event-log/export behavior, synthetic large-run generation, Pijul-backed persistence, Phoenix/UI, compact certificates, and audit/provenance semantics beyond opaque tokens.
 
 ## Verification Commands
 
@@ -284,22 +284,22 @@ The structural no-leak half exists as frame-noninterference under change of base
 
 ## Next Contract Work
 
-The next work splits by lane.
+The next work splits by the number+letter lane convention: 1C pure conjecture, 2S runtime-to-substrate, and 3R runtime. This file is the canonical home for 2S/3R contract-boundary status; `workflow/status_formal.md` owns broader formal state.
 
-**B lane — runtime-to-substrate.**
+**2S - runtime-to-substrate.**
 
 1. Realize per-conversation local frames from raw conversations.
 2. Construct `FrameHom`s from each conversation frame into the global frame built by `CausalFromParents.agda`.
-3. Prove these embeddings preserve touches and preserve/reflect the derived causal order.
+3. Prove these embeddings preserve touches and preserve/reflect the derived causal order. The local causal order should be the global derived order restricted to the conversation events, not a separately invented intra-conversation order.
 4. Then return to actor-renaming invariance: raw `valid?` invariance, realized-frame equivalence, and only later SIP/univalence.
 5. Add session-tag assignment only after the actor-causal locality bridge is stable; `LocalFrame` itself contains no session content.
 
-**A lane — runtime implementation.**
+**3R - runtime.**
 
-1. Programmatically build a tiny valid run through the existing `hoapa_contract` structs/codecs and round-trip it through JSON.
-2. Keep validation corpus-locked to Agda. A runtime semantic checker or `hoapa_checker` earns its own app only once there is a real runtime-emitted trace to validate one-by-one.
-3. Add the minimal `hoapa_core` event log only after the tiny programmatic emission path is green.
-4. Add a synthetic generator after the tiny emitted-trace path is green.
+1. Banked: reconstruct the Agda-accepted tiny run from `hoapa_contract` structs, corpus-locked by decoded-struct equality against `fixtures/valid/tiny_trace.json`, with codec round-trip stability. The supporting refactor added a test-only corpus path helper and precise struct typespecs; no production builder or semantic checker was added.
+2. Keep validation corpus-locked to Agda. A runtime semantic checker or `hoapa_checker` earns its own app only once there is a real runtime-emitted trace from behavior to validate one-by-one.
+3. Add the minimal `hoapa_core` event log/export path only after the 2S per-conversation locality package is stable enough for runtime to echo it.
+4. Add a synthetic generator after the event-log export path is green.
 5. Add `hoapa_store` and the Pijul port/CLI boundary after the event log exists.
 6. Add Phoenix/`hoapa_web` last, as an edge adapter over an already-running core.
 
@@ -309,59 +309,93 @@ Let `Run`, `Boundary`, `Audit`, and `Certificate` earn separate Agda files only 
 
 ### Codex
 
-› Next, I want you to give an assessment of what the next step in C-runtime should do
+  Bandwidth Recommendation
 
+  I would put the next shared effort on the formal runtime-to-substrate adapter, not on more runtime implementation yet.
 
-• Assuming “C-runtime” means the pure implementation lane: the next step should be a tiny runtime-emitted trace, not OTP, not hoapa_checker, not Pijul/Rust yet.
+  What is at stake: the next runtime step, a minimal hoapa_core event log, will start making real design choices about conversations, events, local views, and export shape. The
+  formal side has not yet finished the per-conversation locality package that says exactly how raw conversations sit inside the global frame. If runtime goes first, it may
+  accidentally invent semantics the Agda side then has to chase.
 
-  The goal is to cross one specific boundary: today the runtime can decode/encode hand-authored contract fixtures; next it should construct a valid Run from code using hoapa_contract
-  structs/codecs, encode it to JSON, decode it back, and prove the round trip is stable in tests.
+  Options:
 
-  Recommended session target:
+  Option 1: B-adapter next, per-conversation locality
 
-  1. Inspect existing hoapa_contract structs/codecs and tests.
-  2. Add a small programmatic tiny-run builder, probably test-local first unless a production helper is naturally needed.
-  3. Build the same shape as the tiny valid fixture: small actor set, one conversation, two causally ordered events, valid touches/parents/format.
-  4. Test build -> encode JSON -> decode -> struct round trip.
-  5. Optionally compare the emitted JSON semantically against the existing tiny fixture, but do not overfit to field ordering or formatting.
-  6. Leave semantic validity authoritative in Agda. Do not create hoapa_checker until there are runtime-emitted traces that need per-trace validation.
+  Step: realize each raw conversation as a LocalFrame, construct FrameHoms into the global frame from CausalFromParents.agda, and prove touches plus causal preservation/reflection.
 
-  What this buys: it proves the runtime can produce evidence in the contract language, rather than merely consume fixtures. It is the smallest honest bridge from codec layer toward
-  behavior.
+  Buys: gives the runtime event log a precise target; advances the no-leak ladder; keeps conversation locality from becoming prose. This is the cleanest next mathematical seam.
 
-  What it avoids: duplicating Agda’s valid? in Elixir too early, opening OTP infrastructure before the data boundary is exercised, or letting runtime architecture outrun the formal
-  substrate.
+  Costs: more Agda work before runtime behavior grows. The implementation lane pauses after a very small green commit.
 
-  Success condition: a green runtime test that constructs a tiny valid run entirely in Elixir, serializes it through the existing contract codec, deserializes it, and verifies the
-  result is stable under the existing schema/codec boundary.
+  Important flag: local causal order should probably be the global derived order restricted to the conversation’s events, not only intra-conversation parent edges. Otherwise strict
+  FrameHom reflection can fail if two events in a conversation are related through a cross-conversation causal path.
+
+  Option 2: C-runtime next, minimal hoapa_core event log
+
+  Step: create the smallest runtime event log that can export the same tiny run through hoapa_contract.
+
+  Buys: moves from struct reconstruction to actual runtime behavior. This is the next implementation rung once the seam is banked.
+
+  Costs: opens app/domain design earlier: event append API, conversation state, tag assignment, export semantics. It risks outrunning the formal locality package.
+
+  Option 3: Alternate between both
+
+  Step: formal agent states the expected per-conversation interface while runtime sketches the event-log export surface.
+
+  Buys: keeps momentum in both lanes.
+
+  Costs: coordination overhead and higher risk of premature API shape.
+
+  My recommendation: land this test, update workflow modestly, commit. Then spend the next session on per-conversation LocalFrames and FrameHoms. After that, return to runtime for
+  the minimal hoapa_core event log.
 
 ### Claude
 
-● Confirmed: hoapa_contract has the structs (Run/Trace/Event/Conversation) + a shape-only Codec (encode!/decode) + codec/manifest tests. No programmatic builder, no semantic checker.
-  That matches the documented gap.
+● Confirmed the load-bearing facts. The contract already guarantees exactly what a per-conversation realization needs: eventOK (Trace.agda:175) forces an event's touches ⊆ its 
+  conversation's actors, and convOK (line 167) forces conversation actors ⊆ global actors. And CausalFromParents explicitly collapses locality today — ActorIn ≡ λ _ → Unit, one
+  global frame holding everyone (line 209, deferral noted at lines 22–30). That makes the direction question sharp.
 
-  Next step in C (runtime) — compact assessment
+  Recommendation: B (the adapter/junction), not C (runtime)
 
-  Goal. First self-emitted trace, corpus-locked — the "emit" half of the emit→validate loop the whole design targets, using only the existing hoapa_contract app. This is the A-lane
-  echo of the B rung just landed (realizeFrame): B gave emitted evidence a formal meaning; C should now emit evidence.
+  Bank the emission seam first (it's green, awaiting Codex's workflow note + my commit). Then the natural next bandwidth is B-lane, per-conversation locality — for three grounded
+  reasons.
 
-  Do (three moves, all in hoapa_contract):
-  1. Programmatic builder — construct a Run/Trace from Elixir structs (not hand-JSON): a tiny 2-actor/2-event conversation with one backward-pointing causalParents edge — the same
-  shape as valid/tiny_trace.json.
-  2. Round-trip — struct → Codec.encode! → Codec.decode → assert structural equality (proves the builder is codec-consistent).
-  3. Corpus-lock — assert the encoded JSON matches the vendored priv/runtime_contract/fixtures/valid/tiny_trace.json, the fixture Agda already accepts as valid?. This ties the first
-  programmatic trace to an Agda-accepted example without re-implementing semantics, keeping Agda authoritative.
+  1. Forced-ness (rising sea). B's next rung reuses carriers that already exist (LocalFrame, FrameHom, the derived global frame) and adds one relation; it's the explicitly named
+  immediate frontier in CausalFromParents.agda:22–30. C's next rung — the minimal hoapa_core event log — is not forced by the substrate. The plan phrases it as permission ("add the
+  event log only after emission is green"), not compulsion. We just unlocked that permission, but nothing forces us through it. Rising-sea says take the forced boundary, and that's
+  B.
 
-  Why this and not more. It's the smallest rising-sea-forced step: it produces the first trace that isn't a hand-written fixture and closes, at one point, the "the two legs agree
-  only via a shared hand-authored corpus" gap. It's also the prerequisite for a real OTP event log later.
+  2. Dependency discipline ("A echoes B"). The runtime just echoed B's global-frame rung — the emission seam produces the exact trace CausalFromParents gives meaning to. For the
+  runtime to echo again meaningfully, B has to produce the next meaning first. Growing hoapa_core now would be the runtime outrunning the formal side it's supposed to mirror.
 
-  Scope guard (defer, not forced yet): no OTP supervision/event log, no Phoenix, no Pijul, no at-scale synthetic generator. The emission is a hand-built struct, not a running actor
-  system — just enough to turn the loop once.
+  3. Payoff proximity. Per-conversation locality is the direct prerequisite for the no-leak / actor-renaming theorem (T_boundary — "protects humanness by refusing to formalize it").
+  That is the mathematically and ethically load-bearing target of this whole leg. C's event log, by contrast, is architecture that doesn't move us toward a theorem. B is where the
+  interesting result lives.
 
-  The one decision to flag for the runtime agent: the semantic checker — an Elixir well_formed? mirroring Agda's decidable valid? (i.e., hoapa_checker). Don't build it in this step.
-  It becomes forced the moment the runtime emits a trace it wants to judge rather than compare to a known fixture — and when it does, it must ship with the drift-guard discipline:
-  Agda valid? stays the single source of meaning; the Elixir mirror is corpus-pinned; every new WellFormed clause ships with a mirrored Elixir clause + fixtures, gated by CI.
-  Corpus-locking in move 3 is exactly what lets this step stay honest while deferring the mirror.
+  What the step should be
 
-  One-liner to hand off: "Build one tiny Run programmatically from the contract structs, round-trip it through the codec, and lock it to the Agda-accepted tiny_trace fixture — no
-  OTP/Phoenix/Pijul, and no semantic checker until a trace needs judging rather than matching."
+  Replace the collapsed locality with real per-conversation frames and embed them:
+
+  1. Realize each raw conversation as its own LocalFrame over the realized actor/event carriers — ActorIn a ≔ (a ∈ that conversation's actorIds) instead of Unit, events restricted to
+  those with matching conversationId. touches-in-frame holds for free from eventOK (touches ⊆ conv actors) — this is why the contract was shaped that way.
+  2. Construct a FrameHom from each conversation frame into the global frame from CausalFromParents. Actor-preservation comes from convOK (conv actors ⊆ global actors); the causal
+  order on the sub-frame is the restriction of the derived global order.
+  3. Prove the embedding preserves touches and preserves+reflects the causal order (FrameHom's strict-reflection requirement). Reflection is the one subtle obligation — restriction
+  of a partial order reflects by construction, but it needs care against the globally-derived _≤R_.
+
+  Deferred, named not hidden: session-tag assignment (LocalFrame carries no session content), then actor-renaming/no-leak invariance (the capstone, once locality is stable),
+  valid-reordering, SIP/univalence.
+
+  The one scoping choice for the trio
+
+  Whole-package vs. split, following the BackwardRank(hard lemma)/CausalFromParents(assembly) precedent:
+
+  - Split (my lean if reflection proves heavy when I scope it): file 1 = per-conversation LocalFrame realization (carrier + touches-in-frame); file 2 = the FrameHom +
+  preserve/reflect proofs. Buys small forced commits and isolates the reflection proof; costs an intermediate sub-frame that's inert until embedded.
+  - Whole: one file, subframe + FrameHom + proofs. Buys a rung that's meaningful immediately (the FrameHom is the point); costs a bigger file if reflection balloons.
+
+  I'd scope reflection live and split only if it's heavy — the constructions themselves look short.
+
+  ---
+  Net: bank C's emission seam, then move bandwidth to B for per-conversation locality + FrameHoms. That keeps the runtime echoing a formal side that stays one honest step ahead, and
+  it's the rung that actually walks toward the no-leak theorem.

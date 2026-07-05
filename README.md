@@ -415,10 +415,13 @@ Only open/distributed is sustainable and preserves attachment, Hoapa formalizes 
 - Deleuze / Guattari — Rhizome & plane of immanence  
 - Maturana / Varela — autopoiesis  
 - Robert Rosen — (M/R) systems (metabolic/repair)  
-- Barr / Chu - Chu spaces  
 - Karl Friston — active inference & free-energy principle  
 - Alain Connes — noncommutative geometry & modular flow  
 - Bennequin / Belfiore / Laforgue (Huawei) — topos theory for cognition  
+
+### 4.4 Metaphysics
+
+
 
 ---
 
