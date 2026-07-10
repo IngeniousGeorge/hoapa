@@ -37,7 +37,10 @@ enough mass to be worth querying.
 ## Layout
 - `nodes/<id>.md`
 - `edges/<source>--<type>--<target>.md`
-- `regions/<id>.md`
+- `shapes/<id>.md` — all grouping records: shapes, their instances, and plain
+  regions (a region is the trivial shape). Flat, like `nodes/`: the template /
+  instance / plain-region distinction lives in frontmatter (`kind`, `shape`,
+  `members`), not in subfolders.
 
 ## Node schema (frontmatter)
 - `id` — kebab-case, domain-descriptive, stable (edges reference it).
