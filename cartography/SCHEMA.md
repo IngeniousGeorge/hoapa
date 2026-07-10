@@ -163,3 +163,19 @@ When a pair of agents (human + agent, or agent + agent) finishes a working sessi
 they add nodes and edges for the topics they touched, following this schema. Prefer
 many small precise records over few large ones. A dangling edge — one whose target
 is not yet a node — is allowed: it marks a node worth writing later, not an error.
+
+## Next steps
+- **Views.** Build saved Kumu views (filters + decorations) rather than relying on
+  the raw map: at minimum a colour-by-kind legend, a pendulum-only view, a
+  conjecture-spine view, and a toggle for the synthetic `contains` (membership)
+  edges so the structural scaffolding can be hidden when reading content.
+- **Naming overhaul.** The graph currently carries jargon from several sources at
+  once — category theory, philosophy, and the project's own coinages. That is
+  acceptable as a working state, but a full pass to plain-language labels is
+  planned. Until then: the reader guide flags it up front, and every node's
+  description spells its term out, so no label is load-bearing on its own.
+- **Publish.** Surface the Kumu map (embed
+  `https://embed.kumu.io/4fae997b86bfc2a3bd020576df818aac`) along an upgrade path:
+  (1) now — a README *link* out to the embed (repo READMEs strip `<iframe>`, so
+  link, optionally behind a screenshot); (2) next — GitHub / Codeberg Pages hosting
+  a small `graph.html` that iframes the embed; (3) eventually — a dedicated website.
