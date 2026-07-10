@@ -17,6 +17,6 @@ philosophy, Peirce's semiosis, Simondon's individuation — sharpened so that th
 third term is not merely "language" but a language paired with a constructive type
 theory. We adopt it from the dialogue recorded in
 `workflow/arc/15_metaphysics_and_logic.md`, where it is derived as the shared shape
-of a diagram of metaphysical neighbours (see [metaphysics-neighbour-diagram]). Its
+of a diagram of metaphysical neighbours (see [philosophy-neighbour-colimit]). Its
 one deliberate cost is that it posits no "first instant": every beginning is
 intelligible only as a local beginning within some context.
