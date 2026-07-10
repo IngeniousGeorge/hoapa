@@ -1,0 +1,525 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{xurl}
+\usepackage{hyperref}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!45!black,
+  urlcolor=blue!45!black,
+  citecolor=blue!45!black,
+  pdftitle={The Hoapa Conjecture},
+  pdfauthor={The Hoapa Project}
+}
+
+\setcounter{tocdepth}{2}
+\setlist[itemize]{leftmargin=1.6em,itemsep=0.3em,topsep=0.3em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.75em}
+\sloppy
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcommand{\HoTT}{HoTT}
+\newcommand{\Allow}{\mathrm{Allow}}
+\newcommand{\Require}{\mathrm{Require}}
+\newcommand{\Id}{\mathrm{Id}}
+\newcommand{\HH}{\mathrm{HH}}
+\newenvironment{annotatedlist}{%
+  \begin{description}[
+    style=nextline,
+    leftmargin=0pt,
+    labelindent=0pt,
+    labelsep=0pt,
+    font=\normalfont\bfseries,
+    itemsep=0.85em,
+    topsep=0.35em
+  ]%
+}{\end{description}}
+\newcommand{\annotation}[2]{\par\textit{#1:} #2}
+
+\title{The Hoapa Conjecture}
+\author{The Hoapa Project}
+\date{July 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This file records the conjectural mathematical target, its metaphysical
+scaffolding, and the engineering background of the project. The metaphysical
+language below is not a theorem and not a condition required by the formal
+work: it acts as the context in which the conjecture becomes meaningful. The
+math we are building here is a subsystem of a broader interdisciplinary
+picture describing open communities of inquiry. We believe it is, however,
+interesting to mathematics on its own merits.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+\section{The Foundational Conjecture}
+
+Three facts are ordinary in their own domains:
+
+\begin{itemize}
+\item Modalities, or perspectivism encoded in homotopy type theory, let
+complexity develop.
+\item Typed data is more robust, readable, literate, and composable in any
+domain concerned with information transfer.
+\item Large numbers of unityped\footnote{Unityping is the provision that the
+system which handles messages and their carriers can distinguish between types
+of messages, but cannot distinguish between types of message carriers, which
+are all of the same type from the system's point of view. This means the
+system treats all of them in exactly the same way: no privileges, no special
+responsibilities. Even if this is counter-intuitive to humans accustomed to
+overspecialization, it is a form of liberation for the message carriers, and a
+reclaiming of their own identity.} agents are well adapted to handle
+complexity.
+\end{itemize}
+
+Based on those, the project targets a cross-site adjunction:
+
+\[
+\Allow \dashv \Require
+\]
+
+between:
+
+\[
+M = \text{modal / contextual structure}
+\qquad
+C = \text{concurrent / protocol structure}.
+\]
+
+The modal side is the formal home of perspectivist context: the possibility
+that multiplicities emerge and develop complexity because there is no
+oppressive single privileged viewpoint. The concurrent side is the operational
+home of inquiry: unityped participants, typed communication, local traces,
+composability, and generated documentation.
+
+The conjecture says, in raw form:
+
+\paragraph{If:}
+\begin{itemize}
+\item \(C\) properly separates unityped actors from typed content;
+\item \(M\) supplies enough modal/perspectivist structure;
+\item the two sides are related by an \(\Allow \dashv \Require\) adjunction;
+\end{itemize}
+
+\paragraph{Then:}
+\begin{itemize}
+\item modal context allows concurrent complexity to unfold;
+\item concurrent praxis requires modal context to be legitimate and
+intelligible;
+\item iterations of the adjunction produce a developing network rather than
+collapsing;
+\item the protocol can generate typed documentation that becomes a new context
+for further inquiry.
+\end{itemize}
+
+The current pair-first anchoring is:
+
+\begin{annotatedlist}
+\item[Complexity]
+\annotation{Adjunction datum}{\(A = \Allow : M \to C\).\footnote{While \(R\) is both Require and the right adjoint, we use \(A\) for Allow to make the notation consistent for all readers. Mathematicians will recognize \(A\) as the usual \(L\) for the left adjoint.}}
+\annotation{Reading}{modal context generatively permits operational complexity.}
+
+\item[Evolution]
+\annotation{Adjunction datum}{\(R = \Require : C \to M\).}
+\annotation{Reading}{concurrent histories reflect back into modal structure.}
+
+\item[Praxis]
+\annotation{Adjunction datum}{\(\eta : \Id(M) \to R \circ A\).}
+\annotation{Reading}{a contextual seed unfolds into operational work and returns changed.}
+
+\item[Anthropic-principle loss]
+\annotation{Adjunction datum}{\(\epsilon : A \circ R \to \Id(C)\), especially non-invertibility.}
+\annotation{Reading}{a community sees only a lossy reflection of other contexts.}
+
+\item[Care]
+\annotation{Adjunction datum}{order-2 involution \((-)^\perp\).}
+\annotation{Reading}{the continuity operation: receiver and giver, cared-for and caregiver, exchange roles.}
+\end{annotatedlist}
+
+This is still a conjecture. The checked work so far is narrower: on the
+operational side, the project has a point-generated sheafification reflector
+and a sheaf-level Benton/LNL adjunction over the supported event-discrete
+actor-causal site. \(Chu(SET,Bool)\) supplies a concrete coefficient witness,
+and the Sessions-to-Chu realization interprets the postulate-free session
+object/morphism syntax. This is not yet the cross-site
+\(\Allow \dashv \Require\) adjunction. It is one concrete fragment that makes
+the operational side less speculative.
+
+\section{Metaphysical Framing: Context, Multiplicity, Language-Type, New Context}
+
+\paragraph{Compact formulation.}
+Reality unfolds through contexts that generate multiplicities; these
+multiplicities articulate their contexts through languages and type-structures:
+systems of constructions, expressions and transformations, of identity and
+difference. Once stabilized, such language-types become new contexts in which
+further multiplicities can emerge.
+
+The metaphysical schema behind the project is:
+
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\centering
+context \(\to\) multiplicity \(\to\) language/type \(\to\) new context
+\(\to\)\\
+new multiplicity \(\to\) new language/type theory \(\to \cdots\)}}
+\end{center}
+
+A context is a field of problems, perspectives, histories, constraints, and
+possible actions. Within it, multiplicities emerge: agents, events, local
+views, incompatible fragments, and paths of possible transformations. Those
+multiplicities fully enter a shared reality by producing a form of language,
+and more constructively by producing types: a system of forms in which what was
+locally encountered can be expressed, checked, inhabited, transported, revised,
+identified, composed, and reused.
+
+Logic already appears in this picture. It is a way of taking the resources
+that a situation makes available, working with them, and returning the result
+as a rule, type, document, or construction that can be adequately reused. The
+next section makes that logical reading explicit.
+
+Hoapa does not try to prove this metaphysics. The conjecture would instead
+show that the schema has a precise communication-theoretic incarnation: a
+\emph{perspectivist} context allows a \emph{unityped} concurrent community to
+produce \emph{multityped} documentation, and the resulting documentation can
+become the seed of further context. This conjecture is in essence the bridge
+from the specification of the three adjectives in italics to an open logic for
+networks. The optimality, in the engineering sense, of those specifications
+helps the recursion in the schema above to happen.
+
+An approach into this metaphysics sees it as a sublation that stops short of
+Hegel's Absolute Idea with a deterritorialization of Deleuze's difference, via
+the mathematics of Lawvere. But more generally, one should conceive it as a
+nexus of traditions forming a meeting point of partial views on Hoapa,
+articulating what each provides without collapsing them into one doctrine. In
+the language of category theory, one may also imagine Hoapa as the colimit of
+an epistemological diagram.
+
+\begin{annotatedlist}
+\item[Hegel]
+\annotation{Contribution}{dialectic; aufhebung; the concrete universal.}
+\annotation{Absorbed as}{each language-type sublates its predecessor: preserved, cancelled, lifted.}
+
+\item[Deleuze]
+\annotation{Contribution}{multiplicity, difference, and non-final becoming.}
+\annotation{Absorbed as}{multiplicity; and the refusal to close: no first context, open colimit.}
+
+\item[Lawvere / topos theory]
+\annotation{Contribution}{structured contexts have internal languages.}
+\annotation{Absorbed as}{the categorical spine of the schema.}
+
+\item[Grothendieck]
+\annotation{Contribution}{relative point of view and rising-sea method.}
+\annotation{Absorbed as}{objects known through relations, covers, and patient enlargement of context.}
+
+\item[Lautman / Zalamea]
+\annotation{Contribution}{problematic structure, transit, saturation, and liberation.}
+\annotation{Absorbed as}{saturation and liberation: context completing enough structure to release new forms.}
+
+\item[Peirce / semiotics]
+\annotation{Contribution}{sign, object, interpretant; inquiry as a community process.}
+\annotation{Absorbed as}{interpretation becoming habit, and habit becoming a new context.}
+
+\item[Whitehead / process thought]
+\annotation{Contribution}{reality as events and becoming rather than substance-first inventory.}
+\annotation{Absorbed as}{multiplicities forming through successive occasions.}
+
+\item[Simondon / individuation]
+\annotation{Contribution}{individuals precipitate from a metastable field.}
+\annotation{Absorbed as}{multiplicities resolving into typed forms without exhausting their field.}
+
+\item[Autopoiesis / enactivism]
+\annotation{Contribution}{systems produce and maintain their own organization.}
+\annotation{Absorbed as}{language-types as self-maintaining disciplines of action.}
+
+\item[Cassirer / Goodman]
+\annotation{Contribution}{symbolic forms and world-versions.}
+\annotation{Absorbed as}{worldmaking as structural, not merely cultural.}
+
+\item[Abramsky / contextuality]
+\annotation{Contribution}{local views need not glue to one hidden global story.}
+\annotation{Absorbed as}{obstruction as information, not failure.}
+\end{annotatedlist}
+
+\section{Logical Interpretation: Borrowing Without Collapse}
+
+\paragraph{Compact formulation.}
+Logic is the theory of valid contextual transformation: the disciplined art of
+borrowing from a context without collapsing it, and returning what was borrowed
+as a reusable form of action, expression, or understanding.
+
+In this setting, logic is not merely a calculus of inference. It is the
+practice of using context in a way that can be checked, shared, and repeated. A
+proof uses assumptions and turns the act into a rule that can be applied
+elsewhere. A type makes an operation viable. A sheaf uses local views and tests
+whether they agree enough to glue. A Hoapa protocol uses participants'
+perspectives and returns trusted, viable and suitably composed documentation
+without exposing, consuming, or ranking the participants.
+
+There are simple real-world traces of the same pattern. Permaculture borrows
+from a place: sun, water, slope, soil, shade, succession, animal behavior,
+microbial cycles, and human labor. It succeeds when the borrowing strengthens
+the cycles that made the borrowing possible. A cell does something comparable
+with gradients: it uses a difference in its environment, transforms that
+difference into work, and preserves enough boundary and metabolism for future
+work to remain possible. In both cases, the logic is not domination of context
+but non-collapsing use of context.
+
+This is why the logical interpretation is central to Hoapa. The project asks
+how a community can legitimately turn local constraints, observations, needs,
+and obligations into public, typed, revisable structure while preserving the
+openness of the context that made the transformation possible.
+
+The logic-neighbor network is again not a dictionary of equivalences. It is a
+set of partial witnesses to the same problem: how context can be both used and
+preserved.
+
+\begin{annotatedlist}
+\item[Gentzen / Prawitz / Dummett]
+\annotation{Logic there}{introduction, elimination, use of assumptions, harmony.}
+\annotation{Transformed here as}{borrow from context, work, and return the use as a stable rule.}
+
+\item[Lawvere / categorical logic]
+\annotation{Logic there}{logic internal to categories and toposes.}
+\annotation{Transformed here as}{functorial passage between structured contexts.}
+
+\item[Martin-L{\"o}f / Curry-Howard / \HoTT]
+\annotation{Logic there}{propositions-as-types, proofs as inhabitants, identity as structure.}
+\annotation{Transformed here as}{the grammar of inhabiting and transforming a world.}
+
+\item[Girard / linear logic]
+\annotation{Logic there}{formulas as resources; controlled copying and reuse.}
+\annotation{Transformed here as}{resource-sensitive work; public record only after the right passage.}
+
+\item[Tarski / model theory]
+\annotation{Logic there}{truth-preservation across interpretations.}
+\annotation{Transformed here as}{context-invariant transformation.}
+
+\item[Reynolds / separation logic]
+\annotation{Logic there}{local reasoning about separated resources.}
+\annotation{Transformed here as}{intervene in one part while preserving the surrounding frame.}
+
+\item[Abramsky / contextuality]
+\annotation{Logic there}{local sections, obstruction to global gluing.}
+\annotation{Transformed here as}{perspectivist navigation; obstruction made productive.}
+
+\item[Dewey / Peirce / Brandom]
+\annotation{Logic there}{inquiry, semiosis, commitment, entitlement.}
+\annotation{Transformed here as}{collective orientation in a context.}
+
+\item[Hegel / Lautman / Zalamea]
+\annotation{Logic there}{dialectic, problematic structure, saturation and liberation.}
+\annotation{Transformed here as}{the rhythm by which a context completes enough structure to release new forms.}
+\end{annotatedlist}
+
+\section{The Cascade of Trade-Offs: A Practical Response to Structural Problems}
+
+The framework is, read operationally, a sequence of engineering trade-offs that
+the foundational commitments to the unityped/multityped discipline generate,
+together with the strategies that resolve them. The cascade is
+\emph{generative}: each resolution opens the next problem. The strategy applied
+at every step is the same shape: separation of concerns, or modularity: each
+module must only do one thing, and complexity is handled at the level of
+compositionality. The full layer-by-layer catalogue is in
+\texttt{future\_work.md}; what follows is the compact picture.
+
+\begin{annotatedlist}
+\item[Hybrid]
+\annotation{Trade-off}{locality, where actors operate in frames, versus globality, where content must cohere across frames.}
+\annotation{Strategy}{sheaf descent: compatible local content glues to global content.}
+
+\item[Reflexive (\(\Pi\))]
+\annotation{Trade-off}{stability, where the protocol must be reliable, versus adaptability, where it must respond to change.}
+\annotation{Strategy}{meta-conversations propose, consensus ratifies, and non-retroactivity protects the past.}
+
+\item[Bulk (\(\Lambda\))]
+\annotation{Trade-off}{expressive power, with a rich vocabulary, versus transparency, where every participant must be able to decode the result.}
+\annotation{Strategy}{the protocol generates its own language; the reflexive layer maintains its transparency over time.}
+
+\item[Field-theoretic dynamics]
+\annotation{Trade-off}{exploration, with proposal instability and high entropy, versus exploitation, with stable mature language and low entropy.}
+\annotation{Strategy}{RG flow with reflexive insertions; symmetry-breaking \(\to\) fluctuation \(\to\) stabilization phases.}
+
+\item[Federation]
+\annotation{Trade-off}{coherence within one protocol versus plurality across protocols.}
+\annotation{Strategy}{typed translation interfaces, partial clones, conflict-as-data.}
+
+\item[Information cohomology]
+\annotation{Trade-off}{dense expert-friendly encoding versus accessible encoding decodable by any member of the unityped receiver population.}
+\annotation{Strategy}{receiver-relative measurement of encoding cost; transparency treated as an engineering property on the same footing as performance and security.}
+\end{annotatedlist}
+
+The cascade is not a list of features added by choice. It is the sequence of
+problems the foundational commitments create, with each layer being the
+structural response to the problem the previous layer's resolution exposed.
+Hybrid's locality-vs-globality only becomes a problem because we committed to
+separating actors and sessions. Reflexive's stability-vs-adaptability only
+becomes a problem because Hybrid gave us a maintainable artifact. Bulk's
+expressivity-vs-transparency only becomes a problem because Reflexive gave us a
+self-editing protocol that must now talk about things. Field-theoretic
+dynamics' exploration-vs-exploitation only becomes a problem because Bulk gave
+us a language that must evolve well. Federation's coherence-vs-plurality only
+becomes a problem because the four previous layers gave us a complete protocol
+that, in isolation, would re-create the one-true-framework failure the project
+was built to dissolve. Information cohomology's dense-vs-accessible encoding
+becomes salient as soon as Bulk produces a language, and acute as soon as
+Federation puts that language in front of multiple receiver populations.
+
+The strategy is uniform across the cascade. Every trade-off is resolved by
+separating the two concerns that are in tension, giving each its own
+categorical home, and providing the precise interface between them. Locality
+and content are separated by the sheaf; current protocol and its edits are
+separated by a meta layer; how and what are separated by an
+orchestration/content split; content and dynamics are separated by the
+factorization-algebra-plus-RG-flow; interior and exterior of a protocol are
+separated by the meta-topos; content and its measurement are separated by the
+(co)homology pairing. The foundational commitments themselves
+(actor-vs-content on \(C\), spatial-vs-discrete on \(M\), context-vs-system at
+the cross-site adjunction) are the same architectural move at the foundational
+floor.
+
+So separation of concerns is not an engineering principle the framework
+happens to use. It is the framework's primitive architectural move, applied
+recursively from the foundations upward, and the cascade of trade-offs is what
+makes that recursion necessary. The transparency-of-language trade-off
+(information cohomology) belongs on this list on the same footing as the others
+because it is the encoding question the unityped commitment forces on the
+engineer: \emph{how is the unityped receiver going to understand the message?}
+That question is no less an engineering interest than performance, security,
+or maintainability. It is simply not currently on the engineer's radar, because
+the economy of expertise prefers density to transparency. In the framework it
+is how the output feeds back into the input, and what makes the loop go round,
+along with other aspects, as we shall see in the next section.
+
+\section{Openness as the Best Strategy}
+
+The cascade does not just terminate in a finished protocol. It converges on a
+stance: an open community of inquiry, able to accept and process outside nodes,
+participants and concepts alike, as if they were its own without turning them
+into subordinates, threats, or ranked identities.
+
+From the metaphysical/logical point of view, Hoapa is a strategy for borrowing
+from a context without collapsing it. It lets a community receive external
+perspectives and type them as stable documentation without consuming or
+exposing the participant-carriers that made the transformation possible, or
+distorting the concepts involved.
+
+From the conjectural point of view, Hoapa seeks an optimal open strategy: a
+universal way for a community of inquiry to remain open under perspectivism.
+Here ``optimal'' is a system-architectural property: the strategy is deemed
+optimal if every admissible way of staying open factors through it. It is not a
+hidden numerical metric: this layer may come later through information
+cohomology or field-theoretic dynamics, but the first meaning is given by
+category-theoretic universal properties.
+
+The current candidate network of notions is:
+
+\begin{annotatedlist}
+\item[Trust]
+The expected behavior of an interface, from the point of view of its consumer
+(forward warrant).
+
+\item[Accountability]
+The reverse channel: the trace, answer, repair, or challenge path.
+
+\item[Risk / vulnerability]
+The conserved exposure that makes trust nontrivial.
+
+\item[Reliability]
+The settlement of expectation against delivered account.
+
+\item[Legitimacy]
+Earned standing relative to a problem, viewpoint, and admissible tests.
+
+\item[Openness]
+The capacity to admit foreign profiles without erasing or subordinating them.
+
+\item[Care]
+The continuity operator that lets the cycle reproduce without extraction.
+\end{annotatedlist}
+
+This points toward a warrant-enriched network. Trust is an enriched hom:
+directional, contextual, and compositional, never a predicate on actors.
+Accountability is its audit or return channel. Legitimacy is representability
+or universal adequacy relative to a problem viewed a certain way; its grounded
+corners in the project are initiality and no-leak. Openness is a
+completion/admission discipline: a foreign node is accepted exactly when its
+two-sided profile toward the network is admissible.
+
+Technically, care is the order-2 involution, the operation by which cared-for
+and caregiver exchange roles and the settled network becomes able to reproduce.
+Those terms are inspired by Bowlby's theory of attachment, whose ``algorithm
+for network continuity'', described in the presentation of the project, is a
+pillar of our research.
+
+\begin{center}
+\fbox{\parbox{0.92\linewidth}{\centering
+secure base \(\to\) explore \(\to\) compose findings \(\to\) document
+\(\to\) care \(\to\)\\
+new secure base \(\to\) new exploration \(\to \cdots\)}}
+\end{center}
+
+A \emph{secure base}, in the attachment-theory sense, is a mature node carrying
+enough coherent, useful information to do its educational and developmental
+job.
+
+In our metaphysics this dynamic also applies across contexts and
+multiplicities. It views field-theoretic physics as the secure base for
+chemistry, chemistry as the secure base for ecosystems, ecosystems as the
+secure base for natural-language-based sociological systems. At each step the
+borrowing-without-collapse logic and open strategies employed by natural
+systems allow the current multiplicity to develop and yield, as a byproduct,
+the next context, which can be a secure base for a new multiplicity to emerge.
+
+Metaphorically, in the language of (co)homology, the stages chain like a
+complex: the image of one passage sits inside the kernel of the next, and the
+genuinely new at each level is the homology, exactly what the level below could
+not already account for.
+
+In the conjecture, the same dynamic exists inside one developing network: a
+secure base is the reusable catalyst that lets a multiplicity freely explore,
+safe from exploitation. The base offers a field of engineering strategies to
+navigate, and the conjecture claims that the open strategy is the most adequate
+for continuity and persistence under the logic of borrowing-without-collapse.
+
+At the field-theoretic horizon, this reusable-catalyst face has the shape of a
+trace: closing the catalyst wire into a circle suggests the familiar identity
+\[
+\int_{S^1} R \simeq \HH(R),
+\]
+Hochschild homology as the trace of repeated use. This is a different homology
+from the emergent one above: here it points to the trace of reuse, not novelty
+across levels. The two homologies correspond, respectively, to the conjectural
+and metaphysical readings of secure-base recursion. This remains a
+metaphorical target for Hoapa, not an established result; and it describes the
+loop's cyclic continuity, not care itself. Care is the order-2 involution inside
+the loop, the swap by which the cared-for can become caregiver: the loop's
+closure is the trace, but its reproduction step is the swap.
+
+The conjecture and the metaphysics are two points of view on why this kind of
+multiplicity-organization is adapted to its perspectivist context; \emph{and/or}
+is the honest connective between them.
+
+\clearpage
+\renewcommand{\refname}{Bibliography}
+\addcontentsline{toc}{section}{Bibliography}
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{workflow/communication_drafts/hoapa_conjecture}
+
+\end{document}

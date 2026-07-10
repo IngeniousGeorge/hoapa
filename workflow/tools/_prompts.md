@@ -71,7 +71,10 @@ Any known structure you believed the
 
 Good work. I'm going to clear context. See you on the other side!
 
-## Codex
+## formatting documents
+
+In markdown files, for math notation, and don't use embedded latex because it doesn't compile and it's unreadable, nor the home-cooking keyboard shortcuts like X^1, but the unicode characters whenever applicable. If none exist for the symbol, please notify the instigator.
+In latex files, use latex for math notation obviously. And in general remove indentation at the beginning of paragraphs and add a line of white space in between each paragraphs. The author should always be "The Hoapa Project" and the date be month in letters and year in numbers.
 
 ---
 
