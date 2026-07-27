@@ -2,7 +2,13 @@
 
 *This note records Hoapa's mathematical conjecture, its metaphysical scaffolding, and the engineering target of the project. The math we're building here is a subsystem of a broader interdisciplinary picture describing open communities of inquiry. We believe it is, however, interesting to mathematics on its own merits.*
 
-*Much of what follows can be traced to a single reframing: to pose foundational questions at the level of the community rather than the individual, following the observation that the world has no absolute perspective. To construct the systems which answer those questions, one is forced into a specific architecture, based on modularity—every part of the system must only do one thing—and targeting a state of perpetual openness. A key specification is for the individuals to all be treated in the same way by those systems.*
+*Much of what follows can be traced to a single reframing: to pose foundational questions at the level of the community rather than the individual, following the observation that the world has no absolute perspective, and can therefore only be approached by a multiplicity. The focus shifts one step upstream in the scientific algorithm: from the structure of knowledge to the dynamics of inquiry that produce it.*
+
+*To construct the protocols which answer those questions, one is forced into a specific architecture based on modularity—every part of the system must only do one thing. A key specification is for the individuals to all be treated in the same way by those systems—every participant in the system must play by the same rules.*
+
+*To prove the Hoapa conjecture would be to demonstrate that this architecture is the optimal way to stay open. A generative openness that sustains itself without consuming what sustains it, and whose iteration begins the process again at a new scale.*
+
+*Whether that recursion reaches all the way to a continuity across worlds is the metaphysical horizon the conjecture points to.*
 
 *no absolute perspective -> collective* methodology *-> engineering architecture of modularity/SoC (unityping/multityping) -> perpetual openness -> universal recursion as participation in the generalize theory of evolution.* <=> how is the "contravariant functor? what motivates/fuels it?
 
@@ -42,19 +48,19 @@ Then:
 
 The current pair-first anchoring is:
 
-| Anchor | Adjunction datum² | Reading |
+| Anchor | Adjunction datum | Reading |
 |---|---|---|
 | Complexity | A = Allow : M → C | modal context generatively permits operational complexity |
 | Evolution | R = Require : C → M | concurrent histories reflect back into modal structure |
 | Praxis | η : Id(M) → R∘A | a contextual seed unfolds into operational work and returns changed |
-| Anthropic-principle loss | ε : A∘R → Id(C), especially non-invertibility | a community sees only a lossy reflection of other contexts |
+| Anthropic-principle² loss | ε : A∘R → Id(C), especially non-invertibility | a community sees only a lossy reflection of other contexts |
 | Care | order-2 involution (–)⊥ | the continuity operation: receiver and giver, cared-for and caregiver, exchange roles |
 
 This is still a conjecture. The checked work so far is narrower: on the operational side, the project has a point-generated sheafification reflector and a sheaf-level Benton/LNL adjunction over the supported event-discrete actor-causal site. Chu(SET,Bool) supplies a concrete coefficient witness, and the Sessions-to-Chu realization interprets the postulate-free session object/morphism syntax. This is not yet the cross-site Allow ⊣ Require adjunction. It is one concrete fragment that makes the operational side less speculative.
 
 ¹: Unityping is the provision that the system which handles messages and their carriers can distinguish between types of messages, but can't distinguish between message carriers, who are all of the same type from the system's point of view, meaning the system treats all of them in exactly the same way—no privileges, no special responsibilities. This is, even if counter-intuitive to humans accustomed to a social landscape determined by specialization, a form of liberation for the message carriers, and a reclaiming of their own identity.
 
-²: While R is both require and right adjoint, we use A for allow, to make it consistent for all readers, but mathematicians will recognize it as L for left adjoint. 
+²: The Anthropic Principle is a partial solution to the fine-tunning puzzle: the observation that it looks like the universe "conspired" to create us (if you change some of the fundamental constants of physics by only a small amount, our universe either collapses or blows up). The Anthropic Principle says that the problem arises because we're around to talk about it, and we would not be here to notice a universe that wasn't. In the metaphysical framing suggested by the conjecture, this is further understood as a form of "optical illusion" due to the perspectivism baked into the fabric of the universe: all we see from distant contexts are the elements in those contexts that are compatible with ours, such that eventually, in the limit, it appears as though all those distant contexts did was prepare for our existence.
 
 ## Metaphysical framing: context, multiplicity, language-type, new context
 
@@ -78,19 +84,19 @@ A technical approach into this metaphysics sees it as a Hegelian sublation that 
 
 | Neighbor | What it contributes | Absorbed here as |
 |---|---|---|
-| Hegel | dialectic; aufhebung; the concrete universal | each language-type sublates its predecessor — preserved, cancelled, lifted |
-| Deleuze | multiplicity, difference, and non-final becoming | "multiplicity"; and the refusal to close (no first context, open colimit) |
-| Lawvere / topos theory | structured contexts have internal languages | the categorical spine of the schema |
-| Peirce / semiotics | sign, object, interpretant; inquiry as a community process | interpretation becoming habit, and habit becoming a new context |
-| Lautman / Zalamea | problematic structure, transit, saturation, and liberation | saturation and liberation, context completing enough structure to release new forms |
-| Grothendieck | relative point of view and rising-sea method | objects known through relations, covers, and patient enlargement of context |
-| Whitehead / process thought | reality as events and becoming rather than substance-first inventory | multiplicities forming through successive occasions |
-| Simondon / individuation | individuals precipitate from a metastable field | multiplicities resolving into typed forms without exhausting their field |
-| Autopoiesis / enactivism | systems produce and maintain their own organization | language-types as self-maintaining disciplines of action |
-| Cassirer / Goodman | symbolic forms and world-versions | worldmaking as structural, not merely cultural |
-| Abramsky / contextuality | local views need not glue to one hidden global story | obstruction as information, not failure |
+| Hegel - Dialectic | dialectic; aufhebung; the concrete universal | each language-type sublates its predecessor — preserved, cancelled, lifted |
+| Deleuze - Difference | multiplicity, difference, and non-final becoming | "multiplicity"; and the refusal to close (no first context, open colimit) |
+| Lawvere - Cohesive topos | structured contexts have internal languages | the categorical spine of the schema |
+| Peirce - Semiotics | sign, object, interpretant; inquiry as a community process | interpretation becoming habit, and habit becoming a new context |
+| Lautman / Zalamea - Saturation and liberation | problematic structure, transit, saturation, and liberation | saturation and liberation, context completing enough structure to release new forms |
+| Grothendieck - Relative point of view | relative point of view and rising-sea method | objects known through relations, covers, and patient enlargement of context |
+| Whitehead - Process philosophy | reality as events and becoming rather than substance-first inventory | multiplicities forming through successive occasions |
+| Simondon - Individuation | individuals precipitate from a metastable field | multiplicities resolving into typed forms without exhausting their field |
+| Maturana / Varela - Autopoiesis | systems produce and maintain their own organization | language-types as self-maintaining disciplines of action |
+| Cassirer / Goodman - Worldmaking | symbolic forms and world-versions | worldmaking as structural, not merely cultural |
+| Abramsky - Contextuality | local views need not glue to one hidden global story | obstruction as information, not failure |
 
-In effect, this diagram serves as a reason for a community to act in the world with a methodology, specifically a formalization into 21st century mathematics and computer science of Peirce's "community of inquirers", together performing "agape". In our conjecture, the community is the C, and agape, the recognition of the role of love in this inquiry and more generally in evolution, is encapsulated in the continuity operation, Care. This term is inspired by Bowlby's theory of attachment, whose "algorithm for network continuity", described in the <presentation of the project>, is a pillar of our research.
+In effect, this diagram serves as a reason for a community to act in the world with a methodology, specifically a formalization into 21st century mathematics and computer science of Peirce's "community of inquirers", together performing "agape". In our conjecture, the community is the C, and agape, the recognition of the role of love in this inquiry and more generally in evolution, is encapsulated in the continuity operation, Care. This term is inspired by Bowlby's theory of attachment, whose "algorithm for network continuity", described in the [presentation of the project](../README.md), is a pillar of our research.
 
 Once this concrete stage is reached, the metaphysical scaffolding becomes in a sense obsolete, and what matters is the testing of the actions of the community under the induced methodology. In terms inspired by Gentzen, the metaphysics is the "introduction rule", how one conceives the logical work, and the test is the "elimination rule", how one consumes the logical work.
 
@@ -108,15 +114,15 @@ The logic-neighbor network is again not a dictionary of equivalences. It is a se
 
 | Anchor | Logic there | Transformed here as |
 |---|---|---|
-| Gentzen / Prawitz / Dummett | introduction, elimination, use of assumptions, harmony | borrow from context, work, and return the use as a stable rule |
-| Lawvere / categorical logic | logic internal to categories and toposes | functorial passage between structured contexts |
-| Martin-Löf / Curry-Howard / HoTT | propositions-as-types, proofs as inhabitants, identity as structure | the grammar of inhabiting and transforming a world |
-| Girard / linear logic | formulas as resources; controlled copying and reuse | resource-sensitive work; public record only after the right passage |
-| Tarski / model theory | truth-preservation across interpretations | context-invariant transformation |
-| Reynolds / separation logic | local reasoning about separated resources | intervene in one part while preserving the surrounding frame |
-| Abramsky / contextuality | local sections, obstruction to global gluing | perspectivist navigation; obstruction made productive |
-| Dewey / Peirce / Brandom | inquiry, semiosis, commitment, entitlement | collective orientation in a context |
-| Hegel / Lautman / Zalamea | dialectic, problematic structure, saturation and liberation | the rhythm by which a context completes enough structure to release new forms |
+| Gentzen / Prawitz - Intro/elim harmony | introduction, elimination, use of assumptions, harmony | borrow from context, work, and return the use as a stable rule |
+| Lawvere - Categorical logic | logic internal to categories and toposes | functorial passage between structured contexts |
+| Martin-Löf - Dependent type theory | propositions-as-types, proofs as inhabitants, identity as structure | the grammar of inhabiting and transforming a world |
+| Girard - Linear logic | formulas as resources; controlled copying and reuse | resource-sensitive work; public record only after the right passage |
+| Tarski - Model theory | truth-preservation across interpretations | context-invariant transformation |
+| Reynolds - Separation logic | local reasoning about separated resources | intervene in one part while preserving the surrounding frame |
+| Abramsky - Contextuality | local sections, obstruction to global gluing | perspectivist navigation; obstruction made productive |
+| Dewey / Peirce - Logic of inquiry | inquiry, semiosis, commitment, entitlement | collective orientation in a context |
+| Hegel / Lautman / Zalamea - Dialectical logic | dialectic, problematic structure, saturation and liberation | the rhythm by which a context completes enough structure to release new forms |
 
 ## The cascade of trade-offs: a practical response to structural problems
 
