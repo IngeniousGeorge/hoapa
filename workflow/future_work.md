@@ -829,6 +829,124 @@ A duality reading was explored: Reality and Documentation as two points of view 
 3. Does the no-enactment effect-discipline become a stated safety theorem on the implementation track, and is it co-designed with Audit/provenance?
 4. Does the `k = ⊥ₛ` question resolve, or stay a permanent open conjecture?
 
+## Lautman as theorem-shaper: analytic adequacy, synthetic invariance, and their compatibility
+
+**Status and scope.** This is a cross-cutting theorem-shaping note, not a new cascade layer, a new formal dependency, or a reservation of Agda modules. Lautman's two decompositions do not supply Hoapa with theorems or a proof method. They supply a diagnostic matrix for converting philosophical interpretations into explicit mathematical obligations. The substantial comparison is recorded in `related_structures.md`; this section records only its future-work consequences and points back to the existing 2S, no-leak, provenance, Reality, and logical-presentation tracks.
+
+The basic test has three questions:
+
+1. **Analytic adequacy:** has the formal decomposition retained enough of this particular work-process to individuate it for the declared purpose?
+2. **Synthetic invariance:** is the result stable under legitimate changes of the common basis, cover, actor presentation, or context?
+3. **Compatibility:** do process-specific articulation and contextual recomposition commute coherently?
+
+The third question is the most important. Separate analytic and synthetic constructions can each be mathematically sound while failing to constitute one architecture. Lautman's value as a theorem-shaper is to keep asking for the comparison law between them.
+
+### The theorem-shaping protocol
+
+For every Lautman-inspired candidate, record:
+
+1. the mathematical being being decomposed — raw run, realized frame, operational process, trace, artifact, sheaf, or context;
+2. its ambient domain — actor namespace, causal frame, protocol version, site, cover, slice, universe, or coefficient category;
+3. the analytic decomposition map and its intended codomain;
+4. the synthetic presentation that supplies the common mode of articulation;
+5. the permitted changes of presentation;
+6. the equality, equivalence, or trusted-observation notion against which invariance is measured;
+7. what must be preserved;
+8. what must deliberately be forgotten or hidden;
+9. the naturality, descent, or comparison square that must commute; and
+10. a small falsifier showing how the interpretation could fail.
+
+This protocol is stricter than matching philosophical nouns to existing constructions. Until the entries above are specified, "analytic," "synthetic," "basis independence," and "replay" remain readings rather than theorem statements.
+
+### Family A — analytic adequacy of process-to-trace articulation
+
+The candidate shape is:
+
+```text
+W ↦ τ(W)
+```
+
+where `W` is an actual work-process and `τ(W)` is its typed trace or stabilized artifact. Adequacy must be relative to a declared family of trusted observations. Full faithfulness is neither required nor desirable: no-leak, privacy, and the constitutive exterior require the trace to forget actor identity and other protected dimensions.
+
+Possible obligations include:
+
+- **causal adequacy:** the trace records the parent/order structure required by the protocol's account of the process;
+- **dependency and provenance adequacy:** assumptions, artifacts, open obligations, versions, and derivational dependencies needed for later checking remain identifiable;
+- **concurrency invariance:** harmless reordering of independent events does not alter the trusted process represented by the trace;
+- **purpose-relative sufficiency:** the trace contains enough information for a stated operation such as audit, checking, translation, resumption, or replay;
+- **selective noninterference:** changing protected actor identity does not change trusted documentary content.
+
+This family should consume the existing 2S runtime-to-substrate ladder rather than duplicate it. `BackwardRank.agda` and `CausalFromParents.agda` provide the current global realization floor. The next roadmap step remains per-conversation locality and `FrameHom`s, followed by raw and realized actor-renaming invariance as described in the no-leak ladder. Provenance and replay adequacy come later, once the relevant artifact and observation interfaces exist.
+
+### Family B — synthetic invariance under change of presentation
+
+Lautman's basis example suggests a family of "no privileged presentation" targets. None follows from descent alone:
+
+- **refinement invariance:** for an explicitly defined refinement `V → U`, descent objects over the two covers are equivalent under stated topology/cofinality hypotheses;
+- **equivariance:** legitimate actor, event, frame, or site automorphisms act naturally and leave the reconstructed trusted object invariant up to the chosen equivalence;
+- **no chosen basepoint:** a construction does not depend on a distinguished agent, event, chart, point, or global section unless one is part of the input;
+- **conservative reindexing:** change of perspective transports the relevant judgments and evidence without silently strengthening, replacing, or erasing them;
+- **presentation independence:** different admissible covers or coordinate systems reconstruct equivalent contextual objects.
+
+The actor-renaming theorem is the nearest member of this family, but it is not yet proved. The kernel's opaque unityped actor carrier, the current trace schema, and the first realization bridge are grounded prerequisites. Refinement invariance and general cover independence are later targets: the existing finite and supported point-generated results establish scoped descent and sheafification, not a general basis-independence theorem.
+
+### Family C — compatibility of analytic and synthetic decomposition
+
+This is the principal cross-layer family:
+
+- **trace/reindexing naturality:** reindexing a process and then forming its trace agrees, up to the declared equivalence, with forming the trace and reindexing the artifact;
+- **local analytic descent:** compatible process-specific decompositions on local frames glue to a global decomposition without inventing hidden actor or causal data;
+- **operational/contextual Beck–Chevalley or Frobenius laws:** contextual base change commutes coherently with the relevant operational phase change where the required adjoints exist;
+- **process-to-artifact stabilization:** a completed artifact satisfies an appropriate universal property relative to the work and observations it is intended to stabilize;
+- **decompose/recompose adequacy:** reconstructing from analytic pieces preserves exactly the trusted content declared by the observational interface, neither less nor more.
+
+These targets overlap deliberately with the logical-presentation track's stability-under-reindexing, Beck–Chevalley/Frobenius, descent, and process-to-artifact targets. The Lautmanian reading does not add a second list; it explains why those compatibility theorems, rather than a bare declaration of modes or layers, are likely to carry the framework-specific mathematical content.
+
+### Family D — recursive replay, only after adequacy
+
+The conversation in `workflow/arc/15_metaphysics_and_logic.md` proposed a possible `Doc : Op → Ct`, `Aff : Ct → Op`, and `Doc ⊣ Aff` reading with replayability and contextual-adequacy transformations. This family stays downstream of A–C.
+
+Before an adjunction is proposed as a theorem, the project must:
+
+1. define the categories `Op` and `Ct` at the required level;
+2. construct `Doc` and `Aff` as functors;
+3. choose the observational equivalence relative to which documentation is replay-sufficient;
+4. show that replay respects no-leak and does not claim total reconstruction of Reality;
+5. state and test the hom-equivalence, unit, counit, naturality, and triangle laws; and
+6. verify that the proposed direction matches the implemented semantics rather than the desired prose.
+
+Failure of an adjunction would not invalidate the analytic/synthetic reading. The correct interface may instead be a fibration, factorization, capability boundary, profunctor, or noninterference relation. `Doc ⊣ Aff` remains distinct from the conjectural cross-site `Allow ⊣ Require`, the checked point-generated reflector `a ⊣ ι`, and the checked point-generated LNL bridge `Lpoint ⊣ Rpoint`.
+
+### Status and sequence
+
+- **Banked ingredients:** actor-causal frames and strict-reflecting `FrameHom`; category-generic finite descent; the supported point-generated reflector; the point-generated LNL bridge; and the first generic well-formed-run-to-global-frame realization.
+- **Nearest targets already on the roadmap:** per-conversation frames and `FrameHom`s; raw actor-renaming invariance; then realized-frame equivariance/isomorphism.
+- **Later compatibility targets:** purpose-relative trace adequacy, provenance preservation, reindexing/refinement laws, and local-to-global trace formation.
+- **Research-scale candidates:** a universal process-to-artifact property, replay/resumption semantics, and any `Doc`/`Aff` adjunction.
+
+This classification does not reorder the live roadmap. It gives the existing targets a common theorem-shaping lens and a test for when a philosophical interpretation has acquired mathematical content.
+
+### Guardrails and falsifiers
+
+- A sheaf condition can hold while a construction still uses a privileged point, enumeration, actor, or cover; descent is not the full no-privileged-viewpoint theorem.
+- A refinement statement such as `Desc_U(F) ≃ Desc_V(F)` is not valid without a precise refinement map and sufficient hypotheses.
+- The cover/basis analogy fails if change of cover changes trusted global content in a way not explained by the chosen equivalence.
+- Analytic adequacy fails if a trace loses causal or provenance information required for its declared use; it also fails by overreach if it reconstructs or exposes information the boundary promised to forget.
+- Compatibility fails if local traces are individually valid but their gluing invents hidden dependencies, or if trace formation is not natural under perspective change.
+- Replay fails if two observationally equivalent traces afford materially different trusted continuations, or if replay requires access to protected exterior data.
+- Hilbertian theory/metatheory remains a useful second-order parallel, not an identification of metatheory with Lautman's Dialectic.
+
+### Decision gates
+
+1. What is the first declared observational equivalence for traces: checker acceptance, causal-frame isomorphism, audit equivalence, or another relation?
+2. Which target should first instantiate the synthetic family beyond actor renaming: no chosen basepoint, cover refinement, or reindexing conservativity?
+3. Can per-conversation realization state a first trace/reindexing naturality square without waiting for provenance or Bulk `Λ`?
+4. Which data must analytic adequacy preserve, and which identity channels must it provably forget?
+5. Is process-to-artifact stabilization a universal construction in the current LNL/CBPV candidate, or does it require a different mathematical kind?
+6. What concrete counterexample would distinguish genuine basis independence from invariance built in by a trivial presentation?
+7. Only after A–C have nontrivial witnesses: do `Doc` and `Aff` exist as functors, and is an adjunction still the right relation?
+
+
 ## Candidate logical-presentation track: mode theory and indexed context
 
 **Status and scope.** This section records the candidate research program for giving the **whole Hoapa framework** a mathematical-logical presentation. It is independent of the presentation's `R/P/A/D` conceptual diagram and of the Reality and provenance repairs above. Those concepts may eventually require types, effects, interfaces, or modalities in a Hoapa logic, but they do not determine that logic's modes in advance. This track is not a cascade layer, does not change T1–T_recursion, and reserves no Agda module. Its first task is discovery: identify the framework's genuine judgmental regimes and transformations before choosing an encoding.

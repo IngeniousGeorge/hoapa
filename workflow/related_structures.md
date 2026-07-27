@@ -38,6 +38,70 @@ Each entry: who, what they use, what it models, relation to our arc.
 
 ---
 
+## Lautman — analytic/synthetic decomposition and recursive incarnation
+
+**Who.** Albert Lautman, especially the two *Essais* on structure and existence and on the unity of the mathematical sciences. The reading used here also passes through Fernando Zalamea's account of saturation/liberation, Gilles Deleuze's transformation of dialectical Ideas into immanent problematics, and David Corfield's reconstruction of Lautmanian Ideas as immanent to mathematical practice. These readings must not be conflated. Lautman himself gives the Dialectic an ontological priority over the mathematics that realizes it; the immanent reading is a deliberate Deleuzian/Corfieldian transformation that is particularly suitable for this project.
+
+**What they use.** Lautman distinguishes two ways of decomposing a mathematical being.
+
+- A **proper, individual, or analytic decomposition** articulates what is peculiar to the entity under study. Prime factorization and the roots of a polynomial are model examples: the decomposition proceeds from a particular entity towards constituents that characterize it.
+- A **dimensional or synthetic decomposition** follows a common plan supplied by the ambient domain. A vector is expressed relative to the dimension and a selected basis of its vector space; the whole determines a uniform mode in which each of its elements can be articulated. The decomposition expresses the "solidarity" of the elements through their shared domain.
+
+The distinction is not an absolute separation. A supposedly proper decomposition also depends on an ambient domain: a polynomial may factor over one field and not another, and extension of the base may disclose constituents that were previously unavailable. Conversely, dimensional decomposition does not erase individuality; it gives individual entities coordinates relative to a shared structure. The important contrast is therefore between **individuation by a being's effective constituents** and **articulation according to a structure supplied by the whole**, with each capable of conditioning the other.
+
+Lautman's broader dialectic gives this contrast a dynamic setting. Dialectical Ideas are problematic relations — local/global, whole/part, finite/infinite, continuous/discontinuous, intrinsic/extrinsic, structure/existence — that effective mathematical theories partially realize. The movement is double. From the side of genesis, an effort to understand a problem is extended in the construction of more concrete notions and theories. From the side of mathematical philosophy, one reads regressively from an effective theory to the problematic relations it incarnates. The priority of the problem is not chronological and is not an axiomatic deduction of mathematics from metaphysics; it is the priority of a question relative to a response, even when the question only becomes explicit after a response has been found.
+
+**What it models.** The two decompositions model how individual differentiation and global organization arise together. They are useful when a homogeneous or uniformly presented field produces heterogeneous individual structure, when a particular object can only be analyzed relative to a surrounding domain, or when changing a basis, field, cover, context, or presentation changes the decomposition without necessarily changing the being presented. Saturation and liberation add a practical rhythm: incomplete structures are enriched, completed, or globalized; a more mobile invariant, notion, or interface is then liberated from the enriched construction and becomes usable in another context.
+
+**Relation to our arc.** The durable correspondence is a crossing, not a dictionary. Lautman's two decompositions do **not** coincide with Hoapa's separation between unityped agents and multityped documentation. Analytic and synthetic moments occur on both sides:
+
+| Layer | Analytic / proper moment | Synthetic / dimensional moment |
+|---|---|---|
+| **Operational** | A particular execution is articulated into its actual events, choices, causal dependencies, branches, and unresolved obligations. | Executions take place through a common actor interface, protocol, interaction architecture, and causal-frame discipline. |
+| **Contextual / documentary** | A particular artifact is articulated through its specific type, evidence, provenance, constructors, and dependencies. | Every artifact receives meaning from an ambient type context, universe, site, cover, reindexing structure, and descent discipline. |
+
+This 2×2 crossing prevents two tempting mistakes. First, `Op` is not simply analytic while `Ct` is synthetic. Second, unityped actors are not dimensionless or untyped persons. They share one protocol-visible interface while retaining histories, states, perspectives, and internal structure. Documentation likewise does not "keep all dimensions": it selects and types what the protocol may retain while deliberately forgetting protected identity and irrelevant detail. Both layers preserve some distinctions and forget others.
+
+### The conversation-derived output form
+
+The ChatGPT exchange preserved in `workflow/arc/15_metaphysics_and_logic.md` proposed a useful three-moment summary:
+
+```text
+synthetic opening → analytic individuation → synthetic replay
+```
+
+On this reading, a contextual whole supplies a common protocol and family of local perspectives; actual work acquires its particular causal and typed articulation; compatible traces are then returned to a renewed context. The first two moments are useful descriptions of the intended architecture. The third remains aspirational: the current formal work does not show that documentation reconstructs, resumes, or replays the process that produced it. "Replay" must eventually be indexed by a declared observational purpose. No-leak and openness rule out total reconstruction of Reality or of participant identity.
+
+The same exchange proposed `Doc : Op → Ct` and `Aff : Ct → Op`, with a possible `Doc ⊣ Aff` orientation, a replayability unit, and a contextual-adequacy counit. This is a candidate generated by the conversation, not an established component of Hoapa. The direction is unsettled, neither functor has been constructed, and this possible adjunction is distinct from both the conjectural cross-site `Allow ⊣ Require` and the checked B-internal reflector/LNL adjunctions `a ⊣ ι` and `Lpoint ⊣ Rpoint`.
+
+### A cover as a higher basis
+
+A cover of causal interaction contexts suggests a higher analogue of Lautman's basis. Restricting an object to the members of a cover yields local views analogous to coordinates. Overlaps and higher overlaps supply compatibility data absent from an ordinary vector-space basis. A satisfactory reconstruction should depend only on the underlying contextual object, up to the relevant equivalence, rather than on an arbitrary presentation by a selected cover.
+
+This analogy shapes questions but is not yet a theorem. Basis coordinates are unique once a basis is fixed; sheaf data require overlap compatibility, and invariance under refinement or replacement of a cover needs precise topology, cofinality, and descent hypotheses. One must also distinguish two variances that the phrase "free gluing" can blur: a context may be presented by a colimit-like Čech construction under suitable hypotheses, while compatible data over it are reconstructed by a limit/descent condition. The existing finite and point-generated results establish scoped descent and sheafification facts; they do not yet establish general Čech-colimit reconstruction, cover-refinement invariance, or basis independence.
+
+Accordingly, sheaf descent alone does not prove "no privileged point of view." That interpretation requires further properties: equivariance under legitimate relabelings, independence from a chosen basepoint or chart, stability under cover refinement, and conservative reindexing between perspectives. Lautman's dimensional decomposition supplies a reason to look for this theorem family, not a proof of it.
+
+### Transversal work, forgetting, and renewal
+
+The project's `borrow → work → give back` logic runs transversally through the Lautmanian movement and recurs within its stages. It should not be assigned once as `metaphysics = borrow`, `mathematics = work`, and `physical/social reality = repayment`. A mathematical theory borrows a problematic field, works through effective constructions, and returns a new articulated problem-space; a communication process borrows a contextual affordance, performs situated work, and returns an accountable artifact plus a changed context; metatheoretic or reflective work can then take either construction as its own object. Work and preservation of future viability are primary. Replay and inheritance are possible consequences of a successful return, not definitions of the work itself. This cross-links the cartography nodes `logic-as-contextual-transformation` and `workilibrium-logic`.
+
+The pre-philosophical image of infinity discussed in the same arc can be retained here in a limited role. A quest for further dimensions resembles saturation: adding enough relations, distinctions, modalities, or coordinates to articulate a problem. Purpose-relative forgetting resembles liberation: abstracting from a presentation, quotienting irrelevant detail, or extracting an invariant that can travel. Renewal occurs when that liberated form becomes a new context. The forgetting must state what it preserves, what it hides, and for which future operations it is adequate. Universe stratification and typing can control paradoxical self-totalization; they do not by themselves transform an endless hierarchy into a philosophically regenerative infinity.
+
+Hilbert's theory/metatheory distinction is a nearby but separate second-order image. A formal theory can be retyped as an object for metamathematical study, and consistency or completeness information can then govern how the theory is understood or extended. This resembles an operational process becoming documentary material for a higher inquiry, but a Hilbertian metatheorem is not thereby a Lautmanian dialectical Idea, and metatheory is not assumption discharge performed "one floor up."
+
+### Status and genuine extension
+
+**Grounded in the current project:** the architectural separation between a uniform actor interface and typed artifacts; the actor-causal site and strict `FrameHom` discipline; finite descent; the supported point-generated reflector `a ⊣ ι`; the point-generated LNL bridge `Lpoint ⊣ Rpoint`; and the first generic raw-run-to-global-frame realization.
+
+**Candidate readings and theorem-shapers:** the 2×2 Lautmanian interpretation; cover-as-higher-basis; refinement and presentation invariance; purpose-relative trace adequacy and replay; `Doc`/`Aff`; and recurrence of one abstract work pattern across mathematical, physical, ecological, and communicational domains. Recurrence across examples is abductive evidence, not a demonstrated scale-invariance theorem.
+
+**Rejected identifications:** `Op = analytic`; `Ct = synthetic`; unityped = untyped or dimensionless; typed documentation = total memory; descent = no privileged viewpoint; metatheory = dialectic; `Doc ⊣ Aff = Allow ⊣ Require`; the checked point-generated bridge = the conjectural cross-site adjunction; and typing alone = a resolution of bad infinity.
+
+Hoapa's genuine proposed extension is to make Lautman's already-double movement institutional, computational, recursive, public, and potentially self-modifying. Lautman already treats mathematics as a model for physical, social, and human modes of incarnation, so it would be inaccurate to describe his movement as merely diagnostic or one-shot. Hoapa instead attempts to give communicational incarnation an executable protocol and a typed trace boundary through which successes, failures, exclusions, and obstructions can feed back into subsequent mathematical and metaphysical articulation.
+
+---
+
 ## A5 / icosahedral symmetry — detection heuristic, not anchor
 
 **Who.** The classical icosahedral symmetry package: the alternating group A5, the rotation group of the icosahedron/dodecahedron, and its appearances in dessins, Klein's icosahedral work, McKay-flavoured exceptional structures, and finite symmetry models.
