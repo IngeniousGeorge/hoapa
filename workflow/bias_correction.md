@@ -41,6 +41,18 @@ Additional no-leak / humanness corrections:
 - "Gauge/no-leak makes Hoapa a field theory." — Rejected. Gauge invariance is an interpretive home for actor identity as redundant presentation data. It is not a claim that Hoapa has constructed a gauge field theory, Ward identities, or a QFT model.
 
 
+Additional arc/16 and conjecture-sharpening corrections:
+
+- "Because every work morphism has a contextual transpose, arc/16 supports `Allow ⊣ Require`." — Rejected. `w♯ = R(w) ∘ η` exists for every adjunction. It clarifies the universal/particular structure of Praxis but has no discriminating evidential weight for this proposed pair.
+- "Anthropic loss, T3, and T_recursion are independent signs of non-degeneracy." — Rejected. Their mathematical strengths are ordered by the canonical non-collapse ladder in `targets.md` §T3. Stronger non-collapse entails the relevant counit loss; the converse implications are not available.
+- "`η-equiv-at-T` proves or threatens the cross-site conjecture." — Rejected in both directions. It is a checked collapsing control for the particular `ʃ ⊣ ♭` specialization, unconnected to the unconstructed cross-site adjunction. It constrains where a non-collapse witness is not to be sought.
+- "The `(0, 3)` moduli point is where dessins themselves vary, so both sides already land at the same `S²`." — Rejected. The three-pointed genus-zero curve is rigid; dessins are varying ramified covers over that normalized marked base. The modal side currently has no demonstrated route from a bare `S²` or cyclic structure to the required branch / orbifold data.
+- "The icosahedral dessin can instantiate the adjunction or its iteration." — Rejected. One dessin is a gated C-side far-end object and possible test element for a future mediator. It may falsify a candidate component, but it cannot verify naturality or triangle identities, and its finite A5 symmetry supplies no monad transition maps. Branch data comes first; A5 monodromy is a secondary test.
+- "`G_ℚ ↪ GT` is a known non-isomorphism and therefore a precedent for T3." — Rejected. Surjectivity is open. The faithful map warns that monicity, fullness, surjectivity, and equivalence are different strengths; it says nothing directly about Hoapa's counit or monad multiplication.
+- "Care has now been refined from duality into a viability predicate, with Kleisli as its settled home." — Rejected. The checked anchor remains `(–)⊥`; developmental adequacy is a theorem-shaper whose identity/no-ranking clauses depend on the unproved 2S no-leak family. Care-compatible Kleisli arrows are a plausible candidate, not a constructed class or a replacement for the unit-tower colimit.
+- "A space-valued mediator has effectively been constructed by naming a representable profunctor." — Rejected. Every adjunction already gives such a profunctor. New content begins only with an independently constructed interaction/cover/dessin-shaped ∞-profunctor that can then be tested for two-sided representability; none exists yet.
+
+
 If you find yourself drifting toward one of these defaults, that is the moment to re-read the corresponding instigator prompt below.
 
 ---

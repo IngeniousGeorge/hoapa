@@ -6,7 +6,7 @@ Establish a conjecture/theorem: while HoTT is the most appropriate *foundation* 
 
 ## Current Phase
 
-Bandwidth has shifted from the ModalHoTT side (the formal-foundation leg) to the Concurrency side (the community-of-agents leg, dual conjecture). ModalHoTT work is on pause at the de Rham named-coefficient rung; the Concurrency side is in scoping after a major reframe — canonical source `workflow/deep_context/concurrency_anchor.md`. Live state in `workflow/status.md`; the "Discussion of the next step" section there carries the level-2 Concurrency inventory and structuring relations.
+Read `workflow/current_track.md` first for the live lane and next-step posture. The project uses three lanes: 1C for pure conjecture work, 2S for runtime-to-substrate interpretation, and 3R for the runtime. Current bandwidth is at the 2S/3R boundary: the 3R tiny-run construction seam is banked, and the next 2S return is per-conversation locality plus `FrameHom`s. The 1C lane develops independently, but ModalHoTT remains paused at the de Rham named-coefficient rung and the cross-site `Allow ⊣ Require` adjunction remains downstream of its stated gates. The canonical Concurrency reframe is `workflow/arc/02_concurrency_anchor.md`; read `workflow/status_formal.md` for formal/conjectural state and `workflow/status_implementation.md` for runtime state.
 
 ## Roles
 
@@ -19,7 +19,7 @@ Bandwidth has shifted from the ModalHoTT side (the formal-foundation leg) to the
 2. **One file per concept.** Keep Agda modules small and focused; prefer many small files to one large one.
 3. **No silent imports.** When a new Agda dependency or library is introduced, say so explicitly.
 4. **Mathematical fidelity first.** Prefer the formalization that matches the mathematical intent, even if a more pragmatic encoding type-checks more easily.
-5. **Track blockers in workflow/status.md.** If a formalization is stuck (e.g., universe levels, termination checker, missing stdlib), record it there rather than papering over it.
+5. **Track blockers in the canonical status file.** Formal and conjectural blockers belong in `workflow/status_formal.md`; runtime and checker blockers belong in `workflow/status_implementation.md`. Lane priority belongs in `workflow/current_track.md`.
 6. **Long names over notation.** Prefer `DeloopingOfIntegers` over `Bℤ`, `FlatModality` over `♭`. Math notation belongs in comments, not identifiers.
 
 ## Agda Notes

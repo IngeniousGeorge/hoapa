@@ -102,6 +102,30 @@ Hoapa's genuine proposed extension is to make Lautman's already-double movement 
 
 ---
 
+## Simondon — individuation and transduction
+
+**Who.** Gilbert Simondon, especially his account of individuation as primary relative to already constituted individuals. The relevant concepts are the preindividual field, metastability, transduction, and the joint individuation of an individual and its milieu.
+
+**What they use.** A metastable field contains unresolved potentials rather than a fully determined object. Individuation is the operation through which a local incompatibility is progressively resolved, structuring both an individual and the milieu in which further transformations remain possible. A successful individuation does not exhaust the preindividual reserve. Transduction names the stepwise propagation by which each local resolution supplies conditions for the next.
+
+**What it models.** The view is useful wherever a context is not merely an external container and an individual is not a primitive atom: a particular form precipitates from a structured field, modifies that field, and leaves it capable of further individuation. It distinguishes stabilization from terminal closure and a developmental sequence from repeated copies of one finished object.
+
+**Relation to our arc.** Arc/16 uses Simondon to interpret an operational episode `w : L M → K₀` as a particular individuation within a contextual field, and its transpose `w♯ : M → R K₀` as that episode's contextual presentation. The universal / particular split aligns suggestively with Lautman's synthetic / analytic decomposition. This is an interpretation, not evidence: transposition is automatic for any adjunction, no class of admissible individuations has been defined, and persistent transduction would require the non-collapse obligation in `targets.md` §T3 plus the changing-context semantics investigated in `future_work.md`. Simondon shapes what counts as developmental success—renewal without exhausting the field—but supplies no theorem about `Allow ⊣ Require`.
+
+---
+
+## Grothendieck's Esquisse — dessins, branch data, and the moduli tower
+
+**Who.** Alexander Grothendieck's *Esquisse d'un Programme* and the mathematics around dessins d'enfants, Belyi maps, Teichmüller towers, the absolute Galois action, and the Grothendieck–Teichmüller group.
+
+**What they use.** A dessin is a finite bipartite ribbon graph encoding a finite cover of the projective line ramified over at most three values, normalized to `{0, 1, ∞}` because the three-pointed genus-zero base is rigid. Monodromy records permutations around the punctures. The absolute Galois group acts faithfully on dessins and maps as `G_ℚ ↪ GT`; whether this map is surjective is open. The recursive large object is the tower of moduli / Teichmüller structures, not any single dessin.
+
+**What it models.** A finite combinatorial presentation can retain global topological and arithmetic information, while a tower organizes how such presentations vary, glue, and transform across levels. It is therefore a strong source of tests for presentation invariance, controlled forgetting, monodromy preservation, and nontrivial comparison—but not a ready-made model of Hoapa's monad iteration.
+
+**Relation to our arc.** Dessins occupy a dual but compatible position: they are far-end C-side moduli / cover objects and possible C-facing elements of a future cross-site mediator. The candidate technical form is the independently constructed, space-valued shape-witness profunctor recorded in `future_work.md`, whose later two-sided representability would recover T1 rather than constitute separate evidence for it. The principal mismatch is still open: the modal route currently offers a bare `S²`, while a dessin needs a three-marked base plus branch and cover data. The Esquisse material therefore supplies a gated test and a theorem-shaper, not an anchor or a constructed bridge.
+
+---
+
 ## A5 / icosahedral symmetry — detection heuristic, not anchor
 
 **Who.** The classical icosahedral symmetry package: the alternating group A5, the rotation group of the icosahedron/dodecahedron, and its appearances in dessins, Klein's icosahedral work, McKay-flavoured exceptional structures, and finite symmetry models.
@@ -114,11 +138,11 @@ Hoapa's genuine proposed extension is to make Lautman's already-double movement 
 
 **What it models.** A compact, finite, highly constrained symmetry pattern. For this project it is not currently the B-side anchor; the actor-causal + session-values hybrid and `O_1` interaction algebra are the active commitments. But A5/icosahedral structure may still reappear as a downstream finite witness of the larger cyclic/modular/dessin-facing machinery.
 
-**Relation to our arc.** Agents should be vigilant for genuine A5 or icosahedral signals in every structure we build: modal, operadic, categorical, session-typed, and implementation-facing. This includes recurring 5/3/2 symmetries, 12/20/30/60 incidence data, A5 actions, icosahedral dessins, or structures that remain stable under refactoring and reveal an orbit/stabilizer explanation.
+**Relation to our arc.** The regular degree-60 A5 dessin is a gated, finite test object. On the C side it lies beyond `MO_1`; as a comparison witness it also waits for the M side to acquire three-point branch / orbifold data. The primary test is whether both sides preserve compatible branch cycles and monodromy; the appearance of A5 comes second. One dessin can falsify a proposed mediator component or compatibility law, but cannot construct the adjunction, verify its naturality or triangle identities, or model its iteration.
 
 The caution is equally important: numerical resonances alone are not evidence. For example, a `5 + 8 = 13` decomposition of constructors may smell icosahedral or golden-ratio-adjacent, but it is not A5 structure unless it survives repackaging and is explained by an actual symmetry, action, orbit, representation, or dessin. Treat these resonances as places to look, not conclusions.
 
-This may be how the project catches its "big fish": not by forcing the old icosahedral anchor back into the foreground, but by noticing when independently built structures unexpectedly carry A5 symmetry.
+Static A5 symmetry also says nothing by itself about idempotence: finiteness is a property of the test object or its automorphism group, whereas collapse is a property of the induced monad and its structure maps. The dessin supplies one calculable stage, not the transition maps of T_recursion. Genuine independently arising A5 structure remains worth noticing, but it is a test signal rather than support for the conjecture.
 
 ---
 
@@ -375,4 +399,4 @@ Status: **grounded** = already represented in Hoapa; **candidate** = worth testi
 
 The most important **rejected identifications** are: buffer = `!`; mediation = descent; reciprocal arrows = adjunctions; R4 = `Allow ⊣ Require`; R/P/A/D = cohesive modalities; session involution = full dualizability; initiality = practical optimality; disciplined boundary = field theory; no-leak = RG boundary condition; actor-renaming invariance = all-ID erasure; gauge analogy = QFT theorem; absence of actor order = no-ranking theorem.
 
-Sources: [human_signature.md](/home/ig/Code/hoapa/workflow/deep_context/human_signature.md), [atempted_philosophical_roots_of_provenance.md](/home/ig/Code/hoapa/workflow/deep_context/atempted_philosophical_roots_of_provenance.md), and [future_work.md](/home/ig/Code/hoapa/workflow/future_work.md:721).
+Sources: [human_signature.md](/home/ig/Code/hoapa/workflow/deep_context/human_signature.md), [atempted_philosophical_roots_of_provenance.md](/home/ig/Code/hoapa/workflow/deep_context/atempted_philosophical_roots_of_provenance.md), and `future_work.md` §§ "Candidate addition under evaluation: provenance" and "Candidate under evaluation: no-leak theorem ladder."

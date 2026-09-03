@@ -52,9 +52,13 @@ The current pair-first anchoring is:
 |---|---|---|
 | Complexity | A = Allow : M → C | modal context generatively permits operational complexity |
 | Evolution | R = Require : C → M | concurrent histories reflect back into modal structure |
-| Praxis | η : Id(M) → R∘A | a contextual seed unfolds into operational work and returns changed |
-| Anthropic-principle² loss | ε : A∘R → Id(C), especially non-invertibility | a community sees only a lossy reflection of other contexts |
-| Care | order-2 involution (–)⊥ | the continuity operation: receiver and giver, cared-for and caregiver, exchange roles |
+| Praxis | η : Id(M) → R∘A | the universal opening through which particular operational work can be contextually presented |
+| Anthropic-principle² loss | ε : A∘R → Id(C), especially non-invertibility | a community sees only a lossy reflection of other contexts; stronger non-collapse entails the relevant loss |
+| Care | order-2 involution (–)⊥ | the checked structural proxy: receiver and giver, cared-for and caregiver, exchange roles |
+
+For a particular operational episode `w : A M → C₀`, its contextual transpose is `w♯ = R(w) ∘ η_M : M → R C₀`. This resolves the apparent mismatch between Praxis being formally indexed on M and being experienced through work in C: `η_M` is the universal / synthetic opening, while `w` supplies the particular / analytic content. But this transpose exists for every adjunction, so the work–replay alignment clarifies the conjecture and supplies no evidence for this particular `Allow ⊣ Require`. The content would lie in constructing the pair and identifying a class of episodes whose transposes satisfy the required locality, controlled-loss, care, and non-collapse laws.
+
+The anchor called Care also has two deliberately unequal statuses. The involution `(–)⊥` is the grounded structural proxy. Its interpretation as viability-preserving, non-coercive developmental renewal is a downstream theorem-shaper, not a redefinition; in particular, its carrier-conservation and anti-ranking requirements depend on the unproved 2S no-leak family. Likewise, Anthropic loss and persistent development are not independent evidence: their precise ordering is recorded once in the non-collapse ladder in `targets.md` §T3.
 
 This is still a conjecture. The checked work so far is narrower: on the operational side, the project has a point-generated sheafification reflector and a sheaf-level Benton/LNL adjunction over the supported event-discrete actor-causal site. Chu(SET,Bool) supplies a concrete coefficient witness, and the Sessions-to-Chu realization interprets the postulate-free session object/morphism syntax. This is not yet the cross-site Allow ⊣ Require adjunction. It is one concrete fragment that makes the operational side less speculative.
 
@@ -96,7 +100,7 @@ A technical approach into this metaphysics sees it as a Hegelian sublation that 
 | Cassirer / Goodman - Worldmaking | symbolic forms and world-versions | worldmaking as structural, not merely cultural |
 | Abramsky - Contextuality | local views need not glue to one hidden global story | obstruction as information, not failure |
 
-In effect, this diagram serves as a reason for a community to act in the world with a methodology, specifically a formalization into 21st century mathematics and computer science of Peirce's "community of inquirers", together performing "agape". In our conjecture, the community is the C, and agape, the recognition of the role of love in this inquiry and more generally in evolution, is encapsulated in the continuity operation, Care. This term is inspired by Bowlby's theory of attachment, whose "algorithm for network continuity", described in the [presentation of the project](../README.md), is a pillar of our research.
+In effect, this diagram serves as a reason for a community to act in the world with a methodology, specifically a formalization into 21st century mathematics and computer science of Peirce's "community of inquirers", together performing "agape". In our conjecture, the community is C, while Care is structurally represented by reciprocal role duality. Reading that involution as the developmental work of love or agape remains a conjectural adequacy claim, dependent in part on the no-leak family rather than established by the involution alone. The term is inspired by Bowlby's theory of attachment, whose "algorithm for network continuity", described in the [presentation of the project](../README.md), is a pillar of our research.
 
 Once this concrete stage is reached, the metaphysical scaffolding becomes in a sense obsolete, and what matters is the testing of the actions of the community under the induced methodology. In terms inspired by Gentzen, the metaphysics is the "introduction rule", how one conceives the logical work, and the test is the "elimination rule", how one consumes the logical work.
 
@@ -149,7 +153,7 @@ The cascade does not just terminate in a finished protocol. It converges on a st
 
 From the metaphysical/logical point of view, Hoapa is a strategy for borrowing from a context without collapsing it. It lets a community receive external perspectives and type them as stable documentation without consuming or exposing the participant-carriers that made the transformation possible, or distorting the concepts involved.
 
-From the conjectural point of view, Hoapa seeks an optimal open strategy: a universal way for a community of inquiry to remain open under perspectivism. Here "optimal" is a system-architectural property: the strategy is deemed optimal if every admissible way of staying open factors through it. (It is not a hidden numerical metric—this layer may come later through information cohomology or field-theoretic dynamics, but the first meaning is given by category-theoretic universal properties.)
+From the conjectural point of view, Hoapa seeks an optimal open strategy: a universal way for a community of inquiry to remain open under perspectivism. Here "optimal" is a system-architectural property: relative to an explicitly declared class of probes, observations, equivalences, and admissible open strategies, every such strategy should factor through the Hoapa construction in the stated sense. Neither the admissible class nor this universal property has yet been constructed. (It is not a hidden numerical metric—this layer may come later through information cohomology or field-theoretic dynamics, but the first meaning is given by category-theoretic universal properties.)
 
 The current candidate network of notions is:
 
@@ -161,7 +165,7 @@ The current candidate network of notions is:
 | Reliability | the settlement of expectation against delivered account |
 | Legitimacy | earned standing relative to a problem, viewpoint, and admissible tests |
 | Openness | the capacity to admit foreign profiles without erasing or subordinating them |
-| Care | the continuity operator that lets the cycle reproduce without extraction |
+| Care | reciprocal role symmetry; its adequacy for continuity without extraction is conjectural and depends on the no-leak family |
 
 This points toward a warrant-enriched network. Trust is an enriched hom: directional, contextual, and compositional, never a predicate on actors. Accountability is its audit or return channel. Legitimacy is representability or universal adequacy relative to a problem viewed a certain way; its grounded corners in the project are initiality and no-leak. Openness is a completion/admission discipline: a foreign node is accepted exactly when its two-sided profile toward the network is admissible.
 
@@ -177,7 +181,7 @@ Metaphorically, in the language of (co)homology, the stages chain like a complex
 
 In the conjecture, the same dynamic exists inside one developing network: a secure base is the reusable catalyst that lets a multiplicity freely explore, safe from exploitation. The base offers a field of engineering strategies to navigate, and the conjecture claims that the open strategy is the most adequate for continuity and persistence under the logic of borrowing-without-collapse. 
 
-At the field-theoretic horizon, this reusable-catalyst face has the shape of a trace: closing the catalyst wire into a circle suggests the familiar identity ∫ over S¹ of R ≃ HH(R), Hochschild homology as the trace of repeated use. This is a different homology from the emergent one above: here it points to the trace of reuse, not novelty across levels. The two homologies correspond, respectively, to the conjectural and metaphysical readings of secure-base recursion. (This remains a metaphorical target for Hoapa, not an established result; and it describes the loop's cyclic continuity, not care itself. Care is the order-2 involution inside the loop, the swap by which the cared-for can become caregiver: the loop's closure is the trace, but its reproduction step is the swap.)
+At the field-theoretic horizon, this reusable-catalyst face has the shape of a trace: closing the catalyst wire into a circle suggests the familiar identity ∫ over S¹ of R ≃ HH(R), Hochschild homology as the trace of repeated use. This is a different homology from the emergent one above: here it points to the trace of reuse, not novelty across levels. The two homologies correspond, respectively, to the conjectural and metaphysical readings of secure-base recursion. (This remains a metaphorical target for Hoapa, not an established result; and it describes the loop's cyclic continuity, not care itself. The checked proxy for Care is the order-2 involution inside the loop, the swap by which the cared-for can become caregiver. Showing that this swap preserves a viable, non-coercive cycle remains conjectural and depends on no-leak.)
 
 The conjecture and the metaphysics are two points of view on why this kind of multiplicity-organization is adapted to its perspectivist context; *and/or* is the honest connective between them.
 
