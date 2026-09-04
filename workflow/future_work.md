@@ -42,17 +42,17 @@ A useful frame: we are building a *consistent axiomatic stance* and naming the g
 
 ## Regarding T_recursion iteration
 
-`formal/ModalHoTT/Modalities/Iteration.agda` lands the endofunctor-and-unit scaffold for T_recursion on the A-side: iteration `T^n`, iterated unit `η^_n`, operadic associator `η^-coherent` (derived from a postulated `η-naturality`), and the developing-network type `ND A` as the sequential colimit of `A → TA → T²A → …`. Despite the module's historical generic-adjunction wording, its interface does not yet bundle a counit, multiplication, or triangle identities. `formal/ModalHoTT/Modalities/IterationCohesion.agda` provides the checked collapsing control at ʃ ⊣ ♭: `η-equiv-at-T : T A ≃ T(T A)`, with `η-equiv-fst` identifying its forward map as the iteration structure map. This control constrains the search space for T3; it is evidence neither for nor against the cross-site conjecture.
+`formal/ModalHoTT/Modalities/Iteration.agda` lands the endofunctor-and-unit scaffold for T_recursion on the modal side: iteration `T^n`, iterated unit `η^_n`, operadic associator `η^-coherent` (derived from a postulated `η-naturality`), and the developing-network type `ND A` as the sequential colimit of `A → TA → T²A → …`. Despite the module's historical generic-adjunction wording, its interface does not yet bundle a counit, multiplication, or triangle identities. `formal/ModalHoTT/Modalities/IterationCohesion.agda` provides the checked collapsing control at ʃ ⊣ ♭: `η-equiv-at-T : T A ≃ T(T A)`, with `η-equiv-fst` identifying its forward map as the iteration structure map. This control constrains the search space for T3; it is evidence neither for nor against the cross-site conjecture.
 
 Pieces deferred:
 
-- **B-side dual.** A symmetric module would iterate the *counit* of the comonad `L ∘ R` on the target side, taking the *limit* of a decreasing tower `… → M²B → MB → B`. Not written yet because: until the cross-site adjunction `Allow ⊣ Require` is stated and `ND` has non-trivial content, the dual is a duplicate of an empty scaffold. The 1=2 identity is conjecturally the equivalence between the A-side colimit `ND A` and the B-side limit `ND_B (L A)` via the adjunction — stateable only once both halves exist. Revisit only after the A-side modal-context category and the cross-site functors have been constructed or responsibly postulated behind their existing gates.
+- **Dual on the concurrency side.** A symmetric module would iterate the *counit* of the comonad `L ∘ R` on the target side, taking the *limit* of a decreasing tower `… → M²B → MB → B`. Not written yet because: until the cross-site adjunction `Allow ⊣ Require` is stated and `ND` has non-trivial content, the dual is a duplicate of an empty scaffold. The 1=2 identity is conjecturally the equivalence between the modal colimit `ND A` and the concurrency limit `ND_B (L A)` via the adjunction — stateable only once both halves exist. Revisit only after the modal-context category `M` and the cross-site functors have been constructed or responsibly postulated behind their existing gates.
 
 - **Cyclic-operad involution.** The 1=2 perspective-swap "cared-for = caregiver" would be a path constructor (or separate HIT) on top of `SeqColim`, encoding that the iteration is cyclic / self-dual on each level. Deferred for the same reason as the dual: adding the involution to a scaffold that hasn't yet produced non-trivial iteration content is premature.
 
 - **`η-naturality` postulate.** Load-bearing for `η^-coherent`. Same shape and same resolution path as `shape-flat-natural-B` in `Properties.agda` — becomes a theorem once adjunction-naturality is recorded (status_formal.md Open Questions). Not new scope; folds into the existing naturality gap.
 
-- **Full sequential-colimit convergence.** Applying `η-equiv-at-T` at each later iterate shows by induction that all structure maps after stage one are equivalences. The mathematical conclusion `ND A ≃ T A` is therefore known; what remains is formalization, not an open mathematical question. It requires a "convergent sequence has colimit at the convergence point" lemma against cubical's `Sequence` / `SeqColim` infrastructure (`Cubical.Data.Sequence.converges`). This is straightforward but heavier than the checked step lemma and should return only if a downstream use forces it (for example, a comparison with the B-side dual).
+- **Full sequential-colimit convergence.** Applying `η-equiv-at-T` at each later iterate shows by induction that all structure maps after stage one are equivalences. The mathematical conclusion `ND A ≃ T A` is therefore known; what remains is formalization, not an open mathematical question. It requires a "convergent sequence has colimit at the convergence point" lemma against cubical's `Sequence` / `SeqColim` infrastructure (`Cubical.Data.Sequence.converges`). This is straightforward but heavier than the checked step lemma and should return only if a downstream use forces it (for example, a comparison with the dual on the concurrency side).
 
 ## Regarding Sessions and the canonical O_1 action
 
@@ -95,7 +95,7 @@ Expected ladder:
 6. Only then push hard on `MO_1`: extend the canonical `O_1` action toward
    self-gluing / conversation-promotion / modular closure.
 
-Practical trigger: when the session target can state and use an evaluation/cut map of the form `eval : Hom ((A ⊸ B) ⊗ A) B` (or the equivalent polycategorical/sequent form) and can coherently rotate tensor factors, the deferred derivation of `gen`, `plug`, and `shift` should return to the top of the B-side queue.
+Practical trigger: when the session target can state and use an evaluation/cut map of the form `eval : Hom ((A ⊸ B) ⊗ A) B` (or the equivalent polycategorical/sequent form) and can coherently rotate tensor factors, the deferred derivation of `gen`, `plug`, and `shift` should return to the top of the concurrency queue.
 
 ## Regarding the actor-causal site
 
@@ -178,7 +178,7 @@ When resumed, event-dependent slots should live in a new module, likely `Concurr
 2. Tier 3 still has the generic full-site reflector interface in `FiniteSheafification.agda`, but the constructed route is now the point-generated/event-discrete supported site. `SupportedPointProduct.agda`, `SupportedPointification.agda`, `SupportedPointDescent.agda`, `PointifyIsSheaf.agda`, `PointSheafCategory.agda`, `PointSheafification.agda`, and `PointSheafAdjunction.agda` build the point-generated reflector and prove `a ⊣ ι`.
 3. Brick 4 has landed the W3-style point-generated R4 bridge wiring: `PointLinearNonlinearAdjunction.agda` consumes `PointSheafAdjunction.a⊣ι` and assembles `Lpoint ⊣ Rpoint` over point-sheaf categories. This remains scoped to the event-discrete supported site and remains relative to `lnl : LNLAdjunction` plus `vProd : HasFiniteProducts (StarAutonomous→Category V)`.
 4. Keep `SetFiniteSheafCategory` as the canonical cartesian endpoint for R4; use `SetSheafComparison` as the proof that this endpoint agrees with the Cubical library presentation at `SET`.
-5. Current near-term status after Brick 4: the point-generated R4 theorem, Chu coefficient witness, and Sessions-to-Chu realization are banked. Optional exposition or instantiation checks remain useful, but the active bandwidth has moved to the 2S/3R boundary. Deferred beyond that are normalized-pullback / stability for a full Cubical `Coverage` presentation of the point-generated topology, the full actor-causal finite sheafification reflector, event-dependent session slots, and the A-side modal-context category with cross-site `Allow ⊣ Require`.
+5. Current near-term status after Brick 4: the point-generated R4 theorem, Chu coefficient witness, and Sessions-to-Chu realization are banked. Optional exposition or instantiation checks remain useful, but the active bandwidth has moved to the 2S/3R boundary. Deferred beyond that are normalized-pullback / stability for a full Cubical `Coverage` presentation of the point-generated topology, the full actor-causal finite sheafification reflector, event-dependent session slots, and the modal-context category `M` with cross-site `Allow ⊣ Require`.
 
 ## Chu construction
 
@@ -259,7 +259,7 @@ The mirror skip is the most consequential — it breaks the "every synthetic fil
 
 What lands after this round. The synthetic side of the de Rham arc is complete at the structural / named-coefficient depth (per the ladder's narrow sense). Open paths from there:
 - Background maintenance on ♯/ʃ dependent induction (would unblock several theorems-currently-postulates).
-- Pivot to the B-side / Concurrency stub.
+- Pivot to the Concurrency stub.
 - Open AnalyticTest if signature stability has settled.
 
 ## Concurrency-side layers of complexity (planned)
@@ -391,17 +391,17 @@ The five layers above each name a new piece of formal content the framework comm
 
 #### A. Cohesion (and differential cohesion) as complexity threshold
 
-The framework presumes a minimum modal complexity: not "any" modality, but the cohesive triple `ʃ ⊣ ♭ ⊣ ♯` with its specific separation and modal-subuniverse assumptions (`♭` preserves products, pieces have points, the modal types form a non-trivial subuniverse), and eventually differential cohesion `ℜ ⊣ ℑ ⊣ &`. These assumptions do not assert cross-site non-collapse. Below cohesion, the modal side is too thin for "complexity develops" to be a non-trivial claim: three modalities that collapse to one remove the motivating multi-level contrast. Distinct modalities still do not prove the Lawvere explanation, T3, or a developing network; those require the cross-site witnesses specified in `targets.md` §T3. Below differential cohesion, the modal side's field-theoretic output is restricted to synthetic cohomology and the central conjecture cannot land in its strongest form. In the Manin reading, complexity is generative recursion supported by multi-level adjoint reasoning; cohesion is the minimum modal structure in which that reading can be posed. The mapping is sharp: separation-of-concerns on the concurrency side is the discipline that keeps content and actor-carrier as distinct mathematical objects, and cohesion on the modal side is the discipline that keeps spatial and discrete as distinct modal layers; both are the generative geometry of their respective side, neither is decoration. The framework-makes-sense floor is cohesion; the central-conjecture-can-land floor is differential cohesion. This reframing sharpens the existing `Beyond fracture` entry: differential cohesion graduates from "elevated to load-bearing for the cross-site bridge" to "the substance of A's field-theoretic output." No new construction work; non-removability of the existing commitments becomes part of the central claim rather than a working assumption.
+The framework presumes a minimum modal complexity: not "any" modality, but the cohesive triple `ʃ ⊣ ♭ ⊣ ♯` with its specific separation and modal-subuniverse assumptions (`♭` preserves products, pieces have points, the modal types form a non-trivial subuniverse), and eventually differential cohesion `ℜ ⊣ ℑ ⊣ &`. These assumptions do not assert cross-site non-collapse. Below cohesion, the modal side is too thin for "complexity develops" to be a non-trivial claim: three modalities that collapse to one remove the motivating multi-level contrast. Distinct modalities still do not prove the Lawvere explanation, T3, or a developing network; those require the cross-site witnesses specified in `targets.md` §T3. Below differential cohesion, the modal side's field-theoretic output is restricted to synthetic cohomology and the central conjecture cannot land in its strongest form. In the Manin reading, complexity is generative recursion supported by multi-level adjoint reasoning; cohesion is the minimum modal structure in which that reading can be posed. The mapping is sharp: separation-of-concerns on the concurrency side is the discipline that keeps content and actor-carrier as distinct mathematical objects, and cohesion on the modal side is the discipline that keeps spatial and discrete as distinct modal layers; both are the generative geometry of their respective sides, neither is decoration. The framework-makes-sense floor is cohesion; the central-conjecture-can-land floor is differential cohesion. This reframing sharpens the existing `Beyond fracture` entry: differential cohesion graduates from "elevated to load-bearing for the cross-site bridge" to "the substance of the modal field-theoretic output." No new construction work; non-removability of the existing commitments becomes part of the central claim rather than a working assumption.
 
 This reframing is presented first in the appendix because the next reframing (the symmetric formulation, B) presupposes both cohesion and differential cohesion as floors; and the third (recursive co-evolution, C) presupposes both of those.
 
 #### B. Symmetric formulation: the modal side outputs a field theory
 
-The five layers above are concurrency-side. A complementary observation on the modal side closes a symmetry that is structurally exact and sharpens the central conjecture. Read this way, reframing B is the cross-side closure of the five-layer catalogue: the five layers describe the B-side outputs in detail, and reframing B states that A has the symmetric output structure (a field theory), with the cross-site adjunction `Allow ⊣ Require` as the current precise statement of the symmetry. The reframing is therefore the natural closing claim of the layered architecture, not a sibling addition to it.
+The five layers above belong to the concurrency side. A complementary observation on the modal side closes a symmetry that is structurally exact and sharpens the central conjecture. Read this way, reframing B is the cross-site closure of the five-layer catalogue: the five layers describe the concurrency outputs in detail, and this reframing states that the modal side has the symmetric output structure (a field theory), with the cross-site adjunction `Allow ⊣ Require` as the current precise statement of the symmetry. The reframing is therefore the natural closing claim of the layered architecture, not a sibling addition to it.
 
 *Notation update (2026-06-04): this file used `Allow ⊣ Mediate ⊣ Require` as older shorthand. The live structural target is now pair-first: `Allow ⊣ Require`, with Mediate, ambidextrousness, or a quadruple held only as future extra structure if earned. Where this section assigns `Mediate` a concrete role (e.g. the evaluation map of the (co)homology pairing in Layer 5), read it as a candidate extension of the pair, not as a settled commitment.*
 
-The modal side, once differential cohesion lands (the `ℜ ⊣ ℑ ⊣ &` triple, currently in `Beyond fracture` above), is a synthetic field-theory construction kit in the sense Schreiber's program has developed for over a decade: smooth ∞-stacks as moduli of field configurations, Lagrangian field theory as variational calculus on jet ∞-stacks, BV/BRST quantisation as a derived construction on the moduli of solutions, twisted differential cohomology as the natural target for observables. The cyclic bar construction at S¹ (the deferred A-side work in `T_recursion iteration`) is the moduli-extraction step. So the symmetric statement is: *B has field-theory-shaped dynamics whose stabilized output is an internal type theory* (the five layers); *A has type-theory-shaped foundations whose internal semantics is field-theory-shaped*. The cross-site adjunction `Allow ⊣ Require`, with a possible future `Mediate` extension, is the precise statement that the field theory the modal side outputs and the type theory the concurrency side outputs are mutually adjoint readings of the same cohesive ∞-topos. This requires the existing A-side build-out (differential cohesion, cyclic bar) plus the concurrency-side layers above. The reframing does not change the immediate next steps; it sharpens the destination.
+The modal side, once differential cohesion lands (the `ℜ ⊣ ℑ ⊣ &` triple, currently in `Beyond fracture` above), is a synthetic field-theory construction kit in the sense Schreiber's program has developed for over a decade: smooth ∞-stacks as moduli of field configurations, Lagrangian field theory as variational calculus on jet ∞-stacks, BV/BRST quantisation as a derived construction on the moduli of solutions, twisted differential cohomology as the natural target for observables. The cyclic bar construction at S¹ (the deferred modal work in `T_recursion iteration`) is the moduli-extraction step. So the symmetric statement is: *the concurrency side has field-theory-shaped dynamics whose stabilized output is an internal type theory* (the five layers); *the modal side has type-theory-shaped foundations whose internal semantics is field-theory-shaped*. The cross-site adjunction `Allow ⊣ Require`, with a possible future `Mediate` extension, is the precise statement that the field theory the modal side outputs and the type theory the concurrency side outputs are mutually adjoint readings of the same cohesive ∞-topos. This requires the existing modal build-out (differential cohesion, cyclic bar) plus the concurrency layers above. The reframing does not change the immediate next steps; it sharpens the destination.
 
 #### C. Recursive co-evolution: iterated cross-site adjunction
 
@@ -428,24 +428,24 @@ For broader project-wide terms (cohesion, modal adjoint pair, actor-causal site,
 
 ## Future steps
 
-### B-side category and R4
+### Concurrency category and R4
 
 The finite sheaf framework now has both endpoints: `Sh_fin(site,V)` via `StarAutonomous→Category V` and `Sh_fin(site,Set)` via Cubical `SET`, each with a concrete constant-slot event-product object. The finite site-axis legitimacy work has also landed: `FiniteFrameCoverage` supplies the Cubical coverage, and `SetSheafComparison` proves the framework-at-`SET` sheaf condition agrees with the library condition. The R4 treatment has landed interface-first through conditional Tier 4: `ChangeOfBase.agda`, `LinearNonlinear.agda`, and `LinearNonlinearSheafAdapter.agda` prove presheaf-level Benton change of base, the presheaf-level lifted adjunction, and right-adjoint sheaf preservation; `FiniteSheafification.agda` names the finite-site reflector; `LinearNonlinearSheafAdjunction.agda` proves the sheaf-level adjunction conditional on a V-side reflector. The supported point-generated route removes that reflector hypothesis for the event-discrete site: `PointSheafAdjunction.agda` constructs `a ⊣ ι`, and `PointLinearNonlinearAdjunction.agda` assembles `Lpoint ⊣ Rpoint`, still relative to the value-level `lnl` and `vProd`.
 
-This keeps the two B-side poles separate: Set-valued locality sheaves carry cartesian/internal-logic structure; V-valued sheaves carry linear/session content. R4 is the named adapter between them, not a collapse and not the cross-site `Allow ⊣ Require` adjunction. The framework-at-`SET` category remains the canonical R4 endpoint; the library comparison is its legitimacy theorem, not a replacement endpoint.
+This keeps the two concurrency poles separate: Set-valued locality sheaves carry cartesian/internal-logic structure; V-valued sheaves carry linear/session content. R4 is the named adapter between them, not a collapse and not the cross-site `Allow ⊣ Require` adjunction. The framework-at-`SET` category remains the canonical R4 endpoint; the library comparison is its legitimacy theorem, not a replacement endpoint.
 
 Immediate inside this leg: write the theorem exposition and decide whether to add a concrete instantiation witness. Deferred beyond that: the normalized-pullback / stability layer needed for a full Cubical `Coverage` presentation of the point-generated topology, the full actor-causal finite sheafification reflector, enriching `Sh_fin(site,V)` with inherited linear / star-autonomous structure, constructing the free/forgetful Set-to-session adjunction rather than assuming it, proving full topos/internal-logic structure for the Set endpoint, and extending from the finite common site to the full actor-causal Set-valued topos.
 
-### A-side category options
+### Modal-context category options
 
-The A-side analogue of the actor/content divide is the cohesive split between discrete/formal structure and cohesive/spatial structure. The cohesive adjoints are the A-side adapter system. Options for `M` remain:
+The modal analogue of the actor/content divide is the cohesive split between discrete/formal structure and cohesive/spatial structure. The cohesive adjoints form the modal adapter system. Options for `M` remain:
 
 1. Native modal-HoTT category: types or modal types with functions. Cheapest, closest to current Agda, but weak as final architecture.
 2. Semantic `Sh(Bℤ,Set)` / ℤ-action style category. Concrete, but risks overfitting the analytic Bℤ model.
 3. Cohesive package: cartesian/discrete core plus cohesive total context plus the cohesion bridge. Preferred target, staged as an interface.
 4. Category of modal contexts / cohesive topoi. Natural long-term, too heavy now.
 
-Current lean: package A as cartesian/discrete core + cohesive context + cohesion adapter, mirroring B as Set-valued locality + V-valued linear content + R4 adapter. Do not hard-wire the exact flat/sharp/shape to typed/unityped/protocol slot assignment yet; T4 still needs a conscious settlement.
+Current lean: package `M` as cartesian/discrete core + cohesive context + cohesion adapter, mirroring `K` as Set-valued locality + V-valued linear content + R4 adapter. Do not hard-wire the exact flat/sharp/shape to typed/unityped/protocol slot assignment yet; T4 still needs a conscious settlement.
 
 ### Cross-site adjunction threshold
 
@@ -992,9 +992,9 @@ The current candidate is **mode theory** in the broad line from adjoint logic th
 
 The target is a logical grammar whose models can include:
 
-- the cohesive/modal A side;
-- the actor-causal, sheaf, session, and operadic B side;
-- the B-internal cartesian↔linear R4 bridge;
+- the cohesive modal side;
+- the actor-causal, sheaf, session, and operadic concurrency side;
+- the concurrency-internal cartesian↔linear R4 bridge;
 - eventually, the cross-site `Allow ⊣ Require` pair and its iteration;
 - later extensions such as protocol versions, content, federation, provenance, and the Reality boundary, only after each earns a logical form.
 
@@ -1107,7 +1107,7 @@ The central compatibility questions are likely Beck–Chevalley- or Frobenius-sh
 5. **Context-indexing test.** Reindex the toy/R4 structure along a small family of context maps; formulate the relevant Beck–Chevalley/Frobenius comparisons; then test descent on a finite cover.
 6. **Framework choice.** Only after the toy models decide whether LSR-style adjoint logic, MTT, MATT, linear dependent type theory, dependent CBPV, an indexed combination, or a custom calculus is the natural host. The existing Cubical Agda development and external tools such as multimodal proof assistants are implementation options, not selection criteria.
 7. **Higher/lower comparison.** Once syntax and at least two semantics exist, define any reduct/interpretation explicitly and state what it forgets. Investigate an initial syntactic model and free/forgetful constructions without reading them as optimality results.
-8. **Cross-site instance.** Attempt `Allow ⊣ Require` only after the A-side modal-context semantics, B-side structured semantics, and their compatibility laws have independent definitions.
+8. **Cross-site instance.** Attempt `Allow ⊣ Require` only after the modal-context semantics, structured concurrency semantics, and their compatibility laws have independent definitions.
 
 ### Possible theorem targets
 
@@ -1167,7 +1167,7 @@ Reality and provenance remain independent candidate repairs. They should be cons
   1. "Truncation" is not one operation. What you're calling truncation is really a family of collapses along independent axes of richness, and only some are h-truncations:
 
   - homotopical (h-levels): 0-truncation ‖-‖₀, a genuine modality in cubical, kills higher paths;
-  - cohesive/modal (the A-side): passing to discrete objects trivializes shape/flat;
+  - cohesive/modal (the modal side): passing to discrete objects trivializes shape/flat;
   - locality (the sheaf side): global sections Γ, or evaluation at a point, collapses descent;
   - linear (the coefficient side): the Benton right adjoint G, which is exactly the "take the points" map — in Chu, G(A)=A⁺, discarding the state-carrier A⁻. That's the transcript's
   !-erases-A⁻ observation, read as a truncation.

@@ -27,7 +27,7 @@ Allow ⊣ Require
 between:
 
 M = modal / contextual structure
-C = concurrent / protocol structure
+K = concurrent / protocol structure
 
 The modal side is the formal home of perspectivist context: the possibility that multiplicities emerge and develop complexity because there is no oppressive single privileged viewpoint. The concurrent side is the operational home of inquiry: unityped participants, typed communication, local traces, composability and generated documentation.
 
@@ -35,7 +35,7 @@ The conjecture says, in raw form:
 
 If:
 
-- C properly separates unityped actors from typed content;
+- K properly separates unityped actors from typed content;
 - M supplies enough modal/perspectivist structure;
 - the two sides are related by an Allow ⊣ Require adjunction;
 
@@ -50,13 +50,13 @@ The current pair-first anchoring is:
 
 | Anchor | Adjunction datum | Reading |
 |---|---|---|
-| Complexity | A = Allow : M → C | modal context generatively permits operational complexity |
-| Evolution | R = Require : C → M | concurrent histories reflect back into modal structure |
-| Praxis | η : Id(M) → R∘A | the universal opening through which particular operational work can be contextually presented |
-| Anthropic-principle² loss | ε : A∘R → Id(C), especially non-invertibility | a community sees only a lossy reflection of other contexts; stronger non-collapse entails the relevant loss |
-| Care | order-2 involution (–)⊥ | the checked structural proxy: receiver and giver, cared-for and caregiver, exchange roles |
+| Complexity | Allow = L : M → K | modal context generatively permits operational complexity |
+| Evolution | Require = R : K → M | concurrent histories reflect back into modal structure |
+| Praxis | η : Id(M) → R∘L | the universal opening through which particular operational work can be contextually presented |
+| Anthropic-principle² loss | ε : L∘R → Id(K), especially non-invertibility | a community sees only a lossy reflection of other contexts; stronger non-collapse entails the relevant loss |
+| Care | order-2 involution (–)⊥ | the checked syntactic proxy: receiver and giver, cared-for and caregiver, exchange roles; the operadic realization remains conditional |
 
-For a particular operational episode `w : A M → C₀`, its contextual transpose is `w♯ = R(w) ∘ η_M : M → R C₀`. This resolves the apparent mismatch between Praxis being formally indexed on M and being experienced through work in C: `η_M` is the universal / synthetic opening, while `w` supplies the particular / analytic content. But this transpose exists for every adjunction, so the work–replay alignment clarifies the conjecture and supplies no evidence for this particular `Allow ⊣ Require`. The content would lie in constructing the pair and identifying a class of episodes whose transposes satisfy the required locality, controlled-loss, care, and non-collapse laws.
+For a particular operational episode `w : L M → K₀`, its contextual transpose is `w♯ = R(w) ∘ η_M : M → R K₀`. This resolves the apparent mismatch between Praxis being formally indexed on M and being experienced through work in K: `η_M` is the universal / synthetic opening, while `w` supplies the particular / analytic content. But this transpose exists for every adjunction, so the work–replay alignment clarifies the conjecture and supplies no evidence for this particular `Allow ⊣ Require`. The content would lie in constructing the pair and identifying a class of episodes whose transposes satisfy the required locality, controlled-loss, care, and non-collapse laws.
 
 The anchor called Care also has two deliberately unequal statuses. The involution `(–)⊥` is the grounded structural proxy. Its interpretation as viability-preserving, non-coercive developmental renewal is a downstream theorem-shaper, not a redefinition; in particular, its carrier-conservation and anti-ranking requirements depend on the unproved 2S no-leak family. Likewise, Anthropic loss and persistent development are not independent evidence: their precise ordering is recorded once in the non-collapse ladder in `targets.md` §T3.
 
@@ -100,7 +100,7 @@ A technical approach into this metaphysics sees it as a Hegelian sublation that 
 | Cassirer / Goodman - Worldmaking | symbolic forms and world-versions | worldmaking as structural, not merely cultural |
 | Abramsky - Contextuality | local views need not glue to one hidden global story | obstruction as information, not failure |
 
-In effect, this diagram serves as a reason for a community to act in the world with a methodology, specifically a formalization into 21st century mathematics and computer science of Peirce's "community of inquirers", together performing "agape". In our conjecture, the community is C, while Care is structurally represented by reciprocal role duality. Reading that involution as the developmental work of love or agape remains a conjectural adequacy claim, dependent in part on the no-leak family rather than established by the involution alone. The term is inspired by Bowlby's theory of attachment, whose "algorithm for network continuity", described in the [presentation of the project](../README.md), is a pillar of our research.
+In effect, this diagram serves as a reason for a community to act in the world with a methodology, specifically a formalization into 21st century mathematics and computer science of Peirce's "community of inquirers", together performing "agape". In our conjecture, the community is K, while Care is structurally represented by reciprocal role duality. Reading that involution as the developmental work of love or agape remains a conjectural adequacy claim, dependent in part on the no-leak family rather than established by the involution alone. The term is inspired by Bowlby's theory of attachment, whose "algorithm for network continuity", described in the [presentation of the project](../README.md), is a pillar of our research.
 
 Once this concrete stage is reached, the metaphysical scaffolding becomes in a sense obsolete, and what matters is the testing of the actions of the community under the induced methodology. In terms inspired by Gentzen, the metaphysics is the "introduction rule", how one conceives the logical work, and the test is the "elimination rule", how one consumes the logical work.
 
@@ -143,7 +143,7 @@ The framework is, read operationally, a sequence of engineering trade-offs that 
 
 The cascade is not a list of features added by choice. It is the sequence of problems the foundational commitments create, with each layer being the structural response to the problem the previous layer's resolution exposed. Hybrid's locality-vs-globality only becomes a problem because we committed to separating actors and sessions. Reflexive's stability-vs-adaptability only becomes a problem because Hybrid gave us a maintainable artifact. Bulk's expressivity-vs-transparency only becomes a problem because Reflexive gave us a self-editing protocol that must now talk about things. Field-theoretic dynamics' exploration-vs-exploitation only becomes a problem because Bulk gave us a language that must evolve well. Federation's coherence-vs-plurality only becomes a problem because the four previous layers gave us a complete protocol that, in isolation, would re-create the one-true-framework failure the project was built to dissolve. Information cohomology's dense-vs-accessible encoding becomes salient as soon as Bulk produces a language, and acute as soon as Federation puts that language in front of multiple receiver populations.
 
-The strategy is uniform across the cascade. Every trade-off is resolved by separating the two concerns that are in tension, giving each its own categorical home, and providing the precise interface between them. Locality and content are separated by the sheaf; current protocol and its edits are separated by a meta layer; how and what are separated by an orchestration/content split; content and dynamics are separated by the factorization-algebra-plus-RG-flow; interior and exterior of a protocol are separated by the meta-topos; content and its measurement are separated by the (co)homology pairing. The foundational commitments themselves (actor-vs-content on C, spatial-vs-discrete on M, context-vs-system at the cross-site adjunction) are the same architectural move at the foundational floor.
+The strategy is uniform across the cascade. Every trade-off is resolved by separating the two concerns that are in tension, giving each its own categorical home, and providing the precise interface between them. Locality and content are separated by the sheaf; current protocol and its edits are separated by a meta layer; how and what are separated by an orchestration/content split; content and dynamics are separated by the factorization-algebra-plus-RG-flow; interior and exterior of a protocol are separated by the meta-topos; content and its measurement are separated by the (co)homology pairing. The foundational commitments themselves (actor-vs-content on K, spatial-vs-discrete on M, context-vs-system at the cross-site adjunction) are the same architectural move at the foundational floor.
 
 So separation of concerns is not an engineering principle the framework happens to use. It is the framework's primitive architectural move, applied recursively from the foundations upward, and the cascade of trade-offs is what makes that recursion necessary. The transparency-of-language trade-off (information cohomology) belongs on this list on the same footing as the others because it is the encoding question the unityped commitment forces on the engineer: *how is the unityped receiver going to understand the message?* That question is no less an engineering interest than performance, security, or maintainability. It is simply not currently on the engineer's radar, because the economy of expertise prefers density to transparency. In the framework it is how the output feeds back into the input (and what makes the loop go round, along with other aspects, as we shall see in the next section).
 

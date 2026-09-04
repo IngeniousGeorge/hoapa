@@ -339,7 +339,7 @@ This is where the "layers of complexity" which guarantee perspectivism, decentra
 
 ### 3.6 Care
 
-Care can be defined rigorously by another simple 2-step algorithm, which can be viewed as a strategy for networks to ensure their continuity in time:
+Care can be described by another simple 2-step algorithm, which can be viewed as a strategy for networks to ensure their continuity in time:
 
 1. *In a given network, the evolution towards maturity of newer elements is taken care of by the mature elements already present in the network*
 2. *In turn, those newer elements become mature and take care of a new generation of elements*

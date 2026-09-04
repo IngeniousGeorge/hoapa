@@ -1,5 +1,10 @@
 # Arc summary
 
+> **Reading status.** This file records the arc historically, including claims
+> that were later corrected. Earlier sections describe what the project believed
+> at that stage; they are not all current commitments. For canonical mathematical
+> status, read `workflow/targets.md`. Arc/16 records the latest corrective pass.
+
 ## 01 - 09
 
 Pass 1 complete — files 01–09 absorbed. Here's the throughline I traced, i.e. how the conjecture accreted structure from "standing on itself" toward what file 15 will anchor:
@@ -8,13 +13,13 @@ Pass 1 complete — files 01–09 absorbed. Here's the throughline I traced, i.e
 
 **02 (concurrency anchor).** First big reframe: drop cohesion-on-both-sides; give B an *operational* anchor — GR-inspired actor-causal site (Hewitt/Lamport) as base + Caires–Pfenning session types as sheaf values. Separation of concerns becomes **definitional** (modularity = sheaf gluing). A_5-icosahedral retired. Cubical as foothold; rising-sea as regulative principle.
 
-**03 (attachment).** `T_recursion` born: the *iterable* adjunction unit is the developing network. Attachment (1=2, cared-for=caregiver) = B-side philosophical seed. **O_1** (one binary op + involution) unifies actor-verb / session-duality S↔S^⊥ / care. **MO_1 ≃ M̄_{g,n}**. The two paths to S²: Bℤ→S¹→S² (A) and O_1→MO_1→S² (B). Ass_cyc over Com_cyc.
+**03 (attachment).** `T_recursion` born: the *iterable* adjunction unit is the developing network. Attachment (1=2, cared-for=caregiver) = philosophical seed for the concurrency layer. **O_1** (one binary op + involution) unifies actor-verb / session-duality S↔S^⊥ / care. **MO_1 ≃ M̄_{g,n}**. A then-proposed meeting paired the modal route Bℤ→S¹→S² with the concurrency route O_1→MO_1→S²; arc/16 later retires the claim that these reach the same object because the modal route has no demonstrated branch data. Ass_cyc over Com_cyc.
 
 **04–05.** Codex sharpens the thesis ("when persistence depends on coherent interaction among perspectives, care becomes structurally necessary") and warns against teleology. Project reframed as *protocol/kernel verification* for a conversation-of-conversations (humans/LLMs = untrusted actors, sessions = documentation).
 
 **06–08 (the field-theory arc).** Hybrid = adapter layer. Cobordism↔session **dictionary** anchored on the dualizing object ⊥ₛ; process/context reversal as the deep thread. **07:** reflexive layer, Π = protocol-version category, consensus = colimit (Pijul). **08:** the bulk/"what" layer Λ — protocol generates its *own type theory*; factorization algebra + RG flow as its dynamics; the **symmetric formulation** (B field-theory-shaped→outputs type theory; A type-theory-shaped→outputs field theory); **cohesion = complexity threshold** (Manin), differential cohesion the deeper one; Yoneda = intrinsic-plurality/federation; information cohomology → receiver-relative complexity → *why unityping*; entropy dual to language-formation = the (co)homology pairing = the cross-site adjunction.
 
-**09 (the grounding milestone).** The instigator's 4-functor "quadruple" (Anthropic/Evolution/Praxis/Complexity) is **pressure-tested down to an adjoint pair** `Allow ⊣ Require` with **five anchors**: Complexity = L, Evolution = R (iterated = developing network), Praxis = η, Anthropic = ε (its non-invertibility = the apex-illusion), Care = the order-2 involution. free⊣forgetful is the lay avatar. The single "if" is **T3** — "sufficient complexity" (A-pole) and "separation of concerns" (B-pole) are its two faces; optimality (universal-property kind) is its conclusion. And the *methodological* keystone lands here: **grounded vs. aspirational marked on every claim; warmth earned by structure, not asserted; drop the chiasmus, lead with the adjoint pair; attachment front-door, agape footnote.**
+**09 (the grounding milestone).** The instigator's 4-functor "quadruple" (Anthropic/Evolution/Praxis/Complexity) is **pressure-tested down to an adjoint pair** `Allow ⊣ Require` with **five anchors**: Complexity = L, Evolution = R (iterated = developing network), Praxis = η, Anthropic = ε (its non-invertibility = the apex-illusion), Care = the order-2 involution. free⊣forgetful is the lay avatar. At this stage, **T3** is framed as the single "if": "sufficient complexity" at the modal pole and "separation of concerns" at the concurrency pole are proposed as its two faces, with optimality (of the universal-property kind) as its conclusion. Arc/16 later replaces this proposed inference with the explicit proof obligations in `workflow/targets.md` §T3. And the *methodological* keystone lands here: **grounded vs. aspirational marked on every claim; warmth earned by structure, not asserted; drop the chiasmus, lead with the adjoint pair; attachment front-door, agape footnote.**
 
 The shape is now clear: by end of 09 the conjecture has its **structural spine** (adjoint pair + 5 anchors + T3), its **philosophical seeds** (perspectivalism / attachment-care), and its **discipline of presentation**. What 15 does — the metaphysics + logic anchoring — is presumably what lets all this "stand on its own" rather than lean on motivation.md's first section.
 
@@ -162,18 +167,29 @@ Pass 2 throughline: 10 → 14
 
   The bottom line — how the arc grounded itself
 
-  The arc took the conjecture from "standing on itself" to a genuine anchoring by a two-sided pincer:
+  The arc took the conjecture from "standing on itself" to a broader philosophical anchoring by a two-sided pincer:
 
   - Files 01–14 built the structure internally — the adjoint pair, the 5 anchors, the exterior holes resolved as boundary discipline, the warm vocabulary recast as earned universal
   properties.
-  - File 15 re-derived that same structure externally, from Hegel forward, with a code-blind interlocutor, showing it to be the colimit / dépassement of a whole diagram of 
-  metaphysical and logical traditions, and showing that every technical commitment (modal/cohesive HoTT, unityped-actor/typed-trace CoI, Grothendieck-Esquisse verification math,
-  Lawvere-fixed-point openness, Noether-conserved work, Care=agape, T3=Lawvere asymmetry) is independently forced by that network.
+  - File 15 reconstructed much of that structure externally, from Hegel forward, with a code-blind interlocutor, placing it in a diagram of metaphysical and logical traditions and
+  offering independent philosophical motivation for several technical commitments: modal/cohesive HoTT, a unityped-actor/typed-trace community of inquiry,
+  Grothendieck-Esquisse verification mathematics, Lawvere-shaped openness, Noether-shaped work, and the Care/agape reading.
 
-  The conjecture is grounded because it is now the fixed point of two independent derivations — the internal engineering build and the external philosophical descent — that arrive at
-  the same object. Its metaphysics is recursive semiotic process metaphysics (context → multiplicity → language-type → new context); its logic is valid transformation under 
-  contextual dependency; and the openness that keeps it honest — never a total self-verifier, never a set of all sets, never a managerial sovereign — is not a hedge but a theorem
-  (Lawvere fixed point). That is what lets the whole thing stand without standing on itself.
+  The convergence between the internal engineering build and the external philosophical reconstruction is significant motivation, but it neither forces the technical choices nor
+  supplies mathematical evidence for T1 or T3. The resulting metaphysics is recursive semiotic process metaphysics (context → multiplicity → language-type → new context), and its
+  logic is valid transformation under contextual dependency. Lawvere fixed-point phenomena shape the project's account of openness; the particular cross-site non-collapse theorem
+  remains unproved. That is the disciplined sense in which the framework can stand without standing only on itself.
+
+## 16 — Consolidation: analogy becomes proof obligation
+
+Arc/16 is corrective rather than corroborative. It adds no new evidence for the cross-site `Allow ⊣ Require` adjunction, but makes its obligations substantially more precise.
+
+- Praxis is no longer identified with `η` without qualification. The unit is the universal opening; a particular episode is `w : L M → K₀`, contextually presented by `w♯ = R(w) ∘ η_M`. This construction is generic to every adjunction and therefore clarifies the interpretation without supporting this particular one.
+- The canonical non-collapse ladder is stated once in `workflow/targets.md` §T3. Its properties satisfy `3 ⇒ 2 ⇒ 1`; T3 targets rung 2 and T_recursion targets rung 3. The earlier fixed-point-rich / fixed-point-poor story remains a search heuristic until it is connected to a concrete component of `μ = R ε L`.
+- The earlier claim that the modal and Esquisse routes reach "the same `S²`" is retired. A bare sphere does not provide the three marked branch values, ramified covers, or monodromy required for dessins.
+- The checked `ʃ ⊣ ♭` iteration is a collapsing control, not evidence for or against cross-site non-collapse.
+- Care retains a postulate-free syntactic proxy in reciprocal session duality; its operadic realization is conditional on `session-O1-action`. Its adequacy as continuity-preserving, non-extractive development remains conjectural and depends on the no-leak family.
+- The icosahedral dessin is a gated finite test object, not an anchor, an adjunction instance, or a model of the developing network.
 
 ## Graph edge palette
 
@@ -365,4 +381,4 @@ b) "Logic of inheritance" — a beneficial sharpening of one axis, with two ways
   hand-off), and binding it to equilibrium carries the context-side anchor — and as a bonus it sidesteps the type-theory/OOP "inheritance" name-collision entirely. It's a coinage,
   but that's legitimate for a genuinely novel object with no existing name (same license as "Allow/Require"), provided we gloss it hard and double-quote it as an image. My one
   reservation: the name foregrounds work + equilibrium but leaves the care pole implicit — so I'd make the node's definition explicitly the twin-anchor dyad (equilibrium × care) even
-  though the name emphasizes the first. 
+  though the name emphasizes the first.
