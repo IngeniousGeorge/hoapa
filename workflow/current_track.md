@@ -21,11 +21,14 @@ The point-generated Benton/LNL interface (R4) theorem is banked: the supported/e
 
 The runtime contract loop 1 is closed and green. The tiny-run construction seam is now banked in 3R: runtime-side code can reconstruct the Agda-accepted `tiny_trace.json` run from `hoapa_contract` structs and keep it corpus-locked by decoded-struct equality. This is still an emission seam, not protocol behavior; the protocol kernel has not yet emitted a trace from a running event log.
 
-Bandwidth should generally pass through **2S** before the next 3R expansion. The next 2S status question is per-conversation locality: raw conversations should become local actor/event frames with `FrameHom`s into the global frame built by `CausalFromParents.agda`. Once that substrate meaning is stable, 3R can echo it with a minimal `hoapa_core` event log/export path.
+The 2S per-conversation locality package is banked. `ConversationLocality.agda` realizes every conversation present in a well-formed run as its own `LocalFrame` and constructs a `FrameHom` into the global frame built by `CausalFromParents.agda`; the local causal order is the global derived order restricted to that conversation's events, which is what makes strict reflection available.
+
+That package supplies the target the next 3R expansion was waiting for, so current bandwidth moves to **3R**: the minimal `hoapa_core` event-log/export path, emitting against conversation-shaped local views rather than inventing its own. Actor-renaming/no-leak remains the next 2S theorem, and session-tag assignment is unlocked but deliberately still deferred — it is a decorating layer over the realized frames, not a field on `LocalFrame`.
 
 ## Guardrails
 
 - Point-generated R4 is event-discrete and concurrency-internal; it is not the full finite actor-causal reflector and not `Allow ⊣ Require`.
-- `CausalFromParents.agda` is the first generic runtime-to-substrate rung; it is not the complete realization/no-leak theorem.
+- `CausalFromParents.agda` is the first generic runtime-to-substrate rung; it is not the complete realization/no-leak theorem. It alone still constructs only the global frame.
+- `ConversationLocality.agda` constructs per-conversation frames and strict embeddings; it does not package their family as a `Cover`. `WellFormed` supplies event-to-conversation resolution but does not imply actor coverage.
 - `Chu(SET,Bool)` is a concrete coefficient/value model and a Sessions realization target; it does not reconstruct Reality.
 - The 3R tiny-run construction seam is not runtime behavior. Keep `hoapa_checker`, broad OTP, Pijul, and Phoenix work behind the status-file gates.
