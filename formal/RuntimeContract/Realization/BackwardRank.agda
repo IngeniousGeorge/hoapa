@@ -43,38 +43,30 @@ open import Cubical.Data.Nat.Order using (_<_; _≤_; <-trans; suc-≤-suc; zero
 open import Cubical.Data.Bool using (Bool; true; false; false≢true; true≢false)
 open import Cubical.Data.List using (List; []; _∷_; length; _++_)
 open import Cubical.Data.List.Properties using (++-assoc)
-open import Cubical.Data.Sigma using (_×_; _,_; fst; snd)
+open import Cubical.Data.Sigma using (_,_; fst; snd)
 open import Cubical.Data.Empty using (rec)
 
 open import RuntimeContract.Trace
+open import RuntimeContract.Realization.TraceLookup
+  using (firstEvent; andB-split; eqℕ-sym; eqℕ-sound; ⊆?-mem)
 
 open RawEvent
 
 ------------------------------------------------------------------------
 -- Public API:
 --   idx                — first-occurrence index of an id in a list
---   firstEvent         — first event in a list carrying a given id
---   andB-split         — split a Boolean conjunction that holds
 --   edge-decreases-idx — the core lemma
+--
+-- Raw-trace lookup and membership (`firstEvent`, `andB-split`, `eqℕ-sym`,
+-- `eqℕ-sound`, `⊆?-mem`) live in `TraceLookup`: they are facts about raw
+-- trace data, not about rank. `idx` stays here because it exists only as
+-- acyclicity scaffolding — its sole consumer is the antisymmetry argument.
 ------------------------------------------------------------------------
 
 -- first-occurrence index (rank scaffolding).
 idx : ℕ → List ℕ → ℕ
 idx x []       = 0
 idx x (y ∷ ys) = ifB (eqℕ x y) 0 (suc (idx x ys))
-
--- the first event in a list carrying a given id (default event if none).
-private
-  defaultEvent : RawEvent
-  defaultEvent = mkEvent 0 0 [] [] 0 0
-
-firstEvent : ℕ → List RawEvent → RawEvent
-firstEvent c []       = defaultEvent
-firstEvent c (e ∷ es) = ifB (eqℕ (evId e) c) e (firstEvent c es)
-
-andB-split : (a b : Bool) → (a andB b) ≡ true → (a ≡ true) × (b ≡ true)
-andB-split true  b p = refl , p
-andB-split false b p = rec (false≢true p)
 
 ------------------------------------------------------------------------
 -- Internal lemmas.
@@ -112,18 +104,6 @@ private
   orB-comm false true  = refl
   orB-comm false false = refl
 
-  eqℕ-sym : (m n : ℕ) → eqℕ m n ≡ eqℕ n m
-  eqℕ-sym zero    zero    = refl
-  eqℕ-sym zero    (suc n) = refl
-  eqℕ-sym (suc m) zero    = refl
-  eqℕ-sym (suc m) (suc n) = eqℕ-sym m n
-
-  eqℕ-sound : (m n : ℕ) → eqℕ m n ≡ true → m ≡ n
-  eqℕ-sound zero    zero    _ = refl
-  eqℕ-sound zero    (suc n) p = rec (false≢true p)
-  eqℕ-sound (suc m) zero    p = rec (false≢true p)
-  eqℕ-sound (suc m) (suc n) p = cong suc (eqℕ-sound m n p)
-
   ∈?-++ : (x : ℕ) (M N : List ℕ) → (x ∈? (M ++ N)) ≡ orB (x ∈? M) (x ∈? N)
   ∈?-++ x []       N = refl
   ∈?-++ x (y ∷ ys) N with eqℕ x y
@@ -141,18 +121,6 @@ private
 
   ∈?-cons : (q a : ℕ) (L : List ℕ) → (q ∈? (a ∷ L)) ≡ orB (eqℕ q a) (q ∈? L)
   ∈?-cons q a L = ifB-orB (eqℕ q a) (q ∈? L)
-
-  -- a member of xs is a member of any superset (via ⊆?).
-  ⊆?-mem : (xs L : List ℕ) (x : ℕ) → (xs ⊆? L) ≡ true → (x ∈? xs) ≡ true → (x ∈? L) ≡ true
-  ⊆?-mem []       L x _ q = rec (false≢true q)
-  ⊆?-mem (y ∷ ys) L x h q = lemma (eqℕ x y) refl
-    where
-      hy  = fst (andB-split (y ∈? L) (ys ⊆? L) h)
-      hys = snd (andB-split (y ∈? L) (ys ⊆? L) h)
-      lemma : (b : Bool) → b ≡ eqℕ x y → (x ∈? L) ≡ true
-      lemma true  eq = subst (λ z → (z ∈? L) ≡ true) (sym (eqℕ-sound x y (sym eq))) hy
-      lemma false eq = ⊆?-mem ys L x hys
-                         (subst (λ b → ifB b true (x ∈? ys) ≡ true) (sym eq) q)
 
   -- The core scan: threads `consumedIds` (ids of already-scanned events)
   -- alongside `backwardGo`'s `seen`, linked by `sameMem`.

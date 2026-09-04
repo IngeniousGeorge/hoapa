@@ -19,11 +19,20 @@
 --   * checkpoint 2 — `realizeFrame`: the run as a `LocalFrame` over
 --     `realizeActorBase`, with incidence read off `evTouches`.
 --
--- Deliberately deferred (later B-lane rungs, NOT hidden here):
---   * per-conversation locality + `FrameHom` embeddings: `ActorIn ≡ Unit`
---     models a SINGLE frame holding all present actors (the same modelling
---     choice `TinyTrace.agda` makes). Conversations are validated by `valid?`
---     but do not yet shape the realized object.
+-- The abstraction boundary this module holds:
+--   * `realizeFrame` remains the SINGLE GLOBAL frame, with `ActorIn ≡ Unit`
+--     holding all present actors (the same modelling choice `TinyTrace.agda`
+--     makes). That is not a placeholder: `RActor` is already the subtype of
+--     actors present in the trace, so `Unit` is the correct membership
+--     predicate for the frame that holds all of them. What this module does
+--     NOT do is let conversations shape the realized object.
+--   * per-conversation frames and their `FrameHom` embeddings into the frame
+--     built here are implemented downstream, in
+--     `RuntimeContract.Realization.ConversationLocality`. That reference is
+--     DOCUMENTARY ONLY: this module must not import it, since the dependency
+--     runs the other way (locality is built on top of this frame and order).
+--
+-- Deliberately deferred (later 2S rungs, NOT hidden here):
 --   * session-tag assignment: `LocalFrame` carries no session content, so the
 --     minimal bridge needs no tag environment.
 --   * renaming / valid-reordering invariance (predicate- and object-level):
@@ -55,7 +64,9 @@ open import Concurrency.Sites.ActorCausal using (LocalFrame)
 
 open import RuntimeContract.Trace
 open import RuntimeContract.Realization.BackwardRank
-  using (idx; firstEvent; andB-split; edge-decreases-idx)
+  using (idx; edge-decreases-idx)
+open import RuntimeContract.Realization.TraceLookup
+  using (firstEvent; wellFormed-backwardOK)
 
 open RawEvent
 open RawTrace
@@ -77,25 +88,13 @@ module _ (r : RawRun) (w : WellFormed r) where
     eids : List ℕ
     eids = evIdsOf es
 
-  -- The `backwardOK` clause, peeled out of the full `valid?` conjunction by
-  -- dropping the seven leading clauses. Each head conjunct is named so that
-  -- `andB-split` leaves no unsolved metavariable; the tails are inferred.
+  -- The `backwardOK` clause of `valid?`. The positional projection tower
+  -- that reaches it lives in `TraceLookup`, so this module does not encode
+  -- the ORDER of `valid?`'s conjuncts — reordering that validator breaks the
+  -- named peeling lemmas and nothing here.
   private
-    cids : List ℕ
-    cids = convIdsOf (traceConvs t)
-
-    tailT : (a : Bool) {b : Bool} → (a andB b) ≡ true → b ≡ true
-    tailT a p = snd (andB-split a _ p)
-
     backward-ok : backwardOK es ≡ true
-    backward-ok =
-      tailT (allB (eventOK cids (traceConvs t)) es)
-      (tailT (allB (convOK (traceActors t)) (traceConvs t))
-      (tailT (distinctB (evIdsOf es))
-      (tailT (distinctB cids)
-      (tailT (distinctB (traceActors t))
-      (tailT (distinctB (siblingProtocolIds r))
-      (tailT (eqℕ (traceFormat r) formatCode) w))))))
+    backward-ok = wellFormed-backwardOK r w
 
   --------------------------------------------------------------------
   -- Realized event carrier: the present event IDs.
