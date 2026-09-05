@@ -143,6 +143,36 @@ This work will be reread for years — write it at that speed.
 closed one stated loosely. Retiring a claim that does not hold is a result, and
 reporting that a pass produced no new support is the honest headline, not a failure.
 
+## Code and test style
+
+The executable register is test-driven and clean, and has the same standing as the
+mathematical style above. Each point is a check against what you are about to write.
+
+- **Red first.** Expose missing behaviour as a failing focused check, or missing formal
+content as an unmet typed obligation, before implementing it. *Test:* can you name the
+check or obligation that was red, and is it retained now? "I verified it by hand" is
+not a check. Type-checking only after writing the implementation establishes green, but
+does not establish that the obligation was red first.
+- **`make test` is the definition of green.** Focused commands are appropriate during
+the inner red-green loop, but the completed change is green only when the top-level
+suite passes: drift gates, freshness gates, formal conformance, and runtime tests. The
+canonical loop order lives in `workflow/status_implementation.md`; do not restate it
+here.
+- **Contract fixtures are executable specifications.** Claims about serialized contract
+acceptance or rejection belong in the authoritative formal corpus with an expected
+verdict. Runtime tests may construct recorder inputs, including invalid ones, but must
+not introduce their own fixtures claimed to be formally valid. *Test:* if the claim
+broke silently, which check would go red?
+- **Refactor from green.** Restructuring and behaviour change are separate steps, with a
+passing suite between them.
+- **Legs stay sealed.** Runtime tests read the vendored artifact under
+`priv/runtime_contract/`, never `../../formal`. A test that reaches across a boundary
+tests the boundary away.
+- **Small, one job, named for what it is.** Prefer long names over abbreviations,
+explicit dependencies, and few unrelated arguments. No function should carry more
+responsibility than its shape makes visible. This is the *Craft* standard above applied
+to executable code.
+
 ## Agda conventions
 
 - Library: cubical Agda (`~/libs/agda-libs/cubical`), registered in `~/.agda/libraries`.
