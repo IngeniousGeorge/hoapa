@@ -14,7 +14,7 @@ All three styles are honest about status. Punchlist items extend shipped materia
 
 For the seed-level commitments these entries extend, see `motivation.md`. For the propositional decomposition (T1–T_recursion) they realize, see `arc.md` and `targets.md`. The implementation track — a real protocol kernel, a real verification runtime, LLM-tooling integration — is a separate concern tracked canonically in `workflow/status_implementation.md`; this file keeps only cross-references and future-work implications.
 
-Status snapshot, 2026-07-05: the point-generated R4 theorem is banked; runtime contract loop 1 is closed and green; the first generic 2S runtime-to-substrate rung has landed in `RuntimeContract/Realization/BackwardRank.agda` and `RuntimeContract/Realization/CausalFromParents.agda`; the 3R tiny-run construction seam is banked in `hoapa_contract`. Active next steps live in `workflow/status_formal.md` and `workflow/status_implementation.md`.
+Status snapshot, 2026-09-05: the point-generated R4 theorem is banked; runtime contract loop 1, 2S per-conversation locality, and 3R event-log pass 1 are closed and green. The next dependency is the 2S coverage/causal-saturation package and authoritative cross-conversation fixture, followed by fixture-only 3R pass 2 and then actor-renaming/no-leak. Active next steps live in `workflow/status_formal.md` and `workflow/status_implementation.md`.
 
 ## Regarding fracture
 
@@ -264,7 +264,7 @@ What lands after this round. The synthetic side of the de Rham arc is complete a
 
 ## Concurrency-side layers of complexity (planned)
 
-The Concurrency side, at the time of writing, has shipped the actor-causal site, pullback overlaps, the cyclic operad `O_1` and its `*`-autonomous algebra interface, the Sessions instance, the Hybrid v1 presheaf/restriction adapter, finite-site event-product descent with constant-slot Sessions and Set instances, the concrete tiny finite-cover validation, finite sheaf categories at both `StarAutonomous→Category V` and `SET`, the finite Coverage/SET library sheaf comparison, and the R4 Benton/LNL finite-sheaf bridge through conditional Tier 4: presheaf-level change of base, presheaf-level adjunction, right-adjoint sheaf preservation, a finite-sheafification reflector interface, and the sheaf-level adjunction conditional on a V-side reflector. The point-generated reflector route has also landed over the supported subsite: event-supported frames, incident point frames, event-supported point overlaps, the canonical point cover, `IsPointSheaf P ↔ PointLocal P`, abstract point products, pointification as a point sheaf, the point-sheaf category, the reflector functor, and the adjunction `a ⊣ ι`. `PointLinearNonlinearAdjunction.agda` now consumes that reflector and assembles the point-generated sheaf-level Benton/LNL bridge `Lpoint ⊣ Rpoint`, relative to `lnl` and `vProd`. The point-generated R4 theorem is now banked rather than the live frontier. The live 2S/3R boundary is now the runtime-to-substrate junction after the 3R tiny-run construction seam: per-conversation realization on the formal side is the next status-file target before broader runtime behavior grows. Several additional layers are committed in design but not yet in code. This section is the catalogue of those layers, with for each: what it does for the protocol's use in the human world (possibly with LLMs as participants), what mathematical structure it commits to (or, where the choice is open, what the candidates are), and what currently shipped scaffolds it presupposes.
+The Concurrency side, at the time of writing, has shipped the actor-causal site, pullback overlaps, the cyclic operad `O_1` and its `*`-autonomous algebra interface, the Sessions instance, the Hybrid v1 presheaf/restriction adapter, finite-site event-product descent with constant-slot Sessions and Set instances, the concrete tiny finite-cover validation, finite sheaf categories at both `StarAutonomous→Category V` and `SET`, the finite Coverage/SET library sheaf comparison, and the R4 Benton/LNL finite-sheaf bridge through conditional Tier 4: presheaf-level change of base, presheaf-level adjunction, right-adjoint sheaf preservation, a finite-sheafification reflector interface, and the sheaf-level adjunction conditional on a V-side reflector. The point-generated reflector route has also landed over the supported subsite: event-supported frames, incident point frames, event-supported point overlaps, the canonical point cover, `IsPointSheaf P ↔ PointLocal P`, abstract point products, pointification as a point sheaf, the point-sheaf category, the reflector functor, and the adjunction `a ⊣ ι`. `PointLinearNonlinearAdjunction.agda` now consumes that reflector and assembles the point-generated sheaf-level Benton/LNL bridge `Lpoint ⊣ Rpoint`, relative to `lnl` and `vProd`. The point-generated R4 theorem is now banked rather than the live frontier. At the live 2S/3R boundary, global and per-conversation realization have landed, and the 3R event log records exact contract evidence. The next formal package makes coverage hypotheses explicit and exercises cross-conversation causal saturation before the runtime replays the resulting authoritative fixture. Several additional layers are committed in design but not yet in code. This section is the catalogue of those layers, with for each: what it does for the protocol's use in the human world (possibly with LLMs as participants), what mathematical structure it commits to (or, where the choice is open, what the candidates are), and what currently shipped scaffolds it presupposes.
 
 A unifying disciplinary commitment behind all the layers below: **praxis is part of the theory**. The protocol's use by a community of equal-standing participants is constitutive of the framework, not an applied addendum to an underlying mathematics. This is what distinguishes the framework's combination from each of the historical precedents catalogued in `related_structures.md` — at least one of (mathematical depth, theory-of-community, runnable protocol, self-validation through use, recursive co-evolution structure) was missing in each of them.
 
@@ -297,9 +297,9 @@ These exclusions are not deficiencies. They are the right scope for a workflow d
 
 The durable implementation-track plan lives in `workflow/status_implementation.md`. That file replaces the old top-level `workflow/elixir.md` transcript, which has been archived under `workflow/deep_context/`.
 
-The first rising-sea gate has been crossed narrowly. The project did not open a broad `Concurrency/Protocol/` layer; it opened `/formal/RuntimeContract/Trace.agda` plus the smallest serialization/runtime boundary that the existing substrate forced. Loop 1 is closed and green: the v0 contract now has a formal predicate, a fixture corpus, generated Agda raw terms, a vendored runtime artifact, and an Elixir `hoapa_contract` codec suite. The first generic runtime-to-substrate rung has also landed: `BackwardRank.agda` derives the rank decrease from `backwardOK`, and `CausalFromParents.agda` derives a causal order and one global `LocalFrame` from a well-formed run.
+The first rising-sea gate has been crossed narrowly. The project did not open a broad `Concurrency/Protocol/` layer; it opened `/formal/RuntimeContract/Trace.agda` plus the smallest serialization/runtime boundary that the existing substrate forced. Loop 1 is closed and green: the v0 contract now has a formal predicate, a fixture corpus, generated Agda raw terms, a vendored runtime artifact, and an Elixir `hoapa_contract` codec suite. The runtime-to-substrate bridge derives rank and causal order in `BackwardRank.agda` and `CausalFromParents.agda`, then realizes each present conversation and its strict embedding in `ConversationLocality.agda`.
 
-This means the contract/export/runtime-codec harness is no longer future work. The 3R tiny-run construction seam has also landed: runtime-side code can reconstruct the Agda-accepted `tiny_trace.json` run from `hoapa_contract` structs, keep it corpus-locked by decoded-struct equality, and round-trip it through the codec. This is still an emission seam, not protocol behavior. The live implementation queue belongs in `workflow/status_implementation.md`, with `hoapa_checker` deferred until there is a real runtime-emitted trace from behavior to validate one-by-one.
+This means the contract/export/runtime-codec harness is no longer future work. The 3R construction seam and event-log pass 1 have landed: an unnamed `Hoapa.Core.EventLog` records caller-supplied contract values without checking or normalization, exports a `Run`, reproduces the accepted tiny run from literal calls, and replays every schema-decodable corpus fixture by exact struct equality. It is still a recorder, not protocol behavior or an event originator. The live implementation queue belongs in `workflow/status_implementation.md`; `hoapa_checker` remains deferred until a synthetic generator or actor kernel produces events from behavior to validate one-by-one.
 
 The implementation still should not wait for the full cross-site `Allow ⊣ Require`, `MO_1`, Reflexive Π, or Bulk Λ layers. It also should not claim verification beyond the finite trace/run predicates Agda actually states. Elixir owns runtime behavior; Agda owns the specification of well-formed traces and boundary laws; the top-level checker boundary currently orchestrates formal and runtime tests, with compact certificates and richer audit/provenance semantics deferred.
 
@@ -699,6 +699,7 @@ The substrate already carries the syntactic floor of the claim:
 - `RuntimeContract/Realization/TinyTrace.agda` gives one concrete trace-to-frame witness, explicitly labelled as a witness rather than the generic bridge.
 - `RuntimeContract/Realization/BackwardRank.agda` proves that a causal-parent edge strictly decreases first-occurrence rank under `backwardOK`; global event-ID distinctness is not load-bearing for that order lemma.
 - `RuntimeContract/Realization/CausalFromParents.agda` gives the first generic bridge checkpoint: any well-formed raw run determines a causal order and one global actor-causal `LocalFrame`.
+- `RuntimeContract/Realization/ConversationLocality.agda` realizes each present conversation as a `LocalFrame` and supplies its strict `FrameHom` into the global frame.
 - `Hybrid/ChangeOfBase.agda` contains the structural half of no-leak as frame-noninterference under change of base.
 
 This is not yet the theorem. It is the reason the theorem is now statable without inventing new primitives.
@@ -715,13 +716,14 @@ with the converse following from the inverse renaming when `rho` is a bijection 
 
 Do not silently broaden this to all identifiers. Event IDs, conversation IDs, content tags, provenance tokens, run IDs, and protocol IDs have their own alpha-equivalence or stability questions. The humanness/no-leak theorem concerns the actor-identity channel.
 
-**Tier B: realized-object actor-renaming invariance.** The first generic realization checkpoint has landed:
+**Tier B: realized-object actor-renaming invariance.** The generic realization checkpoints have landed:
 
 ```text
 WellFormed r -> global LocalFrame r
+WellFormed r -> each present conversation has a LocalFrame and global FrameHom
 ```
 
-`CausalFromParents.agda` now derives the causal order from backward parent edges and packages one global actor-causal frame over realized actor/event carriers. The remaining Tier B locality work is narrower and more structural: realize each raw conversation as a local frame, construct `FrameHom`s into the global frame, and prove preservation plus reflection of the derived causal order. After that, prove that actor relabeling induces an isomorphism/equivalence of the realized frames. This is the substantive reading of "actor identity is gauge": relabeling changes the presentation, not the mathematical object seen by the trusted protocol.
+`CausalFromParents.agda` derives the causal order from backward parent edges and packages one global actor-causal frame over realized actor/event carriers. `ConversationLocality.agda` realizes each raw conversation as a local frame, constructs its `FrameHom` into the global frame, and proves the required incidence condition. The remaining Tier B work is to prove that actor relabeling induces an isomorphism/equivalence of those realized frames. This is the substantive reading of "actor identity is gauge": relabeling changes the presentation, not the mathematical object seen by the trusted protocol.
 
 The banked proof fact is that the order/antisymmetry rung uses the `backwardOK` scan, not global event-ID distinctness. Distinct event IDs still matter for faithful event-record realization.
 
@@ -756,26 +758,24 @@ If the ladder survives contact with the next 2S work, possible file names includ
 
 ```text
 formal/RuntimeContract/Renaming.agda
-formal/RuntimeContract/Realization/ConversationFrames.agda
-formal/RuntimeContract/Realization/FrameHoms.agda
 formal/RuntimeContract/NoLeak.agda
 formal/RuntimeContract/Audit/NoLeak.agda
 ```
 
-These names are illustrative only. Tier A may fit in a small sibling of `Trace.agda`; the generic order/global-frame checkpoint already lives in `RuntimeContract/Realization/BackwardRank.agda` and `CausalFromParents.agda`; the next Tier B files should be opened only if per-conversation locality stops fitting cleanly there. Audit-level no-leak should wait until audit/provenance semantics stop being opaque tokens.
+These names are illustrative only. The earlier candidates `ConversationFrames.agda` and `FrameHoms.agda` are superseded by the landed `RuntimeContract/Realization/ConversationLocality.agda`; encountering the old names in archived planning should lead there. Tier A may fit in a small sibling of `Trace.agda`, and audit-level no-leak should wait until audit/provenance semantics stop being opaque tokens.
 
 ### Decision gates
 
-1. Loop-1 cleanup is finished and the first global realization checkpoint has landed. Does the next 2S proof target per-conversation locality first, or raw actor-renaming invariance first?
-2. What exact finite actor-renaming object is used: total permutation of a namespace, bijection between actor lists, or structure-preserving map with inverse?
-3. Is Tier A stated as preservation, equivalence, or a universal quotient property?
-4. What is the first trusted observation map, if any, beyond `valid?` itself?
-5. Does the remaining realization package target conversation `LocalFrame`s plus `FrameHom`s first, or introduce a new packaged `RealizedFrame` record?
-6. Is the Tier B equivalence an isomorphism of frames first, with univalent equality deferred?
-7. Which provenance identifiers survive no-leak, and which are actor-identity channels to erase?
-8. What falsifying fixture would demonstrate a leak: content/provenance/ranking behavior that changes under actor relabeling?
+Resolved before this pass: per-conversation locality came before renaming, and it landed directly as `LocalFrame`s plus `FrameHom`s in `ConversationLocality.agda`, without a new packaged `RealizedFrame`.
 
-The recommended order from here is: per-conversation locality and `FrameHom`s, Tier A actor-renaming invariance if it remains cheap and useful, Tier B realized-frame renaming invariance, and only later provenance/audit no-leak or any optimality formulation.
+1. What exact finite actor-renaming object is used: total permutation of a namespace, bijection between actor lists, or structure-preserving map with inverse?
+2. Is Tier A stated as preservation, equivalence, or a universal quotient property?
+3. What is the first trusted observation map, if any, beyond `valid?` itself?
+4. Is the Tier B equivalence an isomorphism of frames first, with univalent equality deferred?
+5. Which provenance identifiers survive no-leak, and which are actor-identity channels to erase?
+6. What falsifying fixture would demonstrate a leak: content/provenance/ranking behavior that changes under actor relabeling?
+
+The recommended order from here is: finish the intervening coverage/causal-saturation package recorded in the status files, then Tier A actor-renaming invariance, Tier B realized-frame renaming invariance, and only later provenance/audit no-leak or any optimality formulation.
 
 
 ## Candidate under evaluation: Reality and the protocol's constitutive exterior
@@ -787,7 +787,7 @@ The recommended order from here is: per-conversation locality and `FrameHom`s, T
 Reality (`R`) is the framework's **constitutive exterior**, and it is present in three asymmetric ways:
 
 - **Negatively, in the kernel** — almost every "the kernel must *not* do X" is an unnamed invocation of the `R|P` boundary: unityping / no-leak; the decision that actor-origin metadata lives *outside* the kernel; and the presentation's buffer / availability-only / non-enactment prose ("chart the world, not inhabit and certainly not control it").
-- **Positively, in the motivation** — the GR-inspired locality that motivates the Lamport-causal site, and the runtime↔reality boundary in the implementation-track plan (Elixir emits real events; the checker validates them).
+- **Positively, in the motivation** — the GR-inspired locality that motivates the Lamport-causal site, and the runtime↔reality boundary in the implementation-track plan. Elixir currently records caller-supplied contract evidence; a future runtime originator will produce behavior, and only then does a separate checker validate those events one-by-one.
 - **Absent as a theorem in the formal middle** — workflow and `targets.md` now name the boundary, and Chu supplies a live point/state/evaluation carrier, but no Agda module yet formalizes Reality admission, erasure, or no-enactment.
 
 Load-bearing fact: the kernel's identity *is* the boundary it maintains against Reality. Naming `R` is therefore mostly a *re-reading* — collecting the scattered refusals under one interface — not a new construction.
@@ -876,7 +876,7 @@ Possible obligations include:
 - **purpose-relative sufficiency:** the trace contains enough information for a stated operation such as audit, checking, translation, resumption, or replay;
 - **selective noninterference:** changing protected actor identity does not change trusted documentary content.
 
-This family should consume the existing 2S runtime-to-substrate ladder rather than duplicate it. `BackwardRank.agda` and `CausalFromParents.agda` provide the current global realization floor. The next roadmap step remains per-conversation locality and `FrameHom`s, followed by raw and realized actor-renaming invariance as described in the no-leak ladder. Provenance and replay adequacy come later, once the relevant artifact and observation interfaces exist.
+This family should consume the existing 2S runtime-to-substrate ladder rather than duplicate it. `BackwardRank.agda` and `CausalFromParents.agda` provide the global realization floor, while `ConversationLocality.agda` supplies per-conversation frames and strict embeddings. The next roadmap package makes event and actor coverage precise and tests cross-conversation causal saturation; raw and realized actor-renaming invariance follows as described in the no-leak ladder. Provenance and purpose-relative replay adequacy come later, once the relevant artifact and observation interfaces exist.
 
 ### Family B — synthetic invariance under change of presentation
 
@@ -919,8 +919,8 @@ Failure of an adjunction would not invalidate the analytic/synthetic reading. Th
 
 ### Status and sequence
 
-- **Banked ingredients:** actor-causal frames and strict-reflecting `FrameHom`; category-generic finite descent; the supported point-generated reflector; the point-generated LNL bridge; and the first generic well-formed-run-to-global-frame realization.
-- **Nearest targets already on the roadmap:** per-conversation frames and `FrameHom`s; raw actor-renaming invariance; then realized-frame equivariance/isomorphism.
+- **Banked ingredients:** actor-causal frames and strict-reflecting `FrameHom`; category-generic finite descent; the supported point-generated reflector; the point-generated LNL bridge; global and per-conversation realization from well-formed runs; and exact recorder-fidelity replay in 3R.
+- **Nearest targets already on the roadmap:** the 2S coverage/causal-saturation package and authoritative cross-conversation fixture; raw actor-renaming invariance; then realized-frame equivariance/isomorphism.
 - **Later compatibility targets:** purpose-relative trace adequacy, provenance preservation, reindexing/refinement laws, and local-to-global trace formation.
 - **Research-scale candidates:** a universal process-to-artifact property, replay/resumption semantics, and any `Doc`/`Aff` adjunction.
 
@@ -940,7 +940,7 @@ This classification does not reorder the live roadmap. It gives the existing tar
 
 1. What is the first declared observational equivalence for traces: checker acceptance, causal-frame isomorphism, audit equivalence, or another relation?
 2. Which target should first instantiate the synthetic family beyond actor renaming: no chosen basepoint, cover refinement, or reindexing conservativity?
-3. Can per-conversation realization state a first trace/reindexing naturality square without waiting for provenance or Bulk `Λ`?
+3. Can the landed per-conversation realization and cross-conversation witness state a first trace/reindexing naturality square without waiting for provenance or Bulk `Λ`?
 4. Which data must analytic adequacy preserve, and which identity channels must it provably forget?
 5. Is process-to-artifact stabilization a universal construction in the current LNL/CBPV candidate, or does it require a different mathematical kind?
 6. What concrete counterexample would distinguish genuine basis independence from invariance built in by a trivial presentation?

@@ -83,3 +83,8 @@ In latex files, use latex for math notation obviously. And in general remove ind
 - shared memory
 - 
 Now, Claude is writing the code. In the meanwhile, can you take care of the adga -> formal renaming in all top level workflow files + pedagogy + communication files?
+
+In agents:
+
+Discuss = "..."
+Stakes = "..."

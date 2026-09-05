@@ -61,7 +61,7 @@ against prose written in the older vocabulary.
 
 ## Working with ig
 
-**Alignment precedes all code. Nothing is written until ig and the agent are on the
+**Alignment precedes all code.** Nothing is written until ig and the agent are on the
 same page.** This covers *all* file creation and edits — code, workflow files, memory,
 scaffolding. "Low-stakes" is not an exemption, and having just argued for a change is
 not permission to make it. Before any write, say which files and why, and leave room
@@ -72,6 +72,15 @@ excerpts between Claude Code and Codex. Option-list UIs and plan-mode files do n
 survive that relay; prose does. For a multiple-choice question, write the options as a
 short list with your lean and ask in prose. For an implementation plan, propose it
 inline and ask for sign-off. Never gate work behind a plan file.
+
+## Conversation keywords in reaching consensus before writing to files
+
+*Discuss:* followed by another agent's ouput in curly braces, means you should provide 
+adequate feedback: correct mistakes, flag issues, give tips, etc. In an output that itself
+can be discussed.
+*Stakes:* followed by another agent's output in curly braces or not, means you should
+state, for any remaining tension: what's at stake, what our options are, and what each
+cost and buy us. Please use numbering for future reference.
 
 ## Workflow conventions
 
