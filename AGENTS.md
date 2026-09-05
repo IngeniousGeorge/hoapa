@@ -75,12 +75,12 @@ inline and ask for sign-off. Never gate work behind a plan file.
 
 ## Conversation keywords in reaching consensus before writing to files
 
-*Discuss:* followed by another agent's ouput in curly braces, means you should provide 
-adequate feedback: correct mistakes, flag issues, give tips, etc. In an output that itself
-can be discussed.
-*Stakes:* followed by another agent's output in curly braces or not, means you should
-state, for any remaining tension: what's at stake, what our options are, and what each
-cost and buy us. Please use numbering for future reference.
+*Discuss:* at the start of a prompt, followed by another agent's ouput in curly braces, 
+means you should provide adequate feedback: correct mistakes, flag issues, give tips, etc.
+In an output that itself can be discussed.
+*Stakes:* at the start of a prompt, followed by another agent's output in curly braces
+or not, means you should state, for any remaining tension: what's at stake, what our
+options are, and what each cost and buy us. Please use numbering for future reference.
 
 ## Workflow conventions
 
