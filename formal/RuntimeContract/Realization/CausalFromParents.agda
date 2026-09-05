@@ -182,6 +182,17 @@ module _ (r : RawRun) (w : WellFormed r) where
     ; _≤_ = _≤R_ ; ≤-refl = ≤R-refl ; ≤-trans = ≤R-trans
     ; ≤-antisym = ≤R-antisym ; ≤-isProp = ≤R-isProp }
 
+  -- A raw parent edge IS a causal relation.
+  --
+  -- `ParentEdge` is public but `Plus` and its constructors are private, so
+  -- without this lemma no downstream module can turn runtime parent data
+  -- into an inhabitant of the derived order — it can state that an edge
+  -- exists and do nothing with it. Exposing the entry point rather than
+  -- `Plus` itself keeps the chain type private: consumers build order facts
+  -- from edges and `≤-trans`, and cannot case-split on how a relation arose.
+  parent-edge-implies-causal : {a b : REvent} → ParentEdge a b → a ≤R b
+  parent-edge-implies-causal pe = inr ∣ edge pe ∣₁
+
   --------------------------------------------------------------------
   -- Checkpoint 2: the run as a LocalFrame.
   --------------------------------------------------------------------

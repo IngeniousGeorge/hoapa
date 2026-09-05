@@ -49,12 +49,14 @@ open RawRun
 -- Public API:
 --   firstEvent           — first event in a list carrying a given id
 --   andB-split           — split a Boolean conjunction that holds
+--   eqℕ-refl             — `eqℕ` accepts a number against itself
 --   eqℕ-sym              — `eqℕ` is symmetric (as a Bool-valued test)
 --   eqℕ-sound            — a successful `eqℕ` test yields a path
 --   ⊆?-mem               — membership transports along `⊆?`
 --   allB-firstEvent      — instantiate an `allB` at a looked-up event
 --   wellFormed-eventsOK  — the per-event clause of `valid?`
 --   wellFormed-backwardOK— the backward-parents clause of `valid?`
+--   eventOK-conversation — the conversation-resolves clause of `eventOK`
 --   eventOK-touches      — the touches ⊆ conversation-actors clause of `eventOK`
 ------------------------------------------------------------------------
 
@@ -81,6 +83,13 @@ andB-split false b p = rec (false≢true p)
 ------------------------------------------------------------------------
 -- Membership lemmas.
 ------------------------------------------------------------------------
+
+-- `eqℕ` is a Boolean test, so its reflexivity is a computation rather than a
+-- consequence of `_≡_`. Needed wherever a refinement is discharged at the
+-- value it was read off from — e.g. placing an event in its OWN conversation.
+eqℕ-refl : (n : ℕ) → eqℕ n n ≡ true
+eqℕ-refl zero    = refl
+eqℕ-refl (suc n) = eqℕ-refl n
 
 eqℕ-sym : (m n : ℕ) → eqℕ m n ≡ eqℕ n m
 eqℕ-sym zero    zero    = refl
@@ -188,14 +197,25 @@ wellFormed-backwardOK :
     (r : RawRun) → WellFormed r → backwardOK (traceEvents (trace r)) ≡ true
 wellFormed-backwardOK r w = tailT _ (drop6 r w)
 
--- The fourth conjunct of `eventOK`: an event only touches actors of its own
--- conversation. This is the clause that makes per-conversation frames satisfy
--- `LocalFrame.touches-in-frame`, which is why `eventOK` was shaped this way.
---
 -- `eventOK` is nested in the order
 --   1 conversation resolves   2 touches distinct
 --   3 parents distinct        4 touches ⊆ conversation actors
--- so this is "drop three".
+-- so the two clauses below are "take head" and "drop three".
+
+-- The first conjunct: an event's conversation is present in the run. This is
+-- what makes event coverage of the global frame uniform — every realized
+-- event has a conversation frame to be covered by, with no side hypothesis.
+-- Contrast actor coverage, which `valid?` does not supply at all.
+eventOK-conversation :
+    (cids : List ConvId) (convs : List RawConversation) (e : RawEvent)
+  → eventOK cids convs e ≡ true
+  → (evConv e ∈? cids) ≡ true
+eventOK-conversation cids convs e ok =
+  fst (andB-split (evConv e ∈? cids) _ ok)
+
+-- The fourth conjunct: an event only touches actors of its own conversation.
+-- This is the clause that makes per-conversation frames satisfy
+-- `LocalFrame.touches-in-frame`, which is why `eventOK` was shaped this way.
 eventOK-touches :
     (cids : List ConvId) (convs : List RawConversation) (e : RawEvent)
   → eventOK cids convs e ≡ true

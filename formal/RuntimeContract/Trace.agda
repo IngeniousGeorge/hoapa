@@ -188,6 +188,15 @@ formatCode = 0   -- "hoapa.trace/0"
 
 -- ----------------------------------------------------------------------
 -- The executable validator. Boolean-first so tests are computational.
+--
+-- WHAT IS DELIBERATELY ABSENT. There is no actor-coverage clause: a run may
+-- declare an actor in `traceActors` who joins no conversation, and remain
+-- well-formed (`fixtures/valid/uncovered_actor.json` is such a run). That is
+-- a v0 contract decision, not an oversight — it is what lets the runtime
+-- register actors independently of conversation membership. Constructions
+-- needing coverage take it as a hypothesis, decided by
+-- `RuntimeContract.ConversationActorCoverage.actorsCoveredByConversations?`.
+-- Do not fold that predicate in here.
 -- ----------------------------------------------------------------------
 
 valid? : RawRun → Bool
