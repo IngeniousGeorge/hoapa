@@ -102,7 +102,7 @@ The at-scale stub belongs in the runtime: thousands of participants, many conten
 - Use an Elixir umbrella for the runtime. The compile-time wall is worth the ceremony because `hoapa_core` must not depend on web, persistence, or checker details.
 - Keep Phoenix as an edge adapter. The protocol core must run without Phoenix.
 - Keep Pijul under `hoapa_store` behind a supervised port/CLI boundary. Use `runtime/native/` only for genuine Rustler NIFs.
-- Apply the independent actor-registration decision recorded in `status_formal.md`; the planned `actorsCovered?` condition is downstream, not part of `WellFormed` and not a runtime check.
+- Apply the independent actor-registration decision recorded in `status_formal.md`; the `actorsCoveredByConversations?` condition is downstream, not part of `WellFormed` and not a runtime check.
 - Keep `Hoapa.Core.EventLog` an in-memory recorder and reserve `hoapa_store` for durable event storage and persistence. See `bias_correction.md` for the recorder/checker anti-default and `naming.md` for the noun boundary.
 - Keep the vendored-corpus layout owned by `Hoapa.Contract.Corpus`. It exposes path helpers only; formal validity remains outside its API.
 
@@ -149,7 +149,7 @@ Minimal v0 `WellFormed` checks:
 - IDs are unique inside their namespace where uniqueness is required: actors, conversations, and events. The `runId` identifies the enclosing run.
 - Every reference resolves: event conversations exist, touched actors exist, conversation actors exist in the trace, event touched actors belong to that event conversation, causal parents exist, and sibling protocol IDs are just recorded as opaque IDs.
 - Causal parents point backward by event-list position: every causal parent must appear at a strictly earlier index in `events`, independent of the numeric ID assigned to either event. Parent edges are global and may cross conversation boundaries; there is no same-conversation clause. This gives the first decidable, renaming-invariant non-retroactivity discipline without requiring a full event-structure theory.
-- Actor coverage is deliberately not a `WellFormed` clause. Registered-but-inactive actors are legal; the planned separate predicate is `actorsCovered?` (see the decision log in `status_formal.md`).
+- Actor coverage is deliberately not a `WellFormed` clause. Registered-but-inactive actors are legal; the separate predicate is `actorsCoveredByConversations?`, and `fixtures/valid/uncovered_actor.json` is the accepted-but-uncovered run that keeps the two apart (see the decision log in `status_formal.md`).
 - Every conversation has a session tag, and every event has content and provenance tags. If those fields are mandatory in the raw record, this is a schema/constructor obligation rather than an additional semantic check; either way, their internals are deliberately opaque in v0.
 - The checked kernel does not refine actor identity from content, provenance, network, storage, or runtime identity. Rich no-leak theorems are later; v0 enforces the structural boundary by excluding those fields from the raw trace.
 
@@ -191,7 +191,7 @@ Landed:
 - `/formal/RuntimeContract/Generated/Raw/`: generated data-only Agda terms for valid and semantic-invalid fixtures.
 - `/formal/RuntimeContract/Tests/All.agda`: formal conformance runner; valid fixtures compute to accepted and semantic-invalid fixtures compute to rejected.
 - `/formal/RuntimeContract/Realization/TinyTrace.agda`: concrete tiny-trace realization witness into the existing actor-causal substrate. This is not the generic bridge theorem.
-- `/formal/RuntimeContract/Realization/TraceLookup.agda`: safe shared raw-trace layer. It owns lookup of the record carried by an event id (`firstEvent`), the membership lemmas (`eqℕ-sym`, `eqℕ-sound`, `⊆?-mem`, `allB-firstEvent`), and the named clause-peeling lemmas (`wellFormed-eventsOK`, `wellFormed-backwardOK`, `eventOK-touches`). It is the sole downstream proof-consumer module that depends on the positional nesting of `valid?` and `eventOK`, so reordering a validator clause breaks it and not the realization modules.
+- `/formal/RuntimeContract/TraceLookup.agda`: safe shared raw-trace layer, moved out of `Realization/` because nothing in it is about realization and substrate-free consumers were importing downward. It owns lookup of the record carried by an event id (`firstEvent`), the membership lemmas (`eqℕ-refl`, `eqℕ-sym`, `eqℕ-sound`, `⊆?-mem`, `allB-firstEvent`), and the named clause-peeling lemmas (`wellFormed-eventsOK`, `wellFormed-backwardOK`, `eventOK-conversation`, `eventOK-touches`). It is the sole downstream proof-consumer module that depends on the positional nesting of `valid?` and `eventOK`, so reordering a validator clause breaks it and not the realization modules.
 - `/formal/RuntimeContract/Realization/BackwardRank.agda`: safe trace-level proof that a causal-parent edge strictly decreases first-occurrence event rank under `backwardOK`. This is the hard acyclicity lemma used by the generic realization rung; it now retains only rank-specific machinery and consumes `TraceLookup` for lookup and membership.
 - `/formal/RuntimeContract/Realization/CausalFromParents.agda`: first generic runtime-to-substrate rung. It derives a `CausalOrder` from backward parent edges and packages any well-formed run as one global `LocalFrame` over realized actor/event carriers. This module alone still constructs only the global frame, with `ActorIn ≡ Unit`; per-conversation frames are supplied downstream by `ConversationLocality.agda`. Session assignment and renaming invariance remain later work.
 - `/formal/RuntimeContract/Realization/ConversationLocality.agda`: second generic runtime-to-substrate rung, and the per-conversation locality package. `RConversation` indexes the conversations actually present in a run; `conversationFrame` realizes each as its own `LocalFrame`, with events refined to that conversation, actors taken from its own actor list, and incidence inherited from the global frame; `conversationEmbed` constructs the `FrameHom` into the global frame. The local causal order is the global derived order restricted along the first projection, recorded as the definitional equation `local-order-is-global-restriction`; preservation and reflection are therefore both the identity. The one substantive proof is `touches-in-frame`, which discharges through `eventOK`'s touches-⊆-conversation-actors clause. This rung does not package a `Cover`, does not assign session tags, and does not prove renaming invariance.
@@ -202,7 +202,7 @@ Verified locally:
 
 - `make contract-check` regenerates raw Agda terms and reports no drift.
 - `make contract-fresh` re-exports the runtime artifact and reports no drift.
-- `make formal-test` checks `RuntimeContract/Tests/All.agda`, `RuntimeContract/Realization/TinyTrace.agda`, `RuntimeContract/Realization/TraceLookup.agda`, `RuntimeContract/Realization/BackwardRank.agda`, `RuntimeContract/Realization/CausalFromParents.agda`, and `RuntimeContract/Realization/ConversationLocality.agda` from the `formal/` include root.
+- `make formal-test` checks `RuntimeContract/Tests/All.agda`, `RuntimeContract/Realization/TinyTrace.agda`, `RuntimeContract/TraceLookup.agda`, `RuntimeContract/Realization/BackwardRank.agda`, `RuntimeContract/Realization/CausalFromParents.agda`, `RuntimeContract/Realization/ConversationLocality.agda`, `RuntimeContract/ConversationActorCoverage.agda`, `RuntimeContract/Realization/ConversationCover.agda`, `RuntimeContract/Realization/ConversationOrderComparison.agda`, and `RuntimeContract/Tests/ConversationOrderComparison.agda` from the `formal/` include root.
 - `make runtime-test` runs 7 `hoapa_contract` codec/conformance tests and 12 `hoapa_core` event-log tests against the vendored `priv/` artifact.
 - `make test` runs all of the above and passes.
 
@@ -226,8 +226,9 @@ Evidence:
   recording calls and remains stable under codec round-trip.
 - Every schema-decodable fixture in `valid/` and `invalid-semantic/` is decoded,
   replayed through a fresh log, and compared by exact struct equality. Wildcard
-  enumeration means the forthcoming cross-conversation fixture will exercise
-  the log without a runtime test change.
+  enumeration meant the cross-conversation and uncovered-actor fixtures, added
+  later, exercised the log with no runtime code or test change — 7 contract and
+  12 core tests green.
 - A deliberately invalid fidelity run distinguishes event sorting from
   conversation grouping and checks repeated actors, repeated conversations,
   an independently registered actor in no conversation, cross-conversation
@@ -260,7 +261,7 @@ Use these as the implementation-track smoke tests:
 - `make contract-check`: regenerate and fail on generated-term drift or orphans via `git status --porcelain -- formal/RuntimeContract/Generated`.
 - `make contract-export`: copy the formal serialization corpus into `runtime/apps/hoapa_contract/priv/runtime_contract/` and write the per-file hash manifest.
 - `make contract-fresh`: re-export and fail if the vendored runtime artifact is stale.
-- `make formal-test`: run Agda from the `formal/` include root over `RuntimeContract/Tests/All.agda`, `RuntimeContract/Realization/TinyTrace.agda`, `RuntimeContract/Realization/TraceLookup.agda`, `RuntimeContract/Realization/BackwardRank.agda`, `RuntimeContract/Realization/CausalFromParents.agda`, and `RuntimeContract/Realization/ConversationLocality.agda`.
+- `make formal-test`: run Agda from the `formal/` include root over `RuntimeContract/Tests/All.agda`, `RuntimeContract/Realization/TinyTrace.agda`, `RuntimeContract/TraceLookup.agda`, `RuntimeContract/Realization/BackwardRank.agda`, `RuntimeContract/Realization/CausalFromParents.agda`, `RuntimeContract/Realization/ConversationLocality.agda`, `RuntimeContract/ConversationActorCoverage.agda`, `RuntimeContract/Realization/ConversationCover.agda`, `RuntimeContract/Realization/ConversationOrderComparison.agda`, and `RuntimeContract/Tests/ConversationOrderComparison.agda`.
 - `make runtime-test`: run `mix test` inside `/runtime`; tests read only the vendored `priv/` artifact.
 - `make test`: run all of the above.
 
@@ -282,7 +283,7 @@ Status legend:
 | Actor token | `Sites/ActorBase.agda` | `Actor : Type ℓ`; `Actor-set : isSet Actor` | G | Opaque and unityped by design. No decidable equality or fresh-name allocation in the kernel. |
 | Event | `Sites/ActorBase.agda` | `Event : Type ℓE`; `Event-set : isSet Event` | G | Untyped occurrence. Unique event ids are a trace-level relation, not substrate. |
 | Causal order | `Sites/ActorBase.agda` | `_≤_`, `≤-refl`, `≤-trans`, `≤-antisym`, `≤-isProp`; derived `Concurrent`, `≤-bidir-equal` | G | Lamport-style non-strict partial order. Conflict, choice, and event-structure refinements are deferred. |
-| Conversation / local view (v0) | `Sites/ActorCausal.agda`; `RuntimeContract/Realization/ConversationLocality.agda` | `LocalFrame` with `causal`, `ActorIn`, `touches`, `touches-in-frame`; `RConversation`, `conversationFrame`, `conversationEmbed` | G | `RawConversation` supplies the raw record, `RConversation` indexes present conversations, `conversationFrame` realizes them, and `conversationEmbed` proves valid local-view embedding. Their family is not yet packaged as a `Cover`; the planned conditional construction assumes the separate `actorsCovered?` property recorded in `status_formal.md`. |
+| Conversation / local view (v0) | `Sites/ActorCausal.agda`; `RuntimeContract/Realization/ConversationLocality.agda` | `LocalFrame` with `causal`, `ActorIn`, `touches`, `touches-in-frame`; `RConversation`, `conversationFrame`, `conversationEmbed` | G | `RawConversation` supplies the raw record, `RConversation` indexes present conversations, `conversationFrame` realizes them, and `conversationEmbed` proves valid local-view embedding. Their family is packaged as a `Cover` only conditionally: `conversation-event-covered` is unconditional, while `conversation-cover` assumes `ConversationActorCoverage`, decided by `actorsCoveredByConversations?`. |
 | Promotable conversation | none | none | O | A first-class conversation object that can be promoted into an actor-like node remains a gap. Promotion is deliberately not a `FrameHom`; it is a future morphism class, and the v0 local-view realization above does not supply it. |
 | Event incidence | `Sites/ActorCausal.agda` | `touches`, `touches-isProp`, `touches-in-frame` | G | `touches-in-frame` only says touched actors are in the frame. It does not say every actor is touched. |
 | Event support | `Sites/EventSupported.agda` | `EventSupport`, `IsEventSupported`, `ChosenEventSupport` | G | This is the point-generated route's support condition: actor membership is generated by event incidence. |
@@ -330,8 +331,8 @@ The next work splits by the number+letter lane convention: 1C pure conjecture, 2
 **2S - runtime-to-substrate.**
 
 1. Banked: per-conversation local frames realized from raw conversations, `FrameHom`s into the global frame built by `CausalFromParents.agda`, and the preservation/reflection obligations discharged. The local causal order is the global derived order restricted to the conversation's events rather than a separately invented intra-conversation order, which is what makes strict reflection available; it is recorded as `local-order-is-global-restriction`.
-2. Planned formal pass A: prove unconditional event coverage of the global frame; add raw `actorsCovered?`, its realized counterpart, and their soundness relation; construct a `Cover` under that explicit hypothesis; and expose the parent-edge-implies-causal lemma needed downstream. These modules are forthcoming, not landed.
-3. Then add the authoritative valid `c0 → c1 → c0` fixture and `ConversationOrderComparison.agda` for causal saturation and the rigidity characterization. The fixture supplies evidence still missing from the locality rung: two events in one conversation related through a causal path in another conversation.
+2. Banked formal pass A: `conversation-event-covered` proves unconditional event coverage of the global frame; `actorsCoveredByConversations?` and its realized counterpart `ConversationActorCoverage` are related in BOTH directions (`coverage-sound`, `coverage-complete`), so the Boolean decides the hypothesis rather than merely certifying it; `conversation-cover` builds the `Cover` under that explicit hypothesis; and `parent-edge-implies-causal` is public without exposing the private chain type.
+3. Banked formal pass B: the authoritative valid `c0 → c1 → c0` fixture and `ConversationOrderComparison.agda` for causal saturation and the rigidity characterization. The fixture supplied the evidence the locality rung was missing — two events in one conversation related through a causal path in another — and `c0-restricted-sees-external-path` names a term of the selected order on exactly that pair.
 4. Actor-renaming invariance remains the next no-leak rung after this package: raw `valid?` invariance, then realized-frame equivalence, and only later SIP/univalence.
 5. Session-tag assignment is unlocked but deferred. `LocalFrame` contains no session content by design, so this is a new relation or decorating layer over the realized frames, not a new field on them, and it should carry its own transport/invariance lemma rather than being folded into the core renaming theorem.
 
@@ -348,9 +349,11 @@ The next work splits by the number+letter lane convention: 1C pure conjecture, 2
 The locality package and 3R event-log pass 1 are banked. The next dependency
 sequence is now explicit rather than a bandwidth choice:
 
-- **2S first:** land the event/actor-coverage package and public parent-edge
-  lemma, then the authoritative cross-conversation fixture and order-comparison
-  theorem. Do not describe those forthcoming modules as present evidence.
+- **2S coverage and order comparison are landed** at `4a072fd`, with `make test`
+  green. State them with their quantifiers: the `Cover` is conditional on actor
+  coverage, and saturation varies per conversation — what is forced is the
+  uniform canonical embedding from `WellFormed` alone, not every individual
+  conversation.
 - **3R pass 2:** export that fixture into the vendored runtime corpus and let the
   existing wildcard replay test reproduce it unchanged. This should require no
   `EventLog` rewrite.

@@ -14,7 +14,7 @@ All three styles are honest about status. Punchlist items extend shipped materia
 
 For the seed-level commitments these entries extend, see `motivation.md`. For the propositional decomposition (T1–T_recursion) they realize, see `arc.md` and `targets.md`. The implementation track — a real protocol kernel, a real verification runtime, LLM-tooling integration — is a separate concern tracked canonically in `workflow/status_implementation.md`; this file keeps only cross-references and future-work implications.
 
-Status snapshot, 2026-09-05: the point-generated R4 theorem is banked; runtime contract loop 1, 2S per-conversation locality, and 3R event-log pass 1 are closed and green. The next dependency is the 2S coverage/causal-saturation package and authoritative cross-conversation fixture, followed by fixture-only 3R pass 2 and then actor-renaming/no-leak. Active next steps live in `workflow/status_formal.md` and `workflow/status_implementation.md`.
+Status snapshot, 2026-09-05: the point-generated R4 theorem is banked; runtime contract loop 1, 2S per-conversation locality, 2S coverage and order comparison, and 3R event-log pass 1 are closed and green at `4a072fd`. Both authoritative fixtures are in the corpus and replay green through the recorder. The next bandwidth choice is open between the 3R synthetic generator and 2S actor-renaming/no-leak. Active next steps live in `workflow/status_formal.md` and `workflow/status_implementation.md`.
 
 ## Regarding fracture
 
@@ -920,7 +920,7 @@ Failure of an adjunction would not invalidate the analytic/synthetic reading. Th
 ### Status and sequence
 
 - **Banked ingredients:** actor-causal frames and strict-reflecting `FrameHom`; category-generic finite descent; the supported point-generated reflector; the point-generated LNL bridge; global and per-conversation realization from well-formed runs; and exact recorder-fidelity replay in 3R.
-- **Nearest targets already on the roadmap:** the 2S coverage/causal-saturation package and authoritative cross-conversation fixture; raw actor-renaming invariance; then realized-frame equivariance/isomorphism.
+- **Nearest targets already on the roadmap:** raw actor-renaming invariance, then realized-frame equivariance/isomorphism. (The 2S coverage/causal-saturation package and its cross-conversation fixture landed at `4a072fd`.)
 - **Later compatibility targets:** purpose-relative trace adequacy, provenance preservation, reindexing/refinement laws, and local-to-global trace formation.
 - **Research-scale candidates:** a universal process-to-artifact property, replay/resumption semantics, and any `Doc`/`Aff` adjunction.
 

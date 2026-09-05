@@ -12,7 +12,6 @@ communities **K** (`arc.md` §3); symbols are deferred to keep them distinct fro
 | Name    | Symbol | Direction | Intuition | Anchor |
 | ------- | ------ | --------- | --------- | ------ |
 | Allow   | —      | M → K | Modal perspectives unfold into actor-causal communities; perspectives allow typed documentation plus unityped actors | left adjoint (T6) |
-| Mediate | —      | — | middle slot; content TBD (T1: triple vs. pair; identity if pair) | central, may collapse |
 | Require | —      | K → M | Actor-causal communities reflect to modal perspectives; operational separation requires perspectivalism | right adjoint (T6) |
 
 ## Runtime recording and storage
