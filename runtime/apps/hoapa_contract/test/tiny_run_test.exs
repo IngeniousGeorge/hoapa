@@ -14,7 +14,7 @@ defmodule Hoapa.Contract.TinyRunTest do
   """
   use ExUnit.Case, async: true
 
-  alias Hoapa.Contract.{Codec, Run, Trace, Conversation, Event, TestCorpus}
+  alias Hoapa.Contract.{Codec, Run, Trace, Conversation, Event, Corpus}
 
   # Dumb by design: a single literal. No normalization, sorting, validation, or
   # invariant logic — that would either fake behavior or duplicate Agda's valid?.
@@ -52,7 +52,7 @@ defmodule Hoapa.Contract.TinyRunTest do
   end
 
   test "reconstructs the vendored Agda-accepted tiny run from structs" do
-    assert {:ok, fixture_run} = Codec.decode(File.read!(TestCorpus.fixture_path("valid", "tiny_trace.json")))
+    assert {:ok, fixture_run} = Codec.decode(File.read!(Corpus.fixture_path("valid", "tiny_trace.json")))
     assert build_tiny_run() == fixture_run
   end
 

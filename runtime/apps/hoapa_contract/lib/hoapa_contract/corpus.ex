@@ -1,12 +1,19 @@
-defmodule Hoapa.Contract.TestCorpus do
+defmodule Hoapa.Contract.Corpus do
   @moduledoc """
   Locates the vendored contract corpus under `priv/runtime_contract` — the single
-  source of truth for its on-disk layout, shared by the contract tests.
+  source of truth for its on-disk layout.
 
-  Path helpers only: tests do their own reading and assertions. Deliberately no
-  semantic helpers (e.g. no `valid_fixture/0`) — well-formedness is the formal
-  checker's authority, not this module's. Resolves only the vendored `priv/`
-  artifact, never `../../formal`.
+  Path helpers only. Callers do their own reading and assertions. Deliberately no
+  semantic helpers (e.g. no `valid_fixture/0`): well-formedness is the formal
+  checker's authority, and a `valid/` category name here is a directory name, not
+  a verdict this module issues. Resolves only the vendored `priv/` artifact,
+  never `../../formal`.
+
+  This lives in `lib/` rather than `test/support` because Mix does not share a
+  test build across umbrella apps: `hoapa_core`'s tests need the same layout, and
+  one owner for it is worth the small public surface. The alternative — a private
+  copy of these paths in each app's test tree — puts the layout in two places
+  just as the corpus is growing.
   """
 
   @spec dir() :: String.t()

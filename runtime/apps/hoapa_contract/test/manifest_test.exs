@@ -8,17 +8,17 @@ defmodule Hoapa.Contract.ManifestTest do
   """
   use ExUnit.Case, async: true
 
-  alias Hoapa.Contract.TestCorpus
+  alias Hoapa.Contract.Corpus
 
   test "priv artifacts match manifest hashes exactly" do
-    {:ok, manifest} = JSON.decode(File.read!(TestCorpus.manifest_path()))
+    {:ok, manifest} = JSON.decode(File.read!(Corpus.manifest_path()))
 
     expected = manifest["files"]
     assert is_map(expected) and map_size(expected) > 0
 
     actual =
-      Map.new(TestCorpus.artifact_paths(), fn f ->
-        rel = Path.relative_to(f, TestCorpus.dir())
+      Map.new(Corpus.artifact_paths(), fn f ->
+        rel = Path.relative_to(f, Corpus.dir())
         hash = :crypto.hash(:sha256, File.read!(f)) |> Base.encode16(case: :lower)
         {rel, hash}
       end)
@@ -27,7 +27,7 @@ defmodule Hoapa.Contract.ManifestTest do
   end
 
   test "contract version is recorded" do
-    {:ok, manifest} = JSON.decode(File.read!(TestCorpus.manifest_path()))
+    {:ok, manifest} = JSON.decode(File.read!(Corpus.manifest_path()))
     assert manifest["contractVersion"] == "hoapa.trace/0"
   end
 end
