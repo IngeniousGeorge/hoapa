@@ -5,7 +5,9 @@
     "fixtures/invalid-semantic/dup_event.json": "3693c380c1b512db5c3aa5c80d1cce6f0a2f176072906d15f9d2981f924a64f4",
     "fixtures/invalid-semantic/forward_parent.json": "63512572308012fb173ae03d258f029d8d99057933e27c16600e2ff07699410a",
     "fixtures/invalid-semantic/wrong_trace_format.json": "f0b62517654556e8779070e0aade73f1fac5f56c65379893caedc6c5b68cdb9d",
+    "fixtures/valid/cross_conversation.json": "105ee5a8e0987f031066111a7bd4c8175f1213900e123fc4192ad4d13c0bf615",
     "fixtures/valid/tiny_trace.json": "c206efd50c6b43a0647c9421af8dfff7786c0c5c5d75341d6b2f54002c3d699d",
+    "fixtures/valid/uncovered_actor.json": "1282a1053249ab806acc1840015ce5cc0aadbcc339fecb8140ebf808a953fbb2",
     "schema.json": "430d8db208c418dd419d2810875cd1691c0c13e8bc63f1cfeeb80eea7a29f8a8"
   }
 }
