@@ -49,6 +49,8 @@ formal-test:
 	@cd formal && agda RuntimeContract/Realization/ConversationLocality.agda
 	@cd formal && agda RuntimeContract/ConversationActorCoverage.agda
 	@cd formal && agda RuntimeContract/Realization/ConversationCover.agda
+	@cd formal && agda RuntimeContract/Realization/ConversationOrderComparison.agda
+	@cd formal && agda RuntimeContract/Tests/ConversationOrderComparison.agda
 	@echo "formal-test OK"
 
 # Runtime codec + conformance tests (self-contained; reads only priv/).

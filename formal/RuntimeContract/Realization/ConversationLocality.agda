@@ -43,6 +43,14 @@
 -- unordered locally, and no `FrameHom` would exist. Under restriction,
 -- preservation and reflection are both the identity.
 --
+-- That paragraph is no longer only prose.
+-- `Realization/ConversationOrderComparison.agda` builds the rival
+-- parent-generated order and proves the canonical embedding exists exactly
+-- when the conversation is causally saturated;
+-- `Tests/ConversationOrderComparison.agda` exhibits a conversation of a
+-- corpus fixture that is not, and therefore admits no such embedding. The
+-- restriction below was forced, not preferred.
+--
 -- WHAT `WellFormed` DOES NOT YIELD: A COVER.
 --
 -- `WellFormed` does not imply that the conversation family is a `Cover` of
