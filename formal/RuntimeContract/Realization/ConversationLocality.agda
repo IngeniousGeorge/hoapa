@@ -48,8 +48,14 @@
 -- parent-generated order and proves the canonical embedding exists exactly
 -- when the conversation is causally saturated;
 -- `Tests/ConversationOrderComparison.agda` exhibits a conversation of a
--- corpus fixture that is not, and therefore admits no such embedding. The
--- restriction below was forced, not preferred.
+-- corpus fixture that is not, and therefore admits no such embedding.
+--
+-- STATED WITH ITS QUANTIFIER. This does NOT say the internal order fails for
+-- every conversation — the same fixture has one where it works. What is
+-- forced is the UNIFORM construction: to build the canonical strict
+-- embedding for every conversation of every well-formed run, from
+-- `WellFormed` alone and with no saturation hypothesis, the internally
+-- generated order cannot be used. That is the situation this module is in.
 --
 -- WHAT `WellFormed` DOES NOT YIELD: A COVER.
 --
@@ -294,14 +300,13 @@ module _ (r : RawRun) (w : WellFormed r) where
 -- conversation (id 0, actors 0 and 1, both events in it). It therefore
 -- exercises the construction — refined carrier, restricted order, the
 -- `touches-in-frame` chain, and the embedding — but NOT the cross-conversation
--- causal path that motivates the restricted order. A fixture shaped
--- c0 → c1 → c0 would exercise that, and belongs with the corpus work rather
--- than here, since adding it expands the serialization corpus and the
--- runtime vendoring surface.
+-- causal path that motivates the restricted order. That case is covered
+-- elsewhere: `fixtures/valid/cross_conversation.json` is shaped c0 → c1 → c0,
+-- and `RuntimeContract.Tests.ConversationOrderComparison` exercises it.
 --
 -- It also happens to satisfy actor coverage (both actors are in the single
--- conversation), which is exactly why that gap needs the header note above
--- rather than a fixture to reveal it.
+-- conversation), so it cannot reveal that gap either;
+-- `fixtures/valid/uncovered_actor.json` is the run that does.
 ------------------------------------------------------------------------
 
 open import RuntimeContract.Generated.Raw.Valid.TinyTrace using (term)

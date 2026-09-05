@@ -26,9 +26,11 @@
 -- shown that, which is why the fixture has two.
 --
 -- The corollary is the point of the whole comparison: `ConversationLocality`
--- gives conversation frames the restricted global order, and for c0 no other
--- choice was available — the parent-generated order admits no canonical
--- embedding into the global frame.
+-- gives conversation frames the restricted global order, and for c0 the
+-- parent-generated alternative is unavailable under the canonical strict
+-- embedding. Note the quantifier — c1 shows the alternative CAN work; what it
+-- cannot do is work uniformly, for every conversation, from `WellFormed`
+-- alone.
 --
 -- STATED EXACTLY. `c0-no-canonical-embedding` rules out embeddings whose
 -- event map is pointwise `fst`. It says nothing about embeddings with some
@@ -60,7 +62,7 @@ open import RuntimeContract.Realization.CausalFromParents
          realizeActorBase; realizeFrame)
 open import RuntimeContract.Realization.ConversationLocality
   using (RConversation; ConversationEvent; ConversationEvent-set;
-         InConversation-isProp)
+         InConversation-isProp; conversationCausal)
 open import RuntimeContract.Realization.ConversationOrderComparison
 open import RuntimeContract.Generated.Raw.Valid.CrossConversation
   using () renaming (term to run)
@@ -142,7 +144,7 @@ private
   edge-e1-e3 : ParentEdge run wf ev1 ev3
   edge-e1-e3 = refl
 
-  -- The endpoints are passed explicitly. `ParentEdge a b` unfolds to a
+  -- The concrete witnesses pass `ParentEdge` endpoints explicitly. `ParentEdge a b` unfolds to a
   -- Boolean equation in which `a` and `b` appear only under `∈?` and
   -- `firstEvent`, so unification cannot recover them from the argument's
   -- type. Making it a record or data type would let inference work; that is
@@ -154,6 +156,19 @@ private
 
   ev1≤ev3 : ev1 ≤G ev3
   ev1≤ev3 = parent-edge-implies-causal run wf {ev1} {ev3} edge-e1-e3
+
+ce0 ce2 : ConversationEvent run wf c0
+ce0 = ev0 , refl
+ce2 = ev2 , refl
+
+-- The selected order on c0, exercised on the case it exists for: the two c0
+-- events ARE related in the conversation frame `ConversationLocality` builds,
+-- and the only witness is the path through e1 in c1. This is the same term as
+-- `ev0≤ev2` — which is the content of `local-order-is-global-restriction`,
+-- now applied rather than merely stated.
+c0-restricted-sees-external-path :
+  CausalOrder._≤_ (conversationCausal run wf c0) ce0 ce2
+c0-restricted-sees-external-path = ev0≤ev2
 
 ------------------------------------------------------------------------
 -- c1 IS saturated, non-trivially.
@@ -240,9 +255,6 @@ private
       _∙_
       (λ {x} {y} e → rec (no-internal-edge-c0 x y e))
 
-  ce0 ce2 : ConversationEvent run wf c0
-  ce0 = ev0 , refl
-  ce2 = ev2 , refl
 
 c0-not-saturated : ¬ ConversationCausallySaturated run wf c0
 c0-not-saturated sat =
