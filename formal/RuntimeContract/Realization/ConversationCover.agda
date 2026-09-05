@@ -25,11 +25,12 @@
 -- membership: narrowing `valid?` to force coverage would have retired
 -- registered-but-inactive actors as legal evidence.
 --
--- So coverage enters as a HYPOTHESIS rather than a clause. This module states
--- the property, and a later step will decide it from raw data and build the
--- conditional `Cover`. Restricting the objects would have been the cheaper
--- move; making the covering family conditional keeps every well-formed run an
--- object and puts the condition where it belongs.
+-- So coverage enters as a HYPOTHESIS rather than a clause. This module names
+-- that hypothesis (`ConversationActorCoverage`), proves the raw Boolean
+-- `actorsCoveredByConversations?` equivalent to it in both directions, and
+-- builds the `Cover` conditional on it. Restricting the objects would have
+-- been the cheaper move; making the covering family conditional keeps every
+-- well-formed run an object and puts the condition where it belongs.
 --
 -- Not `--safe`: the actor-causal substrate carries the infective
 -- `--guardedness` flag. This module is nonetheless postulate- and hole-free.
@@ -139,11 +140,18 @@ module _ (r : RawRun) (w : WellFormed r) where
     joinsSome x = anyB (λ c → x ∈? lookupConvActors c convs) cids
 
   --------------------------------------------------------------------
-  -- The raw Boolean DECIDES the realized property: both directions, so
-  -- `actorsCoveredByConversations? r ≡ false` is evidence that no `Cover`
-  -- exists, not merely a failure to produce one. Soundness alone would
-  -- make the Boolean a sufficient certificate and would leave the negative
-  -- fixture proving nothing beyond its own computation.
+  -- The raw Boolean DECIDES the realized property: both directions, so a
+  -- `false` verdict rules the hypothesis OUT rather than merely failing to
+  -- supply it. Soundness alone would make the Boolean a sufficient
+  -- certificate and would leave the negative fixture proving nothing beyond
+  -- its own computation.
+  --
+  -- STATED EXACTLY. A `false` verdict says `ConversationActorCoverage` is
+  -- uninhabited, hence that `conversation-cover` is unavailable for that
+  -- run. It does NOT say the global frame has no cover — every frame has its
+  -- identity cover — and it does not characterize every `Cover` record whose
+  -- index, patches and embeddings happen to agree with the canonical family.
+  -- The claim is about this hypothesis and this construction.
   --
   -- Neither direction needs conversation-ID distinctness: the Boolean
   -- quantifies over the same conversation IDs the realized statement does,
