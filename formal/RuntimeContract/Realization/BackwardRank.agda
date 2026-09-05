@@ -47,7 +47,7 @@ open import Cubical.Data.Sigma using (_,_; fst; snd)
 open import Cubical.Data.Empty using (rec)
 
 open import RuntimeContract.Trace
-open import RuntimeContract.Realization.TraceLookup
+open import RuntimeContract.TraceLookup
   using (firstEvent; andB-split; eqℕ-sym; eqℕ-sound; ⊆?-mem)
 
 open RawEvent

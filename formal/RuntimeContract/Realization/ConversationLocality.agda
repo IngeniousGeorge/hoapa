@@ -88,7 +88,7 @@ open import Concurrency.Sites.ActorBase using (ActorBase; CausalOrder)
 open import Concurrency.Sites.ActorCausal using (LocalFrame; FrameHom)
 
 open import RuntimeContract.Trace
-open import RuntimeContract.Realization.TraceLookup
+open import RuntimeContract.TraceLookup
   using (firstEvent; eqℕ-sound; ⊆?-mem; allB-firstEvent;
          wellFormed-eventsOK; eventOK-touches)
 open import RuntimeContract.Realization.CausalFromParents

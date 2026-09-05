@@ -25,15 +25,10 @@
 -- shorter to write and would then have needed conversation-ID distinctness
 -- to relate a found record back to what `lookupConvActors` returns.
 --
--- LAYERING NOTE. This module imports `Realization.TraceLookup` for the two
--- raw `eqℕ` facts it needs. That module is substrate-free and `--safe`
--- despite its directory: its stated job is raw-trace lookup and validator
--- peeling, not realization. The alternatives were duplicating the lemmas or
--- widening the trusted kernel, both worse. If `Realization/` ever gains a
--- substrate-bearing dependency, these facts should move down rather than be
--- copied.
---
 -- Substrate-free: nothing here mentions `Actor`, `Event`, or site structure.
+-- Its one non-kernel dependency, `RuntimeContract.TraceLookup`, is likewise
+-- substrate-free — it was moved out of `Realization/` precisely so that this
+-- import does not read as a layering inversion.
 
 module RuntimeContract.ConversationActorCoverage where
 
@@ -45,7 +40,7 @@ open import Cubical.Data.Sigma using (Σ-syntax; _×_; _,_; fst; snd)
 open import Cubical.Data.Empty using (rec)
 
 open import RuntimeContract.Trace
-open import RuntimeContract.Realization.TraceLookup using (eqℕ-refl; eqℕ-sound; andB-split)
+open import RuntimeContract.TraceLookup using (eqℕ-refl; eqℕ-sound; andB-split)
 
 open RawTrace
 open RawRun

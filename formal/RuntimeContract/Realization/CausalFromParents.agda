@@ -65,7 +65,7 @@ open import Concurrency.Sites.ActorCausal using (LocalFrame)
 open import RuntimeContract.Trace
 open import RuntimeContract.Realization.BackwardRank
   using (idx; edge-decreases-idx)
-open import RuntimeContract.Realization.TraceLookup
+open import RuntimeContract.TraceLookup
   using (firstEvent; wellFormed-backwardOK)
 
 open RawEvent

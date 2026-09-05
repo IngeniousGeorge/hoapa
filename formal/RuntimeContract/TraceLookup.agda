@@ -16,8 +16,12 @@
 -- Both are facts about raw trace DATA, not about causal rank or about the
 -- actor-causal substrate, which is why they live here rather than in
 -- `BackwardRank` (rank scaffolding) or in a substrate-bearing realization
--- assembly module. Consumers:
--- `BackwardRank`, `CausalFromParents`, `ConversationLocality`.
+-- assembly module. Consumers: `BackwardRank`, `CausalFromParents`,
+-- `ConversationLocality`, `ConversationCover`, and — the reason this module
+-- sits beside `Trace.agda` rather than under `Realization/` — the
+-- substrate-free `ConversationActorCoverage`. Nothing here is about
+-- realization, and the old directory made every such import read as a
+-- layering inversion.
 --
 -- Why peeling deserves a name. `valid?` is a right-nested `andB` chain, so
 -- reaching its seventh conjunct means writing a tower of projections whose
@@ -30,7 +34,7 @@
 -- `--safe`: postulate- and hole-free, importing only the equally-safe raw
 -- kernel. Nothing here mentions `Actor`, `Event`, or any site structure.
 
-module RuntimeContract.Realization.TraceLookup where
+module RuntimeContract.TraceLookup where
 
 open import Cubical.Foundations.Prelude
 open import Cubical.Data.Nat using (ℕ; zero; suc)

@@ -50,7 +50,7 @@ open import RuntimeContract.Trace
 open import RuntimeContract.ConversationActorCoverage
   using (actorsCoveredByConversations?; anyB; anyB-found; anyB-intro;
          allB-mem; allB-fromMembers)
-open import RuntimeContract.Realization.TraceLookup
+open import RuntimeContract.TraceLookup
   using (firstEvent; eqℕ-refl; allB-firstEvent;
          wellFormed-eventsOK; eventOK-conversation)
 open import RuntimeContract.Realization.CausalFromParents

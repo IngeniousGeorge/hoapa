@@ -43,7 +43,7 @@ contract-fresh: contract-export
 formal-test:
 	@cd formal && agda RuntimeContract/Tests/All.agda
 	@cd formal && agda RuntimeContract/Realization/TinyTrace.agda
-	@cd formal && agda RuntimeContract/Realization/TraceLookup.agda
+	@cd formal && agda RuntimeContract/TraceLookup.agda
 	@cd formal && agda RuntimeContract/Realization/BackwardRank.agda
 	@cd formal && agda RuntimeContract/Realization/CausalFromParents.agda
 	@cd formal && agda RuntimeContract/Realization/ConversationLocality.agda
