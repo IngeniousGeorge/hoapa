@@ -27,8 +27,12 @@
 --   sessionTag  ↦ a real `SessionType`, via a tag environment;
 --   content / provenance ↦ opaque until their theories exist.
 -- The key philosophical theorem there is renaming invariance: bijectively
--- renaming raw IDs yields an EQUAL realized object (the boundary instance of
--- univalence / unityping). Each `valid?` clause below is designed as the
+-- renaming ACTOR IDs yields an EQUAL realized object (the boundary instance
+-- of univalence / unityping). Other identifier namespaces — event,
+-- conversation, protocol, content, provenance, run — have their own separate
+-- stability questions and are NOT covered by that theorem. The raw half of
+-- it is landed in `RuntimeContract/ActorRenaming.agda`; the realized half
+-- remains future work. Each `valid?` clause below is designed as the
 -- decidable shadow of a substrate axiom so that proof stays near-mechanical.
 
 module RuntimeContract.Trace where
