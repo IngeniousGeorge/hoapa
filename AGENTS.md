@@ -46,8 +46,25 @@ worktree separates the working directory. Two agents on two branches in one chec
 still share one set of files, one index, and one HEAD, and any of them can switch the
 branch out from under the others mid-task.
 
-- Start parallel work with `git worktree add ../hoapa-<lane> -b <branch>`; lane names
-(`1C`, `2S`, `3R`) make good branch and directory names.
+**The worktrees are standing fixtures, not per-session scratch.** One per lane plus
+one for the workflow surface, all permanent, so any agent — and any moment inside a
+session — knows where its work belongs without negotiating for it:
+
+```text
+../hoapa            main
+../hoapa-1C         1C     pure conjecture
+../hoapa-2S         2S     runtime-to-substrate
+../hoapa-3R         3R     runtime
+../hoapa-workflow   workflow   workflow files and abstracts (Codex's surface)
+```
+
+- **Do not remove them when a lane goes quiet.** A lane with no work in flight keeps
+its worktree. Removing it is a decision to retire the lane, not tidying.
+- **Level on entry.** Your first act in a lane worktree is `git merge --ff-only main`.
+The demonstrated failure mode here is staleness, not collision: a lane worktree was
+once found fifteen commits behind because it existed and nobody levelled it. If the
+fast-forward is refused, the lane has diverged — read `git log main..<lane>` and
+resolve it before starting work, never after.
 - Never `git checkout` a different branch in a checkout another agent is using.
 - Re-read `git status` and `git log` immediately before staging or committing. Never
 rely on a snapshot from earlier in the session.
@@ -57,7 +74,11 @@ swept into your commit.
 and `workflow/current_track.md` are the usual ones — read the result. A clean merge
 is not evidence the file is consistent: a scattered rename will silently auto-merge
 against prose written in the older vocabulary.
-- `git worktree remove ../hoapa-<lane>` when the lane is done.
+- Merge back with `git merge --ff-only <lane>` from `../hoapa`, levelling the lane
+first if main has moved. Leave the worktree in place afterwards.
+- A new standing worktree is added with `git worktree add ../hoapa-<name> -b <name>`,
+and this list is updated in the same change. `git worktree remove` is reserved for
+retiring a lane outright.
 
 ## Working with ig
 
