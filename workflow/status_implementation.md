@@ -360,134 +360,109 @@ Tier A is banked and no next lane has been selected. The live choices are:
 
 The checker remains gated on behavioral origination. Session assignment, persistence/Pijul, and Phoenix remain separate later layers.
 
-## Prior next-step assessments
+## Codex
 
-The assessments below are retained as dated reasoning. Where a premise was later retired, the current sections above are authoritative and a correction is attached in place.
+My recommendation is 2S, but as a bounded Tier B1 session: construct semantic change of actor base and use it to prove global realized-frame invariance. Do not attempt all of Tier B,
+  per-conversation transport, SIP, or descent in one pass.
 
-### Codex 2S (thinking I'm asking only about 3R, but both 2S and 3R are open for the next step)
+  One correction emerged from checking the code. The workflow currently compresses two different bases:
 
-The next implementation step should be a narrow deterministic synthetic originator in hoapa_core—not the checker, persistence, or a full actor kernel yet.
+  - Raw name presentations: decidable coordinate systems used by RawRun. ActorEmbedding currently lives here in formal/RuntimeContract/ActorRenaming.agda:100.
+  - Semantic actor bases: opaque set-level carriers in formal/Concurrency/Sites/ActorBase.agda:65, deliberately without decidable equality.
 
-  3R pass 2 is already complete in substance: the cross-conversation fixture is exported, replayed automatically through EventLog, and the full suite is green. Any workflow text saying it
-  still “waits for the fixture” is stale bookkeeping.
+  The concurrency substrate must not import RuntimeContract to reuse its arrow record. I recommend defining substrate-native ActorBaseEmbedding/ActorBaseIsomorphism, then relating the raw
+  and semantic arrows inside the 2S realization layer. The generic varying-name RawRun category can wait; Tier B does not yet force it.
 
-  The originator should:
+  A good session target would be:
 
-  - Accept a seed or higher-level scenario, not caller-built %Event{} structs.
-  - Derive IDs, append order, conversation assignment, and causal-parent references.
-  - Record exclusively through Hoapa.Core.EventLog.
-  - Export an ordinary %Run{} without validating or normalizing it.
-  - Produce deterministic output for tests.
-  - Exercise cross-conversation causality and independent actor registration.
-  - Remain explicitly synthetic candidate evidence—not evidence of actor behavior.
+  > Construct the category-shaped change-of-base interface for semantic ActorBases, add FrameHomOver over an actor-base map while leaving FrameHom unchanged, and prove that a raw actor
+  > permutation induces an equivalence between the two global frames realized from a run and its relabeling.
 
-  I would initially keep it as one focused module in hoapa_core. A separate application has not yet been earned; neither has a generalized generator framework. The first concrete scenario
-  should force the abstraction.
+  That gives every abstraction an immediate consumer and makes the gauge reading mathematical: actor bases form the base, frames vary over them, and realized relabeling becomes an
+  invertible morphism in the total structure. A transposition on cross_conversation should be the concrete non-identity witness.
 
-  The important acceptance test is that mutating the originator’s transition or dependency logic changes the exported trace and fails the test. If its test merely passes preconstructed
-  events to EventLog, it is still another replay client and does not open the checker gate.
+  Explicitly defer:
 
-  **Subsequent correction:** an authored scenario originator does not open the checker gate because its causal structure still comes from declared transition logic. `hoapa_checker`
-  becomes a natural next pass only after a behavioral originator such as the actor kernel emits candidate traces. Persistence should remain later, once there is behavior and lifecycle
-  worth persisting.
+  - Generic RawRun A.
+  - The decidable-name presentation category.
+  - Per-conversation and cover-level equivariance.
+  - Local gauge/descent coherence.
+  - SIP/univalence and action-groupoid packaging.
 
-  The one decision to settle before writing is the originator boundary:
+  3R’s actor kernel is the strongest alternative and should probably follow soon: it would be the first source of causality earned from behavior. But Tier B1 wins this session because it
+  is the direct consumer that has now forced the categorical infrastructure, and it can bank a precise theorem rather than only a runtime design. 1C remains less attractive by default
+  because both available directions still require a broader exploratory commitment.
 
-  - My recommendation: deterministic synthetic transition generator now.
-  - Alternative: minimal actor kernel, which gives stronger behavioral evidence and requires its own runtime design conversation; it is not blocked on an unshipped 2S semantics.
+## Claude
 
-  So I would choose the generator, while naming its evidential limit clearly.
+Recommendation: 3R, the minimal actor kernel
 
-### Claude 2S
+  Not for lane balance. Because of where the project's risk is concentrated, and because of a red-first failure that nothing currently catches.
 
-Recommendation: 2S actor-renaming invariance, raw level first
+  The argument
 
-  It's the next step for the track, and my previous answer was narrower than the question deserved.
+  causal_parents is the load-bearing field of the entire contract. backwardOK constrains it, BackwardRank.agda derives rank from it, CausalFromParents.agda builds the global causal order
+  out of it, ConversationLocality.agda's restricted order depends on it, and ConversationOrderComparison.agda is a theorem about which pairs it relates. Five banked formal modules stand on
+  that one relation.
 
-  Why it wins on the merits. It is the only item on either lane that discharges a conjecture-relevant claim rather than an engineering property. bias_correction.md rejects "protecting
-  humanness by refusing to formalize it" and says the grounded part is kernel discipline while "the proof-near theorem is still the no-leak ladder, starting with actor-renaming 
-  invariance." That ladder is what connects the runtime contract to the Anthropic/Care anchors. Nothing else currently open does that — the fidelity generator strengthens evidence for a
-  property already believed; the actor kernel is bigger and needs its own design conversation first.
+  And in the system as it exists, every parent edge that has ever existed was typed by a human — in a fixture, in a test literal, or in a decoded fixture pushed back through the recorder.
+  Nothing has ever derived one from an actual dependency.
 
-  It is blocked on nothing. No new fixtures, no new runtime code, no unresolved contract decisions. Actor IDs appear in exactly three places — traceActors, convActors, evTouches — and
-  bias_correction.md already records that event IDs, conversation IDs, protocol IDs and tags are separate namespaces with their own stability questions. So the scope is closed.
+  Here is the sharp form. Ask the project's own question: which check goes red? Suppose the system never derives causality from behavior at all — suppose it is, forever, a very good
+  transcription service for hand-authored edges. Which of the 7 contract tests, 12 core tests, or the formal conformance suite fails? None. Every one of them operates on fixtures a person
+  wrote. The obligation that would expose the gap does not exist, and by AGENTS.md's standard that means the behavior has never been red.
 
-  And it's cheaper than it sounds. Walking valid?'s eight conjuncts: format, sibling-distinctness, conversation/event ID distinctness and backwardOK are untouched by actor renaming; the
-  real content reduces to distinctB and ⊆? being invariant under an injective renaming, then plumbing. On the realized side the pleasant surprise is that events and causal order are
-  untouched — REvent and realizeCausal don't move at all, so only RActor, ActorIn and touches transport. My estimate is ~150 lines raw plus ~100 realized, with SIP/univalence explicitly
-  deferred as its own later rung.
+  That is a different kind of hole from an unproved theorem. An unproved theorem is a known gap with a known cost. This is an unvalidated premise underneath proved theorems, and its cost
+  is unknown because nobody has looked. If real message causality turns out to have a shape evParents and backwardOK's list-position reading do not capture, the revision reaches back
+  through all five modules — and it gets more expensive with every rung added on top of them. Tier B, Tier C and Tier D each raise that price.
 
-  The argument that pushed me to 3R earlier is now spent. I argued against stacking a second formal rung because ConversationLocality was unexercised on its motivating case. Pass B fixed
-  that, and c0-restricted-sees-external-path makes it literal. Coverage and order comparison are each exercised at both verdicts by corpus fixtures. There's no repeat of that situation, so
-  the objection doesn't carry forward.
+  So the question I'd actually ask is not "what is the next rung?" but "what is the cheapest moment to find out whether the foundation holds?" The answer is now, and it has been getting
+  more expensive for several sessions.
 
-  One decision to settle before I write anything: what a renaming is. Bijection on ℕ, injection, or a permutation of the declared actor list. Injectivity is load-bearing — a collapsing map
-  breaks distinctB (traceActors t), so the theorem would be false as stated. Given the generator assigns dense naturals by first appearance, I lean to a permutation of the actor list,
-  which is the notion that matches "the runtime's choice of identifiers is irrelevant." But that's the kind of definitional choice this project says carries the work, so I'd rather have it
-  agreed than assumed.
+  What "minimal" has to mean
 
-  On the dependency discipline
+  The failure mode is a session that produces a design document and no evidence. So the kernel should be scoped to the smallest thing that closes the gap, and the gap is one sentence wide:
+  a parent edge derived from an actual dependency.
 
-  3R echoes 2S, so there's a fair worry about 3R falling three rungs behind. It doesn't apply here: unlike locality, which handed the event log its target shape, renaming demands nothing
-  of the runtime. It has no runtime counterpart to echo.
+  Concretely — a few actors, message send and receive, each handler emitting one event whose parents are the events that produced the messages it consumed. Deterministic, in-memory, no
+  supervision tree, no persistence, no Phoenix, no checker app. The bankable minimum is one run in which at least one parent edge exists because a message caused a handler to run, recorded
+  through the existing Hoapa.Core.EventLog, exported, and accepted by the corpus boundary.
 
-  It does have one runtime consequence worth banking: once raw valid? is renaming-invariant, the runtime's injective choice of actor encoding is provably irrelevant to acceptance. This
-  does not license exposing or recoverably deriving public actor tokens from operational identity: Tier A says nothing about observers other than `valid?`, and that broader question
-  remains Tier D.
+  And the red-first obligation is nameable in advance, which is the test of whether the session is honestly scoped: mutate the kernel's dependency-tracking and the exported trace must 
+  change and a test must fail. If the kernel's test can pass while dependency tracking is broken, it is another replay client wearing a costume and the session did not close the gap.
 
-  What I'd still do on 3R, and when
+  The close call, honestly
 
-  The fidelity generator from my previous answer stands, unchanged, including the scoping that makes it safe: generate arbitrary well-typed structs and assert codec round-trip plus
-  recorder replay, never generating "valid" runs, so no contract semantics land in Elixir. It doesn't interact with renaming at all — different files, different lanes — so it can run in
-  parallel or immediately after. The stream_data-versus-hand-rolled decision still needs your call if we do it.
+  Tier B — realized-frame equivalence over a changing actor base — is the strongest alternative and I do not think it is a bad choice. It is more precisely specified than the kernel right
+  now, because this session located its blocker in code: ActorCausal.agda:94-98 fixes one ActorBase for all frames and FrameHom carries no actor map, while CausalFromParents.agda:200-205
+  builds a run-specific carrier, so the comparison is currently inexpressible rather than merely hard. And it is smaller than it looks, since actor renaming leaves evId, evConv and
+  evParents untouched, so the entire event and causal side transports along a path I already proved rather than needing new construction.
 
-  Session-tag assignment stays deferred, for the reason Codex gave and I withdrew my objection to: LocalFrame carries no session content, so the renaming theorem can be proved once and
-  decorated later.
+  I put it second for one reason: its risk is contained. If the presentation-category setting is wrong, we lose a session and a few records. If the causal-parent premise is wrong, we lose
+  part of the 2S tower — and Tier B adds to that tower.
 
-  The honest counter-case
+  The decision criterion I would actually use: if you believe the contract's causality model is obviously right, take Tier B, it is the tidier session. If you are not certain it is right, 
+  take the kernel, because its cost rises every time we don't. I am not certain, and the fact that nothing in the system has ever tested it is why.
 
-  If your concern is lane balance rather than the mathematically-next step, the generator is the right call — this entire session has been 2S, and 3R has had exactly one pass. I'd take
-  that as a legitimate reason to overrule the above, and it's your call to make, not mine to pre-empt. But asked what the track's next step should be, renaming is my answer.
+  One cost of choosing the kernel that I should name rather than hide: the two-carrier ActorEmbedding A B I argued for this session stays unexercised for another session, and an
+  unexercised generalization is a debt by the project's own rule. It is a small and clearly recorded debt, but it is real, and it is the strongest thing on Tier B's side of the ledger
+  after specification.
 
-  **Subsequent reconciliation of the three runtime notions:**
+  A standing observation, not a recommendation
 
-  The apparent disagreement came from using “generator” for different claims. The actor kernel should rank above a scenario originator on causal evidence, because every corpus parent edge
-  is human-authored and only the kernel would derive one from an actual dependency. A fidelity sampler is orthogonal: it tests recorder faithfulness over arbitrary well-typed inputs and
-  makes no origination claim. A scenario originator derives IDs, ordering, conversation assignment, and parent references from authored transition logic; it is stronger than sampling and
-  weaker than a kernel. The durable names are recorded in `naming.md`.
+  Worth saying because it is the kind of thing that goes unsaid until it is expensive: the concurrency side K is now far ahead of the modal side M, and the project's central claim is a 
+  relation between them. M — the modal-context category — does not exist. Without it there is no Allow, no Require, no unit, no counit, no T1. ModalHoTT has been paused since the de Rham
+  named-coefficient rung, and every 2S and 3R session widens the gap.
 
-## Claude 3R (at first with partial information)
+  The recorded reason for the ordering is that the cross-site adjunction should wait until the concurrency-internal adapter and runtime junction are "stable enough to serve as the
+  operational side." That is a real reason, but it is worth checking whether it has already been met: the junction now has a global frame, per-conversation frames, embeddings, a
+  conditional cover, an order-comparison theorem and a renaming rung. If that is not yet stable enough, it would be useful to write down what would be — because "held loose" with no
+  criterion is how the tractable side quietly becomes the whole project.
 
-  ...The one I'd argue about: what comes after
+  I am not proposing M for the next session; opening it is a research move with a high chance of producing scaffolding rather than a result, which is exactly what the project's
+  anti-default notes warn against. I am proposing that it acquire a stated trigger rather than remaining indefinitely downstream.
 
-  When bandwidth does return to 3R, status_implementation.md item 4 says synthetic generator. I'd propose reordering that to the minimal actor kernel, for a specific reason.
+  Defer
 
-  causal_parents is the load-bearing field of the entire contract. It is what backwardOK constrains, what CausalFromParents.agda derives the causal order from, what
-  ConversationLocality.agda's restricted order depends on, and what the whole evidence-order-versus-causal-order discipline exists to protect. And in the system as it stands, every parent 
-  edge that has ever existed was typed by a human — in a fixture, in a test literal, or in a decoded fixture replayed back. Nothing has ever derived one from an actual dependency.
-
-  A synthetic generator does not change that; it produces more runs whose parent edges are still declared by fiat, just algorithmically. An actor kernel does change it: parents would come
-  from real message causality, and for the first time the contract's central relation would be earned rather than asserted. That is also the only thing that opens the checker gate in the
-  sense the gate means — traces from behavior.
-
-  That is a proposed reordering, not a decision, and it belongs to Codex's surface. If it's persuasive, the argument to hand over is that the generator gives scale on a relation nobody has
-  yet produced, while the kernel gives the first instance of producing it.
-
-  Practically
-
-  For this session's leftovers: pedagogy/dictionary_index.md is still uncommitted, and the 3R branch and worktree are four commits behind with no pending work in them. Say the word on
-  either.
-
-  **Revised assessment**
-
-  My "hold" was conditioned on the fixture being 2S's to author and not yet written. That condition is gone, so:
-
-  **Retired after review:** a literal-call construction of `cross_conversation.json` would be another human transcription of its parent edges, not origination from behavior. The wildcard
-  replay already closes pass 2 at recorder-fidelity scope. Such a test remains permissible as a local control, but it is not a forced obligation and would not strengthen the actor-kernel
-  claim.
-
-  One honest limit is discharged, one is not. "The locality design is unexercised on its forcing case" — that's now false on the formal side, and status_formal.md should stop saying it
-  once ConversationOrderComparison.agda consumes the fixture. But local-order-is-global-restriction is still refl, and that scope note stands.
-
-  The actor-kernel-over-generator argument is unchanged and now lands sooner. Every causal_parents edge in all six fixtures is still human-typed — including the new ones. The forcing case
-  is exercised; the deriving of a parent edge from an actual dependency still has never happened anywhere in the system.
+  Session-tag assignment, per-conversation and cover-level equivariance, SIP/univalence, local gauge and descent coherence, the generic varying-name construction, hoapa_checker,
+  persistence and Pijul, Phoenix. All unchanged, and all still behind their recorded gates.
