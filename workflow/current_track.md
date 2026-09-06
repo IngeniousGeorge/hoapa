@@ -1,6 +1,6 @@
 # Bandwidth organization
 
-This file describes how session bandwidth is organized. It is not the canonical next-step tracker. For up-to-date lane status and concrete next work, read:
+This file is the entry-point summary for the live lane and next-step posture. For the detailed evidence and concrete work inside each lane, read:
 
 - `workflow/status_formal.md` for 1C pure conjecture and 2S runtime-to-substrate work.
 - `workflow/status_implementation.md` for 3R runtime work and the checker/runtime contract boundary.
@@ -27,9 +27,11 @@ The 2S coverage and order-comparison packages are banked, and the two fixtures t
 
 `ConversationCover.agda` proves event coverage unconditionally, states actor coverage as a hypothesis, decides it from raw data in both directions via `actorsCoveredByConversations?`, and constructs the `Cover` conditionally. `ConversationOrderComparison.agda` builds the rival parent-generated conversation order, gives its universal property (`≤L-least`), and proves the canonical strict embedding exists exactly when the conversation is causally saturated. On the fixture, `c1` is saturated non-trivially and `c0` is not, so `c0`'s internal-order frame admits no canonical embedding.
 
-**3R pass 2's gate is open, and most of it is already done.** The fixture is exported into the vendored corpus, and the wildcard replay test reproduces it through `Hoapa.Core.EventLog` with no runtime code or test change — 7 contract + 12 core tests green. `make test` is green at `4a072fd`.
+The 2S raw actor-renaming rung is banked at `5670658`. `ActorRenaming.agda` separates three exact statements: raw records respect identity and composition under arbitrary actor maps; `valid?` is equal before and after every total injective endomap of `ActorId = ℕ`, including on malformed runs; and permutations supply the invertible gauge layer, with `WellFormed` transport and reflection inherited from the embedding theorem. The implementation is actor-channel-only and does not yet compare realized frames over changing actor bases.
 
-The next bandwidth choice is open between the **3R synthetic generator** and **2S actor-renaming/no-leak**; ig has not selected. Session-tag assignment remains deliberately deferred as a decorating layer.
+**3R pass 2 is complete at its recorder-fidelity scope.** The fixture is exported into the vendored corpus, and the wildcard replay test reproduces it through `Hoapa.Core.EventLog` with no runtime code or test change — 7 contract + 12 core tests green. A second hand-written literal-call construction of the same fixture would be an optional control, not a forced obligation.
+
+The next bandwidth choice is open; ig has not selected a lane. The nearest 2S continuation is Tier B change of actor base and realized-frame equivalence. On 3R, the actor kernel has the strongest evidential payoff because it would derive causal parents from behavior; a fidelity sampler and a deterministic scenario originator remain distinct, weaker candidates. The kernel is gated by its own runtime design conversation and size, not by an unshipped 2S semantics. The 1C choices remain O1-in-Chu / `session-O1-action` or the Reality/Documentation/Chu boundary. Session-tag assignment remains deliberately deferred as a decorating layer.
 
 ## Guardrails
 
@@ -38,6 +40,7 @@ The next bandwidth choice is open between the **3R synthetic generator** and **2
 - `ConversationLocality.agda` constructs per-conversation frames and strict embeddings. `ConversationCover.agda` packages their family as a `Cover` only CONDITIONALLY: event coverage follows from `WellFormed`, actor coverage does not and enters as a hypothesis. Actor registration stays independent.
 - The order comparison is scoped by a quantifier. Saturation varies per conversation — the fixture has one of each — so the internal parent-generated order is not universally wrong. What is forced is the uniform construction from `WellFormed` alone. The no-embedding corollary is further scoped to event maps that are pointwise `fst`.
 - The order comparison is concurrency-internal and proof-near. It is not descent, not R4, and not evidence for `Allow ⊣ Require`.
+- Raw actor-renaming invariance is an exact theorem about `valid?` and `WellFormed`, not yet realized-frame equivalence or observational no-leak. It proves acceptance is insensitive to injective actor encodings; it does not license exposing operational identity through public actor tokens.
 - `Chu(SET,Bool)` is a concrete coefficient/value model and a Sessions realization target; it does not reconstruct Reality.
 - `Hoapa.Core.EventLog` preserves evidence order, duplicates, unresolved references, and cross-conversation parent edges. It does not infer causality, judge validity, or originate events from actor behavior.
-- Keep `hoapa_checker` closed until an originator supplies runtime behavior to check one-by-one. Keep broad OTP, durable storage/Pijul, and Phoenix work behind the status-file gates.
+- Keep `hoapa_checker` closed until a behavioral originator—currently the actor-kernel candidate—supplies runtime behavior to check one-by-one. A fidelity sampler or authored scenario originator does not meet that gate. Keep broad OTP, durable storage/Pijul, and Phoenix work behind the status-file gates.

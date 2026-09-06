@@ -2,7 +2,7 @@
 
 This file is the canonical workflow home for the implementation track: the runtime, the checker boundary, and the formal runtime contract.
 
-The current method is **rising sea**: raise the waterline only when the next executable/testable boundary is forced by the existing formal substrate. The first waterline has crossed the trace/run contract: the formal predicate, serialization corpus, generated Agda terms, runtime codec, tiny-run construction seam, and cross-leg freshness gates exist in narrow v0 form. The first 3R runtime rung is also banked: a running `hoapa_core` event log records caller-supplied contract evidence and exports it as a `Run`, without becoming a checker or an event originator.
+The current method is **rising sea**: raise the waterline only when the next executable/testable boundary is forced by the existing formal substrate. The first waterline has crossed the trace/run contract: the formal predicate, serialization corpus, generated Agda terms, runtime codec, tiny-run construction seam, and cross-leg freshness gates exist in narrow v0 form. The first 3R runtime rung is also banked: a running `hoapa_core` event log records caller-supplied contract evidence and exports it as a `Run`, without becoming a checker or an event originator. On 2S, Tier A now proves that raw acceptance is invariant under total injective actor relabeling and specializes this to the invertible permutation/gauge layer.
 
 ## Directory Consensus
 
@@ -64,8 +64,8 @@ Still unresolved:
 
 - The exact fields and serialization details of `Boundary`, `Audit`, and `Certificate`; `Trace` and `Run` have the minimal v0 shape recorded below, with richer extensions left open.
 - The exact format-tag pattern for later serialized records (`hoapa.run/0`, `hoapa.boundary/0`, etc.); the v0 trace uses `traceFormat : "hoapa.trace/0"`.
-- Whether a future synthetic generator becomes its own umbrella app (`hoapa_generator`) or stays test/support code until it earns runtime status.
-- The exact future checker invocation path: direct Agda typecheck for tiny witnesses, a compiled/extracted checker, or a separate runtime parser that validates emitted runtime traces against Agda-pinned predicates. Loop 1 uses the top-level `Makefile` as the checker boundary; a `hoapa_checker` app remains deferred until an originator — a synthetic generator or actor kernel — produces events from behavior. The pass-1 `EventLog` only records caller-supplied contract values and does not meet that gate.
+- Whether a future fidelity sampler or authored scenario originator becomes its own umbrella app (`hoapa_generator`) or stays test/support code until it earns runtime status. Neither is the actor kernel.
+- The exact future checker invocation path: direct Agda typecheck for tiny witnesses, a compiled/extracted checker, or a separate runtime parser that validates emitted runtime traces against Agda-pinned predicates. Loop 1 uses the top-level `Makefile` as the checker boundary; a `hoapa_checker` app remains deferred until a behavioral originator produces events to validate one-by-one. The actor kernel is the current candidate that meets this gate. A fidelity sampler, a deterministic authored scenario originator, and the pass-1 `EventLog` do not.
 - The exact Pijul adapter API inside `hoapa_store`; the folder ownership is settled, but the boundary type is not.
 - The internal split of `/formal/RuntimeContract/` after `Trace.agda`; start narrow and let `Run`, `Boundary`, `Audit`, and `Certificate` earn separate files.
 
@@ -174,9 +174,9 @@ The first red-green loop starts with one failing conformance expectation and the
 5. Run `/runtime/apps/hoapa_contract/` codec tests against the vendored corpus: valid and semantic-invalid fixtures decode and round-trip, schema-invalid fixtures fail at decode.
 6. Use the top-level `Makefile` as the loop-1 checker boundary: `contract-check`, `contract-fresh`, `formal-test`, and `runtime-test` keep the generated Agda terms, vendored runtime artifact, formal predicate, and runtime codec in sync.
 
-A separate `/runtime/apps/hoapa_checker/` is deferred until an originator produces events from behavior that need to be checked one-by-one against the formal boundary. The pass-1 event log is intentionally only a recorder, so adding that app now would still duplicate what the top-level orchestration already tests.
+A separate `/runtime/apps/hoapa_checker/` is deferred until a behavioral originator produces events that need to be checked one-by-one against the formal boundary. The pass-1 event log is intentionally only a recorder, and neither fidelity sampling nor authored scenario generation establishes actor behavior, so adding that app now would still duplicate what the top-level orchestration already tests.
 
-This contract/codecs/freshness loop remains the prerequisite for runtime growth. The pass-1 OTP event log was added only after it was green; a synthetic generator, Pijul adapter, and Phoenix UI remain behind their later gates. This keeps the Agda-facing record, serialization corpus, and runtime codec from drifting as the implementation expands.
+This contract/codecs/freshness loop remains the prerequisite for runtime growth. The pass-1 OTP event log was added only after it was green; fidelity sampling, scenario origination, the actor kernel, the Pijul adapter, and Phoenix UI remain behind their distinct later gates. This keeps the Agda-facing record, serialization corpus, and runtime codec from drifting as the implementation expands.
 
 ## Contract Loop 1 Status
 
@@ -189,12 +189,14 @@ Landed:
 - `/formal/RuntimeContract/Trace.agda`: substrate-free raw run/trace records plus decidable v0 well-formedness.
 - `/formal/RuntimeContract/Serialization/`: authoritative schema/prose, fixture corpus, JSON-to-Agda raw-term generator, and export tool.
 - `/formal/RuntimeContract/Generated/Raw/`: generated data-only Agda terms for valid and semantic-invalid fixtures.
-- `/formal/RuntimeContract/Tests/All.agda`: formal conformance runner; valid fixtures compute to accepted and semantic-invalid fixtures compute to rejected.
+- `/formal/RuntimeContract/Tests/All.agda`: aggregate conformance runner for the substrate-free `--safe` raw-contract layer; valid fixtures compute to accepted, semantic-invalid fixtures compute to rejected, and the Tier A actor-renaming controls are imported here. Realization-level tests import the guarded actor-causal substrate and remain wired separately through the Makefile.
 - `/formal/RuntimeContract/Realization/TinyTrace.agda`: concrete tiny-trace realization witness into the existing actor-causal substrate. This is not the generic bridge theorem.
 - `/formal/RuntimeContract/TraceLookup.agda`: safe shared raw-trace layer, moved out of `Realization/` because nothing in it is about realization and substrate-free consumers were importing downward. It owns lookup of the record carried by an event id (`firstEvent`), the membership lemmas (`eqℕ-refl`, `eqℕ-sym`, `eqℕ-sound`, `⊆?-mem`, `allB-firstEvent`), and the named clause-peeling lemmas (`wellFormed-eventsOK`, `wellFormed-backwardOK`, `eventOK-conversation`, `eventOK-touches`). It is the sole downstream proof-consumer module that depends on the positional nesting of `valid?` and `eventOK`, so reordering a validator clause breaks it and not the realization modules.
 - `/formal/RuntimeContract/Realization/BackwardRank.agda`: safe trace-level proof that a causal-parent edge strictly decreases first-occurrence event rank under `backwardOK`. This is the hard acyclicity lemma used by the generic realization rung; it now retains only rank-specific machinery and consumes `TraceLookup` for lookup and membership.
-- `/formal/RuntimeContract/Realization/CausalFromParents.agda`: first generic runtime-to-substrate rung. It derives a `CausalOrder` from backward parent edges and packages any well-formed run as one global `LocalFrame` over realized actor/event carriers. This module alone still constructs only the global frame, with `ActorIn ≡ Unit`; per-conversation frames are supplied downstream by `ConversationLocality.agda`. Session assignment and renaming invariance remain later work.
+- `/formal/RuntimeContract/Realization/CausalFromParents.agda`: first generic runtime-to-substrate rung. It derives a `CausalOrder` from backward parent edges and packages any well-formed run as one global `LocalFrame` over realized actor/event carriers. This module alone still constructs only the global frame, with `ActorIn ≡ Unit`; per-conversation frames are supplied downstream by `ConversationLocality.agda`. Session assignment and realized-frame renaming invariance remain later work.
 - `/formal/RuntimeContract/Realization/ConversationLocality.agda`: second generic runtime-to-substrate rung, and the per-conversation locality package. `RConversation` indexes the conversations actually present in a run; `conversationFrame` realizes each as its own `LocalFrame`, with events refined to that conversation, actors taken from its own actor list, and incidence inherited from the global frame; `conversationEmbed` constructs the `FrameHom` into the global frame. The local causal order is the global derived order restricted along the first projection, recorded as the definitional equation `local-order-is-global-restriction`; preservation and reflection are therefore both the identity. The one substantive proof is `touches-in-frame`, which discharges through `eventOK`'s touches-⊆-conversation-actors clause. This rung does not package a `Cover`, does not assign session tags, and does not prove renaming invariance.
+- `/formal/RuntimeContract/ActorRenaming.agda`: substrate-free `--safe` Tier A, banked at `5670658`. Generic `ActorEmbedding A B` and `ActorIsomorphism A B` provide arrow vocabulary; the current raw action remains the one-object `ActorId = ℕ` instance. `renameActors` respects identity and composition for arbitrary maps, `valid?` is exactly invariant under total injective endomaps for every raw run, and the permutation/gauge layer inherits `WellFormed` invariance and both named transports. No category or realized change of actor base is constructed.
+- `/formal/RuntimeContract/Tests/ActorRenaming.agda`: non-vacuity and boundary controls. Collapsing maps are rejected, including a focused collapse that breaks trace-actor distinctness while conversation/touch clauses pass; `suc` exercises an accepted non-surjective embedding; a transposition moves the actor list and remains accepted; and `WellFormed` transport is exercised at the fixture.
 - `/runtime/apps/hoapa_contract/`: minimal Elixir umbrella app with precise contract struct typespecs, camelCase JSON codec, vendored contract artifact under `priv/runtime_contract/`, the public path-only `Hoapa.Contract.Corpus` helper, round-trip tests, fixture-category tests, manifest integrity tests, and the tiny-run construction seam corpus-locked to `fixtures/valid/tiny_trace.json` by decoded-struct equality.
 - Top-level `Makefile`: cross-leg conductor for regeneration, freshness, formal tests, and runtime tests.
 
@@ -202,7 +204,7 @@ Verified locally:
 
 - `make contract-check` regenerates raw Agda terms and reports no drift.
 - `make contract-fresh` re-exports the runtime artifact and reports no drift.
-- `make formal-test` checks `RuntimeContract/Tests/All.agda`, `RuntimeContract/Realization/TinyTrace.agda`, `RuntimeContract/TraceLookup.agda`, `RuntimeContract/Realization/BackwardRank.agda`, `RuntimeContract/Realization/CausalFromParents.agda`, `RuntimeContract/Realization/ConversationLocality.agda`, `RuntimeContract/ConversationActorCoverage.agda`, `RuntimeContract/Realization/ConversationCover.agda`, `RuntimeContract/Realization/ConversationOrderComparison.agda`, and `RuntimeContract/Tests/ConversationOrderComparison.agda` from the `formal/` include root.
+- `make formal-test` checks `RuntimeContract/Tests/All.agda`—which now reaches `ActorRenaming.agda` and its substrate-free test transitively—plus `RuntimeContract/Realization/TinyTrace.agda`, `RuntimeContract/TraceLookup.agda`, `RuntimeContract/Realization/BackwardRank.agda`, `RuntimeContract/Realization/CausalFromParents.agda`, `RuntimeContract/Realization/ConversationLocality.agda`, `RuntimeContract/ConversationActorCoverage.agda`, `RuntimeContract/Realization/ConversationCover.agda`, `RuntimeContract/Realization/ConversationOrderComparison.agda`, and `RuntimeContract/Tests/ConversationOrderComparison.agda` from the `formal/` include root.
 - `make runtime-test` runs 7 `hoapa_contract` codec/conformance tests and 12 `hoapa_core` event-log tests against the vendored `priv/` artifact.
 - `make test` runs all of the above and passes.
 
@@ -211,6 +213,8 @@ Banked observations:
 - Trace-format Option B is implemented: the JSON schema accepts any string, while `valid?` rejects unsupported formats via the semantic-invalid `wrong_trace_format` fixture.
 - Runtime build/dependency/crash artifacts are ignored, so the contract gates report meaningful drift.
 - The rank/antisymmetry proof in `BackwardRank.agda` uses the `backwardOK` scan, not global event-ID distinctness. Event-ID distinctness still matters for faithful realization of event records as event-ID-generated objects.
+- Total injectivity is the exact raw-validator hypothesis: list-local bijectivity cannot control undeclared identifiers in malformed runs, while an inverse is unnecessary for the direct Boolean proof. The recorded bijective target is satisfied by the permutation specialization.
+- Tier A has no identity-sensitive falsifier inside `valid?`; its tests are degeneracy controls. It proves acceptance invariance, not that runtime-visible actor tokens cannot expose operational identity.
 
 ## 3R Event-Log Pass 1 Status
 
@@ -249,9 +253,9 @@ particular, it does not satisfy the gate for a separate checker app.
 
 Deferred by design:
 
-- The no-leak ladder beyond the realized frames: actor-renaming invariance for raw traces; realized-frame renaming invariance; optional valid-reordering invariance and SIP/univalence capstone. Per-conversation realized frames and `FrameHom`s are no longer on this list — they landed as the 2S locality rung.
+- The no-leak ladder beyond raw Tier A: change of actor base and realized-frame renaming equivalence; optional valid-reordering invariance and SIP/univalence capstone; and observational audit/provenance no-leak. Per-conversation realized frames and `FrameHom`s are no longer on this list — they landed as the 2S locality rung.
 - A real `hoapa_checker` app that checks traces originated by runtime behavior one-by-one.
-- Synthetic large-run generation, Pijul-backed durable storage, Phoenix/UI, compact certificates, and audit/provenance semantics beyond opaque tokens.
+- Fidelity sampling and scenario origination at scale, Pijul-backed durable storage, Phoenix/UI, compact certificates, and audit/provenance semantics beyond opaque tokens.
 
 ## Verification Commands
 
@@ -310,7 +314,7 @@ Status legend:
 
 | Item | Formal home | Status | Caveat |
 |---|---|---|---|
-| No-leak, structural half | `Hybrid/ChangeOfBase.agda`; `Hybrid/LinearNonlinear.agda` | B | `frame-noninterference` proves change-of-base leaves the frame index unchanged. The full theorem that session roles/payloads/content do not refine actor identity remains a gap. |
+| No-leak, raw boundary | `RuntimeContract/ActorRenaming.agda`; `Hybrid/ChangeOfBase.agda`; `Hybrid/LinearNonlinear.agda` | B | Tier A proves exact raw-validator invariance under actor embeddings; `frame-noninterference` proves coefficient change leaves the frame index unchanged. Neither is realized actor-base equivalence or the full theorem that observations/session content do not refine actor identity. |
 | Reality boundary | workflow plus `Algebras/Chu.agda` header-level orientation | B | Workflow-grounded, not Agda-grounded. No `Reality` sort or module should be introduced from this alone. |
 | Erasure / lossy admission | `Hybrid/Presheaf.agda` header only | O | Named future slot. Lossiness is intentional; it should not become reconstruction of Reality. |
 
@@ -322,7 +326,7 @@ The gaps are mostly the right kind of gaps: opaque content tags, provenance toke
 
 The current `Payload : Type ℓv` parameter is evidence that the code already accepts opaque content-like parameters, but it is not yet the content layer Λ and should not be treated as the final "what" tag.
 
-The structural no-leak half exists as frame-noninterference under change of base. The semantic no-leak theorem remains future work.
+Raw validator blindness now exists under total injective actor relabeling, alongside frame-noninterference under coefficient change of base. Realized actor-base equivalence and observational no-leak remain future work; neither existing result is the full semantic theorem.
 
 ## Next Contract Work
 
@@ -333,35 +337,32 @@ The next work splits by the number+letter lane convention: 1C pure conjecture, 2
 1. Banked: per-conversation local frames realized from raw conversations, `FrameHom`s into the global frame built by `CausalFromParents.agda`, and the preservation/reflection obligations discharged. The local causal order is the global derived order restricted to the conversation's events rather than a separately invented intra-conversation order, which is what makes strict reflection available; it is recorded as `local-order-is-global-restriction`.
 2. Banked formal pass A: `conversation-event-covered` proves unconditional event coverage of the global frame; `actorsCoveredByConversations?` and its realized counterpart `ConversationActorCoverage` are related in BOTH directions (`coverage-sound`, `coverage-complete`), so the Boolean decides the hypothesis rather than merely certifying it; `conversation-cover` builds the `Cover` under that explicit hypothesis; and `parent-edge-implies-causal` is public without exposing the private chain type.
 3. Banked formal pass B: the authoritative valid `c0 → c1 → c0` fixture and `ConversationOrderComparison.agda` for causal saturation and the rigidity characterization. The fixture supplied the evidence the locality rung was missing — two events in one conversation related through a causal path in another — and `c0-restricted-sees-external-path` names a term of the selected order on exactly that pair.
-4. Actor-renaming invariance remains the next no-leak rung after this package: raw `valid?` invariance, then realized-frame equivalence, and only later SIP/univalence.
-5. Session-tag assignment is unlocked but deferred. `LocalFrame` contains no session content by design, so this is a new relation or decorating layer over the realized frames, not a new field on them, and it should carry its own transport/invariance lemma rather than being folded into the core renaming theorem.
+4. Banked Tier A at `5670658`: actor relabeling is functorial under arbitrary total maps; raw `valid?` is exactly invariant under total injective endomaps of `ActorId = ℕ`; permutations give the invertible gauge specialization and both `WellFormed` transports. The theorem covers every raw run but only the actor channel.
+5. If 2S is selected next, Tier B starts with change of actor base. `RActor` is run-specific while `FrameHom` fixes one actor base and has no actor map, so the realized equivalence is currently inexpressible. Add a relative morphism over an actor-base map while leaving fixed-base `FrameHom` intact; then make realization equivariant. The generic arrow vocabulary in `ActorRenaming.agda` is a down-payment, not yet a category.
+6. Session-tag assignment is unlocked but deferred. `LocalFrame` contains no session content by design, so this is a new relation or decorating layer over the realized frames, not a new field on them, and it should carry its own transport/invariance lemma rather than being folded into the core renaming theorem.
 
 **3R - runtime.**
 
 1. Banked: reconstruct the Agda-accepted tiny run from `hoapa_contract` structs, corpus-locked by decoded-struct equality against `fixtures/valid/tiny_trace.json`, with codec round-trip stability. The supporting refactor added precise struct typespecs and the public path-only `Hoapa.Contract.Corpus`; no semantic checker was added.
 2. Banked: the minimal `hoapa_core` event-log/export path described above. It preserves the exact raw shape needed by later formal witnesses, including independent actor registration and global causal-parent references.
-3. Pass 2 waits for the authoritative `c0 → c1 → c0` fixture to land in the formal corpus. `make contract-export` will refresh the vendored artifact and manifest; the wildcard corpus-replay test will then exercise that run through `EventLog` without a runtime code or test rewrite.
-4. Keep validation corpus-locked to Agda. A runtime semantic checker or `hoapa_checker` earns its own app only once a generator or actor kernel originates events from behavior to validate one-by-one.
-5. Add a synthetic generator after the cross-conversation pass is green, then `hoapa_store` and its Pijul port/CLI boundary. Add Phoenix/`hoapa_web` last, as an edge adapter over an already-running core.
+3. Banked at recorder-fidelity scope: the authoritative `c0 → c1 → c0` fixture is exported into the vendored corpus and the wildcard replay test exercises it through `EventLog` without a runtime code or test rewrite. A second literal-call transcription would duplicate the fixture's asserted causality and is optional, not a remaining pass-2 obligation.
+4. Keep validation corpus-locked to Agda. A runtime semantic checker or `hoapa_checker` earns its own app only once a behavioral originator produces events to validate one-by-one. Of the current candidates, only the actor kernel meets that gate.
+5. Keep three runtime notions distinct: a fidelity sampler tests codecs and recorder behavior over arbitrary well-typed values; a scenario originator derives run structure from authored transition logic; an actor kernel derives events and causal parents from actual message behavior. The kernel has the strongest evidential payoff and is gated by a design conversation and session size, not by missing 2S semantics. No 3R choice is selected.
+6. Add `hoapa_store` and its Pijul port/CLI boundary only after behavior and lifecycle worth persisting exist. Add Phoenix/`hoapa_web` last, as an edge adapter over an already-running core.
 
 ## Next step
 
-The locality package and 3R event-log pass 1 are banked. The next dependency
-sequence is now explicit rather than a bandwidth choice:
+Tier A is banked and no next lane has been selected. The live choices are:
 
-- **2S coverage and order comparison are landed** at `4a072fd`, with `make test`
-  green. State them with their quantifiers: the `Cover` is conditional on actor
-  coverage, and saturation varies per conversation — what is forced is the
-  uniform canonical embedding from `WellFormed` alone, not every individual
-  conversation.
-- **3R pass 2:** export that fixture into the vendored runtime corpus and let the
-  existing wildcard replay test reproduce it unchanged. This should require no
-  `EventLog` rewrite.
-- **Afterward:** continue the 2S actor-renaming/no-leak ladder. Session-tag
-  assignment remains a separate decorating layer and stays deferred.
-- **Runtime breadth remains gated:** an event originator precedes a separate
-  checker; synthetic generation, durable storage, Pijul, and Phoenix follow only
-  as their boundaries become executable.
+- **2S:** construct the change-of-actor-base setting needed to state Tier B, then prove realized global and conversation-frame equivalence under invertible relabeling. Keep `FrameHom` fixed-base and add a relative morphism rather than rewriting banked locality proofs.
+- **3R:** hold a design conversation for the actor kernel, the first candidate that would earn causal-parent edges from actual dependencies. A fidelity sampler or deterministic scenario originator is smaller but has a different, explicitly weaker payoff.
+- **1C:** pursue O1-in-Chu / `session-O1-action` through earned categorical structure, or open the Reality/Documentation/Chu boundary track.
+
+The checker remains gated on behavioral origination. Session assignment, persistence/Pijul, and Phoenix remain separate later layers.
+
+## Prior next-step assessments
+
+The assessments below are retained as dated reasoning. Where a premise was later retired, the current sections above are authoritative and a correction is attached in place.
 
 ### Codex 2S (thinking I'm asking only about 3R, but both 2S and 3R are open for the next step)
 
@@ -386,13 +387,14 @@ The next implementation step should be a narrow deterministic synthetic originat
   The important acceptance test is that mutating the originator’s transition or dependency logic changes the exported trace and fails the test. If its test merely passes preconstructed
   events to EventLog, it is still another replay client and does not open the checker gate.
 
-  After that lands, hoapa_checker becomes the natural next pass: connect genuinely runtime-originated candidate traces to the formal acceptance boundary without reimplementing valid? in
-  Elixir. Persistence should remain later, once there is behavior and lifecycle worth persisting.
+  **Subsequent correction:** an authored scenario originator does not open the checker gate because its causal structure still comes from declared transition logic. `hoapa_checker`
+  becomes a natural next pass only after a behavioral originator such as the actor kernel emits candidate traces. Persistence should remain later, once there is behavior and lifecycle
+  worth persisting.
 
   The one decision to settle before writing is the originator boundary:
 
   - My recommendation: deterministic synthetic transition generator now.
-  - Alternative: minimal actor kernel, which gives stronger behavioral evidence but would require runtime semantics that 2S has not yet specified.
+  - Alternative: minimal actor kernel, which gives stronger behavioral evidence and requires its own runtime design conversation; it is not blocked on an unshipped 2S semantics.
 
   So I would choose the generator, while naming its evidential limit clearly.
 
@@ -429,9 +431,9 @@ Recommendation: 2S actor-renaming invariance, raw level first
   3R echoes 2S, so there's a fair worry about 3R falling three rungs behind. It doesn't apply here: unlike locality, which handed the event log its target shape, renaming demands nothing
   of the runtime. It has no runtime counterpart to echo.
 
-  It does have one runtime consequence worth banking: once raw valid? is renaming-invariant, the runtime's choice of actor identifiers is provably irrelevant to acceptance. That licenses
-  hoapa_core to use whatever opaque tokens it likes — including ones derived from operational identity — without touching the checked property. Small, but it's the kind of thing better
-  proved before the actor kernel needs it than after.
+  It does have one runtime consequence worth banking: once raw valid? is renaming-invariant, the runtime's injective choice of actor encoding is provably irrelevant to acceptance. This
+  does not license exposing or recoverably deriving public actor tokens from operational identity: Tier A says nothing about observers other than `valid?`, and that broader question
+  remains Tier D.
 
   What I'd still do on 3R, and when
 
@@ -446,6 +448,13 @@ Recommendation: 2S actor-renaming invariance, raw level first
 
   If your concern is lane balance rather than the mathematically-next step, the generator is the right call — this entire session has been 2S, and 3R has had exactly one pass. I'd take
   that as a legitimate reason to overrule the above, and it's your call to make, not mine to pre-empt. But asked what the track's next step should be, renaming is my answer.
+
+  **Subsequent reconciliation of the three runtime notions:**
+
+  The apparent disagreement came from using “generator” for different claims. The actor kernel should rank above a scenario originator on causal evidence, because every corpus parent edge
+  is human-authored and only the kernel would derive one from an actual dependency. A fidelity sampler is orthogonal: it tests recorder faithfulness over arbitrary well-typed inputs and
+  makes no origination claim. A scenario originator derives IDs, ordering, conversation assignment, and parent references from authored transition logic; it is stronger than sampling and
+  weaker than a kernel. The durable names are recorded in `naming.md`.
 
 ## Claude 3R (at first with partial information)
 
@@ -473,12 +482,9 @@ Recommendation: 2S actor-renaming invariance, raw level first
 
   My "hold" was conditioned on the fixture being 2S's to author and not yet written. That condition is gone, so:
 
-  The next implementation step is the literal-call origination test for cross_conversation.json — the small thing I flagged as the part of pass 2 that replay doesn't cover. Replay is
-  derivative: it decodes a fixture and pushes it back. Origination through explicit recording calls is the stronger claim, and it's the one pass 1 made for the tiny run. It's ~15 lines, a
-  variant of the existing fidelity run with the dangling parent removed and the shape matched against the fixture.
-
-  That is now genuinely forced rather than permitted: the corpus contains an accepted cross-conversation run, the runtime claims a process can emit one, and nothing yet demonstrates it by
-  origination.
+  **Retired after review:** a literal-call construction of `cross_conversation.json` would be another human transcription of its parent edges, not origination from behavior. The wildcard
+  replay already closes pass 2 at recorder-fidelity scope. Such a test remains permissible as a local control, but it is not a forced obligation and would not strengthen the actor-kernel
+  claim.
 
   One honest limit is discharged, one is not. "The locality design is unexercised on its forcing case" — that's now false on the formal side, and status_formal.md should stop saying it
   once ConversationOrderComparison.agda consumes the fixture. But local-order-is-global-restriction is still refl, and that scope note stands.

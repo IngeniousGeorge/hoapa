@@ -80,11 +80,111 @@ In latex files, use latex for math notation obviously. And in general remove ind
 
 ## Temp
 
-- shared memory
-- 
-Now, Claude is writing the code. In the meanwhile, can you take care of the adga -> formal renaming in all top level workflow files + pedagogy + communication files?
+### Codex last output
 
-In agents:
+The response now converges on the right session and theorem. Three phrases still need correction before sign-off: total injection need not replace the bijective target, list-bijection is
+  insufficient rather than universally unsound, and backwardOK’s generic lemma would not serve event-ID renaming.
 
-Discuss = "..."
-Stakes = "..."
+  1. Headline theorem versus stronger implementation lemma
+
+  What is at stake: preserving the gauge/equivalence meaning of “renaming” while proving the strongest natural Boolean fact.
+
+  Options:
+
+  - Recommended: define renameActors for arbitrary total functions, prove exact valid? equality under total injectivity, and expose bijective/permutation invariance as the named Tier A
+    corollary.
+      - Buys: malformed-run invariance, the clean Boolean proof, and the stronger reusable result.
+      - Costs: one corollary.
+      - Effect on the ledger: the target in workflow/targets.md:178 remains correct. Only the proposed inverse-based proof route in workflow/future_work.md:709 changes.
+
+  - Make total injection the Tier A headline.
+      - Buys: the strongest result is foregrounded.
+      - Costs: “renaming” now includes noninvertible embeddings such as suc; the gauge reading applies only to its permutation subgroup. This would be a genuine target amendment.
+
+  - Require a total permutation throughout.
+      - Buys: exact agreement with the recorded target and clearest gauge semantics.
+      - Costs: an unnecessarily strong hypothesis and additional inverse machinery.
+
+  I recommend the first. The raw validator theorem belongs to the injective endomorphism monoid; the semantic gauge theorem belongs to the permutation group.
+
+  “Bijection between actor lists” should not be retired as universally unsound. It is insufficient for exact equality over arbitrary malformed RawRuns unless it is extended to a total
+  injective map, made fresh on the complement, or the theorem is restricted to well-formed inputs. It may remain useful at Tier B, where realization already starts from WellFormed. The
+  precise finding is:
+
+  > List-local bijectivity is not a sufficient hypothesis for Tier A Boolean equality over all raw runs.
+
+  2. backwardOK lemma boundary
+
+  What is at stake: whether this session creates a general transformation API or only the result currently forced.
+
+  Claude is correct that backwardOK needs an explicit proof: traceEvents becomes a mapped event list even though evId and evParents remain unchanged. Conversation-ID and event-ID
+  distinctness likewise need map-fusion or induction rather than simple refl.
+
+  Options:
+
+  - Recommended: expose an actor-specific backwardOK-renameActors lemma. A generic “maps preserving evId and evParents” helper may remain private if it simplifies the proof.
+      - Buys: a narrow public theorem surface and no premature abstraction.
+      - Costs: a later non-actor transformation may generalize it again.
+
+  - Publish the generic preservation lemma immediately.
+      - Buys: reuse for conversation, content, provenance, and other transformations that leave the causal-ID channel untouched.
+      - Costs: additional parameters and an abstraction not yet demanded by a second use.
+
+  It would not directly support event-ID renaming. That operation changes evId, evParents, and the accumulated seen list together, so it needs a separate equivariance theorem under
+  injective event-ID relabeling. The claimed event-ID reuse should be removed.
+
+  3. Red-first and the test runner
+
+  What is at stake: ruling out the vacuous implementation without broadening this session into test-infrastructure cleanup.
+
+  The concrete test module should contain:
+
+  - A moving permutation witness on cross_conversation proving that traceActors changes.
+  - The corresponding unchanged valid? verdict.
+  - Concrete applications of identity and composition if useful.
+
+  The generic identity and composition laws belong in ActorRenaming.agda; they specify functoriality but do not rule out the trivial action. The moving witness is the actual no-op guard
+  and should be made red first.
+
+  For wiring:
+
+  - Recommended: import Tests.ActorRenaming from formal/RuntimeContract/Tests/All.agda:1.
+  - Do not fold ConversationOrderComparison into it during this change.
+
+  ConversationOrderComparison is a realization-level theorem test, whereas the proposed actor-renaming witness is a raw-contract corpus property, like ConversationCoverage. Its separate
+  line in the Makefile:45 does not force the same placement here. Any broader clarification of what “All” aggregates can be handled separately.
+
+  4. Gate 6
+
+  What is at stake: whether the result is presented as evidence of discovering no leakage or as enforcement of an intentionally identity-blind design.
+
+  There is no present identity-sensitive clause inside valid?, so there is no honest in-corpus leak counterexample. The moving witness proves only that the action is nontrivial.
+
+  The disposition should be:
+
+  - Tier A’s non-vacuity control is resolved by the moving witness.
+  - Gate 6’s identity-sensitive falsifier remains deferred to the observation/provenance layer.
+  - Tier A’s value is that identity-insensitivity becomes a permanent checked obligation: a later validator clause depending on a particular actor number makes the generic theorem fail.
+
+  That is stronger and more accurate than calling gate 6 answered.
+
+  5. Workflow accounting
+
+  What is at stake: correcting real overclaims without turning the formal session into a documentation sweep.
+
+  The following corrections are warranted when their files are next authorized for editing:
+
+  - Tighten the runtime-payback sentence in status_implementation.md: acceptance independence does not license exposing operational identity.
+  - Change Trace.agda’s “raw IDs” wording to “actor IDs.”
+  - Replace the inverse-renaming proof route with the direct injectivity route.
+  - Record list-local bijection as insufficient for raw Boolean equality—not simply mathematically unsound.
+  - Perform the four identified stale-status corrections as one short synchronization pass.
+
+  My proposed final alignment statement is:
+
+  > This session takes 2S Tier A. renameActors acts on exactly traceActors, convActors, and evTouches. We prove identity and composition for arbitrary total actor maps, exact raw-validator
+  > equality under total injectivity, and derive the recorded bijective/permutation and WellFormed corollaries. A moving permutation witness on cross_conversation rules out the no-op
+  > implementation. The named semantic target remains bijective actor relabeling; total injectivity is the stronger raw-validator lemma supporting it. Tier B, reordering, SIP/univalence,
+  > other identifier channels, and observational no-leak remain separate.
+
+  That is ready for sign-off. No files have been changed.
