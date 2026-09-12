@@ -95,7 +95,13 @@ survive that relay; prose does. For a multiple-choice question, write the option
 short list with your lean and ask in prose. For an implementation plan, propose it
 inline and ask for sign-off. Never gate work behind a plan file.
 
-## Conversation keywords in reaching consensus before writing to files
+**No Latex.** It doesn't render at all most of the time. Put all math notation in
+unicode (note explicitly if a desired symbol is missing and give the latex handle for
+it) and text formatting in markdown.
+
+## Conversation keywords
+
+### in reaching consensus before writing to files
 
 *Discuss:* at the start of a prompt, followed by another agent's ouput in curly braces, 
 means you should provide adequate feedback: correct mistakes, flag issues, give tips, etc.
@@ -103,6 +109,14 @@ In an output that itself can be discussed.
 *Stakes:* at the start of a prompt, followed by another agent's output in curly braces
 or not, means you should state, for any remaining tension: what's at stake, what our
 options are, and what each cost and buy us. Please use numbering for future reference.
+FYI, if you see "❯" in a transcript it means the human is talking, "●" means the AI agent
+is talking.
+
+### misc
+
+*Define:* at the start of a prompt, followed by a term or symbol in curly braces should
+be answered with a one-paragraph pedagogical presentation of what's in the braces. This
+should be understood as a parenthesis in the conversation and shouldn't interupt the flow.
 
 ## Workflow conventions
 
