@@ -62,6 +62,52 @@ Lautman's broader dialectic gives this contrast a dynamic setting. Dialectical I
 
 This 2×2 crossing prevents two tempting mistakes. First, `Op` is not simply analytic while `Ct` is synthetic. Second, unityped actors are not dimensionless or untyped persons. They share one protocol-visible interface while retaining histories, states, perspectives, and internal structure. Documentation likewise does not "keep all dimensions": it selects and types what the protocol may retain while deliberately forgetting protected identity and irrelevant detail. Both layers preserve some distinctions and forget others.
 
+### Arbitrary occupants and represented work
+
+The relevant Lautmanian placement of a participant is not necessarily as the
+being decomposed. His examples use "any" and "arbitrary" in more than one
+role: any entity of a domain is articulated under the common plan, while an
+auxiliary basic system or a particular solution may also be chosen from an
+admissible class. The choice is not unconstrained and need not be irrelevant to
+every result; its force is that no intrinsic privilege of one occupant is a
+precondition of the construction.
+
+This is closer to Hoapa's participant rule. Any eligible person may occupy a
+seat and receives the same protocol-visible standing, while different people
+and panels may still make different contributions. Participants help produce,
+select, test, and revise articulations of shared work. They are neither a basis
+of the population nor the completed product of a decomposition. Representation
+therefore belongs primarily to runs, contributions, artifacts, concepts, and
+their contextual relations. The trace may represent specified participation
+without claiming to exhaust the person.
+
+The catalyst and three-marked-sphere comparisons remain limited aids. The
+catalyst image names participation without incorporation of a person into the
+documentary product; it does not say that the person is unchanged by the work.
+Three arbitrary distinct marks illustrate that occupants may be movable while
+their number, distinctness, and relations are essential; it does not establish
+that changing a panel preserves an achieved conversation. Neither comparison
+introduces participant kinds, spanning, or a change-of-basis theorem.
+
+### Base-relative articulation
+
+A proper decomposition is not absolutely context-free: factorization can
+change after extension of the coefficient field. The project should therefore
+state causal and content properties relative to their realized run, context,
+or documentation version. One first candidate is `SaturatedIn(R, c)`, saying
+that every globally witnessed causal relation between events of conversation
+`c` is already generated internally to `c` in run `R`. The banked
+`ConversationOrderComparison` gives the pointwise saturation predicate and
+both verdicts; making the base parameter and append-only extension law explicit
+is future work.
+
+The associated theorem-shaper is persistence of an unsaturation witness under
+an extension that retains old events and edges. It would say that later
+documentation cannot rewrite away a dependency already exposed in an earlier
+base. This is a Lautman-shaped relative statement, not an identification of
+causal saturation with completeness, encapsulation, or Simondonian
+metastability.
+
 ### The conversation-derived output form
 
 The ChatGPT exchange preserved in `workflow/arc/15_metaphysics_and_logic.md` proposed a useful three-moment summary:
@@ -110,7 +156,9 @@ Hoapa's genuine proposed extension is to make Lautman's already-double movement 
 
 **What it models.** The view is useful wherever a context is not merely an external container and an individual is not a primitive atom: a particular form precipitates from a structured field, modifies that field, and leaves it capable of further individuation. It distinguishes stabilization from terminal closure and a developmental sequence from repeated copies of one finished object.
 
-**Relation to our arc.** Arc/16 uses Simondon to interpret an operational episode `w : L M → K₀` as a particular individuation within a contextual field, and its transpose `w♯ : M → R K₀` as that episode's contextual presentation. The universal / particular split aligns suggestively with Lautman's synthetic / analytic decomposition. This is an interpretation, not evidence: transposition is automatic for any adjunction, no class of admissible individuations has been defined, and persistent transduction would require the non-collapse obligation in `targets.md` §T3 plus the changing-context semantics investigated in `future_work.md`. Simondon shapes what counts as developmental success—renewal without exhausting the field—but supplies no theorem about `Allow ⊣ Require`.
+**Relation to our arc.** Arc/16 uses Simondon to interpret an operational episode `w : L M → K₀` as a particular individuation within a contextual field, and its transpose `w♯ : M → R K₀` as that episode's contextual presentation. Arc/17 sharpens the placement: conversations and achieved artifacts individuate; participants arrive as already declared persons rather than being individuated by the protocol; and receptivity or unresolved potential belongs to the milieu and its available continuations rather than to an identity-refining participant property. A successful closure may still leave the context charged with unresolved dependencies or new possible work.
+
+The universal / particular split aligns suggestively with Lautman's synthetic / analytic decomposition. This is an interpretation, not evidence: transposition is automatic for any adjunction, no class of admissible individuations has been defined, and persistent transduction would require the non-collapse obligation in `targets.md` §T3 plus the changing-context semantics investigated in `future_work.md`. Simondon shapes what counts as developmental success—renewal that preserves earlier achievements without exhausting the field—but supplies no theorem about `Allow ⊣ Require`. His account of good form already includes preservation and renewed capacity, so that criterion should not be attributed to the project's Care anchor alone. The terminology remains provisional pending a primary-text pass: in particular, the project's causal "saturation" must not be renamed metastability merely because the words suggest one another.
 
 ---
 
@@ -123,6 +171,37 @@ Hoapa's genuine proposed extension is to make Lautman's already-double movement 
 **What it models.** A finite combinatorial presentation can retain global topological and arithmetic information, while a tower organizes how such presentations vary, glue, and transform across levels. It is therefore a strong source of tests for presentation invariance, controlled forgetting, monodromy preservation, and nontrivial comparison—but not a ready-made model of Hoapa's monad iteration.
 
 **Relation to our arc.** Dessins occupy a dual but compatible position: they are far-end K-side moduli / cover objects and possible K-facing elements of a future cross-site mediator. The candidate technical form is the independently constructed, space-valued shape-witness profunctor recorded in `future_work.md`, whose later two-sided representability would recover T1 rather than constitute separate evidence for it. The principal mismatch is still open: the modal route currently offers a bare `S²`, while a dessin needs a three-marked base plus branch and cover data. The Esquisse material therefore supplies a gated test and a theorem-shaper, not an anchor or a constructed bridge.
+
+### Grothendieck–Riemann–Roch as a Lautman–Simondon crossing
+
+The Grothendieck–Riemann–Roch theorem is useful here as a historical and
+mathematical theorem-shaper: a construction over a space is transported to its
+base while retaining a corrected invariant, and the corrected comparison makes
+individual data and ambient organization inseparable. In the longer movement
+of arithmetic geometry, constituents disclosed by analysis can become
+coordinates of a new synthetic domain: primes become points of `Spec(ℤ)`,
+arithmetic becomes geometry over that base, fibers recover arithmetic at its
+places, and Galois symmetries can then act on geometric or combinatorial
+objects. These are related transformations, not one automatic step.
+
+For Hoapa the corresponding candidate movement is that a conversation's
+achieved output becomes an admissible coordinate or input of a later context.
+The precise criterion is preservation with renewal: specified earlier
+artifacts and judgments remain recoverable, while a genuinely unavailable
+continuation becomes admissible. Tier B's relative change of actor base is a
+small existing instance of the preservation shape; contextual renewal is the
+larger open instance. The analogy supplies no Grothendieck–Riemann–Roch theorem
+for Hoapa and no Galois action. Historical reuse of a theorem by later
+mathematics is also not the project's technical recorder-fidelity or
+purpose-relative `Replay`.
+
+This crossing helps locate arithmetic without making it the coefficient of a
+Chu pairing. Arithmetic is positive structure on a base and its categories,
+not the constitutive exterior. A structured level-0 base may emerge from
+level-−1 outputs even though eligible participants have no privileged
+coordinate. The subsequent symmetry stage still needs an actual group, action,
+and invariant—ultimately gated by the unbuilt `MO_1` and its arithmetic
+geometry.
 
 ---
 
@@ -350,7 +429,8 @@ Status: **grounded** = already represented in Hoapa; **candidate** = worth testi
 - Categorical patch theory.
 - Homotopical Patch Theory using higher inductive types.
 - Pijul-style change graphs, partial clones, dependency and conflict data.
-- The protocol-version category `Π`.
+- Explicit protocol versions and bounded changes; `Π` currently names this
+  responsibility, not an already-constructed protocol-version category.
 
 **Duality And Physics**
 - Categorical quantum mechanics and categorical no-cloning / no-deleting.

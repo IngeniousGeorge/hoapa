@@ -6,7 +6,14 @@ tags: [focus:cross-site, kind:state, level:scoping]
 
 The arc is articulated in `arc.md` (now pair-first: `Allow ⊣ Require` with the five arc/09 anchors) and decomposed into propositions T1–T7 plus T_recursion in `targets.md`. Philosophical seed in `motivation.md`. Brainstorming archive: `deep_context/arc/`.
 
-Bandwidth is on Concurrency, after a cycle of reframes that has converged: actor-causal + Caires-Pfenning hybrid (substrate) augmented by an operadic interaction-algebra layer (`O_1`), with the modular envelope `MO_1` as long-horizon target. ModalHoTT is paused at the de Rham named-coefficient rung with a defined return plan (S¹ + cyclic bar construction) coordinated with the concurrency commitment.
+The concurrency substrate and runtime junction have accumulated several banked
+results, but the next program is now selected rather than lane-open. A minimal
+3R behavioral kernel first tests whether causal parents are earned from message
+dependencies; 2S then extends the contract and no-leak ladder toward closure,
+publication, and change of actor base; Λ and context renewal follow only from
+that evidence. In parallel, 1C reopens because the current unrestricted flat
+signature collapses every type to flat-modal. The cyclic-bar and modular-envelope
+directions remain gated research programs, not the modal repair plan.
 
 ## Concurrency  <!-- tags: focus:concurrency, level:scoping -->
 
@@ -18,7 +25,7 @@ The interaction algebra is `O_1` — the cyclic operad with one binary generator
 
 The first concrete typed-content instance is now shipped and partially de-postulated. `Concurrency/Algebras/SessionSyntax.agda` carries the postulate-free object grammar, including syntactic `dual-involutive`; `SessionMorphismSyntax.agda` carries a set-truncated morphism HIT with the 17 structural/additive formers and 21 laws as path constructors; `Sessions.agda` reuses those layers to instantiate the `O_1` algebra interface and derive the categorical / operadic `boundary-swap-at-gen`. The latter is checked relative to the chosen `session-O1-action`, the only remaining Sessions postulate. The bridge between the two R8 faces is explicitly deferred to richer session-categorical structure.
 
-The actor-causal locality leg is now shipped: `Concurrency/Sites/{ActorBase,ActorCausal}.agda` makes R6 concrete with opaque unityped actors, Lamport-style event causality, local frames, strict-reflecting frame embeddings, basis covers, and a Bool-based non-trivial cover witness. Promotion of a completed conversation into an actor-like node is deliberately not a `FrameHom`; it is reserved as a future morphism class for the `MO_1` / conversation-of-conversations stage.
+The actor-causal locality leg is now shipped: `Concurrency/Sites/{ActorBase,ActorCausal}.agda` makes R6 concrete with opaque unityped actors, Lamport-style event causality, local frames, strict-reflecting frame embeddings, basis covers, and a Bool-based non-trivial cover witness. `FrameHom` remains a fixed-base sub-view embedding. The selected promotion mechanism is publication plus typed reference: a completed conversation supplies an artifact to later work without becoming an actor or requiring a collapsing frame morphism.
 
 Hybrid v1 shipped the first adapter layer (`Presheaf.agda`, `SessionPresheaf.agda`): generic frame presheaves, zero-postulate separatedness, and constant session-valued witnesses. The fast-track finite layer has now landed on the finite-frame subsite: `FiniteFrame.agda`, `FiniteCover.agda`, `TinyFiniteCover.agda`, and the `Hybrid/` finite-descent files give full finite-site event-product descent, including the Sessions constant-slot instantiation and the first concrete two-point finite-cover validation. The value-axis refactor has also landed: `CategoryApplicative.agda`, `FinitePresheaf.agda`, `FiniteDescent.agda`, `FiniteFramePresheafFunctor.agda`, and `FiniteSheafCategory.agda` now run over Cubical `Category`, with `StarAutonomousCategory.agda` feeding the V-valued/session side and `SetFiniteSheafCategory.agda` feeding the `SET` side. `FiniteProducts.agda` is likewise category-generic; `SetFiniteProducts.agda` and `SetEventProductSheaf.agda` provide a concrete Set-valued event-product object. Strategy D has now landed on the finite site: lean finite basis covers, a Cubical `Coverage` over `FiniteFrameCategory`, and a SET comparison theorem between the project `IsSheaf` record and the Cubical library `isSheaf`. R4 has advanced through the Benton/LNL finite-sheaf bridge: `ChangeOfBase.agda`, `LinearNonlinear.agda`, and `LinearNonlinearSheafAdapter.agda` give presheaf-level change of base, the lifted adjunction `liftF ⊣ liftG`, and right-adjoint (`G`) sheaf preservation; `FiniteSheafification.agda` states the finite-site reflector interface, and `LinearNonlinearSheafAdjunction.agda` assembles the sheaf-level adjunction conditionally on a V-side reflector. This is still not event-dependent session content and does not construct the generic full finite actor-causal reflector. The live R4 route has now constructed the point-generated sheafification over the supported subsite. `EventPoint.agda`, `EnumeratedProduct.agda`, and `Pointification.agda` land the variable-slot pointification spike; `EventSupported.agda`, `PointOverlap.agda`, and `PointCover.agda` supply the supported point-cover geometry; `SupportedFiniteFrameCategory.agda`, `SupportedPresheafCategory.agda`, and `RestrictToSupported.agda` package the supported subsite; `SupportedPointProduct.agda` gives the abstract slot-indexed point-product API; `SupportedPointification.agda` and `SupportedPointDescent.agda` give pointification and the point-sheaf/point-local comparison; `PointifyIsSheaf.agda`, `PointSheafCategory.agda`, `PointSheafification.agda`, and `PointSheafAdjunction.agda` prove that pointification lands in point sheaves and assemble the reflector adjunction `a ⊣ ι`. Brick 4 now wires this into the point-generated sheaf bridge: `SupportedChangeOfBase.agda`, `SupportedLinearNonlinearSheafAdapter.agda`, and `PointLinearNonlinearAdjunction.agda` construct the supported presheaf lifts, prove `G` preserves point sheaves, and assemble `Lpoint ⊣ Rpoint`. The theorem is relative to a value-level `lnl : LNLAdjunction` and a finite-products hypothesis `vProd` on `StarAutonomous→Category V`.
 
@@ -45,7 +52,7 @@ Level 1: `_Site`, `_Algebra`, `_Sheaf`, `_Topos`. Causality is not top-level —
 Canonical decomposition (a Grothendieck site *is* a small category + a topology).
 
 - `_Site._ActorBase` — shipped in `Concurrency/Sites/ActorBase.agda`: opaque `ActorBase` carrier plus Lamport `CausalOrder`; no roles, payloads, session syntax, or actor-origin tags in the verified kernel.
-- `_Site._Category` — shipped in `Concurrency/Sites/ActorCausal.agda`: `LocalFrame` objects and strict-reflecting `FrameHom` morphisms. A `FrameHom` is a sub-view embedding, not a quotient; conversation-promotion is deferred as a separate future morphism class.
+- `_Site._Category` — shipped in `Concurrency/Sites/ActorCausal.agda`: `LocalFrame` objects and strict-reflecting `FrameHom` morphisms. A `FrameHom` is a sub-view embedding, not a quotient; publication and typed references, rather than a second frame-morphism class, carry results into later conversations.
 - `_Site._Topology` — shipped in `Concurrency/Sites/ActorCausal.agda`: basis-form `Cover`, generated-sieve bridge `sieve-of`, generic identity / transitivity cover constructions, and `ActorCausalSite` with stability named as a field.
 
 ##### `_Algebra`  <!-- concept:algebra -->
@@ -177,20 +184,46 @@ Named, like modules. R1–R6 are from the hybrid substrate's level-2 scoping; R7
 
 ## ModalHoTT  <!-- tags: focus:modalhott, level:scoping -->
 
-Paused at the de Rham named-coefficient rung. Synthetic-side fracture (`Modalities/Fracture.agda`) and structural pinning (`Cohomology/FlatCoefficients.agda`) have landed; the analytic mirror (`formal/Analytic/`) is bounded by `♯(Bℤ)` undefined. Postulate budget catalogued in `future_work.md`.
+The current synthetic signature is structurally degenerate. `Cohesion.agda`
+postulates both an unrestricted `flat-intro : A → FlatModality A` and dependent
+`flat-ind`. Applying `flat-ind` to the family
+`flat-intro (flat-counit u) ≡ u`, with the base case supplied by
+`flat-counit-intro`, gives the missing inverse law for every `A`. Thus
+`flat-counit` is an equivalence for every type: every type is flat-modal. The
+idempotency proof in `Adjunctions.agda` is this argument one modality level up.
 
-The endofunctor-and-unit scaffold for T_recursion is in place: `formal/ModalHoTT/Modalities/Iteration.agda` defines `T`, `T-map`, `T^_`, `η^_`, postulated `η-naturality`, derived `η^-coherent`, `T-sequence`, and `ND`, but does not yet bundle a full adjunction or monad. The checked collapsing control `formal/ModalHoTT/Modalities/IterationCohesion.agda` instantiates it at ʃ ⊣ ♭: `η-equiv-at-T : T A ≃ T(T A)` together with `η-equiv-fst`, which identifies the forward equivalence with the iteration structure map. Reapplication shows mathematically that every map after stage one is an equivalence. The standard colimit conclusion `ND A ≃ T A` is known but not yet formalized. This control constrains where the cross-site non-collapse witness is not; it is evidence neither for nor against the conjecture. The cyclic-bar construction at `S¹` is a separate proposed return path, not an extension of this collapsing computation.
+Consequently, synthetic fracture, the postulated cohesive hom-equivalences, and
+the `ʃ ⊣ ♭` iteration control are statements over a theory in which `♭` is
+equivalent to the identity. They remain accurately checked relative to their
+postulates, but they cannot be cited as non-degenerate evidence for cohesive
+ModalHoTT. The analytic `¬-IsFlatModal-delooping` result makes the intended
+semantics and this synthetic signature jointly unsatisfiable.
+
+The generic endofunctor-and-unit scaffold in `Iteration.agda` remains useful as
+generic syntax. Its specialization in `IterationCohesion.agda` is now classified
+as a degenerate control rather than a model of the intended modal side.
 
 ### Plan when bandwidth returns
 
-Two-piece program:
+1C reopens with a diagnostic obligation: formalize the all-types-flat
+derivation in a focused module so the failure is machine-checked and retained.
+The subsequent repair is a signature-design problem, not yet a chosen encoding.
+At minimum, the repaired synthetic interface and the analytic
+`¬-IsFlatModal-delooping` witness must be jointly satisfiable, and it must admit
+more than one contextual face without an automatic collapse between them.
 
-1. **Lift input from `Bℤ` to `S¹`.** The iteration scaffold is parameterized over types; switching the chosen specialization to `S¹` is a presentation move (using `Bℤ ≃ S¹` as ∞-groupoids), not a new construction.
-2. **Switch construction from η-iteration to cyclic bar construction.** New file `BarConstruction.agda` — substantial cubical-HIT work. The cyclic flavor (Connes' cyclic category, Loday / Getzler-Jones lineage) is chosen to match the `Ass_cyc` lean on the concurrency side: the involution structure must intertwine across sides. Plain (non-cyclic) bar pairs with `Com_cyc`; cyclic bar pairs with `Ass_cyc`.
+Context renewal supplies the direction and first forcing case. K now suggests
+that a context is a state of documentation under which conversations and
+artifacts are admissible, and that an extension preserves specified earlier
+achievements while enabling a genuinely new continuation. Simondon's
+co-individuation of individual and milieu is a guide to this design: M should
+not wait for K to become terminally complete. No assignment of `♭`, `ʃ`, or `♯`
+to live record, public record, or language presentation is selected in advance.
 
-This unlocks the speculative cross-site identity at the intermediate level (`S¹ ↔ MO_1`). The identity is downstream evidence, not a motivator — building both sides honestly is what determines whether the identity is real.
-
-**Differential cohesion in the new outlook.** Elevated from "rhetorical packaging beyond the named-coefficient tautology" to **load-bearing for the cross-site bridge**. The differential rung (`ℜ ⊣ ℑ ⊣ &`) gives the modal side an infinitesimal layer to talk to `MO_1`'s natural infinitesimal structure (formal smoothness, tangent complex on `M̄`). See `future_work.md` "Beyond fracture" — same cost as before, sharply elevated priority. The Lawvere asymmetry refinement entered in `targets.md` §T3 is one of the structural consequences.
+The earlier `Bℤ → S¹` cyclic-bar proposal, differential cohesion, and the
+possible comparison with `MO_1` remain independent research directions. They
+may return after the modal signature and its contextual job are sound; they are
+not proposed fixes for the collapse.
 
 ## Semantic Background
 
@@ -236,13 +269,13 @@ Analytic-side mirror is future work; whether the `formal/Analytic/` pattern from
 | 2026-05-19 | Algebra layer split into `Valuation.agda` and structural `OperadAlgebra.agda` | `Valuation` is the weak HIT interpretation `O n → Hom (ports Carrier n) ⊥-par`; codomain is the dualizing object, not tensor unit `𝟙`. `OperadAlgebra` adds `plug`, `shift`, and axioms `⟦ compₒ ... ⟧ = plug ...`, `⟦ rot ... ⟧ = shift ...`, then derives `boundary-swap-structural`. Generic derivation of `plug`/`shift` from arbitrary `StarAutonomous` is deferred |
 | 2026-05-19 | `Sessions.agda` v1 landed with explicit `SessionO1Action` | Initially kept `Hom` as structural syntax and packaged `gen` / `plug` / `shift` plus six operadic laws as chosen action data. Later Phase 1 work moved the object grammar to `SessionSyntax.agda`, replaced structural `Hom` laws by the `SessionMorphismSyntax.agda` HIT, and left `session-O1-action` as the single remaining Sessions postulate. |
 | 2026-05-20 | Actor-causal site split into `Concurrency/Sites/ActorBase.agda` and `Concurrency/Sites/ActorCausal.agda` | `ActorBase` owns the opaque unityped carrier and Lamport `CausalOrder`; `ActorCausal` owns `LocalFrame`, `FrameHom`, covers, topology fields, and witnesses. Keeps primitive locality separate from site structure while avoiding over-splitting |
-| 2026-05-20 | Actor carrier is opaque and unityped | The verified communication kernel cannot distinguish humans, LLMs, or future promoted conversations. Actor-origin metadata belongs outside the kernel; no roles, payloads, sessions, or message syntax appear in the actor site |
-| 2026-05-20 | `FrameHom` uses strict causality reflection | A frame morphism is a sub-view embedding: causality is preserved and reflected. Promotion of a completed conversation into an actor-like node is therefore a future quotient/reification morphism class, not a `FrameHom` |
+| 2026-05-20 | Actor carrier is opaque and unityped | The verified communication kernel cannot distinguish participant origins. Actor-origin metadata belongs outside the kernel; no roles, payloads, sessions, or message syntax appear in the actor site. The later architecture keeps documented conversations on the artifact/reference channel rather than admitting them as actors. |
+| 2026-05-20 | `FrameHom` uses strict causality reflection | A frame morphism is a sub-view embedding: causality is preserved and reflected. The historical proposal for a quotient/reification promotion morphism is superseded by publication plus typed reference; `FrameHom` remains unchanged. |
 | 2026-05-20 | Actor-site covers use basis form, with `sieve-of` exposed for the E2 transition | Basis covers match implementation-facing local observations and concrete finite witnesses. The semantic endpoint remains the generated sieve / Grothendieck-topology presentation; prove equivalence later rather than starting Actors v1 at the sieve level |
 | 2026-05-20 | Actor-site identity and transitivity covers are generic; stability later discharged | `identity-cover-canonical` and `transitivity-cover-canonical` are constructed. `ActorPullback.agda` supplies the generic pullback-stability construction. The old `stability-cover-postulate` has been removed from `ActorCausal.agda`; the bundled tiny site now lives in `TinyActorCausalSite.agda` and uses constructed stability. |
 | 2026-05-20 | Actor-site tiny witness upgraded to non-trivial Bool cover | `TinyAB` uses `Fin 2`; `TinyCausal` uses `Bool` events with `false ≤ true`; `PointFrame` embeds by `embed-point false` / `embed-point true`; `two-point-cover` exercises non-trivial index, patch, embedding, and event-lift data |
 | 2026-05-20 | Hybrid v1 shipped as adapter layer | `Concurrency/Hybrid/Presheaf.agda` provides generic `FramePresheaf`, zero-postulate `IsSeparatedPresheaf`, and `const-presheaf`; `SessionPresheaf.agda` specializes to `Sessions-Cat Payload` and exposes both `const-𝟙ₛ-presheaf` and `const-⊥ₛ-presheaf`. This implements Adapter 1 (restriction) and names future adapter slots without faking descent or a unit/dualizing conversion |
-| 2026-05-21 | Reflexive Protocol Layer named; not implemented | Π = category of protocol versions; protocol edits = morphisms in Π. Promotion (Adapter 5) sharpened with operational role: closed meta-conversation reaching consensus → Π-morphism. Consensus framed as future colimit / coherent amalgamation in a patch-theoretic fragment category, with Pijul as primary implementation-facing candidate; precise categorical shape held open. `Concurrency/Hybrid/Reflexive.agda` reserved as future home. `MO_1` elevated to active roadmap without displacing the concurrency R4 path as the next technical step. Layer is new formal content, compatible with and anticipated by current scaffolds but not already implicit in them |
+| 2026-05-21 | Reflexive Protocol Layer named; not implemented (historical shape later narrowed) | Π was proposed as a category of protocol versions, with promotion and consensus interpreted through a patch-theoretic fragment category. The current selected direction is narrower: explicit versions, bounded changes, preservation obligations, and an activation boundary must be earned from context-renewal cases before a categorical carrier or colimit reading is chosen. |
 | 2026-06-04 | Finite event-product descent landed | Added finite additive products, finite frames/covers with carried overlap enumerations, generic finite event-product presheaf, and full finite-site descent (`IsSheaf`) over `FiniteCover`s. The result is non-degenerate by arity: `value F = P₀ ^ event-count(F)`, including empty-frame normalization by the terminal additive product. |
 | 2026-06-04 | Sessions constant-slot instantiation landed | `Sessions.agda` gained additive product syntax and laws; `SessionEventProductSheaf.agda` instantiates the generic finite witness at `Sessions-Cat Payload`. This is constant-slot B2(a), not event-dependent session content and not additive coproduct universal properties. |
 | 2026-06-04 | Tiny finite cover witness landed | `TinyFiniteCover.agda` and `TinyEventProductExample.agda` exercise the finite descent stack on the existing `TinyFrame` / `PointFrame` two-point cover. The proof-level target landed; definitional computation remains only an optional future bonus. |
@@ -265,14 +298,31 @@ Analytic-side mirror is future work; whether the `formal/Analytic/` pattern from
 | 2026-09-05 | The internal conversation order is a truncated reflexive-transitive chain | Mirroring the global order's `(x ≡ y) ⊎ ∥chain∥` shape would have required proving the two branches disjoint, which needs the rank machinery that `CausalFromParents` deliberately keeps private. The truncated `StarL` gives `isProp` from the truncation, `refl` from the empty chain, `trans` from concatenation, and `antisym` by factoring through the global order. No equivalence between the two presentations is claimed or used; `≤L-least` is the universal property that makes `StarL` the genuine generated order rather than a convenient variant. |
 | 2026-09-05 | `TraceLookup` moved out of `Realization/` | Its whole content — raw lookup, Boolean facts, validator peeling — is below realization, and the substrate-free `ConversationActorCoverage` importing it made the layering read as an inversion. Moving the module was preferred to duplicating lemmas or widening the trusted kernel. Mechanical, no proof changed. |
 | 2026-09-06 | Tier A separates arbitrary maps, embeddings, and permutations | `ActorRenaming.agda` proves raw identity/composition for arbitrary actor maps, exact `valid?` equality for total injective endomaps of `ActorId = ℕ` over every raw run, and the bijective/gauge result by restricting to permutations. The `WellFormed` path and both transports are exported. The direct Boolean route bypasses the planned inverse proof; list-local bijectivity is insufficient at the all-raw-runs strength because malformed runs may mention undeclared actors. |
-| 2026-09-06 | Tier B requires relative change of actor base | `CausalFromParents.agda` builds a run-specific realized actor subtype, while `ActorCausal.agda` fixes one `ActorBase` and its `FrameHom` has no actor map. Realized renaming is therefore not expressible in the current fixed-base interface. The earned direction is a category of actor-name presentations and equality-reflecting embeddings, its core groupoid, and a relative morphism over an actor-base map that leaves existing `FrameHom` intact. |
+| 2026-09-06 | Tier B requires relative change of actor base | `CausalFromParents.agda` builds a run-specific realized actor subtype, while `ActorCausal.agda` fixes one `ActorBase` and its `FrameHom` has no actor map. Realized renaming is therefore not expressible in the current fixed-base interface. The selected first step is a substrate-native actor-base map and relative `FrameHomOver` that leave existing `FrameHom` intact; a category of name presentations or its core groupoid waits for a consumer. |
+| 2026-09-12 | Levels, layers, and adapters are independent axes | Levels name what occupies a conversation's subject positions; layers separate responsibilities such as sessions, Λ, reflexivity, and Federation; adapters relate structures across those separations. The level-0 graph is not thereby identical to Λ, and promotion is an artifact interface rather than a new frame morphism. |
+| 2026-09-12 | Conversation sessions are immutable; editing is append-only | `convSession` records genesis and orchestration. A change of protocol starts a new conversation under another session tag. Provenance types derivation and closure; content carries refinable references through appended events or conversations. |
+| 2026-09-12 | Closure is a distinguished terminal event with success and failure outcomes | A conversation closes at most once in any valid prefix and exactly once in a published closed run. Nothing later belongs to that conversation. Failure produces a documented record that may be referenced by a resubmission; assent remains an interface concern rather than checker vocabulary. |
+| 2026-09-12 | Promotion is publication and reference, not collapse | A closed output becomes available to later work through an exported artifact interface. Existing strict-reflecting, fixed-base `FrameHom`s retain their local-view meaning; no quotient-like morphism turns a conversation into an actor. |
+| 2026-09-12 | Λ owns identification, coherence, and purpose-relative compression | Dependency edges stay directed. Documentation versions retain comparison history, select an admitted set, and construct a presentation subject to observational adequacy. A separate homotopy layer is not yet earned. |
+| 2026-09-12 | Context renewal is the forcing direction for rebuilding M | The current unrestricted flat signature collapses every type to flat-modal. Its replacement must be shaped by non-trivial documentation contexts and extensions that preserve stated achievements while admitting new work, without preassigning cohesive modalities to architectural nouns. |
+| 2026-09-12 | Federation constrains public identity and interpretation | Public content identifiers are stable and publisher-scoped; peers exchange finite versioned bundles relative to explicit import boundaries and may retain different admitted comparisons. Federation supplies no global actor directory, clock, quotient, or consensus. |
 
 ## Blockers  <!-- tags: kind:state -->
 
 (Previous Open Questions archived to `deep_context/archived_blockers/2026-05-17.md`. Deferred items migrated to `future_work.md`.)
 
-Concurrency: none externally active. The first concurrency operad, algebra signatures, concrete typed-content `Sessions.agda` instance, actor-causal site v1, Hybrid v1 restriction, finite products, finite covers, finite event-product descent, the constant-slot Sessions sheaf, the concrete tiny finite-cover witness, both V-valued and Set-valued finite sheaf endpoints, the finite C8/C9 Coverage bridge, the C6 SET library comparison, the point-generated R4 bridge, the `Chu(SET,Bool)` coefficient witness, and the Sessions-to-Chu object/morphism realization have shipped. The runtime-contract lane has also banked coverage, causal-saturation comparison, and Tier A raw actor-renaming invariance. Its next internal design gap is change of actor base for Tier B, not an external blocker. On the independent 1C lane, the next substantive choice is no longer a mechanical R4 continuation: either pursue O1-in-Chu / `session-O1-action` by adding earned categorical structure, or open the Reality/Documentation/Chu boundary track. The modal-context category `M` and eventual cross-site adjunction remain downstream.
-ModalHoTT: none active (paused).
+Concurrency: none externally active. The first operad/algebra/site stack, finite
+descent, point-generated R4 bridge, `Chu(SET,Bool)` witness, Sessions-to-Chu
+realization, runtime-to-frame interpretation, coverage/order comparison, and
+Tier A are banked. Tier B is internally blocked on a relative change-of-actor-
+base interface. Closure, publication, reference, and Λ work are selected but
+not yet implemented; their executable evidence depends on the staged contract
+and kernel work recorded in `status_implementation.md`.
+
+ModalHoTT: active structural blocker. The current unrestricted flat rules imply
+that every type is flat-modal, conflicting with the analytic delooping witness.
+The first 1C obligation is to retain that diagnosis as a checked lemma; repair
+requires a newly justified modal signature and is not yet designed.
 
 ## Current Concurrency state  <!-- tags: kind:state -->
 
@@ -359,9 +409,9 @@ Shipped to `formal/Concurrency/Sites/`:
 | `PointOverlap.agda` | Event-supported point overlaps replacing raw actor-intersection pullbacks; off-diagonal overlaps become actor-empty through support | 133 |
 | `PointCover.agda` | Parallel canonical point-cover interface over finite event-discrete frames with event-supported overlaps, projections, and supported-point packaging | 203 |
 
-The actor site deliberately does not import `Sessions.agda` or operad files. Its job is locality: actor membership, event incidence, causal sub-view embeddings, and local-frame covers. Typed content, `O_1` operations, and conversation-promotion stay out of the carrier.
+The actor site deliberately does not import `Sessions.agda` or operad files. Its job is locality: actor membership, event incidence, causal sub-view embeddings, and local-frame covers. Typed content, `O_1` operations, publication, and artifact references stay out of the carrier.
 
-`FrameHom` is strict: causality is preserved and reflected, making it a sub-view embedding rather than an arbitrary monotone map. This preserves the future distinction between embedding a local view and promoting a completed conversation into an actor-like node.
+`FrameHom` is strict: causality is preserved and reflected, making it a sub-view embedding rather than an arbitrary monotone map. Results enter later work through the publication/reference interface, not by weakening this morphism or reifying a completed conversation as an actor.
 
 `Cover` is basis-form (E1), and `sieve-of` remains the bridge artifact for a full actor-site sieve/Grothendieck-topology presentation. On the finite subsite, E2 has landed as `FiniteFrameCoverage`: pullback stability is constructed from finite pullbacks and `pb-square`. The identity and transitivity cover axioms have generic constructions; the former actor-site stability postulate has been eliminated, and the bundled tiny site uses `ActorPullback.agda`'s constructed stability.
 
@@ -434,34 +484,86 @@ Verification record: the finite-site stack, both endpoints, the Strategy D bridg
 
 Named here as a future commitment; no Agda content yet. Canonical source: `deep_context/arc/07_self-modifying_protocol.md`.
 
-The framework treats some conversations as *meta-conversations*: special conversations whose role is to inspect and (on consensus) modify the protocol itself. The operational picture has four pieces, all of which translate to mathematics already named by the static framework but not yet formalised at this layer:
+The framework treats some conversations as *meta-conversations*: their subject
+matter is a bounded change to a protocol or documentation context. The current
+commitment is operational before it is categorical:
 
-1. **Protocol-version category Π.** Protocols themselves form objects of a small category Π; a protocol edit is a morphism in Π. The reflexive layer lives over Π by a forgetful functor that recovers the current Hybrid structure at each version.
-2. **Non-retroactivity.** Past events live under the protocol active at the time of their occurrence; protocol edits affect future events only. This is already enforced at the locality leg: `FrameHom`'s strict causality reflection in `ActorCausal.agda` makes retroactive rewriting structurally impossible, which is why promotion was deliberately excluded from `FrameHom` and reserved as a separate morphism class.
-3. **Promotion as bridge (Adapter 5, sharpened).** A closed meta-conversation that has reached consensus *promotes* into a Π-morphism. This is the concrete operational duty of the Promotion adapter named in `Hybrid/Presheaf.agda`'s header: not just "conversation becomes actor," but "consensus of a meta-conversation becomes a protocol edit."
-4. **Consensus as future colimit / coherent amalgamation.** Edit proposals from inside a meta-conversation form a diagram; consensus is intended to become colimit / existence of coherent amalgamation in a future patch-theoretic fragment category. **Pijul is the primary implementation-facing candidate**; the precise categorical shape (category, double category, event structure, adhesive category, partial-commutation presentation) is held open until the candidate is examined honestly. Inconsistent proposals — a diagram with no colimit / no coherent amalgamation — give the framework an honest formal counterpart of "the protocol cannot be coherently edited from here."
+1. **Explicit versions and activation.** A conversation runs under an immutable
+   session/protocol version. A successful proposal names a later version and an
+   activation boundary; it never rewrites events already recorded.
+2. **Preservation and renewal.** A proposed change must state which earlier
+   artifacts and judgments remain usable, which operation becomes newly
+   admissible, and what remains unavailable. Mere duplication or renaming does
+   not count as renewal.
+3. **Interface-mediated promotion.** A closed artifact may be referenced as an
+   input to later work. There is no frame morphism that collapses a conversation
+   into an actor, and closure alone does not enact a protocol change.
+4. **Local admission.** Candidate generation and assent belong to the interface.
+   The contract records the resulting closure and version decision; it does not
+   identify unanimity with a colimit or require a global amalgamation object.
 
-**Why this is new formal content, not already-present.** The current Agda scaffolds were *designed to receive* the reflexive layer: `ActorCausal` blocks promotion as `FrameHom`; `Sessions` explicitly defers conversation-of-conversations to `MO_1`; `Hybrid/Presheaf` names Promotion as Adapter 5. None of these contain protocol versions, edit morphisms, or version-indexing. The reflexive layer is compatible with and anticipated by the scaffolds, but it is not already implicit in them.
+This is new formal content. The present scaffolds contain neither protocol
+versions nor activation boundaries, and strict causality reflection by itself
+does not prove non-retroactivity across versions. The first forcing case is more
+modest than self-modification: a successful artifact becomes an admissible input
+to further work while named earlier achievements remain usable. A bounded
+protocol change follows only after that case is explicit.
 
-**Self-scanning as eventual operational interpretation.** "Regular-interval meta-conversations" map naturally onto modal iteration, but the formalised iteration in `ModalHoTT/Modalities/Iteration.agda` + `IterationCohesion.agda` lands only the first-level collapse — not the dimension-raising cyclic bar construction required for the cross-site recursion. Self-scanning is the operational interpretation of that *future* recursion, not of the current scaffold.
+The reflexive responsibility belongs to layer Π, not to an adapter merely because
+an old header reserved a promotion slot. Its categorical carrier remains open.
+Patch categories, event structures, or other accountable-change structures may
+become useful when a concrete concurrent-edit case forces them; `MO_1`, cyclic
+bar constructions, and modal iteration remain downstream comparisons rather
+than the definition of Π.
 
-**Roadmap impact.**
+**Trigger for formal work.** Open a focused module only once one of the two
+context-renewal transitions above supplies a red obligation: recovery at the
+identity change, preservation under a genuine extension, composition and
+renaming behavior, and a newly admissible operation. That same transition is
+the current trigger for asking what category of documentation contexts M must
+provide.
 
-- **Promotion (Adapter 5)** gets a concrete job description; header sharpened in `Hybrid/Presheaf.agda`.
-- **`MO_1` / modular envelope** elevated from "held loose" to active roadmap as the natural home for self-gluing / conversation-of-conversations. This does *not* displace the immediate exposition / instantiation track for the point-generated R4 theorem — `MO_1` becomes the natural next slot only after the Hybrid site-axis, the point-generated bridge, and the intended instantiation story are stable enough to support modular-envelope work; the cross-site adjunction and bar-construction comparison remain downstream.
-- **Dual of T_recursion iteration on the concurrency side** (deferred per `future_work.md` "until `ND` has non-trivial content") becomes statable once the reflexive layer gives `ND` operational meaning.
+### Selected next program
 
-**Where it goes in the Agda tree.** `Concurrency/Hybrid/Reflexive.agda` reserved as the future module slot. Kept inside the Hybrid layer because the protocol-version structure reads as one more adapter (between the current Hybrid instance and the next), and because the project avoids premature folder proliferation. If the file later grows into a genuinely higher-order protocol calculus, it can be split out to `Concurrency/Meta/` at that point.
+The point-generated R4 bridge, its Chu witness, and the Sessions-to-Chu
+object/morphism realization are landed. The harmonization program now has an
+ordered dependency shape:
 
-**Trigger for opening `Hybrid/Reflexive.agda` v0.** Two conditions, both required: (a) the point-generated R4 bridge and its exposition / instantiation boundary are stable enough that the Hybrid chassis is no longer moving, and (b) the fragment-category candidate (Pijul or alternative) honest enough to state in Agda.
+1. **1C, in parallel:** check the all-types-flat collapse in a diagnostic
+   module, reclassify dependent results, and investigate a non-degenerate
+   contextual signature. Context renewal supplies the forcing direction, not a
+   preselected modal encoding.
+2. **3R minimal causal kernel:** earn one non-empty parent edge from an actual
+   consumed message through the existing recorder. This precedes more 2S
+   structure because every banked causal realization currently rests on
+   human-authored parents.
+3. **2S contract and closure:** specify closure, references, stable publication
+   identity, and valid-prefix versus closed-export predicates; then extend the
+   serialization corpus red-first.
+4. **2S public/live boundary:** specify the closure transform, local actor
+   pseudonymization, the public content observation, and Tier B change of actor
+   base without changing fixed-base `FrameHom`.
+5. **2S relative views:** reuse the registered/panel/event-supported views,
+   finite membership lemma, base-relative saturation, and append-only
+   persistence candidates only after their precise predicates have falsifiers.
+6. **3R full assembly:** add task intake, injected sampling, panel processes,
+   closure, publication, failure records, and resubmission around the minimal
+   causal kernel. This is when a separate checker app first has behavioral
+   evidence to consume.
+7. **Λ and Federation:** interpret episodes, artifacts, concepts, versions,
+   dependencies, and admitted comparisons from published evidence. Before the
+   artifact interface is frozen, exercise a two-peer finite fixture with local
+   identifier collisions, pinned offline imports, divergent admissions, and a
+   one-sided withdrawal.
+8. **Context renewal:** first make a successful artifact an admissible input to
+   new work; only later admit bounded protocol change with explicit versions
+   and an activation boundary. This is the first K phenomenon that may force
+   the category of contexts needed by M.
 
-### Next frontier
-
-The immediate formal frontier is no longer the point-generated R4 bridge itself. That theorem, its Chu coefficient witness, and the Sessions-to-Chu object/morphism realization are landed. The active split uses the number+letter lane convention:
-
-- **3R - runtime:** Elixir/Rust runtime work. The tiny-run construction seam, event-log pass 1, and the cross-conversation corpus/export/replay scope are banked: `Hoapa.Core.EventLog` is an unnamed, append-only recorder that preserves caller-supplied contract records exactly and exports a `Run`. It is neither a checker nor an originator of actor behavior. A duplicate literal-call construction of the cross-conversation fixture is optional, not forced. The actor kernel is the strongest next evidential candidate because it would derive causal parents from behavior; fidelity sampling and authored scenario origination are distinct weaker candidates. No 3R choice is selected.
-- **2S - runtime-to-substrate:** Agda that interprets runtime-shaped evidence into the actor-causal substrate. The global-frame, conversation-locality, coverage, and order-comparison rungs are banked at `4a072fd`. `Realization/ConversationCover.agda` proves `conversation-event-covered` unconditionally, names `ConversationActorCoverage` as a hypothesis, and constructs `conversation-cover` conditionally on it; the substrate-free `RuntimeContract/ConversationActorCoverage.agda` supplies `actorsCoveredByConversations?`, proved equivalent to the realized property in BOTH directions (`coverage-sound`, `coverage-complete`), so a `false` verdict rules the hypothesis out rather than merely failing to supply it. `CausalFromParents.agda` exposes `parent-edge-implies-causal` without exposing its private chain type. `Realization/ConversationOrderComparison.agda` builds the rival parent-generated conversation order as a truncated reflexive-transitive chain, gives its universal property `≤L-least`, and proves the canonical strict embedding exists exactly when the conversation is causally saturated. Tier A raw actor-renaming invariance is now banked at `5670658`: `ActorRenaming.agda` proves functoriality for arbitrary actor maps, exact validator invariance for total injective endomaps, and the invertible permutation specialization. If 2S is selected next, Tier B begins with change of actor base; session-tag assignment stays deferred as a decorating layer over realized frames.
-- **1C - pure conjecture:** O1-in-Chu / `session-O1-action`, Reality/Documentation/Chu, full reflector enrichment, later cross-site `Allow ⊣ Require`, and the modal cyclic-bar return. These remain real directions. No lane has been selected for the next session.
+The conjecture-scale gates remain downstream: earned `session-O1-action`, a
+consumer for the full actor-causal reflector, independently constructed
+cross-site comparison before representability, and non-collapse tested on an
+actual `Allow`/`Require` pair.
 
 Important scope notes:
 
@@ -480,7 +582,11 @@ Important scope notes:
 ### Held-loose long-horizon items (no near-term action)
 
 - **Full actor-causal reflector enrichment** — later, decide whether to extend the point-generated construction to richer covers where causality and actor incidence become descent content.
-- **Cross-site `Allow ⊣ Require`** — define the modal-context category `M`, then the actual functors, unit, counit, and triangle identities; instantiate the generic iteration scaffold only after the concurrency-internal adapter and runtime junction are stable enough to serve as the operational side.
+- **Cross-site `Allow ⊣ Require`** — context renewal now supplies a trigger for
+  defining `M`: the first preservation-and-extension transition that genuinely
+  needs a category of contexts. Construct the actual functors, unit, counit,
+  and triangle identities only after that case is explicit; do not repair the
+  current modal signature by postulating the desired pair.
 - **Modal return plan** — lift `Bℤ -> S¹`, switch eta-iteration to cyclic bar, and coordinate with the concurrency modular-envelope direction only when both sides have earned the needed structure.
 - **Pask-style human-implementation layer** — conversation-as-operadic-composition. Speculative until `MO_1` makes conversation creates conversation a literal operadic operation. Held in motivation only.
 - **Pedagogy track** — current for the synthetic ModalHoTT and Concurrency Agda trees as of 2026-05-21. Analytic pedagogy remains intentionally out of scope unless explicitly requested.

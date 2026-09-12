@@ -21,6 +21,7 @@ imports 1C only once a 1C result has become a stable interface.
 
 - Formal and conjectural state: `workflow/status_formal.md`
 - Runtime and checker state: `workflow/status_implementation.md`
+- Participant and information-flow architecture: `workflow/architecture.md`
 - Canonical concurrency reframe: `workflow/arc/02_concurrency_anchor.md`
 - Rejected default readings: `workflow/bias_correction.md`
 

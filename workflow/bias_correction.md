@@ -60,6 +60,81 @@ Additional arc/16 and conjecture-sharpening corrections:
 - "A space-valued mediator has effectively been constructed by naming a representable profunctor." — Rejected. Every adjunction already gives such a profunctor. New content begins only with an independently constructed interaction/cover/dessin-shaped ∞-profunctor that can then be tested for two-sided representability; none exists yet.
 
 
+Additional architecture, content, and Federation corrections:
+
+- "The unrestricted flat rules are an acceptable approximation to cohesive
+  HoTT." — Rejected. In the current signature, unconditional `flat-intro`
+  together with dependent `flat-ind` proves `flat-intro ∘ flat-counit ≡ id`
+  for every type, so every type is flat-modal. Fracture, the cohesive
+  hom-equivalences, and the iteration collapse must be read relative to that
+  degenerate signature until 1C repairs it.
+- "Tier A is the anonymization theorem for per-conversation handles." —
+  Rejected. Tier A concerns one uniform injective relabeling of the raw actor
+  channel. Per-conversation pseudonymization changes the actor base and needs a
+  local change-of-base theorem plus an observer-relative no-leak statement.
+- "A completed conversation becomes an actor through a collapsing frame
+  morphism." — Rejected. Promotion is publication through an exported artifact
+  interface plus a later reference. Banked `FrameHom`s remain fixed-base,
+  strict-reflecting local-view embeddings.
+- "A conversation's closure is consensus, and unanimity is automatically a
+  limit or a colimit." — Rejected. Success and failure both close. Candidate
+  and assent policies belong to an interface; a categorical universal
+  property must be constructed before either shape is claimed.
+- "Causal saturation is Simondonian metastability or encapsulation." —
+  Rejected. Internal generation, output terminality, boundary factorization,
+  and purpose-relative opacity are different predicates. Simondon may shape
+  their interpretation but does not identify them.
+- "Level 0 is Λ, and a closure event is a concept." — Rejected. Levels and
+  layers are independent. Closure events and typed dependency edges are
+  evidence from which a Λ interpretation may be constructed; Λ must still
+  distinguish episodes, artifacts, concepts, and documentation versions.
+- "Dependency edges are homotopy paths." — Rejected. Dependencies remain
+  directed. Only comparisons explicitly admitted in a documentation version
+  may be inverted. The core, localization, and groupoid completion are
+  different constructions.
+- "π₀ computes the real set of distinct concepts, and any non-closing loop is
+  a bias." — Rejected. Both claims require semantics and an adequacy criterion;
+  Cubical Agda is not a decision procedure for conceptual sameness.
+- "Withdrawing an identification appends an inverse constructor to the same
+  type." — Rejected. The history retains the earlier claim, while a later
+  documentation version ceases to admit it. No meaning-preserving map between
+  the two presentations is automatic.
+- "The homotopy layer is already the core of Λ, so it deserves a new numbered
+  layer." — Rejected. Identification, coherence, and purpose-relative
+  compression are responsibilities inside Λ until a forcing case earns a
+  separate layer.
+- "Engineering and biology locators are already Federation." — Rejected.
+  Locators are contexts inside a language. Federation concerns exchange
+  between independently maintained peers and versions.
+- "Federation supplies one global history, clock, language quotient, actor
+  directory, or consensus." — Rejected. Peers import finite pinned bundles,
+  make local admissions, and may retain divergent translations or
+  withdrawals. Completeness is relative to a declared import boundary.
+- "Public pseudonyms make participation unlinkable." — Rejected. The current
+  lean is fresh handles per conversation and no live identity-map export, but
+  unlinkability is a statement relative to an observer and every surviving
+  side channel.
+- "Public IDs should be reissued at closure to improve forgetting." —
+  Rejected. Federated references require stable publisher-scoped artifact,
+  conversation, and event identifiers. Actor pseudonymization is a separate
+  channel.
+- "Lautman's synthetic decomposition decomposes the person, or the selected
+  panel is a basis of the population." — Rejected. Participants are arbitrary
+  admissible occupants and co-producers within a common scheme. The work may
+  be represented and reconstructed without the trace exhausting the person;
+  no spanning or change-of-basis theorem for panels is claimed.
+- "Any eligible participant means participant choice cannot affect the
+  result." — Rejected. It means identity is not a condition of formal standing.
+  Different participants and panels may make consequentially different
+  contributions.
+- "The conjectured adjunction proves that M can donate to K but can never
+  diagnose it." — Rejected as a general slogan. A left adjoint preserves
+  colimits and a right adjoint preserves limits, but transfer of a particular
+  construction requires its actual hypotheses and comparison maps. The
+  counit is a ceiling on reconstruction, not a substitute for constructing
+  either side independently.
+
+
 If you find yourself drifting toward one of these defaults, that is the moment to re-read the corresponding instigator prompt below.
 
 ---

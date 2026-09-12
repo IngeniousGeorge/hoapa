@@ -23,15 +23,31 @@ This factors the praxis reading into a universal contextual opening `η_M` and a
 **To state cleanly.**
 - Pair is the default. Record an escape clause for later extra structure: middle `Mediate`, ambidextrous adjunction, or quadruple only if the mathematics earns it.
 - Name the slots in arc vocabulary, distinct from `ʃ ♭ ♯` which already have geometric meaning.
-- Identify the concrete categories/topoi the functors connect: the modal structural-context category M and the finite sheaf/topos layer of the concurrency category K.
+- Identify the concrete categories/topoi the functors connect: the modal structural-context category M and the finite sheaf/topos layer of the concurrency category K. M is not yet fixed as a category of documentation versions. Its first specification criterion is to host context extensions that preserve declared achievements while making a previously unavailable K-side continuation admissible.
+- Construct that renewal case in K before assigning architectural nouns to `♭`, `ʃ`, or `♯`. The candidate objects are contexts and the candidate arrows are preservation-and-extension transitions, but their mathematical kind must be earned by the first example.
 
 **To verify.**
-- Define or postulate the pair-shaped `Allow` and `Require` functors, unit, counit, and triangle identities; then instantiate the generic iteration scaffold.
+- Construct the pair-shaped `Allow` and `Require` functors independently, then prove the hom-equivalence, unit, counit, naturality, and triangle identities. Do not postulate the cross-site bridge merely to instantiate the generic iteration scaffold.
 - Use the existing cohesive examples only as internal controls. A non-trivial T1 witness must involve the constructed cross-site categories and functors; `Bℤ` alone cannot witness the cross-site adjunction or its non-collapse.
 
 ### Progress
 
-ModalHoTT-side adjunctions are formalised synthetically as hom-set equivalences with named transposes in `formal/ModalHoTT/Modalities/Adjunctions.agda` (♭ ⊣ ♯ and ʃ ⊣ ♭); `flat-modality-idempotent` is a theorem, while `sharp-modality-idempotent` and `shape-modality-idempotent` are postulated. The cross-site `Allow ⊣ Require` pair is not yet stated. The concurrency category `K` has now matured past raw presheaf scoping: finite event-product descent, the constant-slot Sessions instantiation, the concrete tiny finite-cover validation, the V-valued finite sheaf/value category, and the framework-at-`SET` finite sheaf category/object have landed as one category-generic construction. The finite Coverage bridge and library sheaf comparison have landed. The current R4 gate has advanced through the point-generated route: the variable-slot pointification spike, supported point-cover geometry, supported presheaf category, abstract point-product API, pointification-as-point-sheaf proof, point-sheaf category, reflector functor, adjunction `a ⊣ ι`, supported Benton/LNL lifts, and point-sheaf bridge adjunction `Lpoint ⊣ Rpoint` have landed. `Chu(SET,Bool)` now supplies a concrete coefficient instance for that bridge, and the Sessions-to-Chu `J0`/`J1` realization validates the postulate-free session syntax at the object/morphism level. After that come the modal-context category `M` and the actual `Allow` / `Require` functors.
+ModalHoTT-side adjunctions are formalised synthetically as postulated hom-set
+equivalences with named transposes in `Modalities/Adjunctions.agda`. The
+unrestricted `flat-intro` and dependent `flat-ind` rules also imply that every
+type is flat-modal, so these adjunctions, fracture, and the cohesive iteration
+control currently live over a degenerate signature. The analytic
+`¬-IsFlatModal-delooping` witness conflicts with that approximation. A checked
+diagnostic and a newly justified contextual signature therefore precede any
+use of the synthetic modal results as evidence.
+
+The cross-site `Allow ⊣ Require` pair is not yet stated. K has matured through
+finite descent, its SET and session-valued endpoints, the point-generated
+reflector and R4 bridge, a `Chu(SET,Bool)` coefficient instance, the
+Sessions-to-Chu realization, and the runtime-to-frame junction. Context renewal
+now supplies a forcing criterion for M; only after that object and its
+extensions are explicit can the actual `Allow` and `Require` functors be
+attempted.
 
 T_recursion (below) is downstream of T1: once `Allow ⊣ Require` is stated, its unit can instantiate the endofunctor-and-unit scaffold in `formal/ModalHoTT/Modalities/Iteration.agda`; the interface must then be enriched with the counit, multiplication, and monad laws required by T3. Naturality is load-bearing for T_recursion's `η^-coherent` lemma and is currently supplied by a postulated `η-naturality`.
 
@@ -92,6 +108,12 @@ The implications are `3 ⇒ 2 ⇒ 1`. The converses are not assumed. T3 targets 
 
 **Current posture.** This ladder states the ideal proof obligations; it is not a route the project has already traversed. The earlier fixed-point-rich / actor-locality argument is retained only as motivation and as a search heuristic, not as an alternative proof or shortcut. Existing modal and concurrency constructions remain reusable prerequisites and controls. T3 becomes directly actionable only after T1 supplies the concrete categories, functors, counit, multiplication, and monad laws. This does not block the current 2S/3R work.
 
+Sortition, per-conversation pseudonymization, and purpose-relative publication
+give a concrete motivation for counit loss: public documentation deliberately
+cannot reconstruct the live participant field. This is motivation only. It
+does not identify `Require`, construct a counit component, or prove any rung of
+the non-collapse ladder.
+
 **To state cleanly.**
 - Construct enough of the cross-site `Allow ⊣ Require` adjunction to define its `T`, `ε`, and `μ`; the current generic iteration scaffold contains an endofunctor and unit but does not yet bundle the counit, multiplication, or triangle identities.
 - Treat actor locality and the absence of a global frame as possible ingredients of a rung-2 witness, not as a proof of one.
@@ -149,7 +171,12 @@ The original formulation — A_5 simple-and-transitive on the 12 icosahedral ver
 
 *Arc anchor: `arc.md` §6 (the math fragment that fracture/de Rham instantiates).*
 
-**Claim.** The fracture theorem (status_formal.md current task) and the de Rham separation result (status_formal.md arc target) witness ModalHoTT alone — that cohesion is necessary for stating things plain HoTT cannot state. They are pieces of T1's "Allow direction" (perspectives unfold into structure), specifically on the ModalHoTT-side.
+**Claim under repair.** Fracture and the de Rham separation program were
+intended to witness modal structure unavailable in plain HoTT and eventually
+to inform T1's `Allow` direction. The current synthetic signature cannot carry
+that evidential burden: its unrestricted flat rules make every type flat-modal.
+T7 is therefore suspended as a bridge target until a non-degenerate modal
+signature is stated and checked against the analytic delooping obstruction.
 
 **To state cleanly.**
 - Locate fracture and de Rham within T1's adjunction structure: which unit/counit/triangle do they instance?
@@ -160,7 +187,11 @@ The original formulation — A_5 simple-and-transitive on the 12 icosahedral ver
 
 ### Progress
 
-The fracture theorem and the de Rham structural / named-coefficient / differential ladder (see `future_work.md` "Beyond fracture") are anchored here.
+The synthetic fracture map and its postulate remain checked relative to the
+current axioms; the analytic side supplies a real non-flatness obstruction at
+the delooping. Their incompatibility is now the active 1C diagnostic. The de
+Rham named-coefficient and differential ladders remain historical targets in
+`future_work.md`, not the selected repair.
 
 ---
 
@@ -175,14 +206,16 @@ This is a boundary target, not a new philosophical layer. It is the runtime-cont
 
 **To state cleanly.**
 - Define actor renamings on `RuntimeContract.Trace` data. Keep actor renaming separate from event/conversation/protocol/content/provenance ID alpha-equivalence.
-- State Tier A as preservation or equivalence of `valid?` / `WellFormed` under bijective actor relabeling.
-- State Tier B against the landed global and conversation-frame checkpoints: `CausalFromParents.agda` realizes the global `LocalFrame`, while `ConversationLocality.agda` realizes each present conversation and its `FrameHom` into the global frame. The remaining statement is actor relabeling as frame isomorphism/equivalence.
+- State Tier A at its proved strength: exact `valid?` / `WellFormed` invariance under total injective actor endomaps, with permutations as the invertible specialization.
+- State Tier B over a change of semantic actor base. Keep fixed-base `FrameHom` banked and add a relative morphism over an actor-base map. For the selected per-conversation closure transform, the preserved object is each realized conversation frame; the public global frame need not retain live cross-conversation actor overlap.
+- Separate stable content identity from actor relabeling. Conversation-ID renaming is a cheap independent invariance target; public artifact, conversation, and event identifiers remain stable across closure so federated references resolve.
 - Define trusted observations before claiming any quotient/optimality theorem. Until then, "documentation as invariant quotient" is a theorem-shaped target, not a theorem.
 - Keep `Human`, `Designer`, expert status, runtime identity, and ranking predicates outside the trusted kernel.
 
 **To verify.**
 - Tier A — banked at `5670658`: raw actor-renaming invariance of `valid?` / `WellFormed` in `RuntimeContract.ActorRenaming`.
-- Tier B: using the landed per-conversation actor-causal locality and `FrameHom`s, prove actor-renaming equivalence of the global and conversation-level realized frames.
+- Tier B: construct substrate-native actor-base maps/isomorphisms and a relative `FrameHomOver`; then prove each realized conversation frame equivalent to its image under the live-to-public transform. If a global uniform relabeling is also studied, retain its global-frame theorem as a distinct case.
+- Local publication rung: prove the per-conversation relabeling theorem on `(conversation, actor)` occurrences and specify the public content observation. Use non-injective handles and accidental content-reference renaming as falsifiers.
 - Tier C: optionally upgrade equivalence/isomorphism to equality by SIP/univalence for the packaged realized structure.
 - Tier D: only once provenance/audit/documentation observations exist, state no-leak for those observations and investigate the universal invariant-quotient reading.
 
@@ -190,7 +223,15 @@ This is a boundary target, not a new philosophical layer. It is the runtime-cont
 
 Tier A is banked at `5670658`. `ActorRenaming.agda` proves identity and composition for arbitrary total actor maps, exact Boolean invariance of `valid?` under total injective endomaps of `ActorId = ℕ` for every raw run, and the recorded bijective/permutation result as the invertible specialization; it also exports the `WellFormed` path and transports in both directions. Concrete tests distinguish collapsing maps, the non-surjective `suc` embedding, and a transposition. Thus the bijective target above is satisfied by a stronger raw-validator theorem without changing its gauge reading.
 
-This remains actor-channel-only and close to true by construction: its value is as a standing obligation on the trusted validator, not as a full observational no-leak theorem. Tier B is now the next rung of this target. It requires change of actor base because `CausalFromParents.agda` builds run-specific realized actor carriers while `ActorCausal.agda` fixes one `ActorBase` and gives `FrameHom` no actor map. Tier C and Tier D remain as stated.
+This remains actor-channel-only and close to true by construction: its value is
+as a standing obligation on the trusted validator, not as a full observational
+no-leak theorem. The selected closure transform is now its first consumer, but
+fresh per-conversation handles are not an instance of Tier A. Tier B requires
+change of actor base because `CausalFromParents.agda` builds run-specific
+realized actor carriers while `ActorCausal.agda` fixes one `ActorBase` and gives
+`FrameHom` no actor map. The local publication theorem, observation package,
+and runtime obligation not to retain the identity map remain open. Tier C and
+Tier D remain optional later rungs.
 
 
 ## T_recursion. Iterable adjunction and the developing network
@@ -220,9 +261,28 @@ The failure mode is stopping at session-flavored cyclic operads. `O_1` is not th
 
 ### Progress
 
-The iteration scaffold is in place: `formal/ModalHoTT/Modalities/Iteration.agda` defines the generic-adjunction `Iteration` module (`T`, `T-map`, `T^_`, `η^_`, `η-naturality` postulate, `η^-coherent` derived, `T-sequence`, `ND`). The module currently assumes only the maps, unit, and unit naturality needed by that scaffold; despite its historical name, it does not bundle a full adjunction or monad. The concrete control `formal/ModalHoTT/Modalities/IterationCohesion.agda` instantiates it with ʃ ⊣ ♭: refl-level `T-as-flat-shape` and `η^1-is-unit`, plus `η-equiv-at-T : T A ≃ T(T A)` derived via the `Discrete.agda` bridge, with `η-equiv-fst` pinning the forward map to the iteration structure map. Iteration of this result makes the diagram stationary after stage one in T3's sense. The standard sequential-colimit consequence `ND A ≃ T A` is known but remains unformalized. The cross-site adjunction is not yet stated; it waits on the modal-context category `M`. Deferred items (cross-site witness, cyclic-involution layer, and the sequential-colimit convergence lemma) are tracked in `future_work.md` "Regarding T_recursion iteration."
+The generic iteration scaffold is in place in `Iteration.agda`, but its
+`ʃ ⊣ ♭` specialization now has a stronger negative classification: it is a
+collapsing control inside a signature that already makes every type flat-modal.
+Its checked equations remain valid relative to those postulates and have no
+evidential force for the intended modal semantics. The cross-site adjunction is
+not stated; it waits on a non-degenerate M forced by the context-renewal case.
+Deferred cross-site witnesses, cyclic structure, and colimit convergence remain
+tracked in `future_work.md`.
 
-Operadic syntax for the concurrency category shipped 2026-05-18 (`Concurrency/Operads/CyclicAssociative.agda`: `O_1` as a cyclic associative HIT with `compₒ-assoc-seq`, `compₒ-assoc-par`, full cyclic equivariance via `rot-compₒ-a-block` / `rot-compₒ-b-block`, and derived `boundary-swap`; `PortRotation.agda` owns rotation-side port bookkeeping). The first algebra layer shipped 2026-05-19: `StarAutonomous.agda` is a thin target signature, `Valuation.agda` names weak HIT interpretations into `⊥-par`, and `OperadAlgebra.agda` adds `plug`/`shift` structural fields plus `boundary-swap-structural`. The Sessions layer now splits syntax, morphism HIT, semantic realization, and operadic action: structural session laws are postulate-free, while `session-O1-action` remains the explicit deferred action assumption. The actor-causal site shipped 2026-05-20 and has since had its legacy stability postulate removed; tiny examples use the `TinyActorBase` / `TinyActorCausalSite` split. The 2026-06-04 finite layer and 2026-06-05 Strategy D landing add the finite event-product and Coverage/SET bridge. The 2026-06 point-generated R4 route plus `Chu(SET,Bool)` and Sessions-to-Chu Phase 1 remove the old non-vacuity objection. The active missing work is no longer descent, finite sheaf-category packaging, site-axis legitimacy, presheaf-level R4, point-generated R4 bridge wiring, or session structural-law semantics. At the 2S/3R boundary, per-conversation locality, the conditional conversation `Cover`, the causal-saturation/rigidity characterization, raw actor-renaming invariance, both authoritative fixtures, and the exact 3R event recorder are all banked; the recorder replays the new fixtures with no runtime change. These are concurrency-internal junction results and carry no descent, R4, or `Allow ⊣ Require` weight. The next lane is unselected. Tier B change of actor base, the 3R actor-kernel/scenario/fidelity choices, and the 1C O1-in-Chu or Reality boundary remain live at their own scopes; the generic full finite actor-causal reflector and the modal-context category `M` with its cross-site adjunction remain deliberate later choices.
+Operadic syntax, its first algebra layer, the Sessions syntax/model split, the
+actor-causal site, finite descent, the point-generated R4 bridge, Chu witness,
+and Sessions-to-Chu realization are banked at their recorded strengths. At the
+2S/3R boundary, per-conversation locality, conditional coverage, causal-order
+comparison, Tier A, authoritative fixtures, and the exact recorder are also
+banked; none supplies cross-site evidence.
+
+The next program is selected in `current_track.md`: a minimal 3R causal kernel
+tests the behavioral premise first; contract closure/publication and Tier B
+follow; Λ/Federation and contextual renewal are later consumers. In parallel,
+1C checks and repairs the modal-signature defect. The generic full finite
+actor-causal reflector, `MO_1`, and the cross-site adjunction remain gated by
+their own forcing cases.
 
 ### Relation to other targets
 
@@ -231,7 +291,12 @@ Operadic syntax for the concurrency category shipped 2026-05-18 (`Concurrency/Op
 - **Distinct from T6** ("two-sided above") — T6 is the snapshot of mutual constitution; T_recursion is its dynamics.
 - **Esquisse pointer.** T_recursion is the natural target for the Grothendieck-Esquisse mapping the arc discussion log named: the modular-operad form of the moduli-tower recursion, surviving the retirement of the A_5 / icosahedral example. See `deep_context/arc/01_arc_discussion_log-2026-05-08.md` Turn 21.
 
-**Completed — synthetic side (`formal/ModalHoTT/`).**
+**Implemented inventory — synthetic side (`formal/ModalHoTT/`), under a
+degenerate signature.**
+
+The declarations and relative proofs below typecheck, but the unrestricted
+flat rules make every type flat-modal. This inventory is therefore diagnostic
+material and reusable syntax, not a completed model of cohesion.
 
 - `Modalities/Cohesion.agda` — three cohesion modalities postulated as axioms (operators, units/counits, induction principles, modal-type definitions); includes `flat-counit-intro` β-rule.
 - `Modalities/Adjunctions.agda` — ♭ ⊣ ♯ and ʃ ⊣ ♭ as hom-set equivalences with coherence; named transpose operations; `IsFlatModal (♭A)` proved; ♯/ʃ idempotency postulated.
@@ -248,7 +313,12 @@ Operadic syntax for the concurrency category shipped 2026-05-18 (`Concurrency/Op
 - `Modalities/Fracture.agda` — analytic ℤ; pullback collapses definitionally to `Σ ℤ singl`; canonical map sends `n` to `(n, n, refl)`; `isEquiv` via `isoToEquiv` on `fst` as inverse. No postulates. Bℤ excluded (♯(Bℤ) undefined).
 - `Cohomology/FlatCoefficients.agda` — analytic mirror at the structural rung.
 
-**Paused next step.** Postulate a cohesive type ℝ and instantiate the structural equivalence at `B := ♭ℝ` — the named-coefficient rung. Open design call: postulate ℝ as a bare type plus `IsFlatModal ♭ℝ`, or as a single bundled record. Tautological as a "de Rham theorem" (see `future_work.md`); the content-bearing differential level is deferred to `formal/AnalyticTest/`.
+**Selected next step.** Machine-check the all-types-flat derivation in a
+diagnostic module, inventory every result that depends on the degenerate
+signature, and then compare replacement signatures against the analytic
+`¬-IsFlatModal-delooping` obstruction. A named coefficient such as ℝ and the
+differential ladder remain later possibilities; adding one to the present
+signature would not repair it.
 
 ### Unlocking ♯ — what it costs and what it buys
 

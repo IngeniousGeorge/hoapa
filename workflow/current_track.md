@@ -1,46 +1,106 @@
 # Bandwidth organization
 
-This file is the entry-point summary for the live lane and next-step posture. For the detailed evidence and concrete work inside each lane, read:
-
-- `workflow/status_formal.md` for 1C pure conjecture and 2S runtime-to-substrate work.
-- `workflow/status_implementation.md` for 3R runtime work and the checker/runtime contract boundary.
+This is the entry-point summary for the live lanes and their dependency order.
+Read `architecture.md` for the intended participant/information-flow shape,
+`status_formal.md` for checked and conjectural mathematics, and
+`status_implementation.md` for the runtime contract and executable state.
 
 ## Lane convention
 
-The project uses a number+letter lane pattern. The number records logical-time progression; the letter names the lane.
+- **1C — pure conjecture:** develops M, the modal signature, and conjecture-
+  scale structures independently.
+- **2S — runtime-to-substrate:** interprets runtime evidence in K and proves
+  the contract, change-of-base, locality, and no-leak obligations.
+- **3R — runtime:** originates behavior and emits evidence conforming to the
+  2S contract.
 
-- **1C - pure conjecture:** Agda-first conjecture chasing: O1-in-Chu / `session-O1-action`, Reality/Documentation/Chu, full reflector enrichment, cross-site `Allow ⊣ Require`, and the modal cyclic-bar return. This lane can develop independently, but 2S should import from it only after an interface has stabilized.
-- **2S - runtime-to-substrate:** Agda that interprets runtime-shaped evidence into the actor-causal substrate. This is the adapter/junction lane between the formal runtime contract and the concurrency substrate.
-- **3R - runtime:** Elixir/Rust runtime work. This lane emits executable evidence for the contract and should echo 2S rather than inventing substrate semantics ahead of it.
+Dependency discipline: 3R echoes 2S; 1C develops independently; 2S imports 1C
+only after a 1C result has become a stable interface. Parallel lanes do not
+erase dependencies inside the selected program.
 
-Dependency discipline: **3R echoes 2S; 1C develops independently; 2S imports 1C only when a 1C result has become a stable interface.**
+## Banked waterline
 
-## Current bandwidth posture
+- K has the actor-causal site, finite descent, point-generated reflector and
+  Benton/LNL bridge, `Chu(SET,Bool)` coefficient witness, and Sessions-to-Chu
+  object/morphism realization. `session-O1-action` remains postulated.
+- 2S derives the global causal frame and conversation-local frames from
+  well-formed raw parents, keeps actor coverage conditional, characterizes
+  causal saturation per conversation, and proves Tier A raw-validator
+  invariance under injective actor relabeling.
+- 3R has a schema-faithful in-memory recorder and exact corpus replay. It does
+  not originate causality, close conversations, or publish artifacts.
 
-The point-generated Benton/LNL interface (R4) theorem is banked: the supported/event-discrete reflector `a ⊣ ι`, the point-sheaf bridge `Lpoint ⊣ Rpoint`, the `Chu(SET,Bool)` coefficient instance, and the Sessions-to-Chu `J0`/`J1` realization have landed. This remains a concurrency-internal theorem, not the full actor-causal reflector or the cross-site `Allow ⊣ Require` adjunction.
+## Selected work
 
-The runtime contract loop 1 and 3R event-log pass 1 are closed and green. An unnamed `Hoapa.Core.EventLog` records caller-supplied actors, conversations, and events without checking or normalizing them, then exports a `Hoapa.Contract.Run`. It can reproduce the Agda-accepted tiny run through a running process, and its wildcard corpus-replay test preserves every schema-decodable valid and semantic-invalid fixture exactly. This is recorder behavior, not an originator or protocol kernel.
+The next program is selected. Its order is architectural, not a demand that
+only one lane run at a time.
 
-The 2S per-conversation locality package is banked. `ConversationLocality.agda` realizes every conversation present in a well-formed run as its own `LocalFrame` and constructs a `FrameHom` into the global frame built by `CausalFromParents.agda`; the local causal order is the global derived order restricted to that conversation's events, which is what makes strict reflection available.
+1. **1C modal diagnosis, in parallel.** Retain a checked derivation that the
+   unrestricted `flat-intro` and dependent `flat-ind` make every type
+   flat-modal. Reclassify fracture, the cohesive hom-equivalences, and the
+   `ʃ ⊣ ♭` iteration control relative to that degenerate signature. Investigate
+   repairs only as a contextual design problem; context renewal supplies the
+   direction and the analytic non-flat delooping is an acceptance test.
+2. **3R minimal causal kernel.** Produce one event whose parent is earned from
+   a message actually consumed by a handler, record it through the existing
+   `EventLog`, and retain a test that fails when dependency piggybacking is
+   broken. This tests the premise beneath the existing 2S causal tower.
+3. **2S contract v1.** Add a distinguished success/failure closure event,
+   run-local and federated artifact references, reference integrity, at-most-
+   one closure and nothing-after-closure for valid prefixes, exactly one
+   closure for published conversations, and stable publisher-scoped content
+   identifiers. Start with rejecting fixtures.
+4. **2S public/live boundary and Tier B.** Specify per-conversation actor
+   pseudonymization, no export of the live identity map in v0, and a public
+   content observation. Add substrate-native change of actor base and a
+   relative `FrameHomOver` beside banked fixed-base `FrameHom`; prove each
+   conversation frame equivalent to its public image. Tier A alone does not
+   prove this.
+5. **2S relative views and base-relative statements.** Relate registered,
+   panel, and event-supported views; factor the reusable finite-membership
+   lemma; state causal saturation relative to a run and test persistence of an
+   unsaturation witness under append-only extension. Do not rename these
+   predicates as metastability or encapsulation.
+6. **3R full assembly.** Add task intake, injected selection, panel processes,
+   event-id dependency flow, success/failure closure, publication transform,
+   corpus acceptance, and resubmission. Candidate, assent, silence policy,
+   panel size, and entropy remain interface parameters. A separate checker app
+   is earned only here, once behavior exists to check incrementally.
+7. **Λ and Federation.** Interpret conversations, output artifacts, concepts,
+   documentation versions, directed dependencies, and admitted comparisons
+   from published evidence. Require designated observations to descend through
+   any compression. Exercise the artifact interface with two independent peers
+   before freezing it: collide local IDs, retain an offline pinned import,
+   admit different comparisons, and withdraw one comparison on only one peer.
+8. **Context renewal.** First show a successful artifact becoming an admissible
+   input to further work while specified achievements remain usable and a new
+   operation becomes possible. Only later add bounded protocol change with
+   explicit versions and activation boundaries. This is K's forcing case for
+   asking what M must say about contexts.
 
-The 2S coverage and order-comparison packages are banked, and the two fixtures they needed are in the authoritative corpus. `fixtures/valid/cross_conversation.json` is the four-event `c0 → c1 → c0` run; `fixtures/valid/uncovered_actor.json` declares an actor who joins no conversation. Both are accepted by `valid?`, and exactly one is actor-covered.
+Every implementation or formal batch begins with a named red fixture, failing
+runtime check, or unmet typed obligation, and ends green only under `make test`.
 
-`ConversationCover.agda` proves event coverage unconditionally, states actor coverage as a hypothesis, decides it from raw data in both directions via `actorsCoveredByConversations?`, and constructs the `Cover` conditionally. `ConversationOrderComparison.agda` builds the rival parent-generated conversation order, gives its universal property (`≤L-least`), and proves the canonical strict embedding exists exactly when the conversation is causally saturated. On the fixture, `c1` is saturated non-trivially and `c0` is not, so `c0`'s internal-order frame admits no canonical embedding.
+## Guardrails for the selected work
 
-The 2S raw actor-renaming rung is banked at `5670658`. `ActorRenaming.agda` separates three exact statements: raw records respect identity and composition under arbitrary actor maps; `valid?` is equal before and after every total injective endomap of `ActorId = ℕ`, including on malformed runs; and permutations supply the invertible gauge layer, with `WellFormed` transport and reflection inherited from the embedding theorem. The implementation is actor-channel-only and does not yet compare realized frames over changing actor bases.
-
-**3R pass 2 is complete at its recorder-fidelity scope.** The fixture is exported into the vendored corpus, and the wildcard replay test reproduces it through `Hoapa.Core.EventLog` with no runtime code or test change — 7 contract + 12 core tests green. A second hand-written literal-call construction of the same fixture would be an optional control, not a forced obligation.
-
-The next bandwidth choice is open; ig has not selected a lane. The nearest 2S continuation is Tier B change of actor base and realized-frame equivalence. On 3R, the actor kernel has the strongest evidential payoff because it would derive causal parents from behavior; a fidelity sampler and a deterministic scenario originator remain distinct, weaker candidates. The kernel is gated by its own runtime design conversation and size, not by an unshipped 2S semantics. The 1C choices remain O1-in-Chu / `session-O1-action` or the Reality/Documentation/Chu boundary. Session-tag assignment remains deliberately deferred as a decorating layer.
-
-## Guardrails
-
-- Point-generated R4 is event-discrete and concurrency-internal; it is not the full finite actor-causal reflector and not `Allow ⊣ Require`.
-- `CausalFromParents.agda` is the first generic runtime-to-substrate rung; it is not the complete realization/no-leak theorem. It alone still constructs only the global frame.
-- `ConversationLocality.agda` constructs per-conversation frames and strict embeddings. `ConversationCover.agda` packages their family as a `Cover` only CONDITIONALLY: event coverage follows from `WellFormed`, actor coverage does not and enters as a hypothesis. Actor registration stays independent.
-- The order comparison is scoped by a quantifier. Saturation varies per conversation — the fixture has one of each — so the internal parent-generated order is not universally wrong. What is forced is the uniform construction from `WellFormed` alone. The no-embedding corollary is further scoped to event maps that are pointwise `fst`.
-- The order comparison is concurrency-internal and proof-near. It is not descent, not R4, and not evidence for `Allow ⊣ Require`.
-- Raw actor-renaming invariance is an exact theorem about `valid?` and `WellFormed`, not yet realized-frame equivalence or observational no-leak. It proves acceptance is insensitive to injective actor encodings; it does not license exposing operational identity through public actor tokens.
-- `Chu(SET,Bool)` is a concrete coefficient/value model and a Sessions realization target; it does not reconstruct Reality.
-- `Hoapa.Core.EventLog` preserves evidence order, duplicates, unresolved references, and cross-conversation parent edges. It does not infer causality, judge validity, or originate events from actor behavior.
-- Keep `hoapa_checker` closed until a behavioral originator—currently the actor-kernel candidate—supplies runtime behavior to check one-by-one. A fidelity sampler or authored scenario originator does not meet that gate. Keep broad OTP, durable storage/Pijul, and Phoenix work behind the status-file gates.
+- Levels, layers, and adapters are independent axes. Closure evidence is not
+  itself Λ, and a level-0 graph is not identical to the content layer.
+- The eligible population stays outside traces. Registration, panel membership,
+  and event participation remain distinct; silent registered actors are legal.
+- Session tags are immutable. Editing is appending new events or conversations.
+- A failed conversation closes and publishes a failure record; consensus is
+  not the definition of closure.
+- The live and public records are distinct mathematical objects. Tier A covers
+  uniform raw relabeling only; per-conversation handles require new local
+  change-of-base and observer-relative no-leak results.
+- Public actor handles may change at publication. Public artifact,
+  conversation, and event identifiers stay stable and publisher-scoped so
+  federated references survive.
+- The kernel, not Tier B or the recorder, earns causal parents from behavior.
+- Dependency edges stay directed. Only comparisons admitted by a particular
+  documentation version may become invertible in its presentation.
+- Federation has explicit import boundaries and versioned local adoption. It
+  supplies no global clock, actor directory, quotient, history, or consensus.
+- Participants have equal formal standing but need not produce equivalent
+  results. The system represents specified work and participation, not a
+  synthetic decomposition of the person.

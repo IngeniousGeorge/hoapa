@@ -43,6 +43,66 @@ communities **K** (`arc.md` §3); symbols are deferred to keep them distinct fro
   later, equivalence of realized structures. Neither phrase by itself means
   observational no-leak.
 
+## Participant and publication vocabulary
+
+- A **person** is not a kernel type. A **seat** is a protocol-local position
+  that any eligible participant may occupy. A **role** is an activity or
+  obligation attached to a seat or event; it is not an actor kind.
+- The **eligible population** lives outside traces. **Registered actors** are
+  run-local handles, **panel members** occupy seats in one conversation, and
+  **event participants** are the actors touched by one event. Do not collapse
+  these four scopes.
+- A **conversation kind** is fixed by its immutable session tag. Current kinds
+  separate participant conversations from content-level conversations; a
+  mixed actor carrier is not implied.
+- A **closure event** is the unique terminal event of a conversation and marks
+  success or failure. A **closure transform** maps the live record to the
+  public record; it is not the closure event itself.
+- The **live record** may carry ephemeral operational identity needed for
+  delivery. The **public record** carries per-conversation actor handles and
+  stable content-facing identifiers. A **public content view** forgets actor
+  identity while retaining declared artifacts, references, provenance, and
+  dependency structure.
+- **Pseudonymization** replaces an identity channel by scoped handles.
+  **Erasure** removes a field or observation. Neither term alone entails
+  unlinkability; that is relative to a declared observer and retained maps.
+- A **run-local reference** resolves inside one accepted run. A **federated
+  artifact reference** resolves against an explicitly imported, versioned
+  publication bundle and includes publisher scope. Neither is an actor
+  identity.
+- Public **artifact**, **conversation**, and **event identifiers** are stable,
+  opaque, publisher-scoped names. Actor handles may change at publication
+  without reissuing those content identifiers.
+
+## Content and comparison vocabulary
+
+- A **conversation** is an episode, an **output artifact** is a published
+  result of an episode, a **concept identity** is a content-layer object, and a
+  **documentation version** fixes a current interpretation. None is a synonym
+  for another.
+- A **comparison claim** is retained history. An **admitted comparison** is one
+  a particular documentation version currently accepts. A **language
+  presentation** is constructed from the admitted set subject to an adequacy
+  condition. Withdrawal changes the admitted set in a later version; it does
+  not delete the earlier claim.
+- The **core**, a **localization**, and **groupoid completion** are different
+  constructions. Dependency edges remain directed; only explicitly admitted
+  comparisons are candidates for inversion.
+- A **locator** names a context inside a language, such as engineering or
+  biology. A locator does not by itself name a federated peer.
+
+## Architectural axes
+
+- A **level** says what occupies the positions being discussed; a **layer** is
+  a separation of responsibility; an **adapter** relates structures across a
+  separation. These are independent axes.
+- **Promotion** means publishing an output through an explicit interface so it
+  can be referenced by later work. It is not a collapsing `FrameHom` and does
+  not turn a participant into a concept.
+- A **publication bundle** is a finite, versioned federated export complete
+  relative to a declared **import boundary**. Completeness is not recursive
+  possession of the network's entire history.
+
 ## Runtime origination
 
 - **Fidelity sampler** produces arbitrary well-typed contract values to test

@@ -7,46 +7,88 @@ All aspects of the code that will need to be completed or corrected if we want t
 This file documents three kinds of future work, in three styles:
 
 - *Punchlist style.* The "Regarding X" sections (fracture, T_recursion iteration, Sessions, actor-causal site, Hybrid v1, Beyond fracture) catalogue deferred pieces *inside material that has already shipped*. They are item-by-item, code-grained, and read as ongoing maintenance / extension lists.
-- *Architectural style.* The "Concurrency-side layers of complexity (planned)" section catalogues *committed-but-unshipped* layers. It is prose-heavy, structured around a Function / Math anchor / Trigger / Open questions / Agda slot rhythm, and is calibrated to be readable by both future Claude/Codex agents picking up the project and humans being shown the work.
+- *Architectural style.* The "Concurrency-side layers of complexity (planned)" section catalogues responsibilities at different maturity levels: committed functions, selected forcing cases, and research horizons. It is prose-heavy, structured around a Function / Math anchor / Trigger / Open questions / Agda slot rhythm, and is calibrated to be readable by both future Claude/Codex agents picking up the project and humans being shown the work.
 - *Candidate-investigation style.* The provenance, no-leak theorem ladder, Reality, and logical-presentation sections record structures whose absence or possible role has become visible but whose exact mathematical ownership is not settled. They state the motivating gap, nearest established mathematics, anti-overclaim discipline, falsifying tests, and decision gates. They do not alter the committed cascade or reserve implementation modules.
 
-All three styles are honest about status. Punchlist items extend shipped material; architectural items are committed but unshipped; candidate investigations may be promoted, revised, split, or rejected after their naturality tests.
+All three styles are honest about status. Punchlist items extend shipped material; architectural entries state their own maturity; candidate investigations may be promoted, revised, split, or rejected after their naturality tests.
 
 For the seed-level commitments these entries extend, see `motivation.md`. For the propositional decomposition (T1–T_recursion) they realize, see `arc.md` and `targets.md`. The implementation track — a real protocol kernel, a real verification runtime, LLM-tooling integration — is a separate concern tracked canonically in `workflow/status_implementation.md`; this file keeps only cross-references and future-work implications.
 
-Status snapshot, 2026-09-06: the point-generated R4 theorem is banked; runtime contract loop 1, 2S per-conversation locality, coverage and order comparison, 2S Tier A raw actor-renaming invariance, and the 3R recorder are closed and green. Tier A landed at `5670658`; both authoritative fixtures are in the corpus and replay green through the recorder. No next lane has been selected. The nearest 2S continuation is change of actor base and realized-frame equivalence; 1C and 3R retain independent choices recorded in the status files. Active next steps live in `workflow/status_formal.md` and `workflow/status_implementation.md`.
+Status snapshot, 2026-09-12: the point-generated R4 theorem, runtime contract
+loop 1, 2S locality/coverage/order comparison, Tier A, and the 3R recorder are
+banked. The next program is selected in `current_track.md`: 1C diagnoses the
+flat-modal collapse in parallel; a minimal 3R causal kernel tests the premise
+beneath the 2S causal tower; contract closure/references, publication no-leak,
+relative views, the full assembly, Λ/Federation, and context renewal then follow
+in dependency order. `architecture.md` is the positive participant and
+information-flow reference.
 
-## Regarding fracture
+## Regarding fracture and the modal-signature defect
 
-- flat-intro is unconditionally postulated — should be crisp-context-only. The codebase already flags this (Cohesion.agda comment, memory note). In our intended analytic interpretation it's
-known to be too strong: ¬-IsFlatModal-delooping directly contradicts having flat-intro : Bℤ → ♭(Bℤ) with ♭(Bℤ) = ℤ. So the synthetic axiomatization commits to more than the analytic model
-can deliver. Not a contradiction in synthetic-land (synthetic land never names ♭(Bℤ) concretely), but a documented over-approximation.
+- `flat-intro` is unconditionally postulated rather than restricted to a crisp
+  context. Together with dependent `flat-ind`, this is not merely a loose
+  over-approximation: eliminate into
+  `flat-intro (flat-counit u) ≡ u` and use `flat-counit-intro` in the base
+  case. The two maps are inverse for every type, so every type is flat-modal.
+  The existing flat-idempotency proof is the same derivation specialized one
+  modality level up.
 - The hom-set adjunctions are postulated at type level. Diagnostically known to fail at (Bℤ, Bℤ) in the analytic model: (Bℤ → Bℤ) ≃ Bℤ × ℤ but (Bℤ → ♯Bℤ) is forced to ℤ once ♯ is identified
 naively. Same over-approximation pattern.
-- fracture itself. In real-cohesive HoTT it is a theorem (♯ is lex → ♭ preserves finite limits → fracture). We shortcut to the conclusion without taking on ♯-lex as a separate axiom. So
-fracture is a consequence of axioms we haven't formalized but which are known to hold in the published model.
+- fracture itself is postulated as an equivalence of a pinned canonical map.
+  Its intended real-cohesive theorem shape remains mathematically motivated,
+  but this Agda instance lives inside the degenerate flat signature and cannot
+  serve as evidence for that model.
 - ♯/ʃ idempotency and map-laws postulated rather than derived; same gap (no dependent ♯/ʃ-induction in Agda).
 
-  *Resolution path.* Postulate `shape-ind` and `sharp-ind` in the same shape as the existing `flat-ind`, then derive the idempotency theorems and the four map-laws on top. Stable extension of the existing pattern, not scaffolding-to-be-replaced — the principles survive intact as primitives in any future Agda implementation that supports ♯/ʃ natively, and the derivations on top stay identical. Cost: 2–4 new postulates (induction principles + β-rules) drawn from Wellen / Myers / Shulman, no new model-level commitments. Character: quality improvement (postulates → theorems), not arc-shaping; narrow background maintenance.
+  *Rejected as a repair.* Adding unrestricted `shape-ind` and `sharp-ind` in
+  the pattern of the current `flat-ind` would derive more laws on top of the
+  wrong contextual discipline. It does not repair `♭` and may reproduce the
+  same collapse elsewhere.
 
   *Architectural alternative.* Migrating the synthetic axiomatization from Wellen-style independent postulates to Rijke–Shulman–Spitters-style "subuniverse of modal types" with uniform induction would subsume this work — but would also restructure the existing `flat-ind`-based derivations. A category-shaped change, not piecewise; separate future call.
 
 - Analytic test is weak. ℤ collapses everything to identity, so the analytic file doesn't exercise the postulate — it confirms non-vacuity in the degenerate case only. The case that would
 test the postulate (Bℤ) is exactly what we cannot reach analytically. So fracture has been verified where it is trivial and asserted where it is interesting.
 
-### Verdict
+### Selected diagnostic and repair direction
 
-Fracture is trustworthy as a *postulate-relative theorem in an axiomatization known to be sound in real-cohesive HoTT* (Shulman 2018, Wellen, Myers). It is **not** trustworthy as a *plain HoTT* theorem; it is not even a derivation from the cohesion postulates we've stated — it is an added axiom we justify by citation. The analytic verification confirms the postulate's non-emptiness, not its non-trivial content. The biggest single risk lever in the chain is `flat-intro`, not `fracture`. Internal coherence is what Agda checks (no type errors, well-formed dependencies); soundness in any external model is an imported assumption.
+1. Add a focused diagnostic module deriving `IsFlatModal A` for every `A` from
+   the current signature. The unmet obligation must be visible before the
+   proof is added, and the lemma remains as a regression witness.
+2. Reclassify fracture, the postulated modal hom-equivalences, and the
+   `IterationCohesion` collapse as relative to a degenerate signature. Do not
+   delete them or silently continue to cite them as cohesive evidence.
+3. Require any proposed replacement signature to coexist with the analytic
+   `¬-IsFlatModal-delooping` witness and to expose more than one contextual face
+   without an automatic equivalence between them.
+4. Let K's first preservation-and-extension transition shape what a modal
+   context must support. Context renewal is the door into M; it does not decide
+   whether crisp contexts, guarded modalities, modal operators as reflective
+   subuniverses, or another formalism is the right repair.
 
-A useful frame: we are building a *consistent axiomatic stance* and naming the geometric objects it commits to. The proof-checker confirms internal coherence; soundness comes from citation, not from our own work.
+This is the next 1C item. The earlier cyclic-bar and differential-cohesion
+directions remain possible later programs, not repairs for the signature
+defect.
 
 ## Regarding T_recursion iteration
 
-`formal/ModalHoTT/Modalities/Iteration.agda` lands the endofunctor-and-unit scaffold for T_recursion on the modal side: iteration `T^n`, iterated unit `η^_n`, operadic associator `η^-coherent` (derived from a postulated `η-naturality`), and the developing-network type `ND A` as the sequential colimit of `A → TA → T²A → …`. Despite the module's historical generic-adjunction wording, its interface does not yet bundle a counit, multiplication, or triangle identities. `formal/ModalHoTT/Modalities/IterationCohesion.agda` provides the checked collapsing control at ʃ ⊣ ♭: `η-equiv-at-T : T A ≃ T(T A)`, with `η-equiv-fst` identifying its forward map as the iteration structure map. This control constrains the search space for T3; it is evidence neither for nor against the cross-site conjecture.
+`formal/ModalHoTT/Modalities/Iteration.agda` lands the generic endofunctor-and-
+unit scaffold for T_recursion: iteration `T^n`, iterated unit `η^_n`,
+`η^-coherent` derived from postulated naturality, and the sequential-colimit
+type `ND A`. It does not bundle a counit, multiplication, or triangle
+identities. `IterationCohesion.agda` specializes it at ʃ ⊣ ♭ and checks the
+stage-one collapse. Because the surrounding signature already makes every type
+flat-modal, this is now a degenerate control. It has no evidential weight for
+the intended cohesive semantics or the cross-site conjecture.
 
 Pieces deferred:
 
-- **Dual on the concurrency side.** A symmetric module would iterate the *counit* of the comonad `L ∘ R` on the target side, taking the *limit* of a decreasing tower `… → M²B → MB → B`. Not written yet because: until the cross-site adjunction `Allow ⊣ Require` is stated and `ND` has non-trivial content, the dual is a duplicate of an empty scaffold. The 1=2 identity is conjecturally the equivalence between the modal colimit `ND A` and the concurrency limit `ND_B (L A)` via the adjunction — stateable only once both halves exist. Revisit only after the modal-context category `M` and the cross-site functors have been constructed or responsibly postulated behind their existing gates.
+- **Dual on the concurrency side.** A symmetric module would iterate the
+  *counit* of the comonad `L ∘ R` on the target side, taking the *limit* of a
+  decreasing tower `… → M²B → MB → B`. Not written: until the independently
+  constructed cross-site adjunction and a non-trivial `ND` exist, the dual is
+  a duplicate of an empty scaffold. Do not postulate the cross-site bridge to
+  unlock it.
 
 - **Cyclic-operad involution.** The 1=2 perspective-swap "cared-for = caregiver" would be a path constructor (or separate HIT) on top of `SeqColim`, encoding that the iteration is cyclic / self-dual on each level. Deferred for the same reason as the dual: adding the involution to a scaffold that hasn't yet produced non-trivial iteration content is premature.
 
@@ -93,7 +135,8 @@ Expected ladder:
    `plug` should come from closed/evaluation/cut structure composing two
    morphisms into the dualizing object.
 6. Only then push hard on `MO_1`: extend the canonical `O_1` action toward
-   self-gluing / conversation-promotion / modular closure.
+   self-gluing and modular closure. This does not supply the runtime promotion
+   interface, which is publication plus typed reference.
 
 Practical trigger: when the session target can state and use an evaluation/cut map of the form `eval : Hom ((A ⊸ B) ⊗ A) B` (or the equivalent polycategorical/sequent form) and can coherently rotate tensor factors, the deferred derivation of `gen`, `plug`, and `shift` should return to the top of the concurrency queue.
 
@@ -107,7 +150,12 @@ Pieces deferred:
 
 - **E2 sieve / Grothendieck topology presentation.** On the finite subsite, the library-site presentation has landed: `FiniteBasisCover` strips finite covers to base-stable covering-family data, `FiniteFrameCoverage` gives a Cubical `Coverage` over `FiniteFrameCategory`, and `SetSheafComparison` proves the SET sheaf-condition agreement. For the full non-finite actor-causal site, `Cover` remains basis-form and `sieve-of` remains the bridge artifact; add a full generated-sieve topology only when a later construction needs the non-finite site.
 
-- **Promotion morphism class.** Strict `FrameHom` reflection deliberately prevents quotienting or reifying a sub-conversation as a single event / actor. The conversation-as-actor move belongs to a future promotion morphism class, coordinated with `MO_1` and the program-verification / conversation-of-conversations track.
+- **Promotion interface.** Strict `FrameHom` reflection deliberately prevents
+  quotienting or reifying a sub-conversation as a single event or actor.
+  Promotion is now publication of a closed output through a stable artifact
+  interface plus a reference from later work. No additional collapsing frame
+  morphism is planned. `MO_1` may eventually organize self-gluing at another
+  layer, but it does not change this substrate boundary.
 
 - **Richer concrete site witnesses.** The bundled Bool tiny-site is now postulate-free. Future witnesses should add genuinely richer actor/event/causality shapes, not merely re-prove the two-point case.
 
@@ -264,21 +312,35 @@ What lands after this round. The synthetic side of the de Rham arc is complete a
 
 ## Concurrency-side layers of complexity (planned)
 
-The Concurrency side, at the time of writing, has shipped the actor-causal site, pullback overlaps, the cyclic operad `O_1` and its `*`-autonomous algebra interface, the Sessions instance, the Hybrid v1 presheaf/restriction adapter, finite-site event-product descent with constant-slot Sessions and Set instances, the concrete tiny finite-cover validation, finite sheaf categories at both `StarAutonomous→Category V` and `SET`, the finite Coverage/SET library sheaf comparison, and the R4 Benton/LNL finite-sheaf bridge through conditional Tier 4: presheaf-level change of base, presheaf-level adjunction, right-adjoint sheaf preservation, a finite-sheafification reflector interface, and the sheaf-level adjunction conditional on a V-side reflector. The point-generated reflector route has also landed over the supported subsite: event-supported frames, incident point frames, event-supported point overlaps, the canonical point cover, `IsPointSheaf P ↔ PointLocal P`, abstract point products, pointification as a point sheaf, the point-sheaf category, the reflector functor, and the adjunction `a ⊣ ι`. `PointLinearNonlinearAdjunction.agda` now consumes that reflector and assembles the point-generated sheaf-level Benton/LNL bridge `Lpoint ⊣ Rpoint`, relative to `lnl` and `vProd`. The point-generated R4 theorem is banked rather than the live frontier. At the 2S/3R boundary, global and per-conversation realization, conditional coverage, causal-saturation comparison, and raw actor-renaming invariance have landed; the 3R event log records exact contract evidence and replays the expanded corpus. Several additional layers are committed in design but not yet in code. This section is the catalogue of those layers, with for each: what it does for the protocol's use in the human world (possibly with LLMs as participants), what mathematical structure it commits to (or, where the choice is open, what the candidates are), and what currently shipped scaffolds it presupposes.
+The Concurrency side, at the time of writing, has shipped the actor-causal site, pullback overlaps, the cyclic operad `O_1` and its `*`-autonomous algebra interface, the Sessions instance, the Hybrid v1 presheaf/restriction adapter, finite-site event-product descent with constant-slot Sessions and Set instances, the concrete tiny finite-cover validation, finite sheaf categories at both `StarAutonomous→Category V` and `SET`, the finite Coverage/SET library sheaf comparison, and the R4 Benton/LNL finite-sheaf bridge through conditional Tier 4: presheaf-level change of base, presheaf-level adjunction, right-adjoint sheaf preservation, a finite-sheafification reflector interface, and the sheaf-level adjunction conditional on a V-side reflector. The point-generated reflector route has also landed over the supported subsite: event-supported frames, incident point frames, event-supported point overlaps, the canonical point cover, `IsPointSheaf P ↔ PointLocal P`, abstract point products, pointification as a point sheaf, the point-sheaf category, the reflector functor, and the adjunction `a ⊣ ι`. `PointLinearNonlinearAdjunction.agda` now consumes that reflector and assembles the point-generated sheaf-level Benton/LNL bridge `Lpoint ⊣ Rpoint`, relative to `lnl` and `vProd`. The point-generated R4 theorem is banked rather than the live frontier. At the 2S/3R boundary, global and per-conversation realization, conditional coverage, causal-saturation comparison, and raw actor-renaming invariance have landed; the 3R event log records exact contract evidence and replays the expanded corpus. Several additional layer responsibilities are visible at different maturity levels but are not yet in code. This section catalogues them, with for each: what it does for the protocol's use in the human world (possibly with LLMs as participants), what mathematics it commits to—or deliberately leaves open—and what currently shipped scaffolds it presupposes.
 
 A unifying disciplinary commitment behind all the layers below: **praxis is part of the theory**. The protocol's use by a community of equal-standing participants is constitutive of the framework, not an applied addendum to an underlying mathematics. This is what distinguishes the framework's combination from each of the historical precedents catalogued in `related_structures.md` — at least one of (mathematical depth, theory-of-community, runnable protocol, self-validation through use, recursive co-evolution structure) was missing in each of them.
 
-The five layers below are listed in build-dependence order: each presupposes its predecessor, either as substrate or as the object it operates on. The dependency chain in compact form: Hybrid finite descent plus V-valued and Set-valued finite sheaf endpoints plus finite Coverage/library comparison plus conditional R4 sheaf bridge plus point-generated reflector adjunction plus point-generated R4 bridge → later full actor-causal reflector enrichment / full `Coverage` upgrade → **Layer 1 (Π)** → **Layer 2 (Λ)** → **Layer 3** (field-theoretic dynamics on Λ) → **Layer 4** (Federation, requiring all four previous). **Layer 5** (information-cohomological complexity) reads off Layer 2 content topos and is independent of Layers 3–4 in code, though it composes cleanly with Layer 3 action functional.
+The five layers below are listed in conceptual build-dependence order. This is
+not the same as implementation order. Federation's full higher mathematics is
+downstream, but its basic exchange constraints—stable scoped identities,
+versioned imports, local adoption, and no global authority—must pressure-test
+the artifact interface before that interface freezes. Likewise, Λ is opened by
+the closure/reference evidence now selected, rather than waiting for a complete
+Reflexive Π. The compact dependency picture is therefore a partial order, not
+one staircase: the Hybrid and runtime-contract substrates feed Π and Λ; Λ
+supports later dynamics and information-cohomological measurements; Federation
+both consumes those layers and constrains their public boundaries early.
 
-They are all "Committed" — held as planned future content of the framework, with the existing scaffolds already designed to receive them, but with no Agda content shipped yet. A separate appendix at the end gathers three *reframings* — sharper readings of structure the framework already commits to. The reframings are of a different nature from the layers; they affect what to aim for, not what to additionally construct.
+The table states a separate status for each layer. "Committed responsibility"
+means the architecture must eventually account for the function; it does not
+commit the project to the current mathematical presentation. "Selected v0"
+means a concrete forcing case is on the roadmap. "Research horizon" remains
+conditional. A separate appendix gathers cross-cutting reframings, which affect
+what to aim for rather than adding numbered construction work.
 
 | Layer | Properties |
 |---|---|
-| **1. Reflexive Protocol Layer (Π)** | **Function:** the protocol can revise its own rules; meta-conversations propose edits and ratify them by consensus, with non-retroactivity preserved by `FrameHom`'s strict causality reflection. <br> **Math anchor:** protocol-version category Π with a patch-theoretic fragment category whose coherent amalgamation models consensus; Pijul as primary implementation-facing candidate. <br> **Status:** Committed. |
-| **2. Bulk Type Theory / Content Layer (Λ)** | **Function:** the protocol generates its own internal language of concepts from the messages actors exchange, progressively replacing seed languages like English with its own evolving vocabulary. The "what" tag on every message, parallel to the session-type "how" tag. <br> **Math anchor:** concept category Λ (likely 2- or (∞,1)-categorical), with messages valued in `Sessions-Cat × Λ` and conversations generating diagrams in Λ whose consensus is amalgamation. <br> **Status:** Committed. |
-| **3. Field-theoretic dynamics on the content layer** | **Function:** the language matures along the pristine-symmetry → chaos → restructuring → stable-cycles trajectory: the protocol begins in a perfectly symmetric designed state, breaks symmetry under the perturbation of actor conversations, passes through a fluctuation-heavy proposal storm, and converges to a stable mature language. Gives the implementation an action functional (objective), distance functions (metrics on concepts and on protocol versions), and empirical observables (correlators of concept co-occurrence). <br> **Math anchor:** factorization algebra over the actor-causal site valued in Λ, with content operad `O_C`; Wilsonian RG flow driven by reflexive-layer insertions; initial high-symmetry state as contractible Λ; mature language as IR fixed point. <br> **Status:** Committed. |
-| **4. Federation — bicategory of protocols (Yoneda + anabelian)** | **Function:** every protocol instance treats itself as one-among-many from inception, exposing typed translation interfaces, partial clones, and conflict-as-data; no protocol can position itself as the exclusive authority over inquiry, so the authoritarian arrangement the framework was built to dissolve cannot reappear at the protocol's own meta-level. <br> **Math anchor:** 2-category of protocols with Hoapa-respecting geometric morphisms; Yoneda makes "one among many" constitutive; meta-topos M is itself Hoapa-structured with canonical GT-action inherited from `MO_1`, anabelian in the relevant sense. <br> **Status:** Committed. |
-| **5. Information-cohomological complexity** | **Function:** receiver-relative reading of complexity that structurally justifies unityping (differences live in receiver state, not in actor types); supplies the protocol with a measurable optimization objective (reduce expected description cost across actors) and a practical proxy (language-model perplexity). <br> **Math anchor:** information cohomology in the Baudot–Bennequin–Vigneaux line; Shannon entropy as 1-cocycle, mutual information as 2-cocycle; the (co)homology pairing whose homological dual is what the bulk layer constructs. <br> **Status:** Committed. |
+| **1. Reflexive Protocol Layer (Π)** | **Function:** bounded meta-conversations propose later protocol versions without rewriting conversations already run. <br> **Math anchor:** explicit versions, preservation obligations, and an activation boundary; the categorical carrier remains open. <br> **Status:** Committed responsibility; formal shape unearned. |
+| **2. Bulk Type Theory / Content Layer (Λ)** | **Function:** interpret published episodes, artifacts, concepts, dependencies, and comparison history as versioned languages that can grow and compress without rewriting evidence. <br> **Math anchor:** directed content graph plus a version-relative presentation in which only admitted comparisons may be inverted; every compression is relative to designated observations. <br> **Status:** Selected v0 forcing case; higher categorical form open. |
+| **3. Field-theoretic dynamics on the content layer** | **Function:** investigate the growth, stabilization, and purpose-relative compression of versioned language presentations. <br> **Math anchor:** factorization algebra and renormalization-group ideas are candidates only after Λ supplies actual local observables and transformations; no fixed trajectory or action functional is assumed. <br> **Status:** Research horizon. |
+| **4. Federation — open network of documented contexts** | **Function:** independently maintained peers exchange typed, versioned artifacts while retaining local adoption authority, conflicts, and missing translations as data. <br> **Math anchor:** first a category/bicategory candidate of publication contexts and partial translations; Yoneda, anabelian reconstruction, and GT-equivariance remain research tests, not consequences. <br> **Status:** Exchange constraints selected; full mathematical layer unearned. |
+| **5. Information-cohomological complexity** | **Function:** investigate receiver-relative description cost without assigning complexity ranks to actors. <br> **Math anchor:** information cohomology and related empirical proxies, after Λ defines a category of observations. <br> **Status:** Research horizon; measurement interface unearned. |
 
 ### What is intentionally *not* in this catalogue
 
@@ -307,65 +369,192 @@ See `workflow/status_implementation.md` for the substrate-readiness audit, runti
 
 ### 1. Reflexive Protocol Layer (Π)
 
-A protocol that cannot revise itself either freezes prematurely or forces the engineers around it to do the revising by hand, outside the protocol's own verified machinery; either way the discipline the rest of the framework imposes is lost at the meta-level, because the act of changing the rules now happens in a place the verification does not reach. The Reflexive layer is the formal home of protocol self-modification. Periodic meta-conversations are spawned to inspect the current protocol, propose edits, and — when they reach consensus — commit those edits as the protocol under which subsequent conversations operate. Past events stay under the rules in force at their occurrence. The whole mechanism happens *inside* the framework's actor-causal / session / hybrid machinery rather than alongside it, which is what makes "the protocol changed itself" a verifiable event rather than an administrative fact.
+A protocol capable of renewal must be able to propose a later version without
+rewriting work performed under an earlier one. The Reflexive layer is the
+eventual home of bounded protocol change. Meta-conversations run under an
+existing immutable session tag, publish a proposed change as an artifact, and
+activate an accepted version only at an explicit boundary. Past conversations
+retain the protocol identity under which they occurred. Consensus is not the
+definition of closure, and no fragment-category model of assent is fixed here.
 
-**Function in the human-world implementation.** Regular-interval self-scan as a built-in protocol primitive: a meta-conversation is spawned automatically, with a typed role for inspecting the current rules. Meta-conversations can spawn sub-conversations (proposal exploration, dialogue with neighbors, drafting); the resulting bundle of edit-proposals forms a structured object whose amalgamation is the new protocol version. Inconsistent proposals — a bundle with no coherent amalgamation — give the framework an honest formal counterpart of "the protocol cannot be coherently edited from here." A protocol that is genuinely stuck reports itself as stuck, rather than being silently kept running by ad-hoc workarounds in the surrounding engineering. Non-retroactivity is automatic: conversations started under protocol v1 cannot be rewritten under v2, because `FrameHom`'s strict causality reflection in `ActorCausal.agda` makes retroactive event manipulation structurally impossible.
+**Function in the human-world implementation.** The first case is not an
+automatic self-scan. A bounded meta-conversation cites the current protocol,
+states the proposed change, names which earlier artifacts and judgments remain
+usable, and names the first newly admissible operation. Acceptance publishes a
+new version and activation point; rejection or obstruction publishes a failure
+record. Non-retroactivity is a contract/version property to prove. It does not
+follow automatically from strict causality reflection inside one frame.
 
-**Mathematical structure.** The protocol-version category Π. Objects are protocol versions (each one a Hybrid configuration: site, session target, presheaf chassis, content category, etc.). Morphisms are protocol edits. Whether Π is a 1-category or carries 2-categorical structure (edits compose up to coherent equivalence) depends on the chosen fragment formalism. A forgetful functor `Π → HybridStructure` recovers the current framework configuration at each version. A *patch-theoretic fragment category* hosts edit proposals; consensus is the existence of coherent amalgamation in that category. Pijul is the primary implementation-facing candidate: patches as first-class events, dependencies as causal-order data, commutation of independent changes, conflicts as explicit gluing obstructions, resolutions as typed repair events, partial clones as local views. The precise categorical encoding — 1-category, double category, event structure, adhesive category, partial-commutation presentation — is held open until the candidate is examined honestly. A temporal site combining the actor-causal site with version-indexing is the natural object for ordinary conversations to live over; morphisms in it split into intra-version `FrameHom` and inter-version protocol-edit lifts.
+**Mathematical structure.** Π remains a name for the responsibility, not yet a
+constructed category. Candidate objects are explicit protocol versions;
+candidate arrows are changes carrying preservation and genuine-extension
+evidence. Identity must recover prior behavior, composition must preserve the
+declared achievements, and mere renaming or duplication must not count as
+renewal. Patch theory, event structures, adhesive categories, and a temporal
+site remain possible presentations. They are not required for the first
+artifact-reuse case and must be chosen only when a concrete conflict or
+concurrent-edit example forces them.
 
-**Trigger / dependencies.** Two required, both load-bearing: (a) descent and the cartesian-vs-linear R4 question stable enough that the Hybrid chassis is no longer moving under a new layer; (b) the fragment-category candidate honest enough to state in Agda — minimum, a chosen object class for edit proposals, a chosen morphism class, and a stated compatibility condition for which coherent amalgamation is meaningful. The Reflexive layer pulls forward two other items already on the books: the Promotion morphism class from the Hybrid adapter list (Adapter 5) acquires its operational duty as the bridge from closed meta-conversation to Π-morphism; `MO_1` / the modular envelope graduates from long-horizon to active roadmap as the natural home for the self-gluing involved in conversation-of-conversations.
+**Trigger / dependencies.** First establish ordinary artifact reuse: a closed
+output becomes an admissible input to further work while specified earlier
+observations remain available. Bounded protocol change comes only after that
+transition, explicit protocol identities, and activation boundaries exist.
+Promotion is the publication/reference interface, not a morphism collapsing a
+frame. Neither a fragment category nor `MO_1` is a prerequisite for v0.
 
-**Open questions / deferred pieces.** Whether Π is 1- or 2-categorical (depends on fragment-category choice). The precise functor `Π → HybridStructure` and its variance. Pijul's categorical encoding. The implementation of consensus in practice — how a meta-conversation actually arrives at the coherent amalgamation beyond the mathematical statement that it exists. Whether the framework wants a single Π for all edits or a stratified family (rule-level edits vs vocabulary-level edits vs interface-level edits) — the latter starts to be needed once the federation layer enters.
+**Open questions / deferred pieces.** Which achievements form the first
+preservation interface; whether changes compose strictly or coherently; how a
+proposal is admitted; how concurrent proposals are reconciled; and whether
+rule, vocabulary, and interface changes require stratified version families.
+Federation requires local activation: accepting a version in one peer never
+edits another peer.
 
-**Agda tree slot.** `Concurrency/Hybrid/Reflexive.agda`, reserved 2026-05-21. The choice of `Hybrid/` over a sibling `Concurrency/Meta/` subtree reflects the project's preference against premature folder proliferation and the Hybrid layer's recent reframing as the adapter layer; if Reflexive grows into a genuinely higher-order protocol calculus, it can be split out at that point.
+**Agda tree slot.** `Concurrency/Hybrid/Reflexive.agda` is a historical
+reservation, not permission to open the file. The first preservation-and-
+extension obligation decides whether the responsibility belongs there or in a
+separate contextual/version layer.
 
 *Originating design conversation:* `deep_context/arc/07_self-modifying_protocol.md`.
 
 ### 2. Bulk Type Theory / Content Layer (Λ)
 
-A message currently carries only a session-type tag — its "how" (request, response, send, receive, endpoint discipline). The Bulk layer adds a "what" tag: the concept the message is about. As actors exchange messages, refine their meanings, contest mis-uses, and stabilize working definitions, the protocol builds up its own internal type theory of concepts. Seed languages — natural-language English, formal mathematics, ad hoc shared vocabulary — are embedded as initial presentations and get progressively replaced by the protocol's own evolving language; the reflexive layer's meta-conversations include those that work specifically on making this language more transparent, easier to use, and free of inherited biases. The bulk layer is, in a precise sense, the protocol's true output: what gets produced is not the messages but the universe of concepts the messages build.
+The runtime currently records an opaque session tag, content tag, and
+provenance token. Contract v1 supplies the first forcing evidence for Λ:
+closure outputs, run-local and federated references, derivation kinds, and
+documentation versions. These data are not already concepts or a type theory.
+Λ is the interpretation that distinguishes episodes, output artifacts, concept
+identities, and versioned presentations while preserving their relationships.
 
-**Function in the human-world implementation.** Every message tagged with both a session-type and a concept-tag. The pair `(SessionType × ContentTag)` is the operative carrier. The current language Λ is queryable: concepts can be looked up, related, refined, contested, deprecated. New concepts are introduced by typed events; refinements are recorded as morphisms; consensus across conversation-networks promotes local edits to global ones. Biases inherited from seed languages appear as homotopical obstructions — paths the seed language assumes the community's actual usage does not coherently support — and can be surfaced for repair by reflexive-layer meta-conversations of the bias-correction kind. The implementation is meaningfully a *language-generation engine*, not just a verified message-passing kernel.
+**Function in the human-world implementation.** Users can inspect the retained
+history of comparison proposals, acceptances, challenges, and withdrawals;
+select the comparisons admitted by one documentation version; and query the
+language presentation built from that admitted set. Dependency and provenance
+edges remain directed. Only admitted comparisons may become invertible.
+Locators such as engineering and biology are contexts inside the language, so
+one construction can be transported between them without erasing its origin.
+A withdrawn comparison changes the current presentation while leaving the
+historical record intact.
 
-**Mathematical structure.** The concept category Λ. Objects are concepts; 1-morphisms are concept-relations (subsumption, specialization, paraphrase, refinement, contradiction-witness); higher morphisms are coherences and obstructions. Likely a 2-category or (∞,1)-category to host the homotopy structure of refinements honestly. The tagging structure on values: in the simplest reading, `SessionPresheaf` is generalized from `Sessions-Cat` values to `Sessions-Cat × Λ` values (parallel layers, with the how/what split preserved). A fibred or full Grothendieck construction over Λ is the natural alternative if content needs to vary contextually with concepts; the design call is parallel-vs-refining. Seed inclusion: external languages enter as initial presented theories embedded into Λ. Three presentation candidates with different operational consequences — Lawvere theory for the cleanest categorical model, categorial grammar (Lambek) for natural-language bridges, dependent type theory for the eventual self-hosted version — likely all three end up needed. A language-generation functor / monad packages how conversation data refines Λ; meta-conversations of the reflexive kind act on Λ via this functor.
+**Mathematical structure.** V0 requires three separate objects: the persistent
+history of comparison claims, the set admitted by a particular documentation
+version, and a presentation constructed from that set. Localization at the
+admitted comparisons is one candidate presentation; neither the free category,
+the core, nor groupoid completion is declared to be the meaning. Any quotient,
+localization, or compression must satisfy an adequacy condition: each
+designated observation descends through it. A 2- or (∞,1)-categorical
+refinement becomes earned only when a real coherence problem—such as a
+non-closing triangle among three disciplinary translations—cannot be stated at
+set level.
 
-**Trigger / dependencies.** Hybrid finite descent plus the finite Set/V endpoints, the finite Coverage comparison, and R4: the bulk layer compatible-local-content reading uses the sheaf-descent half of the Hybrid layer, not just the presheaf/restriction half. The Reflexive layer Π: language edits and protocol edits interact, and some content-layer edits will be sequenced through meta-conversations. Sessions-Cat stays untouched at the `*`-autonomous level; the bulk layer sits above it as additional structure on the values, not as a refinement of session syntax.
+**Trigger / dependencies.** Contract v1 must first distinguish closure,
+artifacts, references, provenance, and versions. Λ then interprets that
+evidence without changing the actor-causal substrate or `Sessions-Cat`.
+Finite descent and R4 remain mathematical resources for later local-to-global
+content theorems, not prerequisites for naming the v0 evidence. Reflexive Π is
+also not a prerequisite: ordinary content comparison and withdrawal can force
+the first versioned presentation before protocol self-modification exists.
 
-**Open questions / deferred pieces.** Parallel content category vs refinement of Sessions (lean: parallel). Set-truncated vs homotopy-typed (lean: ship set-truncated as first witness, target homotopy-typed). Seed-language choice (Lawvere / categorial grammar / dependent type theory). Whether Λ has its own operad `O_C` whose generators are concept-formation operations (define, refine, identify, split, contradict), and if so whether `O_C` is structurally similar to `O_1` (cyclic, ribbon, planar) or genuinely different (commutative, branching, tree-like). The interaction with the actor-causal site: which concepts are local to which frames, how the cover structure interacts with the indexing.
+**Open questions / deferred pieces.** The first engineering/biology comparison
+and the observations it must preserve; the formal presentation versus runtime
+computation boundary; composition of directed dependency edges; the exact
+adequacy interface; and the first coherence that forces higher structure.
+Whether a content operad `O_C`, a fibred construction over Λ, or a particular
+seed-language formalism is useful remains conditional on those examples.
 
-**Agda tree slot.** `Concurrency/Content/` as a new sibling to `Sites/`, `Algebras/`, `Operads/`, `Hybrid/`, or `Concurrency/Hybrid/Content.agda` inside the adapter list. Mathematically the bulk layer is distinct enough from the adapter layer that its own subtree is defensible; the project's folder-proliferation discipline pushes toward the Hybrid location. Decision deferred until the layer's actual code shape is closer.
+**Agda tree slot.** No subtree is reserved. The first adequacy obligation and
+runtime interpretation decide whether a small `Concurrency/Content/` sibling or
+another location is warranted.
 
 *Originating design conversation:* `deep_context/arc/08_bulk_type_theory_layer.md` (placeholder file; design captured in workflow conversation logs).
 
 ### 3. Field-theoretic dynamics on the content layer
 
-Once Λ exists, its actual content does not appear ex nihilo. The protocol starts in its most pristine state — designed with perfect symmetry, before any of the perturbation provoked by the actors' conversations. That high-symmetry state exists only briefly; under the perturbation of actor activity it is replaced by a fluctuation-heavy proposal storm — randomly distributed actors proposing things across the network, most ending in the system's trash bin — and only after sustained work converges into a mature, stabilized, efficient language that mirrors the actors' context faithfully at an abstract level. This pristine-symmetry → chaos → restructuring → stable-cycles trajectory is not a metaphor for cosmological symmetry-breaking; mathematically it is the same phenomenon. The content layer behaves as a *factorization algebra* over the actor-causal site (Costello–Gwilliam framework), and its evolution is *renormalization group flow*, driven by the insertions that the reflexive-layer meta-conversations supply. This subsection commits the framework to that field-theoretic register and names what it brings to the implementation: an action functional the protocol can optimize, distance functions on concepts and on protocol-versions, and a class of empirical observables (correlators) that turn the protocol's qualitative behavior into measurable data.
+Once Λ exists, its languages will change under use, comparison, correction,
+and compression. Field theory, factorization algebras, and renormalization-group
+flow offer a possible mathematics for locality and scale in that change. They
+are currently an interpretive research program, not the same phenomenon by
+definition and not a committed implementation objective. The forcing case must
+first identify a real scale-dependent observable or local composition law that
+the simpler versioned-presentation model cannot express.
 
-**Function in the human-world implementation.** An *action functional* gives the implementation an objective. Candidate Lagrangian terms: description length of the current language (penalizes redundancy, rewards compression), coherence cost of the concept category (penalizes unresolved obstructions), communication overhead (penalizes round-trips needed to disambiguate), drift from observed usage (penalizes divergence between the formal language and how actors empirically use it — the bias-correction term, expressed as a Lagrangian component). RG flow is gradient flow of this action on the space of language states; the meta-conversations from the reflexive layer are the discrete-time correction events, proposing changes that reduce the action substantially in one step and ratifying them by consensus. *Metrics* give the system clustering power and drift detection: distance between concepts (candidate-synonym detection, candidate-refinement detection, clustering of related concepts), distance between protocol versions (whether a proposed edit is a small adjustment or a paradigm shift, computing the trajectory of the protocol in version-space). Crucially, *no* metric on actors — that would break unityping. *Correlators* are the protocol's natural observables: two-point and higher patterns of concept co-occurrence across actor-causal regions, across conversations, across protocol versions. Critical exponents — how correlators scale near a phase transition — are the empirically testable signature of *universality*: two communities of inquiry running protocols in the same universality class should agree on critical exponents.
+**Possible function in the human-world implementation.** If earned, an action
+functional could compare proposed language states using declared terms such as
+description length, unresolved coherence, communication overhead, and drift
+from observed use. Metrics could assist clustering and change detection, while
+correlators could measure concept co-occurrence across frames or versions. Such
+quantities belong to an analytic/heuristic layer and require empirical
+validation. They must not introduce metrics or rankings of persons into the
+trusted kernel, and agreement with renormalization-group dynamics or
+universality classes is an eventual hypothesis rather than current fact.
 
-**Mathematical structure.** A factorization algebra on the actor-causal site, valued in (likely homotopy-typed) Λ. Open sets are `LocalFrame`s; the assignment of a chain complex (or higher category) to each open subset is the content layer's local content; factorization maps encode how disjoint-region content composes. The operad governing the factorization is `O_C`, a content-side operad whose generators are concept-composition operations. Whether `O_C` is structurally similar to `O_1` (cyclic associative, three-port, ribbon-decorated) or genuinely different (commutative, tree-like, branching) is a real open question that the framework should not pre-decide. Wilsonian RG flow on the moduli of factorization algebras, deformed by reflexive-layer insertions; mature language = IR fixed point; universality classes = communities-of-inquiry that flow to the same fixed point regardless of seed language. The symmetry-breaking content is HoTT-native: the initial high-symmetry state is the contractible / one-concept Λ (all concepts identified); each consensus event that records a stable distinction between concepts is a higher coherence saying "the presumed equivalence does not compose."
+**Mathematical structure.** A factorization algebra on the actor-causal site
+valued in Λ, a content operad `O_C`, and Wilsonian flow on a moduli space remain
+candidate structures. None has been constructed or forced. In particular,
+"start with all concepts identified and then add distinctions" cannot be
+modeled as monotone accumulation inside one fixed type: adding distinctions
+withdraws identifications and changes the presentation. The versioned Λ model
+must state that transition before any symmetry-breaking or fixed-point reading
+is meaningful.
 
-**Trigger / dependencies.** Λ must be statable (Layer 2 first). The reflexive layer Π provides the operators that get inserted into the flow (Layer 1 first). `MO_1` becomes load-bearing: factorization algebras with the geometry the content layer needs land naturally over modular-operad infrastructure, and the cobordism / TFT dictionary from `deep_context/arc/06_*` is the operations-side of the same connection this layer frames as the framework-side. The two dictionaries — boundary / process duality (06) and scale dynamics / RG (this layer) — are unified at the level of locally constant factorization algebras over the cobordism category and the cobordism hypothesis's full-dualizability condition.
+**Trigger / dependencies.** Λ must first have a non-trivial versioned example,
+an adequacy interface, and observable change across at least two scales. Π and
+`MO_1` are possible later inputs, not prerequisites asserted in advance.
 
-**Open questions / deferred pieces.** The specific shape of `O_C` (genuinely open). The specific Lagrangian terms and their relative weights — every term is a normative commitment about what makes a language "good," to be entered with eyes open; this is also the place where the project's values become explicit and editable, which is a feature, not a bug. Whether universality classes exist and are testable in practice. The action functional should remain in the analytic / heuristic layer rather than the trusted kernel: kernel claims (typing, provenance, non-retroactivity, descent, no-leak, valid promotion) should not silently depend on numerical field-theoretic quantities even when those quantities are guiding the implementation's decisions.
+**Open questions / deferred pieces.** The specific shape of `O_C` (genuinely open). The specific Lagrangian terms and their relative weights — every term is a normative commitment about what makes a language "good," to be entered with eyes open; this is also the place where the project's values become explicit and editable, which is a feature, not a bug. Whether universality classes exist and are testable in practice. The action functional should remain in the analytic / heuristic layer rather than the trusted kernel: kernel claims (typing, provenance, non-retroactivity, descent, no-leak, and valid publication) should not silently depend on numerical field-theoretic quantities even when those quantities are guiding the implementation's decisions.
 
 **Agda tree slot.** Co-located with Λ. The trusted-kernel verification work (typing, descent, provenance) stays in the existing Hybrid / Sessions / Sites tree; the field-theoretic-flavored dynamics layer is an analytic companion to that, not a refinement of it.
 
 *Originating design conversation:* `deep_context/arc/06_the_hybrid_as_a_door_to_field_theories.md` (cobordism / field-theory dictionary); RG-flow / factorization-algebra reading captured in workflow conversation logs.
 
-### 4. Federation — bicategory of protocols (Yoneda + anabelian)
+### 4. Federation — open network of documented contexts
 
-A single protocol that succeeded at every previous layer would, if left in isolation, still end up positioned as the sole legitimate framework for inquiry — claiming exclusive authority over its domain, requiring others to conform, treating dissent as malfunction. That is precisely the authoritarian arrangement (in science, in the rest of the institutional world) the framework was built to dissolve at the level of individual conversations; reproducing it at the level of protocols would be the project succeeding mathematically while losing the social claim that motivated it. This failure mode at the protocol level is structurally exact to the *one true mathematics* failure mode that the modal-HoTT-as-praxis claim refuses at the foundational level: both involve an authoritative regime claiming jurisdiction over a domain that is intrinsically plural. The same disciplinary move applies at both levels. The federation layer is the structural counter-move: every protocol instance is designed to treat itself as one-among-many from inception, exposing typed translation interfaces to neighboring protocols as part of its own definition, not as a costly afterthought. Mathematically, this is the Yoneda lemma read as a discipline: a protocol *is* its system of translations to other protocols; anything that fails to expose translation interfaces is Yoneda-equivalent to no protocol at all. The "one among many" property thereby becomes constitutive rather than appended. The Sketch-of-a-Program-mathematics that has been the hidden long-horizon spine of the concurrency side (dessins, Belyi maps, the modular envelope, the GT action) acquires here its operational job: it is the symmetry that makes translations between protocols coherent across the ecosystem.
+Federation prevents a successful local protocol from silently becoming the
+only authority over a plural field. Every instance must be capable of
+publishing and importing typed artifacts while remaining responsible for its
+own admissions and versions. This social commitment constrains the artifact
+boundary now. It does not follow from Yoneda, and it does not yet supply a
+bicategory, a meta-topos, an anabelian reconstruction theorem, or a
+Grothendieck–Teichmüller action.
 
-**Function in the human-world implementation.** A neighbor-registry as a typed channel rather than a database: discovery and admission of new neighbors happen via typed exchange, with no privileged admitting authority. A translation API exposed per concept: each concept in Λ carries typed (partial, possibly multi-valued) translation signatures to known neighbors; missing translations are first-class data, not bugs. Provenance on every term: every concept, every protocol-edit, every consensus decision tracks origin protocol(s) and influencing neighbors at the type level, unforgeable. Partial clones, not full mirrors: cited concepts retain their provenance and dependencies on the origin protocol's structure; nothing is silently absorbed. Conflict as first-class data: when two neighbors hold incompatible positions on a shared concept, the incompatibility is recorded explicitly as a conflict morphism in both protocols' internal structure rather than flattened into "one of them is wrong." Edit-locality: the reflexive layer's protocol-edits do not propagate across protocols; a meta-conversation in protocol P that edits P does not edit Q, and if Q wants the analogous edit, that is Q's own meta-conversation. There is no operational state of "an isolated Hoapa instance" — running the protocol means running it as one-among-many from the first event.
+**Function in the human-world implementation.** A peer publishes a finite,
+versioned bundle with a publisher scope, stable artifact identifiers, protocol
+identity, declared imports, and typed partial translations. Another peer pins
+that bundle and decides locally what to admit. Missing translations, conflicts,
+and challenges remain data. A later source update or withdrawal does not
+rewrite an offline import, and an edit accepted by peer P does not edit peer Q.
+The bundle is complete relative to its explicit import boundary rather than by
+recursively containing the whole network history.
 
-**Mathematical structure.** A (2- or (∞,2)-)category of protocols. Objects: protocols, each one a Hoapa-structure (cohesive ∞-topos + actor-causal site + sessions + hybrid + reflexive Π + bulk Λ + field-theoretic dynamics). 1-morphisms: Hoapa-respecting geometric morphisms between the underlying toposes — translations that preserve actor-causal locality, content category, and reflexive-layer structure. 2-morphisms: comparisons between translation functors with coherent composition. Yoneda gives `P ≃ Hom(–, P)` in the (2-)presheaf topos over the category of protocols; this is the formal content of "one among many." The presheaf topos `M` over the category of protocols is the *meta-topos*; it inherits cohesion, factorization-algebra structure, and the rest of the Hoapa-structure from the protocols, making it itself a Hoapa-structure at one level up. The construction therefore iterates — ecosystems of ecosystems, etc. — with no privileged top altitude. A canonical Grothendieck–Teichmüller-group action on M, inherited from each protocol's `MO_1`: translations are GT-equivariant, and the recovery of a protocol from its translation surface is GT-equivariant. In the strong target form, M is *anabelian* in the relevant sense: protocols are recoverable from their Yoneda data equipped with GT-action; two protocols are equivalent iff they sit in the same GT-orbit. Dessins-like combinatorial presentations of individual protocols are the analog of dessins ↔ Belyi pairs. A sibling `Π*` for inter-protocol relations completes the picture: intra-protocol edits in Π compose with inter-protocol translations in Π* in a larger 2-categorical structure. Goguen / Burstall institutions are a useful published precedent for the morphisms-of-internal-languages level.
+**Mathematical structure.** The first candidate is a category or bicategory of
+publication contexts and partial translations: objects carry versioned local
+presentations; arrows preserve declared observations and provenance relative
+to an import boundary; 2-cells, if forced, compare translations. Yoneda may
+later test whether a protocol is adequately determined by its translation
+surface, but representability alone does not mandate openness or connectedness.
+Geometric morphisms, institutions, anabelian recovery, dessins, `MO_1`, and
+GT-equivariance remain progressively stronger research candidates. No one of
+them is inherited automatically by assembling protocols into a network.
 
-**Trigger / dependencies.** All four previous layers at v1 (Π for intra-protocol edits to translate; Λ for the content surface; field-theoretic dynamics for the comparison data correlators supply). `MO_1` for the GT-action. The R11 structuring relation (arithmetic action), currently deferred in `status_formal.md` to the `MO_1` stage, is reclassified by this layer from "late-stage decoration" to "structural backbone of inter-protocol coherence" — without R11 the ecosystem of protocols is a discrete pile of unrelated structures, with it the ecosystem has a single canonical group of automorphisms relating all the translations.
+**Trigger / dependencies.** The lower-level interface is tested early, after
+contract v1 defines stable artifact identity and before the Λ representation
+is frozen. Full categorical Federation waits for non-trivial Λ translations
+and versioned context renewal. Field-theoretic dynamics, `MO_1`, and R11 are not
+prerequisites for a useful connected network.
 
-**Open questions / deferred pieces.** The precise sense in which M is anabelian (anabelian theorems are genuinely hard; even Mochizuki's dimension-one proof is technical and contested in parts; we promise the structural commitment and the roadmap, not the theorem). Whether Π and Π* unify or persist as parallel structures. Whether a future Mediate-style federation reading unifies with the structural / content / cross-leg readings, or stays as a distinct altitude. The project's discipline of self-application here is structural rather than rhetorical: Hoapa itself is one protocol among many — one attempt at a framework, currently being built by one small community-of-inquiry — and must expose typed translation interfaces to adjacent communities (HoTT/UF, factorization-algebra theorists, AI alignment groups, Pask-descended conversation theorists, autopoiesis-influenced researchers, the Bennequin / Belfiore / Laforgue topos-for-cognition line) rather than claiming to resolve them.
+**Open questions / deferred pieces.** The morphism laws for partial
+translations; authentication and integrity without a privileged admitting
+authority; version negotiation; cycles of imports; observation-preserving
+composition; and whether Π's local changes and Federation's translations share
+one higher structure. Hoapa itself remains one proposed protocol among others;
+typed interfaces to adjacent communities are a design obligation, not a claim
+that those communities already form one category.
 
-**Agda tree slot.** `Concurrency/Federation/{Protocol,Translation,MetaTopos}.agda`, reserved as future home. Opens far downstream of R4 / `MO_1`.
+**First forcing fixture.** Two peers issue colliding local identifiers, one
+retains a pinned import while offline, the peers admit different comparisons,
+and only one adopts a later withdrawal. The test succeeds when each current
+view is reproducible from its own local version and declared imports; it does
+not require convergence. A formal subtree is named only after this fixture
+forces a reusable mathematical interface.
 
 *Originating design conversations:* `deep_context/arc/06_the_hybrid_as_a_door_to_field_theories.md` (cobordism dictionary, Sketch-of-a-Program connection); federation discipline and Yoneda + anabelian / GT-action reading captured in workflow conversation logs.
 
@@ -387,42 +576,92 @@ The complexity of a message is not intrinsic to the message; it is what the rece
 
 ### Appendix — cross-cutting reframings (different in nature from the layers above)
 
-The five layers above each name a new piece of formal content the framework commits to host. The three items below are different: they are *reframings* — sharper readings of structure the framework already commits to. They are listed here so the catalogue carries them visibly, without giving the impression that they are additional construction work. Each affects what to aim for, not what to additionally build.
+The five entries above name responsibilities at different maturity levels:
+some are committed functions, Λ has a selected forcing case, and others remain
+research horizons. The items below are *reframings*—sharper readings of
+structure already under discussion. They affect what to aim for rather than
+adding numbered construction work.
 
 #### A. Cohesion (and differential cohesion) as complexity threshold
 
-The framework presumes a minimum modal complexity: not "any" modality, but the cohesive triple `ʃ ⊣ ♭ ⊣ ♯` with its specific separation and modal-subuniverse assumptions (`♭` preserves products, pieces have points, the modal types form a non-trivial subuniverse), and eventually differential cohesion `ℜ ⊣ ℑ ⊣ &`. These assumptions do not assert cross-site non-collapse. Below cohesion, the modal side is too thin for "complexity develops" to be a non-trivial claim: three modalities that collapse to one remove the motivating multi-level contrast. Distinct modalities still do not prove the Lawvere explanation, T3, or a developing network; those require the cross-site witnesses specified in `targets.md` §T3. Below differential cohesion, the modal side's field-theoretic output is restricted to synthetic cohomology and the central conjecture cannot land in its strongest form. In the Manin reading, complexity is generative recursion supported by multi-level adjoint reasoning; cohesion is the minimum modal structure in which that reading can be posed. The mapping is sharp: separation-of-concerns on the concurrency side is the discipline that keeps content and actor-carrier as distinct mathematical objects, and cohesion on the modal side is the discipline that keeps spatial and discrete as distinct modal layers; both are the generative geometry of their respective sides, neither is decoration. The framework-makes-sense floor is cohesion; the central-conjecture-can-land floor is differential cohesion. This reframing sharpens the existing `Beyond fracture` entry: differential cohesion graduates from "elevated to load-bearing for the cross-site bridge" to "the substance of the modal field-theoretic output." No new construction work; non-removability of the existing commitments becomes part of the central claim rather than a working assumption.
+The framework seeks a non-trivial modal complexity: not "any" modality, but a
+cohesive organization in which spatial and discrete faces do not collapse, and
+possibly later differential cohesion. The current synthetic signature fails
+this floor because every type becomes flat-modal. Repairing that defect now
+precedes claims about differential cohesion or modal field-theoretic output.
+Even a sound cohesive triple would not prove the Lawvere explanation, T3, or a
+developing network; those require the constructed cross-site witnesses in
+`targets.md` §T3. The durable comparison is limited: separation of concerns in
+K keeps content and actor carrier distinct, while cohesion should keep modal
+faces distinct in M. Whether the richer field-theoretic destination is required
+must be earned after the basic contextual modal interface is non-degenerate.
 
 This reframing is presented first in the appendix because the next reframing (the symmetric formulation, B) presupposes both cohesion and differential cohesion as floors; and the third (recursive co-evolution, C) presupposes both of those.
 
-#### B. Symmetric formulation: the modal side outputs a field theory
+#### B. Candidate symmetric formulation: modal field-theoretic output
 
-The five layers above belong to the concurrency side. A complementary observation on the modal side closes a symmetry that is structurally exact and sharpens the central conjecture. Read this way, reframing B is the cross-site closure of the five-layer catalogue: the five layers describe the concurrency outputs in detail, and this reframing states that the modal side has the symmetric output structure (a field theory), with the cross-site adjunction `Allow ⊣ Require` as the current precise statement of the symmetry. The reframing is therefore the natural closing claim of the layered architecture, not a sibling addition to it.
+The five entries above describe K-side responsibilities. A possible M-side
+counterpart is a field-theoretic semantics of contexts, but no structurally
+exact symmetry has been established: the present modal signature collapses,
+M has not been constructed, and `Allow ⊣ Require` is still the theorem target.
+This reframing names a research question—whether a repaired M supplies the
+right ambient semantics for K's content dynamics—not a closing claim of the
+layered architecture.
 
 *Notation update (2026-06-04): this file used `Allow ⊣ Mediate ⊣ Require` as older shorthand. The live structural target is now pair-first: `Allow ⊣ Require`, with Mediate, ambidextrousness, or a quadruple held only as future extra structure if earned. Where this section assigns `Mediate` a concrete role (e.g. the evaluation map of the (co)homology pairing in Layer 5), read it as a candidate extension of the pair, not as a settled commitment.*
 
-The modal side, once differential cohesion lands (the `ℜ ⊣ ℑ ⊣ &` triple, currently in `Beyond fracture` above), is a synthetic field-theory construction kit in the sense Schreiber's program has developed for over a decade: smooth ∞-stacks as moduli of field configurations, Lagrangian field theory as variational calculus on jet ∞-stacks, BV/BRST quantisation as a derived construction on the moduli of solutions, twisted differential cohomology as the natural target for observables. The cyclic bar construction at S¹ (the deferred modal work in `T_recursion iteration`) is the moduli-extraction step. So the symmetric statement is: *the concurrency side has field-theory-shaped dynamics whose stabilized output is an internal type theory* (the five layers); *the modal side has type-theory-shaped foundations whose internal semantics is field-theory-shaped*. The cross-site adjunction `Allow ⊣ Require`, with a possible future `Mediate` extension, is the precise statement that the field theory the modal side outputs and the type theory the concurrency side outputs are mutually adjoint readings of the same cohesive ∞-topos. This requires the existing modal build-out (differential cohesion, cyclic bar) plus the concurrency layers above. The reframing does not change the immediate next steps; it sharpens the destination.
+Differential cohesion can support synthetic field-theory mathematics—smooth
+∞-stacks, differential cohomology, and derived moduli are the relevant
+published setting. Hoapa has not constructed that layer, shown that cyclic bar
+is its required moduli-extraction step, or proved that K's future dynamics and
+M's semantics are two readings of one object. `Allow ⊣ Require` remains the
+candidate relation to test after both sides exist. This reframing is therefore
+a research destination, not a statement of the current architecture.
 
-#### C. Recursive co-evolution: iterated cross-site adjunction
+#### C. Context renewal and possible recursive co-evolution
 
-The five layers, taken together, support a reading larger than any of them individually: a sequence `(M_0, C_0) → (M_1, C_1) → (M_2, C_2) → …` where each (modal context, concurrency protocol) pair runs in its modal context and, through its activity — the field-theoretic output on the modal side, the reflexive-layer's protocol-edit machinery and the bulk-type-theory layer's content production on the concurrency side — refines the ambient enough that a new modal context `M_{n+1}` emerges, in which new protocols `C_{n+1}` become statable that were not statable in `M_n`. The sequential colimit (or, in a richer formulation, a 2-categorical colimit accounting for the adjoint maps between stages) is the candidate stable evolution object. Convergence (with `Require ∘ Allow` acting as identity on the colimit) is one possible outcome; persistent production of genuinely new structure is the stronger possibility targeted by T_recursion. The proposed Lawvere asymmetry motivates that outcome but does not prevent convergence by itself: non-stabilization must be witnessed at rung 3 of `targets.md` §T3. This admits recognizable counterparts in cosmology (vacuum-selection inflation), biology (niche-construction plus the major-evolutionary-transitions framework), the history of social institutions, and the development of mathematical practice itself; the project's claim is that those readings may share a *formal categorical content*, not merely a slogan. The framing is *a candidate formal frame for context-system co-evolution with recognizable interdisciplinary readings*, deliberately not *a generalized theory of evolution*: the precedent of cybernetics, general systems theory, and Wolfram's NKS is the cautionary tale this language is calibrated against (see `related_structures.md` § *Universal-theory precedents — the cybernetics-era pattern* for the precedent map), and the project's distinctive position is that the mathematics is being built first and the interdisciplinary readings come second, rather than the reverse. Mathematically, this is the long-horizon form of `T_recursion` lifted from a single adjunction to the iterated cross-site adjunction; the existing iteration scaffold in `Iteration.agda` is the control-scale precursor, not evidence that the long-horizon object exists.
+The selected forcing case is a single transition: a documented artifact makes
+a previously unavailable conversation admissible while specified earlier work
+remains usable. A later case may let a bounded meta-conversation activate a new
+protocol version. Only after those transitions have objects, morphisms,
+composition, and non-trivial examples does it make sense to ask for a sequence
+`(M₀, K₀) → (M₁, K₁) → …`, an iterated cross-site adjunction, or a colimit.
+The existing modal iteration scaffold is a collapsing control under the
+current signature, not evidence that such a long-horizon object exists.
+
+Simondon supplies a direction—context and organized activity should be allowed
+to become determinate together—without specifying this mathematics. Analogies
+to biological niche construction, institutional development, or cosmology
+remain interpretive tests after a formal transition exists, not evidence for
+the transition.
 
 ### Glossary
 
 Brief definitions of recurring terms in the layers / reframings section above, for readers without category-theory or cohesive-HoTT background:
 
 - **`MO_1`** — the *modular envelope* of the cyclic operad `O_1`; closure under self-gluing of marked points, producing operations at every `(genus, arity)` configuration.
-- **Π** — the *protocol-version category* from Layer 1; objects are protocol versions, morphisms are protocol edits.
-- **Λ** — the *concept category* from Layer 2; objects are concepts, morphisms are concept-relations (subsumption, refinement, contradiction-witness).
+- **Π** — the protocol-renewal responsibility from Layer 1. Explicit versions,
+  bounded changes, preservation, and activation are selected; a category of
+  protocols has not yet been earned.
+- **Λ** — the content-layer responsibility from Layer 2. It distinguishes
+  conversations, output artifacts, concept identities, documentation versions,
+  directed dependencies, and version-relative admitted comparisons; its higher
+  categorical presentation remains open.
 - **`O_C`** — the (conjectural) *content operad* from Layer 3, governing how concepts compose; sibling to `O_1` on the content side.
 - **`Ass_cyc`** — the *planar cyclic associative* operad; the ribbon-graph world, as opposed to the fully symmetric `Com_cyc`.
 - **Factorization algebra** — a sheaf-like structure on a topological / causal space, with disjoint-union composition controlled by an operad; the modern categorical framework for QFT (Costello–Gwilliam).
-- **Anabelian** — a property of geometric objects that are recoverable from their fundamental groups equipped with arithmetic action; in our context, applied to the meta-topos of protocols and its GT-action.
-- **GT** — the *Grothendieck–Teichmüller group*, the profinite group acting on the tower of moduli of curves and (in our framework) on the meta-topos of protocols.
+- **Anabelian** — a property of geometric objects recoverable from fundamental
+  groups with arithmetic action. It is a distant comparison test here, not a
+  proved property of Federation.
+- **GT** — the *Grothendieck–Teichmüller group*. Its established action on
+  moduli/dessin structures does not supply an action on Hoapa's protocols.
 - **`*`-autonomous category** — a symmetric monoidal category with a dualizing object; the categorical semantics of multiplicative linear logic / session-type duality.
 - **Information cohomology** — Baudot–Bennequin–Vigneaux framework: Shannon entropy as a 1-cocycle on a category of observables; mutual information as a 2-cocycle; conditional information as the relativized version.
-- **RG flow** — *renormalization group flow*; in physics, the dynamics on the space of theories produced by coarse-graining; in this framework, the dynamics on the space of language states produced by consensus.
-- **Meta-topos** — the (2-)presheaf topos over the category of protocols (Layer 4); itself a Hoapa-structure at one level up, which is what makes the federation construction iterate.
+- **RG flow** — *renormalization group flow*; a possible later model for
+  purpose-relative coarse-graining after Λ has concrete observables, not a
+  present dynamics derived from consensus.
+- **Meta-topos** — a possible future higher-categorical presentation of a
+  network of contexts. Federation v0 neither requires nor establishes one.
 
 For broader project-wide terms (cohesion, modal adjoint pair, actor-causal site, sheaf descent, etc.), see `motivation.md` and `arc.md`.
 
@@ -454,7 +693,7 @@ A stated `Allow ⊣ Require` interface alone is scaffolding. It becomes mathemat
 
 ## Candidate addition under evaluation: provenance, accountable artifacts, and reversible import
 
-**Status and scope.** This section records a newly identified possibility, not a change to the committed five-layer catalogue above. It does not renumber those layers, alter their dependency order, change the current R4 frontier, reserve an Agda module, or commit the project to a new mathematical construction. It is deliberately self-contained because adopting the proposal could reorganize the cascade, patch-theoretic ownership, the implementation trace schema, and the relationship between Reflexive Π and Federation. Until that evaluation is complete, every structure and workflow below is a candidate.
+**Status and scope.** This section records a newly identified possibility, not a change to the five layer responsibilities above. It does not renumber them, alter the selected program, reserve an Agda module, or commit the project to a new mathematical construction. It is deliberately self-contained because adopting the proposal could reorganize patch-theoretic ownership, the implementation trace schema, and the relationship between Reflexive Π and Federation. Until that evaluation is complete, every additional structure below is a candidate.
 
 ### Problem and motivating use
 
@@ -559,7 +798,7 @@ Pijul:   concrete storage and change semantics
 checker: evidence that emitted operations refine the abstract interface
 ```
 
-This creates an open ownership question. If the candidate becomes a layer, it could own the accountable artifact/change substrate, with Reflexive Π consuming it for self-modification, promotion, and consensus. Alternatively, patch infrastructure could remain under Π and provenance remain cross-cutting. The materialization laws must earn an independent rung before existing ownership changes.
+This creates an open ownership question. If the candidate becomes a layer, it could own the accountable artifact/change substrate, with Reflexive Π consuming it for bounded version proposals, preservation evidence, and activation. Alternatively, patch infrastructure could remain under Π and provenance remain cross-cutting. The materialization laws must earn an independent rung before existing ownership changes.
 
 ### No-leak and security boundaries
 
@@ -612,19 +851,30 @@ The generative argument would be: Hybrid produces coherent global artifacts, but
 
 Potential downstream effects:
 
-- **Reflexive Π:** consumes accountable changes, dependencies, non-retroactivity, and conflicts; adds reflexive proposal, promotion, and consensus.
+- **Reflexive Π:** consumes accountable changes, dependencies,
+  non-retroactivity, and conflicts; adds bounded version proposals,
+  preservation obligations, and explicit activation.
 - **Bulk Λ:** carries concept lineage and distinguishes inherited concepts, overlays, and forks.
 - **Field dynamics:** may use accounts as observables or costs, but numerical dynamics must not determine trusted provenance validity.
 - **Federation:** receives the main payoff: typed cited imports, partial mirrors, origin preservation, local adoption authority, and update/retraction behavior.
 - **Information cohomology:** may measure an account but is not subsumed by provenance; entropy is not generally a homomorphic specialization of `ℕ[X]`.
 
-This could permit a narrow Federation import vertical slice before the full anabelian/meta-topos layer: two protocols, one typed translation, one cited artifact, and one update/retraction scenario. It would test import, not claim full Federation. Conversely, the candidate may remain a cross-cutting kernel facility or Federation feature. It earns layer status only if the trade-off is generated by Hybrid, the two-face separation is necessary, and the materialization laws add formal content not already owned by Π.
+The selected narrow Federation fixture exists independently of this candidate.
+If accountable artifacts are adopted, that same two-peer fixture can test one
+typed translation, one cited artifact, and one update/retraction account
+without claiming an anabelian or meta-topos layer. The candidate may remain a
+cross-cutting kernel facility or Federation feature. It earns layer status only
+if the trade-off is generated by Hybrid, the two-face separation is necessary,
+and the materialization laws add formal content not already owned by Π.
 
 No current layer numbering or dependency claim changes while this remains open.
 
 ### Staged investigation and possible build order
 
-The live R4 exposition and optional intended-value instantiation remain first. The candidate creates no immediate code obligation.
+The selected causal-kernel and contract/publication work remains first. This
+candidate creates no immediate code obligation; revisit it when the
+Λ/Federation fixture needs derivational accounts beyond the provenance
+interface already selected for contract v1.
 
 **v1: positive derivational account.** Define finite stable tokens, positive provenance circuits/expressions, commutative-semiring evaluation, support, restriction/gluing compatibility, and no-leak erasure. Prove the homomorphism/evaluation law and alternative-support behavior. No monus, Pijul coupling, quantale enrichment, or reversible-local-state claim.
 
@@ -682,7 +932,11 @@ These are illustrative. The future `RuntimeContract/Audit` area would cover trac
 
 ## Candidate under evaluation: no-leak theorem ladder and humanness-as-refusal
 
-**Status and scope.** This section records the 2S runtime-to-substrate theorem ladder exposed by the arc/13 continuation. Tier A is now implemented and promoted into `targets.md`'s progress record; the higher tiers remain a candidate investigation. This is not a new cascade layer or a new arc file. The detailed conversational synthesis lives in `workflow/arc/13_catalysts_and_care.md`; this section extracts the remaining future-work consequences and the definitions earned by Tier A.
+**Status and scope.** This section records the 2S runtime-to-substrate theorem
+ladder exposed by arc/13 and given a concrete consumer by arc/17. Tier A is
+banked. Tier B change of actor base, the local per-conversation theorem, and the
+closure transform are selected future work; observational no-leak and a
+universal quotient remain candidates. This is not a new cascade layer.
 
 The motivating formulation is:
 
@@ -723,14 +977,20 @@ This is a standing obligation more than a surprising discovery: `valid?` has no 
 
 Do not silently broaden this to all identifiers. Event IDs, conversation IDs, content tags, provenance tokens, run IDs, and protocol IDs have their own alpha-equivalence or stability questions. The humanness/no-leak theorem concerns the actor-identity channel.
 
-**Tier B: realized-object actor-renaming invariance.** The generic realization checkpoints have landed:
+**Tier B: realized-object change of actor base.** The generic realization checkpoints have landed:
 
 ```text
 WellFormed r -> global LocalFrame r
 WellFormed r -> each present conversation has a LocalFrame and global FrameHom
 ```
 
-`CausalFromParents.agda` derives the causal order from backward parent edges and packages one global actor-causal frame over realized actor/event carriers. `ConversationLocality.agda` realizes each raw conversation as a local frame, constructs its `FrameHom` into the global frame, and proves the required incidence condition. The remaining Tier B work is to prove that actor relabeling induces an isomorphism/equivalence of those realized frames. This is the substantive reading of "actor identity is gauge": relabeling changes the presentation, not the mathematical object seen by the trusted protocol.
+`CausalFromParents.agda` derives the causal order from backward parent edges and
+packages one global actor-causal frame over realized actor/event carriers.
+`ConversationLocality.agda` realizes each raw conversation as a local frame and
+constructs its fixed-base `FrameHom`. Tier B must express actor relabeling over
+a different semantic actor carrier. Uniform global relabeling and fresh
+per-conversation publication handles are distinct cases; only the latter is the
+selected closure-transform consumer.
 
 Tier A exposed a genuine expressibility gap. `CausalFromParents.agda` builds the run-specific carrier
 
@@ -742,16 +1002,44 @@ so a run and its relabeling live over different actor types. But `ActorCausal.ag
 
 ### Earned direction: change of actor base
 
-The proportionate next infrastructure, if 2S is selected, is the multi-object category of actor-name presentations with equality-reflecting embeddings, together with its core groupoid of invertible relabelings. The exact ambient choice remains open: finite sets and injections, species-style finite presentations, and nominal/finite-support semantics are neighboring settings, not synonyms. The serializable `ActorId = ℕ` contract should remain the current coordinate presentation rather than being rewritten prematurely.
+The proportionate next infrastructure is substrate-native change of actor base,
+not a full category of name presentations in advance. The serializable
+`ActorId = ℕ` contract remains the current coordinate presentation.
 
 The formal sequence should be:
 
-1. package the actor-presentation objects and prove the category laws for the already generic `ActorEmbedding A B` arrows, adding decidable equality/equality reflection at the object boundary where the generic validator needs it;
-2. add a relative `FrameHomOver` (illustrative name) over an `ActorBaseHom AB₁ AB₂`, leaving the banked fixed-base `FrameHom` unchanged and recovering it over the identity;
-3. make global and conversation realization equivariant under change of actor base, then state Tier B over the core groupoid;
-4. only later investigate conversation-local actor coordinates over the conversation cover. Actors shared across conversations are gluing data that force transition renamings and overlap coherence; whether this organizes as descent is the open question.
+1. add a substrate-native `ActorBaseMap` or isomorphism without importing the
+   raw contract arrow record;
+2. add a relative `FrameHomOver` over that map, leaving banked fixed-base
+   `FrameHom` unchanged and recovering it over the identity;
+3. specify the live-to-public transform with fresh handles on
+   `(conversation, actor)` occurrences and prove each realized conversation
+   frame equivalent to its image;
+4. state the public content observation and prove the transform preserves it;
+5. separately retain uniform global relabeling as a useful theorem if a later
+   consumer needs the live global frame.
 
-This category is earned by an existing consumer: without it Tier B cannot be stated without bespoke transport plumbing. It is not yet constructed. Tier A deliberately supplies only generic arrow vocabulary—embeddings and isomorphisms with identity, composition, and inversion—and the one-object `ActorId = ℕ` action. No category laws, varying-name `RawRun` functor, `FrameHomOver`, or action groupoid have landed.
+The relative interface is earned by the closure transform: its public actor
+base differs from the live one. It is not yet constructed. Tier A supplies raw
+arrow vocabulary and the one-object `ActorId = ℕ` action; no `FrameHomOver`,
+public transform theorem, action groupoid, or varying-name `RawRun` functor has
+landed.
+
+### Closure transform as the first consumer
+
+The selected transform pseudonymizes actor occurrences freshly per
+conversation, drops authorship and the live identity map, and keeps the public
+participant count, outputs, provenance, references, directed dependency edges,
+and stable publisher-scoped artifact/conversation/event identifiers. It must
+not rename concept references merely because actor and content tokens share a
+raw representation. Non-injective handles and accidental content renaming are
+the first falsifiers.
+
+The global frame is not preserved by design when one live actor appearing on
+two panels becomes two unrelated public handles. Each conversation frame is
+the preservation target. Descent over live panel overlaps may therefore be
+non-trivial while the public actor view forgets those overlaps. This is
+controlled loss, not global realized equivalence.
 
 The dense first-appearance convention may be read as a gauge choice because `valid?` deliberately has no density clause and the `suc` witness leaves that slice without changing acceptance. A global section selecting exactly one representative per orbit, or constancy of canonicalization on orbits, has not been proved; density-as-gauge-fixing remains an interpretation, not a result.
 
@@ -806,7 +1094,12 @@ Resolved before Tier A: per-conversation locality came before renaming, and it l
 5. **Open:** which provenance identifiers survive no-leak, and which are actor-identity channels to erase?
 6. **Negative Tier A answer:** no identity-sensitive falsifier exists inside `valid?` because the predicate contains no such clause. The retained tests are degeneracy controls. This gate becomes answerable only when Tier D has a trusted observation beyond `valid?`.
 
-Within the no-leak ladder, the recommended order is now Tier B change of actor base and realized-frame equivalence, optional Tier C SIP/univalence, and only later provenance/audit no-leak or an optimality/quotient formulation. This is a mathematical dependency order, not a selection of the next project lane.
+Within the no-leak ladder, the selected order is the local closure-transform
+case of Tier B, its public observation theorem, optional uniform/global Tier B,
+optional Tier C SIP/univalence, and only later provenance/audit no-leak or an
+optimality/quotient formulation. The minimal 3R causal kernel precedes this
+formal growth because it tests the behavioral premise underneath the realized
+causal frames.
 
 
 ## Candidate under evaluation: Reality and the protocol's constitutive exterior
@@ -823,11 +1116,21 @@ Reality (`R`) is the framework's **constitutive exterior**, and it is present in
 
 Load-bearing fact: the kernel's identity *is* the boundary it maintains against Reality. Naming `R` is therefore mostly a *re-reading* — collecting the scattered refusals under one interface — not a new construction.
 
+The draw is the concrete entry mechanism for this exterior. A task arrives in
+one protocol-visible shape and an injected sampler consults an entropy source
+outside the trace to select eligible people. The sampler interface and its
+certificate shape can be stated internally; the eligible population, entropy,
+and fact of selection are not thereby generated by the kernel. The draw is not
+a second constitutive exterior and it should not carry task content, prior
+failure history, or actor kinds.
+
 ### The identity filter
 
 There is **one barrier on the identity channel, two-way**, and the *contribution* channel passes freely through it. *What an actor is* (origin, status, identity) is filtered out at the `R|P` boundary; *what an actor brings* is not.
 
-- **Outward** (no-leak): documentation never encodes who an actor is.
+- **Outward** (no-leak): the public documentation view does not encode who an
+  actor is. A live runtime may temporarily hold operational routing identity,
+  but v0 does not export its identity map.
 - **Inward** (anti-distortion): who an actor is never biases how their contribution is received — this is the original 2019 insight (hide the experts so the reasoning stands on its own legs), and the same anti-essentialism as receiver-relative complexity (Layer 5).
 
 ### Reality's positive role
@@ -853,7 +1156,7 @@ A duality reading was explored: Reality and Documentation as two points of view 
 - **No holographic equivalence** is claimed; the mirror is lossy by design.
 - Reality is **not** added as an internal sort.
 
-### Decision gates (before any promotion)
+### Decision gates (before elevating the conjecture)
 
 1. Foundational-floor reframing only, or does it earn the new constructions (effect-discipline, buffer, demands ledger)?
 2. The "bulk" disambiguation: nested holographies (Reality | Documentation, then Λ | session) vs. renaming, since `arc/08` already calls the content layer `Λ` the "Bulk."
@@ -872,20 +1175,30 @@ The basic test has three questions:
 
 The third question is the most important. Separate analytic and synthetic constructions can each be mathematically sound while failing to constitute one architecture. Lautman's value as a theorem-shaper is to keep asking for the comparison law between them.
 
+Participants do not supply the missing object of a synthetic decomposition.
+They are arbitrary admissible occupants and co-producers inside a common scheme:
+any eligible person may occupy a seat without identity being a condition of
+formal standing, while their particular contribution can still matter. The
+representation target is specified work—runs, contributions, artifacts,
+concepts, and contextual relations—not an exhaustive coordinatization of the
+person. This interpretation changes no implementation batch; it forbids actor
+kinds and panel-as-basis claims and guides the observation boundary.
+
 ### The theorem-shaping protocol
 
 For every Lautman-inspired candidate, record:
 
 1. the mathematical being being decomposed — raw run, realized frame, operational process, trace, artifact, sheaf, or context;
-2. its ambient domain — actor namespace, causal frame, protocol version, site, cover, slice, universe, or coefficient category;
-3. the analytic decomposition map and its intended codomain;
-4. the synthetic presentation that supplies the common mode of articulation;
-5. the permitted changes of presentation;
-6. the equality, equivalence, or trusted-observation notion against which invariance is measured;
-7. what must be preserved;
-8. what must deliberately be forgotten or hidden;
-9. the naturality, descent, or comparison square that must commute; and
-10. a small falsifier showing how the interpretation could fail.
+2. its ambient domain — actor namespace, causal frame, protocol version, documentation version, site, cover, slice, universe, or coefficient category;
+3. the role of participants or other arbitrary admissible choices, kept distinct from both the being represented and its reference system;
+4. the analytic decomposition map and its intended codomain;
+5. the synthetic presentation that supplies the common mode of articulation;
+6. the permitted changes of presentation;
+7. the equality, equivalence, or trusted-observation notion against which invariance is measured;
+8. what must be preserved;
+9. what must deliberately be forgotten or hidden;
+10. the naturality, descent, or comparison square that must commute; and
+11. a small falsifier showing how the interpretation could fail.
 
 This protocol is stricter than matching philosophical nouns to existing constructions. Until the entries above are specified, "analytic," "synthetic," "basis independence," and "replay" remain readings rather than theorem statements.
 
@@ -921,6 +1234,13 @@ Lautman's basis example suggests a family of "no privileged presentation" target
 
 The raw actor-renaming theorem is now the first proved member of this family: exact validator invariance under total injective actor relabeling, with the permutation specialization. Its realized change-of-base analogue is still open. Refinement invariance and general cover independence are later targets: the existing finite and supported point-generated results establish scoped descent and sheafification, not a general basis-independence theorem.
 
+A second, base-relative candidate comes from the banked order comparison. State
+`SaturatedIn(R, c)` relative to the realized run rather than treating
+saturation as intrinsic to `c`, define append-only extension with an explicit
+embedding of old evidence, and test whether an existing unsaturation witness
+persists. The intended result is non-retroactivity of an exposed dependency,
+not Simondonian metastability or a general completion theorem.
+
 ### Family C — compatibility of analytic and synthetic decomposition
 
 This is the principal cross-layer family:
@@ -951,11 +1271,17 @@ Failure of an adjunction would not invalidate the analytic/synthetic reading. Th
 ### Status and sequence
 
 - **Banked ingredients:** actor-causal frames and strict-reflecting `FrameHom`; category-generic finite descent; the supported point-generated reflector; the point-generated LNL bridge; global and per-conversation realization from well-formed runs; and exact recorder-fidelity replay in 3R.
-- **Nearest targets already on the roadmap:** raw actor-renaming invariance is banked at `5670658`; realized change of actor base and frame equivariance/isomorphism remain next within that ladder. (The 2S coverage/causal-saturation package and its cross-conversation fixture landed at `4a072fd`.)
+- **Nearest selected targets:** the minimal behavioral kernel first tests the
+  causal premise; contract closure/reference evidence then supplies a
+  live-to-public transform; relative actor-base change and each conversation-
+  frame comparison consume it. Raw actor-renaming remains banked at `5670658`.
 - **Later compatibility targets:** purpose-relative trace adequacy, provenance preservation, reindexing/refinement laws, and local-to-global trace formation.
 - **Research-scale candidates:** a universal process-to-artifact property, replay/resumption semantics, and any `Doc`/`Aff` adjunction.
 
-This classification does not reorder the live roadmap. It gives the existing targets a common theorem-shaping lens and a test for when a philosophical interpretation has acquired mathematical content.
+This classification now shapes the selected roadmap at two points: the
+live-to-public observation makes selective analytic adequacy concrete, and the
+base-relative unsaturation theorem supplies a bounded synthetic-invariance
+candidate. It still provides no evidence for the cross-site conjecture.
 
 ### Guardrails and falsifiers
 
@@ -980,7 +1306,15 @@ This classification does not reorder the live roadmap. It gives the existing tar
 
 ## Arc/16 consolidation: mediator and care theorem-shapers
 
-**Status and scope.** The substantive outcome of `workflow/arc/16_grothendieck_givesthemathsfor_simondonindividuation_via_lautamaniandecomposition.md` is corrective and consolidating. It adds no new support for `Allow ⊣ Require`, does not move the `MO_1` gate, and does not unpause ModalHoTT. It sharpens three obligations: the non-collapse ladder in `targets.md` §T3, the distinction between the `(0, 3)` arity and Belyi cover data, and the checked `η-equiv-at-T` control instance. This section records only the research directions exposed by those corrections.
+**Status and scope.** The substantive outcome of
+`workflow/arc/16_grothendieck_givesthemathsfor_simondonindividuation_via_lautamaniandecomposition.md`
+is corrective and consolidating. It adds no new support for
+`Allow ⊣ Require` and does not move the `MO_1` gate. It sharpened the
+non-collapse ladder, the distinction between `(0, 3)` arity and Belyi cover
+data, and the then-control reading of `η-equiv-at-T`. Arc/17 subsequently
+exposed the flat-signature collapse and reopened 1C for a different reason.
+Context renewal, informed by the Lautman–Simondon–Grothendieck crossing, is now
+the forcing direction for M; it is not evidence that M or the adjunction exists.
 
 ### A specific space-valued mediator candidate
 

@@ -2,7 +2,14 @@
 
 This file is the canonical workflow home for the implementation track: the runtime, the checker boundary, and the formal runtime contract.
 
-The current method is **rising sea**: raise the waterline only when the next executable/testable boundary is forced by the existing formal substrate. The first waterline has crossed the trace/run contract: the formal predicate, serialization corpus, generated Agda terms, runtime codec, tiny-run construction seam, and cross-leg freshness gates exist in narrow v0 form. The first 3R runtime rung is also banked: a running `hoapa_core` event log records caller-supplied contract evidence and exports it as a `Run`, without becoming a checker or an event originator. On 2S, Tier A now proves that raw acceptance is invariant under total injective actor relabeling and specializes this to the invertible permutation/gauge layer.
+The current method is **rising sea**: raise the waterline only when the next
+executable/testable boundary is forced by the existing formal substrate. The
+first waterline crossed the narrow v0 trace/run contract and schema-faithful
+recorder. The next program is selected: first a minimal 3R kernel must earn one
+causal parent from message behavior; then 2S evolves the contract toward
+closure, references, publication, and relative no-leak; the full assembly and
+Λ/Federation interpretations follow. Tier A remains banked at raw uniform
+actor relabeling and is not yet a publication theorem.
 
 ## Directory Consensus
 
@@ -64,7 +71,15 @@ Still unresolved:
 
 - The exact fields and serialization details of `Boundary`, `Audit`, and `Certificate`; `Trace` and `Run` have the minimal v0 shape recorded below, with richer extensions left open.
 - The exact format-tag pattern for later serialized records (`hoapa.run/0`, `hoapa.boundary/0`, etc.); the v0 trace uses `traceFormat : "hoapa.trace/0"`.
-- Whether a future fidelity sampler or authored scenario originator becomes its own umbrella app (`hoapa_generator`) or stays test/support code until it earns runtime status. Neither is the actor kernel.
+- The concrete sum encoding for run-local references and federated artifact
+  references, and the protocol metadata that fixes the closure/provenance tags.
+- The first real cross-disciplinary Λ example and the designated observations
+  that must survive its admitted comparison.
+- Whether a language presentation is formalized before its runtime computation
+  or specified by an adequacy interface to which the runtime must conform. The
+  current lean is the latter.
+- Whether a live identity-bearing record ever crosses an internal audit
+  boundary after v0. It is not exported in v0.
 - The exact future checker invocation path: direct Agda typecheck for tiny witnesses, a compiled/extracted checker, or a separate runtime parser that validates emitted runtime traces against Agda-pinned predicates. Loop 1 uses the top-level `Makefile` as the checker boundary; a `hoapa_checker` app remains deferred until a behavioral originator produces events to validate one-by-one. The actor kernel is the current candidate that meets this gate. A fidelity sampler, a deterministic authored scenario originator, and the pass-1 `EventLog` do not.
 - The exact Pijul adapter API inside `hoapa_store`; the folder ownership is settled, but the boundary type is not.
 - The internal split of `/formal/RuntimeContract/` after `Trace.agda`; start narrow and let `Run`, `Boundary`, `Audit`, and `Certificate` earn separate files.
@@ -105,8 +120,19 @@ The at-scale stub belongs in the runtime: thousands of participants, many conten
 - Apply the independent actor-registration decision recorded in `status_formal.md`; the `actorsCoveredByConversations?` condition is downstream, not part of `WellFormed` and not a runtime check.
 - Keep `Hoapa.Core.EventLog` an in-memory recorder and reserve `hoapa_store` for durable event storage and persistence. See `bias_correction.md` for the recorder/checker anti-default and `naming.md` for the noun boundary.
 - Keep the vendored-corpus layout owned by `Hoapa.Contract.Corpus`. It exposes path helpers only; formal validity remains outside its API.
+- Keep the eligible population and entropy source outside the trace. A run
+  records only registered handles; panel selection is an injected dependency.
+- Keep session tags immutable. A protocol change creates a later conversation
+  or version; it does not rewrite the history of a closed conversation.
+- Keep public actor handles and public content identity separate. Closure uses
+  fresh handles per conversation and does not export the live identity map;
+  artifact, conversation, and event identifiers remain stable and
+  publisher-scoped for Federation.
+- Keep publication bundles finite and versioned, complete relative to an
+  explicit import boundary. No runtime component may assume a global actor
+  directory, clock, language quotient, or complete network history.
 
-## Minimal Trace/Run Contract
+## Minimal Trace/Run Contract — banked v0
 
 This is the prose waterline that made `/formal/RuntimeContract/Trace.agda` forced enough to open. It remains intentionally small: it fixes the serializable nouns and first predicates, not the future runtime architecture.
 
@@ -160,6 +186,62 @@ Fixture categories are part of the conformance suite:
 - `invalid-semantic/`: JSON decodes as raw data, but `WellFormed` returns no.
 
 Generated Agda files may contain raw run/trace terms generated from fixtures, but not proofs. Hand-authored Agda test modules assert acceptance or rejection of those generated terms. The runtime consumes only the exported contract artifact under `hoapa_contract/priv/runtime_contract/`; it must not read `../../formal` during tests.
+
+## Selected contract v1 — not implemented
+
+The next schema/validator revision gives conversations a lifecycle and gives
+published content a referential interface. It is one coordinated contract
+change, but it must be landed through focused red-green obligations rather than
+as a bulk schema rewrite.
+
+- `sessionTag` remains immutable and determines the homogeneous conversation
+  kind. The contract records the tag; the session layer supplies the mapping
+  from a tag to participant-facing or content-facing positions.
+- Provenance becomes a small tagged interface capable of distinguishing
+  ordinary derivation edges from the unique success/failure closure event.
+  Response, deepening, and correction are candidate edge kinds; their final
+  enumeration is a protocol parameter, not a universal ontology.
+- Content becomes an explicit sum retaining an opaque documented-content case
+  alongside references. An in-run reference must resolve inside the run. A
+  federated artifact reference carries publisher scope, stable artifact
+  identity, documentation/protocol version, and an import handle; it is checked
+  relative to a finite pinned import environment rather than pretended to
+  resolve inside the current run.
+- A valid live prefix has at most one closure event per conversation and no
+  event of that conversation after closure. A published closed run strengthens
+  this to exactly one closure for every exported conversation. Keeping these
+  predicates separate permits incremental checking without accepting an open
+  prefix as a completed publication.
+- Success closure names an output artifact. Failure closure names a failure
+  record that may be referenced by a later attempt. Assent, candidate
+  selection, and silence policy stay outside the shape checker.
+- Public artifact, conversation, and event identifiers are stable,
+  publisher-scoped names assigned once. They are not reissued by the closure
+  transform. Actor handles are a separate identity channel.
+
+The first retained red fixtures reject a second closure, an event after
+closure, and a dangling in-run reference. A positive pair accepts one closed
+success and one closed failure that is referenced by a resubmission. A later
+Federation fixture checks external resolution relative to two explicit import
+environments.
+
+### Closure transform and no-leak consumer
+
+The live-to-public transform is the first concrete consumer of the no-leak
+ladder. It replaces participant handles freshly per conversation, omits
+authorship and the live identity map, retains the public participant count,
+and preserves outputs, stable content identifiers, provenance, references,
+and directed dependency edges. It never rewrites concept or artifact
+references merely because their IDs share the raw numeric representation of an
+actor handle.
+
+Tier A proves only uniform raw relabeling. The selected per-conversation
+transform instead needs a local theorem over `(conversation, actor)` handles
+and Tier B's relative change of actor base. The preserved geometric statement
+is per realized conversation frame; the global live frame is intentionally not
+reconstructed after cross-conversation actor overlap has been forgotten.
+Unlinkability remains an observer-relative runtime obligation about every
+retained side channel, not a corollary of injectivity.
 
 ## TDD Starting Point
 
@@ -288,7 +370,7 @@ Status legend:
 | Event | `Sites/ActorBase.agda` | `Event : Type ℓE`; `Event-set : isSet Event` | G | Untyped occurrence. Unique event ids are a trace-level relation, not substrate. |
 | Causal order | `Sites/ActorBase.agda` | `_≤_`, `≤-refl`, `≤-trans`, `≤-antisym`, `≤-isProp`; derived `Concurrent`, `≤-bidir-equal` | G | Lamport-style non-strict partial order. Conflict, choice, and event-structure refinements are deferred. |
 | Conversation / local view (v0) | `Sites/ActorCausal.agda`; `RuntimeContract/Realization/ConversationLocality.agda` | `LocalFrame` with `causal`, `ActorIn`, `touches`, `touches-in-frame`; `RConversation`, `conversationFrame`, `conversationEmbed` | G | `RawConversation` supplies the raw record, `RConversation` indexes present conversations, `conversationFrame` realizes them, and `conversationEmbed` proves valid local-view embedding. Their family is packaged as a `Cover` only conditionally: `conversation-event-covered` is unconditional, while `conversation-cover` assumes `ConversationActorCoverage`, decided by `actorsCoveredByConversations?`. |
-| Promotable conversation | none | none | O | A first-class conversation object that can be promoted into an actor-like node remains a gap. Promotion is deliberately not a `FrameHom`; it is a future morphism class, and the v0 local-view realization above does not supply it. |
+| Published artifact interface | none | none | O | A closure may publish an artifact that later conversations reference. This does not turn the completed conversation into an actor or require a new frame-morphism class; the selected v1 contract must first distinguish closure, artifact identity, and references. |
 | Event incidence | `Sites/ActorCausal.agda` | `touches`, `touches-isProp`, `touches-in-frame` | G | `touches-in-frame` only says touched actors are in the frame. It does not say every actor is touched. |
 | Event support | `Sites/EventSupported.agda` | `EventSupport`, `IsEventSupported`, `ChosenEventSupport` | G | This is the point-generated route's support condition: actor membership is generated by event incidence. |
 | Local-view embedding | `Sites/ActorCausal.agda` | `FrameHom`: `actor-pres`, `event-map`, `touches-pres`, `causal-pres`, `causal-refl`; derived `event-map-injective`; alias `_↪_` | G | Strict causality reflection gives sub-view discipline. |
@@ -296,7 +378,7 @@ Status legend:
 | Content tag / payload ("what") | `Algebras/Sessions.agda`; `Hybrid/SessionPresheaf.agda` | `Payload : Type ℓv` parameter | O | Opaque-parametric precedent exists, but a contract-level `ContentTag` or Λ stub is not identical to send/receive payload. The contract still needs its own content-tag relation. |
 | Finite event handle | `Sites/FiniteFrame.agda` | `event-count : ℕ`; `enum : Event ≃ Fin event-count` | G | Chosen, untruncated finite event enumeration. |
 | Provenance token | none | none | O | Expected opaque token/interface. Trusted provenance should mention artifacts, events, protocol versions, translations, and derivation steps, not persons. |
-| Protocol version / sibling reference | `Hybrid/Presheaf.agda` header only | future Reflexive-Π / Adapter-5 slot | O | No `ProtocolId`, version object, sibling-reference type, or Π category in code yet. |
+| Protocol version / federated reference | `Hybrid/Presheaf.agda` header only | future Π / publication-boundary responsibility | O | No `ProtocolId`, version object, external import environment, or Π category exists in code yet. The selected v1 contract separates in-run references from publisher-scoped imported references. |
 
 ### Contract Invariants
 
@@ -328,7 +410,50 @@ The current `Payload : Type ℓv` parameter is evidence that the code already ac
 
 Raw validator blindness now exists under total injective actor relabeling, alongside frame-noninterference under coefficient change of base. Realized actor-base equivalence and observational no-leak remain future work; neither existing result is the full semantic theorem.
 
-## Next Contract Work
+## Selected contract and runtime work
+
+The following order supersedes the recommendations retained below. It separates
+the smallest behavioral test from the eventual assembly so that the causal
+premise is tested before more formal structure depends on it.
+
+1. **3R minimal causal kernel.** A few in-memory actor processes exchange
+   messages carrying the event ID that produced them. A handler records an
+   event whose parents are the IDs attached to the messages it actually
+   consumed. The event passes through the existing `Hoapa.Core.EventLog` and
+   exports through the current contract. Red-first: disabling dependency
+   piggybacking changes the exported trace and fails a retained test. No
+   closure, selection, persistence, Phoenix, or checker app is required here.
+2. **2S contract v1.** Add closure and reference constructors and the separate
+   valid-prefix/closed-publication predicates described above. Add fixture
+   expectations first, regenerate data-only Agda terms, export the corpus, and
+   make every existing freshness/conformance gate green. This work changes
+   schema and codecs only as the chosen sum representation requires.
+3. **2S publication/no-leak.** Specify the live-to-public transform and its
+   public observation; prove conversation-ID renaming invariance where useful,
+   then add substrate-native `ActorBaseMap`/isomorphism and `FrameHomOver`
+   without changing banked `FrameHom`. Prove local actor pseudonymization and
+   each realized conversation-frame comparison. A non-injective actor mapping
+   and a transform that rewrites a content reference are retained falsifiers.
+4. **2S relative views.** Relate registered, panel, and event-supported views;
+   factor a reusable equivalence between membership in a distinct finite list
+   and `Fin` of its length; then state base-relative saturation and append-only
+   persistence only at their actual hypothesis strength.
+5. **3R full assembly.** Add task intake, injected panel selection, bounded
+   panel processes, closure, publication, corpus acceptance, and resubmission
+   around the minimal causal kernel. Candidate and assent mechanisms, silence,
+   panel size, turn-taking, all-or-nothing AI pairing, and entropy remain
+   replaceable interfaces. The first incrementally checked behavioral trace
+   opens the gate for `hoapa_checker`.
+6. **Λ/Federation forcing case.** Before freezing the artifact interface,
+   construct two independent peers with colliding local identifiers, one pinned
+   offline import, different admitted comparisons, and a withdrawal adopted by
+   only one peer. Acceptance requires stable scoped references and reproducible
+   interpretation relative to each declared import boundary; convergence is
+   not required.
+
+`make test` remains the definition of green for each implemented batch.
+
+## Superseded recommendations — retained for rationale
 
 The next work splits by the number+letter lane convention: 1C pure conjecture, 2S runtime-to-substrate, and 3R runtime. This file is the canonical home for 2S/3R contract-boundary status; `workflow/status_formal.md` owns broader formal state.
 
@@ -341,18 +466,20 @@ The next work splits by the number+letter lane convention: 1C pure conjecture, 2
 5. If 2S is selected next, Tier B starts with change of actor base. `RActor` is run-specific while `FrameHom` fixes one actor base and has no actor map, so the realized equivalence is currently inexpressible. Add a relative morphism over an actor-base map while leaving fixed-base `FrameHom` intact; then make realization equivariant. The generic arrow vocabulary in `ActorRenaming.agda` is a down-payment, not yet a category.
 6. Session-tag assignment is unlocked but deferred. `LocalFrame` contains no session content by design, so this is a new relation or decorating layer over the realized frames, not a new field on them, and it should carry its own transport/invariance lemma rather than being folded into the core renaming theorem.
 
-**3R - runtime.**
+**3R — banked runtime state and selected continuation.**
 
 1. Banked: reconstruct the Agda-accepted tiny run from `hoapa_contract` structs, corpus-locked by decoded-struct equality against `fixtures/valid/tiny_trace.json`, with codec round-trip stability. The supporting refactor added precise struct typespecs and the public path-only `Hoapa.Contract.Corpus`; no semantic checker was added.
 2. Banked: the minimal `hoapa_core` event-log/export path described above. It preserves the exact raw shape needed by later formal witnesses, including independent actor registration and global causal-parent references.
 3. Banked at recorder-fidelity scope: the authoritative `c0 → c1 → c0` fixture is exported into the vendored corpus and the wildcard replay test exercises it through `EventLog` without a runtime code or test rewrite. A second literal-call transcription would duplicate the fixture's asserted causality and is optional, not a remaining pass-2 obligation.
 4. Keep validation corpus-locked to Agda. A runtime semantic checker or `hoapa_checker` earns its own app only once a behavioral originator produces events to validate one-by-one. Of the current candidates, only the actor kernel meets that gate.
-5. Keep three runtime notions distinct: a fidelity sampler tests codecs and recorder behavior over arbitrary well-typed values; a scenario originator derives run structure from authored transition logic; an actor kernel derives events and causal parents from actual message behavior. The kernel has the strongest evidential payoff and is gated by a design conversation and session size, not by missing 2S semantics. No 3R choice is selected.
+5. Keep three runtime notions distinct: a fidelity sampler tests codecs and recorder behavior over arbitrary well-typed values; a scenario originator derives run structure from authored transition logic; an actor kernel derives events and causal parents from actual message behavior. The selected next 3R slice is the smallest actor kernel that earns one parent edge from a consumed message. Full sampling, panel lifecycle, and closure follow around that causal seam.
 6. Add `hoapa_store` and its Pijul port/CLI boundary only after behavior and lifecycle worth persisting exist. Add Phoenix/`hoapa_web` last, as an edge adapter over an already-running core.
 
-## Next step
+### Superseded next-step comparison
 
-Tier A is banked and no next lane has been selected. The live choices are:
+Tier A was banked and no next lane had been selected when the comparison below
+was written. Its arguments explain the selected order above but no longer state
+current priority:
 
 - **2S:** construct the change-of-actor-base setting needed to state Tier B, then prove realized global and conversation-frame equivalence under invertible relabeling. Keep `FrameHom` fixed-base and add a relative morphism rather than rewriting banked locality proofs.
 - **3R:** hold a design conversation for the actor kernel, the first candidate that would earn causal-parent edges from actual dependencies. A fidelity sampler or deterministic scenario originator is smaller but has a different, explicitly weaker payoff.
@@ -360,7 +487,7 @@ Tier A is banked and no next lane has been selected. The live choices are:
 
 The checker remains gated on behavioral origination. Session assignment, persistence/Pijul, and Phoenix remain separate later layers.
 
-## Codex
+### Codex
 
 My recommendation is 2S, but as a bounded Tier B1 session: construct semantic change of actor base and use it to prove global realized-frame invariance. Do not attempt all of Tier B,
   per-conversation transport, SIP, or descent in one pass.
@@ -393,7 +520,7 @@ My recommendation is 2S, but as a bounded Tier B1 session: construct semantic ch
   is the direct consumer that has now forced the categorical infrastructure, and it can bank a precise theorem rather than only a runtime design. 1C remains less attractive by default
   because both available directions still require a broader exploratory commitment.
 
-## Claude
+### Claude
 
 Recommendation: 3R, the minimal actor kernel
 
