@@ -6,3 +6,6 @@ runtime/.elixir_ls/
 pedagogy/**/*.pdf
 workflow/communication_drafts/build/
 workflow/communication_drafts/contacts/
+
+# Published books kept locally as reference; not redistributed
+workflow/deep_context/Epistemology - Albert Lautman*.pdf
