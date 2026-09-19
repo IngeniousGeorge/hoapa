@@ -80,34 +80,26 @@ In latex files, use latex for math notation obviously. And in general remove ind
 
 ## Temp
 
-I believe all of the above is going in the right direction.
-  I'd like to push things a little bit further and ask you to reevaluate the conjecture (especially in the current context of the project, where the concurrency side is starting to show
-  its value while the modal side we started with seems not so strong in comparison) in the light of the architecture, and what this architecture means for the scientific community.
-  Basically, if we motivate the concurrency side, understood as a strategy for resource manangement where resources are human brains (possibly paired with AI agents and other tools), on
-  the idea that it has a function: to map its context, and a guiding principle: the synthetic decomposition inspired by mathematics, then we're asking the scientific community to do
-  something that will appear idiotic to them: to hide who knows what. And in passing, to strip anyone of their degree, carreers as them know them, and the entire network of University.
-  We need to do that because all those things classifies human brains analytically, by recognizing in the system what they're "made of". To remove that would be seen as a "carnage on
-  knowledge". The way I see it is like an economic crash, versus a war. Think of the state of a generic country's economic the next day after a devastating crash like in 1929: everything
-  that was productive the previous day is still available to be productive the next. Machines, tools, workers, know-how, the infrastructure, all of this is preserved. What has changed
-  is the flow/organization, the life-blood of the economy. But if it had an alternative model, everything could be back on track overnight. As opposed to a devastating war, which has
-  actually destroyed the production capacity. So, to erease from the record the status of scientists and the organization of universities is not a nuclear bomb: everything that was known
-  the previous day is still known the next, and everybody is still available to do some work, if you could find an alternative organization.
-  What Hoapa wants to do, is to demonstrate, via mathematics, informatics, with some philosophy and models in natural systems, that there is a "most legitimate" organization that could
-  be used for a "post-crash" science. And even if there's no crash, to organize the next science "underneath" the current one.
-
-  I believe the proof of the conjecture should be the motivation for members of the scientific community and humans in general to do just that.
-  One way to state it, at this non-mathematical level of a system architecture embedded in a certain context, is as follows:
-
-Science is made out of two parts: a scientific community (a list of brains) β, and a documentation α (a list of symbols and the texts written with those symbols, including annotations of all kinds of documents).
-To organize β according to a synthetic decomposition (Lautman) is much less costly for the organization of science than analytic, because brains are already synthetic, they're already like vectors. A system that wants to assign "prime factors" to each of them has a lot of work to do: selection, control, constraint, hierarchy, etc.
-To organize α according to an analytic decomposition (Lautman) is much less costly for the organization of science than synthetic, because the synthetic frame in which to encapsulate all things is far from obvious.
-The "freedom of shape" allowed by the synthetic decomposition of β can then be spent on system's optimality, such that it can achieve a maximal fluidity of information transfer.
-Furthermore, if this shape is extended to the organization, not just of science, but of all work, then every agent is even more adapted to the task of science in a synthetic method: they have more time, information transfer is more fluid, immersion in context is more direct and meaningful, and it now makes sense to do science the synthetic way.
-Logic becomes permacultural, and there is the emergence of the consciousness of care at the global scale and of the new dimensions in which new worlds can form.
-
-If don't know if "Allow" and "Require" are the best terms for what I believe is the core of the conjecture, or even if it's an adjunction, but it certainly ends up being a virtuous-circle-process.
-
-
-  On the one hand, the motivation for why we should build a system that has no information about the participants:
-  Where we understand the no-information part as "freedom of shape", because the opposite case of having to collect and manage information is a constraint of the shape of the system that simply doesn't exist in the no-information case. And this freedom of shape is a budget that can be spent on optimizing the process at hand (for a community of agents embedded in a context to map this context) and its tool-suite. *Even if* this optimal strategy implies picking resources at random whenever the system needs something to be done.
-  On the other hand, what this means for the specific system-of-science context in which "the agents we just unityped" are going to make this science happen, if the freedom of shape extends to the entire :
+Lastly, I would like to share with you my sentiment of what we should do with the conjectured adjunction. I believe the K side works because it's grounded in a reality, the reality of
+  how to make collective and deliberative science happen, according to some principles that exist outside mathematics but can easily and meaningfully be translated there. But its choice
+  is arbitrary from the point of view of mathematics, which amounts to saying, in the language of the adjunction itself, from the point of view of M. Us humans are not "privileged
+  entites", and our realm is just an aribrary point on a (non-linear) progression towards complexity. In fact, while we may concentrate on this point to make something tangible
+  eventually, we should keep in mind that what matters to the adjunction on this side is that entire progression towards complexity, with points coming "before" our current K, all the way
+  "down" to terse discrete sets, the "bare" theory of computation and so one, and also with points "above", which we could imagine to be future incarnations of Hoapa. And I believe the
+  other side of the adjunction should parallel this. We took cohesive toposes as a landmark, and while it is a very interesting specimen to consider, again its choice would be arbitrary,
+  and what we're looking for, to make our story of "how in general a community can optimize the understanding of its context", as a Lautmanian metaphysical problem resolved as a
+  Simondonian act of individuation through Grothendickian mathematics, is again a whole series of structures, not a single one. But there might be a good candidate for "the one"
+  mathematical sturcture that would be the sort of "free object" of the series on the context/world-to-decipher side: the generalized topos of Caramello, the one that can generate all the
+  others.
+  So to express our adjunction properly I think we need this data:
+  - a full "moduli space" or category on the K side
+  - an example of this K side, in the form of the human-ready implementation we've been building (the rationale for chosing this point is that it is the one that will look the clearest to
+  our vision, mathematically but more importantly engineerically, socially, etc.)
+  - a full moduli space/category of the M side, where we now focus on this side being really "a world to decipher"
+  - an example of this M side, probably the generalized topos
+  - the specific adjunction that connects our two chosen points
+  - the generic adjection that connects any two pair of corresponding points in the moduli spaces/categories
+ 
+  And I believe the generic adjunction is really where the purelly mathematical beauty and interest lies.
+ 
+  What do you think?
