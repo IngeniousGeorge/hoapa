@@ -95,4 +95,19 @@ I believe all of the above is going in the right direction.
   What Hoapa wants to do, is to demonstrate, via mathematics, informatics, with some philosophy and models in natural systems, that there is a "most legitimate" organization that could
   be used for a "post-crash" science. And even if there's no crash, to organize the next science "underneath" the current one.
 
-  
+  I believe the proof of the conjecture should be the motivation for members of the scientific community and humans in general to do just that.
+  One way to state it, at this non-mathematical level of a system architecture embedded in a certain context, is as follows:
+
+Science is made out of two parts: a scientific community (a list of brains) β, and a documentation α (a list of symbols and the texts written with those symbols, including annotations of all kinds of documents).
+To organize β according to a synthetic decomposition (Lautman) is much less costly for the organization of science than analytic, because brains are already synthetic, they're already like vectors. A system that wants to assign "prime factors" to each of them has a lot of work to do: selection, control, constraint, hierarchy, etc.
+To organize α according to an analytic decomposition (Lautman) is much less costly for the organization of science than synthetic, because the synthetic frame in which to encapsulate all things is far from obvious.
+The "freedom of shape" allowed by the synthetic decomposition of β can then be spent on system's optimality, such that it can achieve a maximal fluidity of information transfer.
+Furthermore, if this shape is extended to the organization, not just of science, but of all work, then every agent is even more adapted to the task of science in a synthetic method: they have more time, information transfer is more fluid, immersion in context is more direct and meaningful, and it now makes sense to do science the synthetic way.
+Logic becomes permacultural, and there is the emergence of the consciousness of care at the global scale and of the new dimensions in which new worlds can form.
+
+If don't know if "Allow" and "Require" are the best terms for what I believe is the core of the conjecture, or even if it's an adjunction, but it certainly ends up being a virtuous-circle-process.
+
+
+  On the one hand, the motivation for why we should build a system that has no information about the participants:
+  Where we understand the no-information part as "freedom of shape", because the opposite case of having to collect and manage information is a constraint of the shape of the system that simply doesn't exist in the no-information case. And this freedom of shape is a budget that can be spent on optimizing the process at hand (for a community of agents embedded in a context to map this context) and its tool-suite. *Even if* this optimal strategy implies picking resources at random whenever the system needs something to be done.
+  On the other hand, what this means for the specific system-of-science context in which "the agents we just unityped" are going to make this science happen, if the freedom of shape extends to the entire :
