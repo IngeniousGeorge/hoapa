@@ -49,6 +49,31 @@ now supplies a forcing criterion for M; only after that object and its
 extensions are explicit can the actual `Allow` and `Require` functors be
 attempted.
 
+### Nerve–realization polarity test
+
+Let `A` be a candidate category of conversational locality objects and let
+`i : A → M` interpret them in a modal context category. The associated nerve
+has the direction
+
+```text
+N : M → Psh(A)       N(X) = M(i(−), X).
+```
+
+When the required smallness, colimits, and coends exist, realization supplies
+`R : Psh(A) → M` with `R ⊣ N`. If `Psh(A)` were identified with K and `N` with
+`Allow`, then the functor in Allow's direction would be the right adjoint,
+opposite to the recorded `Allow ⊣ Require` polarity. This is a conditional
+test of the proposed category and role assignments, not a polarity change:
+the nerve–realization pair may instead be internal to K, K may not be the
+relevant presheaf category, or the cross-site functors may have another
+construction. Density controls when the realization–nerve counit reconstructs
+an M-object from these probes; it does not make a finite random panel
+representative of a population or exhaust Reality.
+
+Test these alternatives on the first independently constructed context-renewal
+example after M and K have been specified. The existence of an abstract
+nerve–realization pattern alone supplies no evidence for T1.
+
 T_recursion (below) is downstream of T1: once `Allow ⊣ Require` is stated, its unit can instantiate the endofunctor-and-unit scaffold in `formal/ModalHoTT/Modalities/Iteration.agda`; the interface must then be enriched with the counit, multiplication, and monad laws required by T3. Naturality is load-bearing for T_recursion's `η^-coherent` lemma and is currently supplied by a postulated `η-naturality`.
 
 ### Current R4 Subtarget: Point-Generated R4 Theorem and Exposition

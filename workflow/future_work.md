@@ -454,6 +454,24 @@ content theorems, not prerequisites for naming the v0 evidence. Reflexive Π is
 also not a prerequisite: ordinary content comparison and withdrawal can force
 the first versioned presentation before protocol self-modification exists.
 
+**First local-to-global content test.** Begin with two incompatible claims
+about one subject whose authors unanimously publish an artifact saying that
+the alternatives remain unresolved and naming an observation or experiment
+that would distinguish them. The retained evidence must preserve both claims,
+their disagreement, and the unanimously accepted output as distinct facts.
+The content semantics must then say what its local data observe and what
+compatibility on an overlap means; documentary compatibility must not silently
+become either substantive agreement or human assent.
+
+Use the smallest model that realizes this architectural case, even before a
+larger Λ implementation exists. Compare its eventwise pointification with a
+candidate full actor-causal descent construction and state exactly what either
+one forgets. The full reflector is earned only if this or another concrete Λ
+case needs overlap information that the point-generated route cannot retain;
+the comparison may instead show that neither proposal captures the required
+observation. A disconnected toy presheaf remains useful as a control but does
+not supply the consumer by itself.
+
 **Open questions / deferred pieces.** The first engineering/biology comparison
 and the observations it must preserve; the formal presentation versus runtime
 computation boundary; composition of directed dependency edges; the exact

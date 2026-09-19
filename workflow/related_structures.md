@@ -38,6 +38,38 @@ Each entry: who, what they use, what it models, relation to our arc.
 
 ---
 
+## Social choice and discourse sheaves — constrained comparisons
+
+**Who.** Arrow and the Kirman–Sondermann analysis of decisive coalitions;
+Chichilnisky and Heal's topological social choice; Hansen and Ghrist's
+discourse sheaves.
+
+**What they use.** Arrow-style results constrain complete aggregation of
+individual preference orderings under a specific package of domain,
+unanimity/Pareto, independence, and non-dictatorship conditions.
+Kirman–Sondermann express decisive coalitions through ultrafilters, which are
+principal in the finite case. Under their topological domain hypotheses,
+Chichilnisky–Heal characterize when continuous anonymous unanimous aggregation
+exists for every finite panel size by contractibility of the preference space.
+Hansen–Ghrist instead specify stalks and restriction maps on a communication
+network and study opinion dynamics through the resulting discourse sheaf and
+its Laplacian.
+
+**Relation to our arc.** These are tests, not an inherited consensus theorem.
+Hoapa permits failure and produces documented artifacts rather than assuming a
+complete social ordering, so Arrow's hypotheses must be established before its
+conclusion is imported. Contractibility would concern a specified space of
+positions in Λ and a specified aggregation map, not panels or Λ as a whole.
+Discourse sheaves show what must be supplied for a semantic sheaf model:
+explicit local values and translations, beyond the actor-causal frame chassis.
+The first useful comparison is the disagreement fixture in `future_work.md`:
+two incompatible claims are preserved while their authors unanimously publish
+an artifact recording the unresolved alternative. Human assent, documentary
+fidelity, semantic compatibility, and gluing are separate predicates in that
+case.
+
+---
+
 ## Lautman — analytic/synthetic decomposition and recursive incarnation
 
 **Who.** Albert Lautman, especially the two *Essais* on structure and existence and on the unity of the mathematical sciences. The reading used here also passes through Fernando Zalamea's account of saturation/liberation, Gilles Deleuze's transformation of dialectical Ideas into immanent problematics, and David Corfield's reconstruction of Lautmanian Ideas as immanent to mathematical practice. These readings must not be conflated. Lautman himself gives the Dialectic an ontological priority over the mathematics that realizes it; the immanent reading is a deliberate Deleuzian/Corfieldian transformation that is particularly suitable for this project.
@@ -123,6 +155,16 @@ The same exchange proposed `Doc : Op → Ct` and `Aff : Ct → Op`, with a possi
 ### A cover as a higher basis
 
 A cover of causal interaction contexts suggests a higher analogue of Lautman's basis. Restricting an object to the members of a cover yields local views analogous to coordinates. Overlaps and higher overlaps supply compatibility data absent from an ordinary vector-space basis. A satisfactory reconstruction should depend only on the underlying contextual object, up to the relevant equivalence, rather than on an arbitrary presentation by a selected cover.
+
+The functor-of-points refinement makes the required bridge more exact. For a
+chosen category `A` of locality objects and an interpretation `i : A → C`, the
+nerve records the probes `C(i(−), X)`. The functor `i` is dense when the
+canonical realization of all such probes recovers `X`. In Hoapa,
+conversation frames are candidates for the locality objects; participants are
+occupants and incidences inside them. Random selection gives no density
+theorem, and neither one panel nor an unstructured succession of draws
+represents the eligible population. Any reconstruction claim concerns a
+specified documented context and must name its probe functor and hypotheses.
 
 This analogy shapes questions but is not yet a theorem. Basis coordinates are unique once a basis is fixed; sheaf data require overlap compatibility, and invariance under refinement or replacement of a cover needs precise topology, cofinality, and descent hypotheses. One must also distinguish two variances that the phrase "free gluing" can blur: a context may be presented by a colimit-like Čech construction under suitable hypotheses, while compatible data over it are reconstructed by a limit/descent condition. The existing finite and point-generated results establish scoped descent and sheafification facts; they do not yet establish general Čech-colimit reconstruction, cover-refinement invariance, or basis independence.
 

@@ -91,6 +91,23 @@ communities **K** (`arc.md` §3); symbols are deferred to keep them distinct fro
 - A **locator** names a context inside a language, such as engineering or
   biology. A locator does not by itself name a federated peer.
 
+## Locality and arrow vocabulary
+
+- An **actor-causal frame** is Hoapa's local structure of actors, events,
+  incidence, and causal order. It is not a locale-theoretic frame (a complete
+  lattice of opens with finite meets distributing over arbitrary joins).
+- A **conversation** is the operational episode. Its **conversation frame** is
+  the structural local view extracted from its trace. A **probe** or
+  **standpoint** is a candidate semantic map from a chosen local view into a
+  documented context. A **matching family** is possible interpreted content of
+  an episode, not another name for the episode or its frame.
+- Keep five kinds of arrows distinct: a **causal-parent edge** records consumed
+  event dependence; a **typed documentary dependency** relates conversations
+  or artifacts through provenance; a **frame morphism** embeds or compares
+  actor-causal views under its stated laws; a **restriction map** reindexes
+  presheaf data; and an **admitted comparison** may be inverted in one Λ
+  presentation. None supplies the others merely by sharing endpoints.
+
 ## Architectural axes
 
 - A **level** says what occupies the positions being discussed; a **layer** is

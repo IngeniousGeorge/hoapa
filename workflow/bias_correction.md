@@ -77,9 +77,11 @@ Additional architecture, content, and Federation corrections:
   interface plus a later reference. Banked `FrameHom`s remain fixed-base,
   strict-reflecting local-view embeddings.
 - "A conversation's closure is consensus, and unanimity is automatically a
-  limit or a colimit." — Rejected. Success and failure both close. Candidate
-  and assent policies belong to an interface; a categorical universal
-  property must be constructed before either shape is claimed.
+  limit or a colimit." — Rejected. Success and failure both close. Successful
+  resolution requires unanimity under interface-declared participation and
+  assent rules, while the common trace contract checks closure shape. A
+  categorical universal property must be constructed before either a limit or
+  colimit reading is claimed.
 - "Causal saturation is Simondonian metastability or encapsulation." —
   Rejected. Internal generation, output terminality, boundary factorization,
   and purpose-relative opacity are different predicates. Simondon may shape
@@ -127,6 +129,24 @@ Additional architecture, content, and Federation corrections:
   result." — Rejected. It means identity is not a condition of formal standing.
   Different participants and panels may make consequentially different
   contributions.
+- "A participant is therefore a test object or eigenvariable, `Hom(T,X)` is a
+  conversation, or a conversation is already a matching family." — Rejected.
+  Arbitrary seat occupancy supplies a genericity discipline; actor-causal
+  frames are the candidate locality objects, and a content interpretation is
+  still required to obtain probes or matching data from an episode.
+- "A random panel represents the population, repeated draws become dense, or
+  the documented context is automatically the colimit of its conversations."
+  — Rejected. Each draw produces its own situated result. Its standing comes
+  from the open flow of later uptake and revision, while categorical density
+  and colimit reconstruction require a specified probe functor and theorem.
+- "Unanimity is sheaf amalgamation, separatedness is accountability, or a
+  contractible Λ settles Hoapa's social-choice problem." — Rejected. Human
+  assent, semantic compatibility, local determinacy, provenance, and the
+  topology of a space of positions are distinct obligations.
+- "Nerve–realization reverses `Allow ⊣ Require`." — Rejected as an automatic
+  conclusion. Under one candidate identification its adjoint handedness is
+  opposite to the recorded names, which makes it a T1 polarity test after the
+  categories and functors exist, not a reason to reverse the target now.
 - "The conjectured adjunction proves that M can donate to K but can never
   diagnose it." — Rejected as a general slogan. A left adjoint preserves
   colimits and a right adjoint preserves limits, but transfer of a particular

@@ -6,8 +6,11 @@ tags: [focus:architecture, kind:reference, level:scoping]
 
 This file records the intended concrete shape of Hoapa as seen by participants
 and by information flow. It is the positive architectural reference for the
-runtime contract and the layers built above it. Mathematical interpretations
-and implementation status live in their own workflow files.
+runtime contract and the layers built above it. It also records one constrained
+correspondence between that architecture and its candidate mathematics. The
+correspondence distinguishes represented structure from proposed
+interpretation; proofs and implementation status live in their own workflow
+files.
 
 ## Three independent axes
 
@@ -51,6 +54,12 @@ Participants help produce, test, and revise documented articulations. The
 record represents specified participation and work, not the participant as a
 whole.
 
+Each draw creates its own situated assembly and, when successful, its own
+result. Neither the panel nor its result stands in for the eligible population.
+The result has standing through the open flow into which it is published: later
+conversations may reference, test, challenge, revise, or supersede it. No draw
+closes that flow on behalf of the whole.
+
 ## Conversation kinds and lifecycle
 
 A conversation has one homogeneous kind fixed by its session type. A
@@ -75,6 +84,12 @@ failure closure produces a first-class failure record that may be referenced by
 a later attempt. No later event belongs to the closed conversation. Editing
 content means appending new events or conversations; published history is not
 rewritten.
+
+Successful resolution requires unanimous acceptance under the participation
+and assent rules declared by the conversation's interface. Candidate
+recognition, attribution of assent, and treatment of silence are interface
+mechanics. The common trace contract records closure and its output or failure;
+it does not by itself certify that an implementation followed those mechanics.
 
 ## Event information
 
@@ -130,6 +145,33 @@ responsibilities within Λ. Compression is adequate only when every designated
 observation descends through it. Locators such as engineering and biology are
 contexts inside a language, not automatically Federation peers.
 
+## Constrained mathematical correspondence
+
+This correspondence guides definitions and tests; it is not a second
+conformance layer. An entry in the final column becomes a theorem only after
+the indicated interpretation and comparison maps have been constructed. Here
+an **actor-causal frame** is Hoapa's local structure of actors, events,
+incidence, and causal order, not a frame in locale theory.
+
+| In the architecture | What carries it | Candidate mathematical reading |
+| --- | --- | --- |
+| Seat and occupant | An actor incident to a conversation frame under a role specified independently of identity | An eigenvariable-like genericity discipline: no privileged fact about the occupant is assumed; this is not universal quantification over people |
+| Event contribution | Recorded content and provenance at one event | A point-local datum once a content interpretation has been defined |
+| Conversation | An episode with a local frame, causal history, closure, and output or failure | It may yield a matching family under a content semantics; the episode is not itself that family |
+| Conversation in a run | The conversation-frame embedding into the realized run | Structural local-to-global placement; it becomes a semantic probe of a context only through an additional interpretation |
+| Eventwise reconstruction | The point-generated reflector over incident event-points | A candidate reading of contributions collected in isolation |
+| Deliberative integration | The recorded episode, its content, and its output artifact | Full actor-causal descent is a candidate when a concrete Λ semantics exhibits overlap data that pointwise reconstruction loses |
+| Successful closure | A terminal success event naming an artifact, with unanimity required at the interface | Amalgamation only if a protocol-to-compatibility theorem has been proved |
+| Failure closure | A terminal failure event naming a failure record | It may record disagreement, rejection, obstruction, or absence of an admissible result; no single failure equation is assumed |
+| Output determinacy | The published artifact and its declared observations | Separatedness may express local determinacy under a chosen semantics; it is not the whole of accountability |
+| Documented context | A versioned Λ presentation | Realization from conversational probes, and reconstruction as their colimit, are conditional on a constructed probe functor and a density theorem |
+| Participant transformation | Deliberation may affect people, but person-state lies outside the trusted representation | Later documentation and available continuations may change without representing a decomposition of the person |
+
+The represented object in this correspondence is the documented subject or
+context, never the participant. Participants instantiate the conditions under
+which documentation is produced without becoming objects reconstructed from
+that documentation.
+
 ## Federation
 
 Federation is an open network of independently maintained conversation graphs
@@ -150,7 +192,8 @@ adequacy claim depends on it.
 
 The architecture fixes the boundary above while delegating the following to
 instance-specific interfaces: panel size, entropy source, turn-taking, silence
-policy, candidate formation, assent, all-or-nothing AI pairing, resolution of
-concurrent edits, and the concrete transport used between federated peers.
-Those policies may vary without changing the trusted actor ontology or the
-append-only publication model.
+policy, the mechanics of candidate formation and assent, all-or-nothing AI
+pairing, resolution of concurrent edits, and the concrete transport used
+between federated peers. Those policies may vary without changing the trusted
+actor ontology, the append-only publication model, or the unanimity
+requirement for successful resolution.
