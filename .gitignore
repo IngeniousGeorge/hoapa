@@ -9,3 +9,8 @@ workflow/communication_drafts/contacts/
 
 # Published books kept locally as reference; not redistributed
 workflow/deep_context/Epistemology - Albert Lautman*.pdf
+
+# Local working scratch and printable exports; not part of the project record
+workflow/tools/_prompts.md
+workflow/deep_context/transcript_for_print.md
+workflow/deep_context/transcript_for_print.pdf
