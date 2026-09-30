@@ -1,74 +1,361 @@
 # Future Work
 
-All aspects of the code that will need to be completed or corrected if we want to present it.
+Selected research obligations, candidate investigations, and deferred
+implementation work, with their evidence levels kept distinct.
 
 ## Reader's note
 
-This file documents three kinds of future work, in three styles:
+This file documents four kinds of future work:
 
-- *Punchlist style.* The "Regarding X" sections (fracture, T_recursion iteration, Sessions, actor-causal site, Hybrid v1, Beyond fracture) catalogue deferred pieces *inside material that has already shipped*. They are item-by-item, code-grained, and read as ongoing maintenance / extension lists.
+- *Selected research programme.* The 1C section records the adopted direction,
+  named unmet obligations, and criteria for choosing a build; it does not
+  preselect M's mathematical mechanism.
+- *Punchlist style.* The "Regarding X" sections (iteration, Sessions, actor-causal site, Hybrid) catalogue deferred pieces inside material that has already shipped.
 - *Architectural style.* The "Concurrency-side layers of complexity (planned)" section catalogues responsibilities at different maturity levels: committed functions, selected forcing cases, and research horizons. It is prose-heavy, structured around a Function / Math anchor / Trigger / Open questions / Agda slot rhythm, and is calibrated to be readable by both future Claude/Codex agents picking up the project and humans being shown the work.
 - *Candidate-investigation style.* The provenance, no-leak theorem ladder, Reality, and logical-presentation sections record structures whose absence or possible role has become visible but whose exact mathematical ownership is not settled. They state the motivating gap, nearest established mathematics, anti-overclaim discipline, falsifying tests, and decision gates. They do not alter the committed cascade or reserve implementation modules.
 
-All three styles are honest about status. Punchlist items extend shipped material; architectural entries state their own maturity; candidate investigations may be promoted, revised, split, or rejected after their naturality tests.
+Selection of a programme is not proof of its hypotheses. Punchlist items
+extend shipped material; architectural entries state their own maturity;
+candidate investigations may be promoted, revised, split, or rejected.
 
-For the seed-level commitments these entries extend, see `motivation.md`. For the propositional decomposition (T1–T_recursion) they realize, see `arc.md` and `targets.md`. The implementation track — a real protocol kernel, a real verification runtime, LLM-tooling integration — is a separate concern tracked canonically in `workflow/status_implementation.md`; this file keeps only cross-references and future-work implications.
+For the seed-level commitments, see `motivation.md`; for T_comparison and
+the other proposition-level targets, see `targets.md`. The implementation
+track remains canonically tracked in `status_implementation.md`.
 
-Status snapshot, 2026-09-12: the point-generated R4 theorem, runtime contract
-loop 1, 2S locality/coverage/order comparison, Tier A, and the 3R recorder are
-banked. The next program is selected in `current_track.md`: 1C diagnoses the
-flat-modal collapse in parallel; a minimal 3R causal kernel tests the premise
-beneath the 2S causal tower; contract closure/references, publication no-leak,
-relative views, the full assembly, Λ/Federation, and context renewal then follow
-in dependency order. `architecture.md` is the positive participant and
-information-flow reference.
+Status snapshot, 2026-09-26: K's banked waterline and the 2S/3R dependency
+sequence are unchanged. 1C now rebuilds M through relational adequacy and the
+categorical essence of K, not through a prescribed repair of cohesive HoTT.
+See `current_track.md` for priority and `status_formal.md` for proof status.
 
-## Regarding fracture and the modal-signature defect
+## Selected 1C programme: relational adequacy and the M rebuild
 
-- `flat-intro` is unconditionally postulated rather than restricted to a crisp
-  context. Together with dependent `flat-ind`, this is not merely a loose
-  over-approximation: eliminate into
-  `flat-intro (flat-counit u) ≡ u` and use `flat-counit-intro` in the base
-  case. The two maps are inverse for every type, so every type is flat-modal.
-  The existing flat-idempotency proof is the same derivation specialized one
-  modality level up.
-- The hom-set adjunctions are postulated at type level. Diagnostically known to fail at (Bℤ, Bℤ) in the analytic model: (Bℤ → Bℤ) ≃ Bℤ × ℤ but (Bℤ → ♯Bℤ) is forced to ℤ once ♯ is identified
-naively. Same over-approximation pattern.
-- fracture itself is postulated as an equivalence of a pinned canonical map.
-  Its intended real-cohesive theorem shape remains mathematically motivated,
-  but this Agda instance lives inside the degenerate flat signature and cannot
-  serve as evidence for that model.
-- ♯/ʃ idempotency and map-laws postulated rather than derived; same gap (no dependent ♯/ʃ-induction in Agda).
+This programme is selected; its mathematical mechanisms and first build are
+not. Its objective is a useful, non-circular account of the special adequacy
+of Hoapa-like organization **to contexts and their renewal**. The newer
+mirror/generation–description sketch is an organizing candidate, not another
+set of prerequisites. See
+[arc/18's synthesis](arc/18_evolutionary_adjunction.md#session-consolidation-2026-09-26).
 
-  *Rejected as a repair.* Adding unrestricted `shape-ind` and `sharp-ind` in
-  the pattern of the current `flat-ind` would derive more laws on top of the
-  wrong contextual discipline. It does not repair `♭` and may reproduce the
-  same collapse elsewhere.
+### A. Extract K's categorical essence
 
-  *Architectural alternative.* Migrating the synthetic axiomatization from Wellen-style independent postulates to Rijke–Shulman–Spitters-style "subuniverse of modal types" with uniform induction would subsume this work — but would also restructure the existing `flat-ind`-based derivations. A category-shaped change, not piecewise; separate future call.
+Make a clause-and-interface inventory from `architecture.md`, the Agda
+interfaces, and the intended extensions recorded here. For each clause give:
 
-- Analytic test is weak. ℤ collapses everything to identity, so the analytic file doesn't exercise the postulate — it confirms non-vacuity in the degenerate case only. The case that would
-test the postulate (Bℤ) is exactly what we cannot reach analytically. So fracture has been verified where it is trivial and asserted where it is interesting.
+- its intrinsic job, before choosing a categorical name;
+- objects, morphisms, and universal property if one is available;
+- its status: checked (with hypotheses), architecturally specified, or proposed;
+- what a meaningful change of that clause would change;
+- the contextual capability or future use it supports.
 
-### Selected diagnostic and repair direction
+Starting material includes strict-reflecting local views; Set-valued locality
+and linear/session-valued content connected by R4; actor-channel invariance;
+and persistent, independently reusable publication. These are not four equally
+banked axioms: Tier A is raw-validator invariance, R4 has a supported
+point-generated scope, and closure/publication and observational no-leak are
+still open. Do not turn this inventory into a completed category of
+architectures by declaring a record alone.
 
-1. Add a focused diagnostic module deriving `IsFlatModal A` for every `A` from
-   the current signature. The unmet obligation must be visible before the
-   proof is added, and the lemma remains as a regression witness.
-2. Reclassify fracture, the postulated modal hom-equivalences, and the
-   `IterationCohesion` collapse as relative to a degenerate signature. Do not
-   delete them or silently continue to cite them as cohesive evidence.
-3. Require any proposed replacement signature to coexist with the analytic
-   `¬-IsFlatModal-delooping` witness and to expose more than one contextual face
-   without an automatic equivalence between them.
-4. Let K's first preservation-and-extension transition shape what a modal
-   context must support. Context renewal is the door into M; it does not decide
-   whether crisp contexts, guarded modalities, modal operators as reflective
-   subuniverses, or another formalism is the right repair.
+The stated Lautman-facing interpretation takes **understanding of the world**
+as the decomposed subject: embodied understanding organized predominantly
+synthetically through unityped participation, and documentation predominantly
+analytically through typed concepts and relations. Both moments occur in both
+realms; this does not designate M or K as exclusively synthetic or analytic.
+Neither the person nor the whole context is exhausted by represented work.
+See [the interpretation and its architectural counterexample](related_structures.md#lautman--analyticsynthetic-decomposition-and-recursive-incarnation):
+output-dependent formal standing violates the intended common interface,
+whereas differing assessments of contributions need not. Test that boundary
+without claiming every typed rival lacks synthetic organization. The exact
+categorical essence remains a research result, not this initial list.
 
-This is the next 1C item. The earlier cyclic-bar and differential-cohesion
-directions remain possible later programs, not repairs for the signature
-defect.
+### A1. Alternatives and the comparison setting
+
+Use `bias_correction.md` as an explicit source of previously considered
+alternatives, without editing it: identity-refining actor schemes, identifying
+the R4 endpoints, collapsing local-view maps, treating dependencies as paths,
+closure-as-consensus, and global actor directories. Some are architectural
+alternatives; some are ill-typed identifications until redesigned. Establish
+their coherence rather than importing the rejections as ready-made objects.
+
+That history explains where the examples came from; it is not a proof of
+non-circularity. State capabilities independently of Hoapa's implementation
+choices, allow alternatives to satisfy them, and compare under the same
+contextual requirements. A requirement such as "an artifact is usable when its
+producer is unavailable" is different from "every architecture must implement
+Hoapa's organization."
+
+Construct the ambient comparison objects and morphisms, including inferior,
+incomparable, and unsuccessful cases. The objects may be architectures,
+world/practice pairs, or correspondences; this choice must not silently
+replace operational K by a category of architectures. Clause deletion is a
+useful test, not the definition of the whole comparison class.
+
+### A2. Independent siblings
+
+Use `related_structures.md` for the sibling inventory and clause cross-index:
+categorical essence, ambient, universal property if known, what changes with
+a clause, and the exact relationship to K. Physics, chemistry, ecosystems,
+and cognition are search domains, not required successes. Galois
+reconstruction and nominal methods are further mathematical leads.
+
+Start with analogues in their own settings. Showing that two siblings inhabit
+one common comparison category is an additional theorem. Independent examples
+can guide definitions and challenge accidental choices; resemblance alone
+does not establish that Hoapa is optimal.
+
+When §A produces or revises the clause inventory, re-index the sibling
+catalogue and clause-to-failure crossing in `related_structures.md` against
+it. The current rows are provisional prompts, not the extracted essence.
+
+### B. Seek the comparison structure
+
+The primary target is `targets.md` §T_comparison. Prefer a universal property
+or a representation/factorization theorem. Attained bounds, robustness under
+changes of assessment, and deformation rigidity are alternatives to explore,
+not a requirement to manufacture a scalar.
+
+Engineering supplies candidate capabilities: reusable interfaces, independent
+replacement, compositionality, provenance, intelligibility, and maintained
+room for further work. Test which are consequences of an organization rather
+than writing "clean design" into the definition of the winner.
+
+Extract an invariance list and ask what it forces. Invariance may force a
+factorization without uniquely determining a measure. A theorem characterizing
+a measure is not yet a theorem characterizing architectures. State sufficient
+conditions separately from necessity/no-go claims. The theorem should concern
+a class; checking Hoapa's membership is a separate task.
+
+### C. Rebuild M and its variability together with comparison
+
+M must carry independently meaningful contextual structure that work can
+encounter, articulate, and change. It is neither a preselected cohesive topos
+nor a metalanguage whose sole content is explaining Hoapa.
+
+Investigate whether the transformations organizing contextual variation also
+induce the comparisons of adequacy. P is a provisional name: an indexed
+category, correspondence, category of elements, moduli construction, or other
+organization may earn the role. Do not define it by successful adjunctions or
+optimal architectures alone.
+
+Keep within-regime work distinct from transitions between regimes. For a
+fibred candidate, specify base arrows, reindexing, and comparison squares
+before naming Beck–Chevalley obligations. Coherent transport does not force a
+family to be constant; failure of coherence is not a prerequisite for
+evolution. This programme can investigate both scales without asserting a
+constructed bridge between them.
+
+**Mirror investigation — reciprocal induced structure.** Restated T4 asks
+whether K's separations enable integration on M, and whether M's integration
+capabilities induce further separations, particularly within documentation.
+"Secondary" means induced, not subordinate or temporally later. The surface
+both distinguishes reality from its understanding and connects them; M need
+not model participants' interior lives. The detailed examples, comparison
+cases, and consolidated technical distinctions live in
+[arc/18](arc/18_evolutionary_adjunction.md#the-mirror-separation-integration-and-reciprocal-induced-structure).
+
+For each candidate, specify the K-side separation, the M-side capability,
+the construction relating them, the distinctions it preserves, the
+compatibility law, and a comparison case testing whether the separation
+actually matters for the declared use. A successful rival is an informative
+outcome. Seek definitions under which the induced effect follows from a
+universal property or preservation theorem; adjointness alone does not supply
+it. No additional adjunction or first build is selected by this sketch.
+
+**Rising sea — separation and integration as two faces of mathematical
+understanding.** Explore the intuition that Grothendieck's preference for the
+rising sea expresses the correspondence sought between K and M: respecting the
+distinct responsibilities of mathematical structures makes possible a
+surrounding setting in which they integrate naturally; discovering that setting,
+in turn, reveals which distinctions matter. The refusal of the hammer and chisel
+would express a reluctance to force a result through an organization not yet
+adequate to its subject. Raising the sea would mean developing the context until
+the relationships among its constituents carry the solution — and enable further
+mathematics beyond the original problem.
+
+In this reading, K's separations and M's integrations are not successive stages
+or fixed compartments. They develop together. The rising-sea method is the
+activity moving between them: articulating distinctions, discovering their
+relationships, and returning a more resourceful context for subsequent work.
+This is a candidate interpretation of the mirror, particularly on the
+documentary/conceptual side, not a claim that Grothendieck implemented Hoapa's
+social architecture.
+
+When this direction becomes active, seek concrete instances where an improved
+separation enables integration, or an integrating construction reveals a missing
+distinction. Universal properties and descent offer starting points. The
+correspondence remains an intuition to develop and test, not independent
+evidence for optimality, since Grothendieck's method already helped shape the
+project.
+
+### D. Borrow–work–return–replay and renewal
+
+For each candidate, say what is borrowed, what work can do, what returns, and
+which later operation consumes it. A hom-set transpose supplies a contextual
+presentation, not by itself adequate replay. Test preservation of declared
+achievements together with a genuinely newly admissible operation.
+
+**Particular artifact versus instantiable rule.** Investigate the distinction
+between returning witness-plus-result data (a dependent-Σ candidate) and
+returning a construction uniform over inputs (a dependent-Π candidate).
+Specify the family and the variance before using either interpretation.
+Publication is not automatically Σ, and the Reflexive Π layer name is not a
+dependent-product theorem. In a comprehension setting, absence of a right
+adjoint Π to a particular reindexing functor could obstruct uniform return;
+it is not automatically the same thing as counit loss.
+
+**Directedness — named open question.** K has causal parents, causal
+local-view maps, directed documentary dependencies, and only selectively
+invertible comparisons. What does each candidate correspondence preserve,
+forget, or invert? Test a noninvertible transition. HoTT's identity paths are
+invertible, but categories and directed structures can be defined within
+HoTT; an ∞-topos does not mean that every map is invertible. The question is
+a selection aid, not a new hard requirement that M use directed type theory.
+
+### E. Concrete obligations and build selection
+
+No first build is selected. Select a bounded obligation for which:
+(1) the claim and independent assumptions can be stated;
+(2) a positive instance and an informative negative/variation control exist;
+(3) a named missing type or failing check can precede implementation; and
+(4) the outcome changes a decision about the essence, comparison, or M.
+
+A comparison witness must be capable of distinguishing its proposed
+architecture from a meaningful rival. A grammar/control lemma need not compare
+whole architectures, but must test the interpretation it is used to support.
+Reject vacuous witnesses, not useful small results. The next session should
+choose one entry, name its red obligation, and say what either outcome teaches.
+
+**Observation-relative sufficiency — finite candidate.** Let X be a finite
+set of episodes and O a finite family of observations with decidable equality
+of outputs. Define x ≈O y when every observation agrees, and q : X → Q_O as
+the quotient. For a finite, image-normalized publication d : X → D
+(surjective onto D), define Adequate_O(d) to mean that every o in O factors
+through d. Proposed obligation, in mathematical type notation:
+
+```text
+observation-quotient-universal :
+  (d : X → D) → Surjective(d) → Adequate_O(d) →
+  Unique (r : D → Q_O) such that r ∘ d = q
+```
+
+The object Q_O, its own adequacy, and this factorization must be constructed;
+this is a **named unmet obligation, not an Agda declaration or a checked
+result**. Using all of D without surjectivity would make uniqueness wrong;
+alternatively work on the image of d. A two-bit episode observed through its
+first bit separates q from a constant, inadequate publication. Adding the
+second-bit observation supplies a refinement test.
+
+Include a rival with the same public answers but mandatory producer
+authorization for reuse. The observation quotient alone cannot distinguish
+it: add a declared future operation and an access/capability interface, then
+test producer-unavailable reuse. This limitation is part of the candidate's
+value, not a reason to claim that sufficiency already proves Hoapa optimal.
+
+Refining O gives maps between its quotients. Investigate this as a small
+fragment linking contextual variability and comparison, not as an already
+built P or full Tier D theorem. For any probability law on finite X,
+adequacy implies H(d(X)) = H(q(X)) + H(d(X) | q(X)); the structural
+factorization comes first, and the inequality holds for every such law.
+No probability model is thereby chosen for Hoapa.
+
+**Clause-sensitive adequacy — candidate.** After specifying a common context
+c, future use u, and architectures A and B, seek:
+
+```text
+clause-separation-witness :
+  Adequate(A, c, u) × ¬ Adequate(B, c, u)
+```
+
+Construct both architectures and their common requirements before inhabiting
+this schematic type. If both are adequate, that is evidence against the
+proposed distinguishing clause. A record listing clauses with the conclusion
+as another field is not the sought result.
+
+**Contextual renewal — candidate.** Exhibit an artifact, a transition p → q,
+preservation of named earlier uses, and a use available at q but not p.
+The admission rule must be independently justified, not defined to certify
+that particular artifact. This can be tested at toy scale without waiting
+for the 3R implementation; later runtime realization is a separate obligation.
+
+**Modal non-degeneracy — conditional candidate.** If a proposed replacement
+actually has a modal predicate, name the obligation:
+
+```text
+proper-modal-fragment : Σ (A : Universe), ¬ IsModal(A)
+```
+
+Here the modality and universe belong to the selected model; the old analytic
+delooping witness is a comparison case, not an axiom imposed on every possible
+M. Under the old unrestricted flat signature this obligation conflicts with
+the all-types-flat derivation. No modal predicate is required of non-modal
+candidates. Neither this declaration nor the clause witness is added to Agda
+by this documentation update.
+
+### F. Candidate mathematical resources
+
+- **Generation and description:** monads with arities is the lead literature
+  test for the two-correspondence sketch, not a chosen model of K. Identify
+  arities, free structure, probes, and a nerve-image condition. See arc/18.
+- **Pairing and representability:** name what world/practice interaction
+  actually is before seeking a profunctor or its representing functors.
+  Doctrine-scale correspondence and work within a regime are separate
+  constructions until their compatibility is specified.
+- **Stable cores and inheritance:** investigate fixed-point or mutually
+  adequate fragments as possible homes for reliable inheritance, with
+  evolution between regimes. Do not require every local closure to remain
+  non-idempotent. Distinguish Chu biextensional collapse, Isbell/concept
+  completion, and the Pavlovic–Hughes nuclear-adjunction construction.
+  Existing Chu code does not implement these constructions.
+- **Entropy and quantitative comparison:** distinguish actual distinctions
+  lost, future-use adequacy, statistical reconstruction, and leakage.
+  BFL-type information loss, information cohomology, and diversity are
+  candidates with different inputs. State the probability/observable/similarity
+  data where required; no probability model of Hoapa has been selected.
+  A fulfilled entropy chain rule is not an obstruction to gluing. KL is not
+  a Lawvere metric without an additional construction.
+- **Quantitative no-leak:** g-leakage/min-entropy approaches are candidates,
+  with a stated secret, observer, channel, and gain/task. Seek comparison
+  robust across a declared class of priors or tasks, rather than a privileged
+  distribution. Identity neutrality does not require contributions to be
+  statistically independent of contributors.
+  Primary source: [Alvim–Chatzikokolakis–Palamidessi–Smith](https://homepages.dcc.ufmg.br/~msalvim/publications/2012-CSF.pdf).
+- **Relative cohesion:** reusable candidate for a relation between settings,
+  not an automatic return to the discarded M prescription. An adjoint
+  quadruple requires more compatibility than two unrelated adjunctions;
+  appropriate categorical/topos hypotheses are not yet available for K.
+
+### G. Anchors as working methods
+
+Lautman asks which problematic relations and synthetic/analytic decompositions
+the effective mathematics realizes. Simondon asks whether individual and
+milieu can become determinate together while leaving possibilities for further
+individuation. The rising sea asks for the surrounding setting in which the
+comparison becomes natural. Grothendieck's relative point of view, descent,
+reconstruction, deformation questions, and later work on organizing families
+are tools to investigate, not a demand to recover an arithmetic tower.
+
+These anchors guide definitions and interpretations. They do not replace the
+obligations above. Existing Care-as-inheritance and viability candidates remain
+open.
+
+## Legacy modal diagnosis and retired work orders
+
+The unrestricted `flat-intro` and dependent `flat-ind`, with their β-rule,
+derive that `flat-counit` is an equivalence for every type. The intended
+flat-modal fragment therefore becomes the whole universe. This diagnoses
+loss of that intended distinction, **not Booleanity**, decidability of every
+observation, or failure of cohesive mathematics in general.
+
+Retain the proposed named diagnostic `everything-is-flat-modal` when this
+control is formalized; it is not reported as a newly checked lemma and does
+not take precedence over the programme above. The existing analytic
+`¬-IsFlatModal-delooping` remains a checked contrast under its own definitions.
+
+The old repair-first, named-coefficient/de Rham, differential-cohesion, and
+cyclic-bar work orders are retired from the selected programme. Their pre-edit
+text is preserved in
+[the migration archive](deep_context/abandonned_modal_side/workflow/README.md).
+The Agda files remain in place; generic constructions can be reused at their
+actual strength.
 
 ## Regarding T_recursion iteration
 
@@ -248,67 +535,12 @@ To check before using rhetorically: in the concrete LNL instance, the exponentia
 
 **Agda slot.** The value-category construction lives under `Concurrency/Algebras/Chu*.agda`; the point-generated R4 instantiation lives under `Concurrency/Hybrid/Chu*.agda`; the Sessions realization lives under `Concurrency/Algebras/Session*.agda`. A later Reality/Documentation boundary should start as an interface over existing Chu objects and trace/audit data, not as a core `Reality` type.
 
-## Beyond fracture: the differential-cohesion gap
+## Retired cohesive escalation
 
-The de Rham target splits three ways once examined — the **de Rham depth ladder**, three levels distinguished by what each adds:
-
-- **structural**: `ʃX → B` for arbitrary flat-modal `B`. Costless; just instantiates the ʃ ⊣ ♭ adjunction.
-- **named-coefficient**: postulate `ℝ` as a cohesive type, then instantiate structural at `B := ♭ℝ`. Tautological as a "de Rham theorem" — de Rham cohomology is *defined* to be flat-ℝ cohomology, so the theorem reduces to its definition. Rhetorical packaging.
-- **differential**: actual differential forms = `ℑX → ♭ℝ` (or via a refined hypercohomology construction), where `ℑ` is the **infinitesimal shape modality** — part of **differential cohesion**, a *separate* refinement of plain cohesion adding three new modalities, the triple `ℜ ⊣ ℑ ⊣ &` (reduction ⊣ infinitesimal shape ⊣ infinitesimal flat). Plain ♭/ʃ/♯ cannot see "differential" in the classical sense; that is exactly the gap differential cohesion was invented to fill.
-
-Current plan goes structural → named-coefficient, aiming at differential. The named-coefficient result will look like the de Rham theorem in name but is tautologous. The *content-bearing* de Rham theorem — differential forms compute the same cohomology that flat-ℝ coefficients compute — requires the differential refinement. This is a *future* concern, not a current one: nothing in the structural / named-coefficient path will be wrong, but it will not have delivered what "de Rham theorem" normally means.
-
-What an upgrade to the differential level would need:
-
-- Three new modality postulates: `ℜ` (reduction) ⊣ `ℑ` (infinitesimal shape) ⊣ `&` (infinitesimal flat), with units/counits/induction principles, mirroring what Cohesion.agda + Adjunctions.agda already do for plain cohesion.
-- A redefinition of differential forms in the cohesive setting as `ℑX → ♭ℝ` (or refined).
-- The de Rham theorem proper: `(ℑX → ♭ℝ) ≃ (ʃX → ♭ℝ)` (or similar) — a statement that *is* content-bearing.
-
-Scope: a separate phase, comparable in size to the entire plain-cohesion phase we have just finished.
-
-**Under the three-track strategy:** the differential rung is deferred to `formal/AnalyticTest/` (see folder README); structural and named-coefficient remain on synthetic + `Analytic/`. The "future work" framing above is updated accordingly — differential is deferred to a specific track, not indefinitely.
-
-## Discussion of the next step when the bandwidth was still on the modal side
-
-Envisioned next step: a short NamedCoefficient.agda, ~50 lines.
-
-One postulate — ℝ : Type. That's all. IsFlatModal (♭ℝ) is automatic via flat-modality-idempotent; no extra postulate needed.
-
-Contents:
-
-postulate ℝ : Type
-
-deRham           : Type ℓ → Type _
-deRham X = ShapeModality X → FlatModality ℝ
-
-flatℝCohomology  : Type ℓ → Type _
-flatℝCohomology X = X → FlatModality ℝ
-
-deRham-theorem     : (X : Type ℓ) → deRham X ≃ flatℝCohomology X
-deRham-theorem-pin : (X : Type ℓ) → equivFun (deRham-theorem X) ≡ λ f → f ∘ shape-unit
-
-Both bodies are one-liners — flat-coefficients-factor (flat-modality-idempotent) and flat-coefficients-factor-pin (flat-modality-idempotent).
-
-Header framing. Tautological as a "de Rham theorem" — de Rham cohomology is defined as flat-ℝ cohomology in this setting. The separation content sits in the statement (mentions ʃ and ♭,
-neither stateable in plain HoTT). The content-bearing de Rham theorem is parked in AnalyticTest under the differential rung.
-
-Three design calls I'd flag for you:
-
-1. Bare ℝ : Type vs. bundled record. I lean bare. Nothing in this rung uses any property of ℝ beyond existence — ring/order/truncation structure would be over-commitment we don't exercise.
-Upgrade when differential cohesion forces it.
-2. No degree index. I'd avoid H⁰_dR notation. Structural-pinned is degree 0 only; higher degrees need K(ℝ, n) infrastructure we don't have. Leaving the degree implicit is more honest.
-3. Analytic mirror — skip or keep the pattern? Genuine call:
-- Skip (my lean): the analytic FlatCoefficients.agda already verifies the equivalence at arbitrary B on ℤ and Bℤ; named-coefficient is rhetorical packaging with no new analytic content.
-Postulating ℝ analytically would also break the no-postulates rule. Flag the gap with a header line in the synthetic file.
-- Keep parameterized: mirror file restates the equivalence at arbitrary B, comment notes "synthetic specializes at B := ♭ℝ." Preserves pattern; minimal new code.
-- Use ℤ as ℝ-stand-in: concrete, but reuses our shape-modal test type — degenerate and a bit dishonest about what's being verified.
-
-The mirror skip is the most consequential — it breaks the "every synthetic file has an analytic mirror" rhythm. Reasoned but worth your call.
-
-What lands after this round. The synthetic side of the de Rham arc is complete at the structural / named-coefficient depth (per the ladder's narrow sense). Open paths from there:
-- Background maintenance on ♯/ʃ dependent induction (would unblock several theorems-currently-postulates).
-- Pivot to the Concurrency stub.
-- Open AnalyticTest if signature stability has settled.
+The differential-cohesion depth ladder and the proposed NamedCoefficient
+module are preserved in the migration archive's `future_work.md`. They are
+not scheduled follow-ons to this M rebuild. A later use must identify the
+contextual problem it solves and a sound model for the required modalities.
 
 ## Concurrency-side layers of complexity (planned)
 
@@ -578,19 +810,40 @@ forces a reusable mathematical interface.
 
 ### 5. Information-cohomological complexity
 
-The complexity of a message is not intrinsic to the message; it is what the receiver experiences given their familiarity with the language in which the message is expressed. This receiver-relative reading flattens any presumed hierarchy of "complex" versus "simple" actors and is what structurally justifies the framework's commitment to unityped actors: an actor's apparent sophistication is a function of their internal reference frame, not of any actor-level type distinction. The mathematical incarnation is *information cohomology* in the Baudot–Bennequin–Vigneaux line. Shannon entropy is the (essentially unique up to scalar) 1-cocycle on a simplicial structure built from a category of observables, satisfying the chain rule; mutual information is the corresponding 2-cocycle; conditional entropy is the relativized version. This layer reads off the cohomological invariants from the content topos that the bulk layer builds, gives the protocol a *measurable* optimization objective (reduce expected receiver-relative description cost across the actor population), and supplies a practical proxy (language-model perplexity) that runs today against contemporary infrastructure.
+**Function.** Investigate how the difficulty of using documentation varies
+with a receiver's declared task and available context. The architectural
+concern is intelligibility and reusable understanding, not ranking persons.
+No per-person monitoring scheme or scalar optimization objective is selected.
 
-**Function in the human-world implementation.** The protocol's monitoring layer exposes information-cohomological invariants as first-class outputs: per-actor perplexity over the current language, mutual information between concept clusters, conditional entropy of new messages given history, per-cover information decay (which concepts are local, which global). Meta-conversations from the reflexive layer can read these invariants and argue language edits accordingly, turning "we should improve the explanation of concept C" from a vague critique into a measurable target. The optimization objective is the principled target: minimize expected receiver-relative complexity across the actor population while preserving semantic fidelity. The cohomological invariant is the mathematically clean object; relative description cost `K(message ‖ receiver's expectation)` is the same content in coding-theoretic register; language-model perplexity is the empirically computable proxy. This is the place where information theory, MDL / rate-distortion, and information-bottleneck arguments enter the framework as the disciplined scoring of the implementation's decisions. It is also the framework's structural refutation of "scale fixes this": the minimum needed for the framework to function is categorical (cohesion, separation of concerns, sheaf descent, the cross-site adjoint pair, factorization algebra), not parameter-count. A single agent of any scale cannot supply that structure; a community of agents organized by a Hoapa-style protocol can.
+**Candidate mathematics.** Information cohomology, deterministic information
+loss, and task-relative information-flow comparisons are distinct resources.
+Entropy characterizations need specified observables, coefficients, and,
+where relevant, probability models. A cocycle can express a satisfied chain
+rule rather than an obstruction. Shannon loss, conditional entropy,
+relative entropy, description complexity, and language-model perplexity are
+not interchangeable without an interpretation theorem.
 
-**Mathematical structure.** Information cohomology on the category of observables built from the content topos. Reference frame: receiver state, formalized as a probability measure or sheaf section over Λ. The cohomology class `H(message | receiver)` is the cohomological invariant; relative entropy is the operative quantity. The deeper structural reading: the (co)homology pairing `H_*(Content topos) ⊗ H^*(Content topos) → k` evaluates the community's homological construction (what gets built — chains, cycles, accumulated language) against the entropy cocycle that measures it. The strong target claim is that the cross-site adjunction `Allow ⊣ Require` is, at the deepest layer, this (co)homology pairing: Allow tests the concurrency-side chain against modal-side cocycles, and Require demands that the chain be measurable by the cocycle. A future `Mediate` would be the actual evaluation map if extra adjoint structure is earned. The modal triple `ʃ ⊣ ♭ ⊣ ♯` admits an information-theoretic reading as a triple of *receivers*: `♭(A)` is the receiver who sees only the underlying-set structure (high relative complexity for richer content), `ʃ(A)` is the receiver who sees the homotopy structure but not the discrete points, `♯(A)` is the receiver who sees every point separately but no connecting structure. (This is where the cohesion-as-threshold reframing in the appendix below acquires an information-theoretic face — see reframing A.) The cohesive adjunctions become change-of-frame transformations; cohomological pull-backs and push-forwards are the principled operations between modal perspectives. Bennequin's information cohomology program lives natively in topos theory; adopting its framing is recognition that the mathematics this layer needs has already been written by adjacent neighbors (and is why their entry in `related_structures.md` warrants sharpening).
+The comparison programme at the top of this file owns the axioms and
+measurement question. It begins with structural adequacy where possible,
+then asks which numerical invariants report it robustly. There is no theorem
+identifying `Allow ⊣ Require` with a homology/cohomology pairing, and no
+selected identification of ♭/ʃ/♯ with kinds of receivers.
 
-**Trigger / dependencies.** The bulk layer Λ first (the content topos must exist as the substrate of the cohomology). The reflexive layer Π (so the cohomological invariants have someone to read them and act on them). Does not strictly require the field-theoretic dynamics layer to land in code, but the two compose cleanly: the entropy term enters as a Lagrangian component of that layer's action functional.
+**Trigger / dependencies.** For a Hoapa application, define a non-trivial
+documentary use, the permitted observations, and the data a measurement
+requires. A finite toy comparison can precede a full Λ implementation.
+Any eventual runtime observation must respect the public/live boundary and
+the no-leak obligations. A content topos, factorization algebra, or
+differential cohesion is not assumed as a universal prerequisite.
 
-**Open questions / deferred pieces.** The strong claim "cross-site adjunction = (co)homology pairing" is a target-shape, not a theorem; if proved, it would be the central theorem of the project. The framework's analog of the P-versus-NP question — *is there a universal reference frame providing an intrinsic complexity floor independent of receiver?* — is genuinely open; the framework can ask it but does not need to settle it to function operationally. The choice of metric (Wasserstein-style, information-geometric, embedding-based) is a real design question with no unique right answer; multiple metrics may need to coexist for different sub-tasks. The Manin–Marcolli line on Homotopy Theoretic and Categorical Models of Neural Information Networks is plausibly the same threshold-and-no-go phenomenon, viewed from the agent's internal-structure side rather than the framework's external-structure side; verifying the precise alignment is homework before any claim of agreement gets recorded.
+**Open obligation.** Demonstrate a case in which the proposed invariant
+distinguishes two interfaces under the same task, and explain what it fails
+to distinguish. Separate measurement characterization from architectural
+specialness. No Agda module is reserved.
 
-**Agda tree slot.** Undecided; probably co-located with Λ. The invariants are read off the content topos rather than introduced as new structure, so a separate folder is not warranted at v1.
-
-*Originating design conversation:* workflow conversation logs (information cohomology / receiver-relative complexity / (co)homology pairing); no dedicated arc file yet. The Manin–Marcolli alignment question is open homework.
+The previous stronger cohomological-pairing and receiver-modality claims are
+preserved in the migration archive's `future_work.md`, not silently carried
+as premises of the new programme.
 
 ### Appendix — cross-cutting reframings (different in nature from the layers above)
 
@@ -600,41 +853,18 @@ research horizons. The items below are *reframings*—sharper readings of
 structure already under discussion. They affect what to aim for rather than
 adding numbered construction work.
 
-#### A. Cohesion (and differential cohesion) as complexity threshold
+#### A. Contextual distinctions, without a prescribed modal threshold
 
-The framework seeks a non-trivial modal complexity: not "any" modality, but a
-cohesive organization in which spatial and discrete faces do not collapse, and
-possibly later differential cohesion. The current synthetic signature fails
-this floor because every type becomes flat-modal. Repairing that defect now
-precedes claims about differential cohesion or modal field-theoretic output.
-Even a sound cohesive triple would not prove the Lawvere explanation, T3, or a
-developing network; those require the constructed cross-site witnesses in
-`targets.md` §T3. The durable comparison is limited: separation of concerns in
-K keeps content and actor carrier distinct, while cohesion should keep modal
-faces distinct in M. Whether the richer field-theoretic destination is required
-must be earned after the basic contextual modal interface is non-degenerate.
+The new 1C programme asks what distinctions M must support and how they relate
+to K. Cohesion and differential cohesion are possible resources, not required
+floors of complexity. The flat collapse is a diagnostic of one signature,
+not a reason to impose a replacement cohesive package.
 
-This reframing is presented first in the appendix because the next reframing (the symmetric formulation, B) presupposes both cohesion and differential cohesion as floors; and the third (recursive co-evolution, C) presupposes both of those.
+#### B. Candidate corresponding systems of separations
 
-#### B. Candidate symmetric formulation: modal field-theoretic output
-
-The five entries above describe K-side responsibilities. A possible M-side
-counterpart is a field-theoretic semantics of contexts, but no structurally
-exact symmetry has been established: the present modal signature collapses,
-M has not been constructed, and `Allow ⊣ Require` is still the theorem target.
-This reframing names a research question—whether a repaired M supplies the
-right ambient semantics for K's content dynamics—not a closing claim of the
-layered architecture.
-
-*Notation update (2026-06-04): this file used `Allow ⊣ Mediate ⊣ Require` as older shorthand. The live structural target is now pair-first: `Allow ⊣ Require`, with Mediate, ambidextrousness, or a quadruple held only as future extra structure if earned. Where this section assigns `Mediate` a concrete role (e.g. the evaluation map of the (co)homology pairing in Layer 5), read it as a candidate extension of the pair, not as a settled commitment.*
-
-Differential cohesion can support synthetic field-theory mathematics—smooth
-∞-stacks, differential cohomology, and derived moduli are the relevant
-published setting. Hoapa has not constructed that layer, shown that cyclic bar
-is its required moduli-extraction step, or proved that K's future dynamics and
-M's semantics are two readings of one object. `Allow ⊣ Require` remains the
-candidate relation to test after both sides exist. This reframing is therefore
-a research destination, not a statement of the current architecture.
+The mirror sketch is recorded in arc/18's session consolidation. A
+field-theoretic M counterpart remains one possible specialization, not the
+definition of the mirror or a prerequisite to recursive co-evolution.
 
 #### C. Context renewal and possible recursive co-evolution
 
@@ -674,7 +904,7 @@ Brief definitions of recurring terms in the layers / reframings section above, f
 - **GT** — the *Grothendieck–Teichmüller group*. Its established action on
   moduli/dessin structures does not supply an action on Hoapa's protocols.
 - **`*`-autonomous category** — a symmetric monoidal category with a dualizing object; the categorical semantics of multiplicative linear logic / session-type duality.
-- **Information cohomology** — Baudot–Bennequin–Vigneaux framework: Shannon entropy as a 1-cocycle on a category of observables; mutual information as a 2-cocycle; conditional information as the relativized version.
+- **Information cohomology** — Baudot–Bennequin–Vigneaux framework relating information functions and cohomology on specified observable structures; its hypotheses, coefficients, and interpretation must be supplied for any Hoapa application.
 - **RG flow** — *renormalization group flow*; a possible later model for
   purpose-relative coarse-graining after Λ has concrete observables, not a
   present dynamics derived from consensus.
@@ -693,21 +923,22 @@ This keeps the two concurrency poles separate: Set-valued locality sheaves carry
 
 Immediate inside this leg: write the theorem exposition and decide whether to add a concrete instantiation witness. Deferred beyond that: the normalized-pullback / stability layer needed for a full Cubical `Coverage` presentation of the point-generated topology, the full actor-causal finite sheafification reflector, enriching `Sh_fin(site,V)` with inherited linear / star-autonomous structure, constructing the free/forgetful Set-to-session adjunction rather than assuming it, proving full topos/internal-logic structure for the Set endpoint, and extending from the finite common site to the full actor-causal Set-valued topos.
 
-### Modal-context category options
+### World/context category options
 
-The modal analogue of the actor/content divide is the cohesive split between discrete/formal structure and cohesive/spatial structure. The cohesive adjoints form the modal adapter system. Options for `M` remain:
+The selected programme above owns this question. The older preference for
+cartesian/discrete core + cohesive context + cohesion adapter is retired.
+Candidates must earn their role through contextual uses, comparisons, and
+transitions. Related contextual categories may be more appropriate than
+forcing all roles into one M.
 
-1. Native modal-HoTT category: types or modal types with functions. Cheapest, closest to current Agda, but weak as final architecture.
-2. Semantic `Sh(Bℤ,Set)` / ℤ-action style category. Concrete, but risks overfitting the analytic Bℤ model.
-3. Cohesive package: cartesian/discrete core plus cohesive total context plus the cohesion bridge. Preferred target, staged as an interface.
-4. Category of modal contexts / cohesive topoi. Natural long-term, too heavy now.
+### Cross-side correspondence threshold
 
-Current lean: package `M` as cartesian/discrete core + cohesive context + cohesion adapter, mirroring `K` as Set-valued locality + V-valued linear content + R4 adapter. Do not hard-wire the exact flat/sharp/shape to typed/unityped/protocol slot assignment yet; T4 still needs a conscious settlement.
-
-### Cross-site adjunction threshold
-
-A stated `Allow ⊣ Require` interface alone is scaffolding. It becomes mathematically interesting when the functors are constructed from the ingredients and accompanied by a non-trivial example or theorem. First target the structured-package comparison, with a cartesian shadow and later enrichment-compatibility laws. The first compelling theorems would be non-collapse, nontrivial iteration of `Require ∘ Allow`, separation preservation/detection, R4 compatibility, or a concrete finite actor-causal example that crosses the adjunction and returns with controlled loss.
-
+Naming `Allow ⊣ Require` or a four-functor diagram is not a construction.
+Identify independently meaningful objects and maps, then state the
+representation and compatibility obligations. A positive result may be
+adequacy, a universal factorization, a contextual-renewal distinction, or a
+failure that rules out a candidate. Non-idempotent iteration is one route,
+not the universal acceptance condition.
 
 ## Candidate addition under evaluation: provenance, accountable artifacts, and reversible import
 
@@ -1193,14 +1424,22 @@ The basic test has three questions:
 
 The third question is the most important. Separate analytic and synthetic constructions can each be mathematically sound while failing to constitute one architecture. Lautman's value as a theorem-shaper is to keep asking for the comparison law between them.
 
-Participants do not supply the missing object of a synthetic decomposition.
-They are arbitrary admissible occupants and co-producers inside a common scheme:
-any eligible person may occupy a seat without identity being a condition of
-formal standing, while their particular contribution can still matter. The
-representation target is specified work—runs, contributions, artifacts,
-concepts, and contextual relations—not an exhaustive coordinatization of the
-person. This interpretation changes no implementation batch; it forbids actor
-kinds and panel-as-basis claims and guides the observation boundary.
+At the philosophical level the decomposed subject is understanding of the
+world, embodied among participants and articulated in documentation. The
+former is organized predominantly synthetically, the latter predominantly
+analytically; the crossing above does not cancel that orientation. Participants
+are co-producers inside a common scheme, not persons to be exhaustively
+coordinatized. Formal candidates must select a represented fragment—runs,
+contributions, artifacts, concepts, or contextual relations—and its adequacy
+criterion. The assignment does not itself supply a decomposition map.
+
+An architectural counterexample is formal standing determined by documentary
+output, with other eligibility and protocol conditions fixed. Pair it with
+the positive case where contributions receive different assessments but their
+producers retain equal standing. This tests Hoapa's intended organization,
+not a universal implication from unityping to synthetic decomposition.
+See the canonical account in `related_structures.md`. It changes no
+implementation batch or proof status and claims no panel-as-basis theorem.
 
 ### The theorem-shaping protocol
 
@@ -1367,7 +1606,7 @@ The faithful map `G_ℚ ↪ GT` is not a known proper inclusion: surjectivity re
 
 ## Candidate logical-presentation track: mode theory and indexed context
 
-**Status and scope.** This section records the candidate research program for giving the **whole Hoapa framework** a mathematical-logical presentation. It is independent of the presentation's `R/P/A/D` conceptual diagram and of the Reality and provenance repairs above. Those concepts may eventually require types, effects, interfaces, or modalities in a Hoapa logic, but they do not determine that logic's modes in advance. This track is not a cascade layer, does not change T1–T_recursion, and reserves no Agda module. Its first task is discovery: identify the framework's genuine judgmental regimes and transformations before choosing an encoding.
+**Status and scope.** This section records the candidate research program for giving the **whole Hoapa framework** a mathematical-logical presentation. It is independent of the presentation's `R/P/A/D` conceptual diagram and of the Reality and provenance repairs above. Those concepts may eventually require types, effects, interfaces, or modalities in a Hoapa logic, but they do not determine that logic's modes in advance. This track is not a cascade layer and reserves no Agda module. It now supplies candidate grammar for the selected 1C programme; its staged investigation below is local to this candidate, not a second lane-wide schedule. Its first task is discovery: identify the framework's genuine judgmental regimes and transformations before choosing an encoding.
 
 The current candidate is **mode theory** in the broad line from adjoint logic through the Licata–Shulman–Riley fibrational framework, Multimodal Dependent Type Theory (MTT), and Multimodal Adjoint Type Theory (MATT). These frameworks can generate a type theory from a small presentation of modes, modalities, and transformations, and supply general metatheory such as cut admissibility, normalization, consistency, or canonicity under their respective hypotheses. This makes mode theory a credible presentation language. It does **not** establish that any current Hoapa noun is a mode, that any philosophical reciprocity is an adjunction, or that one existing multimodal calculus already contains all of Hoapa.
 
@@ -1375,7 +1614,7 @@ The current candidate is **mode theory** in the broad line from adjoint logic th
 
 The target is a logical grammar whose models can include:
 
-- the cohesive modal side;
+- the world/context side being rebuilt (including cohesive candidates where appropriate);
 - the actor-causal, sheaf, session, and operadic concurrency side;
 - the concurrency-internal cartesian↔linear R4 bridge;
 - eventually, the cross-site `Allow ⊣ Require` pair and its iteration;
@@ -1531,6 +1770,9 @@ Reality and provenance remain independent candidate repairs. They should be cons
 - Vákár, *Syntax and Semantics of Linear Dependent Types*.
 
 ### Discussion of "truncate everything"
+
+Historical exchange retained as source material, not additional selected work.
+The current programme and its evidence levels are stated at the top of this file.
 
 #### Claude
 

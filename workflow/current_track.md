@@ -7,8 +7,9 @@ Read `architecture.md` for the intended participant/information-flow shape,
 
 ## Lane convention
 
-- **1C — pure conjecture:** develops M, the modal signature, and conjecture-
-  scale structures independently.
+- **1C — pure conjecture:** rebuilds M through the categorical essence of K,
+  contextual adequacy, and a comparison structure; develops independently of
+  the runtime delivery sequence.
 - **2S — runtime-to-substrate:** interprets runtime evidence in K and proves
   the contract, change-of-base, locality, and no-leak obligations.
 - **3R — runtime:** originates behavior and emits evidence conforming to the
@@ -35,12 +36,16 @@ erase dependencies inside the selected program.
 The next program is selected. Its order is architectural, not a demand that
 only one lane run at a time.
 
-1. **1C modal diagnosis, in parallel.** Retain a checked derivation that the
-   unrestricted `flat-intro` and dependent `flat-ind` make every type
-   flat-modal. Reclassify fracture, the cohesive hom-equivalences, and the
-   `ʃ ⊣ ♭` iteration control relative to that degenerate signature. Investigate
-   repairs only as a contextual design problem; context renewal supplies the
-   direction and the analytic non-flat delooping is an acceptance test.
+1. **1C relational adequacy and M rebuild, in parallel.** Extract K's
+   categorical essence, compare meaningful alternatives and independent
+   siblings, and seek what makes Hoapa-like organization especially adequate
+   to a context and its renewal. Universal properties lead the search; neither
+   cohesive topoi, a fibred base, nor a numerical metric is preselected.
+   The programme and named unmet obligations are in [future_work.md](future_work.md#selected-1c-programme-relational-adequacy-and-the-m-rebuild).
+   The mirror sketch in [arc/18](arc/18_evolutionary_adjunction.md#the-mirror-separation-integration-and-reciprocal-induced-structure)
+   investigates K's separations enabling integration on M and M's capabilities
+   inducing further distinctions on K. It and the generation–description
+   sketch are candidate organizations, not implemented frameworks.
 2. **3R minimal causal kernel.** Produce one event whose parent is earned from
    a message actually consumed by a handler, record it through the existing
    `EventLog`, and retain a test that fails when dependency piggybacking is
@@ -77,6 +82,15 @@ only one lane run at a time.
    operation becomes possible. Only later add bounded protocol change with
    explicit versions and activation boundaries. This is K's forcing case for
    asking what M must say about contexts.
+
+**1C handoff.** No first construction is selected. Choose a bounded obligation
+whose positive and negative controls could invalidate the proposed
+interpretation, state the missing type/check before implementing, and report
+what the result distinguishes. The finite sufficiency quotient, clause-variation
+pairs, and a contextual-renewal witness are available candidates. The
+all-types-flat diagnostic remains a legacy control, not a prerequisite to
+investigating M. The older Bℤ/cohesive destination is superseded; historical
+passages in `bias_correction.md` are left untouched by the instigator's choice.
 
 Every implementation or formal batch begins with a named red fixture, failing
 runtime check, or unmet typed obligation, and ends green only under `make test`.

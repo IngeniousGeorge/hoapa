@@ -1,18 +1,71 @@
-| Name  | Symbol | Intuition                               | Keeps                   | Forgets            |
-| ----- | ------ | --------------------------------------- | ----------------------- | ------------------ |
-| flat  | ♭      | discrete / locally constant view        | discrete structure      | cohesive variation |
-| sharp | ♯      | codiscrete / maximally connected view   | global connectivity     | local distinctions |
-| shape | ʃ      | homotopy shape / fundamental ∞-groupoid | homotopy/path structure | cohesive geometry  |
+# Naming
 
-Above: intra-topos cohesive endofunctors.
-Below: cross-site adjoints between modal perspectives **M** and actor-causal
-communities **K** (`arc.md` §3); symbols are deferred to keep them distinct from
-`ʃ ♭ ♯`.
+## Sides, correspondence, and comparison
 
-| Name    | Symbol | Direction | Intuition | Anchor |
-| ------- | ------ | --------- | --------- | ------ |
-| Allow   | —      | M → K | Modal perspectives unfold into actor-causal communities; perspectives allow typed documentation plus unityped actors | left adjoint (T6) |
-| Require | —      | K → M | Actor-causal communities reflect to modal perspectives; operational separation requires perspectivalism | right adjoint (T6) |
+- **M** names the world/context side under reconstruction, not a commitment
+  to modal HoTT or a category of all Reality. **K** names actor-causal
+  communities with session-typed values. Keep these names; no rename to E is
+  selected. A category of candidate architectures is a further object, not K
+  silently reinterpreted.
+- **Allow : M → K**, left adjoint, and **Require : K → M**, right adjoint,
+  name the current unconstructed pair. Their polarity and interpretation must
+  be tested on actual candidates. **Free/Forget** and **Realize/Nerve** are
+  exploratory role labels, not four newly adopted Hoapa functors.
+- **Adequacy** names the purpose-relative relation. **Comparison structure**
+  names the mathematics that organizes it. **Optimality** or **specialness**
+  names the sought result, relative to stated contexts, uses, and comparisons,
+  not an already available scalar score.
+- Do not use **fitness** as the project's name for this relation or structure.
+  **Sufficiency** is reserved for a specified information/factorization
+  property, not a synonym for adequacy in general.
+- **P** is a provisional name for contextual variability. "Fibred,"
+  "continuous," "moduli," and "metric" indicate candidate structures, not
+  mechanisms already chosen.
+- **Alternative** or **clause variation** is neutral. Use **degeneration**
+  only after naming the property lost; a non-Hoapa architecture can be a
+  coherent and useful system.
+- **Return** presents completed work contextually. **Replay** is its adequate
+  uptake in further work. A contextual transpose alone establishes only
+  return.
+- Dependent **Σ** packages witnesses with their data; dependent **Π** supplies
+  a family of outputs uniformly over its inputs. Neither identifies an
+  artifact-publication mechanism by notation alone. The existing layer label
+  **Reflexive Π** does not assert a dependent-product semantics.
+
+## Synthetic/analytic interpretation and the mirror
+
+- **Predominantly synthetic** describes Hoapa's organization of embodied
+  understanding among unityped participants; **predominantly analytic**
+  describes its articulation in differentiated conceptual documentation.
+  The decomposed subject is **understanding of the world**, not persons.
+  Both moments occur in both realms. See
+  [related_structures.md](related_structures.md#lautman--analyticsynthetic-decomposition-and-recursive-incarnation).
+- Neither **the synthetic side** nor **the analytic side** is a synonym for
+  M, K, agents, or documentation. Synthetic/axiomatic versus analytic/model
+  construction in the formalization is another use; state which use is meant.
+- **Integration** or **unification** in the mirror means relating, composing,
+  or reconstructing partial understanding while preserving specified
+  differences; it need not mean identification or one merged object.
+- **Secondary separation/unification** means structure proposed to be induced
+  through the correspondence, not lower importance, a later time, or another
+  architectural layer. **Primary** marks the starting point of that particular
+  investigation, not an intrinsic hierarchy between M and K.
+- The **surface** distinguishes reality from its understanding and connects
+  them through accountable observation, interpretation, and action. This
+  separating-and-connecting reading does not identify M with all Reality.
+
+## Legacy cohesive notation
+
+| Name | Symbol | Role in the cohesive candidate |
+| --- | --- | --- |
+| flat | ♭ | discrete view |
+| sharp | ♯ | codiscrete view |
+| shape | ʃ | homotopy shape |
+
+These are intra-setting cohesive operators, not the names of cross-side
+functors or a mandatory decomposition of M. The current synthetic signature
+makes every type flat-modal; see `status_formal.md`. Cohesive structures remain
+available as candidates, including relative cohesion between settings.
 
 ## Runtime recording and storage
 

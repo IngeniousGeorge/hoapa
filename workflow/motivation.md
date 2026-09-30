@@ -14,57 +14,102 @@
 
 ## The foundational conjecture
 
-Three facts are ordinary in their own domains:
+**Current formulation (2026-09-26).** Taking HoTT as the foundational working
+language, the project seeks a mathematical account of how collective inquiry
+can understand a context and produce reusable forms that enable a new one.
+The practical ambition is to justify a scientific methodology: to establish
+the special adequacy of a class of disciplined organizations containing
+Hoapa, relative to independently stated contexts, uses, and alternatives.
+Grothendieck's *Récoltes et Semailles* and Hersh's *What is Mathematics,
+Really?* remain individual and social anchors for mathematical praxis.
 
-- Modalities support the development of complexity (modalities, or perspectivism encoded in homotopy type theory).
-- Typed data is more robust, readable, literate, and composable in any domain concerned with information transfer.
-- Large numbers of unityped¹ agents are well adapted to handle complexity.
+The world/context side M is to be discovered through this investigation.
+Modal HoTT and cohesive topoi informed the construction of K and remain
+mathematical resources, but are no longer the prescribed answer for M.
+The architectural hypothesis on K is the separation of unityped¹ participants,
+typed contributions, locality, documentation, and reusable publication.
+Its predominant synthetic/analytic orientation concerns two realms of
+understanding, not a partition of M and K; see
+[the Lautman interpretation](related_structures.md#lautman--analyticsynthetic-decomposition-and-recursive-incarnation).
+Its checked fragments, intended extensions, and philosophical interpretation
+must be distinguished.
 
-Based on those, the project targets a cross-site adjunction:
+The conjecture is relational, not simply "K is the best architecture." Seek a
+comparison setting in which alternatives can cover and articulate contexts,
+return usable work, and make further inquiry possible. A universal property
+would characterize a distinguished organization of that relation; Hoapa's
+membership in the resulting class would be a separate obligation. Sufficient
+conditions and necessity/no-go claims are separate research questions.
 
+The current candidate correspondence remains:
+
+```text
 Allow ⊣ Require
+Allow : M → K       Require : K → M
+```
 
-between:
+Neither functor is constructed. Contextual variability, its connection with
+the comparison structure, and the possible interaction of more than one
+adjunction are open. The selected work is in
+[future_work.md](future_work.md#selected-1c-programme-relational-adequacy-and-the-m-rebuild);
+the newer organizing sketch is in
+[arc/18](arc/18_evolutionary_adjunction.md#session-consolidation-2026-09-26).
 
-M = modal / contextual structure
-K = concurrent / protocol structure
+The pair retains the arc/09 readings as hypotheses to test:
 
-The modal side is the formal home of perspectivist context: the possibility that multiplicities emerge and develop complexity because there is no oppressive single privileged viewpoint. The concurrent side is the operational home of inquiry: unityped participants, typed communication, local traces, composability and generated documentation.
+| Anchor | Candidate datum | Question |
+| --- | --- | --- |
+| Complexity | Allow = L : M → K | How does a context enable organized work? |
+| Evolution | Require = R : K → M | How does work acquire a contextual presentation usable in further development? |
+| Praxis | η : Id(M) → R∘L, with an episode w | How is a general opening realized by particular work? |
+| Anthropic-principle² loss | reconstruction comparison, provisionally ε : L∘R → Id(K) | Which distinctions cannot be recovered from the permitted contextual presentation? |
+| Care | checked syntactic involution (–)⊥; further adequacy open | When does reciprocal structure support viable, non-coercive continuation? |
 
-The conjecture says, in raw form:
+For an episode `w : L m → k`, its transpose is
+`w♯ = R(w) ∘ η_m : m → R k`. This exists for every adjunction. Adequate
+replay additionally needs a stated future use and a preservation/interpretation
+result; it is not supplied by transposition alone.
 
-If:
+A noninvertible counit diagnoses a specified round trip, not automatically
+privacy, entropy, or an empirical loss. The mirror and two-correspondence
+sketch may distinguish stable inheritance from contextual renewal. The
+non-collapse ladder in `targets.md` §T3 remains exact for a fixed adjunction,
+but is not a requirement that every inheritable fragment keep changing.
 
-- K properly separates unityped actors from typed content;
-- M supplies enough modal/perspectivist structure;
-- the two sides are related by an Allow ⊣ Require adjunction;
+Care's grounded proxy remains session duality. Its developmental adequacy,
+including non-extraction and continuity, is not established by an involution.
+The existing Care candidates remain open.
 
-Then:
-
-- modal context allows concurrent complexity to unfold;
-- concurrent praxis requires modal context to be legitimate and intelligible;
-- iterations of the adjunction produce a developing network rather than collapsing;
-- the protocol can generate typed documentation that becomes a new context for further inquiry.
-
-The current pair-first anchoring is:
-
-| Anchor | Adjunction datum | Reading |
-|---|---|---|
-| Complexity | Allow = L : M → K | modal context generatively permits operational complexity |
-| Evolution | Require = R : K → M | concurrent histories reflect back into modal structure |
-| Praxis | η : Id(M) → R∘L | the universal opening through which particular operational work can be contextually presented |
-| Anthropic-principle² loss | ε : L∘R → Id(K), especially non-invertibility | a community sees only a lossy reflection of other contexts; stronger non-collapse entails the relevant loss |
-| Care | order-2 involution (–)⊥ | the checked syntactic proxy: receiver and giver, cared-for and caregiver, exchange roles; the operadic realization remains conditional |
-
-For a particular operational episode `w : L M → K₀`, its contextual transpose is `w♯ = R(w) ∘ η_M : M → R K₀`. This resolves the apparent mismatch between Praxis being formally indexed on M and being experienced through work in K: `η_M` is the universal / synthetic opening, while `w` supplies the particular / analytic content. But this transpose exists for every adjunction, so the work–replay alignment clarifies the conjecture and supplies no evidence for this particular `Allow ⊣ Require`. The content would lie in constructing the pair and identifying a class of episodes whose transposes satisfy the required locality, controlled-loss, care, and non-collapse laws.
-
-The anchor called Care also has two deliberately unequal statuses. The involution `(–)⊥` is the grounded structural proxy. Its interpretation as viability-preserving, non-coercive developmental renewal is a downstream theorem-shaper, not a redefinition; in particular, its carrier-conservation and anti-ranking requirements depend on the unproved 2S no-leak family. Likewise, Anthropic loss and persistent development are not independent evidence: their precise ordering is recorded once in the non-collapse ladder in `targets.md` §T3.
-
-This is still a conjecture. The checked work so far is narrower: on the operational side, the project has a point-generated sheafification reflector and a sheaf-level Benton/LNL adjunction over the supported event-discrete actor-causal site. Chu(SET,Bool) supplies a concrete coefficient witness, and the Sessions-to-Chu realization interprets the postulate-free session object/morphism syntax. This is not yet the cross-site Allow ⊣ Require adjunction. It is one concrete fragment that makes the operational side less speculative.
+The checked mathematics is narrower: K has finite descent, a point-generated
+sheafification reflector, and a sheaf-level Benton/LNL adjunction over the
+supported event-discrete actor-causal site. Chu(SET,Bool) supplies a coefficient
+witness, and Sessions-to-Chu interprets session object/morphism syntax.
+This is not the cross-side adjunction or a proof of methodological optimality.
+The M rebuild changes the research direction, not these results' strength.
 
 ¹: Unityping is the provision that the system which handles messages and their carriers can distinguish between types of messages, but can't distinguish between message carriers, who are all of the same type from the system's point of view, meaning the system treats all of them in exactly the same way—no privileges, no special responsibilities. This is, even if counter-intuitive to humans accustomed to a social landscape determined by specialization, a form of liberation for the message carriers, and a reclaiming of their own identity.
 
 ²: The Anthropic Principle is a partial solution to the fine-tunning puzzle: the observation that it looks like the universe "conspired" to create us (if you change some of the fundamental constants of physics by only a small amount, our universe either collapses or blows up). The Anthropic Principle says that the problem arises because we're around to talk about it, and we would not be here to notice a universe that wasn't. In the metaphysical framing suggested by the conjecture, this is further understood as a form of "optical illusion" due to the perspectivism baked into the fabric of the universe: all we see from distant contexts are the elements in those contexts that are compatible with ours, such that eventually, in the limit, it appears as though all those distant contexts did was prepare for our existence.
+
+## Understanding, specialization, and the political concern
+
+The project reads embodied communal understanding as predominantly synthetic
+and conceptual documentation as predominantly analytic. Documentation aspires
+to become synthetic: its differentiated products can supply common languages
+for further inquiry. The contrary political pressure makes participants
+analytic in the organizational sense, classifying people by their products
+and fixing them into specialties and hierarchies. These are related pressures,
+not a proved mathematical duality.
+
+The instigator's motivating conviction is that civilizational specialization
+is central to humanity's designing its own extinction. This is recorded as a
+political and philosophical motivation, not an established historical law or
+a premise from which the mathematical conjecture follows. The architectural
+response is to let knowledge differentiate without making its classifications
+determine the formal standing or permissible intellectual scope of its
+producers. Situated expertise need not become compulsory intellectual identity.
+The output-dependent-standing counterexample in `related_structures.md`
+makes this boundary investigable without presupposing the broader thesis.
 
 ## Metaphysical framing: context, multiplicity, language-type, new context
 
@@ -90,7 +135,7 @@ A technical approach into this metaphysics sees it as a Hegelian sublation that 
 |---|---|---|
 | Hegel - Dialectic | dialectic; aufhebung; the concrete universal | each language-type sublates its predecessor — preserved, cancelled, lifted |
 | Deleuze - Difference | multiplicity, difference, and non-final becoming | "multiplicity"; and the refusal to close (no first context, open colimit) |
-| Lawvere - Cohesive topos | structured contexts have internal languages | the categorical spine of the schema |
+| Lawvere - Categorical logic and cohesion | structured contexts and their internal languages | resources for discovering the correspondence, not a prescribed M |
 | Peirce - Semiotics | sign, object, interpretant; inquiry as a community process | interpretation becoming habit, and habit becoming a new context |
 | Lautman / Zalamea - Saturation and liberation | problematic structure, transit, saturation, and liberation | saturation and liberation, context completing enough structure to release new forms |
 | Grothendieck - Relative point of view | relative point of view and rising-sea method | objects known through relations, covers, and patient enlargement of context |
@@ -141,9 +186,9 @@ The framework is, read operationally, a sequence of engineering trade-offs that 
 | **Federation** | Coherence within one protocol vs plurality across protocols | Typed translation interfaces, partial clones, conflict-as-data |
 | **Information cohomology** | Dense encoding (expert-friendly) vs accessible encoding (decodable by any member of the unityped receiver population) | Receiver-relative measurement of encoding cost; transparency treated as an engineering property on the same footing as performance and security |
 
-The cascade is not a list of features added by choice. It is the sequence of problems the foundational commitments create, with each layer being the structural response to the problem the previous layer's resolution exposed. Hybrid's locality-vs-globality only becomes a problem because we committed to separating actors and sessions. Reflexive's stability-vs-adaptability only becomes a problem because Hybrid gave us a maintainable artifact. Bulk's expressivity-vs-transparency only becomes a problem because Reflexive gave us a self-editing protocol that must now talk about things. Field-theoretic dynamics' exploration-vs-exploitation only becomes a problem because Bulk gave us a language that must evolve well. Federation's coherence-vs-plurality only becomes a problem because the four previous layers gave us a complete protocol that, in isolation, would re-create the one-true-framework failure the project was built to dissolve. Information cohomology's dense-vs-accessible encoding becomes salient as soon as Bulk produces a language, and acute as soon as Federation puts that language in front of multiple receiver populations.
+The table is an architectural research horizon, not a claim that every proposed mathematical mechanism is forced or implemented; maturity and alternatives are recorded in `future_work.md`. The cascade is not a list of unrelated features. It is the sequence of problems the foundational commitments create, with each layer being the structural response to the problem the previous layer's resolution exposed. Hybrid's locality-vs-globality only becomes a problem because we committed to separating actors and sessions. Reflexive's stability-vs-adaptability only becomes a problem because Hybrid gave us a maintainable artifact. Bulk's expressivity-vs-transparency only becomes a problem because Reflexive gave us a self-editing protocol that must now talk about things. Field-theoretic dynamics' exploration-vs-exploitation only becomes a problem because Bulk gave us a language that must evolve well. Federation's coherence-vs-plurality only becomes a problem because the four previous layers gave us a complete protocol that, in isolation, would re-create the one-true-framework failure the project was built to dissolve. Information cohomology's dense-vs-accessible encoding becomes salient as soon as Bulk produces a language, and acute as soon as Federation puts that language in front of multiple receiver populations.
 
-The strategy is uniform across the cascade. Every trade-off is resolved by separating the two concerns that are in tension, giving each its own categorical home, and providing the precise interface between them. Locality and content are separated by the sheaf; current protocol and its edits are separated by a meta layer; how and what are separated by an orchestration/content split; content and dynamics are separated by the factorization-algebra-plus-RG-flow; interior and exterior of a protocol are separated by the meta-topos; content and its measurement are separated by the (co)homology pairing. The foundational commitments themselves (actor-vs-content on K, spatial-vs-discrete on M, context-vs-system at the cross-site adjunction) are the same architectural move at the foundational floor.
+The strategy is uniform across the cascade. Every trade-off is resolved by separating the two concerns that are in tension, giving each its own categorical home, and providing the precise interface between them. Locality and content are separated by the sheaf; current protocol and its edits are separated by a meta layer; how and what are separated by an orchestration/content split; content and dynamics are separated by the factorization-algebra-plus-RG-flow; interior and exterior of a protocol are separated by the meta-topos; content and its measurement are separated by the (co)homology pairing. The foundational commitments themselves (actor-vs-content on K, contextual distinctions still to be identified on M, context-vs-system at the proposed correspondence) are the same architectural move at the foundational floor.
 
 So separation of concerns is not an engineering principle the framework happens to use. It is the framework's primitive architectural move, applied recursively from the foundations upward, and the cascade of trade-offs is what makes that recursion necessary. The transparency-of-language trade-off (information cohomology) belongs on this list on the same footing as the others because it is the encoding question the unityped commitment forces on the engineer: *how is the unityped receiver going to understand the message?* That question is no less an engineering interest than performance, security, or maintainability. It is simply not currently on the engineer's radar, because the economy of expertise prefers density to transparency. In the framework it is how the output feeds back into the input (and what makes the loop go round, along with other aspects, as we shall see in the next section).
 
@@ -153,7 +198,7 @@ The cascade does not just terminate in a finished protocol. It converges on a st
 
 From the metaphysical/logical point of view, Hoapa is a strategy for borrowing from a context without collapsing it. It lets a community receive external perspectives and type them as stable documentation without consuming or exposing the participant-carriers that made the transformation possible, or distorting the concepts involved.
 
-From the conjectural point of view, Hoapa seeks an optimal open strategy: a universal way for a community of inquiry to remain open under perspectivism. Here "optimal" is a system-architectural property: relative to an explicitly declared class of probes, observations, equivalences, and admissible open strategies, every such strategy should factor through the Hoapa construction in the stated sense. Neither the admissible class nor this universal property has yet been constructed. (It is not a hidden numerical metric—this layer may come later through information cohomology or field-theoretic dynamics, but the first meaning is given by category-theoretic universal properties.)
+From the conjectural point of view, Hoapa seeks an optimal open strategy: a universal way for a community of inquiry to remain open under perspectivism. Here "optimal" is a relational, system-architectural property: relative to an explicitly declared class of probes, observations, equivalences, and admissible open strategies, every such strategy should factor through a distinguished construction in the stated sense, and Hoapa should be shown to instantiate it. Neither the admissible class nor this universal property has yet been constructed. (It is not a hidden numerical metric—this layer may come later through information cohomology or field-theoretic dynamics, but the first meaning is given by category-theoretic universal properties.)
 
 The current candidate network of notions is:
 

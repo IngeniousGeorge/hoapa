@@ -47,12 +47,15 @@ identity or refine actors into kinds.
 The interface gives every eligible participant the same formal standing; this
 does not say that different participants or panels will produce equivalent
 results. Any admissible person may occupy a seat because the role is specified
-independently of its occupant. In the Lautman-facing interpretation, this
-arbitrary occupant is one element that lets a common plan operate, not the
-object being decomposed or a coordinate from which persons are reconstructed.
+independently of its occupant. In the Lautman-facing interpretation, what is
+articulated is understanding of the world: embodied among participants under
+a common plan, predominantly synthetically, and in differentiated conceptual
+documentation, predominantly analytically. Both moments occur in both realms;
+see [the canonical interpretation](related_structures.md#lautman--analyticsynthetic-decomposition-and-recursive-incarnation).
 Participants help produce, test, and revise documented articulations. The
-record represents specified participation and work, not the participant as a
-whole.
+record represents specified participation and work, not an exhaustive
+decomposition of a person. Assessing a contribution must not turn its content
+classification or success into a kind, rank, or privilege of its producer.
 
 Each draw creates its own situated assembly and, when successful, its own
 result. Neither the panel nor its result stands in for the eligible population.

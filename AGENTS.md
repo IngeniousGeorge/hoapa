@@ -6,11 +6,12 @@ in full at the start of every session, and anything restated here will drift.
 
 ## Project goal
 
-Establish a conjecture/theorem: while HoTT is the most appropriate *foundation* for
-mathematics in the formal sense, modal HoTT (especially cohesive toposes) is the most
-appropriate setting for the *development* of mathematics in the praxis sense — as
-discussed individually by Grothendieck in *Récoltes et Semailles* and socially by
-Hersh in *What is Mathematics, Really?*
+Develop a mathematical account of the *development* of mathematics, taking HoTT
+as the foundational working language and collective scientific praxis as a co-equal
+concern. Seek a universal-property account of the adequacy of Hoapa-like organizations
+to their contexts and to the generation of new contexts. The world/context setting
+is to be discovered, not prescribed as cohesive or modal HoTT. The conjecture and
+its philosophical anchors are stated in `workflow/motivation.md`.
 
 ## Current phase
 
@@ -114,6 +115,9 @@ is talking.
 
 ### misc
 
+*Workflows*, plural, always means the top-level files of `workflow/`, not any of
+its subfolders.
+
 *Define:* at the start of a prompt, followed by a term or symbol in curly braces should
 be answered with a one-paragraph pedagogical presentation of what's in the braces. This
 should be understood as a parenthesis in the conversation and shouldn't interupt the flow.
@@ -134,9 +138,11 @@ intent, even if a more pragmatic encoding type-checks more easily.
 `workflow/status_implementation.md`; lane priority in `workflow/current_track.md`.
 6. **Long names over notation.** Prefer `DeloopingOfIntegers` over `Bℤ`,
 `FlatModality` over `♭`. Math notation belongs in comments, not identifiers.
-7. **Two-sides vocabulary.** The modal side is **M** (ModalHoTT: perspectives, modal
-structural contexts); the concurrency side is **K** (actor-causal communities with
-session-typed values). The functors are `Allow : M → K` and `Require : K → M`. The
+7. **Two-sides vocabulary.** The world/context side is **M** (its mathematical
+form is under investigation); the concurrency side is **K** (actor-causal
+communities with session-typed values). The current candidate pair is
+`Allow : M → K` and `Require : K → M`; see `workflow/naming.md` for status
+and exploratory extensions. The
 retired labels `A-side` / `B-side` were ambiguous — `A` named both the modal side
 and `Allow` — and `C` for the concurrency category collided with Complexity. Do not
 reintroduce them. Lanes (`1C`/`2S`/`3R`) are not sides; a sentence needs at most one
@@ -148,6 +154,9 @@ could be re-derived by reading `workflow/`. If yes, put it there and link instea
 forestall default-LLM misreadings the project explicitly rejects. Read it at session
 start as corrections against defaults you would otherwise apply, and treat anything
 that looks like anti-default scaffolding as structural rather than decorative.
+Its modal-era work orders are superseded by the 2026-09-26 reorientation in
+`workflow/current_track.md`; the architectural corrections and examples remain
+useful. The file itself is retained unchanged.
 
 
 ## Mathematical style

@@ -1,112 +1,144 @@
-# The arc reformulated in cohesive vocabulary
+# The arc: collective praxis, contextual adequacy, and renewal
 
 ## 1. Preamble
 
-What this document grows from (`motivation.md`'s proto-conjecture), what it preserves, what it sharpens.
-The interdisciplinary frame: HoTT-as-foundation extended along the developmental / praxis axis,
-with a co-equal community-of-agents leg.
+The project extends the foundational use of HoTT along the developmental /
+praxis axis, with collective organization as a co-equal concern. The
+philosophical motivation is in `motivation.md`; proposition-level targets are
+in `targets.md`; the selected programme is in `future_work.md`.
 
-Cross-reference convention: each section below that maps to a concrete proposition in `targets.md` carries a "→ T*n*" pointer. Read the two files together — arc.md gives the motivation-language scaffold, targets.md gives the proposition-language decomposition.
+**2026-09-26.** The previous cohesive reformulation is no longer the
+prescribed route. Its text is preserved in
+[the migration archive](deep_context/abandonned_modal_side/workflow/README.md).
+Arc/18 records two strata: a selected programme of relational comparison and
+M reconstruction, and a newer candidate framework of corresponding
+separations and generation–description adjunctions.
 
-## 2. The three per-domain claims
+## 2. The problem, before its mathematical representation → T_comparison
 
-ModalHoTT.     Modalities allow complexity to develop.        (cohesive HoTT)
-SessionValues. Typed data is robust for information transfer. (programming / session types)
-ActorBase.     Unityped agents handle complexity well.        (concurrency / actor model)
+Hoapa organizes collective work through unityped participants, typed
+contributions, local participation, and independently reusable documentation.
+Its practical claim needs a relational justification: why is this organization
+especially adequate to understanding a context and enabling further inquiry?
 
-For each: a short sentence on why it is trivial in its own domain, and the citation / anchor.
+Extract K's categorical essence, meaningful alternatives, and independent
+siblings. Seek the comparison setting and its morphisms, rather than attach
+a chosen score to a favorite architecture. Universal properties are the
+preferred language; which property is available is part of the research.
 
-## 3. The structural claim  → T1
+M names the world/context side needed for that account. It is not a fixed
+cohesive topos, a complete formalization of Reality, or an already defined
+category of documentation versions. Variability and comparison may share
+structure, but neither a fibred base P nor an entropy invariant is selected.
 
-The non-trivial assembly is now held, by default, as an adjoint pair
+## 3. The candidate correspondence → T1
 
-    Allow ⊣ Require
+The current pair remains:
 
-between ModalHoTT (M) (perspectives / modal structural contexts) and Concurrency (K) = actor-causal communities with session-typed values, living in an ambient ∞-topos that contains both as cohesive sub-presentations.
+```text
+Allow ⊣ Require
+Allow = L : M → K       Require = R : K → M
+```
 
-This is the arc/09 grounding: do not present Complexity / Evolution / Praxis / Anthropic as four functors unless future mathematics earns extra adjunctions. The pair carries five anchors:
+The arc/09 readings remain useful questions: Allow as generative permission,
+Require as contextual presentation, Praxis through the unit and particular
+work, Anthropic loss through specified reconstruction limitations, and Care
+through its checked reciprocal proxy and open developmental interpretation.
 
-- Complexity = Allow / left adjoint L : M → K, the generative direction.
-- Evolution = Require / right adjoint R : K → M, the reflective direction; its monad R ∘ L is the source of the developing-network iteration.
-- Praxis = the unit η : id_M ⇒ R ∘ L, the universal opening from which particular operational episodes are transposed.
-- Anthropic = the counit ε : L ∘ R ⇒ id_K, read through its non-invertibility / forgetful loss. Its non-degeneracy is ordered below T3 and T_recursion by the non-collapse ladder in `targets.md` §T3; it is not independent corroboration.
-- Care = the order-2 involution _^⊥, orthogonal to the pair and already visible in session duality. This is the checked structural proxy; its interpretation as developmental or ethical Care remains conjectural.
+The new research direction reopens compatible additional adjunctions without
+declaring them. Free/forgetful and realization/nerve might distinguish
+generation from reusable description. Monads with arities supplies a leading
+template for their interaction. Relative cohesion supplies a different
+candidate: a four-functor chain with three adjacent adjunctions and extra
+axioms. Neither is now the project framework. See arc/18's synthesis.
 
-A triple Allow ⊣ Mediate ⊣ Require, an ambidextrous pair, or a quadruple can return only as extra structure. The current code and motivation use the pair-shaped seed reading.
+## 4. Return, replay, and mutual constitution → T1, T5, T6
 
-## 4. What the adjoint pair says  → T1 (data), T6 (philosophical reading)
+A pair would supply:
 
-For each piece of data in the adjunction, give two readings — math and philosophy —
-in parallel:
+```text
+η : Id(M) → R L
+ε : L R → Id(K)
+w : L m → k       w♯ = R(w) ∘ η_m : m → R k
+```
 
-- Unit  η : id → Require ∘ Allow
-- Counit ε : Allow ∘ Require → id
-- Left triangle  (separation requires perspectivalism)
-- Right triangle (separation allows perspectivalism)
-- Non-invertibility / non-collapse (distinct, ordered conditions; see the non-collapse ladder in `targets.md` §T3)
+The transpose is contextual return; replay requires a declared further use
+and an adequacy theorem. Neither unit nor counit, by its existence alone,
+establishes that the correspondence describes collective inquiry.
 
-This section is the structural meat. The four bullets in `motivation.md` § "The foundational conjecture"
-("perspectives require / allow typed data handled by unityped agents; separation
-requires / allows perspectivalism") are recovered here as the four pieces of
-adjoint data, with the asymmetry made explicit.
+The mirror sketch asks how operational and contextual separations correspond.
+Its surface—reality and the generative system that understands it—is an
+organizing image for a co-constitutive process, not an ontological hierarchy
+or a claim that inquiry never intervenes in the world. Differences across
+the correspondence may express protection, incomplete access, or failed
+adequacy; these must be distinguished rather than uniformly celebrated.
 
-The apparent indexing mismatch for Praxis has a precise morphism-level resolution. Given a particular operational episode `w : L M → K₀`, its contextual presentation is the transpose `w♯ = R(w) ∘ η_M : M → R K₀`. Thus `η_M` is the universal / synthetic opening, `w` is the particular / analytic episode, and `w♯` presents the whole episode formally on M without removing its K-side content. This is the pair conservation law rather than a reason to flip the adjunction. But `w♯` exists for every adjunction: the transposition clarifies the reading and supplies no evidence that Hoapa's particular `Allow` and `Require` exist or satisfy the conjecture. The content remains in constructing the pair and distinguishing morphisms whose transposes satisfy the required care, locality, controlled-loss, and non-collapse laws.
+## 5. Architectural and formal anchors → T2, T4, T5
 
-## 5. Sites and folders  → T2, T4, T5
+`architecture.md` remains authoritative for the intended participant,
+publication, content, and Federation system. `status_formal.md` states the
+checked mathematics; `status_implementation.md` states executable behavior.
 
-The concrete participant, conversation, closure, publication, content, and
-Federation shape is recorded in `architecture.md`. That file is authoritative
-for the runtime-facing system; the mathematical folders below interpret and
-test it rather than silently supplying a different architecture.
+- `formal/Concurrency/`: actor-causal locality, finite descent, the
+  supported point-generated reflector and K-internal R4 bridge, operadic and
+  session syntax, and the Chu coefficient/realization witnesses, at their
+  recorded scopes and remaining assumptions.
+- `formal/RuntimeContract/`: contract and runtime-to-substrate results,
+  including conditional conversation coverage and Tier A validator
+  invariance. These are not full publication/no-leak or cross-side results.
+- `formal/ModalHoTT/`: legacy synthetic mathematics under the flat-collapse
+  diagnosis, together with reusable generic syntax.
+- `formal/Analytic/`: analytic witnesses and controls under their own
+  definitions, including the non-flat delooping. They do not repair the
+  synthetic signature by coexistence in the repository.
 
-- `formal/ModalHoTT/`    — site Bℤ, develops the ModalHoTT claim.
-- `formal/Concurrency/`  — hybrid substrate (actor-causal + session-type values via sheaves; canonical source `deep_context/arc/02_concurrency_anchor.md`) plus the `O_1` operadic interaction layer. Operadic syntax, algebra signatures, the split Sessions syntax/HIT/action layers, actor-causal sites, finite frames/covers, and the arbitrary-frame Hybrid adapter are shipped. The finite sheaf layer is category-generic, with V-valued and SET endpoints, concrete constant-slot event-product objects, finite `Coverage`, and SET library `isSheaf` comparison. R4 has advanced through the conditional full finite-site Benton/LNL bridge, and the supported point-generated route now constructs the concrete reflector `a ⊣ ι` and wires it into the point-sheaf Benton/LNL bridge `Lpoint ⊣ Rpoint`, relative to value-level `lnl` and `vProd`. `Chu(SET,Bool)` now supplies a concrete coefficient instance, and Sessions-to-Chu `J0`/`J1` realizes the postulate-free session object/morphism syntax. `session-O1-action`, the generic full actor-causal reflector, and the later cross-site constructions remain gated. The selected program is summarized in `current_track.md`.
-- `formal/RuntimeContract/` - runtime boundary and 2S realization bridge. Loop 1 is closed: trace predicate, serialization corpus, generated Agda raw terms, vendored runtime artifact, runtime codec tests, and Makefile gates agree. `RuntimeContract/Realization/BackwardRank.agda` and `RuntimeContract/Realization/CausalFromParents.agda` derive a causal order and global `LocalFrame` from well-formed raw parents, over the shared lookup and validator-peeling lemmas in `RuntimeContract/TraceLookup.agda`. `RuntimeContract/Realization/ConversationLocality.agda` adds per-conversation `LocalFrame`s with `FrameHom`s into that global frame. `RuntimeContract/Realization/ConversationCover.agda` separates unconditional event coverage from the explicit `ConversationActorCoverage` hypothesis, decided in both directions by the substrate-free `RuntimeContract/ConversationActorCoverage.agda`, and builds the `Cover` conditionally; `RuntimeContract/Realization/ConversationOrderComparison.agda` characterizes when the rival parent-generated conversation order supports the canonical strict embedding. Both are concurrency-internal and proof-near: they bear on the runtime-to-substrate junction, not on descent, R4, or `Allow ⊣ Require`. `RuntimeContract/ActorRenaming.agda` lands raw actor-channel functoriality, exact validator invariance under total injective relabeling, and the permutation/gauge specialization. Contract v1 now selects immutable session identity, closure, typed references, stable publication identity, and separate live/public records; realized change of actor base and observational no-leak remain open. On 3R, the `hoapa_core` event-log/export recorder is banked, and the cross-conversation fixture is exported and replayed green; the selected next runtime slice earns one causal parent from message behavior.
-- `formal/Analytic/`     — analytic mirror for ModalHoTT; documents non-vacuity.
-- `formal/AnalyticTest/` — reserved third track; see folder README.
+M's rebuild does not require changing these folders now. No code is archived
+by the workflow migration, and no common ambient cohesive topos containing
+M and K is assumed.
 
-The arc-level theorem lives in the ambient ∞-topos relating the two cohesive sites via a functor or geometric morphism. (The specific shape of this functor is deferred — both sites are intended to sit inside the same cubical-set ambient; see `deep_context/arc/02_concurrency_anchor.md`.)
+## 6. Inheritance and development → T3, T_recursion
 
-## 6. The mathematical fragment  → T3 (Lawvere asymmetry), T_recursion (iteration / developing network)
+The fixed-adjunction non-collapse ladder remains a precise possible vertical
+route: counit defect, non-idempotent monad, then persistent unit-tower
+development, with implications only from stronger to weaker.
 
-The line from `motivation.md` § "The foundational conjecture" ("covers / coverings, recursion, infinite network")
-restated in cohesive vocabulary:
+Contextual development can also change the regime: an artifact preserves
+earlier achievements while making a new operation admissible. A locally
+stable reconstruction or closure may support inheritance within this
+horizontal development. Specifying the transitions and their composition is
+the work, not declaring either all stability or all noninvertibility
+evolutionary.
 
-- covers from the Grothendieck topology on each site
-- recursion from iterating the unit of the proposed cross-site adjunction, with the Lawvere asymmetry retained as a conjectural explanation of non-collapse
-- the developing network as the candidate sequential colimit of that unit sequence
+Directedness is a named open question: causal dependence, documentary
+dependence, and admitted invertible comparisons already differ on K.
+Candidate contextual semantics should be examined for what they preserve,
+forget, or invert. This is not a claim that HoTT cannot express directed
+structures.
 
-This is the part of the arc that is genuinely interesting in mathematics on its own.
+## 7. Interpretation and anchors → T6, T_comparison
 
-The "recursion" and "infinite network" bullets are the prose form of
-T_recursion: iteration of the adjunction's unit η : id → Require ∘ Allow, with
-its sequential colimit as the candidate developing network. Nothing about an
-adjunction makes that iteration non-trivial automatically. The ordering between
-Anthropic loss, one non-trivial monad step, and persistent non-stabilization
-lives in `targets.md` §T3. The checked `ʃ ⊣ ♭` specialization is now classified
-as a collapsing control inside a signature that already makes every type
-flat-modal. It is not evidence for the intended modal semantics or for the
-cross-site conjecture.
+Lautman guides the passage between effective constructions and the
+problematic relations they realize; synthetic/analytic decompositions are not
+assigned one side each. Simondon guides attention to the co-individuation of
+organized work and its milieu. Grothendieck's rising sea and relative point
+of view guide construction of the setting in which the sought distinction
+can become visible.
 
-## 7. Interpretation  → T6 (philosophical reading of unit / counit)
+A universal-property result about a class, plus Hoapa's verified membership,
+would give mathematical weight to its methodological claim. Real-world
+legitimacy additionally depends on the adequacy of the interpretation and
+the actual implementation. Siblings in other sciences guide the search;
+they do not establish that conclusion by resemblance.
 
-- World-understanding ↔ internal language / sections of cover (the topos as a place where things mean).
-- World-creation     ↔ forcing / no-fixed-point side of Lawvere (the topos as a place where things originate).
+## 8. Handoff
 
-Held loose: this section is a placeholder for what discovery will sharpen.
+The detailed programme and build-selection criteria live in
+[future_work.md](future_work.md#selected-1c-programme-relational-adequacy-and-the-m-rebuild).
+A next session can select a bounded named obligation and its falsifier
+without first committing to a final M or four-functor framework. No first
+build is selected.
 
-## 8. What is left for discovery
-
-Explicit list. Examples to seed it:
-
-- Whether extra structure beyond the pair is eventually earned: a middle "Mediate", an ambidextrous adjunction, or a genuine quadruple.
-- The category M is not to be chosen by analogy alone. Its first specification
-  criterion is the K-side context-renewal case: a documented context extension
-  preserves stated earlier achievements and makes a previously unavailable
-  continuation admissible. Construct that transition before assigning `♭`,
-  `ʃ`, or `♯` to live records, public records, or language presentations.
-- The functor / geometric morphism between the two cohesive sites.
-- Whether the Esquisse-facing comparison can be constructed independently as a space-valued shape-witness profunctor, and only then shown representable by `Allow` and `Require`. Generic two-sided representability merely restates T1.
-- Whether the modal side can acquire the three-point branch / orbifold data required to compare with Belyi covers. A bare `S²` and a rigid three-marked base carrying varying covers are not yet the same cross-site object.
-- Concurrency-site sub-decisions (`_Site._Category` model, value category V, Set-valued locality side, R4, ∞-lift timing) — currently live in `status_formal.md`; fold durable outcomes here as they stabilize. Current durable outcome: the V-valued and Set-valued finite sheaf endpoints are one generic construction at two value categories, and the Set endpoint agrees with the Cubical library sheaf condition for the finite coverage. Do not collapse their cartesian and linear meanings. R4 is the named adapter between them; its presheaf-level Benton structure, right-adjoint sheaf preservation, finite-sheafification interface, and conditional full finite-site sheaf-level adjunction have landed. The point-generated supported reflector and point-generated R4 bridge have also landed, with `Chu(SET,Bool)` as a concrete coefficient witness. The Sessions-to-Chu object/morphism realization has landed separately; the remaining Sessions postulate is `session-O1-action`. The runtime-to-substrate bridge now includes global and per-conversation realization, coverage and causal-saturation comparison, and raw actor-renaming invariance; 3R has an exact in-memory recorder. Realized change of actor base, observational no-leak, and runtime origination of events from behavior remain open. The generic full finite actor-causal reflector remains open.
-- The precise statement of the math fragment as a theorem in the ambient topos.
+The target catalogue records the dispositions of T1–T7, T_boundary, and
+T_recursion, and adds T_comparison. The external exchanges in arc/18 remain
+source material; the session synthesis distinguishes their suggestions from
+the adopted work programme.

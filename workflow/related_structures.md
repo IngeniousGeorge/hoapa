@@ -2,7 +2,10 @@
 
 Frameworks adjacent to ours — sharing some commitments, machinery, or target — listed here so we can locate our work in the existing landscape and notice when our path crosses theirs.
 
-Each entry: who, what they use, what it models, relation to our arc.
+Entries distinguish established mathematics from the proposed relationship
+to Hoapa. The expanded template below guides the new sibling investigation;
+older entries are locators, not all completed comparisons. M is no longer
+prescribed as cohesive/modal HoTT.
 
 ---
 
@@ -18,7 +21,7 @@ Each entry: who, what they use, what it models, relation to our arc.
 - *Thermal time hypothesis* (Connes–Rovelli, physics): physical time is the modular flow of a thermal state on the observable algebra.
 - *Consciousness, speculatively*: mind = a state on a noncommutative algebra of mental observables; the felt "now" = the modular flow that state induces. Mental observables don't commute (attention to one feature disturbs another), so the underlying space cannot be a manifold of states. Mostly interview-level rather than published technical work.
 
-**Relation to our arc.** Loose. Shared high-level commitment: the algebra/topos of observables/perspectives is primitive, and structure flows from its internal logic. Different mathematical tradition — operator algebras and modular flow vs. cohesive ∞-toposes and adjoint modalities. No shared machinery. The convergence, if any, would be at the level of "perspectives are first-class," not at the level of constructions.
+**Relation to our arc.** Loose. Shared high-level commitment: the algebra/topos of observables/perspectives is primitive, and structure flows from its internal logic. Its operator-algebraic setting differs from the project's earlier cohesive formulation; the M rebuild leaves the contextual setting open. No common mathematical construction is established. The convergence, if any, would be at the level of "perspectives are first-class," not at the level of constructions.
 
 ---
 
@@ -34,7 +37,7 @@ Each entry: who, what they use, what it models, relation to our arc.
 **What it models.**
 - Cognitive architectures, deep learning systems, and information flow, formalized as sheaves on a site of contexts. The site is the structure of perspectives; the sheaf is the assignment of locally meaningful data; the topos provides the logic in which the assignment is reasoned about.
 
-**Relation to our arc.** Direct family resemblance. Shared substrate: topos as the right setting for a logic of perspectives, with adjoint structure governing how perspectives relate. Their applied target (cognition / AI architectures) and our target (modal HoTT as the setting for mathematical praxis) differ, and the specific cohesive triple ʃ ⊣ ♭ ⊣ ♯ is not (to my knowledge) central to their work — but the framing is the closest neighbour we have. Worth tracking: if their information cohomology lines up with our cover/recursion/network fragment, the math fragments may be the same object viewed from different applied directions.
+**Relation to our arc.** Direct family resemblance. Shared substrate: topos as the right setting for a logic of perspectives, with adjoint structure governing how perspectives relate. Their applied target (cognition / AI architectures) and our target (a contextual account of mathematical praxis) differ, and the specific cohesive triple ʃ ⊣ ♭ ⊣ ♯ is not (to my knowledge) central to their work — but the framing is the closest neighbour we have. Worth tracking: if their information cohomology lines up with our cover/recursion/network fragment, the math fragments may be the same object viewed from different applied directions.
 
 ---
 
@@ -85,20 +88,58 @@ Lautman's broader dialectic gives this contrast a dynamic setting. Dialectical I
 
 **What it models.** The two decompositions model how individual differentiation and global organization arise together. They are useful when a homogeneous or uniformly presented field produces heterogeneous individual structure, when a particular object can only be analyzed relative to a surrounding domain, or when changing a basis, field, cover, context, or presentation changes the decomposition without necessarily changing the being presented. Saturation and liberation add a practical rhythm: incomplete structures are enriched, completed, or globalized; a more mobile invariant, notion, or interface is then liberated from the enriched construction and becomes usable in another context.
 
-**Relation to our arc.** The durable correspondence is a crossing, not a dictionary. Lautman's two decompositions do **not** coincide with Hoapa's separation between unityped agents and multityped documentation. Analytic and synthetic moments occur on both sides:
+**Relation to our arc — the stated project interpretation.** What is being
+decomposed is **understanding of the world**, existing in two distinct realms:
+embodied understanding distributed among a community of thinkers, and
+documented understanding articulated through concepts and their relations.
+Hoapa organizes the former **predominantly synthetically**, through a common
+unityped mode of participation, and the latter **predominantly analytically**,
+through differentiated conceptual structures. This is an intended philosophical
+and architectural reading, not a proved decomposition theorem.
+
+The vector image expresses shared capacity with situated contributions; the
+prime-factorization image expresses articulation into constituents specific
+to what is understood. Neither asserts identical minds, a basis of people,
+canonical conceptual primes, or unique factorization. Unityping supplies a
+common formal interface, not equality of participants or of their abilities.
+
+These are dominant orientations, not exclusive assignments. Documentation
+aspires to become synthetic by furnishing languages and structures for later
+understanding. The political pressure in the opposite direction projects
+documentary classifications back onto participants as fixed specialties and
+hierarchies. Hoapa seeks differentiated knowledge without making its producers
+into corresponding formal kinds. The following crossing elaborates, rather
+than cancels, this orientation:
 
 | Layer | Analytic / proper moment | Synthetic / dimensional moment |
 |---|---|---|
 | **Operational** | A particular execution is articulated into its actual events, choices, causal dependencies, branches, and unresolved obligations. | Executions take place through a common actor interface, protocol, interaction architecture, and causal-frame discipline. |
 | **Contextual / documentary** | A particular artifact is articulated through its specific type, evidence, provenance, constructors, and dependencies. | Every artifact receives meaning from an ambient type context, universe, site, cover, reindexing structure, and descent discipline. |
 
-This 2×2 crossing prevents two tempting mistakes. First, `Op` is not simply analytic while `Ct` is synthetic. Second, unityped actors are not dimensionless or untyped persons. They share one protocol-visible interface while retaining histories, states, perspectives, and internal structure. Documentation likewise does not "keep all dimensions": it selects and types what the protocol may retain while deliberately forgetting protected identity and irrelevant detail. Both layers preserve some distinctions and forget others.
+The rejection of `Op = analytic; Ct = synthetic` as an exhaustive layer
+assignment does not reject this reading of understanding in two realms.
+Unityped actors retain histories, states, perspectives, and internal structure.
+Documentation selects and types what may be retained; neither realm preserves
+every distinction. Both decompositions also occur on M and K: neither category
+is simply "the synthetic side" or "the analytic side."
+
+**Architectural counterexample.** Fix otherwise identical eligibility and
+protocol conditions, but let a participant's documentary output determine
+their right to occupy a seat, speak, or exercise formal authority. Such a
+system fails Hoapa's intended interface-grounded equality of standing. This is
+the political concern as a testable architectural contrast: evaluating work
+must not silently become ranking its producers' standing. It is not a theorem
+that the rival has no synthetic organization, or that every departure from
+unityping flips the decomposition. Conversely, the test must allow different
+contributions to receive different assessments without changing their
+producers' formal standing. Tier A alone does not establish this full property.
 
 ### Arbitrary occupants and represented work
 
-The relevant Lautmanian placement of a participant is not necessarily as the
-being decomposed. His examples use "any" and "arbitrary" in more than one
-role: any entity of a domain is articulated under the common plan, while an
+Participants embody and contribute to the understanding being articulated;
+they are not themselves the beings to be exhaustively decomposed. Lautman's
+examples use "any" and "arbitrary" in more than one role: any entity of a
+domain is articulated under the common plan, while an
 auxiliary basic system or a particular solution may also be chosen from an
 admissible class. The choice is not unconstrained and need not be irrelevant to
 every result; its force is that no intrinsic privilege of one occupant is a
@@ -347,12 +388,124 @@ Chu spaces over a dualizing object `k` package an object as points, states, and 
 
 **Reality / Documentation reading.** The Reality discussion re-derived the Chu motivation from another angle: Reality-points, Documentation-states/tests, and an evaluation into `k`. This is better read as Isbell/Gelfand/Chu space-observables duality than holography. The round trip is intentionally lossy: Documentation can preserve the protocol kernel under its tests without reconstructing Reality. Whether the outer Reality/Documentation dualizing object `k` coincides with the inner session dualizing object remains an open conjecture.
 
+## Siblings and clause variations — research cross-index
+
+**Status.** These are independently meaningful comparison leads, not a theorem
+that they instantiate Hoapa's essence. Start with analogues in their own
+ambients. A common X containing them and Hoapa needs its own objects,
+morphisms, and interpretation. Candidate variations below are questions to
+test, not automatic degenerations.
+
+The concern labels are provisional, not an extracted axiom list. When
+`future_work.md` §A produces K's clause-and-interface inventory, re-index
+both tables against it, splitting or merging rows and recording the
+correspondence. This is the handoff from essence extraction to §A2, not a
+claim that the inventory has already been completed.
+
+### Sibling catalogue
+
+| Concern to extract from K | Independent setting and categorical essence | Universal property / characterization identified | Clause-sensitive question / scope |
+| --- | --- | --- | --- |
+| Interfaces, composition, reciprocal structure | Framed fully extended bordisms and symmetric monoidal (∞,n)-categories | Cobordism hypothesis: functors out of framed bordisms are classified by fully dualizable objects | Which duality/adjoint data is needed? Orientation, framing, and extension level matter. Boundary gluing is not automatically the site's descent law, nor orientation reversal Hoapa's session involution. |
+| Context-relative compatibility | Measurement covers, event sheaves, and empirical models | No universal characterization of an architecture identified here; the established result relates non-contextuality to existence of a global distribution | Test local compatibility versus global extendability. This is not the same as protected identity, and non-contextuality is not by itself a bad architecture. |
+| Change of presentation | Locally covariant QFT: functors from spacetime embeddings to observable algebras | No universal characterization identified here; functoriality, locality, and causality are axioms of the framework | Which observable comparison fails when covariance or locality is weakened? Mere coordinate covariance can be obtained by reformulation; see the Kretschmann warning below. |
+| Recovering structure from uniformly presented fibres | Galois category with a fibre functor; finite continuous actions of its profinite automorphism group | Reconstruction equivalence for a Galois category/fibre-functor pair | Which exactness and detection assumptions support reconstruction? A bare fibre set is not a model of human unityping; group symmetry alone is not contextual renewal. |
+| Names, identity neutrality, finite participation | Nominal sets: permutation actions with finite support, equivariant maps | No universal characterization specified in this entry; freshness and name abstraction are construction leads | Test equivariance and support separately. Typed carriers can still be equivariant, so "typed actors destroy gauge invariance" is not a theorem. |
+| Processes, resources, and interfaces | Open reaction networks and compositional dynamical semantics | No universal characterization identified here; compositional dynamics and black-boxing are functor constructions | Which contextual uses survive black-boxing? Kauffman/RAF closure is a separate chemistry lead, not automatically the same as Rosen's closure or a viability theorem. |
+| Assessment independent of a preferred viewpoint parameter | Similarity-sensitive diversity of finite distributions | Leinster–Meckes simultaneous maximization across the diversity-order parameter, for specified similarity data | A measurement/comparison sibling, not an architectural characterization. Similarity and abundance inputs still require justification. |
+| Testing and contextual adequacy | Ludics: designs and counter-designs related by successful interaction; behaviours closed under biorthogonality | For a fixed orthogonality relation, S⊥⊥ is the least biorthogonally closed set containing S; inclusion of closed sets has this closure as left adjoint | Vary the tests or interaction criterion and compare what becomes indistinguishable. This characterizes closure relative to tests, not the completeness of those tests for a real milieu or the optimality of an architecture. |
+| Cognitive or immune individuation | Candidate natural processes, with no selected categorical carrier here | No verified universal-property entry in this investigation yet | Keep the slot open; do not manufacture a theorem to complete the table. |
+
+Primary bearings for these rows:
+[Lurie](https://arxiv.org/abs/0905.0465),
+[Abramsky–Brandenburger](https://arxiv.org/abs/1102.0264),
+[Brunetti–Fredenhagen–Verch](https://arxiv.org/abs/math-ph/0112041),
+[Stacks Project, Galois categories](https://stacks.math.columbia.edu/tag/0BMQ),
+[A. M. Pitts, *Nominal Sets: Names and Symmetry in Computer Science*, CUP, 2013](https://www.cambridge.org/9781107017788),
+[Baez–Pollard](https://arxiv.org/abs/1704.02051),
+[Leinster–Meckes](https://arxiv.org/abs/1512.06314),
+[Girard, *Locus Solum*](https://doi.org/10.1017/S096012950100336X).
+
+For the orthogonality row, the two polar maps form an antitone Galois
+connection on the respective powersets; double orthogonality is the induced
+closure. Its fixed points give a precise test-relative adequacy notion.
+Choosing the tests that express Hoapa's intended future uses is still an
+independent obligation. This connects to the pairing/closure investigation
+in `future_work.md` §F without selecting one of the distinct constructions
+called a nucleus.
+
+**Kretschmann warning.** General covariance understood merely as the
+coordinate-covariant form of equations is not a discriminating physical
+principle: reformulation can supply it, including by introducing extra fields
+that conceal preferred coordinates. This is not a claim that every
+substantive covariance condition is empty. The question is which background
+structures and transformations are actually allowed.
+[J. Brian Pitts, *Empirical Equivalence, Artificial Gauge Freedom and a Generalized Kretschmann Objection*](https://arxiv.org/abs/0911.5400).
+The project-level analogue is `future_work.md` §B: invariance can force a
+factorization without determining a unique measure or privileged architecture.
+
+### Provisional clause-to-failure crossing
+
+This second table starts from K's commitments, rather than from the sibling
+domains. Each row names a specific variation and its consequence or test,
+then asks whether an independently studied failure matches it. These are
+working indices, not a claim that K's complete categorical essence has five
+clauses.
+
+| Provisional K clause / evidence | Change and consequence in K | Corresponding failure or property to investigate elsewhere | Where / strength of the crossing |
+| --- | --- | --- | --- |
+| C1. Local-view maps reflect as well as preserve causality; banked fixed-base `FrameHom` | Drop reflection: the target can relate two mapped events that the source does not relate, so the map need not exhibit the exact local order | Failure of structure reflection; contrast embeddings with merely structure-preserving maps | Covariant spacetime embeddings and reconstruction functors are leads. No theorem identifying their conditions with K's strict reflection is established. |
+| C2. Cartesian locality and linear content remain distinct, with an adapter; banked R4 at its supported scope | An identification that exports unrestricted cartesian copying to resource-sensitive content erases the intended resource distinction; mere equivalence of endpoints is not by itself a demonstrated failure | Admissibility of contraction versus linear resource discipline | Linear/nonlinear semantics is the direct mathematical comparison; bordism duality alone does not establish this crossing. Construct a resource-sensitive counterexample for the proposed identification. |
+| C3. Actor names do not change formal standing; Tier A proves validator invariance | Admit an identity-sensitive acceptance rule: a relabeling can change the verdict | Failure of equivariance / dependence on a privileged name | Nominal sets supplies the direct permutation-symmetry comparison; covariance is a further analogy. Tier A's injective-map result is stronger than the permutation specialization. |
+| C4. Public documentation preserves declared uses without exposing the protected channel; specified, not full Tier D | Coarsen enough to merge outputs distinguished by a required test: adequacy fails. Separately, export a protected observation: no-leak fails | Test-relative indistinguishability and failure of adequate abstraction; leakage is a separate condition | Orthogonality/ludics is a testing lead; the finite sufficiency obligation makes one comparison concrete. Neither alone supplies privacy or identifies empirical contextuality with no-leak. |
+| C5. Published artifacts support reuse without their producer; specified | Require producer authorization for every reuse: the producer-unavailable operation is blocked even when public answers are unchanged | No exact sibling failure identified in this inventory | This remains a requirement Hoapa must defend and test independently. Chemical catalysis and bordism composition are not enough to fill the cell by analogy. |
+
+The instrument is the pattern of **verified** crossings: repeated,
+independent occurrences can support the naturality of a clause. An empty
+cell means no match has been established here, not proof that the clause is
+unique to Hoapa. Both kinds of row generate work: validate proposed matches,
+or justify and test an unmatched requirement directly. Append-only history
+and other commitments must be added or separated as §A refines the inventory.
+
+Bulk/boundary reconstruction, de Finetti/Markov
+categories, and RAFs remain additional leads rather than filled rows. Each
+needs the same ambient-and-obligation pass. No arithmetic carrier in Hoapa
+currently gives G_ℚ or GT a role as an evolutionary transition.
+
+The apparent legibility gradient from physics to human inquiry is an
+observation from the discussion, not evidence of an Anthropic law. Field
+maturity and what the formalization has already forgotten are competing
+explanations. A verified shared failure structure would be more informative
+than resemblance, but would still not establish real-world optimality.
+
+## Generation and description — a framework lead
+
+Monads with arities links free algebra construction to a nerve whose
+essential image is characterized under specified hypotheses. It is the lead
+literature test for the exploratory two-correspondence framework, not a
+claim that the two functor pairs are identical. The candidate, its obligations,
+and relative cohesion as an alternative are recorded in
+[arc/18](arc/18_evolutionary_adjunction.md#session-consolidation-2026-09-26);
+the selected work remains in `future_work.md`.
+
 ## Template for future entries
 
-**Who.**
-**What they use.**
-**What it models.**
-**Relation to our arc.**
+**Who / primary source.**
+
+**Intrinsic problem and categorical essence.** What objects, maps, and
+separations are involved, before translating to Hoapa?
+
+**Ambient and universal property.** Special in what category, relative to
+which data? State the property and hypotheses, or explicitly mark it unknown.
+
+**Clause variation.** What happens when one specified clause is changed?
+Separate proved failure, open test, and a useful alternative.
+
+**Relation to K, M, and comparison.** Architecture sibling, contextual
+semantics, measurement sibling, or analogy? State any proposed translation.
+
+**Evidence and next obligation.** Literature theorem, checked Hoapa fragment,
+candidate, or interpretation? What example could refute the proposed link?
 
 ---
 

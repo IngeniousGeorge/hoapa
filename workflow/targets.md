@@ -1,80 +1,114 @@
 # Targets
 
-Concrete propositions we want to state precisely, and (where applicable) verify in Agda. Distinct from the philosophical seed (`motivation.md`), its cohesive reformulation (`arc.md`), and the analogies (`related_structures.md`). These are what the proof checker should eventually engage with.
+Propositions and unmet obligations for the conjecture, distinguished from
+the motivation in `motivation.md`, the map in `arc.md`, and the investigation
+programme in `future_work.md`.
 
-Each target: claim, what's needed to state it cleanly, what's needed to verify it. Targets carry an arc-anchor pointing back to the corresponding section in `arc.md`.
+**Reorientation, 2026-09-26.** M is being rebuilt; cohesion, a fibred family,
+and a numerical comparison are not prescribed. T_comparison makes relational
+adequacy a primary target. Existing identifiers remain traceable below:
+some claims survive with a wider scope, while modal-specific work orders are
+retired. No new Agda result is reported by this rewrite. Pre-edit targets,
+inventories, and appendices are preserved in
+[the migration archive](deep_context/abandonned_modal_side/workflow/README.md).
 
----
+## T_comparison. Relational adequacy and specialness
 
-## T1. Adjoint formulation of requires-allows
+*Arc anchor: arc/18 session consolidation; programme: future_work.md.*
 
-*Arc anchor: `arc.md` §3, §4.*
+**Target.** Find a comparison structure in which a class of organizations
+containing Hoapa is distinguished by its adequacy to contexts, their
+articulation, and further development. Prefer a universal property of the
+relation, not an architectural score detached from M.
 
-**Claim.** The "requires-allows" coupling between ModalHoTT (M) (perspectives / modal structural contexts) and Concurrency (K) (actor-causal communities with session-typed values) is currently targeted as an adjoint pair `Allow ⊣ Require`. The pair carries the arc/09 anchors: Complexity = `Allow` / left adjoint `L : M → K`; Evolution = `Require` / right adjoint `R : K → M`; the universal opening of Praxis = the unit `η : id_M ⇒ R ∘ L`, with particular episodes represented by `w` and `w♯`; Anthropic loss = counit non-invertibility, the weakest rung of the non-collapse ladder; and the checked syntactic proxy for Care = the separate order-2 involution `_^⊥`.
+**To state.**
 
-For an operational episode `w : L M → K₀`, adjunction gives the contextual replay
+- Extract K's categorical essence, distinguishing checked, specified, and
+  conjectural clauses. Define the ambient objects and morphisms in which
+  alternatives can be compared; neither the ambient nor its requirements
+  may be defined merely as "systems that satisfy Hoapa's architecture."
+- Include meaningful alternatives and identify contextual capabilities on
+  which the proposed distinction could fail. Source candidates from prior
+  architectural choices and `bias_correction.md`, but establish their
+  coherence independently of their rejected status there.
+- Investigate whether the same contextual transformations organize both
+  variability (provisionally P) and the comparison structure.
+- State the distinguished universal property, representation, robust bound,
+  or other proposed specialness. Distinguish sufficient conditions from
+  necessity/no-go claims; verify Hoapa's membership separately.
+- Relate the result to a declared borrow–work–return–replay use. An initial
+  syntax, a monadic functor, or a dense nerve alone is not the conclusion.
+
+**Named bounded obligations.** The exact finite hypotheses and falsifiers
+are in `future_work.md` §E: `observation-quotient-universal`,
+`clause-separation-witness`, and a preservation-and-extension renewal
+witness. These are candidate obligations in prose, not checked declarations.
+The first construction is unselected; the selected one must expose a missing
+type/check and an informative control before implementation.
+
+## T1. Construct the world/practice correspondence
+
+*Arc anchor: arc.md §3–4; arc/18.*
+
+**Candidate.** `Allow ⊣ Require`, with `L = Allow : M → K` and
+`R = Require : K → M`. The world/context categories, the work relation,
+and the functors are not constructed. A candidate can be studied within a
+regime and in families, without assuming that a fibration is the eventual
+organization of variability.
+
+The adjoint data would be:
 
 ```text
-w♯ = R(w) ∘ η_M : M → R K₀.
+K(L m, k) ≅ M(m, R k), natural in m and k
+η : Id(M) → R L
+ε : L R → Id(K)
+T = R L,  μ = R ε L          monad on M
+G = L R,  δ = L η R          comonad on K
 ```
 
-This factors the praxis reading into a universal contextual opening `η_M` and a particular operational realization `w`. It also explains why praxis is formally an M-morphism while its particular content is carried by a K-morphism. The existence of `w♯`, however, is automatic for every adjunction: this transposition cycle clarifies the conjecture but supplies no evidence for `Allow ⊣ Require` specifically. The content of T1 lies in constructing the proposed categories and functors, proving the required locality and non-collapse properties, and relating the pair coherently to the separate Care involution.
+Use mapping spaces and coherent equivalences in a higher-categorical model.
+Construct units, counits, and triangle identities rather than postulating a
+bridge to populate an existing scaffold.
 
-**To state cleanly.**
-- Pair is the default. Record an escape clause for later extra structure: middle `Mediate`, ambidextrous adjunction, or quadruple only if the mathematics earns it.
-- Name the slots in arc vocabulary, distinct from `ʃ ♭ ♯` which already have geometric meaning.
-- Identify the concrete categories/topoi the functors connect: the modal structural-context category M and the finite sheaf/topos layer of the concurrency category K. M is not yet fixed as a category of documentation versions. Its first specification criterion is to host context extensions that preserve declared achievements while making a previously unavailable K-side continuation admissible.
-- Construct that renewal case in K before assigning architectural nouns to `♭`, `ʃ`, or `♯`. The candidate objects are contexts and the candidate arrows are preservation-and-extension transitions, but their mathematical kind must be earned by the first example.
+For work `w : L m → k`, `w♯ = R(w) ∘ η_m : m → R k` is contextual
+**return**. Its existence is automatic under an adjunction. Adequate replay
+requires additional interpretation and preservation results (T5).
 
-**To verify.**
-- Construct the pair-shaped `Allow` and `Require` functors independently, then prove the hom-equivalence, unit, counit, naturality, and triangle identities. Do not postulate the cross-site bridge merely to instantiate the generic iteration scaffold.
-- Use the existing cohesive examples only as internal controls. A non-trivial T1 witness must involve the constructed cross-site categories and functors; `Bℤ` alone cannot witness the cross-site adjunction or its non-collapse.
+**To investigate.** An independently meaningful work pairing may be tested
+for two-sided representability. The newer generation–description candidate
+may instead supply related free/forgetful and realization/nerve pairs.
+Their endpoints, polarity, distinctness, and compatibility must be stated;
+the four role labels are not four adopted functors. Care retains its
+separate checked proxy and existing open adequacy questions.
 
-### Progress
+**Progress.** K's banked fragments are listed in `status_formal.md`.
+R4 below is K-internal. The synthetic cohesive signature is a degenerate
+legacy control, not a model of the rebuilt M. 1C can investigate toy contextual
+uses now; it does not wait for completion of the 2S/3R delivery sequence.
 
-ModalHoTT-side adjunctions are formalised synthetically as postulated hom-set
-equivalences with named transposes in `Modalities/Adjunctions.agda`. The
-unrestricted `flat-intro` and dependent `flat-ind` rules also imply that every
-type is flat-modal, so these adjunctions, fracture, and the cohesive iteration
-control currently live over a degenerate signature. The analytic
-`¬-IsFlatModal-delooping` witness conflicts with that approximation. A checked
-diagnostic and a newly justified contextual signature therefore precede any
-use of the synthetic modal results as evidence.
+### Nerve–realization polarity and reconstruction tests
 
-The cross-site `Allow ⊣ Require` pair is not yet stated. K has matured through
-finite descent, its SET and session-valued endpoints, the point-generated
-reflector and R4 bridge, a `Chu(SET,Bool)` coefficient instance, the
-Sessions-to-Chu realization, and the runtime-to-frame junction. Context renewal
-now supplies a forcing criterion for M; only after that object and its
-extensions are explicit can the actual `Allow` and `Require` functors be
-attempted.
+For probes `i : A → M`, the nerve is `N : M → Psh(A)`.
+With suitable smallness and colimits its left adjoint realizes presheaves
+in M. Identifying Psh(A) with K and N with Allow would reverse the recorded
+handedness. That was the earlier polarity test, not a reason to flip names.
 
-### Nerve–realization polarity test
+For probes `j : A → K`, the nerve instead has direction
+`N : K → Psh(A)`. Its realization has direction `Psh(A) → K`.
+Taking Psh(A) as a contextual presentation category therefore has the
+proposed local nerve direction, but changes the category assignment. State
+which candidate is being tested.
 
-Let `A` be a candidate category of conversational locality objects and let
-`i : A → M` interpret them in a modal context category. The associated nerve
-has the direction
+A dense probe functor yields a fully faithful nerve and, when realization
+exists, invertible reconstruction counit on every object. A noninvertible
+component is a possible observation-relative reconstruction defect. Calling
+it Anthropic loss needs an interpretation of the probes and lost
+distinctions; it is not automatically privacy or the unique locus of loss
+across an enlarged framework. Density is a property of the whole probe
+functor, not of a random human panel.
 
-```text
-N : M → Psh(A)       N(X) = M(i(−), X).
-```
-
-When the required smallness, colimits, and coends exist, realization supplies
-`R : Psh(A) → M` with `R ⊣ N`. If `Psh(A)` were identified with K and `N` with
-`Allow`, then the functor in Allow's direction would be the right adjoint,
-opposite to the recorded `Allow ⊣ Require` polarity. This is a conditional
-test of the proposed category and role assignments, not a polarity change:
-the nerve–realization pair may instead be internal to K, K may not be the
-relevant presheaf category, or the cross-site functors may have another
-construction. Density controls when the realization–nerve counit reconstructs
-an M-object from these probes; it does not make a finite random panel
-representative of a population or exhaust Reality.
-
-Test these alternatives on the first independently constructed context-renewal
-example after M and K have been specified. The existence of an abstract
-nerve–realization pattern alone supplies no evidence for T1.
-
-T_recursion (below) is downstream of T1: once `Allow ⊣ Require` is stated, its unit can instantiate the endofunctor-and-unit scaffold in `formal/ModalHoTT/Modalities/Iteration.agda`; the interface must then be enriched with the counit, multiplication, and monad laws required by T3. Naturality is load-bearing for T_recursion's `η^-coherent` lemma and is currently supplied by a postulated `η-naturality`.
+Monads with arities is a leading compatibility template, not a proof that
+K is monadic or that its nerve has the intended observations. See arc/18.
 
 ### Current R4 Subtarget: Point-Generated R4 Theorem and Exposition
 
@@ -103,123 +137,126 @@ This is a bounded stepping stone toward broader R4, not a replacement for the fu
 
 ---
 
-## T2. Cohesion on the Concurrency site
+## T2. Cohesion as an optional relative structure
 
-*Arc anchor: `arc.md` §5.*
+*Disposition: the prescribed "cohesion on K" route is retired.*
 
-*To restate.* Original claim (cohesion on A_5-equivariant icosahedral S²) retired with the icosahedral framing. The reformulated question — whether cohesion lifts to the Concurrency topos (actor-causal + session-type-values hybrid) — needs restatement against the new construction. See `deep_context/arc/02_concurrency_anchor.md` and the Concurrency status in `status_formal.md`. Original archived.
+Relative cohesion is a candidate relationship between suitably structured
+settings, not a required structure on either side. A quadruple
+`Π ⊣ Disc ⊣ Γ ⊣ Codisc` includes three adjacent adjunctions and
+additional axioms; it is not the same data as two unrelated adjoint pairs.
+For "K cohesive over M," identify suitable categorical/topos endpoints first;
+the banked linear/session value category is not automatically a topos.
 
----
+The return criterion is a concrete contextual job plus the necessary
+compatibility and non-degeneracy witnesses. No cohesive construction is
+selected.
 
-## T3. Lawvere fixed-point asymmetry between ModalHoTT and Concurrency
+## T3. Non-collapse within a specified adjunction
 
-*Arc anchor: `arc.md` §6.*
+*Arc anchor: arc.md §6. Retained, with scope made explicit.*
 
-**Claim.** The proposed Lawvere asymmetry must ultimately be expressed as a non-collapse property of the particular cross-site adjunction, not inferred merely from fixed-point rhetoric or from the absence of a global actor frame. For any adjunction `L ⊣ R`, let `T = R ∘ L`. Its monad multiplication is
+For an adjunction `L ⊣ R`, let `T = R L` and `μ = R ε L`.
+An everywhere invertible counit makes μ invertible. The converse does not
+hold: for `L(X) = (X, ∅)` and `R(X,Y) = X`, the monad is the identity
+but the counit need not be invertible.
 
-```text
-μ = R ε L.
-```
+The **non-collapse ladder** remains:
 
-Because functors preserve equivalences, an invertible counit forces `μ` to be invertible and hence makes `T` idempotent. Thus non-idempotence implies Anthropic loss; Anthropic loss alone does not imply non-idempotence.
+1. **Reconstruction defect:** some `ε_k : L R k → k` is not an equivalence.
+   Its Anthropic interpretation is a separate adequacy claim.
+2. **Non-idempotent monad:** some `μ_m : T² m → T m` is not an equivalence;
+   equivalently, `η_{T m} : T m → T² m` is not an equivalence.
+3. **Persistent unit-tower development:** for some m, the structure maps
+   `η_{Tⁿ m}` fail to be equivalences cofinally. Stabilization means those
+   maps are equivalences from some stage onward, not merely that the colimit
+   happens to be equivalent to a finite stage.
 
-The canonical **non-collapse ladder** is:
+The implications are `3 ⇒ 2 ⇒ 1`; no converses are assumed. T3 asks for
+rung 2 when this adjunction is proposed as an engine of within-regime
+development. Rung 3 is the vertical route in T_recursion.
 
-1. **Anthropic loss:** some counit component `ε_K₀ : L(R K₀) → K₀` is not an equivalence.
-2. **One non-trivial monad step:** for some `M`, `μ_M = R(ε_{L M})` is not an equivalence; equivalently, the unit at the free algebra, `η_{T M} : T M → T² M`, is not an equivalence.
-3. **Developing-network non-stabilization:** for some seed `M`, the structure maps `η_{Tⁿ M} : Tⁿ M → Tⁿ⁺¹ M` fail to be equivalences cofinally—that is, after every stage another non-equivalence occurs. In this project, *stabilization* means that these structure maps are equivalences from some stage onward; no general equivalence with "the colimit happens to coincide with a finite stage" is asserted.
+**New scope.** This is not a demand that every inheritable fragment be
+non-idempotent. A stable local core can coexist with changes of context,
+observations, or doctrine. If more than one adjunction is constructed, name
+which counit and monad are being tested.
 
-The implications are `3 ⇒ 2 ⇒ 1`. The converses are not assumed. T3 targets rung 2; T_recursion targets rung 3. This orders the two non-degeneracy readings of the adjunction instead of treating them as independent anchors.
+**Evidence.** `IterationCohesion.agda` proves `η-equiv-at-T` and
+`η-equiv-fst` for the `ʃ ⊣ ♭` specialization under its postulates.
+Its tower stabilizes after stage one; it is a control, not evidence about
+the unconstructed cross-side pair. No new cross-side witness exists.
 
-**Current posture.** This ladder states the ideal proof obligations; it is not a route the project has already traversed. The earlier fixed-point-rich / actor-locality argument is retained only as motivation and as a search heuristic, not as an alternative proof or shortcut. Existing modal and concurrency constructions remain reusable prerequisites and controls. T3 becomes directly actionable only after T1 supplies the concrete categories, functors, counit, multiplication, and monad laws. This does not block the current 2S/3R work.
+Lawvere fixed-point asymmetry remains a possible explanation to investigate,
+not a consequence of actor locality or of the absence of a global directory.
+The differential-cohesion refinement is archived, not a required next rung.
 
-Sortition, per-conversation pseudonymization, and purpose-relative publication
-give a concrete motivation for counit loss: public documentation deliberately
-cannot reconstruct the live participant field. This is motivation only. It
-does not identify `Require`, construct a counit component, or prove any rung of
-the non-collapse ladder.
+## T4. Separation, integration, and reciprocal induced structure
 
-**To state cleanly.**
-- Construct enough of the cross-site `Allow ⊣ Require` adjunction to define its `T`, `ε`, and `μ`; the current generic iteration scaffold contains an endofunctor and unit but does not yet bundle the counit, multiplication, or triangle identities.
-- Treat actor locality and the absence of a global frame as possible ingredients of a rung-2 witness, not as a proof of one.
-- Keep the broad fixed-point-rich / fixed-point-poor language as motivation until it is connected to a component of `μ`.
+*Disposition: replaces the separation-to-separation mirror target; the fixed
+♭/♯/ʃ ↔ actor/content/protocol partition remains retired.*
 
-**To verify.**
-- The concrete `ʃ ⊣ ♭` specialization is a checked collapsing control instance. `IterationCohesion.agda` proves `η-equiv-at-T : T A ≃ T(T A)` and `η-equiv-fst` identifies its forward map with the iteration structure map `η_{T A}`. Applying the same theorem at later iterates shows mathematically that every structure map after stage one is an equivalence.
-- This control instance is neither evidence for nor evidence against the cross-site conjecture. It constrains the search: a rung-2 witness must be sought outside this `T = ♭ʃ` specialization.
-- The ModalHoTT modalities provide further fixed-point motivation in `Modalities/Adjunctions.agda` (`flat-modality-idempotent` proved; `sharp-modality-idempotent` and `shape-modality-idempotent` postulated), but they do not prove the modal half of the cross-site claim.
-- The cross-site obligation is to exhibit a specific `M` for which `μ_M` is not an equivalence. Only then can actor locality be said to realize the proposed asymmetry.
+**Target.** Specify a separation of concerns in K and a contextual integration
+capability in M, then construct the relation showing how the former enables
+the latter while preserving declared distinctions. Investigate the reciprocal
+direction: an M-side capability may induce further separations in K,
+especially in documentation. "Secondary" means induced through the relation,
+not a lower rank or later time.
 
-### Refinement: differential cohesion sharpens the asymmetry
+Each candidate must name its carriers, contextual use, construction,
+preservation/compatibility law, and comparison case. Establish what changes
+when the proposed separation changes, allowing alternative architectures to
+support the same capability. Sufficiency and necessity are separate claims.
+An adjunction may supply passage and preservation laws once these structures
+exist; a bare adjunction does not establish the proposed effects.
 
-If the differential rung lands on the modal side (`ℜ ⊣ ℑ ⊣ &`), it offers a finer interpretive palette than the binary fixed-point / no-fixed-point language. `ℑ` (infinitesimal shape) is distinct from `ʃ` (homotopy shape), motivating *provable* / *smooth-creative* / *wild-creative* distinctions. This adds no rung to the non-collapse ladder and proves none of them. Differential cohesion becomes relevant to T3 only if one of these distinctions can be connected to a component of the cross-site multiplication `μ` (see `future_work.md` "Beyond fracture" and `status_formal.md` ModalHoTT plan).
+The surface both distinguishes reality from its understanding and connects
+them without identifying them. Integration need not mean one merged object,
+and M does not stand for all Reality. The mirror remains an organizing
+candidate, not a constructed correspondence or an additional-adjunction
+commitment. Protected differences, inadequacy, and loss remain distinct.
 
----
+The predominant synthetic/analytic reading concerns embodied/documented
+understanding within the intended organization, not a partition of M/K.
+For the examples and open bridges, see
+[arc/18](arc/18_evolutionary_adjunction.md#the-mirror-separation-integration-and-reciprocal-induced-structure)
+and [future_work.md §C](future_work.md#c-rebuild-m-and-its-variability-together-with-comparison).
 
-The original formulation — A_5 simple-and-transitive on the 12 icosahedral vertices, with equivariant fixed-point absence enforced at the symmetry level — is preserved in `deep_context/archived_post_concurrency_anchor_2026-05-16.md`. It is retired *as a specific anchor* (with the icosahedral framing), not as a line of thought. What survives is a motivation to search for a structural asymmetry; the rewrite above states the actual non-collapse obligation that must be proved before the asymmetry can be called an engine of iteration.
+## T5. Adequate return and replay
 
----
+*Disposition: replaces the prescribed "protocol as operational cohesion"
+reading while retaining its question about operational meaning.*
 
-## T4. Hidden partition match between ModalHoTT and Concurrency
+**Target.** State an episode, its return interface, and a future operation.
+Prove the returned structure supports that operation under the declared
+contextual interpretation, with the required provenance and protected
+boundaries. Separate particular artifacts from uniformly instantiable rules;
+dependent Σ/Π is a candidate semantics only after the families exist.
 
-*Arc anchor: `arc.md` §5.*
+A candidate nerve could supply a reusable description; transport and
+realization could participate in consuming it. None is already publication
+or replay by its categorical name. Nor is descent automatically the actual
+give-back operation of a conversation.
 
-*To restate.* The original modal-partition claim (`♯/♭/ʃ ↔ unityped agents / typed data / protocol shape`) is partially answered by the hybrid construction in `deep_context/arc/02_concurrency_anchor.md`: the ActorBase/SessionValues split is **definitional** (base topology vs sheaf values, with modularity = sheaf gluing). Hybrid v1 made the presheaf/restriction half checkable in Agda; the fast-track finite layer has now landed full finite-site event-product gluing. The remaining distinction is general sheaf/topos structure, not the constant-slot descent proof itself. The protocol-shape (`ʃ`) slot still needs work. Original archived.
+## T6. Mutual constitution, without a hierarchy
 
----
+*Arc anchor: arc.md §4, §7.*
 
-## T5. Protocol as the operational reading of cohesion
+**Interpretive target.** M and K should be related without reducing one to
+commentary on the other. The surface between reality and a generative system
+of understanding is an organizing image, not an ontological ordering or an
+arrow of time.
 
-*Arc anchor: `arc.md` §5.*
+Adjoint data supplies precise maps; showing that they express the intended
+two-sided process is an adequacy task, not an automatic consequence of the
+triangle identities. Non-equivalence alone is also insufficient.
 
-*To restate next session.* Depends on T2 and T4; the original A_5-symmetry anchor is retired. Reformulate "protocol as operational reading" against the actor-causal + session-type-values hybrid. Original archived.
+## T7. Fracture / de Rham bridge — retired work order
 
----
-
-## T6. Two-sided "above" via the adjunction
-
-*Arc anchor: `arc.md` §4, §7.*
-
-**Claim.** Modal perspectives M above actor-causal communities K via the left adjoint Allow (generative direction); K above M via the right adjoint Require (reflective direction). The two "aboves" are dual, mutually constitutive, and the adjunction structure of T1 *is* this two-sided above-relation.
-
-**To state cleanly.**
-- This is largely a consequence of T1 once the adjunction is committed; worth stating separately because it is the *philosophical content* the adjunction carries.
-- Phrase in arc.md §4 as the philosophical reading of unit / counit.
-
-**To verify.**
-- No separate mechanical verification beyond T1.
-- Check that neither side collapses into the other (the adjunction is not an equivalence).
-
----
-
-## T7. Bridge: fracture / de Rham → arc-level separation
-
-*Arc anchor: `arc.md` §6 (the math fragment that fracture/de Rham instantiates).*
-
-**Claim under repair.** Fracture and the de Rham separation program were
-intended to witness modal structure unavailable in plain HoTT and eventually
-to inform T1's `Allow` direction. The current synthetic signature cannot carry
-that evidential burden: its unrestricted flat rules make every type flat-modal.
-T7 is therefore suspended as a bridge target until a non-degenerate modal
-signature is stated and checked against the analytic delooping obstruction.
-
-**To state cleanly.**
-- Locate fracture and de Rham within T1's adjunction structure: which unit/counit/triangle do they instance?
-- Distinguish what they witness (cohesion's necessity for ModalHoTT) from what they don't (the requires-allows coupling with Concurrency).
-
-**To verify.**
-- Already partially scoped in status_formal.md. The bridge work is articulating, not proving — the proofs are status_formal.md's job.
-
-### Progress
-
-The synthetic fracture map and its postulate remain checked relative to the
-current axioms; the analytic side supplies a real non-flatness obstruction at
-the delooping. Their incompatibility is now the active 1C diagnostic. The de
-Rham named-coefficient and differential ladders remain historical targets in
-`future_work.md`, not the selected repair.
-
----
-
+The old prescribed bridge from fracture/de Rham to the cross-side conjecture
+is archived. Its checked relative statements remain in code and in
+`status_formal.md`; they are not erased. A new use of this mathematics
+requires its own contextual job and valid hypotheses, not completion of
+the old escalation as a prerequisite to 1C.
 
 ## T_boundary. Runtime no-leak via actor-renaming invariance
 
@@ -259,196 +296,62 @@ and runtime obligation not to retain the identity map remain open. Tier C and
 Tier D remain optional later rungs.
 
 
-## T_recursion. Iterable adjunction and the developing network
+## T_recursion. Inheritance, replay, and contextual development
 
-*Arc anchor: `arc.md` §6.*
+*Arc anchor: arc.md §6; arc/18.*
 
-**Claim.** The unit η : id → Require ∘ Allow of T1's adjunction is iterable with coherent self-composition, and the iteration carries a cyclic / modular-operad structure whose involution is the perspective-swap "cared-for = caregiver" (the 1=2 identity). The colimit of the iteration tower (in the ambient ∞-topos) is the candidate mathematical object the arc's "math fragment" §6 names as the developing infinite network. T_recursion makes the static adjunction of T1 into a generative process: it names the mechanism by which praxis (developmental aspect, `motivation.md`) could be realised on top of the adjoint structure. Its non-triviality is exactly rung 3 of the non-collapse ladder in T3; neither T1 nor the generic existence of an iterated unit establishes it.
+**Target.** Give a compositional account of episodes whose returned artifacts
+support further work: specified achievements remain usable and some new
+operation becomes admissible. Identify what changes—objects within a
+regime, observations, language, protocol, or the regime itself.
 
-**To state cleanly.**
-- Use T3's definition of stabilization: the structure maps are equivalences from some stage onward. Do not identify this without further hypotheses with the weaker fact that a sequential colimit is equivalent to one finite stage.
-- Pick the operad flavour: cyclic operad (minimum — carries the 1=2 involution), modular operad (richer — adds genus-grading, making the Esquisse-side mapping literal rather than analogical), or dendroidal ∞-operad (most native to the cubical-set ambient).
-- Decide where the operad lives: on `_Site._Category` directly, on the sheaf-of-session-values, or on the ambient ∞-topos. The finite descent layer now supplies concrete V-valued/session and Set-valued/cartesian sheaf endpoints. The durable placement decision should now follow the stabilized R4 bridge — likely on the structured sheaf package, with composition eventually coming from cut-elimination on the Caires–Pfenning side.
-- Name the involution explicitly: at the session-type level this is `S ↔ S^⊥` (linear-logic duality); at the philosophical level this is the 1=2 perspective swap.
-- State the colimit's homotopy invariant: an analogue of the Grothendieck–Teichmüller-tower homotopy type, scaled to whatever finite combinatorial data the Concurrency site commits to.
+Two routes are open:
 
-**To verify.**
-- *Iteration-alone layer (cheaper, Agda-reachable now).* The scaffold in `formal/ModalHoTT/Modalities/Iteration.agda` provides `T`, `T-map`, `T^_`, `η^_`, `η^-coherent` (derived from a postulated `η-naturality`), and the developing-network type `ND : Type → Type` as a sequential colimit. In the `ʃ ⊣ ♭` specialization, `η-equiv-at-T` and `η-equiv-fst` prove that the structure map from stage one is an equivalence; reapplying the theorem at each iterate gives eventual equivalence mathematically. The standard conclusion `ND A ≃ ♭(ʃ A)` is therefore known but not formalized here: the required sequential-colimit convergence lemma remains deferred. This is a collapsing control computation, not non-trivial support for T_recursion. At `A := Bℤ`, the expected specialization is `ND Bℤ ≃ ℤ` via the analytic-side computation in `Analytic/.../Cohesion.agda`.
-- *Operad / hybrid layer (partial — syntax, algebra signatures, Sessions v1, actor site v1, and Hybrid v1 shipped).* The cyclic associative operad `O_1` syntax is in Agda (`Concurrency/Operads/CyclicAssociative.agda`: generator, substitution, cyclic action, sequential + parallel associativity, full cyclic equivariance via `rot-compₒ-a-block` / `rot-compₒ-b-block`, and derived `boundary-swap`; port bookkeeping split across `PortGluing.agda` and `PortRotation.agda`). The algebra interface is also in place (`Concurrency/Algebras/{StarAutonomous,Valuation,OperadAlgebra}.agda`): thin `*`-autonomous target signature, weak HIT valuation into `⊥-par`, and structural Step-2 operad algebra with `plug`, `shift`, and `boundary-swap-structural`. The Sessions layer is now split: `SessionSyntax.agda` gives the postulate-free object grammar and proves `dual-involutive`; `SessionMorphismSyntax.agda` gives the set-truncated morphism HIT; and `Sessions.agda` instantiates the operadic interface with a bundled `SessionO1Action`, `session-interp`, `Sessions-Val`, and `Sessions-Alg`. Its categorical / operadic R8 face, `boundary-swap-at-gen`, is checked relative to the sole remaining Sessions postulate, `session-O1-action`; the bridge from the syntactic face remains deferred to richer session-categorical structure. `Concurrency/Sites/{ActorBase,ActorCausal}.agda` supplies the actor-causal base with no project postulates after the `TinyActorBase` / `TinyActorCausalSite` cleanup. `Concurrency/Hybrid/{Presheaf,SessionPresheaf}.agda` supplies the original arbitrary-frame adapter layer. The fast-track finite layer adds category-generic finite products, finite frames/covers, `FinitePresheaf`, `EventProductPresheaf`, `FiniteDescent`, `EventProductSheaf`, `EventProductSheafObject`, `FiniteFramePresheafFunctor`, `FiniteSheafCategory`, `SessionEventProductSheaf`, `SetFiniteSheafCategory`, `SetEventProductSheaf`, `TinyEventProductExample`, `FramePullbackUniversal`, `FiniteFramePullback`, `FiniteBasisCover`, `FiniteFrameCoverage`, and `SetSheafComparison`: full finite-site event-product descent, constant-slot Sessions and Set instantiations, proof-level concrete validation on the two-point cover, finite sheaf categories at both `StarAutonomous→Category V` and `SET`, Cubical `Coverage` for the finite site, and the SET library sheaf comparison. R4 is concretely landed for the supported point-generated/event-discrete route, with `Chu(SET,Bool)` as a postulate-free coefficient witness and Sessions-to-Chu `J0`/`J1` as the intended-instance realization through morphisms. Still pending are the generic full finite actor-causal reflector, the modal-context category `M`, and then the cross-site adjunction `Allow ⊣ Require`, which instantiates the iteration module against this operadic/session layer.
+- **Vertical:** after T1, instantiate a particular monad's unit tower and
+  prove T3 rung 3 if persistent non-stabilization is the intended mechanism.
+  Specify any colimit and its adequacy separately.
+- **Horizontal:** construct transitions between contextual regimes, together
+  with preservation and extension witnesses. Local adjunctions or closure
+  operations may stabilize. Identify the composition and compatibility laws
+  before claiming a developing family.
 
-### Philosophical anti-drift invariant: do not let R8 consume R∞
+Neither route is a theorem and neither defines evolution merely as
+noninvertibility. The second permits inherited stable cores without
+weakening the first route's exact mathematical obligations.
 
-The modal side gives the ambient Grothendieckian horizon: cohesion, covers, shape, fundamental groups, and descent. Its Agda role is mostly to record and discipline literature-backed commitments, not to pretend that the modal cathedral is being rebuilt from scratch.
+**Progress.** `Iteration.agda` supplies generic endofunctor/unit iteration
+and a sequential-colimit scaffold, with naturality postulated; it does not
+bundle the whole adjunction or monad. `IterationCohesion.agda` is the checked
+collapsing specialization. No cross-side instance, nonconstant family, or
+contextual-renewal theorem has been constructed. The code is unchanged.
 
-The concurrency side gives the active finite combinatorics: ports, cyclic order, gluing, rotation, associativity, and eventually modular closure. This is not a retreat from dessins/Belyi maps; it is where the dessin-facing material becomes manipulable. Dessins are finite ribboned combinatorics that remember arithmetic geometry, so this concurrency-first productivity is a feature if it keeps climbing back toward covers, Belyi, and Galois.
+The operadic/session and actor-causal developments remain independently
+valuable. Cyclic/modular structure, dessins, branch data, and the Esquisse
+remain possible long-horizon resources, not mandatory identifications of
+every contextual transition. Do not mistake session duality for the whole
+developing-network claim, or require the whole modular programme before
+testing a bounded contextual renewal.
 
-The failure mode is stopping at session-flavored cyclic operads. `O_1` is not the destination: `MO_1` / the modular envelope is the real dessin-facing object. Session duality is a necessary local face of the cyclic structure, but the Grothendieckian target needs the whole cyclic / ribbon / modular apparatus.
+## Dependency sketch and handoff
 
-### Progress
+T_comparison guides the search for M and meaningful alternatives; it does not
+wait for a final M definition. T1 constructs a correspondence, T4 investigates
+its separation/integration effects, T5 its use for replay, and T6 its interpretation. T3 concerns
+a specified adjunction; only T_recursion's vertical route depends on its
+rung 2. T_boundary and the existing 2S/3R sequence retain their scope.
 
-The generic iteration scaffold is in place in `Iteration.agda`, but its
-`ʃ ⊣ ♭` specialization now has a stronger negative classification: it is a
-collapsing control inside a signature that already makes every type flat-modal.
-Its checked equations remain valid relative to those postulates and have no
-evidential force for the intended modal semantics. The cross-site adjunction is
-not stated; it waits on a non-degenerate M forced by the context-renewal case.
-Deferred cross-site witnesses, cyclic structure, and colimit convergence remain
-tracked in `future_work.md`.
+For a next 1C batch, select a bounded obligation from `future_work.md` §E,
+state its types and a failing check or unmet proof, and retain a positive and
+negative control. No first build is selected by this file.
 
-Operadic syntax, its first algebra layer, the Sessions syntax/model split, the
-actor-causal site, finite descent, the point-generated R4 bridge, Chu witness,
-and Sessions-to-Chu realization are banked at their recorded strengths. At the
-2S/3R boundary, per-conversation locality, conditional coverage, causal-order
-comparison, Tier A, authoritative fixtures, and the exact recorder are also
-banked; none supplies cross-site evidence.
+## Historical routes and orientation
 
-The next program is selected in `current_track.md`: a minimal 3R causal kernel
-tests the behavioral premise first; contract closure/publication and Tier B
-follow; Λ/Federation and contextual renewal are later consumers. In parallel,
-1C checks and repairs the modal-signature defect. The generic full finite
-actor-causal reflector, `MO_1`, and the cross-site adjunction remain gated by
-their own forcing cases.
+The former modal inventory, "Unlocking ♯" escalation, and shape/Esquisse
+appendices are preserved in the migration archive's `targets.md`.
+They document why the earlier route was plausible, not live instructions.
+Sibling correspondences live in `related_structures.md`; the two-stratum
+decision and candidate generation–description sketch live in arc/18.
 
-### Relation to other targets
-
-- **Downstream of T1** (the adjunction itself).
-- **T3 is the non-collapse obligation** — rung 2 of its ladder is necessary but not sufficient for T_recursion's rung 3.
-- **Distinct from T6** ("two-sided above") — T6 is the snapshot of mutual constitution; T_recursion is its dynamics.
-- **Esquisse pointer.** T_recursion is the natural target for the Grothendieck-Esquisse mapping the arc discussion log named: the modular-operad form of the moduli-tower recursion, surviving the retirement of the A_5 / icosahedral example. See `deep_context/arc/01_arc_discussion_log-2026-05-08.md` Turn 21.
-
-**Implemented inventory — synthetic side (`formal/ModalHoTT/`), under a
-degenerate signature.**
-
-The declarations and relative proofs below typecheck, but the unrestricted
-flat rules make every type flat-modal. This inventory is therefore diagnostic
-material and reusable syntax, not a completed model of cohesion.
-
-- `Modalities/Cohesion.agda` — three cohesion modalities postulated as axioms (operators, units/counits, induction principles, modal-type definitions); includes `flat-counit-intro` β-rule.
-- `Modalities/Adjunctions.agda` — ♭ ⊣ ♯ and ʃ ⊣ ♭ as hom-set equivalences with coherence; named transpose operations; `IsFlatModal (♭A)` proved; ♯/ʃ idempotency postulated.
-- `Modalities/Properties.agda` — flat / shape / sharp map; flat functoriality laws proved; ʃ/♯ map laws postulated; `flat-counit-natural` derived; `shape-flat-natural-B` postulated (load-bearing for the structural pinning).
-- `Modalities/Fracture.agda` — synthetic fracture; `FracturePullback` as inline Σ Σ ≡; `fracture-square-commutes` derived; `flat-to-pullback` canonical map; one postulate `fracture : isEquiv (flat-to-pullback A)` framed as the ♯-lex shortcut.
-- `Modalities/Discrete.agda` — bridge `IsFlatModal A ↔ IsShapeModal A` drafted (both directions postulated); **not imported anywhere**, held in reserve.
-- `Cohomology/FlatCoefficients.agda` — structural rung of the de Rham depth ladder; `flat-coefficients-factor-pin` proves the canonical equivalence pins to `λ f → f ∘ shape-unit` via a four-step chain.
-
-**Completed — analytic side (`formal/Analytic/ModalHoTT/`).**
-
-- `Modalities/Cohesion.agda` — full 3×2 grid of ♭/ʃ/♯ instances for ℤ (all trivial) and Bℤ. Centrepiece: `¬-IsFlatModal-delooping` (machine-checked proof that Bℤ is not flat-modal). DeloopingOfIntegers HIT, deck transformations, universal cover, and `Ω(Bℤ) ≃ ℤ` all live in this file.
-- `Modalities/Adjunctions.agda` — ℤ adjunctions as `idEquiv`; for Bℤ, the diagnostic lemma `maps-into-integers : (DeloopingOfIntegers → ℤ) ≃ ℤ` (companion to the free-loop-space obstruction `(Bℤ → Bℤ) ≃ Bℤ × ℤ`). Documents the type-level adjunction failure at (Bℤ, Bℤ); no postulates.
-- `Modalities/Properties.agda` — flat / shape / sharp map and id/comp laws for ℤ (all `refl`); shape-map for Bℤ trivial; flat-map for Bℤ documented as blocked; sharp-map for Bℤ deferred (♯(Bℤ) undefined). No postulates.
-- `Modalities/Fracture.agda` — analytic ℤ; pullback collapses definitionally to `Σ ℤ singl`; canonical map sends `n` to `(n, n, refl)`; `isEquiv` via `isoToEquiv` on `fst` as inverse. No postulates. Bℤ excluded (♯(Bℤ) undefined).
-- `Cohomology/FlatCoefficients.agda` — analytic mirror at the structural rung.
-
-**Selected next step.** Machine-check the all-types-flat derivation in a
-diagnostic module, inventory every result that depends on the degenerate
-signature, and then compare replacement signatures against the analytic
-`¬-IsFlatModal-delooping` obstruction. A named coefficient such as ℝ and the
-differential ladder remain later possibilities; adding one to the present
-signature would not repair it.
-
-### Unlocking ♯ — what it costs and what it buys
-
-The de Rham / separation arc ultimately routes through the ♯ modality, currently the weakest leg of the three. This subsection anticipates what the horizon beyond fracture requires.
-
-**What would unlock ♯.**
-
-*Synthetic side:* the blocker is dependent elimination for ♯ (also in Open Questions). With `♯-ind`, `IsSharpModal (♯A)` becomes a theorem rather than a postulate, and `sharp-map-id` / `sharp-map-comp` follow. Same structural gap as for ʃ; same resolution — a proof assistant that implements ♯ as a genuine modal type former with dependent recursion.
-
-*Analytic side for Bℤ:* the blocker is deeper — no concrete cubical Agda construction for `♯(Bℤ)` is known. In Shulman's real-cohesive HoTT, ♯ is tied to the interval ℝ; `♯X` is X with all points connected by real-valued paths ("maximally cohesive"). For Bℤ in that model, `♯(Bℤ)` is likely contractible (ℝ-connectedness collapses everything). But contractibility of `♯(Bℤ)` is *inconsistent* with the fracture theorem holding for Bℤ with our `♭(Bℤ) = ℤ` — the pullback would then give `ℤ ≃ Bℤ`, which is false. So either our `♭(Bℤ) = ℤ` is wrong in that model (already known), or the real-cohesive model is the wrong intuition for our Bℤ site.
-
-The clean unlock for the analytic side is the same as for the adjunction: crisp type theory implementing ♯ as a proper modality, where `♯(Bℤ)` would be computable from the rules rather than requiring a concrete cubical construction.
-
-**What it buys.**
-
-*Immediately:* the fracture theorem for Bℤ *analytically*. The pullback uses `♯A`; without `♯(Bℤ)`, analytic `Fracture.agda` is bounded to ℤ. ♯ is the prerequisite for verifying the fracture theorem on the most interesting type we have.
-
-*The ♭ ⊣ ♯ adjunction as a pair with ʃ ⊣ ♭:* we currently have the "global" half of cohesion (ʃ sees the shape, ♭ sees the discrete skeleton). ♯ completes the "local" half — the codiscrete reflection, the type seen from the ambient connected world rather than from the discrete skeleton. Having both adjoints of ♭ gives the full local-global interplay, which is the geometric content of the fracture theorem.
-
-*New directions opened by ♯.*
-
-- **Differential cohomology.** Canonical construction in cohesive HoTT: the pullback `H^n(X,ℤ) ×_{H^n(X,ℝ)} Ω^n(X)` — flat integral classes, real forms, and the comparison. Both ♭ (integral, discrete) and ♯ (real, ambient) appear. First genuinely new object that requires all three modalities and is not statable in plain HoTT.
-- **The Poincaré lemma synthetically.** De Rham cohomology equals cohomology with flat coefficients. Statement uses ʃ and ♭; proof uses ♯ to mediate. Most direct formalization of the separation result — something that cannot even be *stated* without all three modalities.
-- **The creativity / provability axis of the conjecture.** ♭ encodes the formal, discrete, provable side; ♯ encodes the ambient, connected, everywhere-related side. The `♭ ⊣ ♯` adjunction is the mathematical expression of the tension between these. Lawvere's fixed-point theorem applied to the ♭-comonad and ♯-monad gives a precise handle on the fixed-point / no-fixed-point distinction the conjecture draws on.
-
-In short: **♯ is the door to the de Rham story, which is the door to the separation result.**
-
----
-
-## Not targets (orientation only)
-
-- *Grothendieck mapping (PS / Esquisse / RS).* Useful tether and sanity check. Not what we're proving. If subsequent work starts orienting toward "recovering Esquisse-style results," push back.
-- *Connes / Bennequin-Laforgue resemblances.* In `related_structures.md`. Locator, not target.
-- *"World understanding and world creation."* In `arc.md §7`, held loose. Will sharpen if and only if discovery forces it.
-- *The dual community-organization theorem* (concurrency-as-optimal-info-transfer). Co-equal in the long-term arc but out of scope for the current formalization phase.
-
----
-
-## Dependency sketch
-
-*To restate, in tandem with T2–T5.* T1 remains foundational; T6 and T7 remain downstream of T1. The site question for the Concurrency side has migrated from T2 to `deep_context/arc/02_concurrency_anchor.md` and the level-2 inventory in `status_formal.md`. Original archived.
-
----
-
-## Appendix — flow leading to the Concurrency-side operational anchor
-
-The T1–T7 above are abstract-mathematical: they ask how cohesive modalities behave on each side and how the two sides relate. Working through whether T2 or T4 should be Concurrency-side starting points surfaced that neither anchors Concurrency *locally*. T2 imports ModalHoTT's frame onto Concurrency by making it carry "a site for cohesion." T4 fixes the modal partition (♭ / ♯ / ʃ ↔ typed data / unityped agents / interaction shape) before Concurrency's own primitives are committed to. Both let the ModalHoTT-side dictate Concurrency's shape; the dependency runs in the wrong direction.
-
-The fix is structural: ModalHoTT has an anchor *beneath* its modal mathematics — Bℤ as a mathematical object on its own terms, with motivation.md's perspectivalism as the philosophical layer beneath that. The modal vocabulary speaks *about* Bℤ; it doesn't constitute it. Concurrency currently has no such under-layer. The proposal is to add one: an **operational anchor** — an operational concurrent system formalized in concurrency's native language (candidate families: Honda–Yoshida–Carbone multiparty session types, asynchronous π-calculus with session types, Caires–Pfenning propositions-as-sessions) — as a mathematical object on its own terms. The modal/cohesive questions (T2, T4, T5) then become questions *about* this system, not constructions designed to mimic ModalHoTT.
-
-The mirror with ModalHoTT: motivation.md is the philosophical layer beneath the modal math on ModalHoTT (perspectivalism — same object under different probes); the operational anchor is the operational layer beneath the modal math on Concurrency (agents having conversations and producing typed data). Both layers sit *under* the abstract-mathematical targets, not within them. The Concurrency-side operational anchor is a proposed new target upstream of T2, T4, T5 — not a refinement of any of them.
-
-## Appendix — adjunction shape layer and Sketch of a Program
-
-This appendix records the current target-level view of the possible `Allow ⊣ Require` adjunction and how the conversation got here.
-
-The starting practical problem was a verifiable program for human / LLM communication protocols: conversations should not only produce text, but produce checkable traces, typed artifacts, and commitments that can be inspected by another agent or by a proof assistant. That forced the Concurrency side to become more than an analogy. It needed an operational substrate: actors as local loci of action, sessions as typed content, and a way for local interactions to compose without erasing locality.
-
-The first stable split was therefore the actor/session hybrid. Typed content belongs in the values; unityped agents and locality belong in the base. This gave a modal echo of the hidden partition:
-
-- `discrete_modal` corresponds to formal, typed, documentable content.
-- `codiscrete_modal` corresponds to the ambient actor-local locus where action can happen.
-- `homotopy_shape_modal` is the remaining slot: the shape of admissible transformations.
-
-The third slot is the important one for the adjunction. It is not payload and it is not actor identity. It is the grammar of paths: which transitions are allowed, which loops matter, which reorderings are equivalent, which diagrams commute, and which local interactions can glue into a coherent global execution. On the Concurrency side this appears as interaction / conversation shape. On the Modal side it appears as homotopy shape. This is the common invariant on which `Allow` and `Require` are expected to meet.
-
-The `O_1` work made that third slot concrete. The cyclic associative operad supplies ports, gluing, cyclic rotation, and the derived `boundary-swap` theorem. The Sessions instance then shows how this shape layer acts on typed content: `session-interp` interprets `O_1`, `Sessions-Alg` supplies `plug` and `shift`, `dual-involutive` gives the syntactic R8 face, and `boundary-swap-at-gen` gives the categorical / operadic R8 face. This does not prove the adjunction, but it gives `K` a first checkable shape layer.
-
-Sketch of a Program enters here as the deep theory of such shape data. Dessins, Belyi maps, monodromy, path lifting, and Grothendieck-Teichmuller symmetries are not being used as decorative resemblances. They are the long-horizon mathematics of finite combinatorial shapes that remember homotopy, covering, and arithmetic structure. In this framing, `O_1` is the small local operadic beginning, `MO_1` is the modular / self-gluing escalation, and dessins are the finite arithmetic avatars of the same homotopy-shape slot.
-
-So the current target is:
-
-```text
-modal constraints / theories
-  -- Require / Allow --
-concurrent operational realizations
-```
-
-with the candidate mediating comparison expected to pass through:
-
-```text
-homotopy_shape_modal
-  ↔ interaction / conversation shape
-  ↔ operads, modular envelopes, dessins, monodromy
-```
-
-This diagram is a research locator, not a constructed third category or a new result. A precise candidate would have to be built independently as a space- / ∞-groupoid-valued shape-witness profunctor and then tested for representability by `Allow` and `Require`; generic two-sided representability would only restate T1. The construction, branch-data gate, and icosahedral test element are recorded in `future_work.md` § "Arc/16 consolidation: mediator and care theorem-shapers."
-
-This is why the adjunction should not be stated as a bare correspondence between HoTT types and session types. That bridge is one face of the story, but the likely load-bearing object is the shape layer that lets theories require forms of witnessing and lets practices allow forms of realization. The actor-causal module preserves this partition at the locality layer; the next test is whether the hybrid sheaf valuation preserves it while placing session values over actor-local frames.
-
-The working comparison table is:
-
-| HoTT / Modal Side | Session / Concurrency Side | Sketch / Esquisse Mediator |
-|---|---|---|
-| Type as space: a type behaves like a homotopy space. | Session type as protocol shape: a type describes possible interaction behavior. | Dessin as finite combinatorial shape encoding a covering. |
-| Term of a type: a point / inhabitant. | Process endpoint / participant state: an inhabitant of a protocol position. | A vertex / edge / local branch of a dessin. |
-| Identity type / path: equality as path. | Protocol equivalence / trace equivalence: two interactions count as same behavior. | Homotopy / combinatorial equivalence of covers or graphs. |
-| Dependent type: fibers vary over a base. | Session indexed by context / state: protocol obligations vary with conversation state. | Family of covers over a moduli base. |
-| Function type: maps between spaces. | Channel / session transformer: turns one protocol state into another. | Morphism of covers / functor between combinatorial structures. |
-| Product / sum types: structured combination / alternatives. | Tensor / par / choice-like connectives: parallel or dual interaction structure. | Gluing / branching of covers. |
-| Univalence: equivalent structures can be identified. | Protocol isomorphism: behaviorally equivalent protocols can be treated as same. | Isomorphic dessins / equivalent covers. |
-| Higher inductive types: generate spaces by points, paths, higher paths. | Generated protocols: generate interactions from primitives plus equations. | Dessins generated by finite permutation / combinatorial data. |
-| Modalities: discrete, codiscrete, homotopy-shape views of a type. | Separated layers: typed content, actor-local substrate, conversation shape. | Different projections of the same cover / moduli data. |
-| Covers / descent: local data glues into global structure. | Session consistency: local conversations / documents glue into a coherent global state. | Central Esquisse theme: finite covers of the 3-pointed sphere. |
-| Fundamental group / loops: e.g. Bℤ, S¹. | Cyclic interaction / dual endpoints: rotation, reversal, session duality. | Monodromy permutations around punctures. |
-| Suspension / bar construction: dimension-raising from S¹ toward S². | Modular envelope: composition / self-gluing raises complexity or genus. | Teichmüller / moduli tower. |
-| Fixed points / Lawvere: closure, self-reference, modal stabilization. | Open interaction: protocols can keep generating new conversations. | GT / moduli tower as a candidate theorem-shaper for recursive, nontrivial self-organization. |
-| Proof object: verified inhabitant. | Trace / document certificate: verified protocol history. | Arithmetic / combinatorial certificate of a cover. |
+Methodological legitimacy is a primary research goal (T_comparison), not an
+out-of-scope social corollary. Its eventual real-world interpretation must
+still state what the mathematical comparison does and does not establish.

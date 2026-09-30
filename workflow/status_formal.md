@@ -4,16 +4,16 @@ tags: [focus:cross-site, kind:state, level:scoping]
 
 # Formal Status
 
-The arc is articulated in `arc.md` (now pair-first: `Allow ⊣ Require` with the five arc/09 anchors) and decomposed into propositions T1–T7 plus T_recursion in `targets.md`. Philosophical seed in `motivation.md`. Brainstorming archive: `deep_context/arc/`.
+The conjecture is mapped in `arc.md` and decomposed in `targets.md`,
+including the primary relational target T_comparison. The selected programme
+is in `future_work.md`; arc/18 records its development and the exploratory
+mirror/generation–description sketch.
 
-The concurrency substrate and runtime junction have accumulated several banked
-results, but the next program is now selected rather than lane-open. A minimal
-3R behavioral kernel first tests whether causal parents are earned from message
-dependencies; 2S then extends the contract and no-leak ladder toward closure,
-publication, and change of actor base; Λ and context renewal follow only from
-that evidence. In parallel, 1C reopens because the current unrestricted flat
-signature collapses every type to flat-modal. The cyclic-bar and modular-envelope
-directions remain gated research programs, not the modal repair plan.
+**2026-09-26: 1C reorientation, no new proof result.** M is being rebuilt
+through K's categorical essence, alternatives, contextual adequacy, and
+renewal. Cohesive/modal HoTT is no longer the prescribed setting. The existing
+K and runtime results below retain their exact scope. The 2S/3R dependency
+sequence is unchanged; 1C can investigate toy cases independently of it.
 
 ## Concurrency  <!-- tags: focus:concurrency, level:scoping -->
 
@@ -77,11 +77,12 @@ The first value category `V` is `Sessions-Cat Payload`; later versions may repla
 
 ##### `_Topos`  <!-- concept:topos -->
 
-Canonical first three pieces, plus a cohesion-adapted fourth.
+Earlier structural inventory; the topos and higher extensions remain
+unconstructed at this generality.
 
 - `_Topos._SheafCategory` — `Sh(_Site._Category, _Site._Topology)` as an object. Current status: finite sheaf categories over both V-valued/session and Set-valued/cartesian value categories have landed in the hand-rolled finite framework, with concrete event-product objects on both sides. The Set side is now compared to Cubical `Coverage` / library `Sheaf` for the finite coverage. No internal-logic/topos theorem is claimed yet.
 - `_Topos._InternalLogic` — subobject classifier Ω, internal language, predicates.
-- `_Topos._GeometricMorphisms` — relations to other topoi (notably: embedding into cubical sets, shared substrate with ModalHoTT).
+- `_Topos._GeometricMorphisms` — candidate relations to other topoi; no shared cohesive ambient with M is now prescribed.
 - `_Topos._InfinityLift` — the 1-topos → ∞-topos move.
 
 #### Modular-operad version (from `deep_context/arc/03_attachement_in_arc.md`)  <!-- tags: kind:reference -->
@@ -169,7 +170,10 @@ Named, like modules. R1–R6 are from the hybrid substrate's level-2 scoping; R7
 - **R2 — Indexing.** `_Sheaf` lives over `_Site`: presheaf + descent against `_Site._Topology`. The finite event-product sheaf layer, its V-valued category packaging, its Set-valued category/object endpoint, and the finite Cubical `Coverage` / library `Sheaf` comparison are shipped. R4 should keep consuming the finite sheaf/category interfaces; remaining full-site reflector or bridge work should not duplicate the constant-slot witness or collapse the Set and V endpoints.
 - **R3 — Generation.** `_Topos = Sh(_Site._Category, _Site._Topology)`. No freedom; the topos is generated from site + sheaves.
 - **R4 — Interpretation.** `_Topos._InternalLogic ↔ _Algebra._Connectives` / `_Algebras._Sessions`. Topos logic is cartesian by default; the algebra is linear. The current formal shape is interface-first Benton/LNL change of base between `Cart` and `StarAutonomous→Category V`: presheaf-level `liftF`, `liftG`, and `liftF ⊣ liftG` are proved, the right adjoint `G` preserves finite sheaves, `FiniteSheafification` names the left reflector interface, and `LinearNonlinearSheafAdjunction` gives the sheaf-level adjunction conditional on that reflector. The point-generated reflector is now constructed over the supported subsite: `PointifyIsSheaf`, `PointSheafification`, and `PointSheafAdjunction` give pointification as a point sheaf, the reflector functor, and `a ⊣ ι`. The point-generated sheaf bridge is now wired by `PointLinearNonlinearAdjunction.Lpoint⊣Rpoint`.
-- **R5 — Embedding.** `_Topos._GeometricMorphisms → cubical sets`. The mathematical form of "both sides share an ambient `(∞,1)`-topos."
+- **R5 — Ambient comparison, under reconsideration.** The earlier embedding
+  into a shared cubical-set ambient is not a constructed cross-side result.
+  Its endpoints and role must be reassessed with M; a common cohesive ambient
+  is no longer a requirement.
 - **R6 — Parametrization (Causality).** Causality → `_Site`. Landed in `Concurrency/Sites/{ActorBase,ActorCausal}.agda`: Lamport partial-order events, actor-local frames, strict-reflecting frame embeddings, basis covers, and constructive tiny frame/cover witnesses. `ActorPullback.agda` supplies pullback overlaps and a pullback-stability construction. The old in-file stability fallback has been removed from `ActorCausal.agda`; `TinyActorBase.agda` owns the tiny base, and `TinyActorCausalSite.agda` assembles the bundled tiny site using the constructed stability path.
 - **R7 — Algebra-over-Operad.** `_Algebras` evaluates `_Operad`. Landed as `StarAutonomous` + `Valuation` + structural `OperadAlgebra`, and concretely instantiated by `Sessions.agda` for the typed-content layer. Closely interacts with R1 (the value category for both must agree).
 - **R8 — Involution-Duality.** `SessionSyntax.agda` proves the syntactic face `dual-involutive`. `Sessions.agda` derives the categorical / operadic face `boundary-swap-at-gen` (a specialization of `boundary-swap-structural`) relative to the postulated `session-O1-action`. The bridge between them remains a deferred project claim, not a computational reduction.
@@ -182,7 +186,7 @@ Named, like modules. R1–R6 are from the hybrid substrate's level-2 scoping; R7
 - **R10 — Moduli Realization.** `_Moduli` as geometric realization of `_Operad._ModularEnvelope`. Theorem-driven (Getzler-Kapranov for Com_cyc → M̄; Kontsevich / Penner for Ass_cyc → ribbon-decorated M̄). Forces the Ass_cyc decision to have a literal moduli consequence.
 - **R11 — Arithmetic Action.** In the project notation, the absolute Galois group maps faithfully as `G_ℚ ↪ GT`; surjectivity (equivalently, equality with the relevant profinite Grothendieck–Teichmüller group) is open. The `GT` action belongs on the profinite Teichmüller / dessin tower; any lift through R10 to operadic automorphisms of `_Operad._ModularEnvelope`, and then through R7 to symmetries of `_Algebras`, remains a proposed long-horizon construction. This is the operadic version of "external symmetry parametrizing structure at multiple levels," not a completed relation in the current formalization.
 
-## ModalHoTT  <!-- tags: focus:modalhott, level:scoping -->
+## World/context side M and legacy ModalHoTT  <!-- tags: focus:context, level:scoping -->
 
 The current synthetic signature is structurally degenerate. `Cohesion.agda`
 postulates both an unrestricted `flat-intro : A → FlatModality A` and dependent
@@ -203,35 +207,49 @@ The generic endofunctor-and-unit scaffold in `Iteration.agda` remains useful as
 generic syntax. Its specialization in `IterationCohesion.agda` is now classified
 as a degenerate control rather than a model of the intended modal side.
 
-### Plan when bandwidth returns
+### M rebuild: selected research, not a repaired signature
 
-1C reopens with a diagnostic obligation: formalize the all-types-flat
-derivation in a focused module so the failure is machine-checked and retained.
-The subsequent repair is a signature-design problem, not yet a chosen encoding.
-At minimum, the repaired synthetic interface and the analytic
-`¬-IsFlatModal-delooping` witness must be jointly satisfiable, and it must admit
-more than one contextual face without an automatic collapse between them.
+The categorical essence of K, meaningful alternatives, and a comparison
+structure are the current work. M and contextual variability are to emerge
+through that investigation. Neither a chosen cohesive package nor completion
+of the runtime pipeline is a prerequisite to a 1C toy model.
 
-Context renewal supplies the direction and first forcing case. K now suggests
-that a context is a state of documentation under which conversations and
-artifacts are admissible, and that an extension preserves specified earlier
-achievements while enabling a genuinely new continuation. Simondon's
-co-individuation of individual and milieu is a guide to this design: M should
-not wait for K to become terminally complete. No assignment of `♭`, `ʃ`, or `♯`
-to live record, public record, or language presentation is selected in advance.
+No category of architectures, world/practice pairing, cross-side adjunction,
+comparison invariant, or nonconstant family has been constructed. The named
+obligations in `future_work.md` §E are specifications in prose, not Agda
+declarations. The first build is unselected; its red obligation and controls
+must be stated before implementation.
 
-The earlier `Bℤ → S¹` cyclic-bar proposal, differential cohesion, and the
-possible comparison with `MO_1` remain independent research directions. They
-may return after the modal signature and its contextual job are sound; they are
-not proposed fixes for the collapse.
+The mirrors of separations and interacting generation/description
+correspondences are candidates. Monads with arities is a leading literature
+test; relative cohesion is another candidate with additional hypotheses.
+Neither changes the banked R4 construction into a cross-side result.
+
+### Legacy control and non-degeneracy
+
+The precise flat-collapse diagnosis is that the flat-modal predicate holds
+on the whole universe under the current synthetic rules. It does not imply
+Boolean internal logic or omniscience. A future modal candidate can be tested
+by an object outside its modal subuniverse; non-modal M candidates need an
+appropriate different discriminator.
+
+A focused all-types-flat proof remains a useful unimplemented diagnostic;
+it is no longer the compulsory next 1C action. The Bℤ, fracture, differential,
+and cyclic-bar work orders are preserved in
+[the migration archive](deep_context/abandonned_modal_side/workflow/README.md).
+The code is retained, not repaired or archived by this documentation change.
 
 ## Semantic Background
 
-### ModalHoTT (Bℤ)  <!-- concept:bz -->
+### Legacy ModalHoTT (Bℤ)  <!-- concept:bz -->
+
+This describes the earlier semantic candidate, not a selected model of M.
 
 The site is `Bℤ` — the delooping of ℤ. Intended semantic model justifying the cohesion axioms; does not appear as an Agda object. `Bℤ ≃ S¹` as ∞-groupoids, but we foreground the group structure of ℤ because: the intrinsic covering structure comes from subgroup inclusions `nℤ ↪ ℤ`; the comonad story connects cleanly to ℤ-actions; Lawvere's fixed-point theorem is most natural in the algebraic / discrete setting ℤ provides.
 
-When bandwidth returns to the modal side, the iteration's input type lifts from `Bℤ` to `S¹` (using the `Bℤ ≃ S¹` identification as a presentation switch). The *site* remains `Bℤ`; what shifts is the input that the cyclic bar construction operates on.
+The earlier return plan switched the iteration's input presentation from
+`Bℤ` to `S¹` for a cyclic-bar investigation. That work order is retired;
+it is not the selected route to M.
 
 ### Concurrency  <!-- concept:hybrid -->
 
@@ -246,6 +264,10 @@ Analytic-side mirror is future work; whether the `formal/Analytic/` pattern from
 ## Decisions Log  <!-- tags: kind:decision -->
 
 (Previous ModalHoTT-side decisions archived to `deep_context/archived_decision_logs/2026-05-17.md`.)
+
+Chronological record: earlier prescriptions can be superseded by later
+decisions. In particular, the 2026-09-26 row replaces modal-specific work
+orders without altering their historical entries.
 
 | Date | Decision | Rationale |
 |------|----------|-----------|
@@ -306,6 +328,7 @@ Analytic-side mirror is future work; whether the `formal/Analytic/` pattern from
 | 2026-09-12 | Λ owns identification, coherence, and purpose-relative compression | Dependency edges stay directed. Documentation versions retain comparison history, select an admitted set, and construct a presentation subject to observational adequacy. A separate homotopy layer is not yet earned. |
 | 2026-09-12 | Context renewal is the forcing direction for rebuilding M | The current unrestricted flat signature collapses every type to flat-modal. Its replacement must be shaped by non-trivial documentation contexts and extensions that preserve stated achievements while admitting new work, without preassigning cohesive modalities to architectural nouns. |
 | 2026-09-12 | Federation constrains public identity and interpretation | Public content identifiers are stable and publisher-scoped; peers exchange finite versioned bundles relative to explicit import boundaries and may retain different admitted comparisons. Federation supplies no global actor directory, clock, quotient, or consensus. |
+| 2026-09-26 | 1C rebuilds M through relational adequacy | Cohesive/modal HoTT is no longer the prescribed destination. Extract K's essence, compare alternatives and siblings, and investigate contextual variability together with the comparison structure. No first build is selected; the mirror and generation–description framework remain candidates. No Agda result is added or removed by this decision. |
 
 ## Blockers  <!-- tags: kind:state -->
 
@@ -319,10 +342,19 @@ base interface. Closure, publication, reference, and Λ work are selected but
 not yet implemented; their executable evidence depends on the staged contract
 and kernel work recorded in `status_implementation.md`.
 
-ModalHoTT: active structural blocker. The current unrestricted flat rules imply
-that every type is flat-modal, conflicting with the analytic delooping witness.
-The first 1C obligation is to retain that diagnosis as a checked lemma; repair
-requires a newly justified modal signature and is not yet designed.
+M / comparison programme: missing definitions and witnesses, not an external
+blocker. The essence and rival morphisms, contextual uses, comparison structure,
+and cross-side relationship are unbuilt. The modal collapse blocks reuse of
+the old signature as non-degenerate evidence, not investigation of M.
+The proof-status distinction between the proposed all-types-flat diagnostic
+and the checked analytic non-flatness witness remains in force.
+
+Named open candidate obligations: `observation-quotient-universal`,
+`clause-separation-witness`, and, for a modal candidate only,
+`proper-modal-fragment`. Their hypotheses and controls are specified in
+[future_work.md §E](future_work.md#e-concrete-obligations-and-build-selection).
+These are prose specifications, not Agda declarations or checked results;
+no first build has been selected.
 
 ## Current Concurrency state  <!-- tags: kind:state -->
 
@@ -529,10 +561,10 @@ The point-generated R4 bridge, its Chu witness, and the Sessions-to-Chu
 object/morphism realization are landed. The harmonization program now has an
 ordered dependency shape:
 
-1. **1C, in parallel:** check the all-types-flat collapse in a diagnostic
-   module, reclassify dependent results, and investigate a non-degenerate
-   contextual signature. Context renewal supplies the forcing direction, not a
-   preselected modal encoding.
+1. **1C, in parallel:** pursue relational adequacy, extract K's categorical
+   essence, compare alternatives and siblings, and rebuild M. Select a bounded
+   obligation with informative controls from `future_work.md` §E; no first
+   construction or repaired modal signature is prescribed.
 2. **3R minimal causal kernel:** earn one non-empty parent edge from an actual
    consumed message through the existing recorder. This precedes more 2S
    structure because every banked causal realization currently rests on
@@ -560,10 +592,11 @@ ordered dependency shape:
    and an activation boundary. This is the first K phenomenon that may force
    the category of contexts needed by M.
 
-The conjecture-scale gates remain downstream: earned `session-O1-action`, a
-consumer for the full actor-causal reflector, independently constructed
-cross-site comparison before representability, and non-collapse tested on an
-actual `Allow`/`Require` pair.
+Conjecture-scale claims retain their own gates: a full session semantics needs
+an earned `session-O1-action`; full-site reflector work needs a consumer;
+representability needs an independently defined comparison; monad
+non-collapse needs an actual pair. These are not one serial prerequisite
+chain for all 1C work.
 
 Important scope notes:
 
@@ -582,12 +615,11 @@ Important scope notes:
 ### Held-loose long-horizon items (no near-term action)
 
 - **Full actor-causal reflector enrichment** — later, decide whether to extend the point-generated construction to richer covers where causality and actor incidence become descent content.
-- **Cross-site `Allow ⊣ Require`** — context renewal now supplies a trigger for
-  defining `M`: the first preservation-and-extension transition that genuinely
-  needs a category of contexts. Construct the actual functors, unit, counit,
-  and triangle identities only after that case is explicit; do not repair the
-  current modal signature by postulating the desired pair.
-- **Modal return plan** — lift `Bℤ -> S¹`, switch eta-iteration to cyclic bar, and coordinate with the concurrency modular-envelope direction only when both sides have earned the needed structure.
+- **World/practice correspondence** — active investigation through the selected
+  1C programme, with no constructed pair yet; see T1. A generic formula is not
+  evidence for its contextual interpretation.
+- **Legacy modal return plan** — no longer scheduled. Preserved in the migration
+  archive; its mathematics may return for a specific new use.
 - **Pask-style human-implementation layer** — conversation-as-operadic-composition. Speculative until `MO_1` makes conversation creates conversation a literal operadic operation. Held in motivation only.
 - **Pedagogy track** — current for the synthetic ModalHoTT and Concurrency Agda trees as of 2026-05-21. Analytic pedagogy remains intentionally out of scope unless explicitly requested.
 
