@@ -43,44 +43,15 @@ take over another agent's surface unprompted, and say so when you do cross over.
 
 ## Working in parallel
 
-**One worktree per agent. A branch is not enough.** A branch separates commits; a
-worktree separates the working directory. Two agents on two branches in one checkout
-still share one set of files, one index, and one HEAD, and any of them can switch the
-branch out from under the others mid-task.
+Agents work in one checkout, in relay through ig: one writes while another reads.
+The working tree is therefore shared state — treat every commit as if another agent
+has uncommitted edits in it, because usually one does.
 
-**The worktrees are standing fixtures, not per-session scratch.** One per lane plus
-one for the workflow surface, all permanent, so any agent — and any moment inside a
-session — knows where its work belongs without negotiating for it:
-
-```text
-../hoapa            main
-../hoapa-1C         1C     pure conjecture
-../hoapa-2S         2S     runtime-to-substrate
-../hoapa-3R         3R     runtime
-../hoapa-workflow   workflow   workflow files and abstracts (Codex's surface)
-```
-
-- **Do not remove them when a lane goes quiet.** A lane with no work in flight keeps
-its worktree. Removing it is a decision to retire the lane, not tidying.
-- **Level on entry.** Your first act in a lane worktree is `git merge --ff-only main`.
-The demonstrated failure mode here is staleness, not collision: a lane worktree was
-once found fifteen commits behind because it existed and nobody levelled it. If the
-fast-forward is refused, the lane has diverged — read `git log main..<lane>` and
-resolve it before starting work, never after.
-- Never `git checkout` a different branch in a checkout another agent is using.
 - Re-read `git status` and `git log` immediately before staging or committing. Never
 rely on a snapshot from earlier in the session.
-- Stage explicit paths, never `git add -A`, so another lane's in-flight files cannot be
-swept into your commit.
-- After any merge touching a file two lanes both write — `workflow/status_formal.md`
-and `workflow/current_track.md` are the usual ones — read the result. A clean merge
-is not evidence the file is consistent: a scattered rename will silently auto-merge
-against prose written in the older vocabulary.
-- Merge back with `git merge --ff-only <lane>` from `../hoapa`, levelling the lane
-first if main has moved. Leave the worktree in place afterwards.
-- A new standing worktree is added with `git worktree add ../hoapa-<name> -b <name>`,
-and this list is updated in the same change. `git worktree remove` is reserved for
-retiring a lane outright.
+- Stage explicit paths, never `git add -A`, so another agent's in-flight files cannot
+be swept into your commit.
+- Never `git checkout` a different branch while another agent is working.
 
 ## Working with ig
 
