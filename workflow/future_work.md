@@ -2026,3 +2026,179 @@ The current programme and its evidence levels are stated at the top of this file
   4. HoTT/foundations last, and selectively.
 
   The exchange is good overall. It gives us a disciplined outreach strategy: different audiences, different value proposition, one bounded question each.
+
+## Exploratory direction: musical articulation, universal technical language, and Galoisian replay
+
+**Status and scope — 2026-10-03.** Candidate investigation following the opening questions in arc/20 (arc/20_on_decompositions.md). This section records a possible route to the universal-language responsibility of Λ and to the separation/integration mirror. It selects neither a first build nor a new definition of M, and leaves the existing lane priorities unchanged.
+
+The guiding intuition is that a universal technical language could grow by turning situated work into portable forms of understanding. A context lets us articulate distinctions; working with those distinctions reveals relationships; what survives the encounter becomes available for further articulation elsewhere. Music is an unusually rich place to investigate this movement: distinguishable events compose a becoming whose unity can change what those events are. The proposed language would similarly make integration possible without making its constituents interchangeable.
+
+In the mirror’s vocabulary, K’s separations organize articulation, while the contextual capabilities investigated for M enable integration; those integrations may in turn induce new documentary distinctions in K. The intensive/extensive problematic offers several approaches to this movement, not a fixed allocation of one adjective to each side. The rising-sea investigation in §C and T4’s reciprocal mirror remain the surrounding programme.
+
+Here _Galoisian replay_ names the Hoapa-facing ambition: borrowing presentations, working through them, descending what can be made independent of borrowed choices, and enabling later use. Descent, transport, and that later uptake remain distinguishable parts of the proposed movement.
+
+### 1. Music as an effective realization of a problematic
+
+Investigate music as an effective theory in which relations such as discrete/continuous, local/global, and independence/interdependence find concrete expression, rather than primarily as a social phenomenon. A contrapuntal line, for example, can remain intelligible while its relations to other lines change its musical role. Neither the isolated note nor the completed whole must be fixed in advance as the elementary unit.
+
+- **Lautman:** the musical application is our proposed reading, not an attributed theory of music by Lautman. Ask which problematic relations a particular musical organization realizes. Analytic articulation of a particular work and synthetic organization of its possibilities can operate together; this is not a universal assignment of notes to the analytic and the whole to the synthetic.
+- **Deleuze:** investigate musical material making non-sonorous forces, duration, and intensity perceptible, and musical individuation without requiring an already constituted subject or form. His [1978 musical lecture](<https://www.webdeleuze.com/textes/113>) supplies a direct musical source, unlike our reconstructed Lautmanian application.
+- **Bergson:** retain a critical interlocutor, not merely another author saying the same thing. His criticism of intensive magnitude in [_Time and Free Will_, chapter I](<https://brocku.ca/MeadProject/Bergson/Bergson_1910/Bergson_1910_01.html>) challenges the treatment of qualitative differences as quantities; [chapter II](<https://brocku.ca/MeadProject/Bergson/Bergson_1910/Bergson_1910_02.html>) develops melody and qualitative multiplicity. Does a proposed analysis recover the unfolding integration, or merely its retrospectively separated positions? The relation to Deleuze’s account of intensity is a disagreement to investigate, not a shared definition to assume.
+- **Simondon:** pursue musical individuation together with its milieu. His aesthetic discussion in _On the Mode of Existence of Technical Objects_, part III, chapter II, is a source to revisit: the musical event is not exhausted by an isolated sound-producing object. Check the edition and passage before relying on a page-specific citation or a stronger doctrine.
+- **Lawvere/Grassmann:** leave the specifically musical realization open. Keep Grassmann’s mode of generation, Lawvere’s covariant/contravariant treatment of quantities, and Lawvere’s extensive/intensive _qualities_ distinct. In _Axiomatic Cohesion_, preservation of pieces and preservation of points concern the latter pair; these are not merely new names for Deleuzian genetic difference. Attribute the sense whenever using it.
+
+Stockhausen’s _…How Time Passes…_ is a further lead for rhythm and pitch as different organizations of temporal scale; Leibniz’s musical arithmetic is a lead for relational articulation and integrated perception. Neither establishes equivalence among the philosophical accounts. Grothendieck remains a methodological anchor here, without an invented musical doctrine. The proposed comparison among anchors is not yet a mathematical category with defined morphisms.
+
+### 2. Musical protolanguage and a reusable grammar of concepts
+
+The instigator’s motivating image is that speech bends a richer musical capacity into an information-bearing practice. Preserve this as a question about the emergence and specialization of expressive powers, not as an established account of human evolution or a verdict that speech is inferior music. In Deutsch, Henthorn, and Lapidis’s [speech-to-song experiment](<https://deutsch.ucsd.edu/pdf/JASA-2011_129_2245-2252.pdf>), repetition can change how an unchanged spoken phrase is heard. This is evidence about perceptual organization, not a demonstration of musical ancestry. Musical-protolanguage hypotheses and respiratory/laryngeal control remain related but distinct evolutionary investigations; see [Fitch’s discussion](<https://nyaspubs.onlinelibrary.wiley.com/doi/full/10.1111/nyas.14215>).
+
+The project-facing question is whether rich contextual variation can become reproducible distinctions, then compositional forms, then new expressive possibilities. “Learn once, use everywhere” would concern transferable construction patterns, not exemption from learning a new domain. Separate:
+
+1. Witnessed equivalences between presentations of a concept or construction.
+2. Reusable patterns connecting concepts that are not equivalent.
+
+This preserves the intuition of a few recognizable islands without making the objective a premature quotient of all knowledge. An island may retain nontrivial symmetry and several presentations; a connected groupoid is not necessarily contractible. An operadic grammar could govern composition while a groupoidal layer governs admissible identifications. Their compatibility, not their identification, is the research question.
+
+Use the existing Λ responsibility and arc/19 synthesis, §12 (arc/19_project_architecture.md#12-where-the-projects-major-concerns-could-live): retain the directed presentation, versioned admitted comparisons, and their localization separately. New vocabulary need not create a new numbered K layer. Universal-property claims, usability across perspectives, and widespread human recognition are different claims with different evidence.
+
+The musical source does not prescribe an auditory interface: accessibility includes multiple presentations and consumer-initiated use, not compulsory exposure to one canonical form.
+
+For a possible empirical comparison, hold the meanings/tasks fixed and compare reusable compositional patterns with unrelated labels, including transfer to unfamiliar cases and preservation of distinctions. Work such as [Kirby et al., _Compression and communication in the cultural evolution of linguistic structure_](<https://www.research.ed.ac.uk/en/publications/compression-and-communication-in-the-cultural-evolution-of-lingui/>) offers model-relative questions, not a proof of Hoapa’s language or an independently justified universal fitness function.
+
+### 3. Decidable presentations and two limits on perspective
+
+One mathematical entry is a suitable Grothendieck 1-topos E, initially a contextual or documentable fragment rather than all of M. An object is decidable when its diagonal has a complement: its internal equality is decidable. A locally decidable topos has enough such objects to cover every object. The corresponding site characterization uses a presenting site whose arrows are epimorphisms _in that site_; this is not a claim that every chosen probe category has that property. See [McLarty’s discussion of the site characterization](<https://www2.math.ethz.ch/EMIS/journals/TAC/volumes/16/5/16-05.pdf>).
+
+Epimorphic cancellation gives uniqueness when a factorization exists, not existence of the factorization or effectiveness of descent.
+
+Provisional dictionary, to be tested rather than imposed:
+
+| Contextual ingredient | Possible documentary use |
+|---|---|
+| A chosen generating family of objects | Reusable presentation shapes or expression types |
+| A map from a generator into X | A contextual realization of such a shape |
+| Morphisms among presentation shapes | Admissible transformations of descriptions |
+| Covering families | Jointly adequate local presentations |
+| Relations and descent data | Conditions for integrating presentations |
+| Isomorphisms or separately admitted comparisons | Witnesses supporting transport of expression |
+
+The generators belong to E; their use as vocabulary belongs to a nerve or other documentary interface in K. This supplies a candidate reciprocal mirror: contextual structure induces distinctions on the documentary side. It does not identify an E-object with a literal word or equate the probe category with the whole contextual world.
+
+A small test is an epimorphism q : D → X with D decidable. Its kernel pair R = D ×_X D gives an effective equivalence relation presenting X. Decidable equality of names in D need not decide whether two names have the same image in X: membership in the relation R can remain undecidable. This is a genuine relation-groupoid/quotient construction, but it begins with X and q; it does not discover semantic equivalence unaided, nor does it supply all higher comparison witnesses.
+
+Keep two cases visible:
+
+- **Non-Boolean, locally decidable examples:** sheaf topoi on spaces have generating open subterminals, which are decidable objects, without thereby making every proposition decidable. Semantic identification can remain undecidable despite a decidable presentation.
+- **Boolean Galois examples:** every object is decidable, so that condition alone selects no vocabulary. Nevertheless a nonempty transitive G-set with more than one element has no global element: no root/name is invariantly preferred. Here atoms and their symmetry are useful candidates for islands; undecidable equality is not the limitation.
+
+An atom is not necessarily a generator. For example, the transitive three-element S₃-set cannot map equivariantly to the regular S₃-set, so it cannot distinguish the latter’s different equivariant endomorphisms. Expressive adequacy belongs to the chosen probe family, not to atomicity alone.
+
+A generating family can also be far too large for human use. If a chosen site yields an exact sheaf/nerve reconstruction, its reconstruction counit is invertible; loss would have to concern a restricted interface or something outside that fully represented fragment. None of these 1-categorical examples automatically supplies the higher version.
+
+### 4. Galoisian replay as borrow–work–return–replay
+
+The proposed language is a candidate flagship example of the logical cycle: borrow names, coordinates, or a richer presentation; work with them; make the resulting construction available with its precise dependencies; replay it where those dependencies can be met.
+
+Distinguish the adjunctive return—a transpose once an adjunction exists—from descent, which may fail, and from later uptake. A returned presentation can still contain borrowed choices; descent asks which of those can be eliminated.
+
+For a separable quadratic t² + a t + b over a field k of characteristic different from two, borrow a splitting field and names r₁, r₂. The quantity δ = r₁ − r₂ depends on their order, while Δ = δ² = a² − 4b descends to k. Its square class diagnoses whether the quadratic already splits over k; computing Δ is not itself an algorithm for deciding squares in every k.
+
+The sum and product of the roots recover −a and b: useful descent controls, but not new information merely because they were computed upstairs. In the irreducible quadratic case they are also the trace and norm of a root, suggesting a further investigation of variance within this change of base.
+
+More generally, in a finite Galois extension L/k with group G, invariance under a subgroup H supports return to Lᴴ, not necessarily all the way to k. For objects rather than elements, require coherent descent data, not merely an assertion of invariance. The return can therefore be relative to an intermediate context. This is a promising place to relate the Lawvere variance questions to an actual construction, without equating those variances with the entire M/K correspondence.
+
+Deriving a construction uniformly over a generic family of quadratics is another achievement, not an automatic consequence of the one-instance calculation. It connects to §D’s distinction between particular artifacts and instantiable rules.
+
+Likewise distinguish using an existing language from developing a new reusable expression. The latter, followed by an independently admissible new use, is the connection to §E’s contextual-renewal candidate. Reversible Galois transport alone is not evolution.
+
+### 5. Galoisian organization and two entrances to the Esquisse
+
+Prefer first to equip K’s presentation, transport, and composition interfaces with the structures that make Galois/Teichmüller mathematics applicable. Reconstruct a group from independently justified data rather than installing G_ℚ, GT, or A₅ in advance. A categorical Galois reconstruction would already be substantial if its group were unrelated to G_ℚ. The exactness, finiteness, and detection requirements are part of the work; see [the Galois-category theorem](<https://stacks.math.columbia.edu/tag/0BMQ>) and the Galois and nominal-set sibling rows (related_structures.md#sibling-catalogue).
+
+Record the contextual placement too. In [Lawvere’s _Axiomatic Cohesion_, §II](<https://lawverearchives.com/wp-content/uploads/2025/01/2007-Axiomatic-cohesion.pdf>), the non-cohesive base need not be Set: a Galois topos is a candidate base. Finite separable extensions of a ground field are not generally finite fields; finite étale algebras also include disconnected objects. For a finite ground field, its algebraic closure has procyclic Galois group Ẑ, whose open subgroups nẐ offer a comparison with the legacy ℤ thread, not its automatic reinstatement.
+
+The precise Como-lecture formulation remains to be checked against a primary text; the 2007 paper supports the relative-base claim without requiring that attribution.
+
+There are two entrances, which may eventually meet:
+
+- **Compositional:** the Esquisse’s Lego viewpoint, decomposition into pieces, gluing, and coherent moves between decompositions. K’s operadic and documentary interfaces are possible carriers. The needed operations must preserve the appropriate causal/resource distinctions.
+- **Covering/arithmetic:** finite covers, monodromy, and their symmetries. Finite sets with two arbitrary permutations and equivariant maps form a Galois category via finite actions of the free group on two generators, equivalently of its profinite completion. Transitive actions describe connected dessins; the full category includes empty and disconnected objects. This provides a finite-combinatorial entrance to dessins apart from constructing a modular envelope. Relating the resulting objects to arithmetic families and the absolute Galois action is additional work.
+
+Sources for the two entrances include [Grothendieck’s _Esquisse_](<https://webusers.imj-prg.fr/~leila.schneps/grothendieckcircle/EsquisseFr.pdf>) and [Combe–Manin–Marcolli, _Dessins for Modular Operad and Grothendieck–Teichmüller Group_](<https://arxiv.org/abs/2006.13663>). They do not establish a Hoapa interpretation by themselves or move MO₁’s forcing-case gate.
+
+Do not infer exclusive side ownership from an author’s original use. A contextual Galois base and a documentary Galois category would be different objects with a relation to construct. Likewise, monic local-view maps do not by themselves exclude a different Galois presentation elsewhere in K.
+
+Tier A’s relabeling invariance motivates investigating nominal semantics, but an action and finite-support account remain to be supplied. Actor-name symmetry concerns the identity channel; conceptual comparison witnesses concern documentation. Their similar mathematics does not merge the two channels or establish two already constructed Galois structures.
+
+### 6. Detailed candidate: cyclic ports, closed graphs, and A₅
+
+**Origin and interest.** Claude proposed a concrete route from O₁-shaped data to A₅, and the instigator singled it out for investigation. Its appeal is that the order-two and order-three structure might arise from the organization of composition itself, rather than from a desired group chosen at the end. This is a candidate construction and interpretation, not a banked result about K.
+
+**Proposed combinatorial carrier.** Retain a finite graph presentation built from copies of a three-port generator. Its darts are the individual ports at vertices. Give each vertex a cyclic order, and pair all ports across edges in the closed case. On the dart set H define:
+
+```
+r : H → H     rotation around each three-port vertex
+s : H → H     exchange of the two ports paired into an edge
+
+r³ = id       with all r-cycles of length three
+s² = id       with no fixed points in the closed case
+```
+
+These permutations give an action of C₂ ∗ C₃ ≅ PSL₂(ℤ). The graph is connected when the generated action is transitive. The exact-cycle conditions matter: an arbitrary action of that free product may have fixed points, whereas the proposed closed trivalent ribbon graph has none for either generator. Cycles of the appropriate product sr describe face boundaries, up to the chosen orientation/convention. Subdividing each edge by a bivalent vertex gives the associated clean bipartite dessin.
+
+**The dodecahedral test.** A dodecahedron has 20 trivalent vertices, 30 edges, and 60 darts. Its permutation data have cycle types:
+
+```
+r  : 20 cycles of length 3
+s  : 30 cycles of length 2
+sr : 12 cycles of length 5
+```
+
+The order-five relation gives the orientation-preserving spherical triangle group:
+
+```
+⟨s,r | s² = r³ = (sr)⁵ = 1⟩ ≅ A₅ ≅ PSL₂(𝔽₅)
+```
+
+For a concrete finite specification, take s = (1 2)(3 4) and r = (1 3 5) in A₅, with sr applying r first, and then use their regular action on the 60 group elements. The resulting cycles give 20 vertices, 30 edges, and 12 faces, hence Euler characteristic 2. This is the degree-60 regular dodecahedral dessin, not the different six-point action of PSL₂(𝔽₅) on the projective line.
+
+The order-five relation is additional global information: three-port rotation and port pairing alone also allow many other graphs and monodromy groups. The substantial question is whether an independently motivated Hoapa construction produces, needs, or distinguishes this example. Drawing the dodecahedron and observing A₅ is a control, not that result.
+
+Connect this route to the existing degree-60 A₅ test under “A specific space-valued mediator candidate,” without identifying combinatorial monodromy, graph automorphisms, and the automorphism group of a fibre functor. Even when the first two are isomorphic in this regular example, their actions and responsibilities differ. A₅ could also occur as a finite quotient of a larger reconstructed profinite group rather than as that entire group.
+
+**Contact with the current implementation.** ../formal/Concurrency/Operads/CyclicAssociative.agda has `gen : O 2`, hence three ports, cyclic rotation, and binary composition with positive-arity operands. It does not supply the closed graph carrier above. In particular:
+
+- Binary cyclic composition joins two pieces; generating a closed graph with cycles requires additional self-gluing/contraction structure or an external graph-presentation construction. Its interpretation in K must be supplied, not inferred from `compₒ`.
+- The current operad's path constructors are composition associativity and cyclic equivariance; none identifies two different trees. No theorem yet shows that an element of `O n` determines its tree, generator occurrences, and internal incidence, so that recovery must be proved before it is relied on. Retain the graph presentation separately and ask what its interpretation forgets.
+- The dodecahedral graph has cycle rank 30 − 20 + 1 = 11 although its ribbon surface, after capping 12 boundary components, has genus zero. Specify which genus a proposed modular construction tracks; these two numbers must not be conflated.
+- Cyclic/ribbon ordering supplies no causal direction by itself. Relate it to K’s directed evidence and to the cartesian/linear adapter without replacing either by the graph’s undirected incidence.
+
+**Session-duality lead.** A typed edge should pair compatible dual ports. One can ask whether the dart involution s has session duality as its type-level counterpart: for a port labeling ℓ, seek a compatibility of the form:
+
+```
+ℓ(s h) ≃ ℓ(h)⊥
+```
+
+The comparison must be stated in the appropriate type/value setting. It would relate a permutation of incidences to an involution on labels, not make them literally the same map. It needs an actual labeled-graph semantics and a composition theorem. The existing session action obligation is not discharged by proposing this equation.
+
+**What could earn MO₁.** If a specified Hoapa use requires feedback or self-gluing which the cyclic interface cannot express, these graphs could become a forcing case for a modular extension. A later artifact being used again is not automatically such a contraction: it might be ordinary directed composition. First identify the operation and the distinctions it must preserve.
+
+A closed finite example may still be valuable independently of promoting MO₁. No actor-causal frame morphism is allowed to collapse a conversation into an actor to make the graph fit.
+
+**Investigation outcome sought.** Specify the open and closed graph interfaces, their maps and composition; construct the two dart permutations; test the regular A₅ example and a non-dodecahedral trivalent control; and identify what K actually gains from the construction. A factorization or reconstruction property would be stronger than finding a familiar symmetry.
+
+One dessin still does not supply an adjunction, triangle identities, contextual renewal, or optimality. These are candidate obligations, not a new formal work order or a claim that an Agda fixture has been added.
+
+### 7. Comparison controls and decision gates
+
+Keep the exploratory questions capable of distinguishing outcomes without requiring every philosophical intuition to arrive as an executable theorem. When a mathematical claim becomes a build, use the existing §E selection discipline. The following controls are available; they do not select an implementation order:
+
+- **Symmetry versus orbit set:** a nontrivial transitive G-set has no invariant selected element, while its orbit set is a singleton with a global element. Compare with a singleton carrying the trivial action. This detects a real distinction lost by quotienting, not a blanket rule that every symmetry must be retained for every use.
+- **Names versus meanings:** compare a decidable presentation for which membership in the kernel relation is not decidable with a Boolean Galois model where it is. The latter must still exhibit the different limitation of invariant choice.
+- **Descent versus retained dependence:** compare an invariant expression with a named root that cannot descend to the original field. Include intermediate-field descent and record precisely what each context permits.
+- **Formal iteration versus new capability:** for a finite extension L/k of degree greater than one, the extension/restriction monad T(V) = L ⊗ₖ V has noninvertible unit maps along its iterates on nonzero finite-dimensional V. Faithfully flat descent nevertheless reconstructs V from the full compatible descent diagram. The sequential unit tower and its colimit are not that diagram or its descent object. This is a control against inferring novelty from persistent non-collapse, not a claim that T_recursion’s precise construction has already been refuted. See [descent for modules](<https://stacks.math.columbia.edu/tag/023M>).
+- **Reuse versus renaming:** compare a language that transfers a construction to a genuinely new declared use with one that only offers more names for previously available operations. Test domain distinctions as well as expressive economy; do not choose a measure simply to make compression win.
+- **A₅ versus the unrestricted graph family:** vary the face relation and retain the three-port/pairing clauses. Ask what, if anything, independently selects the dodecahedral case, and whether its symmetry is useful for a documentary or operational task. Other successful cases are informative, not failed approximations to A₅.
+
+**Consequences for the conjecture.** This is a possible route to the universal-language component of K, and through it to contextual adequacy and renewal—not a new definition of M or a proof of the conjecture. Music helps formulate the problem of articulation and integration; presentation, descent, and Galois reconstruction offer ways to make parts of that problem mathematically accountable. The hoped-for advance is a language whose forms can be learned and reused across contexts while preserving the differences that make those contexts productive. Whether that contributes a universal-property account of Hoapa’s special adequacy remains the larger question, not a conclusion supplied by the analogy.
