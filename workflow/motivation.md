@@ -134,9 +134,11 @@ A technical approach into this metaphysics sees it as a Hegelian sublation that 
 | Neighbor | What it contributes | Absorbed here as |
 |---|---|---|
 | Hegel - Dialectic | dialectic; aufhebung; the concrete universal | each language-type sublates its predecessor — preserved, cancelled, lifted |
-| Deleuze - Difference | multiplicity, difference, and non-final becoming | "multiplicity"; and the refusal to close (no first context, open colimit) |
-| Lawvere - Categorical logic and cohesion | structured contexts and their internal languages | resources for discovering the correspondence, not a prescribed M |
-| Peirce - Semiotics | sign, object, interpretant; inquiry as a community process | interpretation becoming habit, and habit becoming a new context |
+| Deleuze - Difference | multiplicity, intensive individuation, and non-final becoming | genesis of articulated forms; and the refusal to close (no first context, open colimit) |
+| Lawvere - Categorical logic and cohesion | structured contexts and internal languages; distinct accounts of quantities and qualities | resources for discovering the correspondence and its transformations, not a prescribed M |
+| Peirce - Semiotics and diagrammatic reasoning | sign, object, interpretant; communal inquiry and clarification through conceivable consequences | interpretation becoming habit and a new context; reasoning that makes achievements reusable |
+| Leibniz - Universal characteristic | organized conceptual expression supporting reasoning | reusable forms of understanding, without assuming a final alphabet of conceptual primitives or universal decidability |
+| Bergson - Duration and qualitative multiplicity | critique of reducing qualitative differences to magnitudes | asking whether decomposition preserves unfolding integration or only its retrospectively separated positions |
 | Lautman / Zalamea - Saturation and liberation | problematic structure, transit, saturation, and liberation | saturation and liberation, context completing enough structure to release new forms |
 | Grothendieck - Relative point of view | relative point of view and rising-sea method | objects known through relations, covers, and patient enlargement of context |
 | Whitehead - Process philosophy | reality as events and becoming rather than substance-first inventory | multiplicities forming through successive occasions |

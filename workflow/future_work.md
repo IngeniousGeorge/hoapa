@@ -2029,9 +2029,13 @@ The current programme and its evidence levels are stated at the top of this file
 
 ## Exploratory direction: musical articulation, universal technical language, and Galoisian replay
 
-**Status and scope — 2026-10-03.** Candidate investigation following the opening questions in arc/20 (arc/20_on_decompositions.md). This section records a possible route to the universal-language responsibility of Λ and to the separation/integration mirror. It selects neither a first build nor a new definition of M, and leaves the existing lane priorities unchanged.
+**Status and scope — 2026-10-03; extended 2026-10-06.** Candidate investigation following [arc/20's opening questions](arc/20_on_decompositions.md#openings-with-codex-towards-the-universal-language), its subsequent [Deligne discussion](arc/20_on_decompositions.md), and [anchor-placement exchange](arc/20_on_decompositions.md#anchor-placement). This section records a possible route to the universal-language responsibility of Λ and to the separation/integration mirror. It selects neither a first build nor a new definition of M, and leaves the existing lane priorities unchanged.
 
 The guiding intuition is that a universal technical language could grow by turning situated work into portable forms of understanding. A context lets us articulate distinctions; working with those distinctions reveals relationships; what survives the encounter becomes available for further articulation elsewhere. Music is an unusually rich place to investigate this movement: distinguishable events compose a becoming whose unity can change what those events are. The proposed language would similarly make integration possible without making its constituents interchangeable.
+
+How does understanding acquire stable, reusable forms without those forms exhausting—or closing—the possibilities from which they arise? A concept can be an outcome of individuation in one episode and a resource for individuation in another. The language would preserve achievements in forms capable of participating in further invention.
+
+The working orientations here are **Deleuze–Lawvere for productive differences becoming articulated forms**, and **Peirce–Leibniz for articulated forms becoming reusable understanding**. These are overlapping responsibilities within this investigation; the project-level [anchor map remains in motivation.md](motivation.md#metaphysical-framing-context-multiplicity-language-type-new-context).
 
 In the mirror’s vocabulary, K’s separations organize articulation, while the contextual capabilities investigated for M enable integration; those integrations may in turn induce new documentary distinctions in K. The intensive/extensive problematic offers several approaches to this movement, not a fixed allocation of one adjective to each side. The rising-sea investigation in §C and T4’s reciprocal mirror remain the surrounding programme.
 
@@ -2049,7 +2053,11 @@ Investigate music as an effective theory in which relations such as discrete/con
 
 Stockhausen’s _…How Time Passes…_ is a further lead for rhythm and pitch as different organizations of temporal scale; Leibniz’s musical arithmetic is a lead for relational articulation and integrated perception. Neither establishes equivalence among the philosophical accounts. Grothendieck remains a methodological anchor here, without an invented musical doctrine. The proposed comparison among anchors is not yet a mathematical category with defined morphisms.
 
-### 2. Musical protolanguage and a reusable grammar of concepts
+The broader Deleuze–Lawvere question is what makes a situation capable of producing new understanding, and what remains available when that understanding becomes an articulated, transportable form. In [Deleuze's account of individuation](https://www.l.u-tokyo.ac.jp/philosophy/pdf/deleuze_dr.pdf), intensity participates in the actualization of differential relations into qualities and extensities; it is not simply another name for the virtual. For this project, ask whether the resulting conceptual organization preserves routes to further discovery rather than merely stabilizing a classification.
+
+Lawvere supplies possible mathematical articulations, not an established translation of Deleuze. His [relative cohesion and accounts of qualities](https://lawverearchives.com/wp-content/uploads/2025/01/2007-Axiomatic-cohesion.pdf) provide specific functorial distinctions to investigate. Cohesion remains an available instrument, not the prescribed M. Music is a concrete investigation of genesis and articulation, not the explanation of every later construction.
+
+### 2. Universal technical language: musical articulation, reasoning, and reuse
 
 The instigator’s motivating image is that speech bends a richer musical capacity into an information-bearing practice. Preserve this as a question about the emergence and specialization of expressive powers, not as an established account of human evolution or a verdict that speech is inferior music. In Deutsch, Henthorn, and Lapidis’s [speech-to-song experiment](<https://deutsch.ucsd.edu/pdf/JASA-2011_129_2245-2252.pdf>), repetition can change how an unchanged spoken phrase is heard. This is evidence about perceptual organization, not a demonstration of musical ancestry. Musical-protolanguage hypotheses and respiratory/laryngeal control remain related but distinct evolutionary investigations; see [Fitch’s discussion](<https://nyaspubs.onlinelibrary.wiley.com/doi/full/10.1111/nyas.14215>).
 
@@ -2060,13 +2068,28 @@ The project-facing question is whether rich contextual variation can become repr
 
 This preserves the intuition of a few recognizable islands without making the objective a premature quotient of all knowledge. An island may retain nontrivial symmetry and several presentations; a connected groupoid is not necessarily contractible. An operadic grammar could govern composition while a groupoidal layer governs admissible identifications. Their compatibility, not their identification, is the research question.
 
+Peirce adds an account of how these forms become intelligible through reasoning. His [pragmatic clarification](https://www.marxists.org/reference/subject/philosophy/works/us/peirce.htm) concerns conceivable consequences, not merely immediate utility. His [diagrammatic reasoning](https://www.jfsowa.com/peirce/ms514.htm) constructs under a general prescription, experiments, establishes what survives variation, and expresses a general result. This offers a philosophical comparison with borrow–work–replay, including the passage from an instance to an instantiable rule; it does not construct our adjunction.
+
+Leibniz's [universal characteristic](https://www.ratiocination.org/Courses/phil3505/wp-content/uploads/2017/08/Leibniz__Preface-to-a-Universal-Characteristic-and-other-fragments-on-logic.pdf) supplies the ambition of conceptual expression whose organization supports reasoning rather than merely assigning labels. Our proposed synthesis is: **a reusable concept supports intelligible operations and warranted passages between perspectives**. This enriches the grammar/islands picture without equating concepts merely because some uses coincide. Peirce explicitly distinguishes the purpose of his [existential graphs](https://www.jfsowa.com/exgraphs/peirceoneg/existentialgraphs4.418-529.htm) from constructing a universal language for mathematicians; we borrow an account of reasoning, not a finished notation.
+
 Use the existing Λ responsibility and arc/19 synthesis, §12 (arc/19_project_architecture.md#12-where-the-projects-major-concerns-could-live): retain the directed presentation, versioned admitted comparisons, and their localization separately. New vocabulary need not create a new numbered K layer. Universal-property claims, usability across perspectives, and widespread human recognition are different claims with different evidence.
 
 The musical source does not prescribe an auditory interface: accessibility includes multiple presentations and consumer-initiated use, not compulsory exposure to one canonical form.
 
 For a possible empirical comparison, hold the meanings/tasks fixed and compare reusable compositional patterns with unrelated labels, including transfer to unfamiliar cases and preservation of distinctions. Work such as [Kirby et al., _Compression and communication in the cultural evolution of linguistic structure_](<https://www.research.ed.ac.uk/en/publications/compression-and-communication-in-the-cultural-evolution-of-lingui/>) offers model-relative questions, not a proof of Hoapa’s language or an independently justified universal fitness function.
 
-### 3. Decidable presentations and two limits on perspective
+### 3. Relative presentations, decidable generators, and limits on perspective
+
+In his [lecture on Grothendieck](https://www.carmin.tv/en/video/loeuvre-dalexandre-grothendieck-par-pierre-deligne), Deligne explains the relative situation X → S through geometric fibres and change of base, then the functor-of-points viewpoint; see [the transcription, pp. 2–3](https://denisevellachemla.eu/transc-Deligne-l-oeuvre-de-Grothendieck.pdf#page=2). The project-facing lesson is that **integration need not erase a distinction: the right framework can make it more explicit**. Geometric shape and what is available over a particular base are related without being interchangeable.
+
+For an S-scheme X, the relative functor of points T ↦ Hom_S(T, X) records coherent manifestations across test contexts. [Representability](https://stacks.math.columbia.edu/tag/01JF) gives such a functor a universal characterization by an object when a representing object exists. For our language, this is a template: specify the test contexts, admissible interpretations, and their compatibility before claiming reconstruction.
+
+Two mathematical exemplars illuminate the reciprocal mirror:
+
+- **Separation enabling integration:** descent organizes local data and compatibility; reconstruction requires the relevant effective-descent hypotheses.
+- **Integration revealing separation:** the relative geometric/arithmetic framework distinguishes a geometric manifestation from its availability and descent over the base.
+
+These exemplify the two directions sought by T4, not an already constructed K/M correspondence. Neither geometry nor arithmetic is assigned exclusively to one side. The quadratic control in §7 makes the distinction concrete.
 
 One mathematical entry is a suitable Grothendieck 1-topos E, initially a contextual or documentable fragment rather than all of M. An object is decidable when its diagonal has a complement: its internal equality is decidable. A locally decidable topos has enough such objects to cover every object. The corresponding site characterization uses a presenting site whose arrows are epimorphisms _in that site_; this is not a claim that every chosen probe category has that property. See [McLarty’s discussion of the site characterization](<https://www2.math.ethz.ch/EMIS/journals/TAC/volumes/16/5/16-05.pdf>).
 
@@ -2102,6 +2125,8 @@ The proposed language is a candidate flagship example of the logical cycle: borr
 
 Distinguish the adjunctive return—a transpose once an adjunction exists—from descent, which may fail, and from later uptake. A returned presentation can still contain borrowed choices; descent asks which of those can be eliminated.
 
+The relative viewpoint separates what becomes available after context extension, what descends to an original or intermediate context, and what can subsequently be reused elsewhere. Replay needs the dependencies and descent conditions, not merely the final geometric appearance.
+
 For a separable quadratic t² + a t + b over a field k of characteristic different from two, borrow a splitting field and names r₁, r₂. The quantity δ = r₁ − r₂ depends on their order, while Δ = δ² = a² − 4b descends to k. Its square class diagnoses whether the quadratic already splits over k; computing Δ is not itself an algorithm for deciding squares in every k.
 
 The sum and product of the roots recover −a and b: useful descent controls, but not new information merely because they were computed upstairs. In the irreducible quadratic case they are also the trace and norm of a root, suggesting a further investigation of variance within this change of base.
@@ -2130,6 +2155,14 @@ Sources for the two entrances include [Grothendieck’s _Esquisse_](<https://web
 Do not infer exclusive side ownership from an author’s original use. A contextual Galois base and a documentary Galois category would be different objects with a relation to construct. Likewise, monic local-view maps do not by themselves exclude a different Galois presentation elsewhere in K.
 
 Tier A’s relabeling invariance motivates investigating nominal semantics, but an action and finite-support account remain to be supplied. Actor-name symmetry concerns the identity channel; conceptual comparison witnesses concern documentation. Their similar mathematics does not merge the two channels or establish two already constructed Galois structures.
+
+The geometric/arithmetic distinction has a classical structural form. For a geometrically connected variety X over a field k, with compatible geometric basepoints understood, there is an [exact sequence](https://stacks.math.columbia.edu/tag/0BTU):
+
+```text
+1 → π₁ᵉᵗ(X over k̄) → π₁ᵉᵗ(X) → Gal(kˢᵉᵖ/k) → 1
+```
+
+The geometric group controls geometric finite étale covers; the arithmetic group also retains their relationship to the base field. For §6's dessin candidate, A₅ first appears as finite geometric monodromy (using the complement of the branch locus for the étale formulation). Arithmetic realization, field of definition, and descent are further questions. Finding A₅ alone reconstructs neither this exact sequence for a Hoapa object nor the absolute Galois group.
 
 ### 6. Detailed candidate: cyclic ports, closed graphs, and A₅
 
@@ -2194,11 +2227,14 @@ One dessin still does not supply an adjunction, triangle identities, contextual 
 
 Keep the exploratory questions capable of distinguishing outcomes without requiring every philosophical intuition to arrive as an executable theorem. When a mathematical claim becomes a build, use the existing §E selection discipline. The following controls are available; they do not select an implementation order:
 
+- **Geometric agreement versus arithmetic availability:** x² − 2 and x² − 1 define isomorphic two-point schemes over ℚ̄. Over ℚ, the first has no rational point and the second has two. Their Galois actions retain the distinguishing information: two exchanged roots versus two individually fixed roots. This is a concrete control for a presentation that retains geometric shape but forgets conditions of availability; see [étale schemes over a field and Galois actions](https://stacks.math.columbia.edu/tag/04JI).
 - **Symmetry versus orbit set:** a nontrivial transitive G-set has no invariant selected element, while its orbit set is a singleton with a global element. Compare with a singleton carrying the trivial action. This detects a real distinction lost by quotienting, not a blanket rule that every symmetry must be retained for every use.
 - **Names versus meanings:** compare a decidable presentation for which membership in the kernel relation is not decidable with a Boolean Galois model where it is. The latter must still exhibit the different limitation of invariant choice.
 - **Descent versus retained dependence:** compare an invariant expression with a named root that cannot descend to the original field. Include intermediate-field descent and record precisely what each context permits.
 - **Formal iteration versus new capability:** for a finite extension L/k of degree greater than one, the extension/restriction monad T(V) = L ⊗ₖ V has noninvertible unit maps along its iterates on nonzero finite-dimensional V. Faithfully flat descent nevertheless reconstructs V from the full compatible descent diagram. The sequential unit tower and its colimit are not that diagram or its descent object. This is a control against inferring novelty from persistent non-collapse, not a claim that T_recursion’s precise construction has already been refuted. See [descent for modules](<https://stacks.math.columbia.edu/tag/023M>).
-- **Reuse versus renaming:** compare a language that transfers a construction to a genuinely new declared use with one that only offers more names for previously available operations. Test domain distinctions as well as expressive economy; do not choose a measure simply to make compression win.
+- **Reuse versus renaming:** compare a language that transfers a construction to a genuinely new declared use with one that only offers more names for previously available operations. Ask whether retaining contextual dependencies enables a use that a context-free presentation cannot support. Test domain distinctions as well as expressive economy; do not choose a measure simply to make compression win. Whether stable organization remains open to further individuation is an interpretive research question until the relevant possibilities and transformations are specified.
 - **A₅ versus the unrestricted graph family:** vary the face relation and retain the three-port/pairing clauses. Ask what, if anything, independently selects the dodecahedral case, and whether its symmetry is useful for a documentary or operational task. Other successful cases are informative, not failed approximations to A₅.
 
 **Consequences for the conjecture.** This is a possible route to the universal-language component of K, and through it to contextual adequacy and renewal—not a new definition of M or a proof of the conjecture. Music helps formulate the problem of articulation and integration; presentation, descent, and Galois reconstruction offer ways to make parts of that problem mathematically accountable. The hoped-for advance is a language whose forms can be learned and reused across contexts while preserving the differences that make those contexts productive. Whether that contributes a universal-property account of Hoapa’s special adequacy remains the larger question, not a conclusion supplied by the analogy.
+
+The universal language may need to preserve not only conceptual shapes, but the conditions under which they become available and the coherent ways those conditions change. Its adequacy would be relational: what it enables a practice to understand, transport, and develop in its contexts, not merely its compression or internal elegance. Stable forms would matter both as achievements of earlier individuation and as resources for further invention.
