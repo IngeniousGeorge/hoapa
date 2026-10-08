@@ -88,6 +88,42 @@ Lautman's broader dialectic gives this contrast a dynamic setting. Dialectical I
 
 **What it models.** The two decompositions model how individual differentiation and global organization arise together. They are useful when a homogeneous or uniformly presented field produces heterogeneous individual structure, when a particular object can only be analyzed relative to a surrounding domain, or when changing a basis, field, cover, context, or presentation changes the decomposition without necessarily changing the being presented. Saturation and liberation add a practical rhythm: incomplete structures are enriched, completed, or globalized; a more mobile invariant, notion, or interface is then liberated from the enriched construction and becomes usable in another context.
 
+**Decomposition and genesis are distinct questions.** In
+[the miscellaneous notes](arc/xx_misc_notes.md#lautmans-decompositions), the
+passage beginning "Lautman's decompositions" separates how a being is
+articulated from what that articulation makes possible. Proper/dimensional
+decomposition addresses the first question; structure/existence addresses the
+second. A decomposition may describe an existing being, while a schema of
+genesis exhibits how the structure of one domain supports the existence of
+further beings. For the mirror, ask when a disciplined separation enables a new
+construction rather than merely another description. Not every decomposition is
+generative.
+
+**Mixtes as mediators.** Lautman's intermediate structures can enable passage
+between different kinds of beings without identifying them. This gives a
+source question for adapters and correspondence candidates: what must an
+intermediate structure retain from each setting to make the passage possible?
+It does not prescribe another category or identify R4 with a Lautmanian mixte.
+See [Petitot, §§2.3.4–2.3.5](https://jeanpetitot.com/ArticlesPDF/Petitot_Lautman.pdf)
+for these themes and their examples.
+
+**Making a problematic relation mathematically explicit.** The notes' passage
+[beginning "Grothendieck may therefore reverse Lautman's division of labour"](arc/xx_misc_notes.md#making-a-problematic-relation-mathematically-explicit)
+suggests the following investigations, without establishing the historical
+reversal claimed in its title:
+
+- local/global becomes a question about restriction, compatibility, and descent;
+- essence/existence can become representability of a specified functor;
+- many realizations can lead to a moduli problem, retaining automorphisms through groupoids or stacks where needed;
+- particular/universal can be articulated through a universal construction;
+- continuous/discrete can be investigated through suitable cohesion structures.
+
+These are examples, not an exhaustive translation of philosophy into
+mathematics. Representability and moduli give question shapes for the
+comparison structure and contextual variability; neither supplies Hoapa's
+adequacy or P. Making a problematic mathematically explicit need not exhaust
+its philosophical significance.
+
 **Relation to our arc — the stated project interpretation.** What is being
 decomposed is **understanding of the world**, existing in two distinct realms:
 embodied understanding distributed among a community of thinkers, and
@@ -102,6 +138,14 @@ prime-factorization image expresses articulation into constituents specific
 to what is understood. Neither asserts identical minds, a basis of people,
 canonical conceptual primes, or unique factorization. Unityping supplies a
 common formal interface, not equality of participants or of their abilities.
+
+**Research genealogy.** In the notes beginning
+["My contribution to epistemology"](arc/xx_misc_notes.md#research-genealogy),
+the instigator reports that pursuing equal-standing participation alongside
+differentiated documentation led to making the reality/representation boundary
+explicit and investigating further documentary separations. This records a path
+of discovery, not a derivation that the first architectural commitment
+logically entails all the others.
 
 These are dominant orientations, not exclusive assignments. Documentation
 aspires to become synthetic by furnishing languages and structures for later
@@ -239,6 +283,19 @@ Hoapa's genuine proposed extension is to make Lautman's already-double movement 
 
 **What it models.** The view is useful wherever a context is not merely an external container and an individual is not a primitive atom: a particular form precipitates from a structured field, modifies that field, and leaves it capable of further individuation. It distinguishes stabilization from terminal closure and a developmental sequence from repeated copies of one finished object.
 
+**Information and uptake.** The notes beginning
+["Simondonian information should not be placed simply on the analytic/content pole"](arc/xx_misc_notes.md#simondonian-information-and-uptake)
+sharpen a point in
+[Simondon's account](https://parrhesiajournal.org/parrhesia07/parrhesia07_simondon1.pdf):
+information concerns a problematic and the receiving system's transformation,
+not merely a transmitted signal. For Hoapa, distinguish an accessible artifact
+from its becoming informative in a particular encounter. The same artifact may
+confirm an existing understanding, resolve an uncertainty, or reorganize a
+documentary problematic. These are proposed applications of the source, not
+quantities measured by Shannon entropy or a license to model participants'
+interior lives in the kernel. See the uptake investigation in
+[future_work.md](future_work.md#information-regeneration-and-succession).
+
 **Relation to our arc.** Arc/16 uses Simondon to interpret an operational episode `w : L M → K₀` as a particular individuation within a contextual field, and its transpose `w♯ : M → R K₀` as that episode's contextual presentation. Arc/17 sharpens the placement: conversations and achieved artifacts individuate; participants arrive as already declared persons rather than being individuated by the protocol; and receptivity or unresolved potential belongs to the milieu and its available continuations rather than to an identity-refining participant property. A successful closure may still leave the context charged with unresolved dependencies or new possible work.
 
 The universal / particular split aligns suggestively with Lautman's synthetic / analytic decomposition. This is an interpretation, not evidence: transposition is automatic for any adjunction, no class of admissible individuations has been defined, and persistent transduction would require the non-collapse obligation in `targets.md` §T3 plus the changing-context semantics investigated in `future_work.md`. Simondon shapes what counts as developmental success—renewal that preserves earlier achievements without exhausting the field—but supplies no theorem about `Allow ⊣ Require`. His account of good form already includes preservation and renewed capacity, so that criterion should not be attributed to the project's Care anchor alone. The terminology remains provisional pending a primary-text pass: in particular, the project's causal "saturation" must not be renamed metastability merely because the words suggest one another.
@@ -256,6 +313,34 @@ The universal / particular split aligns suggestively with Lautman's synthetic / 
 **Relation to our arc.** Dessins occupy a dual but compatible position: they are far-end K-side moduli / cover objects and possible K-facing elements of a future cross-site mediator. The candidate technical form is the independently constructed, space-valued shape-witness profunctor recorded in `future_work.md`, whose later two-sided representability would recover T1 rather than constitute separate evidence for it. The principal mismatch is still open: the modal route currently offers a bare `S²`, while a dessin needs a three-marked base plus branch and cover data. The Esquisse material therefore supplies a gated test and a theorem-shaper, not an anchor or a constructed bridge.
 
 ### Grothendieck–Riemann–Roch as a Lautman–Simondon crossing
+
+**A smaller worked example: local prescriptions and global realization.**
+The miscellaneous notes' passage
+["Riemann–Roch then makes the two decompositions meet"](arc/xx_misc_notes.md#riemann-roch-and-the-two-decompositions)
+motivates this crossing. The following comparison is Codex's proposed
+application, not an example copied from those notes.
+
+Over the complex numbers, let L(P) be the space of meromorphic functions on a
+smooth projective connected curve with at most a simple pole at P and no other
+poles. On the projective line, dim L(P) = 2: a nonconstant function with
+exactly that pole exists (z at infinity is an example). On a genus-one curve,
+dim L(P) = 1: only constants remain, so a single simple pole is impossible.
+These are consequences of
+[Riemann–Roch](https://stacks.math.columbia.edu/tag/0B5B).
+Locally one can prescribe a nonzero simple principal part in either case; its
+global realizability differs.
+
+This is an example for the reciprocal separation/integration mirror.
+Separating local prescriptions from their ambient setting makes the integration
+question precise. Conversely, the global framework reveals a distinction
+between locally similar possibilities. More generally, the principal-parts
+exact sequence records the obstruction to extending such data globally in
+H¹(O). Neither local data nor global geometry is assigned exclusively to K or
+M. This is an established mathematical example for the interpretation, not a
+Hoapa theorem or a selected Agda build.
+
+The following GRR comparison has a different role: transport of corrected
+invariants, rather than this local-to-global existence question.
 
 The Grothendieck–Riemann–Roch theorem is useful here as a historical and
 mathematical theorem-shaper: a construction over a space is transported to its
@@ -488,6 +573,40 @@ and relative cohesion as an alternative are recorded in
 [arc/18](arc/18_evolutionary_adjunction.md#session-consolidation-2026-09-26);
 the selected work remains in `future_work.md`.
 
+## Team semantics — dependence across families of episodes
+
+**Source and status.** The miscellaneous notes'
+[team-semantics discussion](arc/xx_misc_notes.md#team-semantics)
+(beginning "Team semantics instead evaluates formulas over a set of
+assignments") develops a lead already listed in the inventory below.
+[Väänänen's research overview](https://www.mv.helsinki.fi/home/jvaanane/teamdep)
+describes the established semantics: formulas are evaluated over families of
+assignments, allowing dependence to concern their joint variation. The
+following no-leak application is Codex's proposal, not a checked result or an
+application already constructed in the notes.
+
+**Proposed responsibility.** Distinguish validity of each episode from a
+property of a family of admissible episodes. For a deterministic system, let
+l be public input, h protected input, and o public output. The dependence atom
+=(l,o) requires any two assignments agreeing on l to agree on o. Testing it
+across the intended variations of h can express a deterministic noninterference
+condition. A family that omits relevant variations proves too little;
+nondeterministic systems need a separately justified condition.
+
+A finite comparison uses two runs with the same l and h = 0 or 1. The output
+rule o = 0 satisfies the dependence condition; o = h violates it. Both runs can
+individually satisfy the same local well-formedness predicate. The example
+therefore distinguishes local acceptance from a relational information boundary
+without choosing probabilities.
+
+A mathematical team is not automatically a community of participants.
+Functional dependence, causal-parent edges, and probabilistic independence are
+different notions. Relating the toy example to trusted Hoapa observations is
+additional work; it neither extends Tier A by itself nor changes the 2S work
+order. See the bounded candidate in future_work.md §E.
+
+---
+
 ## Template for future entries
 
 **Who / primary source.**
@@ -600,7 +719,7 @@ Status: **grounded** = already represented in Hoapa; **candidate** = worth testi
 - Parametricity and logical relations.
 - Definability/noninterference.
 - Actor-identity erasure and observational no-leak.
-- Team semantics.
+- [Team semantics](#team-semantics--dependence-across-families-of-episodes).
 - Dependence and independence logics.
 - Semiring-valued team semantics.
 - Two-sorted model theory separating actors from artifacts.

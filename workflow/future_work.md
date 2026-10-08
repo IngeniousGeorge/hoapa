@@ -143,6 +143,11 @@ family to be constant; failure of coherence is not a prerequisite for
 evolution. This programme can investigate both scales without asserting a
 constructed bridge between them.
 
+A concrete candidate distinguishes new objects in a fixed setting, another
+presentation of the same semantics, and a change of contextual capabilities.
+See [Changing the conditions of integration](#changing-the-conditions-of-integration)
+below. A change of site alone does not establish renewal.
+
 **Mirror investigation — reciprocal induced structure.** Restated T4 asks
 whether K's separations enable integration on M, and whether M's integration
 capabilities induce further separations, particularly within documentation.
@@ -257,6 +262,21 @@ adequacy implies H(d(X)) = H(q(X)) + H(d(X) | q(X)); the structural
 factorization comes first, and the inequality holds for every such law.
 No probability model is thereby chosen for Hoapa.
 
+**Dependence across finite families — available candidate.** The proposed
+[team-semantics example](related_structures.md#team-semantics--dependence-across-families-of-episodes)
+tests a relation between runs rather than each run separately. Specify finite
+public inputs l, protected inputs h, outputs o, an admissible run family, and
+a local validity predicate. Name the missing obligation before implementing:
+a dependence checker must agree with pairwise public-output agreement for
+equal public input, accept the constant-output family, and reject o = h when
+both protected values occur at the same public input. Both families should
+pass the stipulated local validity check.
+
+This is a proposed finite build, not an Agda declaration or a selected first
+task. Testing completeness of the intended input variations is a separate
+requirement. The Riemann–Roch comparison below remains an explanatory
+mathematical example, not a similarly cheap finite formalization.
+
 **Clause-sensitive adequacy — candidate.** After specifying a common context
 c, future use u, and architectures A and B, seek:
 
@@ -292,6 +312,11 @@ by this documentation update.
 
 ### F. Candidate mathematical resources
 
+- **Team semantics and dependence:** investigate family-of-runs properties
+  beyond individual validity; see the bounded §E candidate and
+  [source/application distinction](related_structures.md#team-semantics--dependence-across-families-of-episodes).
+  No probability model or identification of teams with human communities is
+  implied.
 - **Generation and description:** monads with arities is the lead literature
   test for the two-correspondence sketch, not a chosen model of K. Identify
   arities, free structure, probes, and a nerve-image condition. See arc/18.
@@ -2031,9 +2056,27 @@ The current programme and its evidence levels are stated at the top of this file
 
 **Status and scope — 2026-10-03; extended 2026-10-08.** Candidate investigation following [arc/20's opening questions](arc/20_on_decompositions.md#openings-with-codex-towards-the-universal-language), its subsequent [Deligne discussion](arc/20_on_decompositions.md), and [anchor-placement exchange](arc/20_on_decompositions.md#anchor-placement). It also incorporates the subsequent discussion of organized activity, biological closure, and replay across scales. This section records a possible route to the universal-language responsibility of Λ and to the separation/integration mirror. It selects neither a first build nor a new definition of M, and leaves the existing lane priorities unchanged.
 
+**Source extension — 2026-10-08.** This pass also draws on
+[the miscellaneous notes](arc/xx_misc_notes.md):
+[Lautman's decompositions](arc/xx_misc_notes.md#lautmans-decompositions),
+[Riemann–Roch and the two decompositions](arc/xx_misc_notes.md#riemann-roch-and-the-two-decompositions),
+[team semantics](arc/xx_misc_notes.md#team-semantics),
+[the third synthesis of time](arc/xx_misc_notes.md#the-third-synthesis-of-time),
+and [geometricity as a norm for portability](arc/xx_misc_notes.md#geometricity-as-a-norm-for-portability).
+Headings were added to that source record for citation; its text is otherwise
+unedited apart from the removal of personal correspondence. The Riemann–Roch
+pole comparison and the finite public-dependence example are proposed
+applications by Codex, not examples quoted from it.
+
 The guiding intuition is that a universal technical language could grow by turning situated work into portable forms of understanding. A context lets us articulate distinctions; working with those distinctions reveals relationships; what survives the encounter becomes available for further articulation elsewhere. Music is an unusually rich place to investigate this movement: distinguishable events compose a becoming whose unity can change what those events are. The proposed language would similarly make integration possible without making its constituents interchangeable.
 
 How does understanding acquire stable, reusable forms without those forms exhausting—or closing—the possibilities from which they arise? A concept can be an outcome of individuation in one episode and a resource for individuation in another. The language would preserve achievements in forms capable of participating in further invention.
+
+Here **articulation** means making distinctions intelligible together with
+their relations: distinguishing while relating. It is ordinary explanatory
+vocabulary, not an additional mathematical component or a term attributed
+exclusively to one anchor. Use decomposition, presentation, typing, or
+composition where that more specific operation is intended.
 
 Situated activity produces articulated achievements; replay puts those achievements to work again. The question is how articulation and reuse preserve, sustain, or transform the conditions of further activity. The following extensions connect this question to concurrency as an abstraction of organized activity and to biological accounts of work and closure.
 
@@ -2161,6 +2204,34 @@ Gentzenian introduction, elimination, substitution, and cut articulate how a con
 
 The discussion's Lautmanian "closure" reading of metamathematics remains an interpretation pending verification of the exact source and terminology. Metamathematical assessment is not itself later uptake, and does not provide final self-certification. The evolutionary question begins where achievements help sustain or transform the conditions of subsequent work, rather than merely instantiate a fixed grammar.
 
+#### Portability and universal reuse
+
+**Established mathematics; candidate portability requirement.** For a declared
+class of context changes, ask which constructions and truths transport
+coherently. Inverse-image functors of geometric morphisms preserve geometric
+logic; classifying topoi organize models through this transport. See
+[Caramello's preliminaries](https://www.oliviacaramello.com/Unification/ToposTheoreticPreliminariesOliviaCaramello.pdf).
+This supplies one precise meaning of portability, not a requirement that all
+legitimate mathematics be geometric. Stronger operations can be portable under
+a narrower class of context changes. A Hoapa application must identify both the
+changes and the required preservation law; portability alone does not establish
+accessibility, regeneration, or Care.
+
+**Established universal properties; unbuilt Hoapa interpretation.** A suitable
+inductive or higher-inductive universal property specifies maps into targets
+equipped with the required constructor data and coherences. In the homotopical
+setting, uniqueness is expressed by contractibility of the appropriate space of
+structure-preserving maps, not by a unique map to every bare target. This is a
+candidate account of reuse without case-by-case producer authorization; see the
+[HoTT book](https://homotopytypetheory.org/book/). The relevant Hoapa object,
+targets, and interpretation remain to be supplied. Initiality does not prove
+practical adequacy or no privileged institution.
+
+Interpreting one generated object and transporting a theory between models are
+different scales of reuse, not automatically the Σ/Π distinction in §D.
+Likewise, base change, descent of compatible data, adjunctive return, and later
+uptake retain their separate obligations.
+
 #### Local work and its enabling organization
 
 Compare an individual proof with a local organized process, and developing mathematical practice with an organization sustaining such processes. Mathematics as a practice maintains languages, skills, records, methods, and tools through which reasoning remains available. This does not make validity a product of collective agreement. Keep the network of justification distinct from the network of enablement: feedback in the latter does not license circular proofs in the former.
@@ -2193,9 +2264,73 @@ Free-living cells already sustain immediate conditions of continuation; they are
 
 The project-facing question is whether increased reuse or persistence can damage conditions of future work elsewhere. This motivates investigating compatibility across scales as an aspect of Care, without assigning Care a new mathematical home. Persons are not organs, and disagreement or refusal is not pathology. Supporting the collective must not become a warrant for assigning participants fixed functions or unequal standing.
 
+#### Information, regeneration, and succession
+
+An achievement may become informative by transforming a receiving problematic,
+and regenerative by leaving conditions for further work that differ from those
+that produced it. Investigate this movement without making novelty compulsory
+or reducing information to the available artifact.
+[Simondon's account](related_structures.md#simondon--individuation-and-transduction)
+motivates asking what an encounter enables: confirmation, resolution of an
+uncertainty, or reorganization of a documentary problem. Consumer-initiated
+accessibility enables uptake without determining its effect.
+
+The notes propose an initial problematic → articulated achievement → renewed
+field of possibilities. The seed → tree → seeds, changed soil, shade, and
+niches image illustrates the intended renewal rather than repayment of an
+unchanged beginning. This is a research criterion to specify, not a selection
+mechanism. A thermodynamic gradient supplies no universal quantity ΔI for
+mathematical or social development. More difference is not necessarily better:
+a resolution legitimately removes a difference, and a restoring cycle may
+perform valuable maintenance. Distinguish maintenance, newly enabled work, and
+degradation of capabilities required by a declared purpose.
+
+Deleuze's third synthesis of time in *Difference and Repetition*, chapter II,
+offers a philosophical resonance: the product's independence from its condition
+and author. This is not independent corroboration of Hoapa. The notes'
+interpretation suggests a further project question: can an organization succeed
+by making its continued mediation unnecessary? Test an artifact remaining
+accessible and usable after its producer or originating organization retires,
+against mandatory continuing authorization. Succession must retain required
+provenance and support, not pretend that achievements have become
+dependency-free. Investigate declared documentary capabilities, not
+participants' private mental states.
+
+#### Changing the conditions of integration
+
+Work may change not only what is available in a context, but the organization
+through which future work becomes possible. For a site/topos candidate,
+distinguish:
+
+1. New objects or achievements within a fixed setting.
+2. Another presentation of the same contextual semantics.
+3. Changed contextual structure or capabilities.
+
+Different sites can present equivalent topoi; changing (C,J) alone therefore
+does not establish renewal. Conversely, a new object within a fixed setting may
+already enable a new declared operation. Compare presentations together with
+their relevant interfaces and uses, rather than demand a non-equivalent topos
+as the definition of progress. Relative and comparative topos theory already
+study such changes; the unbuilt part is their Hoapa meaning and relation to
+achieved work.
+
+Refining a cover, introducing a mediating object, changing a topology, or
+passing to another topos are candidate operations, not guaranteed repairs.
+Ask whether caring intervention can change the conditions for relating
+differentiated contributions instead of demanding compatibility under the
+original conditions. This is an open placement question, not a newly chosen
+mathematical home for Care.
+
+A refinement does not generally remove genuine incompatibility. Preserve the
+evidence and distinctions needed for the declared purpose: integration obtained
+by erasing disagreement is different from warranted resolution. A faithful,
+reusable record of incompatibility can itself be an adequate achievement. This
+keeps failed closure first-class and leaves participants' agreement distinct
+from mathematical gluing.
+
 ### 5. Galoisian organization and two entrances to the Esquisse
 
-Prefer first to equip K’s presentation, transport, and composition interfaces with the structures that make Galois/Teichmüller mathematics applicable. Reconstruct a group from independently justified data rather than installing G_ℚ, GT, or A₅ in advance. A categorical Galois reconstruction would already be substantial if its group were unrelated to G_ℚ. The exactness, finiteness, and detection requirements are part of the work; see [the Galois-category theorem](<https://stacks.math.columbia.edu/tag/0BMQ>) and the Galois and nominal-set sibling rows (related_structures.md#sibling-catalogue).
+Prefer first to equip K’s presentation, transport, and composition interfaces with the structures that make Galois/Teichmüller mathematics applicable. Reconstruct a group from independently justified data rather than installing G_ℚ, GT, or A₅ in advance. A categorical Galois reconstruction would already be substantial if its group were unrelated to G_ℚ. The exactness, finiteness, and detection requirements are part of the work; see [the Galois-category theorem](<https://stacks.math.columbia.edu/tag/0BMQ>) and the Galois and nominal-set sibling rows (related_structures.md#siblings-and-clause-variations--research-cross-index).
 
 Record the contextual placement too. In [Lawvere’s _Axiomatic Cohesion_, §II](<https://lawverearchives.com/wp-content/uploads/2025/01/2007-Axiomatic-cohesion.pdf>), the non-cohesive base need not be Set: a Galois topos is a candidate base. Finite separable extensions of a ground field are not generally finite fields; finite étale algebras also include disconnected objects. For a finite ground field, its algebraic closure has procyclic Galois group Ẑ, whose open subgroups nẐ offer a comparison with the legacy ℤ thread, not its automatic reinstatement.
 
@@ -2279,9 +2414,16 @@ A closed finite example may still be valuable independently of promoting MO₁. 
 
 One dessin still does not supply an adjunction, triangle identities, contextual renewal, or optimality. These are candidate obligations, not a new formal work order or a claim that an Agda fixture has been added.
 
-### 7. Comparison controls and decision gates
+### 7. Examples, comparison cases, and open tests
 
-Keep the exploratory questions capable of distinguishing outcomes without requiring every philosophical intuition to arrive as an executable theorem. When a mathematical claim becomes a build, use the existing §E selection discipline. The following controls are available; they do not select an implementation order:
+Keep the exploratory questions capable of distinguishing outcomes without
+requiring every philosophical intuition to arrive as an executable theorem.
+A control is a comparison case used to test what an account distinguishes,
+not a controlling component of Hoapa. Positive examples, counterexamples, and
+informative variations have different jobs; a successful rival may refute a
+proposed necessity claim. When a mathematical claim becomes a build, use §E's
+selection discipline. The finite dependence example is an available candidate
+there; the following cases do not select an implementation order:
 
 - **Geometric agreement versus arithmetic availability:** x² − 2 and x² − 1 define isomorphic two-point schemes over ℚ̄. Over ℚ, the first has no rational point and the second has two. Their Galois actions retain the distinguishing information: two exchanged roots versus two individually fixed roots. This is a concrete control for a presentation that retains geometric shape but forgets conditions of availability; see [étale schemes over a field and Galois actions](https://stacks.math.columbia.edu/tag/04JI).
 - **Symmetry versus orbit set:** a nontrivial transitive G-set has no invariant selected element, while its orbit set is a singleton with a global element. Compare with a singleton carrying the trivial action. This detects a real distinction lost by quotienting, not a blanket rule that every symmetry must be retained for every use.
@@ -2294,6 +2436,12 @@ Keep the exploratory questions capable of distinguishing outcomes without requir
 - **Local proliferation / contextual adequacy:** compare increasing uptake with the state of the wider dependencies supporting it. A practice that expands while degrading those dependencies is a counterexample to identifying propagation with adequacy.
 - **Identification / replay adequacy:** compare equal-result procedures whose resource use or causal dependencies differ for a declared later use. Also retain the positive control of independent schedules legitimately identified. Ask which separations license integration and which integrations expose further necessary distinctions.
 - **A₅ versus the unrestricted graph family:** vary the face relation and retain the three-port/pairing clauses. Ask what, if anything, independently selects the dodecahedral case, and whether its symmetry is useful for a documentary or operational task. Other successful cases are informative, not failed approximations to A₅.
+- **Decomposition / genesis:** compare another description with an enabled construction. The [Riemann–Roch pole example](related_structures.md#grothendieckriemannroch-as-a-lautmansimondon-crossing) makes local prescriptions and global realizability interact; it does not claim that every new decomposition creates new beings.
+- **Individual validity / relational dependence:** compare families whose members all pass the same local check but differ in public-output dependence on protected variation; use the §E candidate.
+- **Availability / informative uptake:** follow the same artifact in two declared receiving contexts and identify what, if anything, becomes newly understandable or operable.
+- **Persistence / succession:** compare continued producer mediation with successful handover preserving the required uses and provenance.
+- **Presentation change / contextual renewal:** compare equivalent presentations with no additional capability against a change enabling a previously unavailable operation. A changed site is not sufficient evidence.
+- **Integration / suppression:** compare a warranted new relation with an apparent resolution obtained by deleting the evidence of incompatibility. Retained disagreement must remain an admissible outcome.
 
 **Consequences for the conjecture.** This is a possible route to the universal-language component of K, and through it to contextual adequacy and renewal—not a new definition of M or a proof of the conjecture. Music helps formulate the problem of articulation and integration; presentation, descent, and Galois reconstruction offer ways to make parts of that problem mathematically accountable. The hoped-for advance is a language whose forms can be learned and reused across contexts while preserving the differences that make those contexts productive. Whether that contributes a universal-property account of Hoapa’s special adequacy remains the larger question, not a conclusion supplied by the analogy.
 
