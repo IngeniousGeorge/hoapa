@@ -1,2 +1,0 @@
-Temporary workspace and Git write-access check requested by ig.
-Created by Codex on 2026-10-09; removed in the following cleanup commit.
