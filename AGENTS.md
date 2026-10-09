@@ -124,16 +124,12 @@ of the two schemes.
 workflow file wins — always one-way. Before adding anything here, ask whether it
 could be re-derived by reading `workflow/`. If yes, put it there and link instead.
 
-**Three moments.** `current_track.md` is immediate,
-`future_work.md` is coming up, and `openings.md` is the horizon. Keep them in
-harmony through links, not duplicate queues. Status files describe what exists,
-what is happening, and what is blocked—not a separate “what to do” list.
-A bounded task can be promoted without moving its whole research background.
-Dormant modal-track ideas and why they mattered live in
-`workflow/deep_context/abandonned_modal_side/abandoning_modal.md`, distinct from
-the frozen workflow snapshots beside it.
+9. **Three moments.** Keep `current_track.md`, `future_work.md`, and `openings.md`
+synchronized through links, not duplicate queues. Promoting a bounded task need
+not move its whole research background. Status files report state and blockers,
+not a separate work order.
 
-**Arcs and workflows.** Arcs are append-only, growing brainstorming records;
+10. **Arcs and workflows.** Arcs are append-only, growing brainstorming records;
 top-level workflows are revisable working memory (“RAM”), not transcripts.
 Preserve the path of exploration in arcs while keeping current decisions
 legible in workflows. New arc citations should give a line locator plus a few
@@ -141,7 +137,7 @@ searchable words; workflow citations should prefer section titles/anchors,
 since their line numbers change during reorganization. Do not rewrite an arc
 to repair a workflow link; retain a relocation pointer where useful.
 
-9. **Anti-default files are load-bearing.** `workflow/bias_correction.md` exists to
+11. **Anti-default files are load-bearing.** `workflow/bias_correction.md` exists to
 forestall default-LLM misreadings the project explicitly rejects. Read it at session
 start as corrections against defaults you would otherwise apply, and treat anything
 that looks like anti-default scaffolding as structural rather than decorative.

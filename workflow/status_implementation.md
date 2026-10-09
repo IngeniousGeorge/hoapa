@@ -2,6 +2,9 @@
 
 This file is the canonical workflow home for the implementation track: the runtime, the checker boundary, and the formal runtime contract.
 
+The current method is **rising sea**: raise the waterline only when the next
+executable/testable boundary is forced by the existing formal substrate.
+
 The narrow v0 trace/run contract and schema-faithful recorder are banked.
 The recorder does not originate causal parents from behavior. Tier A remains
 banked at raw uniform actor relabeling and is not yet a publication theorem.
