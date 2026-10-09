@@ -33,55 +33,20 @@ erase dependencies inside the selected program.
 
 ## Selected work
 
-The next program is selected. Its order is architectural, not a demand that
-only one lane run at a time.
+Two immediate fronts remain selected; the downstream order is maintained once,
+in [future_work.md](future_work.md#coming-programme-and-dependency-order).
 
-1. **1C relational adequacy and M rebuild, in parallel.** Extract K's
-   categorical essence, compare meaningful alternatives and independent
-   siblings, and seek what makes Hoapa-like organization especially adequate
-   to a context and its renewal. Universal properties lead the search; neither
-   cohesive topoi, a fibred base, nor a numerical metric is preselected.
-   The programme and named unmet obligations are in [future_work.md](future_work.md#selected-1c-programme-relational-adequacy-and-the-m-rebuild).
-   The mirror sketch in [arc/18](arc/18_evolutionary_adjunction.md#the-mirror-separation-integration-and-reciprocal-induced-structure)
-   investigates K's separations enabling integration on M and M's capabilities
-   inducing further distinctions on K. It and the generation–description
-   sketch are candidate organizations, not implemented frameworks.
-2. **3R minimal causal kernel.** Produce one event whose parent is earned from
-   a message actually consumed by a handler, record it through the existing
-   `EventLog`, and retain a test that fails when dependency piggybacking is
-   broken. This tests the premise beneath the existing 2S causal tower.
-3. **2S contract v1.** Add a distinguished success/failure closure event,
-   run-local and federated artifact references, reference integrity, at-most-
-   one closure and nothing-after-closure for valid prefixes, exactly one
-   closure for published conversations, and stable publisher-scoped content
-   identifiers. Start with rejecting fixtures.
-4. **2S public/live boundary and Tier B.** Specify per-conversation actor
-   pseudonymization, no export of the live identity map in v0, and a public
-   content observation. Add substrate-native change of actor base and a
-   relative `FrameHomOver` beside banked fixed-base `FrameHom`; prove each
-   conversation frame equivalent to its public image. Tier A alone does not
-   prove this.
-5. **2S relative views and base-relative statements.** Relate registered,
-   panel, and event-supported views; factor the reusable finite-membership
-   lemma; state causal saturation relative to a run and test persistence of an
-   unsaturation witness under append-only extension. Do not rename these
-   predicates as metastability or encapsulation.
-6. **3R full assembly.** Add task intake, injected selection, panel processes,
-   event-id dependency flow, success/failure closure, publication transform,
-   corpus acceptance, and resubmission. Candidate, assent, silence policy,
-   panel size, and entropy remain interface parameters. A separate checker app
-   is earned only here, once behavior exists to check incrementally.
-7. **Λ and Federation.** Interpret conversations, output artifacts, concepts,
-   documentation versions, directed dependencies, and admitted comparisons
-   from published evidence. Require designated observations to descend through
-   any compression. Exercise the artifact interface with two independent peers
-   before freezing it: collide local IDs, retain an offline pinned import,
-   admit different comparisons, and withdraw one comparison on only one peer.
-8. **Context renewal.** First show a successful artifact becoming an admissible
-   input to further work while specified achievements remain usable and a new
-   operation becomes possible. Only later add bounded protocol change with
-   explicit versions and activation boundaries. This is K's forcing case for
-   asking what M must say about contexts.
+- **1C, independently:** pursue relational adequacy and the M rebuild through
+  K's essence, alternatives, and a comparison structure. The next session
+  selects a bounded obligation from [§E](future_work.md#e-concrete-obligations-and-build-selection);
+  no first construction or modal repair is prescribed.
+- **3R:** build the minimal causal kernel that earns one parent edge from a
+  consumed message, through the existing recorder, with a retained test that
+  fails if dependency piggybacking is broken.
+
+The subsequent contract-v1, Tier B, relative-view, full-assembly, Λ/Federation,
+and renewal work remains coming work, not a competing immediate queue.
+Broader research directions are in [openings.md](openings.md).
 
 **1C handoff.** No first construction is selected. Choose a bounded obligation
 whose positive and negative controls could invalidate the proposed

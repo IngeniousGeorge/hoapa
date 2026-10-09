@@ -236,7 +236,8 @@ appropriate different discriminator.
 A focused all-types-flat proof remains a useful unimplemented diagnostic;
 it is no longer the compulsory next 1C action. The Bℤ, fracture, differential,
 and cyclic-bar work orders are preserved in
-[the migration archive](deep_context/abandonned_modal_side/workflow/README.md).
+[abandoning_modal.md](deep_context/abandonned_modal_side/abandoning_modal.md),
+with links to the unchanged migration snapshots.
 The code is retained, not repaired or archived by this documentation change.
 
 ## Semantic Background
@@ -557,40 +558,12 @@ provide.
 
 ### Selected next program
 
-The point-generated R4 bridge, its Chu witness, and the Sessions-to-Chu
-object/morphism realization are landed. The harmonization program now has an
-ordered dependency shape:
-
-1. **1C, in parallel:** pursue relational adequacy, extract K's categorical
-   essence, compare alternatives and siblings, and rebuild M. Select a bounded
-   obligation with informative controls from `future_work.md` §E; no first
-   construction or repaired modal signature is prescribed.
-2. **3R minimal causal kernel:** earn one non-empty parent edge from an actual
-   consumed message through the existing recorder. This precedes more 2S
-   structure because every banked causal realization currently rests on
-   human-authored parents.
-3. **2S contract and closure:** specify closure, references, stable publication
-   identity, and valid-prefix versus closed-export predicates; then extend the
-   serialization corpus red-first.
-4. **2S public/live boundary:** specify the closure transform, local actor
-   pseudonymization, the public content observation, and Tier B change of actor
-   base without changing fixed-base `FrameHom`.
-5. **2S relative views:** reuse the registered/panel/event-supported views,
-   finite membership lemma, base-relative saturation, and append-only
-   persistence candidates only after their precise predicates have falsifiers.
-6. **3R full assembly:** add task intake, injected sampling, panel processes,
-   closure, publication, failure records, and resubmission around the minimal
-   causal kernel. This is when a separate checker app first has behavioral
-   evidence to consume.
-7. **Λ and Federation:** interpret episodes, artifacts, concepts, versions,
-   dependencies, and admitted comparisons from published evidence. Before the
-   artifact interface is frozen, exercise a two-peer finite fixture with local
-   identifier collisions, pinned offline imports, divergent admissions, and a
-   one-sided withdrawal.
-8. **Context renewal:** first make a successful artifact an admissible input to
-   new work; only later admit bounded protocol change with explicit versions
-   and an activation boundary. This is the first K phenomenon that may force
-   the category of contexts needed by M.
+This file reports state and blockers, not a parallel task queue. The banked
+point-generated R4 bridge, Chu witness, and Sessions-to-Chu realization remain
+unchanged. See [current_track](current_track.md#selected-work) for immediate work
+and [future_work](future_work.md#coming-programme-and-dependency-order) for the
+continuation. The earlier parallel list is preserved in the
+[planning archive](deep_context/archived_planning_2026-10-09.md#selected-next-program).
 
 Conjecture-scale claims retain their own gates: a full session semantics needs
 an earned `session-O1-action`; full-site reflector work needs a consumer;
@@ -614,14 +587,10 @@ Important scope notes:
 
 ### Held-loose long-horizon items (no near-term action)
 
-- **Full actor-causal reflector enrichment** — later, decide whether to extend the point-generated construction to richer covers where causality and actor incidence become descent content.
-- **World/practice correspondence** — active investigation through the selected
-  1C programme, with no constructed pair yet; see T1. A generic formula is not
-  evidence for its contextual interpretation.
-- **Legacy modal return plan** — no longer scheduled. Preserved in the migration
-  archive; its mathematics may return for a specific new use.
-- **Pask-style human-implementation layer** — conversation-as-operadic-composition. Speculative until `MO_1` makes conversation creates conversation a literal operadic operation. Held in motivation only.
-- **Pedagogy track** — current for the synthetic ModalHoTT and Concurrency Agda trees as of 2026-05-21. Analytic pedagogy remains intentionally out of scope unless explicitly requested.
+These motivations and gates are retained in
+[openings.md](openings.md#held-loose-long-horizon-items-no-near-term-action).
+Dormant modal-track directions are separately preserved in
+[abandoning_modal.md](deep_context/abandonned_modal_side/abandoning_modal.md).
 
 ## Historical note
 

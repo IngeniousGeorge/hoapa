@@ -65,7 +65,7 @@ conclusion is imported. Contractibility would concern a specified space of
 positions in Λ and a specified aggregation map, not panels or Λ as a whole.
 Discourse sheaves show what must be supplied for a semantic sheaf model:
 explicit local values and translations, beyond the actor-causal frame chassis.
-The first useful comparison is the disagreement fixture in `future_work.md`:
+The first useful comparison is the [disagreement fixture in future_work.md](future_work.md#λ-first-local-to-global-content-test):
 two incompatible claims are preserved while their authors unanimously publish
 an artifact recording the unresolved alternative. Human assent, documentary
 fidelity, semantic compatibility, and gluing are separate predicates in that
@@ -294,7 +294,7 @@ confirm an existing understanding, resolve an uncertainty, or reorganize a
 documentary problematic. These are proposed applications of the source, not
 quantities measured by Shannon entropy or a license to model participants'
 interior lives in the kernel. See the uptake investigation in
-[future_work.md](future_work.md#information-regeneration-and-succession).
+[openings.md](openings.md#information-regeneration-and-succession).
 
 **Relation to our arc.** Arc/16 uses Simondon to interpret an operational episode `w : L M → K₀` as a particular individuation within a contextual field, and its transpose `w♯ : M → R K₀` as that episode's contextual presentation. Arc/17 sharpens the placement: conversations and achieved artifacts individuate; participants arrive as already declared persons rather than being individuated by the protocol; and receptivity or unresolved potential belongs to the milieu and its available continuations rather than to an identity-refining participant property. A successful closure may still leave the context charged with unresolved dependencies or new possible work.
 
@@ -310,7 +310,7 @@ The universal / particular split aligns suggestively with Lautman's synthetic / 
 
 **What it models.** A finite combinatorial presentation can retain global topological and arithmetic information, while a tower organizes how such presentations vary, glue, and transform across levels. It is therefore a strong source of tests for presentation invariance, controlled forgetting, monodromy preservation, and nontrivial comparison—but not a ready-made model of Hoapa's monad iteration.
 
-**Relation to our arc.** Dessins occupy a dual but compatible position: they are far-end K-side moduli / cover objects and possible K-facing elements of a future cross-site mediator. The candidate technical form is the independently constructed, space-valued shape-witness profunctor recorded in `future_work.md`, whose later two-sided representability would recover T1 rather than constitute separate evidence for it. The principal mismatch is still open: the modal route currently offers a bare `S²`, while a dessin needs a three-marked base plus branch and cover data. The Esquisse material therefore supplies a gated test and a theorem-shaper, not an anchor or a constructed bridge.
+**Relation to our arc.** Dessins occupy a dual but compatible position: they are far-end K-side moduli / cover objects and possible K-facing elements of a future cross-site mediator. The candidate technical form is the independently constructed, space-valued shape-witness profunctor recorded in [openings.md](openings.md#a-specific-space-valued-mediator-candidate), whose later two-sided representability would recover T1 rather than constitute separate evidence for it. The principal mismatch is still open: the modal route currently offers a bare `S²`, while a dessin needs a three-marked base plus branch and cover data. The Esquisse material therefore supplies a gated test and a theorem-shaper, not an anchor or a constructed bridge.
 
 ### Grothendieck–Riemann–Roch as a Lautman–Simondon crossing
 
@@ -516,7 +516,7 @@ connection on the respective powersets; double orthogonality is the induced
 closure. Its fixed points give a precise test-relative adequacy notion.
 Choosing the tests that express Hoapa's intended future uses is still an
 independent obligation. This connects to the pairing/closure investigation
-in `future_work.md` §F without selecting one of the distinct constructions
+in [openings.md's resource portfolio](openings.md#candidate-mathematical-resources-for-the-m-rebuild) without selecting one of the distinct constructions
 called a nucleus.
 
 **Kretschmann warning.** General covariance understood merely as the
@@ -793,4 +793,4 @@ Status: **grounded** = already represented in Hoapa; **candidate** = worth testi
 
 The most important **rejected identifications** are: buffer = `!`; mediation = descent; reciprocal arrows = adjunctions; R4 = `Allow ⊣ Require`; R/P/A/D = cohesive modalities; session involution = full dualizability; initiality = practical optimality; disciplined boundary = field theory; no-leak = RG boundary condition; actor-renaming invariance = all-ID erasure; gauge analogy = QFT theorem; absence of actor order = no-ranking theorem.
 
-Sources: [human_signature.md](/home/ig/Code/hoapa/workflow/deep_context/human_signature.md), [atempted_philosophical_roots_of_provenance.md](/home/ig/Code/hoapa/workflow/deep_context/atempted_philosophical_roots_of_provenance.md), and `future_work.md` §§ "Candidate addition under evaluation: provenance" and "Candidate under evaluation: no-leak theorem ladder."
+Sources: [human_signature.md](/home/ig/Code/hoapa/workflow/deep_context/human_signature.md), [atempted_philosophical_roots_of_provenance.md](/home/ig/Code/hoapa/workflow/deep_context/atempted_philosophical_roots_of_provenance.md), and [openings.md — provenance](openings.md#candidate-addition-under-evaluation-provenance-accountable-artifacts-and-reversible-import) and [no-leak theorem ladder](openings.md#candidate-under-evaluation-no-leak-theorem-ladder-and-humanness-as-refusal), with the coming [Tier B work in future_work.md](future_work.md#tier-b-change-of-actor-base-and-closure-transform).

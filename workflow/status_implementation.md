@@ -2,14 +2,16 @@
 
 This file is the canonical workflow home for the implementation track: the runtime, the checker boundary, and the formal runtime contract.
 
-The current method is **rising sea**: raise the waterline only when the next
-executable/testable boundary is forced by the existing formal substrate. The
-first waterline crossed the narrow v0 trace/run contract and schema-faithful
-recorder. The next program is selected: first a minimal 3R kernel must earn one
-causal parent from message behavior; then 2S evolves the contract toward
-closure, references, publication, and relative no-leak; the full assembly and
-Λ/Federation interpretations follow. Tier A remains banked at raw uniform
-actor relabeling and is not yet a publication theorem.
+The narrow v0 trace/run contract and schema-faithful recorder are banked.
+The recorder does not originate causal parents from behavior. Tier A remains
+banked at raw uniform actor relabeling and is not yet a publication theorem.
+Contract v1 below is a selected specification, not an implemented result.
+
+[current_track.md](current_track.md) owns immediate priority;
+[future_work.md](future_work.md#selected-contract-and-runtime-work) owns the
+coming implementation sequence. [openings.md](openings.md) holds research
+horizons. This file owns implementation facts, boundary decisions, verification
+procedures, and blockers.
 
 ## Directory Consensus
 
@@ -245,6 +247,8 @@ retained side channel, not a corollary of injectivity.
 
 ## TDD Starting Point
 
+This is the standing verification procedure, not the current task queue.
+
 Start at the contract boundary, not the UI.
 
 The first red-green loop starts with one failing conformance expectation and then makes one tiny trace agree across the formal predicate, serialization corpus, generated raw terms, runtime codec, and checker boundary. This is the canonical order for implementation work:
@@ -412,184 +416,13 @@ Raw validator blindness now exists under total injective actor relabeling, along
 
 ## Selected contract and runtime work
 
-The following order supersedes the recommendations retained below. It separates
-the smallest behavioral test from the eventual assembly so that the causal
-premise is tested before more formal structure depends on it.
-
-1. **3R minimal causal kernel.** A few in-memory actor processes exchange
-   messages carrying the event ID that produced them. A handler records an
-   event whose parents are the IDs attached to the messages it actually
-   consumed. The event passes through the existing `Hoapa.Core.EventLog` and
-   exports through the current contract. Red-first: disabling dependency
-   piggybacking changes the exported trace and fails a retained test. No
-   closure, selection, persistence, Phoenix, or checker app is required here.
-2. **2S contract v1.** Add closure and reference constructors and the separate
-   valid-prefix/closed-publication predicates described above. Add fixture
-   expectations first, regenerate data-only Agda terms, export the corpus, and
-   make every existing freshness/conformance gate green. This work changes
-   schema and codecs only as the chosen sum representation requires.
-3. **2S publication/no-leak.** Specify the live-to-public transform and its
-   public observation; prove conversation-ID renaming invariance where useful,
-   then add substrate-native `ActorBaseMap`/isomorphism and `FrameHomOver`
-   without changing banked `FrameHom`. Prove local actor pseudonymization and
-   each realized conversation-frame comparison. A non-injective actor mapping
-   and a transform that rewrites a content reference are retained falsifiers.
-4. **2S relative views.** Relate registered, panel, and event-supported views;
-   factor a reusable equivalence between membership in a distinct finite list
-   and `Fin` of its length; then state base-relative saturation and append-only
-   persistence only at their actual hypothesis strength.
-5. **3R full assembly.** Add task intake, injected panel selection, bounded
-   panel processes, closure, publication, corpus acceptance, and resubmission
-   around the minimal causal kernel. Candidate and assent mechanisms, silence,
-   panel size, turn-taking, all-or-nothing AI pairing, and entropy remain
-   replaceable interfaces. The first incrementally checked behavioral trace
-   opens the gate for `hoapa_checker`.
-6. **Λ/Federation forcing case.** Before freezing the artifact interface,
-   construct two independent peers with colliding local identifiers, one pinned
-   offline import, different admitted comparisons, and a withdrawal adopted by
-   only one peer. Acceptance requires stable scoped references and reproducible
-   interpretation relative to each declared import boundary; convergence is
-   not required.
-
-`make test` remains the definition of green for each implemented batch.
+The specification above records what has been selected but not implemented.
+Immediate priority lives in [current_track](current_track.md#selected-work);
+the detailed continuation lives in [future_work](future_work.md#selected-contract-and-runtime-work).
+This file retains the contract, verification procedure, results, and blockers.
 
 ## Superseded recommendations — retained for rationale
 
-The next work splits by the number+letter lane convention: 1C pure conjecture, 2S runtime-to-substrate, and 3R runtime. This file is the canonical home for 2S/3R contract-boundary status; `workflow/status_formal.md` owns broader formal state.
-
-**2S - runtime-to-substrate.**
-
-1. Banked: per-conversation local frames realized from raw conversations, `FrameHom`s into the global frame built by `CausalFromParents.agda`, and the preservation/reflection obligations discharged. The local causal order is the global derived order restricted to the conversation's events rather than a separately invented intra-conversation order, which is what makes strict reflection available; it is recorded as `local-order-is-global-restriction`.
-2. Banked formal pass A: `conversation-event-covered` proves unconditional event coverage of the global frame; `actorsCoveredByConversations?` and its realized counterpart `ConversationActorCoverage` are related in BOTH directions (`coverage-sound`, `coverage-complete`), so the Boolean decides the hypothesis rather than merely certifying it; `conversation-cover` builds the `Cover` under that explicit hypothesis; and `parent-edge-implies-causal` is public without exposing the private chain type.
-3. Banked formal pass B: the authoritative valid `c0 → c1 → c0` fixture and `ConversationOrderComparison.agda` for causal saturation and the rigidity characterization. The fixture supplied the evidence the locality rung was missing — two events in one conversation related through a causal path in another — and `c0-restricted-sees-external-path` names a term of the selected order on exactly that pair.
-4. Banked Tier A at `5670658`: actor relabeling is functorial under arbitrary total maps; raw `valid?` is exactly invariant under total injective endomaps of `ActorId = ℕ`; permutations give the invertible gauge specialization and both `WellFormed` transports. The theorem covers every raw run but only the actor channel.
-5. If 2S is selected next, Tier B starts with change of actor base. `RActor` is run-specific while `FrameHom` fixes one actor base and has no actor map, so the realized equivalence is currently inexpressible. Add a relative morphism over an actor-base map while leaving fixed-base `FrameHom` intact; then make realization equivariant. The generic arrow vocabulary in `ActorRenaming.agda` is a down-payment, not yet a category.
-6. Session-tag assignment is unlocked but deferred. `LocalFrame` contains no session content by design, so this is a new relation or decorating layer over the realized frames, not a new field on them, and it should carry its own transport/invariance lemma rather than being folded into the core renaming theorem.
-
-**3R — banked runtime state and selected continuation.**
-
-1. Banked: reconstruct the Agda-accepted tiny run from `hoapa_contract` structs, corpus-locked by decoded-struct equality against `fixtures/valid/tiny_trace.json`, with codec round-trip stability. The supporting refactor added precise struct typespecs and the public path-only `Hoapa.Contract.Corpus`; no semantic checker was added.
-2. Banked: the minimal `hoapa_core` event-log/export path described above. It preserves the exact raw shape needed by later formal witnesses, including independent actor registration and global causal-parent references.
-3. Banked at recorder-fidelity scope: the authoritative `c0 → c1 → c0` fixture is exported into the vendored corpus and the wildcard replay test exercises it through `EventLog` without a runtime code or test rewrite. A second literal-call transcription would duplicate the fixture's asserted causality and is optional, not a remaining pass-2 obligation.
-4. Keep validation corpus-locked to Agda. A runtime semantic checker or `hoapa_checker` earns its own app only once a behavioral originator produces events to validate one-by-one. Of the current candidates, only the actor kernel meets that gate.
-5. Keep three runtime notions distinct: a fidelity sampler tests codecs and recorder behavior over arbitrary well-typed values; a scenario originator derives run structure from authored transition logic; an actor kernel derives events and causal parents from actual message behavior. The selected next 3R slice is the smallest actor kernel that earns one parent edge from a consumed message. Full sampling, panel lifecycle, and closure follow around that causal seam.
-6. Add `hoapa_store` and its Pijul port/CLI boundary only after behavior and lifecycle worth persisting exist. Add Phoenix/`hoapa_web` last, as an edge adapter over an already-running core.
-
-### Superseded next-step comparison
-
-Tier A was banked and no next lane had been selected when the comparison below
-was written. Its arguments explain the selected order above but no longer state
-current priority:
-
-- **2S:** construct the change-of-actor-base setting needed to state Tier B, then prove realized global and conversation-frame equivalence under invertible relabeling. Keep `FrameHom` fixed-base and add a relative morphism rather than rewriting banked locality proofs.
-- **3R:** hold a design conversation for the actor kernel, the first candidate that would earn causal-parent edges from actual dependencies. A fidelity sampler or deterministic scenario originator is smaller but has a different, explicitly weaker payoff.
-- **1C:** pursue O1-in-Chu / `session-O1-action` through earned categorical structure, or open the Reality/Documentation/Chu boundary track.
-
-The checker remains gated on behavioral origination. Session assignment, persistence/Pijul, and Phoenix remain separate later layers.
-
-### Codex
-
-My recommendation is 2S, but as a bounded Tier B1 session: construct semantic change of actor base and use it to prove global realized-frame invariance. Do not attempt all of Tier B,
-  per-conversation transport, SIP, or descent in one pass.
-
-  One correction emerged from checking the code. The workflow currently compresses two different bases:
-
-  - Raw name presentations: decidable coordinate systems used by RawRun. ActorEmbedding currently lives here in formal/RuntimeContract/ActorRenaming.agda:100.
-  - Semantic actor bases: opaque set-level carriers in formal/Concurrency/Sites/ActorBase.agda:65, deliberately without decidable equality.
-
-  The concurrency substrate must not import RuntimeContract to reuse its arrow record. I recommend defining substrate-native ActorBaseEmbedding/ActorBaseIsomorphism, then relating the raw
-  and semantic arrows inside the 2S realization layer. The generic varying-name RawRun category can wait; Tier B does not yet force it.
-
-  A good session target would be:
-
-  > Construct the category-shaped change-of-base interface for semantic ActorBases, add FrameHomOver over an actor-base map while leaving FrameHom unchanged, and prove that a raw actor
-  > permutation induces an equivalence between the two global frames realized from a run and its relabeling.
-
-  That gives every abstraction an immediate consumer and makes the gauge reading mathematical: actor bases form the base, frames vary over them, and realized relabeling becomes an
-  invertible morphism in the total structure. A transposition on cross_conversation should be the concrete non-identity witness.
-
-  Explicitly defer:
-
-  - Generic RawRun A.
-  - The decidable-name presentation category.
-  - Per-conversation and cover-level equivariance.
-  - Local gauge/descent coherence.
-  - SIP/univalence and action-groupoid packaging.
-
-  3R’s actor kernel is the strongest alternative and should probably follow soon: it would be the first source of causality earned from behavior. But Tier B1 wins this session because it
-  is the direct consumer that has now forced the categorical infrastructure, and it can bank a precise theorem rather than only a runtime design. 1C remains less attractive by default
-  because both available directions still require a broader exploratory commitment.
-
-### Claude
-
-Recommendation: 3R, the minimal actor kernel
-
-  Not for lane balance. Because of where the project's risk is concentrated, and because of a red-first failure that nothing currently catches.
-
-  The argument
-
-  causal_parents is the load-bearing field of the entire contract. backwardOK constrains it, BackwardRank.agda derives rank from it, CausalFromParents.agda builds the global causal order
-  out of it, ConversationLocality.agda's restricted order depends on it, and ConversationOrderComparison.agda is a theorem about which pairs it relates. Five banked formal modules stand on
-  that one relation.
-
-  And in the system as it exists, every parent edge that has ever existed was typed by a human — in a fixture, in a test literal, or in a decoded fixture pushed back through the recorder.
-  Nothing has ever derived one from an actual dependency.
-
-  Here is the sharp form. Ask the project's own question: which check goes red? Suppose the system never derives causality from behavior at all — suppose it is, forever, a very good
-  transcription service for hand-authored edges. Which of the 7 contract tests, 12 core tests, or the formal conformance suite fails? None. Every one of them operates on fixtures a person
-  wrote. The obligation that would expose the gap does not exist, and by AGENTS.md's standard that means the behavior has never been red.
-
-  That is a different kind of hole from an unproved theorem. An unproved theorem is a known gap with a known cost. This is an unvalidated premise underneath proved theorems, and its cost
-  is unknown because nobody has looked. If real message causality turns out to have a shape evParents and backwardOK's list-position reading do not capture, the revision reaches back
-  through all five modules — and it gets more expensive with every rung added on top of them. Tier B, Tier C and Tier D each raise that price.
-
-  So the question I'd actually ask is not "what is the next rung?" but "what is the cheapest moment to find out whether the foundation holds?" The answer is now, and it has been getting
-  more expensive for several sessions.
-
-  What "minimal" has to mean
-
-  The failure mode is a session that produces a design document and no evidence. So the kernel should be scoped to the smallest thing that closes the gap, and the gap is one sentence wide:
-  a parent edge derived from an actual dependency.
-
-  Concretely — a few actors, message send and receive, each handler emitting one event whose parents are the events that produced the messages it consumed. Deterministic, in-memory, no
-  supervision tree, no persistence, no Phoenix, no checker app. The bankable minimum is one run in which at least one parent edge exists because a message caused a handler to run, recorded
-  through the existing Hoapa.Core.EventLog, exported, and accepted by the corpus boundary.
-
-  And the red-first obligation is nameable in advance, which is the test of whether the session is honestly scoped: mutate the kernel's dependency-tracking and the exported trace must 
-  change and a test must fail. If the kernel's test can pass while dependency tracking is broken, it is another replay client wearing a costume and the session did not close the gap.
-
-  The close call, honestly
-
-  Tier B — realized-frame equivalence over a changing actor base — is the strongest alternative and I do not think it is a bad choice. It is more precisely specified than the kernel right
-  now, because this session located its blocker in code: ActorCausal.agda:94-98 fixes one ActorBase for all frames and FrameHom carries no actor map, while CausalFromParents.agda:200-205
-  builds a run-specific carrier, so the comparison is currently inexpressible rather than merely hard. And it is smaller than it looks, since actor renaming leaves evId, evConv and
-  evParents untouched, so the entire event and causal side transports along a path I already proved rather than needing new construction.
-
-  I put it second for one reason: its risk is contained. If the presentation-category setting is wrong, we lose a session and a few records. If the causal-parent premise is wrong, we lose
-  part of the 2S tower — and Tier B adds to that tower.
-
-  The decision criterion I would actually use: if you believe the contract's causality model is obviously right, take Tier B, it is the tidier session. If you are not certain it is right, 
-  take the kernel, because its cost rises every time we don't. I am not certain, and the fact that nothing in the system has ever tested it is why.
-
-  One cost of choosing the kernel that I should name rather than hide: the two-carrier ActorEmbedding A B I argued for this session stays unexercised for another session, and an
-  unexercised generalization is a debt by the project's own rule. It is a small and clearly recorded debt, but it is real, and it is the strongest thing on Tier B's side of the ledger
-  after specification.
-
-  A standing observation, not a recommendation
-
-  Worth saying because it is the kind of thing that goes unsaid until it is expensive: the concurrency side K is now far ahead of the modal side M, and the project's central claim is a 
-  relation between them. M — the modal-context category — does not exist. Without it there is no Allow, no Require, no unit, no counit, no T1. ModalHoTT has been paused since the de Rham
-  named-coefficient rung, and every 2S and 3R session widens the gap.
-
-  The recorded reason for the ordering is that the cross-site adjunction should wait until the concurrency-internal adapter and runtime junction are "stable enough to serve as the
-  operational side." That is a real reason, but it is worth checking whether it has already been met: the junction now has a global frame, per-conversation frames, embeddings, a
-  conditional cover, an order-comparison theorem and a renaming rung. If that is not yet stable enough, it would be useful to write down what would be — because "held loose" with no
-  criterion is how the tractable side quietly becomes the whole project.
-
-  I am not proposing M for the next session; opening it is a research move with a high chance of producing scaffolding rather than a result, which is exactly what the project's
-  anti-default notes warn against. I am proposing that it acquire a stated trigger rather than remaining indefinitely downstream.
-
-  Defer
-
-  Session-tag assignment, per-conversation and cover-level equivariance, SIP/univalence, local gauge and descent coherence, the generic varying-name construction, hoapa_checker,
-  persistence and Pijul, Phoenix. All unchanged, and all still behind their recorded gates.
+The previous lane comparison and both agents' arguments are preserved, without
+new scheduling force, in the
+[planning archive](deep_context/archived_planning_2026-10-09.md#superseded-recommendations--retained-for-rationale).
