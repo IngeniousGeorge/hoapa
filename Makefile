@@ -4,13 +4,13 @@
 # `git status --porcelain` so untracked/orphan files are caught too; they are
 # meaningful once the generated/vendored artifacts are committed.
 
-.PHONY: test contract-regen contract-check contract-export contract-fresh formal-test runtime-test
+.PHONY: test contract-regen contract-check contract-export contract-fresh formal-test runtime-test docs-links
 
 SER  := formal/RuntimeContract/Serialization
 GEN  := formal/RuntimeContract/Generated
 PRIV := runtime/apps/hoapa_contract/priv/runtime_contract
 
-test: contract-check contract-fresh formal-test runtime-test
+test: contract-check contract-fresh formal-test runtime-test docs-links
 	@echo "all checks passed"
 
 # Regenerate the data-only Agda raw terms from JSON fixtures.
@@ -56,3 +56,10 @@ formal-test:
 # Runtime codec + conformance tests (self-contained; reads only priv/).
 runtime-test:
 	@cd runtime && mix test
+
+# Internal markdown links must resolve on both renderers the project uses: the
+# public Codeberg/Forgejo remote and GitHub derive heading anchors differently.
+# Runs last in `test` so a documentation break cannot mask a formal or runtime
+# failure. Warnings (missing draft images, absolute paths) do not fail the gate.
+docs-links:
+	@python3 workflow/tools/check_links.py

@@ -77,7 +77,7 @@ It separates
 the smallest behavioral test from the eventual assembly so that the causal
 premise is tested before more formal structure depends on it.
 Earlier competing recommendations are retained in the
-[planning archive](deep_context/archived_planning_2026-10-09.md#superseded-recommendations--retained-for-rationale).
+[planning archive](deep_context/archived_planning_2026-10-09.md#superseded-recommendations).
 
 1. **3R minimal causal kernel.** A few in-memory actor processes exchange
    messages carrying the event ID that produced them. A handler records an
@@ -88,7 +88,7 @@ Earlier competing recommendations are retained in the
    closure, selection, persistence, Phoenix, or checker app is required here.
 2. **2S contract v1.** Add closure and reference constructors and the separate
    valid-prefix/closed-publication predicates specified in
-   [implementation status](status_implementation.md#selected-contract-v1--not-implemented). Add fixture
+   [implementation status](status_implementation.md#selected-contract-v1). Add fixture
    expectations first, regenerate data-only Agda terms, export the corpus, and
    make every existing freshness/conformance gate green. This work changes
    schema and codecs only as the chosen sum representation requires.
@@ -151,7 +151,7 @@ synthetically through unityped participation, and documentation predominantly
 analytically through typed concepts and relations. Both moments occur in both
 realms; this does not designate M or K as exclusively synthetic or analytic.
 Neither the person nor the whole context is exhausted by represented work.
-See [the interpretation and its architectural counterexample](related_structures.md#lautman--analyticsynthetic-decomposition-and-recursive-incarnation):
+See [the interpretation and its architectural counterexample](related_structures.md#lautman-decomposition):
 output-dependent formal standing violates the intended common interface,
 whereas differing assessments of contributions need not. Test that boundary
 without claiming every typed rival lacks synthetic organization. The exact
@@ -241,6 +241,8 @@ The reciprocal mirror and rising-sea investigation remain live research
 horizons in [openings.md](openings.md#reciprocal-mirror-and-rising-sea).
 Their examples inform this programme; no extra adjunction is thereby selected.
 
+<a id="borrow-work-return-replay"></a>
+
 ### D. Borrow–work–return–replay and renewal
 
 For each candidate, say what is borrowed, what work can do, what returns, and
@@ -313,7 +315,7 @@ factorization comes first, and the inequality holds for every such law.
 No probability model is thereby chosen for Hoapa.
 
 **Dependence across finite families — available candidate.** The proposed
-[team-semantics example](related_structures.md#team-semantics--dependence-across-families-of-episodes)
+[team-semantics example](related_structures.md#team-semantics-dependence)
 tests a relation between runs rather than each run separately. Specify finite
 public inputs l, protected inputs h, outputs o, an admissible run family, and
 a local validity predicate. Name the missing obligation before implementing:
@@ -324,7 +326,7 @@ pass the stipulated local validity check.
 
 This is a proposed finite build, not an Agda declaration or a selected first
 task. Testing completeness of the intended input variations is a separate
-requirement. The [Riemann–Roch comparison](related_structures.md#grothendieckriemannroch-as-a-lautmansimondon-crossing) remains an explanatory
+requirement. The [Riemann–Roch comparison](related_structures.md#riemann-roch-crossing) remains an explanatory
 mathematical example, not a similarly cheap finite formalization.
 
 **Clause-sensitive adequacy — candidate.** After specifying a common context
@@ -653,7 +655,7 @@ The banked proof fact is that the order/antisymmetry rung uses the `backwardOK` 
 
 ## Λ: first local-to-global content test
 
-The [content-layer horizon](openings.md#2-bulk-type-theory--content-layer-λ)
+The [content-layer horizon](openings.md#content-layer-lambda)
 supplies the interpretation; the [coming programme](#coming-programme-and-dependency-order)
 supplies its contract and Federation dependencies. This bounded test is retained
 here so that the horizon has a concrete entry point.
@@ -716,7 +718,7 @@ citations. The linked destinations own the content; this is not a second queue.
 <a id="realitys-positive-role"></a> <a id="how-to-deal-with-it"></a> <a id="bulkboundary-duality-mention-only-transcript-in-arc11"></a>
 <a id="discipline--what-this-does-not-claim"></a> <a id="decision-gates-before-elevating-the-conjecture"></a>
 
-- [Candidate under evaluation: Reality and the protocol's constitutive exterior](openings.md#candidate-under-evaluation-reality-and-the-protocols-constitutive-exterior)
+- [Candidate under evaluation: Reality and the protocol's constitutive exterior](openings.md#reality-constitutive-exterior)
 
 <a id="lautman-as-theorem-shaper-analytic-adequacy-synthetic-invariance-and-their-compatibility"></a> <a id="the-theorem-shaping-protocol"></a> <a id="family-a--analytic-adequacy-of-process-to-trace-articulation"></a>
 <a id="family-b--synthetic-invariance-under-change-of-presentation"></a> <a id="family-c--compatibility-of-analytic-and-synthetic-decomposition"></a> <a id="family-d--recursive-replay-only-after-adequacy"></a>
@@ -727,7 +729,7 @@ citations. The linked destinations own the content; this is not a second queue.
 <a id="arc16-consolidation-mediator-and-care-theorem-shapers"></a> <a id="a-specific-space-valued-mediator-candidate"></a> <a id="care-compatible-episode-morphisms"></a>
 <a id="comparison-strength-and-iteration-warnings"></a>
 
-- [Arc/16 consolidation: mediator and care theorem-shapers](openings.md#arc16-consolidation-mediator-and-care-theorem-shapers)
+- [Arc/16 consolidation: mediator and care theorem-shapers](openings.md#arc-16-mediator-and-care)
 
 <a id="candidate-logical-presentation-track-mode-theory-and-indexed-context"></a> <a id="intended-role"></a> <a id="three-structures-that-must-remain-distinct"></a>
 <a id="1-contextual-indexing-telescopes-slices-and-descent"></a> <a id="2-operational-phasing-cbpv-and-lnl"></a> <a id="3-framework-level-modes-and-modalities"></a>

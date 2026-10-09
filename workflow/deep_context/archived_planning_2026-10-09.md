@@ -117,6 +117,8 @@ ordered dependency shape:
    and an activation boundary. This is the first K phenomenon that may force
    the category of contexts needed by M.
 
+<a id="implementation-track-checkpoint"></a>
+
 ### Implementation track — runtime, checker boundary, and protocol contract
 
 The durable implementation-track plan lives in `workflow/status_implementation.md`. That file replaces the old top-level `workflow/elixir.md` transcript, which has been archived under `workflow/deep_context/`.
@@ -128,6 +130,8 @@ This means the contract/export/runtime-codec harness is no longer future work. T
 The implementation still should not wait for the full cross-site `Allow ⊣ Require`, `MO_1`, Reflexive Π, or Bulk Λ layers. It also should not claim verification beyond the finite trace/run predicates Agda actually states. Elixir owns runtime behavior; Agda owns the specification of well-formed traces and boundary laws; the top-level checker boundary currently orchestrates formal and runtime tests, with compact certificates and richer audit/provenance semantics deferred.
 
 See `workflow/status_implementation.md` for the substrate-readiness audit, runtime split, naming guardrails, verification commands, and next contract decisions.
+
+<a id="superseded-recommendations"></a>
 
 ## Superseded recommendations — retained for rationale
 

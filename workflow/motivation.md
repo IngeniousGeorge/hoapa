@@ -30,7 +30,7 @@ The architectural hypothesis on K is the separation of unityped¹ participants,
 typed contributions, locality, documentation, and reusable publication.
 Its predominant synthetic/analytic orientation concerns two realms of
 understanding, not a partition of M and K; see
-[the Lautman interpretation](related_structures.md#lautman--analyticsynthetic-decomposition-and-recursive-incarnation).
+[the Lautman interpretation](related_structures.md#lautman-decomposition).
 Its checked fragments, intended extensions, and philosophical interpretation
 must be distinguished.
 

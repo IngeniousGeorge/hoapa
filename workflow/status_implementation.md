@@ -192,6 +192,8 @@ Fixture categories are part of the conformance suite:
 
 Generated Agda files may contain raw run/trace terms generated from fixtures, but not proofs. Hand-authored Agda test modules assert acceptance or rejection of those generated terms. The runtime consumes only the exported contract artifact under `hoapa_contract/priv/runtime_contract/`; it must not read `../../formal` during tests.
 
+<a id="selected-contract-v1"></a>
+
 ## Selected contract v1 — not implemented
 
 The next schema/validator revision gives conversations a lifecycle and gives
@@ -428,4 +430,4 @@ This file retains the contract, verification procedure, results, and blockers.
 
 The previous lane comparison and both agents' arguments are preserved, without
 new scheduling force, in the
-[planning archive](deep_context/archived_planning_2026-10-09.md#superseded-recommendations--retained-for-rationale).
+[planning archive](deep_context/archived_planning_2026-10-09.md#superseded-recommendations).

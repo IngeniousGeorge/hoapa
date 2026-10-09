@@ -73,6 +73,9 @@ case.
 
 ---
 
+<a id="lautman-decomposition"></a>
+<a id="lautman--analyticsynthetic-decomposition-and-recursive-incarnation"></a>
+
 ## Lautman — analytic/synthetic decomposition and recursive incarnation
 
 **Who.** Albert Lautman, especially the two *Essais* on structure and existence and on the unity of the mathematical sciences. The reading used here also passes through Fernando Zalamea's account of saturation/liberation, Gilles Deleuze's transformation of dialectical Ideas into immanent problematics, and David Corfield's reconstruction of Lautmanian Ideas as immanent to mathematical practice. These readings must not be conflated. Lautman himself gives the Dialectic an ontological priority over the mathematics that realizes it; the immanent reading is a deliberate Deleuzian/Corfieldian transformation that is particularly suitable for this project.
@@ -89,7 +92,7 @@ Lautman's broader dialectic gives this contrast a dynamic setting. Dialectical I
 **What it models.** The two decompositions model how individual differentiation and global organization arise together. They are useful when a homogeneous or uniformly presented field produces heterogeneous individual structure, when a particular object can only be analyzed relative to a surrounding domain, or when changing a basis, field, cover, context, or presentation changes the decomposition without necessarily changing the being presented. Saturation and liberation add a practical rhythm: incomplete structures are enriched, completed, or globalized; a more mobile invariant, notion, or interface is then liberated from the enriched construction and becomes usable in another context.
 
 **Decomposition and genesis are distinct questions.** In
-[the miscellaneous notes](arc/xx_misc_notes.md#lautmans-decompositions), the
+[the miscellaneous notes](arc/xx_misc_notes.md) (line 403, "Lautman's decompositions"), the
 passage beginning "Lautman's decompositions" separates how a being is
 articulated from what that articulation makes possible. Proper/dimensional
 decomposition addresses the first question; structure/existence addresses the
@@ -275,6 +278,8 @@ Hoapa's genuine proposed extension is to make Lautman's already-double movement 
 
 ---
 
+<a id="simondon-individuation"></a>
+
 ## Simondon — individuation and transduction
 
 **Who.** Gilbert Simondon, especially his account of individuation as primary relative to already constituted individuals. The relevant concepts are the preindividual field, metastability, transduction, and the joint individuation of an individual and its milieu.
@@ -311,6 +316,8 @@ The universal / particular split aligns suggestively with Lautman's synthetic / 
 **What it models.** A finite combinatorial presentation can retain global topological and arithmetic information, while a tower organizes how such presentations vary, glue, and transform across levels. It is therefore a strong source of tests for presentation invariance, controlled forgetting, monodromy preservation, and nontrivial comparison—but not a ready-made model of Hoapa's monad iteration.
 
 **Relation to our arc.** Dessins occupy a dual but compatible position: they are far-end K-side moduli / cover objects and possible K-facing elements of a future cross-site mediator. The candidate technical form is the independently constructed, space-valued shape-witness profunctor recorded in [openings.md](openings.md#a-specific-space-valued-mediator-candidate), whose later two-sided representability would recover T1 rather than constitute separate evidence for it. The principal mismatch is still open: the modal route currently offers a bare `S²`, while a dessin needs a three-marked base plus branch and cover data. The Esquisse material therefore supplies a gated test and a theorem-shaper, not an anchor or a constructed bridge.
+
+<a id="riemann-roch-crossing"></a>
 
 ### Grothendieck–Riemann–Roch as a Lautman–Simondon crossing
 
@@ -573,6 +580,8 @@ and relative cohesion as an alternative are recorded in
 [arc/18](arc/18_evolutionary_adjunction.md#session-consolidation-2026-09-26);
 the selected work remains in `future_work.md`.
 
+<a id="team-semantics-dependence"></a>
+
 ## Team semantics — dependence across families of episodes
 
 **Source and status.** The miscellaneous notes'
@@ -719,7 +728,7 @@ Status: **grounded** = already represented in Hoapa; **candidate** = worth testi
 - Parametricity and logical relations.
 - Definability/noninterference.
 - Actor-identity erasure and observational no-leak.
-- [Team semantics](#team-semantics--dependence-across-families-of-episodes).
+- [Team semantics](#team-semantics-dependence).
 - Dependence and independence logics.
 - Semiring-valued team semantics.
 - Two-sorted model theory separating actors from artifacts.

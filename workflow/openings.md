@@ -33,9 +33,9 @@ reusable mathematics merely because an earlier specimen was inadequate.
   Λ, Federation, dynamics, and information cohomology.
 - [Provenance and accountable change](#candidate-addition-under-evaluation-provenance-accountable-artifacts-and-reversible-import);
   [no-leak horizons](#candidate-under-evaluation-no-leak-theorem-ladder-and-humanness-as-refusal);
-  [Reality](#candidate-under-evaluation-reality-and-the-protocols-constitutive-exterior).
+  [Reality](#reality-constitutive-exterior).
 - [Lautman theorem-shapers](#lautman-as-theorem-shaper-analytic-adequacy-synthetic-invariance-and-their-compatibility);
-  [mediator and Care](#arc16-consolidation-mediator-and-care-theorem-shapers);
+  [mediator and Care](#arc-16-mediator-and-care);
   [logical presentation](#candidate-logical-presentation-track-mode-theory-and-indexed-context).
 - [Articulation, organized activity, universal language, and Galoisian replay](#exploratory-direction-articulation-organized-activity-universal-technical-language-and-galoisian-replay).
 - [Iteration beyond the current scaffold](#iteration-beyond-the-current-scaffold);
@@ -94,7 +94,7 @@ project.
 
 - **Team semantics and dependence:** investigate family-of-runs properties
   beyond individual validity; see the bounded [§E candidate](future_work.md#e-concrete-obligations-and-build-selection) and
-  [source/application distinction](related_structures.md#team-semantics--dependence-across-families-of-episodes).
+  [source/application distinction](related_structures.md#team-semantics-dependence).
   No probability model or identification of teams with human communities is
   implied.
 - **Generation and description:** monads with arities is the lead literature
@@ -178,7 +178,7 @@ These exclusions are not deficiencies. They are the right scope for a workflow d
 See [implementation status](status_implementation.md) for the banked boundary,
 [coming work](future_work.md#selected-contract-and-runtime-work) for its continuation,
 and [current_track](current_track.md) for the immediate task. The former detailed
-checkpoint is preserved in the [planning archive](deep_context/archived_planning_2026-10-09.md#implementation-track--runtime-checker-boundary-and-protocol-contract).
+checkpoint is preserved in the [planning archive](deep_context/archived_planning_2026-10-09.md#implementation-track-checkpoint).
 
 ### 1. Reflexive Protocol Layer (Π)
 
@@ -228,6 +228,8 @@ extension obligation decides whether the responsibility belongs there or in a
 separate contextual/version layer.
 
 *Originating design conversation:* `deep_context/arc/07_self-modifying_protocol.md`.
+
+<a id="content-layer-lambda"></a>
 
 ### 2. Bulk Type Theory / Content Layer (Λ)
 
@@ -828,6 +830,8 @@ formal growth because it tests the behavioral premise underneath the realized
 causal frames.
 
 
+<a id="reality-constitutive-exterior"></a>
+
 ## Candidate under evaluation: Reality and the protocol's constitutive exterior
 
 **Status and scope.** Like provenance, this is a **candidate under evaluation**, recorded because the concept is **present by its absence**: it does real work throughout the project but has never been named. It changes nothing in the live cascade — no renumbering, no new Agda module reserved. Crucially it is **not a cascade layer**. It sits at the *foundational floor* (the instigator's level "−1"), below the existing foundational separations (`actor-vs-content` in K, `spatial-vs-discrete` in M, `context-vs-system` at the cross-site adjunction); it adds one more, `reality-vs-protocol`. The originating discussion is preserved as a transcript in `arc/11_reality.md`. The separate logical-presentation / mode-theory track will eventually have to account for Reality; it is logged here as the present-by-absence gap, not folded into that track.
@@ -1037,6 +1041,8 @@ candidate. It still provides no evidence for the cross-site conjecture.
 6. What concrete counterexample would distinguish genuine basis independence from invariance built in by a trivial presentation?
 7. Only after A–C have nontrivial witnesses: do `Doc` and `Aff` exist as functors, and is an adjunction still the right relation?
 
+
+<a id="arc-16-mediator-and-care"></a>
 
 ## Arc/16 consolidation: mediator and care theorem-shapers
 
@@ -1380,11 +1386,11 @@ The current programme and its evidence levels are stated in
 
 ## Exploratory direction: articulation, organized activity, universal technical language, and Galoisian replay
 
-**Status and scope — 2026-10-03; extended 2026-10-08.** Candidate investigation following [arc/20's opening questions](arc/20_on_decompositions.md#openings-with-codex-towards-the-universal-language), its subsequent [Deligne discussion](arc/20_on_decompositions.md), and [anchor-placement exchange](arc/20_on_decompositions.md#anchor-placement). It also incorporates the subsequent discussion of organized activity, biological closure, and replay across scales. This section records a possible route to the universal-language responsibility of Λ and to the separation/integration mirror. It selects neither a first build nor a new definition of M, and leaves the existing lane priorities unchanged.
+**Status and scope — 2026-10-03; extended 2026-10-08.** Candidate investigation following [arc/20's opening questions](arc/20_on_decompositions.md#openings-with-codex-towards-the-universal-language), its subsequent [Deligne discussion](arc/20_on_decompositions.md), and [anchor-placement exchange](arc/20_on_decompositions.md) (line 1482, "Anchor placement"). It also incorporates the subsequent discussion of organized activity, biological closure, and replay across scales. This section records a possible route to the universal-language responsibility of Λ and to the separation/integration mirror. It selects neither a first build nor a new definition of M, and leaves the existing lane priorities unchanged.
 
 **Source extension — 2026-10-08.** This pass also draws on
 [the miscellaneous notes](arc/xx_misc_notes.md):
-[Lautman's decompositions](arc/xx_misc_notes.md#lautmans-decompositions),
+[Lautman's decompositions](arc/xx_misc_notes.md) (line 403, "Lautman's decompositions"),
 [Riemann–Roch and the two decompositions](arc/xx_misc_notes.md#riemann-roch-and-the-two-decompositions),
 [team semantics](arc/xx_misc_notes.md#team-semantics),
 [the third synthesis of time](arc/xx_misc_notes.md#the-third-synthesis-of-time),
@@ -1520,7 +1526,7 @@ The sum and product of the roots recover −a and b: useful descent controls, bu
 
 More generally, in a finite Galois extension L/k with group G, invariance under a subgroup H supports return to Lᴴ, not necessarily all the way to k. For objects rather than elements, require coherent descent data, not merely an assertion of invariance. The return can therefore be relative to an intermediate context. This is a promising place to relate the Lawvere variance questions to an actual construction, without equating those variances with the entire M/K correspondence.
 
-Deriving a construction uniformly over a generic family of quadratics is another achievement, not an automatic consequence of the one-instance calculation. It connects to [future_work §D](future_work.md#d-borrowworkreturnreplay-and-renewal)’s distinction between particular artifacts and instantiable rules.
+Deriving a construction uniformly over a generic family of quadratics is another achievement, not an automatic consequence of the one-instance calculation. It connects to [future_work §D](future_work.md#borrow-work-return-replay)’s distinction between particular artifacts and instantiable rules.
 
 Likewise distinguish using an existing language from developing a new reusable expression. The latter, followed by an independently admissible new use, is the connection to [future_work §E](future_work.md#e-concrete-obligations-and-build-selection)’s contextual-renewal candidate. Reversible Galois transport alone is not evolution.
 
@@ -1554,7 +1560,7 @@ targets, and interpretation remain to be supplied. Initiality does not prove
 practical adequacy or no privileged institution.
 
 Interpreting one generated object and transporting a theory between models are
-different scales of reuse, not automatically the Σ/Π distinction in [future_work §D](future_work.md#d-borrowworkreturnreplay-and-renewal).
+different scales of reuse, not automatically the Σ/Π distinction in [future_work §D](future_work.md#borrow-work-return-replay).
 Likewise, base change, descent of compatible data, adjunctive return, and later
 uptake retain their separate obligations.
 
@@ -1596,7 +1602,7 @@ An achievement may become informative by transforming a receiving problematic,
 and regenerative by leaving conditions for further work that differ from those
 that produced it. Investigate this movement without making novelty compulsory
 or reducing information to the available artifact.
-[Simondon's account](related_structures.md#simondon--individuation-and-transduction)
+[Simondon's account](related_structures.md#simondon-individuation)
 motivates asking what an encounter enables: confirmation, resolution of an
 uncertainty, or reorganization of a documentary problem. Consumer-initiated
 accessibility enables uptake without determining its effect.
@@ -1762,7 +1768,7 @@ there; the following cases do not select an implementation order:
 - **Local proliferation / contextual adequacy:** compare increasing uptake with the state of the wider dependencies supporting it. A practice that expands while degrading those dependencies is a counterexample to identifying propagation with adequacy.
 - **Identification / replay adequacy:** compare equal-result procedures whose resource use or causal dependencies differ for a declared later use. Also retain the positive control of independent schedules legitimately identified. Ask which separations license integration and which integrations expose further necessary distinctions.
 - **A₅ versus the unrestricted graph family:** vary the face relation and retain the three-port/pairing clauses. Ask what, if anything, independently selects the dodecahedral case, and whether its symmetry is useful for a documentary or operational task. Other successful cases are informative, not failed approximations to A₅.
-- **Decomposition / genesis:** compare another description with an enabled construction. The [Riemann–Roch pole example](related_structures.md#grothendieckriemannroch-as-a-lautmansimondon-crossing) makes local prescriptions and global realizability interact; it does not claim that every new decomposition creates new beings.
+- **Decomposition / genesis:** compare another description with an enabled construction. The [Riemann–Roch pole example](related_structures.md#riemann-roch-crossing) makes local prescriptions and global realizability interact; it does not claim that every new decomposition creates new beings.
 - **Individual validity / relational dependence:** compare families whose members all pass the same local check but differ in public-output dependence on protected variation; use the [future_work §E candidate](future_work.md#e-concrete-obligations-and-build-selection).
 - **Availability / informative uptake:** follow the same artifact in two declared receiving contexts and identify what, if anything, becomes newly understandable or operable.
 - **Persistence / succession:** compare continued producer mediation with successful handover preserving the required uses and provenance.

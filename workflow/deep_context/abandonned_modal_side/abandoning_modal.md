@@ -29,7 +29,7 @@ and [former lane instructions](workflow/current_track.md). They are historical
 proposals, including unresolved claims, not revalidated specifications.
 The stronger cohomological/receiver claims remain in the snapshot's
 [information-cohomological layer](workflow/future_work.md#5-information-cohomological-complexity)
-and [cross-cutting reframings](workflow/future_work.md#appendix--cross-cutting-reframings-different-in-nature-from-the-layers-above).
+and [cross-cutting reframings](workflow/future_work.md) (the "Appendix — cross-cutting reframings" section).
 
 The generic iteration scaffold and its naturality obligation remain in
 [future work](../../future_work.md#regarding-t_recursion-iteration).

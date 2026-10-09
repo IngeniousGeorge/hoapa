@@ -39,7 +39,7 @@
   describes its articulation in differentiated conceptual documentation.
   The decomposed subject is **understanding of the world**, not persons.
   Both moments occur in both realms. See
-  [related_structures.md](related_structures.md#lautman--analyticsynthetic-decomposition-and-recursive-incarnation).
+  [related_structures.md](related_structures.md#lautman-decomposition).
 - Neither **the synthetic side** nor **the analytic side** is a synonym for
   M, K, agents, or documentation. Synthetic/axiomatic versus analytic/model
   construction in the formalization is another use; state which use is meant.

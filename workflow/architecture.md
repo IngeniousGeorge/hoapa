@@ -51,7 +51,7 @@ independently of its occupant. In the Lautman-facing interpretation, what is
 articulated is understanding of the world: embodied among participants under
 a common plan, predominantly synthetically, and in differentiated conceptual
 documentation, predominantly analytically. Both moments occur in both realms;
-see [the canonical interpretation](related_structures.md#lautman--analyticsynthetic-decomposition-and-recursive-incarnation).
+see [the canonical interpretation](related_structures.md#lautman-decomposition).
 Participants help produce, test, and revise documented articulations. The
 record represents specified participation and work, not an exhaustive
 decomposition of a person. Assessing a contribution must not turn its content
