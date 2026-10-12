@@ -28,9 +28,11 @@ reusable mathematics merely because an earlier specimen was inadequate.
 ## Navigation
 
 - [Reciprocal mirror and rising sea](#reciprocal-mirror-and-rising-sea);
+  [infinity and infinitesimality](#infinity-and-infinitesimality);
   [candidate mathematical resources](#candidate-mathematical-resources-for-the-m-rebuild).
 - [Concurrency layers](#concurrency-side-layers-of-complexity-planned), including
-  Λ, Federation, dynamics, and information cohomology.
+  Λ and its [conceptual variation responsibility](#conceptual-variation-within-λ),
+  Federation, dynamics, and information cohomology.
 - [Provenance and accountable change](#candidate-addition-under-evaluation-provenance-accountable-artifacts-and-reversible-import);
   [no-leak horizons](#candidate-under-evaluation-no-leak-theorem-ladder-and-humanness-as-refusal);
   [Reality](#reality-constitutive-exterior).
@@ -89,6 +91,117 @@ distinction. Universal properties and descent offer starting points. The
 correspondence remains an intuition to develop and test, not independent
 evidence for optimality, since Grothendieck's method already helped shape the
 project.
+
+## Infinity and infinitesimality
+
+**Status.** A pre-philosophical orientation and open metaphysical investigation,
+not a deduction of BWR from presuppositionlessness or a chosen model of M.
+The proposal asks whether refusing final contextual enclosure and refusing
+final elementary articulation express a common relation. Preserve that ambition
+alongside its bounded mathematical investigations, rather than replacing it
+with information preservation alone. The source is [arc/21](arc/21_infinitesimals.md),
+line 2194, “Last push towards a pre-philosophical”, and line 2235,
+“A proposed version of the table”.
+
+| Property | Absolute pole | Infinitesimal pole |
+|---|---|---|
+| Origin: presuppositionlessness | No enclosing boundary is imposed in advance. | No finished unit of determination is imposed in advance. |
+| Situated access | No situated view exhausts the whole. | A situated view may fail to distinguish an incipient difference from nothing. |
+| Articulation | No final enclosure. | An incipient distinction or interface, before a fully articulated region. |
+| Determination | Inexhaustibility by achieved determinations. | Determinacy without completed development. |
+| Problem | How does inexhaustibility become effective creativity rather than indefinite repetition? | How does a difference acquire efficacy and continuation rather than disappear or become indistinguishable? |
+| Proposed response | Recursive communal activity sustains and transforms conditions of further activity. | Relational support enables incipient activity to participate in sustaining its continuation: a candidate proto-conatus. |
+| Tentative characterization | Not exhausted by what has become determinate. | Beginning to make a determinate difference. |
+| Relation | Articulation need not fragment everything into independent pieces. | Integration need not erase the difference being sustained. |
+
+The two guiding questions are retained from [arc/21](arc/21_infinitesimals.md),
+line 2347, “Borrow–Work–Return–Replay then becomes an expression of this movement”:
+
+> How can this beginning acquire a continuation beyond its initial situation?
+
+> How can achieved determinations become conditions of further determination without becoming its final limits?
+
+**Presuppositionlessness and relational determination.** Boundaries may arise
+through activity without becoming ultimately authoritative. The “zero / one
+boundary” intuition concerns no antecedent enclosure and an incipient act of
+articulation, not a demonstrated topological boundary count. The absolute
+exceeds a view's capacity to encompass; an incipient difference may exceed its
+capacity to discriminate. These situated limits can change with instruments,
+concepts, or practices. They do not identify cosmological horizons or the Planck
+scale with mathematical infinities or infinitesimals. The unity of an absolute
+context, a proposed uniqueness “in the limit”, and the order of an infinitesimal
+articulation remain distinct questions. Their identification is an ambition to
+investigate, not supplied by the table.
+
+**Continuation, renewal, and conatus.** Local organizational closure can sustain
+activity without making it independent of its environment. Maintenance renews
+enabling conditions; renewal changes what can subsequently be done. Neither is
+reducible to indefinite acceleration, and continuation can involve transformation,
+transmission, or succession rather than unchanged identity. Connect this to
+[local work and its enabling organization](#local-work-and-its-enabling-organization),
+without treating biological closure as a proved model of the whole conjecture.
+The original cosmic-contract picture places a demand for creative reinvestment
+in the absolute itself. The conatus alternative places striving in situated
+beings and asks how their continuation sustains or renews conditions beyond
+themselves. Keep both readings visible: the latter avoids a needy cosmic
+creditor but does not derive sustainable BWR from striving alone. The arc's
+Spinozist interpretation and its teleological tension remain open.
+
+**The reciprocal mirror and BWR.** Relational determination is a positive
+commitment of the picture: a difference can acquire efficacy through relations
+without being dissolved into them. Separation enables integration; integration
+sustains distinctions; integration can reveal further distinctions. Both poles
+need both movements; neither absolute = M nor infinitesimal = K is assumed.
+Borrow–work–return–replay expresses their proposed circulation: an activity
+uses enabling conditions, articulates a result, returns a presentation, and may
+support further work through adequate uptake. Publication alone does not
+establish that uptake. Declared adequacy must coexist with revisability when
+later uses exceed an artifact's scope; recovering discarded information is not
+promised. See [arc/21](arc/21_infinitesimals.md), line 2088,
+“The strongest consequence concerns the limits of adequate replay”, and the
+[bounded continuation test](future_work.md#continuation-and-response-preservation).
+
+**The Care echo.** The proposed interpretation concerns preserving conditions
+of participation in a wider whole and preserving possibilities of transformation
+within an articulated element. The question is how these responsibilities can
+be compatible, not whether every difference must be amplified. Mathematical
+structure, logical rules, and normative adequacy remain distinguishable. The
+checked involution `(–)⊥` retains its scope; this developmental reading neither
+replaces it nor follows from it. Asymmetric assistance within an episode and
+reciprocal standing across episodes are possible related aspects, not a proved
+reconciliation. The [conceptual variation responsibility](#conceptual-variation-within-λ)
+provides one documentary investigation, not a representation of persons or the
+unique location of the infinitesimal.
+
+**Distinctions to preserve.** The arc's corrections travel with the proposal:
+
+- Sensitivity, realization, and continuation are different achievements. A
+  detectable variation can be obstructed; a realizable one can damage future
+  work; an obstruction can itself be a useful return.
+- There is no generally available “absolutely smallest infinity”. Nilpotence
+  limits products, not copying or temporal continuation; SDG is cartesian.
+  Its Kock–Lawvere axiom package, not nilpotents in ordinary algebra, conflicts
+  with unrestricted excluded middle. An infinitesimal probe is not literally
+  empty merely because ordinary point observations fail to distinguish it.
+- Absence of selectable nonzero global elements of D does not exclude globally
+  specified maps D → R. Microcancellation supplies uniqueness, not by itself the
+  existence assertion of Kock–Lawvere. A germ already has a local representative;
+  nontrivial extension obstructions require a specified extension problem.
+- Cochains can compare forward routes on directed structures without reversing
+  causal arrows. An interleaving diamond is not already a connection. Flatness
+  does not imply trivial global holonomy; curvature or nonzero periods do not
+  by themselves classify Care or novelty.
+- Pairing-based reconstruction depends on the chosen pairing and tests. An
+  Isbell construction is not automatically Legendre–Fenchel duality, and loss
+  under convex reconstruction is not a general infinitesimal-integrability
+  obstruction.
+
+For the arguments, see [arc/21](arc/21_infinitesimals.md), line 2071,
+“Sensitivity, realization, and continuation”, line 2109, “The correction
+process”, line 2122, “Path dependence”, and line 2146, “The Isbell/Legendre–Fenchel
+proposal”. These distinctions leave the common-account question open; they do
+not turn the metaphysical proposal into an already established duality or add
+a second foundational relation alongside `Allow ⊣ Require`.
 
 ## Candidate mathematical resources for the M rebuild
 
@@ -155,7 +268,7 @@ what to aim for rather than adding numbered construction work.
 | Layer | Properties |
 |---|---|
 | **1. Reflexive Protocol Layer (Π)** | **Function:** bounded meta-conversations propose later protocol versions without rewriting conversations already run. <br> **Math anchor:** explicit versions, preservation obligations, and an activation boundary; the categorical carrier remains open. <br> **Status:** Committed responsibility; formal shape unearned. |
-| **2. Bulk Type Theory / Content Layer (Λ)** | **Function:** interpret published episodes, artifacts, concepts, dependencies, and comparison history as versioned languages that can grow and compress without rewriting evidence. <br> **Math anchor:** directed content graph plus a version-relative presentation in which only admitted comparisons may be inverted; every compression is relative to designated observations. <br> **Status:** Selected v0 forcing case; higher categorical form open. |
+| **2. Bulk Type Theory / Content Layer (Λ)** | **Function:** interpret published episodes, artifacts, concepts, dependencies, and comparison history as versioned languages; distinguish stabilized articulations from their declared conceptual variations. <br> **Math anchor:** directed content graph plus version-relative admitted comparisons; every compression is relative to designated observations. Kock–Lawvere and deformation theory are candidates for the [variation responsibility](#conceptual-variation-within-λ). <br> **Status:** Selected v0 forcing case; conceptual variation is a committed responsibility with mathematical realization under investigation; higher categorical form open. |
 | **3. Field-theoretic dynamics on the content layer** | **Function:** investigate the growth, stabilization, and purpose-relative compression of versioned language presentations. <br> **Math anchor:** factorization algebra and renormalization-group ideas are candidates only after Λ supplies actual local observables and transformations; no fixed trajectory or action functional is assumed. <br> **Status:** Research horizon. |
 | **4. Federation — open network of documented contexts** | **Function:** independently maintained peers exchange typed, versioned artifacts while retaining local adoption authority, conflicts, and missing translations as data. <br> **Math anchor:** first a category/bicategory candidate of publication contexts and partial translations; Yoneda, anabelian reconstruction, and GT-equivariance remain research tests, not consequences. <br> **Status:** Exchange constraints selected; full mathematical layer unearned. |
 | **5. Information-cohomological complexity** | **Function:** investigate receiver-relative description cost without assigning complexity ranks to actors. <br> **Math anchor:** information cohomology and related empirical proxies, after Λ defines a category of observations. <br> **Status:** Research horizon; measurement interface unearned. |
@@ -285,6 +398,98 @@ runtime interpretation decide whether a small `Concurrency/Content/` sibling or
 another location is warranted.
 
 *Originating design conversation:* `deep_context/arc/08_bulk_type_theory_layer.md` (placeholder file; design captured in workflow conversation logs).
+
+#### Conceptual variation within Λ
+
+**Status and architectural separation.** Committed responsibility; mathematical
+realization under investigation. Stabilized graph-based articulations give
+concepts enough determinacy to be named, related, composed, and reused.
+Conceptual variation has a different job: express specified admissible
+variations and responses under a declared interpretation, with continuous and
+infinitesimal variation as the leading mathematical target. Stable articulations
+make understanding portable; variation preserves access to possibilities they
+do not exhaust. Safeguarding the complexity of the conceptual plane means
+resisting exhaustive claims for those articulations, not promising an exhaustive
+model of every possible development. Interpretations can themselves be revised;
+not every concept is assumed to admit nontrivial smooth variation.
+
+This responsibility initially lives beside identification and coherence within
+Λ, not in a new numbered layer. Its possible later separation does not require
+identification to be promoted with it. Shared mathematics would not by itself
+determine architectural packaging. Actor-causal histories and protocol events
+remain discrete; richer content semantics do not turn messages into infinitesimals
+or prescribe a smooth/cohesive M.
+
+**Participant-facing purpose and provenance.** A participant should be able to
+ask what can change, which changes preserve an admitted equivalence, and what
+must change elsewhere to retain compatibility. A reusable artifact can omit
+both its history and its possibilities. The [provenance account](#candidate-addition-under-evaluation-provenance-accountable-artifacts-and-reversible-import)
+addresses recorded genesis; variation addresses declared possibilities of
+becoming. Retaining an archive does not recover those possibilities automatically:
+they can require models, assumptions, constraints, or renewed inquiry. Both
+accounts support usable interfaces without turning simplification into a claim
+of completeness. Neither reconstructs protected participant histories.
+
+**Two mathematical resources with distinct jobs.**
+
+- **Kock–Lawvere / synthetic differential geometry:** the leading candidate
+  for smooth infinitesimal responses. For a suitable line R and
+  D = {d : R | d² = 0}, Kock–Lawvere describes maps D → R uniquely by value
+  and slope. In a suitable cartesian closed setting, T X = X^D preserves
+  existing limits. Thus T(X ×_B Y) ≅ T X ×_(T B) T Y: variations of an assembly
+  modeled by a pullback are compatible variations of its parts. This is a
+  standard mathematical resource, not a theorem already instantiated for
+  Hoapa's content. See [Kock, I.1](https://users-math.au.dk/kock/sdg99.pdf) and
+  [Lawvere's SDG outline, pp. 1–4](https://ncatlab.org/nlab/files/LawvereSDGOutline.pdf).
+- **Algebraic and derived deformation theory:** a leading source for organizing
+  variations, their equivalences, and extension obstructions together. Groupoid-
+  or space-valued moduli retain automorphisms that a set of classes forgets.
+  Familiar theories locate infinitesimal automorphisms, deformation classes,
+  and obstructions in specified cohomological degrees; there is no universal
+  three-degree complex. The problem and grading convention matter. See
+  [Lurie, DAG X, example 0.0.7](https://www.math.ias.edu/~lurie/papers/DAG-X.pdf).
+  An obstruction is one structured kind of failure evidence, not an explanation
+  of every disagreement, missing proof, resource limit, or failed closure.
+
+These resources share infinitesimal probing but are not identified by calling
+SDG an internal presentation of algebraic deformation theory. Comparisons need
+specified models and maps. No new formal dependency or Agda subtree is selected.
+
+**Variation, groupoidal identification, and words.** Investigate whether these
+responsibilities are aspects or presentations of one family-sensitive moduli
+structure, rather than merely adjacent mechanisms. A candidate assigns to a
+parameter space S a groupoid G(S) of families and their admitted equivalences,
+relative also to the documentary context and version. A stack account would
+add coherent descent, which must be established. Infinitesimal automorphisms
+describe only part of identification; genuine deformations need not be
+equivalences. “Undirectedness” here means reversible, witnessed comparisons
+with composition and coherence, not deletion of arrowheads from dependencies.
+Neither taking π₀ nor taking a fundamental group is already the extraction of
+conceptual meaning; path-connected variation can relate inequivalent objects.
+
+The universal-language hypothesis is that a family-sensitive conceptual
+landscape could exhibit salient or stable “peaks” that become words: recognizable
+articulations whose surrounding variations and relations remain available.
+What makes a peak, how it is recognized, and what its naming preserves are open
+questions, not a chosen metric, maximum, connected component, or canonical
+representative. Keep [equivalent presentations and reusable patterns](#2-universal-technical-language-musical-articulation-reasoning-and-reuse)
+distinct. The test is whether a proposed identification transports the response
+families relevant to its declared purpose, and whether operations on concepts
+extend coherently to their families. This could connect composition, variation,
+and identification without identifying every instance of a pattern.
+
+**Relation to layer 3.** Variation describes specified possibilities within an
+interpretation; dynamics studies actual or modeled evolution of documentation
+and of those possibilities. Tangent structure, vector fields, and flows give
+a mathematical comparison, not a claim that inquiry obeys a vector field.
+Changing the space of admissible possibilities is not automatically movement
+within a previously fixed one. The separate [dynamics horizon](#3-field-theoretic-dynamics-on-the-content-layer)
+retains its status and gates.
+
+The [continuation and response obligation](future_work.md#continuation-and-response-preservation)
+owns the bounded comparison cases; it does not establish the whole responsibility.
+The [infinity/infinitesimality opening](#infinity-and-infinitesimality) records
+the philosophical motivation and Care echo without making either a theorem.
 
 ### 3. Field-theoretic dynamics on the content layer
 
@@ -1450,6 +1655,12 @@ The project-facing question is whether rich contextual variation can become repr
 
 1. Witnessed equivalences between presentations of a concept or construction.
 2. Reusable patterns connecting concepts that are not equivalent.
+
+The [conceptual variation responsibility within Λ](#conceptual-variation-within-λ)
+now records the proposed relationship between stable articulations, continuous
+variations, groupoidal identification, and “peaks” that could become words.
+It is the canonical account of that separation and its possible common
+mathematical carrier, not an additional construction queue here.
 
 This preserves the intuition of a few recognizable islands without making the objective a premature quotient of all knowledge. An island may retain nontrivial symmetry and several presentations; a connected groupoid is not necessarily contractible. An operadic grammar could govern composition while a groupoidal layer governs admissible identifications. Their compatibility, not their identification, is the research question.
 

@@ -22,9 +22,10 @@ Levels, layers, and adapters answer different questions.
   level −1 conversation. The same pattern can recur: panels remain the active
   machinery, while the graphs they work on are artifacts.
 - **Layers** separate responsibilities within what is represented: session
-  orchestration, content and provenance, the content layer Λ, reflexive
-  protocol change, dynamics and measurement, and Federation. A layer is not a
-  temporal stage and need not correspond to one runtime process.
+  orchestration, content and provenance, identification and conceptual
+  variation within Λ, reflexive protocol change, dynamics and measurement,
+  and Federation. A layer is not a temporal stage and need not correspond to
+  one runtime process; distinct responsibilities may initially share a layer.
 - **Adapters** relate structures across a separation of concerns. Restriction,
   descent, change of value, promotion, the conjectural `Allow ⊣ Require`, and
   no-leak are relationships between structures; they are not additional
@@ -143,10 +144,22 @@ that set. Only admitted comparisons may become identifications; no global
 groupoid completion is assumed. A withdrawal creates a later version and does
 not rewrite the history of the earlier admission.
 
-Identification, coherence, and purpose-relative compression are
-responsibilities within Λ. Compression is adequate only when every designated
-observation descends through it. Locators such as engineering and biology are
-contexts inside a language, not automatically Federation peers.
+Identification, coherence, conceptual variation, and purpose-relative
+compression are responsibilities within Λ. Compression is adequate only when
+every designated observation descends through it. Locators such as engineering
+and biology are contexts inside a language, not automatically Federation peers.
+
+Conceptual variation is a committed responsibility whose mathematical
+realization is under investigation. A participant should be able to distinguish
+a stabilized result from its declared possibilities of variation, inspect the
+conditions and evidence for those possibilities, and ask what a proposed reuse
+preserves. A comparison may preserve a present answer without preserving its
+response to change. Provenance records how a result arose; it does not by itself
+recover how it could vary. These accounts concern documented subjects, not
+participants' interior lives. The [canonical account](openings.md#conceptual-variation-within-λ)
+relates variation to groupoidal identification and the universal technical
+language; neither an exhaustive account of possibility nor a new numbered
+layer is assumed.
 
 ## Constrained mathematical correspondence
 

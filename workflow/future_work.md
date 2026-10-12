@@ -314,6 +314,51 @@ adequacy implies H(d(X)) = H(q(X)) + H(d(X) | q(X)); the structural
 factorization comes first, and the inequality holds for every such law.
 No probability model is thereby chosen for Hoapa.
 
+<a id="continuation-and-response-preservation"></a>
+
+**Continuation and response preservation — candidate.** Extend the finite
+sufficiency test to a specified continuation. This is the bounded obligation
+for [conceptual variation within Λ](openings.md#conceptual-variation-within-λ),
+not a selected first build or a second explanatory account of that responsibility.
+Independently specify finite situations X and X′, publication maps q : X → Q
+and q′ : X′ → Q′, and work w : X → X′. Require q to be surjective, or restrict
+Q to its image. Seek a returned operation w̄ : Q → Q′ satisfying:
+
+```text
+q′ ∘ w = w̄ ∘ q
+```
+
+The named unmet obligation `continuation-factorization-criterion` is to
+construct, in this finite setting, the equivalence between existence of such
+a unique w̄ and the fibre-compatibility condition:
+
+```text
+for all x, y in X:
+  q(x) = q(y) ⇒ q′(w(x)) = q′(w(y))
+```
+
+This is a proposed obligation, not an Agda declaration or a checked result.
+Do not choose q or q′ retrospectively to force success. With X = X′ the
+two-bit situations and q = q′ projection to the first bit, flipping the first
+bit is a positive control. Swapping the bits is negative: (0,0) and (0,1)
+publish identically before the swap and differently afterward. Retain both
+cases and a check of the criterion before claiming continuation preservation.
+Existence of a returned operation concerns information; the separate
+producer-unavailable reuse test above still concerns access and enabledness.
+Failure may call for permissible refinement, renewed work, or an explicit
+limitation, not automatic disclosure of omitted or protected information.
+
+Keep a distinct first-order response comparison: at θ = 0, f(θ) = θ and
+g(θ) = 2θ agree in value but differ in slope. By contrast, f and
+h(θ) = θ + θ² agree in both value and slope there, while differing beyond
+first order. Declare which response is required before accepting or rejecting
+their interchangeability. This tests response-aware adequacy, not yet a need
+for SDG: ordinary calculus already distinguishes these cases. A further
+Kock–Lawvere investigation must identify what family-wise reasoning,
+compatibility with assembly, or coherent transport adds, with an actual
+interpretation and a discriminating case. No SDG model or deformation complex
+is prescribed by the finite test.
+
 **Dependence across finite families — available candidate.** The proposed
 [team-semantics example](related_structures.md#team-semantics-dependence)
 tests a relation between runs rather than each run separately. Specify finite

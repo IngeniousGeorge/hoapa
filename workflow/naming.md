@@ -141,6 +141,17 @@ available as candidates, including relative cohesion between settings.
 - The **core**, a **localization**, and **groupoid completion** are different
   constructions. Dependency edges remain directed; only explicitly admitted
   comparisons are candidates for inversion.
+- **Stabilized conceptual articulation** means a presentation definite enough
+  to name, compose, compare, and reuse, not an immutable or exhaustive meaning.
+  **Conceptual variation** names the distinct responsibility within Λ for
+  specified admissible variations and responses under a declared interpretation,
+  with continuous/infinitesimal variation as the leading mathematical target.
+  Its [canonical account](openings.md#conceptual-variation-within-λ) distinguishes
+  genuine variation from equivalent presentation and from dynamics of inquiry.
+- **Conceptual variation**, **clause variation** of candidate architectures,
+  and **contextual variability P** name different investigations. None is
+  assumed smooth merely because it varies; their possible relationships require
+  explicit interpretations and comparison maps.
 - A **locator** names a context inside a language, such as engineering or
   biology. A locator does not by itself name a federated peer.
 
@@ -165,7 +176,10 @@ available as candidates, including relative cohesion between settings.
 
 - A **level** says what occupies the positions being discussed; a **layer** is
   a separation of responsibility; an **adapter** relates structures across a
-  separation. These are independent axes.
+  separation. These are independent axes. A **committed responsibility** names
+  a job the architecture must account for, not a chosen mathematical carrier
+  or separate numbered layer. Conceptual variation and identification initially
+  live within Λ; shared mathematics would not by itself settle their packaging.
 - **Promotion** means publishing an output through an explicit interface so it
   can be referenced by later work. It is not a collapsing `FrameHom` and does
   not turn a participant into a concept.
