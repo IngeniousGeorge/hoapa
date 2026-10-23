@@ -145,6 +145,10 @@ Its modal-era work orders are superseded by the 2026-09-26 reorientation in
 `workflow/current_track.md`; the architectural corrections and examples remain
 useful. The file itself is retained unchanged.
 
+## Dried-out style
+
+THe **dried-out** style in Hoapa means to strip down statements to their bare stylistic
+minimum, and get the information across as pointers, reminders, pure structure.
 
 ## Mathematical style
 
