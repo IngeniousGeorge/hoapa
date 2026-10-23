@@ -266,6 +266,8 @@ In total there are 6 such layers in the current framework, either encoded or pla
 
 ## 3. Use cases
 
+<a id="31-a-park"></a>
+
 ### 3.1 A park
 
 Hoapa can also operate at small scales and with only the "base layer of complexity" which separates the unityped agents from the typed documentation they produce.
