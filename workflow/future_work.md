@@ -359,6 +359,23 @@ compatibility with assembly, or coherent transport adds, with an actual
 interpretation and a discriminating case. No SDG model or deformation complex
 is prescribed by the finite test.
 
+**Note — a shared factorization lemma (Claude, 2026-10-27; unassessed).**
+`observation-quotient-universal` appears to be the special case of
+`continuation-factorization-criterion` with X′ = X and w = id: put the
+publication d in the role of q, and the observation quotient X → Q_O in the
+role of q′. A factor r : D → Q_O then exists exactly when
+d(x) = d(y) ⇒ x ≈O y, which is Adequate_O(d); surjectivity of d gives
+uniqueness. Both obligations would then rest on one standard fact: maps out of
+the codomain of a surjection between sets correspond to maps out of its domain
+that are constant on its fibres (surjections are effective epimorphisms of
+sets). If pursued, one small module could carry that lemma with the two
+obligations as instances; whether the cubical library's set quotients supply
+most of it is unchecked. The lemma alone establishes nothing about Hoapa: the
+discriminating content stays in the declared observations and continuations
+and their controls (first-bit flip versus bit swap, the producer-authorization
+rival). Recorded for a future session to assess; not a selected build, an Agda
+declaration, or a checked result.
+
 **Dependence across finite families — available candidate.** The proposed
 [team-semantics example](related_structures.md#team-semantics-dependence)
 tests a relation between runs rather than each run separately. Specify finite
