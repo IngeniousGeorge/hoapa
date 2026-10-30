@@ -217,3 +217,10 @@ See relevant section in com*/presentation*.pdf. To which I would like to add the
   5.  analogy worth investigating to make rigorous (but Hoapa doesn't have the resources in its current form to do that any time soon, we can be upfront about that).                           
                                                                                                                                                                                                 
   In general I mostly want you to inventorize ideas, to not forget elements that have surfaced in our work.    
+
+  ---
+
+  ## Further Notes:
+
+  - Part 2 should be "the conjectured adjunction in model and set theoretical logic", following com_drafts/for_hgl, and replace part 5
+  - This part should be introduced by the remark of how Abramsky (whose contextuality I had already incorporated in my landscape) commented at the end of a talk (which I watched for this talk)
