@@ -224,3 +224,10 @@ See relevant section in com*/presentation*.pdf. To which I would like to add the
 
   - Part 2 should be "the conjectured adjunction in model and set theoretical logic", following com_drafts/for_hgl, and replace part 5
   - This part should be introduced by the remark of how Abramsky (whose contextuality I had already incorporated in my landscape) commented at the end of a talk (which I watched for this talk)
+
+---
+
+## Slides:
+
+- Set up toolsuite and workflow
+- Redo Conjecture
