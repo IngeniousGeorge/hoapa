@@ -103,9 +103,9 @@ Crucially, each individual practitioner gets to decide what questions are worth 
 
 ### Mathematics
 
-All of the above applies in mathematics as well, but here the connection goes further: mathematics also supplies the language in which the organization of mathematical work can itself be investigated. Hoapa’s formalization uses Cubical Agda, bringing together homotopy type theory, computer-checked proofs, and a line of thought connecting Grothendieck’s ideas about homotopy types and higher groupoids with Vladimir Voevodsky’s univalent foundations.*
+All of the above applies in mathematics as well, but here the connection goes *further*: mathematics also supplies the language in which the organization of mathematical work can itself be investigated. Hoapa’s formalization uses Cubical Agda, bringing together homotopy type theory, computer-checked proofs, and a line of thought connecting Alexander Grothendieck’s ideas about homotopy types and higher groupoids with Vladimir Voevodsky’s univalent foundations.*
 
-Hoapa proposes to carry this connection into the organization of collective inquiry itself. This ambition echoes Alexander Grothendieck’s memoirs, which weave together reflections on creativity, mathematical practice and mathematics itself.
+Hoapa proposes to carry this connection into the organization of collective inquiry itself. This ambition echoes Grothendieck’s memoirs, which weave together reflections on creativity, mathematical practice and mathematics itself.
 
 > Grothendieck also questioned the ecological consequences of scientific activity; Hoapa approaches that concern by asking how understanding a world can help us inhabit it.
 
@@ -116,7 +116,7 @@ I believe Hoapa protocols can stage and target the kind of recursive and self-re
 - Make a very detailed and executable map of your environment, including your imprint on it.
 - Use it to figure out what is best for both you and your environment, and do it (which becomes the default if individual freedom replaces "investability" as the condition for action).
 
-This is where the "layers of complexity" which guarantee perspectivism, decentralization, autonomy, openness to peers, expressiveness, transparency, scalability and self-reflection, start to be really useful.
+This is where the "layers of complexity" which respect and target perspectivism, decentralization, autonomy, openness to peers, expressiveness, transparency, scalability and self-reflection, start to be really useful.
 
 > To tend a place is also to attend to the relations that sustain it—and those relations lead us into a network.
 
@@ -124,10 +124,79 @@ This is where the "layers of complexity" which guarantee perspectivism, decentra
 
 In all the preceding examples we've looked at instances of Hoapa protocols in isolation, but each of them would be better envisioned as a node of a vast network.
 
-A mature protocol regulating a park would necessarily have typed conversations with other park protocols, especially those close by, to share information and reuse each other's research. It would also have ties to all the independent but interlinked networks a city would be made out of: electricity grid, water management, transportation, agriculture,… and then beyond the city limits, into all sorts of possible protocols-as-points-of-view entities, from playground area design to natural philosophy.
+A mature protocol regulating a park would necessarily have typed conversations with other park protocols, especially those close by, to share information and reuse each other's research. It would also have ties to all the independent but interlinked networks a city would be made up of: electricity grid, water management, transportation, agriculture… and then beyond the city limits, into all sorts of other communities organized through protocols, each bringing its own point of view, from playground design to natural philosophy.
 
-A park’s investigation of soil and water becomes useful to another park; a software improvement made for its documentation becomes available to other projects; a scientific question raised locally finds people elsewhere equipped to pursue it. It would also use the code of several open source projects to manage its documentation, and information coming from scientific protocols to apply the precepts of generalized permaculture on its grounds.
+A park’s investigation of soil and water becomes useful to another park; a software improvement made for its documentation becomes available to other projects; a scientific question raised locally finds research communities elsewhere equipped to pursue it. The park community’s teaching material can help newcomers elsewhere. And communities can help one another translate documentation, test proposals, or investigate disagreements. Records of failed attempts can spare others the same mistakes.
 
-In all of this, it would be both an agent and a recipient of *care*, as a concrete ecosystem as well as an abstract community of participants.
+In all of this, each protocol is both an agent and a recipient of *care*, as a concrete ecosystem as well as an abstract community of participants.
 
-- Care : ?
+- Care : Hoapa’s generalization of attachment theory into a two-step cyclic algorithm
+    1. In a given network, the evolution toward maturity of newer elements is taken care of by the
+    mature elements already present in the network
+    2. In turn, those newer elements become mature and take care of a new generation of elements
+   
+## The conjecture - an adjunction
+
+### Informal recap diagram
+
+
+
+### Motivations and goals
+
+To motivate its adoption and distinguish Hoapa from other “interesting projects” we can attach buzzwords to, I need a mathematical reason for organizing inquiry this way. The goal is to characterize Hoapa by a universal property, in a setting that represents both the contexts it investigates and alternative ways of investigating them.
+
+If the conjecture succeeds, this universal property would translate into a claim of *optimality* for any implementation satisfying its conditions. The world we inhabit must explain why those conditions matter. Hoapa is also its own experiment: implementing its protocols lets us test the conjecture's claims.
+
+*Perspectivism* motivates this ambition; *presuppositionlessness* guides the response. The world has already produced different beings, experiences, skills, and ways of understanding. Their contributions must be able to enter the inquiry without their worth being decided in advance by a hierarchy or an established division of knowledge. What the world has already developed becomes material for collective work; what that work will produce remains open.
+
+To formulate this universal characterization, I am exploring an adjunction between two sides: the organization of inquiry, its verification, and the knowledge it produces; and the contexts that make inquiry possible, whose mathematical form I am still seeking.
+
+My larger hypothesis is that this movement participates in the evolution of the world itself. What Hoapa preserves as a representation and reflection of the context in which it is implemented, and the creativity it enables as a response to the problems posed by this context, form the basis for a new context in which a community of "synthetic" agents can work on an "analytic" representation of their world. And this statement can travel through the boundaries between concrete (theory of work) and abstract (the conjectured adjunction). 
+
+- Optimality : the constraints imposed on a process, in a given context, to achieve an intended outcome
+    constraints = the protocol; process = collective inquiry; context = this world; outcome = understanding that enables generalized permaculture to be enacted
+
+- Perspectivism : global understanding assembled from local views, with obstructions to assembly retained as information
+
+- Presuppositionlessness: common rules, open rules with equal power to revise them, and only the rules needed to make communication possible
+
+---
+
+Around that correspondence, I want to build an account of how a context supports inquiry, and how inquiry produces representations, methods, and languages that themselves become contexts for further work. My larger hypothesis is that this movement participates in the evolution of the world itself. Following Lautman, I am seeking an effective mathematical theory in which these relations between context, activity, and genesis can be investigated.
+
+        Beyond construction: quest for specialness, and the mathematical context in which it is special, as the tangible mathematical form Hoapa can take [goal, so that Hoapa is not just "one interesting idea for social organization among many others"]
+
+        From implementation to verification, to conjecture of specialness: making the implementation into an optimal strategy, justifying its use [the goal translates between the layers, and becomes an optimal strategy at the implementation level]
+
+        Perspectivism as the reason why we should do it this way, presupositionlessness as the how. [motivations, both as "what the structure of the universe gives us to deal/work with", and "how to let the work the universe has already done enter the system"]
+
+        K (what we've discussed so far) and M (what I can't really talk about because I don't know what it is, I only have candidates), and the adjunction that gives a dynamical picture that can yield the evolution of our universe. (As a response to the metaphysical problems of Lautman, into an effective theory, as we've seen in the introduction) [this last paragraph grounds the conjecture in what the talk has established]
+
+
+In order to motivate its adoption and distinguish Hoapa from other "interesting {organizations} we can tag buzz words on", I need a mathematical reason for {organizing} inquiry this way. The goal is to characterize Hoapa by a universal property, in a setting that represents both the contexts it investigates and alternative ways of investigating them.
+
+If the conjecture succeeds, this universal property would translate into a claim of optimality for any implementation satisfying its conditions. Hoapa’s rules would then embody a mathematically justified strategy for collective inquiry: a reason to organize the work this way in the contexts covered by the theorem.
+
+The implementation puts the design into operation. Verification establishes which of its promises it keeps. The conjecture asks whether those promises, taken together, characterize an optimal strategy for understanding a context and producing knowledge that can support further work. Each level carries the same ambition further: from making the system work, to establishing its properties, to explaining why those properties belong together.
+
+Perspectivism motivates this ambition; presuppositionlessness guides the response. The world has already produced different beings, experiences, skills, and ways of understanding. Their contributions must be able to enter the inquiry without their worth being decided in advance by a hierarchy or an established division of knowledge. What the world has already developed becomes material for collective work; what that work will produce remains open.
+
+To formulate this universal characterization, I first need a mathematical relationship between organizations of inquiry, their contexts, and the dynamics between them. The candidate I will explore is an adjunction.
+
+One side is the organization of inquiry, its verification, and the knowledge it produces. The other should represent the contexts that make this inquiry possible in the first place. (I do not yet know its mathematical form, I only have candidates.) The proposed adjunction would relate the two. 
+
+Hoapa is designed to produce knowledge while preserving and developing the conditions for further work. Its achievements can themselves become such conditions: documents become a shared language, and that language makes new questions possible. The inquiry can begin again with what it has produced, in a context that now contains new resources and new problems. I want the mathematics to account for this passage from an achievement to the conditions for another achievement. 
+
+### Categories from metaphysics
+
+.
+
+### Expected naturalness
+
+.
+
+## Conclusion
+
+### Permacultural logic
+
+.

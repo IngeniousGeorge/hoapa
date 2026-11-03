@@ -24,6 +24,8 @@
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{page number in head/foot}[totalframenumber]
 \linespread{1} % Moloch defaults to 1.15; this leaves room for the lists
+% Nested lists keep the body size; Beamer shrinks them by default.
+\setbeamerfont{itemize/enumerate subbody}{size=\normalsize}
 
 % The dark greens belong to the presentation itself: title bar, title-slide rule,
 % footer, and the rule under each paragraph title. No marked word may use them.
@@ -66,6 +68,11 @@
 \definecolor{rolesymmetryslate}{HTML}{6A5ACD}
 % Operational documentation reuses documentationink: same concept as in Development.
 \definecolor{languageamethyst}{HTML}{9B5DE5}
+\definecolor{careterracotta}{HTML}{C8553D}
+\definecolor{optimalitygold}{HTML}{D4A017}
+\definecolor{presuppositionlessnessteal}{HTML}{2A9D8F}
+% Perspectivism reuses hoapaviolet: the Pitch's brackets, "one point of view among
+% many", already stand for it.
 
 % The brackets in the Pitch and the Hoapa line in Sources.
 \definecolor{hoapaviolet}{HTML}{7A1FD1}
@@ -87,6 +94,12 @@
   \makebox[\revealedwordwidth][c]{\alt#5{\textit{#2}\underlinedword{#1}{#3}\textit{#4}}{#2#3#4}}%
 }
 \newcommand<>{\revealedword}[2]{\revealedwordwithpunctuation#3{#1}{}{#2}{}}
+% A paragraph's first word is left-aligned in its space instead, so the spare
+% width falls after it rather than showing as an indent.
+\newcommand<>{\revealedfirstword}[2]{%
+  \settowidth{\revealedwordwidth}{#2}%
+  \makebox[\revealedwordwidth][l]{\alt#3{\underlinedword{#1}{#2}}{#2}}%
+}
 
 \newcommand{\paragraphtitle}[1]{%
   {\bfseries #1\par}%
@@ -123,7 +136,7 @@
   \colorlet{currentsectionshade}{sectionshade#1}%
   \setbeamercolor{frametitle}{bg=sectionshade#1}%
 }
-\newcommand{\talksectionsbuilt}{2}
+\newcommand{\talksectionsbuilt}{3}
 \newcommand{\footerblock}[1]{%
   \ifnum#1=\currenttalkpart\relax
     \def\talkpartfill{sectionshade#1}%
@@ -163,7 +176,15 @@
 
 \title{Hoapa}
 \subtitle{Logic, collective inquiry and open-science workshops}
-\author{Jean-Charles Belouard}
+% The name is the title slide's one marked word: on the first click it turns italic,
+% in the text colour, and its line follows after a colon on the same line. The empty
+% line below keeps the place and date at their current, lower position.
+\author[Jean-Charles Belouard]{%
+  \alt<2->{\textit{Jean-Charles Belouard}: great engineer, ok driver}{Jean-Charles Belouard}%
+  \\[0.8em]\strut
+}
+% Keep the overlay code out of the PDF's author field.
+\hypersetup{pdfauthor={Jean-Charles Belouard}}
 \date{Helsinki Logic Group, 11 November 2026}
 
 \begin{document}
@@ -441,14 +462,121 @@
 \begin{frame}[t]{Implementation — Use cases}
   \paragraphtitle{Mathematics}
   \balancedstart
-  All of the above applies in mathematics as well, but here the connection goes further: mathematics also supplies the language in which the organization of mathematical work can itself be investigated. Hoapa’s formalization uses Cubical Agda, bringing together homotopy type theory, computer-checked proofs, and a line of thought connecting Grothendieck’s ideas about homotopy types and higher groupoids with Vladimir Voevodsky’s univalent foundations.*
+  All of the above applies in mathematics as well, but here the connection goes \revealedwordwithpunctuation<3->{emergencecoral}{}{further}{:} mathematics also supplies the language in which the organization of mathematical work can itself be investigated. Hoapa’s formalization uses Cubical Agda, bringing together homotopy type theory, computer-checked proofs, and a line of thought connecting Alexander Grothendieck’s ideas about homotopy types and higher groupoids with Vladimir Voevodsky’s univalent foundations.*
 
   \begin{uncoverenv}<2->
-    Hoapa proposes to carry this connection into the organization of collective inquiry itself. This ambition echoes Alexander Grothendieck’s memoirs, which weave together reflections on creativity, mathematical practice and mathematics itself.
+    Hoapa proposes to carry this connection into the organization of collective inquiry itself. This ambition echoes Grothendieck’s memoirs, which weave together reflections on creativity, mathematical practice and mathematics itself.
+  \end{uncoverenv}
+
+  % Exceptionally, the transition sentence replaces the marked word's line on the
+  % next click: the slide has no room for both. overprint reserves the taller of
+  % the two, so nothing above moves. The space before it restores the gap a list
+  % would normally leave after a paragraph, which overprint drops.
+  \vspace{8pt}
+  \begin{overprint}
+    \onslide<3>
+      \begin{itemize}
+        \item \markedword{emergencecoral}{Further}: a method of articulating a context can generate a new context for further inquiry
+      \end{itemize}
+    \onslide<4->
+      \transitionsentence{Grothendieck also questioned the ecological consequences of scientific activity; Hoapa approaches that concern by asking how understanding a world can help us inhabit it.}
+  \end{overprint}
+\end{frame}
+
+\begin{frame}[t]{Implementation — Use cases}
+  \paragraphtitle{Generalized permaculture}
+  \balancedstart
+  I believe Hoapa protocols can stage and target the kind of recursive and self-reflective patterns just mentioned, in the ecosystem, by generalizing the concept of permaculture and applying it to a vast majority of human endeavors. Permaculture could in effect become the default mode of being of humanity, following this very simple algorithm:
+
+  \begin{itemize}
+    \item<2-> Make a very detailed and executable map of your environment, including your imprint on it.
+    \item<3-> Use it to figure out what is best for both you and your environment, and do it (which becomes the default if individual freedom replaces ``investability'' as the condition for action).
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{Implementation — Use cases}
+  \paragraphtitle{Generalized permaculture}
+  \balancedstart
+  This is where the ``layers of complexity'' which respect and target perspectivism, decentralization, autonomy, openness to peers, expressiveness, transparency, scalability and self-reflection, start to be really useful.
+
+  \begin{uncoverenv}<2->
+    \transitionsentence{To tend a place is also to attend to the relations that sustain it—and those relations lead us into a network.}
+  \end{uncoverenv}
+\end{frame}
+
+\begin{frame}[t]{Implementation — Use cases}
+  \paragraphtitle{Networks}
+  \balancedstart
+  In all the preceding examples we've looked at instances of Hoapa protocols in isolation, but each of them would be better envisioned as a node of a vast network.
+
+  \begin{uncoverenv}<2->
+    A mature protocol regulating a park would necessarily have typed conversations with other park protocols, especially those close by, to share information and reuse each other's research. It would also have ties to all the independent but interlinked networks a city would be made up of: electricity grid, water management, transportation, agriculture… and then beyond the city limits, into all sorts of other communities organized through protocols, each bringing its own point of view, from playground design to natural philosophy.
   \end{uncoverenv}
 
   \begin{uncoverenv}<3->
-    \transitionsentence{Grothendieck also questioned the ecological consequences of scientific activity; Hoapa approaches that concern by asking how understanding a world can help us inhabit it.}
+    A park’s investigation of soil and water becomes useful to another park; a software improvement made for its documentation becomes available to other projects; a scientific question raised locally finds research communities elsewhere equipped to pursue it. The park community’s teaching material can help newcomers elsewhere. And communities can help one another translate documentation, test proposals, or investigate disagreements. Records of failed attempts can spare others the same mistakes.
+  \end{uncoverenv}
+\end{frame}
+
+\begin{frame}[t]{Implementation — Use cases}
+  \paragraphtitle{Networks}
+  \balancedstart
+  In all of this, each protocol is both an agent and a recipient of \revealedwordwithpunctuation<2->{careterracotta}{}{care}{,} as a concrete ecosystem as well as an abstract community of participants.
+
+  \begin{itemize}
+    \item<2-> \markedword{careterracotta}{Care}: Hoapa’s generalization of attachment theory into a two-step cyclic algorithm
+      \begin{enumerate}
+        \item<3-> In a given network, the evolution toward maturity of newer elements is taken care of by the mature elements already present in the network
+        \item<4-> In turn, those newer elements become mature and take care of a new generation of elements
+      \end{enumerate}
+  \end{itemize}
+\end{frame}
+
+% Part 3: the conjecture. The overview diagram comes in two clicks: what has been
+% covered so far, then the full picture. Both PDFs share one canvas (see
+% talk_diagram_full.tex), so the second simply adds to the first.
+\startsection{3}
+
+\begin{frame}[c,label=talksection3]{The Hoapa conjecture — an adjunction}
+  \centering
+  \includegraphics<1>[height=0.85\textheight]{talk_diagram_partial.pdf}%
+  \includegraphics<2>[height=0.85\textheight]{talk_diagram_full.pdf}%
+\end{frame}
+
+\begin{frame}[t]{The Hoapa conjecture — an adjunction}
+  \paragraphtitle{Motivations and goals}
+  \balancedstart
+  To motivate its adoption and distinguish Hoapa from other “interesting projects” we can attach buzzwords to, I need a mathematical reason for organizing inquiry this way. The goal is to characterize Hoapa by a universal property, in a setting that represents both the contexts it investigates and alternative ways of investigating them.
+
+  \begin{uncoverenv}<2->
+    If the conjecture succeeds, this universal property would translate into a claim of \revealedword<3->{optimalitygold}{optimality} for any implementation satisfying its conditions. The world we inhabit must explain why those conditions matter. Hoapa is also its own experiment: implementing its protocols lets us test the conjecture's claims.
+  \end{uncoverenv}
+
+  \begin{itemize}
+    \item<3-> \markedword{optimalitygold}{Optimality}: the constraints imposed on a process, in a given context, to achieve an intended outcome\\
+      constraints = the protocol; process = collective inquiry; context = this world;\\
+      outcome = understanding that enables generalized permaculture to be enacted
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{The Hoapa conjecture — an adjunction}
+  \paragraphtitle{Motivations and goals}
+  \balancedstart
+  \revealedfirstword<2->{hoapaviolet}{Perspectivism} motivates this ambition; \revealedword<3->{presuppositionlessnessteal}{presuppositionlessness} guides the response. The world has already produced different beings, experiences, skills, and ways of understanding. Their contributions must be able to enter the inquiry without their worth being decided in advance by a hierarchy or an established division of knowledge. What the world has already developed becomes material for collective work; what that work will produce remains open.
+
+  \begin{itemize}
+    \item<2-> \markedword{hoapaviolet}{Perspectivism}: global understanding assembled from local views, with obstructions to assembly retained as information
+    \item<3-> \markedword{presuppositionlessnessteal}{Presuppositionlessness}: common rules, open rules with equal power to revise them, and only the rules needed to make communication possible
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{The Hoapa conjecture — an adjunction}
+  \paragraphtitle{Motivations and goals}
+  \balancedstart
+  To formulate this universal characterization, I am exploring an adjunction between two sides: the organization of inquiry, its verification, and the knowledge it produces; and the contexts that make inquiry possible, whose mathematical form I am still seeking.
+
+  \begin{uncoverenv}<2->
+    My larger hypothesis is that this movement participates in the evolution of the world itself. What Hoapa preserves as a representation and reflection of the context in which it is implemented, and the creativity it enables as a response to the problems posed by this context, form the basis for a new context in which a community of ``synthetic'' agents can work on an ``analytic'' representation of their world. And this statement can travel through the boundaries between concrete (theory of work) and abstract (the conjectured adjunction).
   \end{uncoverenv}
 \end{frame}
 
