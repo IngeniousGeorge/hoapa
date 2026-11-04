@@ -1,11 +1,13 @@
-% Helsinki Logic Group talk, 11 November 2026: the Moloch serif version.
-% One Readme paragraph per slide (communication/HLG_abstract.md, ## Readme).
+% Helsinki Logic Group talk, 11 November 2026 (Moloch theme, serif).
+% Its text is kept in talk_hlg_111126_text.md, its slide notes in
+% talk_hlg_111126_notes.md, and the overview diagram in
+% talk_hlg_111126_diagram_full.tex and talk_hlg_111126_diagram_partial.tex.
 %
-% Build (the PDF lands here; auxiliary files go to the gitignored build/ folder):
-%   latexmk -pdf -auxdir=build talk_readme_moloch.tex
-%
-% The Celestia version keeps its own text in talk_readme_body.tex, so changes
-% here do not reach it.
+% Build from this folder (the PDF lands here; auxiliary files go to the
+% gitignored communication_drafts/build/ folder). Build the two diagrams first:
+%   latexmk -pdf -auxdir=../build talk_hlg_111126_diagram_full.tex
+%   latexmk -pdf -auxdir=../build talk_hlg_111126_diagram_partial.tex
+%   latexmk -pdf -auxdir=../build talk_hlg_111126.tex
 %
 % Reveal pattern for a slide: step 1 is the paragraph as is. From step 2, each click
 % marks one word with \revealedword<n-> and shows its line with \item<n->, which
@@ -56,7 +58,7 @@
 \definecolor{independencecopper}{HTML}{B87333}
 \definecolor{refereeyellow}{HTML}{E0A800}
 \definecolor{verificationgreen}{HTML}{00B84A}
-\definecolor{renamingplum}{HTML}{B5179E}
+\definecolor{participantsplum}{HTML}{B5179E}
 \definecolor{adjunctioncrimson}{HTML}{A4133C}
 \definecolor{emergencecoral}{HTML}{FF7F50}
 \definecolor{universalpropertyblue}{HTML}{1A3FA8}
@@ -70,6 +72,12 @@
 \definecolor{languageamethyst}{HTML}{9B5DE5}
 \definecolor{careterracotta}{HTML}{C8553D}
 \definecolor{optimalitygold}{HTML}{D4A017}
+\definecolor{decompositionocean}{HTML}{118AB2}
+\definecolor{complexityazure}{HTML}{3A86FF}
+\definecolor{praxispurple}{HTML}{8338EC}
+\definecolor{anthropiclosspink}{HTML}{FF006E}
+% G (Evolution) reuses emergencecoral: "Emerge" already named the recursive nature
+% of evolution.
 \definecolor{presuppositionlessnessteal}{HTML}{2A9D8F}
 % Perspectivism reuses hoapaviolet: the Pitch's brackets, "one point of view among
 % many", already stand for it.
@@ -233,7 +241,7 @@
 
 \begin{frame}[t]{Introduction — The main thesis}
   \paragraphtitle{Thesis}
-  My main thesis states that in a system that puts the dialectic between concrete and abstract to \revealedword<2->{energyorange}{work} (brain, computer, community), the relation between concrete substrate and logical labor must be a resource entirely \revealedword<3->{dedicationmagenta}{dedicated} to the design and application of representations and algorithms. A form of separation between two kinds of decomposition—analytic (as in prime factorization) and synthetic (as in vector coordinates relative to a basis)—is a guiding principle, informed by Lautman, which can keep this relation fruitful: in a community, between thinkers and the knowledge they produce.
+  My main thesis states that in a system that puts the dialectic between concrete and abstract to \revealedword<2->{energyorange}{work} (brain, computer, community), the relation between concrete substrate and logical labor must be a resource entirely \revealedword<3->{dedicationmagenta}{dedicated} to the design and application of representations and algorithms. A form of separation between two kinds of \revealedwordwithpunctuation<4->{decompositionocean}{}{decomposition}{—}analytic (as in prime factorization) and synthetic (as in vector coordinates relative to a basis)—is a guiding principle, informed by Lautman, which can keep this relation fruitful: in a community, between thinkers and the knowledge they produce.
 
   \medskip
   \begin{itemize}
@@ -249,6 +257,7 @@
         \footnotesize\textcolor{presentationgreen!70}{``Beyond Physics'' (talk)}
       \end{tabular}
     \item<3-> \markedword{dedicationmagenta}{Dedicated}: in computers, in cells, in brains, in communities
+    \item<4-> \markedword{decompositionocean}{Decomposition}: synthetic $\sim$ dimensional ; analytic $\sim$ proper
   \end{itemize}
 \end{frame}
 
@@ -290,13 +299,13 @@
 
 \begin{frame}[t]{Introduction — What is checked, what is conjectured}
   \paragraphtitle{Verification}
-  The communication protocols specify how these conversations proceed and how their results enter the shared documentation. Software is used as a \revealedword<2->{refereeyellow}{referee} and is itself subject to modification by the conversations. Alongside the conversation process, a mathematical \revealedword<3->{verificationgreen}{verification} layer is being developed in cubical Agda, a language in which proofs can be checked by a computer. One existing result establishes that consistently \revealedword<4->{renamingplum}{renaming} participants cannot change the checker's verdict. The broader aim is to make the system's promises precise enough to test and prove.
+  The communication protocols specify how these conversations proceed and how their results enter the shared documentation. Software is used as a \revealedword<2->{refereeyellow}{referee} and is itself subject to modification by the conversations. Alongside the conversation process, a mathematical \revealedword<3->{verificationgreen}{verification} layer is being developed in cubical Agda, a language in which proofs can be checked by a computer. One existing result establishes that consistently renaming \revealedword<4->{participantsplum}{participants} cannot change the checker's verdict. The broader aim is to make the system's promises precise enough to test and prove.
 
   \medskip
   \begin{itemize}
     \item<2-> \markedword{refereeyellow}{Referee}: automation as \textit{liberation from control mechanisms}, from the necessity to have management
     \item<3-> \markedword{verificationgreen}{Verification}: machine-checks that the record of each conversation is well-formed, never that its conclusions are true
-    \item<4-> \markedword{renamingplum}{Renaming}: the protocol is blind to identity of contributors, which means it can't count on specialization (is knowledge lost?)
+    \item<4-> \markedword{participantsplum}{Participants}: the protocol is blind to identity of contributors, which means it can't count on specialization (is knowledge lost?)
   \end{itemize}
 \end{frame}
 
@@ -325,7 +334,7 @@
 
 \begin{frame}[t]{Introduction — From logic to practice}
   \paragraphtitle{Development}
-  The architecture of a ``mature'' Hoapa system is both demanding—to respect its constraints—and—by virtue of presuppositionlessness—\allowbreak\revealedwordwithpunctuation<2->{unpredictablecyan}{}{unpredictable}{.} Autonomous open-science workshops could make these ideas tangible and seed larger systems, embracing both pragmaticism and experimentalism. Their first requirement is usefulness: knowledge sharing must be truly at \revealedwordwithpunctuation<3->{stakebrown}{}{stake}{,} so that the organization develops through serving a real purpose. Concretely, I envision something based on the philosophy of ``document driven development'', where \revealedword<4->{documentationink}{documentation} gradually replaces the instructor, both as the joint source of truth and the manager of the process.
+  The architecture of a ``mature'' Hoapa system is both demanding—to respect its constraints—and—by virtue of presuppositionlessness—\allowbreak\revealedwordwithpunctuation<2->{unpredictablecyan}{}{unpredictable}{.} Autonomous open-science workshops could make these ideas tangible and seed larger systems, embracing both pragmaticism and experimentalism. Their first requirement is usefulness: knowledge sharing must be truly at \revealedwordwithpunctuation<3->{stakebrown}{}{stake}{,} so that the organization develops through serving a real purpose. Concretely, I envision something based on the philosophy of ``document-driven-development'', where \revealedword<4->{documentationink}{documentation} gradually replaces the instructor, both as the joint source of truth and the manager of the process.
 
   \medskip
   \begin{itemize}
@@ -534,13 +543,13 @@
 
 % Part 3: the conjecture. The overview diagram comes in two clicks: what has been
 % covered so far, then the full picture. Both PDFs share one canvas (see
-% talk_diagram_full.tex), so the second simply adds to the first.
+% talk_hlg_111126_diagram_full.tex), so the second simply adds to the first.
 \startsection{3}
 
 \begin{frame}[c,label=talksection3]{The Hoapa conjecture — an adjunction}
   \centering
-  \includegraphics<1>[height=0.85\textheight]{talk_diagram_partial.pdf}%
-  \includegraphics<2>[height=0.85\textheight]{talk_diagram_full.pdf}%
+  \includegraphics<1>[height=0.85\textheight]{talk_hlg_111126_diagram_partial.pdf}%
+  \includegraphics<2>[height=0.85\textheight]{talk_hlg_111126_diagram_full.pdf}%
 \end{frame}
 
 \begin{frame}[t]{The Hoapa conjecture — an adjunction}
@@ -578,6 +587,35 @@
   \begin{uncoverenv}<2->
     My larger hypothesis is that this movement participates in the evolution of the world itself. What Hoapa preserves as a representation and reflection of the context in which it is implemented, and the creativity it enables as a response to the problems posed by this context, form the basis for a new context in which a community of ``synthetic'' agents can work on an ``analytic'' representation of their world. And this statement can travel through the boundaries between concrete (theory of work) and abstract (the conjectured adjunction).
   \end{uncoverenv}
+\end{frame}
+
+\begin{frame}[t]{The Hoapa conjecture — an adjunction}
+  \paragraphtitle{Categories from metaphysics}
+  \balancedstart
+  Lautman looked for the problems that recur beneath different mathematical theories: local and global, the whole and its parts, structure and existence. Zalamea reads his account of the passages between local and global, and of the intermediate structures that carry them, as anticipating sheaf theory. Category theory makes such recurrences explicit, through constructions, transformations and universal properties that can be compared from one theory to another. That is how this project passes from metaphysical problems to effective mathematics.
+
+  \begin{uncoverenv}<2->
+    The project has affinities with formalisms well adapted to the tasks it must carry out. Topos theory gathers local descriptions, the conditions under which they fit together, and an internal language in which to reason about them. Higher structures keep the different comparisons between descriptions, and let us ask how those comparisons fit together. Univalence, at the heart of homotopy type theory, treats equivalence as identity, so that properties and constructions transport between equivalent types.
+  \end{uncoverenv}
+\end{frame}
+
+\begin{frame}[t]{The Hoapa conjecture — an adjunction}
+  \paragraphtitle{Categories from metaphysics}
+  \balancedstart
+  The proposed adjunction relates a category of contexts to a category of organizations of inquiry: write $\mathbf{Ctx}$ for the first and $\mathbf{Inq}$ for the second. We seek functors $F\colon \mathbf{Ctx}\to\mathbf{Inq}$ and $G\colon \mathbf{Inq}\to\mathbf{Ctx}$ with natural bijections $\mathrm{Hom}_{\mathbf{Inq}}(Fc, i) \cong \mathrm{Hom}_{\mathbf{Ctx}}(c, Gi)$. The unit $\eta_c\colon c\to GFc$ and the counit $\varepsilon_i\colon FGi\to i$ compare each side with its round trip. The mathematical form of $\mathbf{Ctx}$ is still under investigation, and neither functor has been constructed.
+\end{frame}
+
+\begin{frame}[t]{The Hoapa conjecture — an adjunction}
+  \paragraphtitle{Categories from metaphysics}
+  \balancedstart
+  Each piece of this structure is meant to carry one of the project's concepts: \revealedwordwithpunctuation<2->{complexityazure}{}{$F$}{,} \revealedwordwithpunctuation<3->{emergencecoral}{}{$G$}{,} the unit \revealedword<4->{praxispurple}{$\eta$} and the counit \revealedwordwithpunctuation<5->{anthropiclosspink}{}{$\varepsilon$}{.}
+
+  \begin{itemize}
+    \item<2-> \markedword{complexityazure}{$F$}: Complexity, the organized work a context allows
+    \item<3-> \markedword{emergencecoral}{$G$}: Evolution, how work acquires a contextual presentation through which its achievements can enter further development; compare the construction of inner models from logics ($L$, $C^{*}$, $\mathrm{HOD}$)
+    \item<4-> \markedword{praxispurple}{$\eta$}: Praxis, the general opening; a piece of work $w\colon Fc\to i$ realizes it in particular, and its transpose $G(w)\circ\eta_c\colon c\to Gi$ returns the work in contextual form
+    \item<5-> \markedword{anthropiclosspink}{$\varepsilon$}: Anthropic loss, the possible failure of the reconstruction map $\varepsilon_i\colon FGi\to i$ to be invertible; compare the gap between elementary equivalence and isomorphism, with Ehrenfeucht–Fraïssé games describing logical indistinguishability
+  \end{itemize}
 \end{frame}
 
 \end{document}

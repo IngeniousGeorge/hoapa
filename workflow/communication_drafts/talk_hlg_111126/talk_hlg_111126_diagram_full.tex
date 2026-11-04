@@ -1,8 +1,11 @@
 % The talk's overview diagram, redrawn as vector graphics so it stays sharp on a
 % large projection screen. It replaces an earlier screenshot of the same diagram.
 %
-% Build (the PDF lands here; auxiliary files go to the gitignored build/ folder):
-%   latexmk -pdf -auxdir=build talk_diagram_full.tex
+% Build from this folder (the PDF lands here; auxiliary files go to the
+% gitignored communication_drafts/build/ folder):
+%   latexmk -pdf -auxdir=../build talk_hlg_111126_diagram_full.tex
+% For a PNG outside the slides, e.g. 3840 pixels wide:
+%   pdftoppm -r 412 -png -singlefile talk_hlg_111126_diagram_full.pdf talk_hlg_111126_diagram_full_4k
 %
 % Typeface: TeX Gyre Heros, a Helvetica/Arial-style sans, as in the original
 % screenshot; the serif of the slides was tried and rejected here. Text colour:
@@ -19,7 +22,8 @@
 
 \definecolor{diagramtext}{HTML}{23373B}
 
-% Two steps: talk_diagram_partial.tex defines \diagrampartial and inputs this file.
+% Two steps: talk_hlg_111126_diagram_partial.tex defines \diagrampartial and
+% inputs this file.
 % The parts marked "later" (abstract context, conjecture, and their arrows) are
 % then drawn invisibly rather than left out, so both versions share one canvas and
 % everything already shown stays in place when the full version replaces it.

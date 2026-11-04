@@ -39,6 +39,9 @@ How I built it: trust universality & balance, all play by the same rule, the pre
   - degenerate energy thing in the abstract case (source)
 - Dedicated :
   - The working hypothesis is pure separation, and Hoapa starts with pure separation, but as systems evolve (as in brains), the separation becomes blurry, and strictness becomes counterproductive (like in higher mathematics, where homotopies and equivalences take over maps and equality), but dedication remains: exceptions to the separation principle are targeting work efficiency, as opposed to the particular needs of either side, concrete or abstract
+- Decomposition :
+  - synthetic has an "external" feeling: relation of element in question to global structure ; analytic has an "internal" feeling: decompostion into parts
+  - sharp example, knowledge in humanity, take theory of relativity, synthetic is every brain thinking it, analytic is all the written statements about every aspect of it.
 
 ### 4. Work
 
@@ -277,9 +280,67 @@ For this slide, I would give perspectivism the sheaf/contextuality connection, a
 
             Since Kennedy already appears in the Mathematics slide, I would give perspectivism the substantial marked-word comment here, and connect presuppositionlessness back to Kennedy in one sentence. The inner-model construction and forcing absoluteness can then receive their fuller treatment in the following sections.
 
+---
+
+Around that correspondence, I want to build an account of how a context supports inquiry, and how inquiry produces representations, methods, and languages that themselves become contexts for further work. My larger hypothesis is that this movement participates in the evolution of the world itself. Following Lautman, I am seeking an effective mathematical theory in which these relations between context, activity, and genesis can be investigated.
+
+        Beyond construction: quest for specialness, and the mathematical context in which it is special, as the tangible mathematical form Hoapa can take [goal, so that Hoapa is not just "one interesting idea for social organization among many others"]
+
+        From implementation to verification, to conjecture of specialness: making the implementation into an optimal strategy, justifying its use [the goal translates between the layers, and becomes an optimal strategy at the implementation level]
+
+        Perspectivism as the reason why we should do it this way, presupositionlessness as the how. [motivations, both as "what the structure of the universe gives us to deal/work with", and "how to let the work the universe has already done enter the system"]
+
+        K (what we've discussed so far) and M (what I can't really talk about because I don't know what it is, I only have candidates), and the adjunction that gives a dynamical picture that can yield the evolution of our universe. (As a response to the metaphysical problems of Lautman, into an effective theory, as we've seen in the introduction) [this last paragraph grounds the conjecture in what the talk has established]
+
+
+In order to motivate its adoption and distinguish Hoapa from other "interesting {organizations} we can tag buzz words on", I need a mathematical reason for {organizing} inquiry this way. The goal is to characterize Hoapa by a universal property, in a setting that represents both the contexts it investigates and alternative ways of investigating them.
+
+If the conjecture succeeds, this universal property would translate into a claim of optimality for any implementation satisfying its conditions. Hoapa’s rules would then embody a mathematically justified strategy for collective inquiry: a reason to organize the work this way in the contexts covered by the theorem.
+
+The implementation puts the design into operation. Verification establishes which of its promises it keeps. The conjecture asks whether those promises, taken together, characterize an optimal strategy for understanding a context and producing knowledge that can support further work. Each level carries the same ambition further: from making the system work, to establishing its properties, to explaining why those properties belong together.
+
+Perspectivism motivates this ambition; presuppositionlessness guides the response. The world has already produced different beings, experiences, skills, and ways of understanding. Their contributions must be able to enter the inquiry without their worth being decided in advance by a hierarchy or an established division of knowledge. What the world has already developed becomes material for collective work; what that work will produce remains open.
+
+To formulate this universal characterization, I first need a mathematical relationship between organizations of inquiry, their contexts, and the dynamics between them. The candidate I will explore is an adjunction.
+
+One side is the organization of inquiry, its verification, and the knowledge it produces. The other should represent the contexts that make this inquiry possible in the first place. (I do not yet know its mathematical form, I only have candidates.) The proposed adjunction would relate the two. 
+
+Hoapa is designed to produce knowledge while preserving and developing the conditions for further work. Its achievements can themselves become such conditions: documents become a shared language, and that language makes new questions possible. The inquiry can begin again with what it has produced, in a context that now contains new resources and new problems. I want the mathematics to account for this passage from an achievement to the conditions for another achievement. 
+
 ### Categories from metaphysics
 
-.
+The proposed adjunction relates a category of organizations of inquiry with a category of contexts. 
+
+Complexity names the passage from a context to the organized work it allows: Allow, from M to K. *Evolution* names the passage back, by which organized work acquires a contextual presentation through which its achievements can enter further development: Require, from K to M. Neither functor has been constructed; these interpretations guide the search for them.
+
+- Evolution : a method can generate a world, as when changing the logic in Gödel's construction changes the inner model (L, C*, HOD); there this direction is a left adjoint, while Require is a right adjoint, so the orientation is still to be tested
+
+The round trips bring in the other concepts. Praxis is how a general opening is taken up by particular work: the unit of the adjunction, together with an actual episode of inquiry. *Anthropic loss* is what a perspective cannot recover from the presentation it allows: the counit compares a practice rebuilt from that presentation with the practice we started from. Care, the continuity of the network, finds a first formal foothold in the reciprocity of roles; how that reciprocity sustains continued participation remains to be shown.
+
+- Anthropic loss : what a logic cannot tell apart, as in Ehrenfeucht–Fraïssé games: structures that agree on everything it can say, yet differ
+
+Why an *adjunction*? Because it makes these concepts answerable to one another. Its two directions, the comparisons of each side with its round trip, and the laws these must jointly satisfy leave no ingredient free to mean whatever we like. Its two *round trips* form a monad on M and a comonad on K. They are natural places to study recurrence and renewal, though their existence alone establishes neither. The task is to construct a relationship in which these concepts acquire compatible roles, then to establish when repeating it preserves achievements and enables further work.
+
+- Adjunction : already at the heart of logic: the quantifiers are adjoint to substitution (Lawvere), and the pattern returns in team semantics (Abramsky–Väänänen, *From IF to BI*)
+- Round trips : theories and their classes of models form a Galois connection whose round trip closes once and for all; what more would let a round trip change its setting rather than settle into it?
+
+> Categorical logic already studies how reasoning changes with its context, and what survives the change. Can some of its structures be read as permacultural?
+
+---
+
+A short recap of how category theory enters our picture:
+Lautman recognized as a anticipator of category theory, so natural continuation for our story
+category theory is the bridge between the metaphysical and the rigorous, the lingua franca for effective theories (and we said Hoapa could be viewed as an invariant of effective theories of this universe).
+topos/∞-topos/HoTT/univalence seems to be the natural formalism for it.
+categorical logic ~ permacultural logic?
+
+The ingredients of the adjunction, in metaphysical form (where the targets are the mathematical incarnations {monad, comonad, unit, counit...}):
+Care - continuity of networks -> 
+Anthropic principle -> 
+Evolution -> monad?
+Complexity -> comonad?
+
+Anything interesting that can be said, coming from  'part_2_for_HLG', to connect the metaphysics above to something that will be more tangible to our audience?
 
 ### Expected naturalness
 
@@ -513,7 +574,7 @@ That is the connection worth demonstrating: the mathematics develops because the
 
 A. Mistakes and claims needing correction
 
-1. The open-source section contains the strongest overstatements. Lines 71–79 (workflow/communication_drafts/talk_text.md:71).
+1. The open-source section contains the strongest overstatements. Lines 71–79 (workflow/communication_drafts/talk_hlg_111126/talk_hlg_111126_text.md:71).
 
    “Lives in the abstract entirely” overlooks the material work of producing, running, and maintaining software. Your useful distinction is that code can circulate independently of the people who produced it.
 
@@ -525,7 +586,7 @@ A. Mistakes and claims needing correction
 
    > Hoapa targets a recurring vulnerability of open-source projects: the concentration of knowledge and decision-making in a small group. Its design gives contributors equal formal standing and makes documenting the knowledge needed to continue the work part of the work itself.
 
-2. Physical action does not necessarily introduce hierarchy. Lines 53–55 (workflow/communication_drafts/talk_text.md:53).
+2. Physical action does not necessarily introduce hierarchy. Lines 53–55 (workflow/communication_drafts/talk_hlg_111126/talk_hlg_111126_text.md:53).
 
    The idea/bread contrast explains why information and material resources require different arrangements. It does not, by itself, establish that any system undertaking material action must become hierarchical.
 
@@ -535,7 +596,7 @@ A. Mistakes and claims needing correction
 
    Similarly, “chart the world, not inhabit it” is evocative, but literally Hoapa’s participants, computers, and conversations inhabit the world. “Chart the world without acquiring authority over it” expresses the intended boundary more accurately.
 
-3. The Care section needs a mathematical correction. Lines 121–126 (workflow/communication_drafts/talk_text.md:121).
+3. The Care section needs a mathematical correction. Lines 121–126 (workflow/communication_drafts/talk_hlg_111126/talk_hlg_111126_text.md:121).
 
    The unit of an adjunction does not itself make a structure cyclical. It maps an object into the result of a round trip; neither periodicity nor sustainable renewal follows from that.
 
@@ -549,7 +610,7 @@ A. Mistakes and claims needing correction
 
    Also, recursive does not automatically mean self-reflective: a process can recur without representing or examining itself. Here “recurring, with a reversal of roles” is directly supported by your two steps. I would identify the Bowlby connection as your abstraction inspired by attachment theory, rather than let listeners mistake the two-step algorithm for Bowlby’s formulation.
 
-4. Several sentences change the status of the claims. Relevant places are science, lines 89–91 (workflow/communication_drafts/talk_text.md:89), permaculture, line 110 (workflow/communication_drafts/talk_text.md:110), and Care, line 126 (workflow/communication_drafts/talk_text.md:126).
+4. Several sentences change the status of the claims. Relevant places are science, lines 89–91 (workflow/communication_drafts/talk_hlg_111126/talk_hlg_111126_text.md:89), permaculture, line 110 (workflow/communication_drafts/talk_hlg_111126/talk_hlg_111126_text.md:110), and Care, line 126 (workflow/communication_drafts/talk_hlg_111126/talk_hlg_111126_text.md:126).
 
    “Very real and demonstrable,” “it is provable,” and layers that “guarantee” autonomy, scalability, and so on suggest established results. The introduction’s distinctions between construction, conjecture, and intended application should survive into these sections.
 
@@ -559,7 +620,7 @@ A. Mistakes and claims needing correction
 
    “Required and optimal” also needs a declared class of alternatives and conditions. You can state that as the ambition, but the caring cycle alone does not establish necessity.
 
-5. Mapping the environment “including you” needs a boundary. Line 107 (workflow/communication_drafts/talk_text.md:107).
+5. Mapping the environment “including you” needs a boundary. Line 107 (workflow/communication_drafts/talk_hlg_111126/talk_hlg_111126_text.md:107).
 
    As written, it could invite precisely the exhaustive representation of participants the architecture excludes. You can preserve the reflexive point with:
 
@@ -590,7 +651,7 @@ A. Mistakes and claims needing correction
 
 B. Room for improvement
 
-1. Start the park example with the park. Line 49 (workflow/communication_drafts/talk_text.md:49) currently introduces “role-symmetric,” “unityped,” “univocal,” and “synthetic/dimensional” before anything happens.
+1. Start the park example with the park. Line 49 (workflow/communication_drafts/talk_hlg_111126/talk_hlg_111126_text.md:49) currently introduces “role-symmetric,” “unityped,” “univocal,” and “synthetic/dimensional” before anything happens.
 
    You already reserve those correspondences for oral explanation. Here I would begin:
 
@@ -598,7 +659,7 @@ B. Room for improvement
 
    Then explain the separation between discussing a proposal and having authority to enact it. The example will make the terminology intelligible when you return to it.
 
-2. Resolve the tension between accessibility and advocacy. Lines 59–65 (workflow/communication_drafts/talk_text.md:59).
+2. Resolve the tension between accessibility and advocacy. Lines 59–65 (workflow/communication_drafts/talk_hlg_111126/talk_hlg_111126_text.md:59).
 
    The protocol cannot advertise, but can appoint people to “push” an outcome and convince specialists. A listener will reasonably ask where the boundary lies.
 
@@ -606,7 +667,7 @@ B. Room for improvement
 
    Also, “expects those needs to be met” sounds like an entitlement. “States the conditions under which it can operate” is clearer. Your paid-gardener example is useful precisely because it shows that the communication boundary does not require all surrounding labour to be unpaid.
 
-3. Make the scientific criticism name its mechanism. Lines 85–87 (workflow/communication_drafts/talk_text.md:85).
+3. Make the scientific criticism name its mechanism. Lines 85–87 (workflow/communication_drafts/talk_hlg_111126/talk_hlg_111126_text.md:85).
 
    “Extremely hierarchical political machines” gives your verdict before explaining the architectural problem. The argument becomes harder to dismiss when you connect the hierarchy to what it affects:
 
@@ -614,7 +675,7 @@ B. Room for improvement
 
    Your list of consequences can then follow. This preserves the political criticism while showing what Hoapa proposes to separate.
 
-4. State explicitly that the second pole remains under investigation. Conjecture, line 35 (workflow/communication_drafts/talk_text.md:35).
+4. State explicitly that the second pole remains under investigation. Conjecture, line 35 (workflow/communication_drafts/talk_hlg_111126/talk_hlg_111126_text.md:35).
 
    The paragraph now gives the two poles a clear shape, but it has lost the explicit admission that M is still being sought. One short addition is enough:
 
@@ -622,7 +683,7 @@ B. Room for improvement
 
    Keep the perspectivist intuition as an intuition. The later candidate can then be introduced without sounding like an already constructed bridge from the implementation.
 
-5. Use your own slide-note clarification in Development. Line 43 (workflow/communication_drafts/talk_text.md:43).
+5. Use your own slide-note clarification in Development. Line 43 (workflow/communication_drafts/talk_hlg_111126/talk_hlg_111126_text.md:43).
 
    “Documentation replaces the instructor” is memorable, but “source of truth and manager” obscures the particular functions being transferred. Your notes already articulate them more clearly:
 
@@ -634,7 +695,7 @@ B. Room for improvement
 
    This expresses the intended openness without making unpredictability appear to follow as a theorem from presuppositionlessness.
 
-6. The network ending can demonstrate the benefit more vividly. Lines 130–136 (workflow/communication_drafts/talk_text.md:130).
+6. The network ending can demonstrate the benefit more vividly. Lines 130–136 (workflow/communication_drafts/talk_hlg_111126/talk_hlg_111126_text.md:130).
 
    The list of connected domains is useful, but one circulating result would make the whole architecture tangible:
 
