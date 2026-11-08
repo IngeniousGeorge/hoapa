@@ -19,3 +19,19 @@ workflow/deep_context/transcript_for_print.pdf
 communication/HLG_abstract.md
 # Personal correspondence, with a private meeting passcode; never committed
 workflow/communication_drafts/dear_fernando.md
+
+# Helsinki talk: video and audio (large; the Deligne lecture and its extract are
+# someone else's recording, kept next to the slides for playback only), the
+# arXiv papers in sources/ (no redistribution), and LaTeX files from editor builds
+workflow/communication_drafts/talk_hlg_111126/*.mp4
+workflow/communication_drafts/talk_hlg_111126/*.mp3
+workflow/communication_drafts/talk_hlg_111126/sources/
+workflow/communication_drafts/talk_hlg_111126/*.aux
+workflow/communication_drafts/talk_hlg_111126/*.fdb_latexmk
+workflow/communication_drafts/talk_hlg_111126/*.fls
+workflow/communication_drafts/talk_hlg_111126/*.log
+workflow/communication_drafts/talk_hlg_111126/*.nav
+workflow/communication_drafts/talk_hlg_111126/*.out
+workflow/communication_drafts/talk_hlg_111126/*.snm
+workflow/communication_drafts/talk_hlg_111126/*.synctex.gz
+workflow/communication_drafts/talk_hlg_111126/*.toc
