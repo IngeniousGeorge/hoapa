@@ -5,21 +5,27 @@ Helsinki Logic Group, 11 November 2026
 ## Opening
 
 **Title**
-- last slide
+- Hoapa = class of communication systems
+  - optimized for collective inquiry
+  - generalization seems relevant in Nature
+- name: last slide
 
-**Name**
+**My name**
 - as good as their theories (footballer-feet)
-- Univ dev ≅ racing: more and more demanding
+- science ≅ racing 
+- Univ dev ≅ more and more demanding cars
 []
-- I built my own car, by chance (brain soup)
-- as an exercise/specs
-- U&B → trust → "took for a ride"
+- I built my own car:
+  - by chance (brain soup)
+  - as an exercise/specs
+- "what is… U&B" → I trusted it → "took for a ride"
 []
-- 1st step (labels), last (stay in the abstract)
+- 1st step, labels: "the system doesn't know…"
+- last: "stays in the abstract, as available resource, no movement back into the concrete"
 - vs. loss of knowledge, useless
 - complicated, non-trivial thing → workshops
 []
-- logic: strange workshops → special workshops 
+- logic: odd workshops → special workshops 
   
 ## Introduction
 
@@ -31,54 +37,65 @@ Helsinki Logic Group, 11 November 2026
 - a sort of motive
 
 **Permacultural**
-- the agricultural technique → abstraction
+- abstraction of the agricultural technique
 []
-- allows minimal imprint (your system ≅ the natural's)
+- targets minimal imprint (your system ≅ the natural's)
 - requires knowledge (your knowledge ≅ the system's)
 
 **Scientific**
 - an extension not a modification/relaxation
 []
 - a protocol becomes an object of science
-- scientists sign up for the most trustworthy
+- scientists (anyone) expected to sign up for the most trustworthy
 []
-- trust ↔ what guarantees [ … ]
+- trust := whatt guarantees [ … ]
 - "layers of complexity"
 
+**Inventory diagram**
+- layers ≅ 
+- separations of concerns ≅ specs
+- poles of adjunction ≅ motivation & 
+  
 ### Sources
 
 **A. Grothendieck**
 []
-- workshops ≅ col. sci. method ≅ recursive elem. in G-evol
-- Zalamea's attention
-
-**Scientists**
-- each step = a test
+- workshops (embryonic) 
+- ≅ col. sci. method (specific use case) 
+- ≅ recursive elem. in G-evol (in Nature)
+- main reason to believe in permacultural logic?
 
 **Albert Lautman**
 - bio (1930, anticipator, non-reductionist)
+- more recent anchor
 []
-- movement from metaphysics to effective theories
 - demystifying metaphysics
-- giving a context to mathematics, physics, Hoapa
+- movement from metaphysics to effective theories
+- giving a context to mathematics, physics… Hoapa
+
+**Scientists**
+- each step = a correspondance test
 
 ### Thesis
 
 **Work**
-- engine → Peter Atkins: work = "constrained release of energy into a few degrees of freedom"
-- organism → Kauffman: origins of life (constraint, work-task, catalytic)
-- computer (brain, genome, communities) → Pattee: symbolic and dynamical (von Neumann, Peirce)
-- why "loop" (Turing)
-- logic → Lautman: formal system and realization (abstract/concrete)
+- engine → Peter Atkins (extending physics)
+  - work = "constrained release of energy into a few degrees of freedom"
+- organism → Kauffman (origins of life)
+  - closures = "collective work which constructs and maintains the constraints that enable those processes" (constraint, work-task, catalytic)
+- computer (also brain, genome, communities) → Pattee (symbolic and dynamical)
+  - "physical activity is recorded in symbols, which can be stored, manipulated and interpreted to guide further physical activity" (von Neumann, Peirce)
+- logic → Lautman: formal system and realization (for us: abstract/concrete)
+- Hoapa = a system of constraints, open but capable of closure, and optimized for symbolic work
 
 **Dedicated**
-- evident in computers & genome
+- evident in computers & genome:
+- ""
 []
-- brains are muddier (≅ internal concrete/abstract divides in math and code)
+- brains are less clear-cut (b/c internal concrete/abstract divides, as in math and code)
 []
 - communities are "degenerate"
 - concrete substrate not just coupled, dependent on the abstract
-- 
 
 **Decomposition**
 - dim = decompose through the structure of the ambient space
@@ -103,10 +120,10 @@ Helsinki Logic Group, 11 November 2026
 - modular = well-engineered constraints
 - transparent = pedagogical and integrated
 []
-- → UTL: open ≅ accessible
-[]
 - federated & network-shaped ⇒ local respectful of global
 - sheaf-like ⇒ global respectful of local (unlike any theory of "social contracts")
+[]
+- → UTL: open ≅ accessible
 
 **Results**
 - illustrates the division of labour
@@ -118,18 +135,23 @@ Helsinki Logic Group, 11 November 2026
 
 ### Process
 
-**Conversation**
+**Overview diagram**
+- convs → atoms of reflexion
+- concurrency → network of reflexion
+- graphs → structured memory of reflexion
 - Hoapa as Jacob's bricolage
+
+**Conversation**
 - amazing results when experimented in politics
 []
-- random selection ↔ unityping, univocity of being
-- resolution by consensus, only option 
+- random selection and consensus ↔ "play by the same rules" 
 - "let it crash" in Erlang
 
 **Together**
 []
-- actors are "synthetic" agents
-- their messages "analytic" decomposition
+- these concurrency models follow Lautman decomposition:
+  - actors are "synthetic" agents
+  - their messages "analytic" decomposition
 
 **Graph**
 []
@@ -141,7 +163,7 @@ Helsinki Logic Group, 11 November 2026
 **Independently**
 []
 - not much change in content (broader scope)
-- impact is on diffusion & accessibility, trust, usage & usefulness, representativity, control of new technologies… 
+- impact is on diffusion & accessibility, trust, usage & usefulness, representativity, control of new technologies…
 
 ### Partial diagram
 
@@ -176,6 +198,12 @@ Helsinki Logic Group, 11 November 2026
 **Universal property**
 - a translation
 
+### Rising sea
+
+- Permacultural logic is an outgrowth of my work on Hoapa, not one of its constituents
+- It could be that Hoapa's optimality is true and the permacultural interpretation of logic is false
+- main reason to believe is not technical, but that the rising sea methodology works
+  
 ### Permacultural logic
 
 **Harmony**
@@ -281,6 +309,7 @@ Helsinki Logic Group, 11 November 2026
 
 **F**
 - Complexity in the sense of Yuri Manin
+  - an alternative entry point into Hoapa, like Kauffman/Simondon is
 []
 - Nature operates at a constant level of complexity
 - any apparent variation reflects a change in perspective…
@@ -399,6 +428,13 @@ Helsinki Logic Group, 11 November 2026
 - Lawvere (oral commentary) — "law-VEER"
 - Grothendieck (oral commentary) — "GROH-ten-deek"
 - Schrödinger (oral commentary) — "SHRUR-ding-er"
+
+**Introductory symbols**
+
+- : as in, meaning, which we take to be
+- → whose function is
+- ⇒ implying, which yields, from MW we get
+- 
 
 ## What the university gets wrong (Science, list of evils)
 

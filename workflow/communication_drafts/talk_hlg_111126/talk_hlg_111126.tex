@@ -17,11 +17,17 @@
 \documentclass[aspectratio=169,10pt]{beamer}
 
 \usetheme{moloch}
+% For the two small diagrams (Pitch, Process): arrow tips, and boxes fitted around
+% a group of nodes.
+\usetikzlibrary{arrows.meta, fit}
 \usepackage{mathpazo}
 \usefonttheme{serif}
 % New dependency: ulem, for the strikethrough on the Science slide. normalem keeps
 % \emph as italics.
 \usepackage[normalem]{ulem}
+% New dependency: multimedia, for the video on the rising sea. pdfpc plays it on a
+% click (it does not support autoplay); the .mp4 must sit next to the PDF.
+\usepackage{multimedia}
 \setbeamersize{text margin left=1.4em, text margin right=1.4em}
 \setbeamertemplate{navigation symbols}{}
 \setbeamertemplate{page number in head/foot}[totalframenumber]
@@ -56,7 +62,8 @@
 \definecolor{resultsgold}{HTML}{C8A000}
 \definecolor{conversationrose}{HTML}{F0567A}
 \definecolor{messageindigo}{HTML}{4A3AFF}
-\definecolor{graphturquoise}{HTML}{00BFA5}
+% Graph was turquoise, too close to verification's green in the Process diagram.
+\definecolor{graphblue}{HTML}{0096C7}
 \definecolor{independencecopper}{HTML}{B87333}
 \definecolor{refereeyellow}{HTML}{E0A800}
 \definecolor{verificationgreen}{HTML}{00B84A}
@@ -141,6 +148,86 @@
   \end{center}%
 }
 
+% Pitch, last click: where the theory of work sits in the project. The three
+% separations of concerns (left), each leading to the next, feed the passage
+% between implementation and verification; the conjecture points to the two poles
+% of the adjunction (right). Text colour and arrows as in the overview diagram.
+% The fitted nodes are invisible: they give each column a border for the arrows
+% to stop at. (Arrows leaving from the second word of each pair were tried and
+% found distracting; they go straight down.)
+\newcommand{\pitchdiagram}{%
+  \begin{tikzpicture}[
+      every node/.style={align=center, text=presentationgreen},
+      layer/.style={minimum height=1.6em},
+      columntitle/.style={font=\small\itshape, text=presentationgreen!70},
+      arrow/.style={-{Latex[length=1.8mm, width=1.5mm]}, line width=0.7pt, presentationgreen},
+      twoway/.style={{Latex[length=1.3mm, width=1.2mm]}-{Latex[length=1.3mm, width=1.2mm]}, line width=0.7pt, presentationgreen},
+    ]
+    \node[columntitle] at (-4.8, 0.72) {separations:};
+    \node[columntitle] at (0, 0.72) {layers:};
+    \node[columntitle] at (4.6, 0.72) {adjunction:};
+
+    \node[layer] (implementation) at (0, 0) {Implementation};
+    \node[layer] (verification) at (0, -1.0) {Verification};
+    \node[layer] (conjecture) at (0, -2.0) {Conjecture};
+    \draw[twoway] (implementation) -- coordinate (implementationtoverification) (verification);
+    \draw[twoway] (verification) -- (conjecture);
+    \node[fit=(implementation) (verification) (conjecture), inner sep=2pt] (layers) {};
+
+    \node[layer] (concreteabstract) at (-4.8, 0) {concrete / abstract};
+    \node[layer] (dimensionalproper) at (-4.8, -1.0) {dimensional / proper};
+    \node[layer] (languagevariations) at (-4.8, -2.0) {language / variations};
+    \draw[arrow] (concreteabstract) -- (dimensionalproper);
+    \draw[arrow] (dimensionalproper) -- (languagevariations);
+    \node[fit=(concreteabstract) (dimensionalproper) (languagevariations), inner sep=2pt] (separations) {};
+    \draw[arrow] (separations.east) -- (layers.west |- implementationtoverification);
+
+    \node[layer] (context) at (4.6, -0.5) {context};
+    \node[layer] (inquiry) at (4.6, -1.5) {inquiry};
+    \draw[twoway] (context) -- (inquiry);
+    \node[fit=(context) (inquiry), inner sep=2pt] (poles) {};
+    \draw[arrow] ([xshift=3pt]conjecture.east) -- (poles.west);
+  \end{tikzpicture}%
+}
+
+% Process, first click: the conversations (C) form a graph T, joined by what passes
+% between them (together); verification, the long bent arrow on the right, carries
+% T to an exact replica G, the knowledge graph. Nodes, edges and letters take the
+% colours of the marked words they stand for.
+\newcommand{\processdiagram}{%
+  \begin{tikzpicture}[
+      conversation/.style={circle, fill=conversationrose, inner sep=0pt, minimum size=4.5pt},
+      concept/.style={circle, fill=graphblue, inner sep=0pt, minimum size=4.5pt},
+      conversationname/.style={font=\footnotesize, text=conversationrose},
+      conceptname/.style={font=\footnotesize, text=graphblue},
+      message/.style={messageindigo, line width=0.7pt},
+      link/.style={graphblue, line width=0.7pt},
+    ]
+    \node[conversation, label={[conversationname]above:$C_1$}] (t1) at (0, 0.6) {};
+    \node[conversation, label={[conversationname]right:$C_2$}] (t2) at (1.25, 0.35) {};
+    \node[conversation, label={[conversationname]below right:$C_3$}] (t3) at (0.45, 0) {};
+    \node[conversation, label={[conversationname]below left:$C_4$}] (t4) at (-0.9, 0.03) {};
+    \draw[message] (t1) -- (t4)  (t1) -- (t2)  (t1) -- (t3)  (t2) -- (t3)  (t4) -- (t3);
+    \node[text=messageindigo] (togethergraph) at (-1.8, 0.3) {$T$};
+
+    \begin{scope}[yshift=-1.5cm]
+      \node[concept, label={[conceptname]above:$C_1$}] (g1) at (0, 0.6) {};
+      \node[concept, label={[conceptname]right:$C_2$}] (g2) at (1.25, 0.35) {};
+      \node[concept, label={[conceptname]below right:$C_3$}] (g3) at (0.45, 0) {};
+      \node[concept, label={[conceptname]below left:$C_4$}] (g4) at (-0.9, 0.03) {};
+      \draw[link] (g1) -- (g4)  (g1) -- (g2)  (g1) -- (g3)  (g2) -- (g3)  (g4) -- (g3);
+      \node[text=graphblue] (knowledgegraph) at (-1.8, 0.3) {$G$};
+    \end{scope}
+
+    % Right of both graphs, clear of the C_2 labels: low looseness keeps the bend
+    % long and narrow rather than round.
+    \draw[-{Latex[length=1.8mm, width=1.5mm]}, verificationgreen, line width=0.8pt]
+      (1.95, 0.25) to[out=0, in=0, looseness=0.9]
+      node[right, xshift=2pt, font=\footnotesize, text=verificationgreen] {Verification}
+      (1.95, -1.25);
+  \end{tikzpicture}%
+}
+
 % Where we are in the talk: four blocks across the full page width, one per
 % section, with the current one filled. The slide number sits directly above them
 % in the right corner. A new section starts with \startsection{n}, which moves the
@@ -222,6 +309,8 @@
   The core of my research consists in drawing inspiration from the philosophy of mathematics and the engineering of networks to formulate \only<2->{\textcolor{hoapaviolet}{[}}\textcolor<2->{hoapaviolet}{a theory of work constrained by \revealedwordwithpunctuation<3->{permaculturegreen}{``}{permacultural}{''}\\ logic: how to produce reusable results while preserving the conditions for future work}\only<2->{\textcolor{hoapaviolet}{]}}. Applied to collectives, it becomes an extension of the \revealedword<4->{scienceblue}{scientific method} which incorporates participatory democracy and sustainability.
 
   \medskip
+  % The last click replaces the marked words' lines with the small diagram.
+  \begin{onlyenv}<1-5>
   \begin{itemize}
     \item<2-> \textcolor{hoapaviolet}{[…]}: one point of view among many
     \item<3-> \markedword{permaculturegreen}{Permacultural}: concretely minimal, abstractly demanding
@@ -237,17 +326,21 @@
   % little space above.
   \vspace{4pt}
   \uncover<5->{\par\centering\textcolor{regulationorange}{\texttt{[ perspectivism, decentralization, autonomy, openness to peers, expressiveness, transparency, scalability, self-reflection… ]}}\par}
+  \end{onlyenv}
+  \begin{onlyenv}<6>
+    \begin{center}\pitchdiagram\end{center}
+  \end{onlyenv}
 \end{frame}
 
 \begin{frame}[t]{Introduction — The context}
   \paragraphtitle{Sources}
-  The authors it draws on are mathematicians (F.W. Lawvere, \revealedwordwithpunctuation<2->{risingseateal}{}{A. Grothendieck}{),} philosophers (C.S. Peirce, G. Simondon, G. Deleuze), and \revealedword<3->{scienceblue}{scientists} (S. Kauffman, J. Bowlby). In my project, these approaches meet in \revealedwordwithpunctuation<4->{metaphysicsamber}{}{Albert Lautman}{’s} philosophy of mathematics, as read by Fernando Zalamea (who has been supporting my work).
+  The authors it draws on are mathematicians (F.W. Lawvere, \revealedwordwithpunctuation<2->{risingseateal}{}{A. Grothendieck}{),} philosophers (C.S. Peirce, G. Simondon, G. Deleuze), and \revealedword<4->{scienceblue}{scientists} (S. Kauffman, J. Bowlby). In my project, these approaches meet in \revealedwordwithpunctuation<3->{metaphysicsamber}{}{Albert Lautman}{’s} philosophy of mathematics, as read by Fernando Zalamea (who has been supporting my work).
 
   \medskip
   \begin{itemize}
     \item<2-> \markedword{risingseateal}{A. Grothendieck}: creativity, relative point of view, naturalness via rising sea, ecological thinking… the structure and destination of the project
-    \item<3-> \markedword{scienceblue}{Scientists}: we're interested in each step of the evolution of the universe, from field theories to origins of life and attachment
-    \item<4-> \markedword{metaphysicsamber}{Albert Lautman}: metaphysics as ``problems the universe was going to run into no matter what'', mathematics and physics as ``effective theories answering those problems''…
+    \item<3-> \markedword{metaphysicsamber}{Albert Lautman}: metaphysics as ``problems the universe was going to run into no matter what'', mathematics and physics as ``effective theories answering those problems''…
+    \item<4-> \markedword{scienceblue}{Scientists}: we're interested in each step of the evolution of the universe, from field theories to origins of life and attachment
   \end{itemize}
 
   \uncover<5->{%
@@ -297,21 +390,24 @@
   \vfill
   \begin{itemize}
     \item<2-> \markedword{opennesslime}{Open}: autonomous, role-symmetric, reflexive, modular, transparent, recursive and federated, network-shaped and sheaf-like
-    \item<3-> \markedword{resultsgold}{Results}: ``Event-Local Sheafification and a Linear/Non-Linear Adjunction with Chu Coefficients''
+    \item<3-> \markedword{resultsgold}{Results}: a proto-article, ``Event-Local Sheafification and a Linear/Non-Linear Adjunction with Chu Coefficients''
   \end{itemize}
   \vfill
 \end{frame}
 
 \begin{frame}[t]{Introduction — How Hoapa works}
   \paragraphtitle{Process}
-  Hoapa is designed as a network of small \revealedword<2->{conversationrose}{conversations} in which one group's work becomes another group's starting point. A question brings participants \revealedwordwithpunctuation<3->{messageindigo}{}{together}{;} their discussion produces a document that others can examine, challenge, or develop. These documents form a growing map of questions, concepts, arguments, and dependencies: a knowledge \revealedwordwithpunctuation<4->{graphturquoise}{}{graph}{.} So that contributions can differ and come unforced, the system gives participants control and equal standing (they all play by the same rules they themselves manage). Knowledge acquires structure \revealedword<5->{independencecopper}{independently} of the structure of its producers, be it social, political, economic…
+  Hoapa is designed as a network of small \revealedword<2->{conversationrose}{conversations} in which one group's work becomes another group's starting point. A question brings participants \revealedwordwithpunctuation<2->{messageindigo}{}{together}{;} their discussion produces a document that others can examine, challenge, or develop. These documents form a growing map of questions, concepts, arguments, and dependencies: a knowledge \revealedwordwithpunctuation<2->{graphblue}{}{graph}{.} So that contributions can differ and come unforced, the system gives participants control and equal standing (they all play by the same rules they themselves manage). Knowledge acquires structure \revealedword<6->{independencecopper}{independently} of the structure of its producers, be it social, political, economic…
 
   \medskip
+  % Click 2: the three marked words, and the small diagram where their lines will
+  % go (drawn as an overlay, so the words stay in place when it leaves). Then one
+  % line per click.
   \begin{itemize}
-    \item<2-> \markedword{conversationrose}{Conversation}: modeled after citizen assemblies (helps autonomy, role-symmetry, modularity… control and equal standing)
-    \item<3-> \markedword{messageindigo}{Together}: message passing style, as in the actor model or $\pi$-calculus in concurrency
-    \item<4-> \markedword{graphturquoise}{Graph}: typed knowledge graphs, which are versioned, multiplex, homotopical, federated…
-    \item<5-> \markedword{independencecopper}{Independently}: respecting the concrete/abstract separation of concerns and dedicated relation between the two
+    \item<2-> \markedword{conversationrose}{Conversation}:\only<2>{\tikz[overlay, baseline=0pt]\node[anchor=north west, inner sep=0pt] at (2.2cm, 1.2em) {\processdiagram};} \only<3->{modeled after citizen assemblies (helps autonomy, role-symmetry, modularity… control and equal standing)}
+    \item<2-> \markedword{messageindigo}{Together}: \only<4->{message passing style, as in the actor model or $\pi$-calculus in concurrency}
+    \item<2-> \markedword{graphblue}{Graph}: \only<5->{typed knowledge graphs, which are versioned, multiplex, homotopical, federated…}
+    \item<6-> \markedword{independencecopper}{Independently}: respecting the concrete/abstract separation of concerns and dedicated relation between the two
   \end{itemize}
 \end{frame}
 
@@ -344,6 +440,21 @@
     \item<3-> \markedword{emergencecoral}{Emerge}: the recursive nature of evolution: physics to biology… some AGI world
     \item<4-> \markedword{universalpropertyblue}{Universal property}: ``specialness'' vs.\ optimality
   \end{itemize}
+\end{frame}
+
+% The rising sea in Deligne's words: the first 72 seconds of his 1996 lecture in
+% Nice, with English subtitles in the picture. The still (at 14 s) shows until the
+% video is clicked. Both files sit next to this one: deligne_rising_sea.mp4 and
+% deligne_rising_sea_poster.jpg, cut from the full lecture recording.
+\begin{frame}[t]{Introduction — From logic to practice}
+  \paragraphtitle{Rising sea}
+  \centering
+  \movie[width=0.6\textwidth, height=0.348\textwidth, poster]{%
+    \includegraphics[width=0.6\textwidth, height=0.348\textwidth]{deligne_rising_sea_poster.jpg}%
+  }{deligne_rising_sea.mp4}
+
+  \vspace{4pt}
+  {\footnotesize\color{presentationgreen!70}P.~Deligne, \textit{L'œuvre d'Alexandre Grothendieck}, Nice, 1996}
 \end{frame}
 
 \begin{frame}[t]{Introduction — From logic to practice}
@@ -641,16 +752,17 @@
 % Permacultural logic from the adjunction: still Part 3, so the title bar stays;
 % each subsection's title follows "Permacultural logic —" as the paragraph title,
 % and each subsection takes two slides. The oral-commentary footnotes in the text
-% file stay off the slides.
+% file stay off the slides. These slides are shown, not presented: each appears
+% whole, in one step, for the audience to skim (every overlay starts at <1->).
 
 \begin{frame}[t]{The Hoapa conjecture — an adjunction}
   \paragraphtitle{Permacultural logic — From work to reusable construction}
   \balancedstart
-  The permacultural question is how an achievement becomes a means of further construction. Implication provides a precise mathematical example. We borrow an assumption $A$, derive $B$, and \revealedword<2->{returnroyal}{return} the derivation as an implication. Other proofs can \revealedword<3->{replayolive}{replay} that work when its conditions are supplied.
+  The permacultural question is how an achievement becomes a means of further construction. Implication provides a precise mathematical example. We borrow an assumption $A$, derive $B$, and \revealedword<1->{returnroyal}{return} the derivation as an implication. Other proofs can \revealedword<1->{replayolive}{replay} that work when its conditions are supplied.
 
   \begin{itemize}
-    \item<2-> \markedword{returnroyal}{Return}: abstraction turns $w\colon \Gamma\times A\to B$ into $w^{\sharp}\colon \Gamma\to A\Rightarrow B$.
-    \item<3-> \markedword{replayolive}{Replay}: evaluation applies the returned operation to an input: $(A\Rightarrow B)\times A\to B$.
+    \item<1-> \markedword{returnroyal}{Return}: abstraction turns $w\colon \Gamma\times A\to B$ into $w^{\sharp}\colon \Gamma\to A\Rightarrow B$.
+    \item<1-> \markedword{replayolive}{Replay}: evaluation applies the returned operation to an input: $(A\Rightarrow B)\times A\to B$.
   \end{itemize}
 \end{frame}
 
@@ -664,26 +776,26 @@
     \mathrm{Hom}(\Gamma\times A, B)\cong\mathrm{Hom}(\Gamma, A\Rightarrow B)
   \]
 
-  \begin{uncoverenv}<2->
-    The remaining assumptions $\Gamma$ stay visible: discharging one dependency does not erase the others. Introduction and elimination are governed by \revealedwordwithpunctuation<3->{harmonyorchid}{}{harmony}{.} Their compatibility makes work under an assumption interchangeable with a reusable operation expecting that assumption.
+  \begin{uncoverenv}<1->
+    The remaining assumptions $\Gamma$ stay visible: discharging one dependency does not erase the others. Introduction and elimination are governed by \revealedwordwithpunctuation<1->{harmonyorchid}{}{harmony}{.} Their compatibility makes work under an assumption interchangeable with a reusable operation expecting that assumption.
   \end{uncoverenv}
 
   \begin{itemize}
-    \item<3-> \markedword{harmonyorchid}{Harmony}: $\beta$ and $\eta$ make currying and uncurrying inverse—elimination extracts neither more nor less than introduction warrants.
+    \item<1-> \markedword{harmonyorchid}{Harmony}: $\beta$ and $\eta$ make currying and uncurrying inverse—elimination extracts neither more nor less than introduction warrants.
   \end{itemize}
 \end{frame}
 
 \begin{frame}[t]{The Hoapa conjecture — an adjunction}
   \paragraphtitle{Permacultural logic — What does the work leave available?}
   \balancedstart
-  The same adjunction produces two familiar constructions. The \revealedword<2->{statemonadcerulean}{state monad} composes computations by passing the state left by one into the next. The \revealedword<3->{storecomonadtangerine}{store comonad} holds a family of values together with a selected position, and allows that family to be considered from each position.
+  The same adjunction produces two familiar constructions. The \revealedword<1->{statemonadcerulean}{state monad} composes computations by passing the state left by one into the next. The \revealedword<1->{storecomonadtangerine}{store comonad} holds a family of values together with a selected position, and allows that family to be considered from each position.
 
   \begin{itemize}
-    \item<2-> \markedword{statemonadcerulean}{State monad}: $\mathrm{State}_A(X) = A\Rightarrow(X\times A)$—receive a state; return a result and a resulting state.
-    \item<3-> \markedword{storecomonadtangerine}{Store comonad}: $\mathrm{Store}_A(X) = (A\Rightarrow X)\times A$—retain an indexed family and a current position.
+    \item<1-> \markedword{statemonadcerulean}{State monad}: $\mathrm{State}_A(X) = A\Rightarrow(X\times A)$—receive a state; return a result and a resulting state.
+    \item<1-> \markedword{storecomonadtangerine}{Store comonad}: $\mathrm{Store}_A(X) = (A\Rightarrow X)\times A$—retain an indexed family and a current position.
   \end{itemize}
 
-  \begin{uncoverenv}<4->
+  \begin{uncoverenv}<1->
     These structures organize work and access to its setting. Their laws alone do not preserve the conditions for further work. A computation $p(a) = (x, a_0)$ can replace every incoming state with the same $a_0$, erasing distinctions that subsequent work needs.
   \end{uncoverenv}
 \end{frame}
@@ -691,33 +803,33 @@
 \begin{frame}[t]{The Hoapa conjecture — an adjunction}
   \paragraphtitle{Permacultural logic — What does the work leave available?}
   \balancedstart
-  Hoapa therefore asks about \revealedwordwithpunctuation<2->{continuationmint}{}{continuation}{:} can the work we intend to do next still be performed from what has been returned? A publication may be sufficient for one use and insufficient for another. The requirement must specify what is to remain possible.
+  Hoapa therefore asks about \revealedwordwithpunctuation<1->{continuationmint}{}{continuation}{:} can the work we intend to do next still be performed from what has been returned? A publication may be sufficient for one use and insufficient for another. The requirement must specify what is to remain possible.
 
   \begin{itemize}
-    \item<2-> \markedword{continuationmint}{Continuation}: $q'\circ w = \bar{w}\circ q$—$q$ and $q'$ publish before and after the work $w$; $\bar{w}$ performs the corresponding operation using only the published input.
+    \item<1-> \markedword{continuationmint}{Continuation}: $q'\circ w = \bar{w}\circ q$—$q$ and $q'$ publish before and after the work $w$; $\bar{w}$ performs the corresponding operation using only the published input.
   \end{itemize}
 \end{frame}
 
 \begin{frame}[t]{The Hoapa conjecture — an adjunction}
   \paragraphtitle{Permacultural logic — The economy of replay}
   \balancedstart
-  Earlier I called replay ``the hidden part of logic that makes logic work.'' \revealedword<2->{replayolive}{Cut} gives this phrase a precise sense. An established result enters a later proof; cut elimination can remove that intermediate use without changing what is provable. But removing it can make the proof enormously longer.
+  Earlier I called replay ``the hidden part of logic that makes logic work.'' \revealedword<1->{replayolive}{Cut} gives this phrase a precise sense. An established result enters a later proof; cut elimination can remove that intermediate use without changing what is provable. But removing it can make the proof enormously longer.
 
   \begin{itemize}
-    \item<2-> \markedword{replayolive}{Cut}: a proved result becomes a premise of further reasoning.
+    \item<1-> \markedword{replayolive}{Cut}: a proved result becomes a premise of further reasoning.
   \end{itemize}
 \end{frame}
 
 \begin{frame}[t]{The Hoapa conjecture — an adjunction}
   \paragraphtitle{Permacultural logic — The economy of replay}
   \balancedstart
-  There are families of short proofs with cut whose shortest cut-free proofs grow beyond every elementary bound in the original proof lengths. Reuse can therefore be dispensable for provability and decisive for \revealedwordwithpunctuation<2->{feasibilitysienna}{}{feasibility}{.}
+  There are families of short proofs with cut whose shortest cut-free proofs grow beyond every elementary bound in the original proof lengths. Reuse can therefore be dispensable for provability and decisive for \revealedwordwithpunctuation<1->{feasibilitysienna}{}{feasibility}{.}
 
   \begin{itemize}
-    \item<2-> \markedword{feasibilitysienna}{Feasibility}: the same conclusions can require radically different proof lengths; preserving intermediate achievements can make complex work practicable.
+    \item<1-> \markedword{feasibilitysienna}{Feasibility}: the same conclusions can require radically different proof lengths; preserving intermediate achievements can make complex work practicable.
   \end{itemize}
 
-  \begin{uncoverenv}<3->
+  \begin{uncoverenv}<1->
     This gives the sustainability intuition a concrete dimension. Mathematical development concerns what our means of reasoning let us accomplish with finite resources. An achievement can leave the set of consequences unchanged while transforming our capacity to establish and use them.
   \end{uncoverenv}
 \end{frame}
@@ -725,13 +837,13 @@
 \begin{frame}[t]{The Hoapa conjecture — an adjunction}
   \paragraphtitle{Permacultural logic — Achievements become means of inquiry}
   \balancedstart
-  A further step occurs when an achievement changes the tools through which inquiry proceeds. In proof by \revealedwordwithpunctuation<2->{reflectionviolet}{}{reflection}{,} a procedure is defined, its correctness is proved, and that proof supports its use in subsequent reasoning. Coq's \texttt{ring} tactic provides a concrete example: established mathematics becomes machinery for later mathematics, while the existing kernel continues to check the proofs.
+  A further step occurs when an achievement changes the tools through which inquiry proceeds. In proof by \revealedwordwithpunctuation<1->{reflectionviolet}{}{reflection}{,} a procedure is defined, its correctness is proved, and that proof supports its use in subsequent reasoning. Coq's \texttt{ring} tactic provides a concrete example: established mathematics becomes machinery for later mathematics, while the existing kernel continues to check the proofs.
 
   \begin{itemize}
-    \item<2-> \markedword{reflectionviolet}{Reflection}: a verified procedure becomes part of the proof-producing toolbox, without becoming a new trusted rule.
+    \item<1-> \markedword{reflectionviolet}{Reflection}: a verified procedure becomes part of the proof-producing toolbox, without becoming a new trusted rule.
   \end{itemize}
 
-  \begin{uncoverenv}<3->
+  \begin{uncoverenv}<1->
     The reusable material can also widen: from derivations in Gentzen's systems, to formalized theories in Hilbert's metamathematics, to constructions and their transport between equivalent types in HoTT. Lautman's passage from structure to genesis, and Simondon's account of produced structures supporting further structuring, guide our interpretation of this movement.
   \end{uncoverenv}
 \end{frame}
@@ -739,11 +851,11 @@
 \begin{frame}[t]{The Hoapa conjecture — an adjunction}
   \paragraphtitle{Permacultural logic — Achievements become means of inquiry}
   \balancedstart
-  \revealedfirstword<2->{emergencecoral}{Renewal} occurs when achievements change what further work can do. With Kauffman, we must also ask whether the organization producing them maintains its \revealedwordwithpunctuation<3->{permaculturegreen}{}{conditions of activity}{.} Hoapa's evolutionary hypothesis joins these demands: work should produce reusable achievements while sustaining and developing the conditions for further work.
+  \revealedfirstword<1->{emergencecoral}{Renewal} occurs when achievements change what further work can do. With Kauffman, we must also ask whether the organization producing them maintains its \revealedwordwithpunctuation<1->{permaculturegreen}{}{conditions of activity}{.} Hoapa's evolutionary hypothesis joins these demands: work should produce reusable achievements while sustaining and developing the conditions for further work.
 
   \begin{itemize}
-    \item<2-> \markedword{emergencecoral}{Renewal}: preserve declared earlier uses and make a genuinely new operation available.
-    \item<3-> \markedword{permaculturegreen}{Conditions of activity}: reusable results still depend on people, skills, records, tools, and material support.
+    \item<1-> \markedword{emergencecoral}{Renewal}: preserve declared earlier uses and make a genuinely new operation available.
+    \item<1-> \markedword{permaculturegreen}{Conditions of activity}: reusable results still depend on people, skills, records, tools, and material support.
   \end{itemize}
 \end{frame}
 

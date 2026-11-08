@@ -29,8 +29,8 @@ S: !an extension! not a modification/relaxation ; "the conversation" as a protoc
 The authors it draws on are mathematicians (F.W. Lawvere, *A. Grothendieck*), philosophers (C.S. Peirce, G. Simondon, G. Deleuze), and *scientists* (S. Kauffman, J. Bowlby). In my project, these approaches meet in *Albert Lautman*’s philosophy of mathematics, as read by Fernando Zalamea (who has been supporting my work).
 
 - A. Grothendieck : creativity, relative point of view, naturalness via rising sea, ecological thinking… the structure and destination of the project
-- Scientists : we're interested in each step of the evolution of the universe, from field theories to origins of life and attachment
 - Albert Lautman : metaphysics as "problems the universe was going to run into no matter what", mathematics and physics as "effective theories answering those problems"…
+- Scientists : we're interested in each step of the evolution of the universe, from field theories to origins of life and attachment
 
 > …Hoapa as an invariant in the effective theories we see
 
@@ -39,8 +39,8 @@ as an adventure in knowledge undertaken by our species through the ages, is but 
 more or less wide and more or less rich from one period to the other, which unfolds over the
 generations and centuries, by the gentle counterpoint of all the themes emerging in turns, as if
 summoned from the abyss, to join and embrace in her."
-S: …Zalamea's attention from a text called "Grothendieck's Generalized Theory of Evolution", where what I'm talking about today is the recursor/successor function, and one can find a trace of the abstractions I propose in each of the main steps of the evolution of the universe we know and love
 L: …from covers/coverings as results of "generalized inquiry" to the Lautmanian movement from metaphysics to effective theories ; demystifying metaphysics ; giving a context to mathematics and physics 
+S: …Zalamea's attention from a text called "Grothendieck's Generalized Theory of Evolution", where what I'm talking about today is the recursor/successor function, and one can find a trace of the abstractions I propose in each of the main steps of the evolution of the universe we know and love
 
 ### Thesis
 
@@ -68,7 +68,7 @@ The physical starting point is that work depends on *constraints* that channel e
 Hoapa is an *open* project in mathematics, software, and the design of collective inquiry. I set its direction, develop its questions, and decide which proposals to pursue. AI agents help explore mathematical connections, compare approaches, and write and review code and documentation. Cubical Agda checks that the formalized constructions fit together under explicit definitions and assumptions, allowing new work to build on *results* already established.
 
 - Open : autonomous, role-symmetric, reflexive, modular, transparent, recursive and federated, network-shaped and sheaf-like
-- Results : "Event-Local Sheafification and a Linear/Non-Linear Adjunction with Chu Coefficients"
+- Results : a proto-article, "Event-Local Sheafification and a Linear/Non-Linear Adjunction with Chu Coefficients"
 
 O: modular = "well-regulated constraints" ; ( autonomous = "managerless" ≅ role-symmetric = "all play by the same rules" ) ⇒ "they themselves set" = reflexive ; transparent ⇒ pedagogical and integrated ; sheaf-like ⇒ the global is very respectful of the local (unlike any theory of "social contracts") ; federated & network-shaped
 R: The adapter/translator/buffer between the "synthetic" agents and their organization leaving an "analytic" trace ; where the verification touches the implementation
@@ -109,6 +109,10 @@ The project seeks a mathematical correspondence—an *adjunction*—between two 
 A: see later
 E: Simondon's view: a context is full of potentials and tensions, and individuals coevolve with the milieu, without ever exhausting it ; candidate for future individuation from new context: AGI
 U: a translation
+
+### Rising sea
+
+Video: P. Deligne, *L'œuvre d'Alexandre Grothendieck* (Nice, 1996), the first 1'12, with English subtitles (deligne_rising_sea.mp4). Click to play.
 
 ### Permacultural logic
 
