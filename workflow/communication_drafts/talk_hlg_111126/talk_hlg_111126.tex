@@ -44,6 +44,8 @@
 % One colour per marked concept, bright enough to stand out on the slide.
 \definecolor{permaculturegreen}{HTML}{1FA32A}
 \definecolor{scienceblue}{HTML}{0B6BE0}
+% The Pitch's well-regulated network, and the properties its layers secure.
+\definecolor{regulationorange}{HTML}{FF9F1C}
 \definecolor{risingseateal}{HTML}{00A0A8}
 \definecolor{metaphysicsamber}{HTML}{DB8300}
 \definecolor{energyorange}{HTML}{F25C05}
@@ -67,7 +69,6 @@
 \definecolor{unpredictablecyan}{HTML}{00B4D8}
 \definecolor{stakebrown}{HTML}{7B4A1E}
 \definecolor{documentationink}{HTML}{2B3A8C}
-\definecolor{rolesymmetryslate}{HTML}{6A5ACD}
 % Operational documentation reuses documentationink: same concept as in Development.
 \definecolor{languageamethyst}{HTML}{9B5DE5}
 \definecolor{careterracotta}{HTML}{C8553D}
@@ -78,6 +79,15 @@
 \definecolor{anthropiclosspink}{HTML}{FF006E}
 % G (Evolution) reuses emergencecoral: "Emerge" already named the recursive nature
 % of evolution.
+\definecolor{returnroyal}{HTML}{4361EE}
+\definecolor{statemonadcerulean}{HTML}{0077B6}
+\definecolor{storecomonadtangerine}{HTML}{F77F00}
+\definecolor{continuationmint}{HTML}{43AA8B}
+\definecolor{feasibilitysienna}{HTML}{E76F51}
+\definecolor{reflectionviolet}{HTML}{3F37C9}
+% Reused in permacultural logic: replay and harmony keep their introduction
+% colours; cut takes replay's (it makes replay precise); renewal takes emergence's;
+% conditions of activity take maintain's.
 \definecolor{presuppositionlessnessteal}{HTML}{2A9D8F}
 % Perspectivism reuses hoapaviolet: the Pitch's brackets, "one point of view among
 % many", already stand for it.
@@ -217,8 +227,16 @@
     \item<3-> \markedword{permaculturegreen}{Permacultural}: concretely minimal, abstractly demanding
     \item<4-> \markedword{scienceblue}{Scientific method}: \\
       well-regulated scientist–Nature relation + (ad hoc peer review $\hookrightarrow$ universities $\hookrightarrow$ economy) \\
-      $\to$ well-regulated network of relations among scientists, each retaining a well-regulated relation with Nature
+      % The line wraps; a top-aligned box keeps its continuation clear of the arrow.
+      $\to$~\begin{minipage}[t]{\dimexpr\linewidth-1.6em\relax}\raggedright
+        \revealedword<5->{regulationorange}{well-regulated} network of relations among scientists, each retaining a well-regulated relation with Nature
+      \end{minipage}
   \end{itemize}
+
+  % The properties the network's layers secure, centred under the list with a
+  % little space above.
+  \vspace{4pt}
+  \uncover<5->{\par\centering\textcolor{regulationorange}{\texttt{[ perspectivism, decentralization, autonomy, openness to peers, expressiveness, transparency, scalability, self-reflection… ]}}\par}
 \end{frame}
 
 \begin{frame}[t]{Introduction — The context}
@@ -253,8 +271,8 @@
       \hfill
       \begin{tabular}[t]{@{}r@{}}
         \\
-        \footnotesize\textcolor{presentationgreen!70}{Stuart Kauffman,} \\
-        \footnotesize\textcolor{presentationgreen!70}{``Beyond Physics'' (talk)}
+        \footnotesize\textcolor{presentationgreen!70}{(Stuart Kauffman,} \\
+        \footnotesize\textcolor{presentationgreen!70}{``Beyond Physics'' talk)}
       \end{tabular}
     \item<3-> \markedword{dedicationmagenta}{Dedicated}: in computers, in cells, in brains, in communities
     \item<4-> \markedword{decompositionocean}{Decomposition}: synthetic $\sim$ dimensional ; analytic $\sim$ proper
@@ -278,7 +296,7 @@
 
   \vfill
   \begin{itemize}
-    \item<2-> \markedword{opennesslime}{Open}: autonomous, role-symmetric, modular, reflexive, transparent, recursive and federated, network-shaped and sheaf-like
+    \item<2-> \markedword{opennesslime}{Open}: autonomous, role-symmetric, reflexive, modular, transparent, recursive and federated, network-shaped and sheaf-like
     \item<3-> \markedword{resultsgold}{Results}: ``Event-Local Sheafification and a Linear/Non-Linear Adjunction with Chu Coefficients''
   \end{itemize}
   \vfill
@@ -286,15 +304,22 @@
 
 \begin{frame}[t]{Introduction — How Hoapa works}
   \paragraphtitle{Process}
-  Hoapa is designed as a network of small \revealedword<2->{conversationrose}{conversations} in which one group's work \revealedword<3->{messageindigo}{becomes} another group's starting point. A question brings participants together; their discussion produces a document that others can examine, challenge, or develop. These documents form a growing map of questions, concepts, arguments, and dependencies: a knowledge \revealedwordwithpunctuation<4->{graphturquoise}{}{graph}{.} So that contributions can differ and come unforced, the system gives participants control and equal standing (they all play by the same rules they themselves manage). Knowledge acquires structure \revealedword<5->{independencecopper}{independently} of the structure of its producers, be it social, political, economic…
+  Hoapa is designed as a network of small \revealedword<2->{conversationrose}{conversations} in which one group's work becomes another group's starting point. A question brings participants \revealedwordwithpunctuation<3->{messageindigo}{}{together}{;} their discussion produces a document that others can examine, challenge, or develop. These documents form a growing map of questions, concepts, arguments, and dependencies: a knowledge \revealedwordwithpunctuation<4->{graphturquoise}{}{graph}{.} So that contributions can differ and come unforced, the system gives participants control and equal standing (they all play by the same rules they themselves manage). Knowledge acquires structure \revealedword<5->{independencecopper}{independently} of the structure of its producers, be it social, political, economic…
 
   \medskip
   \begin{itemize}
-    \item<2-> \markedword{conversationrose}{Conversation}: same shape as citizen assemblies (enables autonomy, role-symmetry, modularity… control and equal standing)
-    \item<3-> \markedword{messageindigo}{Becomes}: message passing style, as in the actor model or $\pi$-calculus in concurrency
+    \item<2-> \markedword{conversationrose}{Conversation}: modeled after citizen assemblies (helps autonomy, role-symmetry, modularity… control and equal standing)
+    \item<3-> \markedword{messageindigo}{Together}: message passing style, as in the actor model or $\pi$-calculus in concurrency
     \item<4-> \markedword{graphturquoise}{Graph}: typed knowledge graphs, which are versioned, multiplex, homotopical, federated…
-    \item<5-> \markedword{independencecopper}{Independently}: respecting the concrete/abstract separation of concerns
+    \item<5-> \markedword{independencecopper}{Independently}: respecting the concrete/abstract separation of concerns and dedicated relation between the two
   \end{itemize}
+\end{frame}
+
+% A first look at the overview diagram, before verification and the conjecture:
+% the partial version, which part 3 opens with again before adding the rest.
+\begin{frame}[c]{Introduction — How Hoapa works}
+  \centering
+  \includegraphics[height=0.85\textheight]{talk_hlg_111126_diagram_partial.pdf}%
 \end{frame}
 
 \begin{frame}[t]{Introduction — What is checked, what is conjectured}
@@ -304,7 +329,7 @@
   \medskip
   \begin{itemize}
     \item<2-> \markedword{refereeyellow}{Referee}: automation as \textit{liberation from control mechanisms}, from the necessity to have management
-    \item<3-> \markedword{verificationgreen}{Verification}: machine-checks that the record of each conversation is well-formed, never that its conclusions are true
+    \item<3-> \markedword{verificationgreen}{Verification}: machine-checks that the record of each conversation is well-formed according to the protocol, never that its conclusions are true
     \item<4-> \markedword{participantsplum}{Participants}: the protocol is blind to identity of contributors, which means it can't count on specialization (is knowledge lost?)
   \end{itemize}
 \end{frame}
@@ -315,8 +340,8 @@
 
   \medskip
   \begin{itemize}
-    \item<2-> \markedword{adjunctioncrimson}{Adjunction}: context \& inquiry, structure \& genesis
-    \item<3-> \markedword{emergencecoral}{Emerge}: the recursive nature of evolution: biology from physics… some AGI world
+    \item<2-> \markedword{adjunctioncrimson}{Adjunction}: context \& inquiry, perspectivism \& praxis, structure \& genesis/recursion…
+    \item<3-> \markedword{emergencecoral}{Emerge}: the recursive nature of evolution: physics to biology… some AGI world
     \item<4-> \markedword{universalpropertyblue}{Universal property}: ``specialness'' vs.\ optimality
   \end{itemize}
 \end{frame}
@@ -327,7 +352,7 @@
 
   \medskip
   \begin{itemize}
-    \item<2-> \markedword{harmonyorchid}{Harmony}: as in Gentzen
+    \item<2-> \markedword{harmonyorchid}{Harmony}: as in Gentzen, type theory, Hilbert's axiomatic method
     \item<3-> \markedword{replayolive}{Replay}: the hidden part of logic that makes logic work
   \end{itemize}
 \end{frame}
@@ -340,7 +365,7 @@
   \begin{itemize}
     \item<2-> \markedword{unpredictablecyan}{Unpredictable}: collective inquiry helps determine how collective inquiry is organized
     \item<3-> \markedword{stakebrown}{Stake}: what distinguishes and makes citizen assemblies efficient; you can't simulate life or understanding
-    \item<4-> \markedword{documentationink}{Documentation}: does in the Lautmanian-analytic what specialization does in the synthetic: shared source and management, but ``softer''
+    \item<4-> \markedword{documentationink}{Documentation}: does in the Lautmanian-analytic what specialization does in the synthetic agents: shared source and management, but ``softer''
   \end{itemize}
 \end{frame}
 
@@ -365,12 +390,7 @@
 \begin{frame}[t]{Implementation — Use cases}
   \paragraphtitle{A park}
   \balancedstart
-  Its task is to chart the world and design appropriate algorithms, not interfere with and certainly not control it. (That would kill all the carefully crafted separations of concerns, starting with the \revealedwordwithpunctuation<2->{rolesymmetryslate}{}{role-symmetry of agents}{,} because it necessarily introduces some hierarchical structure and tension—for basically the same reasons you can share an idea with the entire world without losing it, but you can't do that with a loaf of bread.)
-
-  \begin{itemize}
-    \item<2-> \markedword{rolesymmetryslate}{Role-symmetry}: rename the participants; preserve the verdict
-  \end{itemize}
-\end{frame}
+  Its task is to chart the world and design appropriate algorithms, not interfere with and certainly not control it. (That would kill all the carefully crafted separations of concerns, starting with the role-symmetry of agents, because it necessarily introduces some hierarchical structure and tension—for basically the same reasons you can share an idea with the entire world without losing it, but you can't do that with a loaf of bread.)\end{frame}
 
 \begin{frame}[t]{Implementation — Use cases}
   \paragraphtitle{A park}
@@ -450,7 +470,7 @@
   \end{uncoverenv}
 
   \begin{itemize}
-    \item<3-> \markedword{languageamethyst}{Language}: ``Learn once, write everywhere'' $\leftarrow$ a shared conceptual landscape built through explicit and systematic comparisons (interpretation, equivalence, coherence, …)
+    \item<3-> \markedword{languageamethyst}{Language}: ``Learn once, write everywhere'' $\leftarrow$ a shared conceptual landscape built through explicit and systematic comparisons (interpretation, equivalence, coherence…)
   \end{itemize}
 \end{frame}
 
@@ -485,7 +505,7 @@
   \begin{overprint}
     \onslide<3>
       \begin{itemize}
-        \item \markedword{emergencecoral}{Further}: a method of articulating a context can generate a new context for further inquiry
+        \item \markedword{emergencecoral}{Further}: a method of articulating a context can generate a new context for further inquiry (in math and logic, in generalized evolution)
       \end{itemize}
     \onslide<4->
       \transitionsentence{Grothendieck also questioned the ecological consequences of scientific activity; Hoapa approaches that concern by asking how understanding a world can help us inhabit it.}
@@ -574,7 +594,7 @@
   \revealedfirstword<2->{hoapaviolet}{Perspectivism} motivates this ambition; \revealedword<3->{presuppositionlessnessteal}{presuppositionlessness} guides the response. The world has already produced different beings, experiences, skills, and ways of understanding. Their contributions must be able to enter the inquiry without their worth being decided in advance by a hierarchy or an established division of knowledge. What the world has already developed becomes material for collective work; what that work will produce remains open.
 
   \begin{itemize}
-    \item<2-> \markedword{hoapaviolet}{Perspectivism}: global understanding assembled from local views, with obstructions to assembly retained as information
+    \item<2-> \markedword{hoapaviolet}{Perspectivism}: global understanding assembled from local views, with obstructions to their integration retained as information
     \item<3-> \markedword{presuppositionlessnessteal}{Presuppositionlessness}: common rules, open rules with equal power to revise them, and only the rules needed to make communication possible
   \end{itemize}
 \end{frame}
@@ -615,6 +635,115 @@
     \item<3-> \markedword{emergencecoral}{$G$}: Evolution, how work acquires a contextual presentation through which its achievements can enter further development; compare the construction of inner models from logics ($L$, $C^{*}$, $\mathrm{HOD}$)
     \item<4-> \markedword{praxispurple}{$\eta$}: Praxis, the general opening; a piece of work $w\colon Fc\to i$ realizes it in particular, and its transpose $G(w)\circ\eta_c\colon c\to Gi$ returns the work in contextual form
     \item<5-> \markedword{anthropiclosspink}{$\varepsilon$}: Anthropic loss, the possible failure of the reconstruction map $\varepsilon_i\colon FGi\to i$ to be invertible; compare the gap between elementary equivalence and isomorphism, with Ehrenfeucht–Fraïssé games describing logical indistinguishability
+  \end{itemize}
+\end{frame}
+
+% Permacultural logic from the adjunction: still Part 3, so the title bar stays;
+% each subsection's title follows "Permacultural logic —" as the paragraph title,
+% and each subsection takes two slides. The oral-commentary footnotes in the text
+% file stay off the slides.
+
+\begin{frame}[t]{The Hoapa conjecture — an adjunction}
+  \paragraphtitle{Permacultural logic — From work to reusable construction}
+  \balancedstart
+  The permacultural question is how an achievement becomes a means of further construction. Implication provides a precise mathematical example. We borrow an assumption $A$, derive $B$, and \revealedword<2->{returnroyal}{return} the derivation as an implication. Other proofs can \revealedword<3->{replayolive}{replay} that work when its conditions are supplied.
+
+  \begin{itemize}
+    \item<2-> \markedword{returnroyal}{Return}: abstraction turns $w\colon \Gamma\times A\to B$ into $w^{\sharp}\colon \Gamma\to A\Rightarrow B$.
+    \item<3-> \markedword{replayolive}{Replay}: evaluation applies the returned operation to an input: $(A\Rightarrow B)\times A\to B$.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{The Hoapa conjecture — an adjunction}
+  \paragraphtitle{Permacultural logic — From work to reusable construction}
+  \balancedstart
+  In the cartesian closed interpretation of intuitionistic logic, this is the adjunction:
+  \[
+    (-\times A)\dashv(A\Rightarrow -)
+    \qquad
+    \mathrm{Hom}(\Gamma\times A, B)\cong\mathrm{Hom}(\Gamma, A\Rightarrow B)
+  \]
+
+  \begin{uncoverenv}<2->
+    The remaining assumptions $\Gamma$ stay visible: discharging one dependency does not erase the others. Introduction and elimination are governed by \revealedwordwithpunctuation<3->{harmonyorchid}{}{harmony}{.} Their compatibility makes work under an assumption interchangeable with a reusable operation expecting that assumption.
+  \end{uncoverenv}
+
+  \begin{itemize}
+    \item<3-> \markedword{harmonyorchid}{Harmony}: $\beta$ and $\eta$ make currying and uncurrying inverse—elimination extracts neither more nor less than introduction warrants.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{The Hoapa conjecture — an adjunction}
+  \paragraphtitle{Permacultural logic — What does the work leave available?}
+  \balancedstart
+  The same adjunction produces two familiar constructions. The \revealedword<2->{statemonadcerulean}{state monad} composes computations by passing the state left by one into the next. The \revealedword<3->{storecomonadtangerine}{store comonad} holds a family of values together with a selected position, and allows that family to be considered from each position.
+
+  \begin{itemize}
+    \item<2-> \markedword{statemonadcerulean}{State monad}: $\mathrm{State}_A(X) = A\Rightarrow(X\times A)$—receive a state; return a result and a resulting state.
+    \item<3-> \markedword{storecomonadtangerine}{Store comonad}: $\mathrm{Store}_A(X) = (A\Rightarrow X)\times A$—retain an indexed family and a current position.
+  \end{itemize}
+
+  \begin{uncoverenv}<4->
+    These structures organize work and access to its setting. Their laws alone do not preserve the conditions for further work. A computation $p(a) = (x, a_0)$ can replace every incoming state with the same $a_0$, erasing distinctions that subsequent work needs.
+  \end{uncoverenv}
+\end{frame}
+
+\begin{frame}[t]{The Hoapa conjecture — an adjunction}
+  \paragraphtitle{Permacultural logic — What does the work leave available?}
+  \balancedstart
+  Hoapa therefore asks about \revealedwordwithpunctuation<2->{continuationmint}{}{continuation}{:} can the work we intend to do next still be performed from what has been returned? A publication may be sufficient for one use and insufficient for another. The requirement must specify what is to remain possible.
+
+  \begin{itemize}
+    \item<2-> \markedword{continuationmint}{Continuation}: $q'\circ w = \bar{w}\circ q$—$q$ and $q'$ publish before and after the work $w$; $\bar{w}$ performs the corresponding operation using only the published input.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{The Hoapa conjecture — an adjunction}
+  \paragraphtitle{Permacultural logic — The economy of replay}
+  \balancedstart
+  Earlier I called replay ``the hidden part of logic that makes logic work.'' \revealedword<2->{replayolive}{Cut} gives this phrase a precise sense. An established result enters a later proof; cut elimination can remove that intermediate use without changing what is provable. But removing it can make the proof enormously longer.
+
+  \begin{itemize}
+    \item<2-> \markedword{replayolive}{Cut}: a proved result becomes a premise of further reasoning.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{The Hoapa conjecture — an adjunction}
+  \paragraphtitle{Permacultural logic — The economy of replay}
+  \balancedstart
+  There are families of short proofs with cut whose shortest cut-free proofs grow beyond every elementary bound in the original proof lengths. Reuse can therefore be dispensable for provability and decisive for \revealedwordwithpunctuation<2->{feasibilitysienna}{}{feasibility}{.}
+
+  \begin{itemize}
+    \item<2-> \markedword{feasibilitysienna}{Feasibility}: the same conclusions can require radically different proof lengths; preserving intermediate achievements can make complex work practicable.
+  \end{itemize}
+
+  \begin{uncoverenv}<3->
+    This gives the sustainability intuition a concrete dimension. Mathematical development concerns what our means of reasoning let us accomplish with finite resources. An achievement can leave the set of consequences unchanged while transforming our capacity to establish and use them.
+  \end{uncoverenv}
+\end{frame}
+
+\begin{frame}[t]{The Hoapa conjecture — an adjunction}
+  \paragraphtitle{Permacultural logic — Achievements become means of inquiry}
+  \balancedstart
+  A further step occurs when an achievement changes the tools through which inquiry proceeds. In proof by \revealedwordwithpunctuation<2->{reflectionviolet}{}{reflection}{,} a procedure is defined, its correctness is proved, and that proof supports its use in subsequent reasoning. Coq's \texttt{ring} tactic provides a concrete example: established mathematics becomes machinery for later mathematics, while the existing kernel continues to check the proofs.
+
+  \begin{itemize}
+    \item<2-> \markedword{reflectionviolet}{Reflection}: a verified procedure becomes part of the proof-producing toolbox, without becoming a new trusted rule.
+  \end{itemize}
+
+  \begin{uncoverenv}<3->
+    The reusable material can also widen: from derivations in Gentzen's systems, to formalized theories in Hilbert's metamathematics, to constructions and their transport between equivalent types in HoTT. Lautman's passage from structure to genesis, and Simondon's account of produced structures supporting further structuring, guide our interpretation of this movement.
+  \end{uncoverenv}
+\end{frame}
+
+\begin{frame}[t]{The Hoapa conjecture — an adjunction}
+  \paragraphtitle{Permacultural logic — Achievements become means of inquiry}
+  \balancedstart
+  \revealedfirstword<2->{emergencecoral}{Renewal} occurs when achievements change what further work can do. With Kauffman, we must also ask whether the organization producing them maintains its \revealedwordwithpunctuation<3->{permaculturegreen}{}{conditions of activity}{.} Hoapa's evolutionary hypothesis joins these demands: work should produce reusable achievements while sustaining and developing the conditions for further work.
+
+  \begin{itemize}
+    \item<2-> \markedword{emergencecoral}{Renewal}: preserve declared earlier uses and make a genuinely new operation available.
+    \item<3-> \markedword{permaculturegreen}{Conditions of activity}: reusable results still depend on people, skills, records, tools, and material support.
   \end{itemize}
 \end{frame}
 

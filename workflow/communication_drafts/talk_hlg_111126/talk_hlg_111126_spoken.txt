@@ -1,0 +1,233 @@
+Introduction.
+
+Slide 1. Pitch.
+
+The core of my research consists in drawing inspiration from the philosophy of mathematics and the engineering of networks to formulate a theory of work constrained by "permacultural" logic: how to produce reusable results while preserving the conditions for future work. Applied to collectives, it becomes an extension of the scientific method which incorporates participatory democracy and sustainability.
+
+Brackets: one point of view among many. Note: not a pitch but one of them ; inherently perspectivist ; a sort of motive.
+
+Permacultural: concretely minimal, abstractly demanding. Note: the agricultural technique to abstraction ; requires a lot of knowledge (your knowledge matches the system's), allows minimal imprint (your system matches the natural's).
+
+Scientific method: well-regulated scientist-Nature relation, plus (ad hoc peer review, embedded in universities, embedded in economy) ; becomes well-regulated network of relations among scientists, each retaining a well-regulated relation with Nature. Note: an extension! not a modification or relaxation ; "the conversation" as a protocol becomes an object of science and scientists sign up for the protocol they believe is the most trustworthy ; trust is guarantees ("layers of complexity"): perspectivism, decentralization, autonomy, openness to peers, expressiveness, transparency, scalability, self-reflection…
+
+Slide 2. Sources.
+
+The authors it draws on are mathematicians (F. W. Law-veer, A. Groten-deek), philosophers (C. S. Purse, G. See-mohn-dohn, G. Duh-luhz), and scientists (S. Kauffman, J. Bowlby). In my project, these approaches meet in Albert Lot-mahn's philosophy of mathematics, as read by Fernando Zala-may-ah (who has been supporting my work).
+
+A. Groten-deek: creativity, relative point of view, naturalness via rising sea, ecological thinking… the structure and destination of the project. Note: "And all science, when we do not understand it as an instrument for power and domination, but as an adventure in knowledge undertaken by our species through the ages, is but this harmony, more or less wide and more or less rich from one period to the other, which unfolds over the generations and centuries, by the gentle counterpoint of all the themes emerging in turns, as if summoned from the abyss, to join and embrace in her."
+
+Scientists: we're interested in each step of the evolution of the universe, from field theories to origins of life and attachment. Note: …Zala-may-ah's attention from a text called "Groten-deek's Generalized Theory of Evolution", where what I'm talking about today is the recursor or successor function, and one can find a trace of the abstractions I propose in each of the main steps of the evolution of the universe we know and love.
+
+Albert Lot-mahn: metaphysics as "problems the universe was going to run into no matter what", mathematics and physics as "effective theories answering those problems"… Note: …from covers or coverings as results of "generalized inquiry" to the Lot-mahn-ian movement from metaphysics to effective theories ; demystifying metaphysics ; giving a context to mathematics and physics.
+
+…Hoapa as an invariant in the effective theories we see.
+
+Slide 3. Thesis.
+
+My main thesis states that in a system that puts the dialectic between concrete and abstract to work (brain, computer, community), the relation between concrete substrate and logical labor must be a resource entirely dedicated to the design and application of representations and algorithms. A form of separation between two kinds of decomposition, analytic (as in prime factorization) and synthetic (as in vector coordinates relative to a basis), is a guiding principle, informed by Lot-mahn, which can keep this relation fruitful: in a community, between thinkers and the knowledge they produce.
+
+Work: explosion versus engine, the role of constraints ; engine versus organism, the role of closure ; engine versus computer, the role of the "abstract loop" (Stuart Kauffman, "Beyond Physics" talk). Note: from physics to Peter Atkins: work is "constrained release of energy into a few degrees of freedom" ; in Kauffman, searching for origins of life ; symbolic and dynamical (Pattee, von Noyman, Mon-tay-veel and Moss-yo, Purse), roughly (Lot-mahn, logic) formal system and realization, abstract and concrete ; why "loop".
+
+Dedicated: in computers, in cells, in brains, in communities. Note: evident in computers, the hardware is dedicated to the operations of the software, same with the letters of the genetic alphabet: concrete substrate as "pure constraints" for abstract work, the shape is the execution ; brains are muddier, I claim because there are a lot more "layers of complexity" with their own concrete and abstract separations (like internal concrete and abstract divides in math and code) ; communities are "degenerate": the concrete substrate is not just coupled, but dependent on the abstract.
+
+Decomposition: synthetic like dimensional ; analytic like proper. Note: in math: dimensional is decompose through the structure of the ambient space, proper is decompose through the structure of the element itself ; what is being decomposed at the community level is knowledge: brains are like vectors, (documented) statements like prime factorization.
+
+Slide 4. Theory of work.
+
+The physical starting point is that work depends on constraints that channel energy into particular effects. In living systems, activity also helps maintain the machinery that makes further activity possible. Abstract representations and algorithms enable a system to retain and share experience, discover relations, construct and test possibilities, revise its own means of understanding and action, and turn results into conditions for further work. This makes the relation between concrete conditions and abstract operations a powerful resource. Lot-mahn supplies a way to investigate such relations through the mathematical and physical constructions that give them substance; Purse, See-mohn-dohn, and Kauffman help connect the question to living beings, their environments, and their practices of understanding. Hoapa's proposed separation between thinkers and the organization of knowledge is an engineering approach to developing this potential.
+
+Constraints: effects.
+
+Maintain: closure.
+
+Abstract: secondary loop.
+
+Slide 5. Project.
+
+Hoapa is an open project in mathematics, software, and the design of collective inquiry. I set its direction, develop its questions, and decide which proposals to pursue. A I agents help explore mathematical connections, compare approaches, and write and review code and documentation. Cubical Agda checks that the formalized constructions fit together under explicit definitions and assumptions, allowing new work to build on results already established.
+
+Open: autonomous, role-symmetric, reflexive, modular, transparent, recursive and federated, network-shaped and sheaf-like. Note: modular is "well-regulated constraints" ; (autonomous is "managerless", matches role-symmetric is "all play by the same rules") implies "they themselves set" is reflexive ; transparent implies pedagogical and integrated ; sheaf-like implies the global is very respectful of the local (unlike any theory of "social contracts") ; federated and network-shaped.
+
+Results: "Event-Local Sheafification and a Linear, Non-Linear Adjunction with Chu Coefficients". Note: the adapter, translator, buffer between the "synthetic" agents and their organization leaving an "analytic" trace ; where the verification touches the implementation.
+
+Slide 6. Process.
+
+Hoapa is designed as a network of small conversations in which one group's work becomes another group's starting point. A question brings participants together; their discussion produces a document that others can examine, challenge, or develop. These documents form a growing map of questions, concepts, arguments, and dependencies: a knowledge graph. So that contributions can differ and come unforced, the system gives participants control and equal standing (they all play by the same rules they themselves manage). Knowledge acquires structure independently of the structure of its producers, be it social, political, economic…
+
+Conversation: same shape as citizen assemblies (enables autonomy, role-symmetry, modularity… control and equal standing). Note: random selection, resolution by consensus, "let it crash" ; amazing results when experimented in politics.
+
+Becomes: message passing style, as in the actor model or pi calculus in concurrency. Note: actors are "synthetic" agents, their messages "analytic" decomposition.
+
+Graph: typed knowledge graphs, which are versioned, multiplex, homotopical, federated… Note: the "base" layer is the orchestration, the trace of the conversations (records "verbatim" the process), upon which other conversations work on "refining" the content into specialized or pruned graphs, sharing the same underlying substrate but with different kinds of edges…
+
+Independently: respecting the concrete and abstract separation of concerns and dedicated relation between the two.
+
+Slide 7. Verification.
+
+The communication protocols specify how these conversations proceed and how their results enter the shared documentation. Software is used as a referee and is itself subject to modification by the conversations. Alongside the conversation process, a mathematical verification layer is being developed in Cubical Agda, a language in which proofs can be checked by a computer. One existing result establishes that consistently renaming participants cannot change the checker's verdict. The broader aim is to make the system's promises precise enough to test and prove.
+
+Referee: automation as liberation from control mechanisms, from the necessity to have management. Note: once the rules enforced by the program are always open, without "higher constraints", and communally owned by a process in which "all play by the same rules".
+
+Verification: machine-checks that the record of each conversation is well-formed, never that its conclusions are true.
+
+Participants: the protocol is blind to identity of contributors, which means it can't count on specialization (is knowledge lost?). Note: unityped in computer science, univocal in philosophy, synthetic or dimensional in mathematics ; people will specialize no matter what ; how participants in citizen assemblies deal with specialized knowledge: they go get it (and they're good at it) ; "Role symmetry gives us a concrete requirement to verify. Take a recorded interaction and consistently rename its participants, without merging distinct participants or changing their contributions and relations. The checker must still accept or reject the record exactly as before. This is called renaming invariance, and we have proved it in Cubical Agda for the current record validator. It gives one precise, checkable expression of the participants' equal formal standing."
+
+Slide 8. Conjecture.
+
+The project seeks a mathematical correspondence, an adjunction, between two poles. One organizes inquiry through conversations, verification, and knowledge graphs. The other represents mathematical contexts and the different perspectives through which they can be investigated. The conjecture is guided by an intuition prompted by the perspectival nature of the world: our different understandings of it invite discussion, without presuppositions, from which something the world can reuse may emerge. The conjecture asks whether a universal property can distinguish Hoapa's organization from alternatives. This talk will explore a candidate in which methods are represented by logics and mathematical worlds by the inner models they generate.
+
+Adjunction: context and inquiry, perspectivism and praxis, structure and genesis or recursion… Note: see later.
+
+Emerge: the recursive nature of evolution: biology from physics… some A G I world. Note: See-mohn-dohn's view: a context is full of potentials and tensions, and individuals coevolve with the milieu, without ever exhausting it ; candidate for future individuation from new context: A G I.
+
+Universal property: "specialness" versus optimality. Note: a translation.
+
+Slide 9. Permacultural logic.
+
+The project also looks for this pattern inside logic, where "permaculture" is understood broadly as the two-step process of one, getting to know one's context as much as possible, two, acting minimally in a manner that will enhance one's condition while preserving and enriching the context. A proof may begin with a provisional assumption (borrow), derive a conclusion (work), and turn the derivation into a conditional statement that later proofs can use (replay). What began as work under particular conditions becomes a reusable achievement. Hoapa investigates this borrow, work, replay pattern as a possible logical expression of its permacultural ambition: the harmony between receiving and giving back.
+
+Harmony: as in Gent-sen, or type theory, Hilbert. Note: Gent-sen in introduction and elimination, in type theory with how to construct a type and how to use a type, Hilbert in axioms and metamathematical theory (in the vision of Lot-mahn) ; biological analogy: a cell draws on a proton gradient to produce A T P for new work, while consuming fuel to replenish the gradient; some of that work maintains the machinery that keeps the cycle going ; see later.
+
+Replay: the hidden part of logic that makes logic work. Note: you can't see the feedback (a la cybernetics), but for the structural rules to hold (matches "the system to be sustainable"), there must be a form of non-exhaustion and positive feedback (visible part is the feedforward: new problems leading to new results).
+
+Slide 10. Development.
+
+The architecture of a "mature" Hoapa system is both demanding, to respect its constraints, and, by virtue of presuppositionlessness, unpredictable. Autonomous open-science workshops could make these ideas tangible and seed larger systems, embracing both pragmaticism and experimentalism. Their first requirement is usefulness: knowledge sharing must be truly at stake, so that the organization develops through serving a real purpose. Concretely, I envision something based on the philosophy of "document-driven development", where documentation gradually replaces the instructor, both as the joint source of truth and the manager of the process.
+
+Unpredictable: collective inquiry helps determine how collective inquiry is organized. Note: only collective intelligence should shape what collective intelligence should be (the same form of non-ergodicity as biology).
+
+Stake: what distinguishes and makes citizen assemblies efficient; you can't simulate life or understanding. Note: stakes are facilitators of consensus, so are role-symmetry and general equalitarian conditions, openness, anonymity…
+
+Documentation: does in the Lot-mahn-ian analytic what specialization does in the synthetic: shared source and management, but "softer". Note: Groten-deek in 1972, when asked about "the revolution", he first discards the top-down approach, then calls for a bottom-up approach (start with "fixing" the relations between individuals), and uses the example of the teacher-student relation.
+
+Implementation. Use cases.
+
+Slide 11. A park.
+
+Hoapa can also operate at small scales and with only the "base layer of complexity" which separates the role-symmetric agents (unityped, univocal, synthetic or dimensional) from the typed documentation they produce.
+
+For instance we could have a neighborhood "manage" its local park via a protocol in which the motivated residents discuss how it could be enhanced, and produce a to-do list for its maintenance.
+
+Here it is crucial to understand that the system can preserve its advantageous mathematical, social and engineering properties if it is only a communication system, and not a full management system which also enacts in reality what has been discussed in the abstract.
+
+Its task is to chart the world and design appropriate algorithms, not interfere with and certainly not control it. (That would kill all the carefully crafted separations of concerns, starting with the role-symmetry of agents, because it necessarily introduces some hierarchical structure and tension, for basically the same reasons you can share an idea with the entire world without losing it, but you can't do that with a loaf of bread.)
+
+Hoapa protocols can interact with the world only behind buffers which respect individual freedom:
+
+If it needs something it simply asks for it, and expects those needs to be met (for instance, if it uses the internet, it states via a self-reflective conversation how much bandwidth it needs, and specifies the characteristics of its network). Individuals or communities, outside of the protocol, would then respond to those needs without compensation.
+
+If it wants something to be known it simply makes it as available and accessible as possible, which includes a pedagogical effort in presentation and terminology. But it can't advertise, at the risk of favoring certain targets over others.
+
+In either direction, we can think of Hoapa as a coach in sports: its domain of action is preparation and strategy, but it can never enter the field of play or control the players. The game belongs to the players.
+
+In this example, we can imagine an institution and Hoapa hybrid in which the city government has delegated the supervision of the park to the protocol, but it's still the paid workforce of gardeners which will perform the tasks suggested by the protocol. But ideally, in the spirit of the protocol, it would be only voluntary work, suggested by the protocol but decided at the level of the individuals and communities.
+
+Which makes Hoapa protocols especially well suited to organize the open source economy.
+
+Slide 12. Open source.
+
+Because open source produces code, it mostly "lives in the abstract". Historically, it has also used a lot of voluntary labor. So it is by design a process that respects the separation of concerns Hoapa systems start with.
+
+The main recurring problem open source projects face is scalability and continuation beyond the circle of core contributors and maintainers, usually the instigators of the project: because open source projects are structured around "circles of knowledge and influence", which is in essence a hierarchy, it is very likely to terminate the moment the inner circle quits.
+
+Hoapa revokes the privileges of the inner circle, distributes the workload evenly and transfers all the essential knowledge from the original designer's minds into a strictly typed and operational documentation.
+
+Operational documentation: using team semantics and provenance, what must remain traceable for others to understand, revise, and continue the work (as an extension to the collective of Kuh-nooth's literate programming). Note: my working model was literate programming, by Donald Kuh-nooth, the great missed opportunity of software development ; better model is team semantics and provenance: for the work to have document-to-document continuity, as opposed to brain-to-brain or self-to-self, the documentation needs to show how a result was obtained, what it depends on, and what may need reconsidering when those dependencies change, etcetera.
+
+While this is more demanding in the early stages of the process, it pays off by making the project truly scalable and persistent (not persistent in the sense of a capitalistic endeavor, which always needs to grow and colonize new markets, but closer to how ecosystems work, with minimalism and circularity).
+
+The same arguments can be used to suggest a reform of how science is conducted.
+
+Slide 13. Science.
+
+Universities organize inquiry through hierarchies that also distribute funding, employment, and recognition. These dependencies influence which questions can be pursued and whose contributions are heard.
+
+Crossed out.
+
+Universities are extremely hierarchical political machines whose ties to reality are clearly not behind buffers, which impair their capacity to describe the world they inhabit. Note: "And all science, when we do not understand it as an instrument for power and domination, but as an adventure in knowledge undertaken by our species through the ages, is but this harmony, more or less wide and more or less rich from one period to the other, which unfolds over the generations and centuries, by the gentle counterpoint of all the themes emerging in turns, as if summoned from the abyss, to join and embrace in her" (Groten-deek, Ray-colt ay Suh-my) ; "From a semiotical and philosophical perspective, the general method is fascinating: to understand something, consider all possible points of view and search for a structural connection between them. Only then you will be approaching true knowledge. A systematic use of the liberty and multiplicity of topos theory in our ordinary life would have huge consequences on tolerance, ethics, politics, and social action: an example of how high mathematical practice would transform our everyday practice." (Zala-may-ah, "Groten-deek's 40 Main Years: A Unitary Vision Through the T S K Models")
+
+While the scientific method, in the domains where it is applicable, makes claims answerable to evidence and correction, it doesn't prevent other types of evils. Notably a mismanagement of efforts toward certain technologies at the expense of understanding, the fragmentation of the study of Nature into opposing departments, the proliferation of opaque jargons, the insistence that there exists a "view from nowhere", the enclosure of knowledge behind paywalls, proprietary tools, and restricted access, the depreciation of errors and failures, etcetera.
+
+Hoapa protocols, on the other hand, are ideal for the realization of what citizen science promised to be, but only marginally developed. In a real and, hopefully, demonstrable sense, they are an extension of the Galilean scientific method to the collective.
+
+In the Hoapa extension, we define how scientists are supposed to converse among themselves, and how they should refine and store information into a strictly typed and operational technical language. Our conjecture is that a universal property can distinguish Hoapa among organizations pursuing this work.
+
+Language: "Learn once, write everywhere", from a shared conceptual landscape built through explicit and systematic comparisons (interpretation, equivalence, coherence…). Note: homotopy theoretic work on the raw output of the protocol, that you can think of as a landscape of concepts (plane of immanence of Duh-luhz) where the terrain is all those homotopy paths, and some concepts appear as peaks in the landscape, we then keep those peaks, as the words of our language, discard the rest and give them symbols and a grammar to interact and form structures and statements (optimized for accessibility, not specialized usage); the "rest" is preserved in the "abstract infinitesimal variations", literally, the "in between the words", which is in dialectic tension with the "concrete language substrate", leading to the third separation: one, concrete and abstract, two, synthetic and analytic, three, language and variations ; technical bridge: Uh-woe-dee and Forssell's First-Order Logical Duality, which explicitly connects with the Groten-deek-ian setting, relating categories presenting theories to topological groupoids of models and their isomorphisms, using topos theory to establish a syntax-semantics duality.
+
+Hoapa protocols are designed for education, as part of their mandate to treat everybody on an equal footing. What is removed with the status is not the knowledge, but the hunt for the status, and at the same time it resituates the obligation to make one's specialized knowledge accessible to others.
+
+Crucially, each individual practitioner gets to decide what questions are worth pursuing, opening a path to restoring science's sense of purpose from the ground up.
+
+And the organization of inquiry is itself something we can try to understand mathematically.
+
+Slide 14. Mathematics.
+
+All of the above applies in mathematics as well, but here the connection goes further: mathematics also supplies the language in which the organization of mathematical work can itself be investigated. Hoapa's formalization uses Cubical Agda, bringing together homotopy type theory, computer-checked proofs, and a line of thought connecting Alexander Groten-deek's ideas about homotopy types and higher groupoids with Vladimir Vo-yeh-vod-skee's univalent foundations.
+
+Hoapa proposes to carry this connection into the organization of collective inquiry itself. This ambition echoes Groten-deek's memoirs, which weave together reflections on creativity, mathematical practice and mathematics itself.
+
+Further: a method of articulating a context can generate a new context for further inquiry (in math and logic, in generalized evolution). Note: Kennedy, Magidor and Vah-nah-nen, "Inner Models from Extended Logics", or Kennedy's essay "On the Logic without Borders Point of View" as concrete examples of what "a mathematical world generated through specified expressive resources" can mean.
+
+Groten-deek also questioned the ecological consequences of scientific activity; Hoapa approaches that concern by asking how understanding a world can help us inhabit it.
+
+Slide 15. Generalized permaculture.
+
+I believe Hoapa protocols can stage and target the kind of recursive and self-reflective patterns just mentioned, in the ecosystem, by generalizing the concept of permaculture and applying it to a vast majority of human endeavors. Permaculture could in effect become the default mode of being of humanity, following this very simple algorithm:
+
+Make a very detailed and executable map of your environment, including your imprint on it.
+
+Use it to figure out what is best for both you and your environment, and do it (which becomes the default if individual freedom replaces "investability" as the condition for action).
+
+This is where the "layers of complexity" which respect and target perspectivism, decentralization, autonomy, openness to peers, expressiveness, transparency, scalability and self-reflection, start to be really useful.
+
+To tend a place is also to attend to the relations that sustain it, and those relations lead us into a network.
+
+Slide 16. Networks.
+
+In all the preceding examples we've looked at instances of Hoapa protocols in isolation, but each of them would be better envisioned as a node of a vast network.
+
+A mature protocol regulating a park would necessarily have typed conversations with other park protocols, especially those close by, to share information and reuse each other's research. It would also have ties to all the independent but interlinked networks a city would be made up of: electricity grid, water management, transportation, agriculture… and then beyond the city limits, into all sorts of other communities organized through protocols, each bringing its own point of view, from playground design to natural philosophy.
+
+A park's investigation of soil and water becomes useful to another park; a software improvement made for its documentation becomes available to other projects; a scientific question raised locally finds research communities elsewhere equipped to pursue it. The park community's teaching material can help newcomers elsewhere. And communities can help one another translate documentation, test proposals, or investigate disagreements. Records of failed attempts can spare others the same mistakes.
+
+In all of this, each protocol is both an agent and a recipient of care, as a concrete ecosystem as well as an abstract community of participants.
+
+Care: Hoapa's generalization of attachment theory into a two-step cyclic algorithm. One: in a given network, the evolution toward maturity of newer elements is taken care of by the mature elements already present in the network. Two: in turn, those newer elements become mature and take care of a new generation of elements. Note: Lot-mahn's "solidarity networks" ; Yoneda lemma ; game-theoretic semantics, particularly the tradition of Hintikka, Sandu, and Vah-nah-nen. Abramsky and Vah-nah-nen, "From I F to B I: A Tale of Dependence and Separation" (in game semantics, negation exchanges the verifier's and falsifier's roles: a mathematical precedent for treating reciprocity of roles as part of an interaction's structure).
+
+The conjecture: an adjunction.
+
+Slide 17. Motivations and goals.
+
+To motivate its adoption and distinguish Hoapa from other "interesting projects" we can attach buzzwords to, I need a mathematical reason for organizing inquiry this way. The goal is to characterize Hoapa by a universal property, in a setting that represents both the contexts it investigates and alternative ways of investigating them.
+
+If the conjecture succeeds, this universal property would translate into a claim of optimality for any implementation satisfying its conditions. The world we inhabit must explain why those conditions matter. Hoapa is also its own experiment: implementing its protocols lets us test the conjecture's claims.
+
+Optimality: the constraints imposed on a process, in a given context, to achieve an intended outcome ; constraints is the protocol ; process is collective inquiry ; context is this world ; outcome is understanding that enables generalized permaculture to be enacted. Note: understanding is demanding abstract work.
+
+Perspectivism motivates this ambition; presuppositionlessness guides the response. The world has already produced different beings, experiences, skills, and ways of understanding. Their contributions must be able to enter the inquiry without their worth being decided in advance by a hierarchy or an established division of knowledge. What the world has already developed becomes material for collective work; what that work will produce remains open.
+
+Perspectivism: global understanding assembled from local views, with obstructions to their integration retained as information. Note: Duh-luhz-ian perspectivism with a long tradition (notably Spinoza) ; Lot-mahn anticipates sheaf-theory in his treatment of the global and local dialectic ; in H L G scope: Air-en-foyt Frah-ee-say games, Abramsky's contextuality work, and its translation into team semantics with Pool-yoo-yar-vee and Vah-nah-nen.
+
+Presuppositionlessness: common rules, open rules with equal power to revise them, and only the rules needed to make communication possible. Note: the condition for the openness of the construction and its dedication to the concrete and abstract work relation: every assumption coming in and staying fixed is an unnecessary constraint ; reduce to one assumption: the assumption-free minimal open system which permits balanced community communication is also the special or optimal one (amounts to trusting communication itself, unlike the entire field of "collective intelligence").
+
+To formulate this universal characterization, I am exploring an adjunction between two sides: the organization of inquiry, its verification, and the knowledge it produces; and the contexts that make inquiry possible, whose mathematical form I am still seeking.
+
+My larger hypothesis is that this movement participates in the evolution of the world itself. What Hoapa preserves as a representation and reflection of the context in which it is implemented, and the creativity it enables as a response to the problems posed by this context, form the basis for a new context in which a community of "synthetic" agents can work on an "analytic" representation of their world. And this statement can travel through the boundaries between concrete (theory of work) and abstract (the conjectured adjunction).
+
+Slide 18. Categories from metaphysics.
+
+Lot-mahn looked for the problems that recur beneath different mathematical theories: local and global, the whole and its parts, structure and existence. Zala-may-ah reads his account of the passages between local and global, and of the intermediate structures that carry them, as anticipating sheaf theory. Category theory makes such recurrences explicit, through constructions, transformations and universal properties that can be compared from one theory to another. That is how this project passes from metaphysical problems to effective mathematics.
+
+The project has affinities with formalisms well adapted to the tasks it must carry out. Topos theory gathers local descriptions, the conditions under which they fit together, and an internal language in which to reason about them. Higher structures keep the different comparisons between descriptions, and let us ask how those comparisons fit together. Univalence, at the heart of homotopy type theory, treats equivalence as identity, so that properties and constructions transport between equivalent types.
+
+The proposed adjunction relates a category of contexts to a category of organizations of inquiry: write Context for the first and Inquiry for the second. We seek functors F, from Context to Inquiry, and G, from Inquiry to Context, with natural bijections between Hom in Inquiry, from F of c to i, and Hom in Context, from c to G of i. The unit, eta c, from c to G F of c, and the counit, epsilon i, from F G of i to i, compare each side with its round trip. The mathematical form of Context is still under investigation, and neither functor has been constructed.
+
+Each piece of this structure is meant to carry one of the project's concepts: F, G, the unit eta and the counit epsilon.
+
+F: Complexity, the organized work a context allows.
+
+G: Evolution, how work acquires a contextual presentation through which its achievements can enter further development; compare the construction of inner models from logics (L, C star, H O D).
+
+Eta: Praxis, the general opening; a piece of work w, from F of c to i, realizes it in particular, and its transpose, G of w after eta c, from c to G of i, returns the work in contextual form.
+
+Epsilon: Anthropic loss, the possible failure of the reconstruction map, epsilon i, from F G of i to i, to be invertible; compare the gap between elementary equivalence and isomorphism, with Air-en-foyt Frah-ee-say games describing logical indistinguishability.

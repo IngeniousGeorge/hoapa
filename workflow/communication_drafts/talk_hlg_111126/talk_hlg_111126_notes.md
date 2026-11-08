@@ -43,6 +43,40 @@ How I built it: trust universality & balance, all play by the same rule, the pre
   - synthetic has an "external" feeling: relation of element in question to global structure ; analytic has an "internal" feeling: decompostion into parts
   - sharp example, knowledge in humanity, take theory of relativity, synthetic is every brain thinking it, analytic is all the written statements about every aspect of it.
 
+  Closure    │                           What closes                            │                               Other names Kauffman or his sources use                               │
+  ├───────────────┼──────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Catalytic     │ Every reaction that forms the system's molecules is catalysed by │ "closure in catalytic task space"; achieved by collectively autocatalytic sets (RAF sets, in        │
+  │ closure       │  some molecule of the system; none catalyses its own formation.  │ Hordijk and Steel's formalization); linked to self-reproduction, and to "metabolism-first"          │
+  │               │                                                                  │ origin-of-life scenarios                                                                            │
+  ├───────────────┼──────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Constraint    │ The constraints that channel the system's processes are          │ "closure of constraints"; organizational closure (Mossio and Moreno's term); function defined as a  │
+  │ closure       │ themselves built by other processes of the system (Montévil and  │ part's contribution to maintaining the whole                                                        │
+  │               │ Mossio, 2015).                                                   │                                                                                                     │
+  ├───────────────┼──────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Work-task     │ The system actually performs the thermodynamic work needed to    │ the work cycle ("work begets constraints begets work"); propagating organization (of process), from │
+  │ closure       │ build and maintain its constraints.                              │  Investigations                                                                                     │
+  └───────────────┴──────────────────────────────────────────────────────────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  Some cautions:
+  - "Metabolism" has no single slot. It's closest to catalytic closure: an autocatalytic set fed from a "food set" is the standard model of an early metabolism. Kauffman doesn't use it as the
+    name of a closure, though. A reviewer's question to him paraphrases it as "a metabolism that feeds it" plus "catalytic task closure, through which it can reproduce itself".
+  - "Kantian whole" is his name for the whole that achieves these closures, not for one of them. He takes it from Kant: an organized being is one whose parts exist for and by means of the
+    whole, and the whole for and by means of its parts.
+  - Your Thesis slide's three contrasts line up loosely with the three closures:
+    - explosion vs engine (the role of constraints)
+    - engine vs organism (the role of closure)
+    - engine vs computer (the abstract loop)
+    
+    Only the middle contrast is about closure itself. "Engine vs organism" is where all three closures enter: an engine has constraints but doesn't build them.
+
+  Sources:
+  - Kauffman, "Answering Schrödinger's What Is Life?" (Entropy 2020)
+  - A World Beyond Physics, LibraryThing record
+  - Kauffman's 2011 NECSI/MIT seminar transcript (Kantian wholes, catalytic task space)
+  - Kauffman, "The world beyond physics: how big is it?" (Roli and Kauffman's companion critique)
+  - MDPI review report
+  - Lehman and Kauffman on emergence of life as a phase transition (arXiv 2401.09514)
+
 ### 4. Work
 
 A summary of what we said in the previous slide
@@ -76,12 +110,76 @@ participate, and the causal order on those events"
   - This will become the "learn once, use everywhere" Universal Technical Language that fixes the introduction of colonialism into the system
 - Independently :
 
+Yes. It makes the construction of the shared language itself a documented form of collective inquiry. Hoapa would organize both the production of knowledge and the work of deciding how that knowledge should be articulated, compared, and reused. Several substantial consequences follow.
+
+1. Exploration and articulation can have different rhythms. A conversation can pursue its question without first settling the vocabulary in which its contribution will eventually be understood. Refining conversations can then identify concepts, distinguish meanings, propose names, and connect the result to other work. This gives your separation of concerns a concrete purpose: freedom to explore, alongside dedicated work on making discoveries intelligible. Refinement can also expose ambiguities that prompt further exploration, so the relationship runs both ways.
+
+2. The organization of knowledge acquires its own provenance. Suppose two documents use different names for what a refining conversation proposes to identify as the same concept. The resulting identification would retain a reference to the work that justified it: the documents examined, the comparison proposed, its scope, and any unresolved objections. Someone encountering the shared term could investigate why it gathers those uses together. Since the refining conversation is itself documented, its decisions remain available for examination and revision. The workflows already provide this distinction between comparison history and the comparisons admitted by a particular documentation version. Documentation and Λ (workflow/architecture.md:136)
+
+3. This supplies a concrete reason to investigate higher comparisons. Imagine two refining conversations produce different translations between the same bodies of documentation. A further conversation can ask whether those translations agree, where they differ, and whether their difference matters for a particular use. We now have an actual problem concerning comparisons between comparisons—precisely the kind of problem that could earn higher categorical or homotopical machinery. The orchestration records the investigation and its dependencies; the content interpretation must establish what mathematical comparison its result expresses. A conversation about another conversation does not, by itself, constitute a homotopy.
+
+4. The UTL can develop through its own use. A successful refinement supplies vocabulary, distinctions, or translation methods for later conversations—including later refining conversations. Those conversations can discover where the inherited language helps and where it needs development. This makes your “analytic aspires to become synthetic” movement tangible: a particular achievement becomes a common means of working, while remaining available as an object of inquiry. It also gives BWR substance: refinement returns an articulation whose replay can help produce the next articulation.
+
+There is a political consequence too: the people who organize knowledge need not form a separate authority outside the conversational system. Refinement can require expertise and its own protocols while remaining subject to the same commitments concerning participation, accountability, and revisability. Specialized work need not confer permanent authority over what everyone else means.
+
+The interesting architectural feature is that this recursion needs no separate administrative tower at every level. Conversations continue to be the active machinery; documented conversations and their products become subjects of further conversations. That is already the architecture’s distinction between levels and layers. Three independent axes (workflow/architecture.md:15) Each investigation can finish with a bounded result; further refinement remains possible without becoming a prerequisite for using anything.
+
 ### 7. Verification
 
 - Referee : prevent emergence of hierarchies, 
 - Participants : unityped in computer science, univocal in philosophy, synthetic/dimensional in mathematics
   - what is being decomposed is knowledge, in brains (the theory of gravity as the superposition of everybody's idea of it) and in documentation (gravity as the corpus of texts, recordings, etc. of it). Participants are brains whose ideas we need to cross-reference without any assumptions (trust is essential) and transfer into a documentation (not ad hoc, but itself as "scientific" as possible)
   - Role symmetry gives us a concrete requirement to verify. Take a recorded interaction and consistently rename its participants, without merging distinct participants or changing their contributions and relations. The checker must still accept or reject the record exactly as before. This is called renaming invariance, and we have proved it in Cubical Agda for the current record validator. It gives one precise, checkable expression of the participants’ equal formal standing
+
+The arcs and the liberation-engineering text support the idea strongly. The top-level workflows are more cautious, and they point to one adjustment worth making in the bullet.
+
+  What the project's records say
+
+  - The original presentation, quoted in arc 13 (workflow/arc/13_catalysts_and_care.md:160–193). It has two strands:
+    - People referee truth. Hoapa "submits any new data to an informational ecosystem regulated by an evolutionary game, where randomly selected explorers are the referees. Truth is decided at
+      the scale of the group…"
+    - Conversations revise the code. The protocol code "is automatically and regularly subjected to modifications by conversations… with the special mandate to edit the code if they see fit.
+      So they evolve autonomously, without managers."
+  - Arc 06 (06_the_hybrid_as_a_door_to_field_theories.md:900–925). You asked whether Hoapa could be a "managerless operational coordination system". The answer was yes, but better called
+    "protocol-governed coordination, not literally managerless". It "could replace personal hierarchy with typed authority": maintainership becomes "a role inside a protocol, not a permanent
+    personal essence", and continuous integration checks protocol validity, not just tests.
+  - Arc summary (00_arc_summary.md:143–152). This is your idea at its strongest:
+    - Proof assistants are "the public verification layer that dissolves the managerial class".
+    - The design law: "Do not type people. Type moves." / "Roles are verbs, not castes."
+    - A flagship target theorem: every valid authority function can be reconstructed from public typed traces.
+    - Agape is "the anti-managerial affect".
+  - Arc 17 (17_simondon_and_actors.md:276–282). Making membership depend on contribution turns the roster into "a productivity roster, which is precisely the managerial shape Care names as its
+    opposite".
+  - Liberation engineering (liberation_engineering_now.md):
+    - Its "fundamental theorem": a world-describing system "must not engage in the selection and specialization of agents… designate representatives, adopt hierarchical structures or
+      materially reward information creation".
+    - It names, as the main obstacle, "deeply ingrained assumptions regarding the indispensability of a form of global control".
+    - Its practical horizon includes "distributed management".
+
+  What the current workflows add
+
+  - The checker referees form, not truth. Your own slide note says verification "machine-checks that the record of each conversation is well-formed, never that its conclusions are true".
+    architecture.md adds that the trace contract "does not by itself certify that an implementation followed those mechanics".
+  - What a manager would decide is delegated to the protocol. Panel size, turn-taking, silence policy and how assent is reached are interface parameters (architecture.md, "Delegated
+    interfaces"), and so can be revised by the participants rather than decided by anyone.
+  - Self-modification is planned, not built. The reflexive layer, where conversations revise the protocol, is a committed responsibility whose form is still open. It also comes with
+    discipline: explicit versions, an activation point, and no rewriting of the past.
+
+  On the bullet itself
+
+  "Automation as liberation from control mechanisms" says more than the records support, in two ways:
+  1. The protocol is a control mechanism. What it removes is personal control: managers, representatives, people who rank other people. Arc 06's correction is exactly this: typed authority
+     instead of personal hierarchy.
+  2. In your own records, the referees are people. The randomly selected participants judge content; the software only enforces the rules of the game. That fits your coach image from the park
+     slide (the game belongs to the players), with the software as the umpire who never plays.
+
+  Two possible lines:
+
+  ▎ Referee : software enforces the rules, never the verdicts; rules everyone can revise replace the need for managers
+
+  ▎ Referee : automation as liberation from personal control: no one manages, because the rules are enforced by software and revised by everyone
+
+  I prefer the first. It keeps your point and adds the distinction a logician will look for: checking procedure versus judging content.
 
 ### 8. Conjecture
 
@@ -342,9 +440,96 @@ Complexity -> comonad?
 
 Anything interesting that can be said, coming from  'part_2_for_HLG', to connect the metaphysics above to something that will be more tangible to our audience?
 
-### Expected naturalness
+### Permacultural logic from the adjunction
 
-.
+In the case of the adjunction describing a dynamics between context and inquiry, I believe we had a solid
+  philosophical footing (Lautman/Zalamea), a categorical framework and concepts that feel "natural" on the metaphysical side falling into "natural" objects/adjunction parts on the
+  mathematical side, to give a "natural" interpretation of the story in terms of evolution.
+  How could we recover this, with the metaphysical material the project has, the "natural" objects it's interested in in the domain of logic (or related domains: computation/computer science,
+  foundations of math, type theory...), and fall on the same evolutionary story in the end?
+
+### With technical commentary:
+
+#### 1. From work to reusable construction
+
+The permacultural question is how an achievement becomes a means of further construction. Implication provides a precise mathematical example. We borrow an assumption A, derive B, and *return* the derivation as an implication. Other proofs can *replay* that work when its conditions are supplied.
+
+In the cartesian closed interpretation of intuitionistic logic, this is the adjunction:
+
+**(− × A) ⊣ (A ⇒ −)**
+
+**Hom(Γ × A, B) ≅ Hom(Γ, A ⇒ B)**
+
+The remaining assumptions Γ stay visible: discharging one dependency does not erase the others. Introduction and elimination are governed by *harmony*. Their compatibility makes work under an assumption interchangeable with a reusable operation expecting that assumption.
+
+- **Return:** abstraction turns w : Γ × A → B into w♯ : Γ → A ⇒ B.¹
+- **Replay:** evaluation applies the returned operation to an input: (A ⇒ B) × A → B.²
+- **Harmony:** β and η make currying and uncurrying inverse—elimination extracts neither more nor less than introduction warrants.³
+
+Oral commentary:
+
+¹: A was available provisionally while we constructed B. Abstraction makes that dependency an explicit input of the returned operation. The other assumptions Γ remain: we have Γ ⊢ A ⇒ B, not necessarily a closed theorem. This gives a precise example of why Hoapa's reusable documentation must retain its conditions of use. Return makes the work available in another form; its later uptake is a further step.
+
+²: Someone who supplies A, together with the remaining dependencies, can use the construction without repeating its invention. Evaluation is the counit of this particular adjunction. The result alone may not tell us which operation and inputs produced it; retaining that provenance is a separate requirement when later inquiry needs it. This does not identify evaluation with the reconstruction map called Anthropic Loss in the conjecture.
+
+³: β says that applying an abstraction recovers the work it encapsulates; η says that abstracting a function's application recovers the function. These equations give a categorical instance of harmony, under the appropriate equality of proofs. Prior's tonk shows the failure: from P introduce P tonk Q, then eliminate it to obtain arbitrary Q. The two rules together license something the grounds never warranted. See [Pfenning on harmony](https://www.cs.cmu.edu/~fp/courses/15317-f09/lectures/03-harmony.pdf) and [Prior's “The Runabout Inference-Ticket”](https://academic.oup.com/analysis/article-abstract/21/2/38/153762).
+
+#### 2. What does the work leave available?
+
+The same adjunction produces two familiar constructions. The *state monad* composes computations by passing the state left by one into the next. The *store comonad* holds a family of values together with a selected position, and allows that family to be considered from each position.
+
+These structures organize work and access to its setting. Their laws alone do not preserve the conditions for further work. A computation p(a) = (x, a₀) can replace every incoming state with the same a₀, erasing distinctions that subsequent work needs.
+
+Hoapa therefore asks about *continuation*: can the work we intend to do next still be performed from what has been returned? A publication may be sufficient for one use and insufficient for another. The requirement must name what is to remain possible.
+
+- **State monad:** Stateₐ(X) = A ⇒ (X × A)—receive a state; return a result and a resulting state.¹
+- **Store comonad:** Storeₐ(X) = (A ⇒ X) × A—retain an indexed family and a current position.²
+- **Continuation:** q′ ∘ w = w̄ ∘ q—q and q′ publish before and after the work w; w̄ performs the corresponding operation using only the published input.³
+
+Oral commentary:
+
+¹: Here A is read as a state space, fixed throughout the construction. A computation returns both its answer and the state handed to subsequent computation. The monad laws govern how such computations compose; they do not distinguish a useful update from a destructive reset. This is an established computational interpretation of the implication adjunction, distinct from the unconstructed context–inquiry adjunction on the previous slides.
+
+²: Write a store as a pair (f, a), with f : A → X. Reading gives f(a); the comultiplication makes the same family available with each possible position selected. This organizes access to available structure. Its maintenance requires a further account. If useful, mention that coalgebras for the store comonad correspond to very well-behaved lenses, whose laws govern reading and updating but do not guarantee viability. See [O'Connor, §§2.1–2.2](https://arxiv.org/pdf/1103.2841).
+
+³: Take two-bit situations and publish only the first bit. Flipping the first bit can be performed from that publication. Swapping the bits cannot: (0,0) and (0,1) publish identically before the swap but differently afterward. In the finite test, fix q : X → Q, q′ : X′ → Q′, and w : X → X′ independently, with q surjective. A unique w̄ exists exactly when q(x) = q(y) implies q′(w(x)) = q′(w(y)). This is the project's [proposed continuation obligation](../../future_work.md#continuation-and-response-preservation), not a result already checked in its Agda development. Failure may require a richer permitted publication, further work, or a limit on the claimed use; it does not automatically license disclosing protected information.
+
+#### 3. The economy of replay
+
+Earlier I called replay “the hidden part of logic that makes logic work.” *Cut* gives this phrase a precise sense. An established result enters a later proof; cut elimination can remove that intermediate use without changing what is provable. But removing it can make the proof enormously longer.
+
+There are families of short proofs with cut whose shortest cut-free proofs grow beyond every elementary bound in the original proof lengths. Reuse can therefore be dispensable for provability and decisive for *feasibility*.
+
+This gives the sustainability intuition a concrete dimension. Mathematical development concerns what our means of reasoning let us accomplish with finite resources. An achievement can leave the set of consequences unchanged while transforming our capacity to establish and use them.
+
+- **Cut:** a proved result becomes a premise of further reasoning.¹
+- **Feasibility:** the same conclusions can require radically different proof lengths; preserving intermediate achievements can make complex work practicable.²
+
+Oral commentary:
+
+¹: From Γ ⊢ A and Δ, A ⊢ B, cut gives Γ, Δ ⊢ B. In calculi admitting cut elimination, the intermediate lemma can be eliminated without losing the conclusion. “Hidden” means eliminable at the level of provability; its practical contribution becomes visible when we consider proof size. This is one precise instance of replay, not an identification of every kind of reuse with cut.
+
+²: Orevkov and Statman exhibited families of first-order sequents with short proofs using cut whose shortest cut-free proofs have no elementary bound in those lengths. The cost can exceed any fixed-height tower of exponentials. This establishes a proof-size distinction, not a general measure of a community's sustainability. It gives us one exact reason to preserve reusable achievements. The result and original references are stated in [Aguilera–Baaz–Bydžovský, “The Number of Axioms”](https://lp2021.mi-ras.ru/contributed/workshop-aguilera-baaz-bydzovsky.pdf). Moving to a stronger logical system for speed-up is a separate comparison.
+
+#### 4. Achievements become means of inquiry
+
+A further step occurs when an achievement changes the tools through which inquiry proceeds. In proof by *reflection*, a procedure is defined, its correctness is proved, and that proof supports its use in subsequent reasoning. Coq's `ring` tactic provides a concrete example: established mathematics becomes machinery for later mathematics, while the existing kernel continues to check the proofs.
+
+The reusable material can also widen: from derivations in Gentzen's systems, to formalized theories in Hilbert's metamathematics, to constructions and their transport between equivalent types in HoTT. Lautman's passage from structure to genesis, and Simondon's account of produced structures supporting further structuring, guide our interpretation of this movement.
+
+*Renewal* occurs when achievements change what further work can do. With Kauffman, we must also ask whether the organization producing them maintains its *conditions of activity*. Hoapa's evolutionary hypothesis joins these demands: work should produce reusable achievements while sustaining and developing the conditions for further work.
+
+- **Reflection:** a verified procedure becomes part of the proof-producing toolbox, without becoming a new trusted rule.¹
+- **Renewal:** preserve declared earlier uses and make a genuinely new operation available.²
+- **Conditions of activity:** reusable results still depend on people, skills, records, tools, and material support.³
+
+Oral commentary:
+
+¹: In `ring`, polynomial expressions are represented as data, normalized by a program, and related to their interpretations by a correctness theorem. Later proofs use that theorem together with computation. We do not enlarge the trusted kernel by declaring the new procedure infallible. The achievement enters the toolbox as something whose use the existing rules can justify. See the [official explanation of `ring`](https://rocq-prover.org/doc/V8.7.2/refman/ring.html).
+
+²: The new operation may be a verified method now available to the working environment; it need not prove a formerly unprovable proposition. To claim renewal, name the earlier uses preserved and the new capability, with an admission rule specified independently of the example. This gives a concrete reading of the analytic achievement becoming common means for another level of work. Gentzen, Hilbert, and HoTT illustrate different scales of reusable material, not a historical ladder or an automatic mechanism of evolution.
+
+³: Kauffman brings us back to the organization that makes continued work possible. A reusable result does not by itself maintain the people, tools, or environment supporting its use. Keep the network of justification distinct from the network of enablement: feedback sustaining an activity does not license circular proofs. The evolutionary hypothesis asks how achievements help sustain and transform their enabling conditions; the logical examples specify parts of that question without proving the whole conjecture.
 
 ## Conclusion
 
@@ -430,6 +615,44 @@ I would organize the material below around your three questions. This is an inve
 The transition to Part 3 could be:
 
 > “If these are conditions under which work can sustain further work, can we recognize their organization inside logic itself?”
+
+---
+
+## In depth notes
+
+  Closure    │                           What closes                            │                               Other names Kauffman or his sources use                               │
+  ├───────────────┼──────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Catalytic     │ Every reaction that forms the system's molecules is catalysed by │ "closure in catalytic task space"; achieved by collectively autocatalytic sets (RAF sets, in        │
+  │ closure       │  some molecule of the system; none catalyses its own formation.  │ Hordijk and Steel's formalization); linked to self-reproduction, and to "metabolism-first"          │
+  │               │                                                                  │ origin-of-life scenarios                                                                            │
+  ├───────────────┼──────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Constraint    │ The constraints that channel the system's processes are          │ "closure of constraints"; organizational closure (Mossio and Moreno's term); function defined as a  │
+  │ closure       │ themselves built by other processes of the system (Montévil and  │ part's contribution to maintaining the whole                                                        │
+  │               │ Mossio, 2015).                                                   │                                                                                                     │
+  ├───────────────┼──────────────────────────────────────────────────────────────────┼─────────────────────────────────────────────────────────────────────────────────────────────────────┤
+  │ Work-task     │ The system actually performs the thermodynamic work needed to    │ the work cycle ("work begets constraints begets work"); propagating organization (of process), from │
+  │ closure       │ build and maintain its constraints.                              │  Investigations                                                                                     │
+  └───────────────┴──────────────────────────────────────────────────────────────────┴─────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+  Some cautions:
+  - "Metabolism" has no single slot. It's closest to catalytic closure: an autocatalytic set fed from a "food set" is the standard model of an early metabolism. Kauffman doesn't use it as the
+    name of a closure, though. A reviewer's question to him paraphrases it as "a metabolism that feeds it" plus "catalytic task closure, through which it can reproduce itself".
+  - "Kantian whole" is his name for the whole that achieves these closures, not for one of them. He takes it from Kant: an organized being is one whose parts exist for and by means of the
+    whole, and the whole for and by means of its parts.
+  - Your Thesis slide's three contrasts line up loosely with the three closures:
+    - explosion vs engine (the role of constraints)
+    - engine vs organism (the role of closure)
+    - engine vs computer (the abstract loop)
+    
+    Only the middle contrast is about closure itself. "Engine vs organism" is where all three closures enter: an engine has constraints but doesn't build them.
+
+  Sources:
+  - Kauffman, "Answering Schrödinger's What Is Life?" (Entropy 2020)
+  - A World Beyond Physics, LibraryThing record
+  - Kauffman's 2011 NECSI/MIT seminar transcript (Kantian wholes, catalytic task space)
+  - Kauffman, "The world beyond physics: how big is it?" (Roli and Kauffman's companion critique)
+  - MDPI review report
+  - Lehman and Kauffman on emergence of life as a phase transition (arXiv 2401.09514)
 
 
 ---

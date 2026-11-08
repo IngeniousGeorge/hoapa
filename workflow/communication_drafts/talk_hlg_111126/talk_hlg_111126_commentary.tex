@@ -1,0 +1,666 @@
+\documentclass[a4paper,14pt]{extarticle}
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\usepackage{tgpagella}
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage{enumitem}
+\usepackage{needspace}
+\usepackage[table]{xcolor}
+\usepackage{array}
+\usepackage{tikz}
+\setlength{\parindent}{0pt}
+\setlist[itemize]{leftmargin=1.3em, itemsep=3pt, topsep=3pt, label=\textbullet}
+\pagestyle{plain}
+\raggedbottom
+\definecolor{sectionshade1}{HTML}{23373B}
+\definecolor{sectionshade2}{HTML}{2B4A4F}
+\definecolor{sectionshade3}{HTML}{345E63}
+\definecolor{sectionshade4}{HTML}{3D7278}
+\definecolor{permaculturegreen}{HTML}{1FA32A}
+\definecolor{scienceblue}{HTML}{0B6BE0}
+\definecolor{regulationorange}{HTML}{FF9F1C}
+\definecolor{risingseateal}{HTML}{00A0A8}
+\definecolor{metaphysicsamber}{HTML}{DB8300}
+\definecolor{energyorange}{HTML}{F25C05}
+\definecolor{dedicationmagenta}{HTML}{E0107E}
+\definecolor{constraintred}{HTML}{E3101E}
+\definecolor{abstractmirrorblue}{HTML}{1EA7E6}
+\definecolor{opennesslime}{HTML}{7AB800}
+\definecolor{resultsgold}{HTML}{C8A000}
+\definecolor{conversationrose}{HTML}{F0567A}
+\definecolor{messageindigo}{HTML}{4A3AFF}
+\definecolor{graphturquoise}{HTML}{00BFA5}
+\definecolor{independencecopper}{HTML}{B87333}
+\definecolor{refereeyellow}{HTML}{E0A800}
+\definecolor{verificationgreen}{HTML}{00B84A}
+\definecolor{participantsplum}{HTML}{B5179E}
+\definecolor{adjunctioncrimson}{HTML}{A4133C}
+\definecolor{emergencecoral}{HTML}{FF7F50}
+\definecolor{universalpropertyblue}{HTML}{1A3FA8}
+\definecolor{harmonyorchid}{HTML}{C94FC4}
+\definecolor{replayolive}{HTML}{7A8B00}
+\definecolor{unpredictablecyan}{HTML}{00B4D8}
+\definecolor{stakebrown}{HTML}{7B4A1E}
+\definecolor{documentationink}{HTML}{2B3A8C}
+\definecolor{languageamethyst}{HTML}{9B5DE5}
+\definecolor{careterracotta}{HTML}{C8553D}
+\definecolor{optimalitygold}{HTML}{D4A017}
+\definecolor{decompositionocean}{HTML}{118AB2}
+\definecolor{complexityazure}{HTML}{3A86FF}
+\definecolor{praxispurple}{HTML}{8338EC}
+\definecolor{anthropiclosspink}{HTML}{FF006E}
+\definecolor{returnroyal}{HTML}{4361EE}
+\definecolor{statemonadcerulean}{HTML}{0077B6}
+\definecolor{storecomonadtangerine}{HTML}{F77F00}
+\definecolor{continuationmint}{HTML}{43AA8B}
+\definecolor{feasibilitysienna}{HTML}{E76F51}
+\definecolor{reflectionviolet}{HTML}{3F37C9}
+\definecolor{presuppositionlessnessteal}{HTML}{2A9D8F}
+\definecolor{hoapaviolet}{HTML}{7A1FD1}
+\newcommand{\slidetitle}[1]{\par\addvspace{14pt}{\large\bfseries #1\par}\nopagebreak\vspace{4pt}}
+\newcommand{\marked}[2][black!70]{\par\addvspace{6pt}{\bfseries\color{#1} #2\par}\nopagebreak}
+\newcommand{\guidegroup}[1]{\par\addvspace{10pt}\needspace{4\baselineskip}{\bfseries #1\par}\nopagebreak}
+% A group of bullets with a bracket just left of the bullet dots.
+\newsavebox{\groupbox}
+\newenvironment{bulletgroup}
+  {\par\addvspace{12pt}\begin{lrbox}{\groupbox}\begin{minipage}[t]{\linewidth}%
+   \raggedright\begin{itemize}[topsep=0pt, partopsep=0pt, itemsep=0pt, parsep=0pt]}
+  {\end{itemize}\end{minipage}\end{lrbox}%
+   \noindent\begin{tikzpicture}[baseline=(group.base)]
+     \node[inner sep=0pt, outer sep=0pt, anchor=north west] (group) at (0,0) {\usebox{\groupbox}};
+     \draw[overlay, black!45, line width=0.7pt] % overlay: the bracket sits in the margin, outside the box
+       ([xshift=-1pt]group.north west) -- ++(-4pt,0)
+       |- ([xshift=-1pt]group.south west);
+   \end{tikzpicture}\par\addvspace{12pt}}
+% ---- Page layout of the slides
+% Each slide is a macro \hoapaslide<n>, typeset as one box (so it never splits).
+% Two consecutive slides share a page, one after the other with a double rule
+% between them, when both fit; otherwise the slide has the page to itself.
+\newlength{\separatorheight}\setlength{\separatorheight}{58pt}% the skips and rules below
+\newlength{\slidelimit}\setlength{\slidelimit}{\dimexpr\textheight-24pt\relax}
+\newsavebox{\firstslide}\newsavebox{\secondslide}
+\newcount\slideindex \newcount\nextslideindex \newcount\slidetotal
+\newif\ifpairfits
+\newcommand{\setslide}[2]{% box, slide number
+  \sbox{#1}{\begin{minipage}[t]{\textwidth}\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000
+    \csname hoapaslide\number#2\endcsname\end{minipage}}}
+\newcommand{\slideheight}[1]{\dimexpr\ht#1+\dp#1\relax}
+\newcommand{\slideseparator}{\par\vskip 28pt
+  {\color{black!55}\hrule height 0.9pt\vskip 2.5pt\hrule height 0.9pt}\vskip 24pt}
+\newcommand{\layoutslides}{%
+  \slideindex=1
+  \loop
+    \nextslideindex=\slideindex \advance\nextslideindex by 1
+    \setslide{\firstslide}{\slideindex}%
+    \pairfitsfalse
+    \unless\ifnum\nextslideindex>\slidetotal
+      \setslide{\secondslide}{\nextslideindex}%
+      \ifdim\dimexpr\slideheight{\firstslide}+\separatorheight+\slideheight{\secondslide}\relax<\slidelimit
+        \pairfitstrue
+      \fi
+    \fi
+    \noindent\usebox{\firstslide}\par
+    \ifpairfits
+      \slideseparator
+      \noindent\usebox{\secondslide}\par
+      \advance\slideindex by 2
+    \else
+      \advance\slideindex by 1
+    \fi
+    \newpage
+  \unless\ifnum\slideindex>\slidetotal
+  \repeat}
+
+\expandafter\newcommand\csname hoapaslide1\endcsname{%
+\slidetitle{Opening}
+\marked{Title}
+\begin{bulletgroup}
+\item last slide
+\end{bulletgroup}
+\marked{Name}
+\begin{bulletgroup}
+\item as good as their theories (footballer-feet)
+\item Univ dev \ensuremath{\cong} racing: more and more demanding
+\end{bulletgroup}
+\begin{bulletgroup}
+\item I built my own car, by chance (brain soup)
+\item as an exercise/specs
+\item U\&B \ensuremath{\to} trust \ensuremath{\to} "took for a ride"
+\end{bulletgroup}
+\begin{bulletgroup}
+\item 1st step (labels), last (stay in the abstract)
+\item vs. loss of knowledge, useless
+\item complicated, non-trivial thing \ensuremath{\to} workshops
+\end{bulletgroup}
+\begin{bulletgroup}
+\item logic: strange workshops \ensuremath{\to} special workshops
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide2\endcsname{%
+\slidetitle{Pitch\hfill{\normalsize\mdseries\color{gray}1/40}}
+\marked[hoapaviolet]{[…]}
+\begin{bulletgroup}
+\item not a pitch but one of them
+\end{bulletgroup}
+\begin{bulletgroup}
+\item inherently perspectivist
+\end{bulletgroup}
+\begin{bulletgroup}
+\item a sort of motive
+\end{bulletgroup}
+\marked[permaculturegreen]{Permacultural}
+\begin{bulletgroup}
+\item the agricultural technique \ensuremath{\to} abstraction
+\end{bulletgroup}
+\begin{bulletgroup}
+\item allows minimal imprint (your system \ensuremath{\cong} the natural's)
+\item requires knowledge (your knowledge \ensuremath{\cong} the system's)
+\end{bulletgroup}
+\marked[scienceblue]{Scientific}
+\begin{bulletgroup}
+\item an extension not a modification/relaxation
+\end{bulletgroup}
+\begin{bulletgroup}
+\item a protocol becomes an object of science
+\item scientists sign up for the most trustworthy
+\end{bulletgroup}
+\begin{bulletgroup}
+\item trust \ensuremath{\leftrightarrow} what guarantees [ … ]
+\item "layers of complexity"
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide3\endcsname{%
+\slidetitle{Sources\hfill{\normalsize\mdseries\color{gray}2/40}}
+\marked[risingseateal]{A. Grothendieck}
+\begin{bulletgroup}
+\item workshops \ensuremath{\cong} col. sci. method \ensuremath{\cong} recursive elem. in G-evol
+\item Zalamea's attention
+\end{bulletgroup}
+\marked[scienceblue]{Scientists}
+\begin{bulletgroup}
+\item each step = a test
+\end{bulletgroup}
+\marked[metaphysicsamber]{Albert Lautman}
+\begin{bulletgroup}
+\item bio (1930, anticipator, non-reductionist)
+\end{bulletgroup}
+\begin{bulletgroup}
+\item movement from metaphysics to effective theories
+\item demystifying metaphysics
+\item giving a context to mathematics, physics, Hoapa
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide4\endcsname{%
+\slidetitle{Thesis\hfill{\normalsize\mdseries\color{gray}3/40}}
+\marked[energyorange]{Work}
+\begin{bulletgroup}
+\item engine \ensuremath{\to} Peter Atkins: work = "constrained release of energy into a few degrees of freedom"
+\end{bulletgroup}
+\begin{bulletgroup}
+\item organism \ensuremath{\to} Kauffman: origins of life (constraint, work-task, catalytic)
+\end{bulletgroup}
+\begin{bulletgroup}
+\item computer (brain, genome, communities) \ensuremath{\to} Pattee: symbolic and dynamical (von Neumann, Peirce)
+\end{bulletgroup}
+\begin{bulletgroup}
+\item why "loop" (Turing)
+\end{bulletgroup}
+\begin{bulletgroup}
+\item logic \ensuremath{\to} Lautman: formal system and realization (abstract/concrete)
+\end{bulletgroup}
+\marked[dedicationmagenta]{Dedicated}
+\begin{bulletgroup}
+\item evident in computers \& genome
+\end{bulletgroup}
+\begin{bulletgroup}
+\item brains are muddier (\ensuremath{\cong} internal concrete/abstract divides in math and code)
+\end{bulletgroup}
+\begin{bulletgroup}
+\item communities are "degenerate"
+\item concrete substrate not just coupled, dependent on the abstract
+\end{bulletgroup}
+\marked[decompositionocean]{Decomposition}
+\begin{bulletgroup}
+\item dim = decompose through the structure of the ambient space
+\item prop = decompose through the structure of the element itself
+\end{bulletgroup}
+\begin{bulletgroup}
+\item at the community level \ensuremath{\to} knowledge
+\item brains are like vectors
+\item documented statements like prime factorization
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide5\endcsname{%
+\slidetitle{Theory of work\hfill{\normalsize\mdseries\color{gray}4/40}}
+\begin{bulletgroup}
+\item "Constraints give you effects, closure gives you continuity, the abstract gives you extra possibilities"
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide6\endcsname{%
+\slidetitle{Project\hfill{\normalsize\mdseries\color{gray}5/40}}
+\marked[opennesslime]{Open}
+\begin{bulletgroup}
+\item its own experiment
+\end{bulletgroup}
+\begin{bulletgroup}
+\item autonomous = managerless
+\item role-symmetric = all play by the same rules…
+\item self-reflexive = …they themselves set
+\item modular = well-engineered constraints
+\item transparent = pedagogical and integrated
+\end{bulletgroup}
+\begin{bulletgroup}
+\item \ensuremath{\to} UTL: open \ensuremath{\cong} accessible
+\end{bulletgroup}
+\begin{bulletgroup}
+\item federated \& network-shaped \ensuremath{\Rightarrow} local respectful of global
+\item sheaf-like \ensuremath{\Rightarrow} global respectful of local (unlike any theory of "social contracts")
+\end{bulletgroup}
+\marked[resultsgold]{Results}
+\begin{bulletgroup}
+\item illustrates the division of labour
+\end{bulletgroup}
+\begin{bulletgroup}
+\item crucial point where the verification touches the implementation
+\item adapter/translator/buffer between the "synthetic" agents and their "analytic" trace
+\end{bulletgroup}
+\begin{bulletgroup}
+\item route to bigger adjunction
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide7\endcsname{%
+\slidetitle{Process\hfill{\normalsize\mdseries\color{gray}6/40}}
+\marked[conversationrose]{Conversation}
+\begin{bulletgroup}
+\item Hoapa as Jacob's bricolage
+\item amazing results when experimented in politics
+\end{bulletgroup}
+\begin{bulletgroup}
+\item random selection \ensuremath{\leftrightarrow} unityping, univocity of being
+\item resolution by consensus, only option
+\item "let it crash" in Erlang
+\end{bulletgroup}
+\marked[messageindigo]{Together}
+\begin{bulletgroup}
+\item actors are "synthetic" agents
+\item their messages "analytic" decomposition
+\end{bulletgroup}
+\marked[graphturquoise]{Graph}
+\begin{bulletgroup}
+\item the "base" layer = "verbatim" orchestration
+\item refinement into specialized/pruned graphs
+\end{bulletgroup}
+\begin{bulletgroup}
+\item recap: conv (born) \ensuremath{\to} concurrency (travels) \ensuremath{\to} graph (lands)
+\end{bulletgroup}
+\marked[independencecopper]{Independently}
+\begin{bulletgroup}
+\item not much change in content (broader scope)
+\item impact is on diffusion \& accessibility, trust, usage \& usefulness, representativity, control of new technologies…
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide8\endcsname{%
+\slidetitle{Partial diagram\hfill{\normalsize\mdseries\color{gray}7/40}}
+\begin{bulletgroup}
+\item Lautman's demystified metaphysics
+\item \ensuremath{\to} theory of abstract work
+\item \ensuremath{\to} implementation, verification, conjecture
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide9\endcsname{%
+\slidetitle{Verification\hfill{\normalsize\mdseries\color{gray}8/40}}
+\marked[refereeyellow]{Referee}
+\begin{bulletgroup}
+\item \ensuremath{\emptyset}
+\end{bulletgroup}
+\marked[verificationgreen]{Verification}
+\begin{bulletgroup}
+\item \ensuremath{\emptyset}
+\end{bulletgroup}
+\marked[participantsplum]{Participants}
+\begin{bulletgroup}
+\item \ensuremath{\emptyset}
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide10\endcsname{%
+\slidetitle{Conjecture\hfill{\normalsize\mdseries\color{gray}9/40}}
+\marked[adjunctioncrimson]{Adjunction}
+\begin{bulletgroup}
+\item see later
+\end{bulletgroup}
+\marked[emergencecoral]{Emerge}
+\begin{bulletgroup}
+\item Simondon's view: context of potentials, coevolution, never exhausting it
+\item candidate for future individuation from new context: AGI
+\end{bulletgroup}
+\begin{bulletgroup}
+\item reusability (return to context)
+\item or "standalone byproduct" (new context, replay)
+\end{bulletgroup}
+\marked[universalpropertyblue]{Universal property}
+\begin{bulletgroup}
+\item a translation
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide11\endcsname{%
+\slidetitle{Permacultural logic\hfill{\normalsize\mdseries\color{gray}10/40}}
+\marked[harmonyorchid]{Harmony}
+\begin{bulletgroup}
+\item Gentzen in intro/elim
+\item in type theory with how to construct a type and how to use a type
+\item Hilbert in axioms and metamathematical theory (in the vision of Lautman)
+\end{bulletgroup}
+\begin{bulletgroup}
+\item My eureka moment came from a biological analogy: "A cell draws on a proton gradient to produce ATP for new work, while consuming fuel to replenish the gradient, some of that work maintains the machinery that keeps the cycle going"
+\item see later
+\end{bulletgroup}
+\marked[replayolive]{Replay}
+\begin{bulletgroup}
+\item As an intuition:
+\item visible part is the feedforward: new problems leading to new results (à la cybernetics)
+\item "you can't see the feedback, but for the structural rules to hold (\ensuremath{\cong} "the system to be sustainable"), there must be a form of non-exhaustion and positive feedback"
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide12\endcsname{%
+\slidetitle{Development\hfill{\normalsize\mdseries\color{gray}11/40}}
+\marked[unpredictablecyan]{Unpredictable}
+\begin{bulletgroup}
+\item "only collective intelligence should shape what collective intelligence should be"
+\end{bulletgroup}
+\begin{bulletgroup}
+\item the same form of non-ergodicity as biology
+\end{bulletgroup}
+\marked[stakebrown]{Stake}
+\begin{bulletgroup}
+\item stakes are facilitators of consensus (in citizen assemblies, high gain)
+\item In Hoapa, so are role-symmetry and general equalitarian conditions, openness, anonymity… (low cost)
+\end{bulletgroup}
+\marked[documentationink]{Documentation}
+\begin{bulletgroup}
+\item Grothendieck in 1972, when asked about "the revolution":
+\item he first discards the top-down approach
+\item then calls for a bottom-up approach (start with "fixing" the relations between individuals)
+\item and uses the example of the teacher-student relation.
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide13\endcsname{%
+\slidetitle{A park\hfill{\normalsize\mdseries\color{gray}12/40}}
+}
+\expandafter\newcommand\csname hoapaslide14\endcsname{%
+\slidetitle{Open source\hfill{\normalsize\mdseries\color{gray}16/40}}
+\marked[documentationink]{Operational documentation}
+\begin{bulletgroup}
+\item \emph{literate programming} as working model (the great missed opportunity of software development)
+\end{bulletgroup}
+\begin{bulletgroup}
+\item better model is team semantics and provenance
+\end{bulletgroup}
+\begin{bulletgroup}
+\item "for the work to have document-to-document continuity, as opposed to brain-to-brain or self-to-self, the documentation needs to show how a result was obtained, what it depends on, and what may need reconsidering when those dependencies change, etc."
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide15\endcsname{%
+\slidetitle{Science\hfill{\normalsize\mdseries\color{gray}18/40}}
+\marked{*}
+\begin{bulletgroup}
+\item "And all science, when we do not understand it as an instrument for power and domination, but as an adventure in knowledge undertaken by our species through the ages, is but this harmony, more or less wide and more or less rich from one period to the other, which unfolds over the generations and centuries, by the gentle counterpoint of all the themes emerging in turns, as if summoned from the abyss, to join and embrace in her" (Grothendieck, R\&S)
+\end{bulletgroup}
+\begin{bulletgroup}
+\item "From a semiotical and philosophical perspective, the general method is fascinating: to understand something, consider all possible points of view and search for a structural connection between them. Only then you will be approaching true knowledge. A systematic use of the liberty and multiplicity of topos theory in our ordinary life would have huge consequences on tolerance, ethics, politics, and social action: an example of how high mathematical practice would transform our everyday practice." (Zalamea, 'Grothendieck’s 40 Main Years: A Unitary Vision Through the TSK Models')
+\end{bulletgroup}
+\marked[languageamethyst]{Language}
+\begin{bulletgroup}
+\item From React's slogan: systematize correspondences in the vocabulary and symbols across specialized domains
+\end{bulletgroup}
+\begin{bulletgroup}
+\item Homotopy theoretic work on the graphs of the protocol \ensuremath{\to} a landscapes of concepts (plane of immanence of Deleuze)
+\item peaks/special points \ensuremath{\to} words of a language
+\item give them symbols and a grammar to interact and form structures and statements (optimized for accessibility, not specialized usage) \ensuremath{\to} a universal technical language
+\item the "rest" is preserved in the "abstract infinitesimal variations" (the "in between the words")
+\item it is in dialectic tension with the "concrete language substrate" \ensuremath{\to} third separation: 1. concrete/abstract 2. synthetic agents/analytic documentation 3. language/variations
+\item technical bridge: "Awodey and Forssell’s First-Order Logical Duality, which explicitly connects with the Grothendieckian setting, relating categories presenting theories to topological groupoids of models and their isomorphisms, using topos theory to establish a syntax–semantics duality."
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide16\endcsname{%
+\slidetitle{Mathematics\hfill{\normalsize\mdseries\color{gray}21/40}}
+\marked[emergencecoral]{Further}
+\begin{bulletgroup}
+\item Kennedy, Magidor and Väänänen - "Inner Models from Extended Logics", or Kennedy's essay "On the “Logic without Borders” Point of View" as concrete examples of what “a mathematical world generated through specified expressive resources” can mean
+\end{bulletgroup}
+\begin{bulletgroup}
+\item main "reason to believe": rising sea methodology (explain)
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide17\endcsname{%
+\slidetitle{Generalized permaculture\hfill{\normalsize\mdseries\color{gray}22/40}}
+}
+\expandafter\newcommand\csname hoapaslide18\endcsname{%
+\slidetitle{Networks\hfill{\normalsize\mdseries\color{gray}24/40}}
+\marked[careterracotta]{Care}
+\begin{bulletgroup}
+\item Some related structures:
+\end{bulletgroup}
+\begin{bulletgroup}
+\item Lautman's "solidarity networks"
+\end{bulletgroup}
+\begin{bulletgroup}
+\item Yoneda lemma
+\end{bulletgroup}
+\begin{bulletgroup}
+\item game-theoretic semantics, particularly the tradition of Hintikka, Sandu, and Väänänen. For instance 'Abramsky and Väänänen - From IF to BI: A Tale of Dependence and Separation' ("In game semantics, negation exchanges the verifier’s and falsifier’s roles: a mathematical precedent for treating reciprocity of roles as part of an interaction’s structure")
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide19\endcsname{%
+\slidetitle{Informal recap diagram\hfill{\normalsize\mdseries\color{gray}26/40}}
+\begin{itemize}
+\item looking for a mathematical setting in which the questions motivating the design become questions we can investigate precisely
+\end{itemize}
+}
+\expandafter\newcommand\csname hoapaslide20\endcsname{%
+\slidetitle{Motivations and goals\hfill{\normalsize\mdseries\color{gray}27/40}}
+\marked[optimalitygold]{Optimality}
+\begin{bulletgroup}
+\item \emph{understanding} = demanding abstract work
+\end{bulletgroup}
+\marked[hoapaviolet]{Perspectivism}
+\begin{bulletgroup}
+\item Philosophical perspectivism with its long tradition (Deleuze, Spinoza)
+\end{bulletgroup}
+\begin{bulletgroup}
+\item Lautman anticipates sheaf-theory with global/local
+\end{bulletgroup}
+\begin{bulletgroup}
+\item in HLG scope: Ehrenfeucht–Fraïssé games, Abramsky’s contextuality work, and its translation into team semantics with Puljujärvi and Väänänen
+\end{bulletgroup}
+\marked[presuppositionlessnessteal]{Presuppositionlessness}
+\begin{bulletgroup}
+\item The condition for openness + dedication to the concrete/abstract work relation
+\item VS. every assumption coming in and staying fixed is an unnecessary constraint
+\end{bulletgroup}
+\begin{bulletgroup}
+\item "reduces to one assumption: the assumption-free minimal open system which permits balanced community communication is also the special or optimal one (amounts to trusting communication itself, unlike the entire field of "collective intelligence")"
+\end{bulletgroup}
+}
+\expandafter\newcommand\csname hoapaslide21\endcsname{%
+\slidetitle{Categories from metaphysics\hfill{\normalsize\mdseries\color{gray}30/40}}
+\marked[complexityazure]{F}
+\begin{bulletgroup}
+\item Complexity in the sense of Yuri Manin
+\end{bulletgroup}
+\begin{bulletgroup}
+\item Nature operates at a constant level of complexity
+\item any apparent variation reflects a change in perspective…
+\end{bulletgroup}
+\marked[emergencecoral]{G}
+\begin{bulletgroup}
+\item "Darwinian evolution generalizes, but the part that generalizes is not selection, but recursion: what evolution produces becomes a condition for what can evolve next"
+\end{bulletgroup}
+\marked[praxispurple]{\ensuremath{\eta}}
+\begin{bulletgroup}
+\item It's a mistake to remove the process of inquiry from the object of the inquiry
+\end{bulletgroup}
+\begin{bulletgroup}
+\item "What is mathematics, really?" by Ruben Hersh
+\end{bulletgroup}
+\marked[anthropiclosspink]{\ensuremath{\varepsilon}}
+\begin{bulletgroup}
+\item Nature operates at a constant level of complexity
+\end{bulletgroup}
+\begin{bulletgroup}
+\item any apparent reduction reflects what is forgotten by the functors mediating between the world and an observer’s perspective
+\end{bulletgroup}
+\marked{Read aloud}
+\par\addvspace{8pt}\noindent{\arrayrulecolor{black!20}\renewcommand{\arraystretch}{1.25}%
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.36\linewidth}@{\hspace{1.2em}}>{\raggedright\arraybackslash}p{\dimexpr0.64\linewidth-1.2em\relax}@{}}
+{\small\color{gray}On the slide} & {\small\color{gray}Say} \\ \hline
+F : Ctx \ensuremath{\to} Inq & "F, from context to inquiry" \\ \hline
+G : Inq \ensuremath{\to} Ctx & "G, from inquiry to context" \\ \hline
+Hom\textsubscript{Inq}(F c, i) \ensuremath{\cong} Hom\textsubscript{Ctx}(c, G i) & "Hom in inquiry, from F of c to i, is in natural bijection with Hom in context, from c to G of i" \\ \hline
+\ensuremath{\eta}\textsubscript{c} : c \ensuremath{\to} GF c & "eta c, from c to G F of c" \\ \hline
+\ensuremath{\varepsilon}\textsubscript{i} : FG i \ensuremath{\to} i & "epsilon i, from F G of i to i" \\ \hline
+(L, C*, HOD) & "L, C star, H-O-D" \\ \hline
+w : F c \ensuremath{\to} i & "w, from F of c to i" \\ \hline
+G(w) \ensuremath{\circ} \ensuremath{\eta}\textsubscript{c} : c \ensuremath{\to} G i & "G of w after eta c, from c to G of i" \\ \hline
+\end{tabular}}\par\addvspace{12pt}
+}
+\expandafter\newcommand\csname hoapaslide22\endcsname{%
+\slidetitle{Permacultural logic\hfill{\normalsize\mdseries\color{gray}33/40}}
+\begin{bulletgroup}
+\item AI generated, motivated by all of the above
+\end{bulletgroup}
+\marked{Read aloud: from work to reusable construction}
+\par\addvspace{8pt}\noindent{\arrayrulecolor{black!20}\renewcommand{\arraystretch}{1.25}%
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.36\linewidth}@{\hspace{1.2em}}>{\raggedright\arraybackslash}p{\dimexpr0.64\linewidth-1.2em\relax}@{}}
+{\small\color{gray}On the slide} & {\small\color{gray}Say} \\ \hline
+(\ensuremath{-} \ensuremath{\times} A) \ensuremath{\dashv} (A \ensuremath{\Rightarrow} \ensuremath{-}) & "dash times A is left adjoint to A implies dash" \\ \hline
+Hom(\ensuremath{\Gamma} \ensuremath{\times} A, B) \ensuremath{\cong} Hom(\ensuremath{\Gamma}, A \ensuremath{\Rightarrow} B) & "Hom from gamma times A to B is in natural bijection with Hom from gamma to A implies B" \\ \hline
+w : \ensuremath{\Gamma} \ensuremath{\times} A \ensuremath{\to} B & "w, from gamma times A to B" \\ \hline
+w\ensuremath{\sharp} : \ensuremath{\Gamma} \ensuremath{\to} A \ensuremath{\Rightarrow} B & "w sharp, from gamma to A implies B" \\ \hline
+(A \ensuremath{\Rightarrow} B) \ensuremath{\times} A \ensuremath{\to} B & "A implies B, times A, to B" \\ \hline
+\ensuremath{\beta} and \ensuremath{\eta} & "beta and eta" (here the eta law, not the unit) \\ \hline
+\end{tabular}}\par\addvspace{12pt}
+\marked{Read aloud: what does the work leave available?}
+\par\addvspace{8pt}\noindent{\arrayrulecolor{black!20}\renewcommand{\arraystretch}{1.25}%
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.36\linewidth}@{\hspace{1.2em}}>{\raggedright\arraybackslash}p{\dimexpr0.64\linewidth-1.2em\relax}@{}}
+{\small\color{gray}On the slide} & {\small\color{gray}Say} \\ \hline
+State\textsubscript{A}(X) = A \ensuremath{\Rightarrow} (X \ensuremath{\times} A) & "State A of X is A implies X times A" \\ \hline
+Store\textsubscript{A}(X) = (A \ensuremath{\Rightarrow} X) \ensuremath{\times} A & "Store A of X is A implies X, times A" \\ \hline
+p(a) = (x, a\ensuremath{_0}) & "p of a is the pair x, a nought" \\ \hline
+q\ensuremath{^\prime} \ensuremath{\circ} w = \ensuremath{\bar{w}} \ensuremath{\circ} q & "q prime after w equals w bar after q" \\ \hline
+\end{tabular}}\par\addvspace{12pt}
+}
+\begin{document}
+% Ragged right and no hyphenation: easier to read aloud.
+\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000
+\slidetotal=22
+\layoutslides
+\slidetitle{Reading guide (from \emph{Categories from metaphysics} on)}
+\guidegroup{Categories and arrows}
+\begin{itemize}
+\item Ctx — say "context" (the category of contexts); never spell out C-T-X
+\item Inq — say "inquiry" (the category of organizations of inquiry); never spell out I-N-Q
+\item F : Ctx \ensuremath{\to} Inq — "F, from context to inquiry" (or "F, a functor from Ctx to Inq")
+\item F c, G i, GF c, FG i — "F of c", "G of i", "G F of c", "F G of i"
+\item Hom\_Inq(F c, i) — "Hom in Inq, from F c to i"; Hom rhymes with "Tom", not "home"
+\item \ensuremath{\cong} — "is in natural bijection with" (or "is isomorphic to")
+\item \ensuremath{\dashv} — "is left adjoint to"
+\item \ensuremath{\circ} — "after" (or "composed with"): G(w) \ensuremath{\circ} \ensuremath{\eta}\_c is "G of w after eta c"
+\item w\ensuremath{\sharp} — "w sharp", the transpose of w
+\item (\ensuremath{-} \ensuremath{\times} A) — "dash times A", the product with A; the dash is an empty slot, not a minus
+\item A \ensuremath{\Rightarrow} B — "A implies B" (also "B to the A", the exponential)
+\end{itemize}
+\guidegroup{Greek letters}
+\begin{itemize}
+\item \ensuremath{\eta} — eta: "EE-tuh" (or "AY-tuh"); the unit
+\item \ensuremath{\varepsilon} — epsilon: "EP-sih-lon"; the counit
+\item \ensuremath{\beta} — beta: "BAY-tuh" (or "BEE-tuh")
+\item \ensuremath{\Gamma} — capital gamma: "GAM-uh"; the remaining assumptions
+\item Careful: \ensuremath{\eta} means two different things. On the Categories slides it is the unit; in the Harmony line it is the \ensuremath{\eta}-law, so say "the eta law" there.
+\end{itemize}
+\guidegroup{Subscripts, primes and bars}
+\begin{itemize}
+\item \ensuremath{\eta}\_c, \ensuremath{\varepsilon}\_i — "eta c", "epsilon i" (or "eta sub c", "epsilon sub i")
+\item a\ensuremath{_0} — "a nought" (or "a zero")
+\item q\ensuremath{^\prime} — "q prime"
+\item \ensuremath{\bar{w}} — "w bar"
+\item State\_A(X), Store\_A(X) — "State A of X", "Store A of X"
+\item p(a) = (x, a\ensuremath{_0}) — "p of a is the pair x, a nought"
+\item q\ensuremath{^\prime} \ensuremath{\circ} w = \ensuremath{\bar{w}} \ensuremath{\circ} q — "q prime after w equals w bar after q"
+\end{itemize}
+\guidegroup{Inner models (the Evolution line)}
+\begin{itemize}
+\item L — "L": Gödel's constructible universe, built with first-order definability
+\item C* — "C star": the inner model built with the cofinality quantifier (Kennedy, Magidor, Väänänen)
+\item HOD — letter by letter, "H-O-D": the hereditarily ordinal definable sets, built with second-order definability
+\end{itemize}
+\guidegroup{Words}
+\begin{itemize}
+\item functor — "FUNK-ter"
+\item monad, comonad — "MON-ad" (or "MOH-nad"), "co-MON-ad"
+\item counit — "CO-you-nit"
+\item topos — "TOP-oss" (or "TOE-poss"); plural toposes or topoi
+\item univalence — "you-nih-VAY-lence"
+\item currying, uncurrying — "KUR-ee-ing", after Haskell Curry
+\item cartesian closed — "car-TEE-zhun closed"
+\item intuitionistic — "in-tew-ISH-uh-nis-tik"
+\item HoTT — said "hot": homotopy type theory
+\item elementary bound — if asked: bounded by a tower of exponentials of fixed height
+\item Coq — said like the French "coq"; renamed Rocq ("rock") in 2025, so "Rocq, formerly Coq" avoids the English pun
+\item ring — the tactic's name, said as the word
+\end{itemize}
+\guidegroup{Names}
+\begin{itemize}
+\item Ehrenfeucht — "AIR-en-foyt"
+\item Fraïssé — "fra-ee-SAY"
+\item Gentzen — "GENT-sen"
+\item Zalamea — "sa-la-MAY-a"
+\item Kauffman — "KAWF-mun"
+\item Peirce (oral commentary) — "purse", never "pierce"
+\item Lawvere (oral commentary) — "law-VEER"
+\item Grothendieck (oral commentary) — "GROH-ten-deek"
+\item Schrödinger (oral commentary) — "SHRUR-ding-er"
+\end{itemize}
+\newpage
+\slidetitle{What the university gets wrong (Science, list of evils)}
+\begin{itemize}
+\item objectivity/view from nowhere
+\item the conversion of expertise into authority over other participants;
+\item the ranking of people through their publications, affiliations, and institutional positions;
+\item the replacement of curiosity by the pursuit of credentials, funding, and visibility;
+\item the enclosure of knowledge behind paywalls, proprietary tools, and restricted access;
+\item the neglect of explanation, translation, replication, and maintenance because they bring less recognition than novelty;
+\item the dependence of entire projects on a few people whose departure makes the accumulated work difficult to continue;
+\item the loss of failed attempts, unresolved disagreements, and the conditions under which a result was obtained;
+\item the duplication of work across communities unable to find, understand, or reuse one another’s achievements;
+\item the pressure to fit new questions into established categories rather than revise those categories;
+\item the treatment of specialized roles as fixed intellectual identities;
+\item the concentration of decisions about worthwhile questions in institutions distant from those concerned by them;
+\item the accumulation of results without corresponding improvements in their accessibility or usefulness;
+\item the neglect of the human and ecological conditions that make continued inquiry possible;
+\item the exemption of the organization of science itself from the scrutiny it applies to its objects.
+\end{itemize}
+\newpage
+\slidetitle{Oral commentary from the talk text (Permacultural logic slides)}
+\guidegroup{\color{returnroyal}Return}
+\par\addvspace{6pt}Peirce describes diagrammatic reasoning as constructing a diagram, experimenting on it, and establishing which consequences hold for any construction made under the same conditions. A particular act of understanding yields a general relation. This is the movement that interests me in return: work acquires a form that can outlive the occasion of its discovery. Hoapa asks a conversation to leave such an achievement, with the relations it establishes and the conditions under which they hold available to others. See Peirce on diagrammatic reasoning, NEM 4:47–48.\par
+\guidegroup{\color{replayolive}Replay}
+\par\addvspace{6pt}Grothendieck's relative point of view gives this portability a discipline: keep the setting and the relationships through which a construction can pass to another setting. What must be established is which passages preserve what we want to use. Hoapa takes this as a design demand. Another community should be able to understand what it is importing, examine its applicability, and develop it without needing the original producers to return or authorize each use. An achievement becomes common means while its dependencies remain visible. This is our application of the relative viewpoint.\par
+\guidegroup{\color{harmonyorchid}Harmony}
+\par\addvspace{6pt}Lawvere shows how logical operations can be characterized through their relations to other operations. That gives Hoapa a way to make a philosophical demand exact: what must using an achievement preserve of the work that made it warranted? Establishing and using have different responsibilities, but their rules must answer to one another. Here the separation/integration mirror reaches inside logic itself. The harmony between receiving and giving back acquires a precise instance, which can then guide our search for adequate relations between inquiry and context. See Lawvere's “Adjointness in Foundations,” §3.\par
+\guidegroup{\color{statemonadcerulean}State monad}
+\par\addvspace{6pt}Simondon asks us to understand an individual through the process that constitutes it together with its milieu. The achieved form partially resolves a situation containing tensions and potentials; further individuation remains a separate possibility. I apply this question to Hoapa's conversations and their achievements: what has been resolved, and what situation has the resolution left for others? Solving a problem can rightly remove a tension. The permacultural demand concerns whether the capacity for further development survives that success. See Simondon, “The Position of the Problem of Ontogenesis,” pp. 5–8.\par
+\guidegroup{\color{storecomonadtangerine}Store comonad}
+\par\addvspace{6pt}Kauffman's discussion of constraint closure draws attention to what an activity relies on: living processes help produce the constraints that channel those processes. This is the enabling side of work. A Hoapa document similarly relies on a maintained language, working tools, and people able to interpret it. A local task can use those conditions without reproducing their whole history, because other activities support them. That is the philosophical question I bring to the comonadic side: how does a local use remain connected to the organization that makes it possible? See Kauffman's “Answering Schrödinger's ‘What Is Life?’,” §16.\par
+\guidegroup{\color{continuationmint}Continuation}
+\par\addvspace{6pt}Peirce's pragmatic maxim clarifies a concept through its conceivable practical consequences. This directs us toward what a community can understand and do through an expression, including uses beyond the immediate task. A publication should let later inquirers recognize the operations it supports and the points where their question exceeds it. Hoapa's universal technical language has this ambition: make relations usable across different inquiries, while allowing a new problem to demand a new distinction. This is the philosophical purpose of testing continuation. See Peirce's “How to Make Our Ideas Clear,” §II.\par
+\guidegroup{\color{replayolive}Cut}
+\par\addvspace{6pt}Lautman distinguishes the constituents proper to an object from the common scheme in which objects are expressed. Hoapa uses this distinction to describe a change of role: the differentiated product of one inquiry can become part of the common language of another. A lemma remains a particular achievement while becoming an available step in someone else's work. This is what I mean when I say that the analytic aspires to become synthetic. The community builds a body of knowledge that can become a shared basis for further thought. See our reading of Lautman's proper and dimensional decompositions.\par
+\guidegroup{\color{feasibilitysienna}Feasibility}
+\par\addvspace{6pt}Peirce explicitly places an economy of research within his account of logical method. He asks how acquiring and spreading knowledge relate to the effort they require. That is close to Hoapa's motivation: the organization of inquiry determines how much earlier work can help later work. The proof-length result gives one exact instance of this concern. A community's finite capacity can be spent rebuilding what it already knows, or extending what its achievements now let it do. Making knowledge accessible and reusable therefore participates in the development of knowledge itself. See Peirce's Carnegie application, memoirs 27–28.\par
+\guidegroup{\color{reflectionviolet}Reflection}
+\par\addvspace{6pt}In Lautman's universal-covering example, an achieved structure makes further mathematical constructions possible. Zalamea reads such passages through saturation and liberation: enriching a setting can release new forms of construction. Hoapa asks for a similar passage in collective inquiry. Reflection makes the point tangible: a proved result becomes machinery for proving. The achievement changes its role in the activity and helps constitute the means through which subsequent achievements are produced. This is the structure/genesis relation we want to investigate. Sources: Lautman, Mathematics, Ideas and the Physical Real, pp. 130–131; Zalamea's introduction to that volume, pp. xxiv–xxv.\par
+\guidegroup{\color{emergencecoral}Renewal}
+\par\addvspace{6pt}Simondon calls transduction a process in which an already formed structure supports further structuring. Grothendieck's rising-sea method gives us a mathematical kinship: develop the surrounding concepts until constructions become available within them. Hoapa aims to give this movement an organized collective form. Documents become shared concepts; those concepts change the questions a community can formulate; those questions set further work in motion. This is renewal when the new setting supports a capability its predecessor did not provide. See Simondon, p. 11, and Grothendieck's Récoltes et Semailles, English translation, PDF p. 93.\par
+\guidegroup{\color{permaculturegreen}Conditions of activity}
+\par\addvspace{6pt}Kauffman's account of biological work suggests a stronger requirement than accumulating products: the productive organization has to keep making its own activity possible. Hoapa brings this question into collective inquiry. Knowledge should help sustain people's capacity to investigate, the means they share, and the world on which both depend. This is how I understand its possible participation in a generalized evolution: a context enables inquiry; inquiry produces achievements that become part of a changed context; that context supports further inquiry, with new means and new problems. The conjecture seeks a mathematical account of this passage, and permacultural logic names the demand that development sustain what enables it.\par
+\end{document}
