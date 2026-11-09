@@ -63,16 +63,6 @@ The physical starting point is that work depends on *constraints* that channel e
 
 - Constraints : effects — Maintain : closure — Abstract : secondary loop
 
-### Project
-
-Hoapa is an *open* project in mathematics, software, and the design of collective inquiry. I set its direction, develop its questions, and decide which proposals to pursue. AI agents help explore mathematical connections, compare approaches, and write and review code and documentation. Cubical Agda checks that the formalized constructions fit together under explicit definitions and assumptions, allowing new work to build on *results* already established.
-
-- Open : autonomous, role-symmetric, reflexive, modular, transparent, recursive and federated, network-shaped and sheaf-like
-- Results : a proto-article, "Event-Local Sheafification and a Linear/Non-Linear Adjunction with Chu Coefficients"
-
-O: modular = "well-regulated constraints" ; ( autonomous = "managerless" ≅ role-symmetric = "all play by the same rules" ) ⇒ "they themselves set" = reflexive ; transparent ⇒ pedagogical and integrated ; sheaf-like ⇒ the global is very respectful of the local (unlike any theory of "social contracts") ; federated & network-shaped
-R: The adapter/translator/buffer between the "synthetic" agents and their organization leaving an "analytic" trace ; where the verification touches the implementation
-
 ### Process
 
 Hoapa is designed as a network of small *conversations* in which one group's work becomes another group's starting point. A question brings participants *together*; their discussion produces a document that others can examine, challenge, or develop. These documents form a growing map of questions, concepts, arguments, and dependencies: a knowledge *graph*. So that contributions can differ and come unforced, the system gives participants control and equal standing (they all play by the same rules they themselves manage). Knowledge acquires structure *independently* of the structure of its producers, be it social, political, economic…
@@ -103,8 +93,8 @@ P: unityped in computer science, univocal in philosophy, synthetic/dimensional i
 The project seeks a mathematical correspondence—an *adjunction*—between two poles. One organizes inquiry through conversations, verification, and knowledge graphs. The other represents mathematical contexts and the different perspectives through which they can be investigated. The conjecture is guided by an intuition prompted by the perspectival nature of the world: our different understandings of it invite discussion, without presuppositions, from which something the world can reuse may *emerge*. The conjecture asks whether a *universal property* can distinguish Hoapa’s organization from alternatives. This talk will explore a candidate in which methods are represented by logics and mathematical worlds by the inner models they generate.
 
 - Adjunction : context & inquiry,  perspectivism & praxis, structure & genesis/recursion…
-- Emerge : the recursive nature of evolution: physics to biology… some AGI world
-- Universal property : "specialness" vs. optimality
+- Emerge : the recursive nature of evolution: physics to biology, biology to psychology…
+- Universal property : "specialness" → optimality
 
 A: see later
 E: Simondon's view: a context is full of potentials and tensions, and individuals coevolve with the milieu, without ever exhausting it ; candidate for future individuation from new context: AGI
@@ -116,7 +106,7 @@ Video: P. Deligne, *L'œuvre d'Alexandre Grothendieck* (Nice, 1996), the first 1
 
 ### Permacultural logic
 
-The project also looks for this pattern inside logic, where "permaculture" is understood broadly as the two-step process of (1) getting to know one's context as much as possible, (2) acting minimally in a manner that will enhance one's condition while preserving and enriching the context. A proof may begin with a provisional assumption (borrow), derive a conclusion (work), and turn the derivation into a conditional statement that later proofs can use (*replay*). What began as work under particular conditions becomes a reusable achievement. Hoapa investigates this borrow–work–replay pattern as a possible logical expression of its permacultural ambition: the *harmony* between receiving and giving back.
+The project also looks for this pattern inside logic, where "permaculture" is understood broadly as the two-step process of (1) getting to know one's context as much as possible, (2) acting minimally in a manner that will enhance one's condition while preserving and enriching the context. A proof may begin with a provisional assumption (borrow), derive a conclusion (work), and turn the derivation into a conditional statement that later proofs can use (return or *replay*). What began as work under particular conditions becomes a reusable achievement. Hoapa investigates this borrow–work–replay pattern as a possible logical expression of its permacultural ambition: the *harmony* between receiving and giving back.
 
 - Harmony : as in Gentzen, type theory, Hilbert's axiomatic method
 - Replay : the hidden part of logic that makes logic work
@@ -141,7 +131,7 @@ D: Grothendieck in 1972, when asked about "the revolution", he first discards th
 
 ### A park
 
-Hoapa can also operate at small scales and with only the "base layer of complexity" which separates the role-symmetric agents (unityped, univocal, synthetic/dimensional) from the typed documentation they produce.
+Hoapa can also operate at small scales and with only the "base layer of complexity" which separates the role-symmetric agents from the typed documentation they produce.
 
 For instance we could have a neighborhood "manage" its local park via a protocol in which the motivated residents discuss how it could be enhanced, and produce a to-do list for its maintenance.
 
@@ -213,7 +203,7 @@ L: Homotopy theoretic work on the raw output of the protocol, that you can think
 
 ### Mathematics
 
-All of the above applies in mathematics as well, but here the connection goes *further*: mathematics also supplies the language in which the organization of mathematical work can itself be investigated. Hoapa’s formalization uses Cubical Agda, bringing together homotopy type theory, computer-checked proofs, and a line of thought connecting Alexander Grothendieck’s ideas about homotopy types and higher groupoids with Vladimir Voevodsky’s univalent foundations.*
+All of the above applies in mathematics as well, but here the connection goes *further*: mathematics also supplies the language in which the organization of mathematical work can itself be investigated. Hoapa’s formalization uses Cubical Agda, bringing together homotopy type theory, computer-checked proofs, and a line of thought connecting Alexander Grothendieck’s ideas about homotopy types and higher groupoids with Vladimir Voevodsky’s univalent foundations.
 
 Hoapa proposes to carry this connection into the organization of collective inquiry itself. This ambition echoes Grothendieck’s memoirs, which weave together reflections on creativity, mathematical practice and mathematics itself.
 
@@ -265,16 +255,12 @@ If the conjecture succeeds, this universal property would translate into a claim
 
 *Perspectivism* motivates this ambition; *presuppositionlessness* guides the response. The world has already produced different beings, experiences, skills, and ways of understanding. Their contributions must be able to enter the inquiry without their worth being decided in advance by a hierarchy or an established division of knowledge. What the world has already developed becomes material for collective work; what that work will produce remains open.
 
-To formulate this universal characterization, I am exploring an adjunction between two sides: the organization of inquiry, its verification, and the knowledge it produces; and the contexts that make inquiry possible, whose mathematical form I am still seeking.
-
-My larger hypothesis is that this movement participates in the evolution of the world itself. What Hoapa preserves as a representation and reflection of the context in which it is implemented, and the creativity it enables as a response to the problems posed by this context, form the basis for a new context in which a community of "synthetic" agents can work on an "analytic" representation of their world. And this statement can travel through the boundaries between concrete (theory of work) and abstract (the conjectured adjunction). 
-
 - Optimality : the constraints imposed on a process, in a given context, to achieve an intended outcome
     constraints = the protocol ; process = collective inquiry ; context = this world ; outcome = understanding that enables generalized permaculture to be enacted
 
 - Perspectivism : global understanding assembled from local views, with obstructions to their integration retained as information
 
-- Presuppositionlessness: common rules, open rules with equal power to revise them, and only the rules needed to make communication possible
+- Presuppositionlessness: applied to protocols, a principle saying we need common rules, open rules with equally distributed power to revise them, and only the rules needed to make communication possible
 
 O: understanding = demanding abstract work
 P: Deleuzian perspectivism with a long tradition (notably Spinoza) ; Lautman anticipates sheaf-theory in his treatment of the global/local dialectic ; in HLG scope: Ehrenfeucht–Fraïssé games, Abramsky’s contextuality work, and its translation into team semantics with Puljujärvi and Väänänen
@@ -282,18 +268,14 @@ P: The condition for the openness of the construction and its dedication to the 
 
 ### Categories from metaphysics
 
-Lautman looked for the problems that recur beneath different mathematical theories: local and global, the whole and its parts, structure and existence. Zalamea reads his account of the passages between local and global, and of the intermediate structures that carry them, as anticipating sheaf theory. Category theory makes such recurrences explicit, through constructions, transformations and universal properties that can be compared from one theory to another. That is how this project passes from metaphysical problems to effective mathematics.
-
-The project has affinities with formalisms well adapted to the tasks it must carry out. Topos theory gathers local descriptions, the conditions under which they fit together, and an internal language in which to reason about them. Higher structures keep the different comparisons between descriptions, and let us ask how those comparisons fit together. Univalence, at the heart of homotopy type theory, treats equivalence as identity, so that properties and constructions transport between equivalent types.
-
 The proposed adjunction relates a category of contexts to a category of organizations of inquiry: write Ctx for the first and Inq for the second. We seek functors F : Ctx → Inq and G : Inq → Ctx with natural bijections Hom_Inq(F c, i) ≅ Hom_Ctx(c, G i). The unit η_c : c → GF c and the counit ε_i : FG i → i compare each side with its round trip. The mathematical form of Ctx is still under investigation, and neither functor has been constructed.
 
 Each piece of this structure is meant to carry one of the project's concepts: *F*, *G*, the unit *η* and the counit *ε*.
 
 - F : Complexity, the organized work a context allows
-- G : Evolution, how work acquires a contextual presentation through which its achievements can enter further development; compare the construction of inner models from logics (L, C*, HOD)
-- η : Praxis, the general opening; a piece of work w : F c → i realizes it in particular, and its transpose G(w) ∘ η_c : c → G i returns the work in contextual form
-- ε : Anthropic loss, the possible failure of the reconstruction map ε_i : FG i → i to be invertible; compare the gap between elementary equivalence and isomorphism, with Ehrenfeucht–Fraïssé games describing logical indistinguishability
+- G : Evolution, what organized inquiry produces can become part of the conditions under which further inquiry takes place
+- η : Praxis, the general opening; how a piece of work w : F c → i realizes it in particular, and its transpose G(w) ∘ η_c : c → G i returns the work in contextual form
+- ε : Anthropic loss, the possible failure of the reconstruction map ε_i : FG i → i to be invertible
 
 F: Complexity in the sense of Yuri Manin ; Nature operates at a constant level of complexity, any apparent variation reflects a change in perspective…
 G: Darwinian evolution generalizes, but the part that generalizes is not selection, but recursion: what evolution produces becomes a condition for what can evolve next

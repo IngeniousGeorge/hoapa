@@ -11,6 +11,7 @@ Helsinki Logic Group, 11 November 2026
 - name: last slide
 
 **My name**
+- unaffiliated, unspecialized
 - as good as their theories (footballer-feet)
 - science ≅ racing 
 - Univ dev ≅ more and more demanding cars
@@ -52,9 +53,9 @@ Helsinki Logic Group, 11 November 2026
 - "layers of complexity"
 
 **Inventory diagram**
-- layers ≅ 
 - separations of concerns ≅ specs
-- poles of adjunction ≅ motivation & 
+- layers ≅ perspectives
+- poles of adjunction ≅ motivation & how-to
   
 ### Sources
 
@@ -90,7 +91,6 @@ Helsinki Logic Group, 11 November 2026
 
 **Dedicated**
 - evident in computers & genome:
-- ""
 []
 - brains are less clear-cut (b/c internal concrete/abstract divides, as in math and code)
 []
@@ -98,40 +98,17 @@ Helsinki Logic Group, 11 November 2026
 - concrete substrate not just coupled, dependent on the abstract
 
 **Decomposition**
+- If we think of a space being decomposed:
 - dim = decompose through the structure of the ambient space
 - prop = decompose through the structure of the element itself
 []
 - at the community level → knowledge
-- brains are like vectors
-- documented statements like prime factorization
+- brains are like vectors → very complex Venn diagram with all those brains overlapping
+- documented statements like prime factorization → a list
 
 ### Theory of work
 
 - "Constraints give you effects, closure gives you continuity, the abstract gives you extra possibilities"
-
-### Project
-
-**Open**
-- its own experiment
-[]
-- autonomous = managerless
-- role-symmetric = all play by the same rules…
-- self-reflexive = …they themselves set
-- modular = well-engineered constraints
-- transparent = pedagogical and integrated
-[]
-- federated & network-shaped ⇒ local respectful of global
-- sheaf-like ⇒ global respectful of local (unlike any theory of "social contracts")
-[]
-- → UTL: open ≅ accessible
-
-**Results**
-- illustrates the division of labour
-[]
-- crucial point where the verification touches the implementation
-- adapter/translator/buffer between the "synthetic" agents and their "analytic" trace
-[]
-- route to bigger adjunction
 
 ### Process
 
@@ -156,7 +133,7 @@ Helsinki Logic Group, 11 November 2026
 **Graph**
 []
 - the "base" layer = "verbatim" orchestration
-- refinement into specialized/pruned graphs
+- refinement into specialized/pruned graphs (UTL)
 []
 - recap: conv (born) → concurrency (travels) → graph (lands) 
 
@@ -189,8 +166,8 @@ Helsinki Logic Group, 11 November 2026
 - see later
 
 **Emerge**
-- Simondon's view: context of potentials, coevolution, never exhausting it
-- candidate for future individuation from new context: AGI
+- Simondon's view: how beings come to be? context of potentials, coevolution, never exhausting it
+- new candidates for individuation come from new context (AGI)
 []
 - reusability (return to context)
 - or "standalone byproduct" (new context, replay)
@@ -218,8 +195,8 @@ Helsinki Logic Group, 11 November 2026
 **Replay**
 []
 - As an intuition:
-- visible part is the feedforward: new problems leading to new results (à la cybernetics)
-- "you can't see the feedback, but for the structural rules to hold (≅ "the system to be sustainable"), there must be a form of non-exhaustion and positive feedback"
+- visible part is the feedforward: math goes from problems to results and from results to problems
+- hypothesis: "you can't see the feedback, but for the structural rules to hold (≅ "the system to be sustainable"), there must be a form of non-exhaustion and positive feedback"
 
 ### Development
 
@@ -234,10 +211,7 @@ Helsinki Logic Group, 11 November 2026
 
 **Documentation**
 []
-- Grothendieck in 1972, when asked about "the revolution":
-- he first discards the top-down approach
-- then calls for a bottom-up approach (start with "fixing" the relations between individuals)
-- and uses the example of the teacher-student relation.
+- Or "operational documentation", see later
 
 ## Implementation - Use cases
 
@@ -260,24 +234,26 @@ Helsinki Logic Group, 11 November 2026
 
 - From React's slogan: systematize correspondences in the vocabulary and symbols across specialized domains 
 []
-- Homotopy theoretic work on the graphs of the protocol → a landscapes of concepts (plane of immanence of Deleuze)
-- peaks/special points → words of a language
-- give them symbols and a grammar to interact and form structures and statements (optimized for accessibility, not specialized usage) → a universal technical language
-- the "rest" is preserved in the "abstract infinitesimal variations" (the "in between the words")
-- it is in dialectic tension with the "concrete language substrate" → third separation: 1. concrete/abstract 2. synthetic agents/analytic documentation 3. language/variations
+- How? homotopy theoretic work on the Hoapa graphs
+- In dialectic tension with the material of this homotopic work: "abstract infinitesimal variations" (the words and the "in between the words")
+- third separation: 1. concrete/abstract 2. synthetic agents/analytic documentation 3. language/variations
 - technical bridge: "Awodey and Forssell’s First-Order Logical Duality, which explicitly connects with the Grothendieckian setting, relating categories presenting theories to topological groupoids of models and their isomorphisms, using topos theory to establish a syntax–semantics duality."
 
 ### Mathematics
 
 **Further**
 - Kennedy, Magidor and Väänänen - "Inner Models from Extended Logics", or Kennedy's essay "On the “Logic without Borders” Point of View" as concrete examples of what “a mathematical world generated through specified expressive resources” can mean
-- main "reason to believe": rising sea methodology (explain)
 
 ### Generalized permaculture
+
+- Not permacultural logic: what Nature may be doing
+- Generalized permaculture: what we should be doing
 
 ### Networks
 
 **Care**
+- A whole other avenue of research
+- Another "layer of complexity" to try and locate in natural systems
 - Some related structures:
 - Lautman's "solidarity networks"
 - Yoneda lemma
@@ -318,12 +294,11 @@ Helsinki Logic Group, 11 November 2026
 - "Darwinian evolution generalizes, but the part that generalizes is not selection, but recursion: what evolution produces becomes a condition for what can evolve next"
 
 **η**
-- It's a mistake to remove the process of inquiry from the object of the inquiry
-- "What is mathematics, really?" by Ruben Hersh
+- How the process of inquiry is part of the object of the inquiry
 
 **ε**
 - Nature operates at a constant level of complexity
-- any apparent reduction reflects what is forgotten by the functors mediating between the world and an observer’s perspective
+- Any apparent reduction reflects what is lost in the mediation between the world and an observer’s perspective
 
 **Read aloud**
 
