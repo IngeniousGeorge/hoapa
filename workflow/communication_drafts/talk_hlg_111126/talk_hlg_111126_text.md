@@ -1,12 +1,5 @@
 # Talk text
 
-J:
-    scientists as good as their theories vs. s = pilot, t = car
-    I built my own car, by chance, as an exercise
-    circling around the idea of oragnization/communication/strategies) in "balance and universality" ~ all play by the same rule ~ simple generator/specs to intricate construction
-    last and decisive step = concrete/abstract strict separation (despite apparent loss of usefulness, on top of first = apparent loss of knowledge)
-    trusted the result completely and "took it for a ride" : looked for siblings in Nature, models in math, internal structure, relations to others
-
 ## Introduction
 
 ### Pitch
@@ -24,7 +17,7 @@ The core of my research consists in drawing inspiration from the philosophy of m
 The authors it draws on are mathematicians (F.W. Lawvere, *A. Grothendieck*), philosophers (C.S. Peirce, G. Simondon, G. Deleuze), and *scientists* (S. Kauffman, J. Bowlby). In my project, these approaches meet in *Albert Lautman*’s philosophy of mathematics, as read by Fernando Zalamea (who has been supporting my work).
 
 - A. Grothendieck : gives a rich notion of creativity, the relative point of view, naturalness via the rising sea method, ecological thinking… the structure and destination of the project…
-- Albert Lautman : metaphysics as "problems the universe was going to run into no matter what", mathematics and physics as "effective theories answering those problems"…
+- Albert Lautman : or metaphysics as "problems the universe was going to run into no matter what", mathematics and physics as "effective theories answering those problems"…
 - Scientists : because we're interested in each step of the evolution of the universe, from field theories to origins of life and attachment…
 
 > …Hoapa as an invariant in the effective theories we see
@@ -39,6 +32,15 @@ My main thesis states that in a system that puts the dialectic between concrete 
     (Stuart Kauffman, "Beyond Physics" talk)
 - Dedicated : as in computers, in cells, in brains, in communities
 - Decomposition (Lautmanian) : synthetic (dimensional) ⟷ analytic (proper)
+
+"The decomposition of a mathematical entity can be envisaged from two
+very different points of view: sometimes the decomposition brings to light
+the particular properties of an entity within the set to which it belongs, and
+it is characterized by the specificity of its very structure; sometimes on the
+contrary the decomposition of the entities of the same set is done according
+to a plan common to them all and thus reflects not only their particular
+properties, but also their belonging to the same set whose global structure
+is reflected in that of its elements."
 
 ### Theory of work
 
@@ -125,7 +127,7 @@ While this is more demanding in the early stages of the process, it pays off by 
 
 > The same arguments can be used to suggest a reform of how science is conducted.
 
-- Operational documentation : using team semantics and provenance, what must remain traceable for others to understand, revise, and continue the work (as an extension to the collective of Knuth's literate programming)
+- Operational documentation : for instance, using team semantics and provenance, what must remain traceable for others to understand, revise, and continue the work (as an extension to the collective of Knuth's literate programming)
 
 ### Science
 
@@ -172,7 +174,7 @@ Hoapa proposes to carry this connection into the organization of collective inqu
 
 ### Generalized permaculture
 
-I believe Hoapa protocols can stage and target the kind of recursive and self-reflective patterns just mentioned, in the ecosystem, by generalizing the concept of permaculture and applying it to a vast majority of human endeavors. Permaculture could in effect become the default mode of being of humanity, following this very simple algorithm:
+I believe Hoapa protocols can stage and target the kind of recursive and self-reflective patterns just mentioned, in harmony with the ecosystem, by generalizing the concept of permaculture and applying it to a vast majority of human endeavors. Permaculture could in effect become the default mode of being of humanity, following this very simple algorithm:
 
 - Make a very detailed and executable map of your environment, including your imprint on it.
 - Use it to figure out what is best for both you and your environment, and do it (which becomes the default if individual freedom replaces "investability" as the condition for action).
@@ -185,13 +187,13 @@ This is where the "layers of complexity" which respect and target perspectivism,
 
 In all the preceding examples we've looked at instances of Hoapa protocols in isolation, but each of them would be better envisioned as a node of a vast network.
 
-A mature protocol regulating a park would necessarily have typed conversations with other park protocols, especially those close by, to share information and reuse each other's research. It would also have ties to all the independent but interlinked networks a city would be made up of: electricity grid, water management, transportation, agriculture… and then beyond the city limits, into all sorts of other communities organized through protocols, each bringing its own point of view, from playground design to natural philosophy.
+A mature protocol regulating a park would necessarily have typed conversations with other park protocols, especially those close by, to share information and reuse each other's research. It would also have ties to all the independent protocols a city would be made up of: electricity grid, water management, transportation, agriculture… and then beyond the city limits, into all sorts of other communities organized through protocols, each bringing its own point of view, from playground design to natural philosophy.
 
 A park’s investigation of soil and water becomes useful to another park; a software improvement made for its documentation becomes available to other projects; a scientific question raised locally finds research communities elsewhere equipped to pursue it. The park community’s teaching material can help newcomers elsewhere. And communities can help one another translate documentation, test proposals, or investigate disagreements. Records of failed attempts can spare others the same mistakes.
 
 In all of this, each protocol is both an agent and a recipient of *care*, as a concrete ecosystem as well as an abstract community of participants.
 
-- Care : Hoapa’s generalization of attachment theory (biology, psychology) into a two-step cyclic algorithm
+- Care : Hoapa’s generalization of attachment theory (biology, psychology) into a two-step reciprocal and cyclic algorithm
     1. In a given network, the evolution toward maturity of newer elements is taken care of by the
     mature elements already present in the network
     2. In turn, those newer elements become mature and take care of a new generation of elements
@@ -223,7 +225,7 @@ Each piece of this structure is meant to carry one of the project's concepts: *F
 
 - F : Complexity, the organized work a context allows
 - G : Evolution, what organized inquiry produces can become part of the conditions under which further inquiry takes place
-- η : Praxis, the general opening; how a piece of work w : F c → i realizes it in particular, and its transpose G(w) ∘ η_c : c → G i returns the work in contextual form
+- η : Praxis, the difference between what a context makes possible and what a particular inquiry actually does with those possibilities
 - ε : Anthropic loss, the possible failure of the reconstruction map ε_i : FG i → i to be invertible
 
 ### Permacultural logic from the adjunction
@@ -279,7 +281,7 @@ The reusable material can also widen: from derivations in Gentzen's systems, to 
 - **Renewal:** preserve declared earlier uses and make a genuinely new operation available.²
 - **Conditions of activity:** reusable results still depend on people, skills, records, tools, and material support.³
 
-### Conclusion
+### [*Conclusion*]
 
 To me, Hoapa is a theory of everywhere: the humble counterpart to a theory of everything.
 

@@ -126,6 +126,12 @@
   \makebox[\revealedwordwidth][l]{\alt#3{\underlinedword{#1}{#2}}{#2}}%
 }
 
+% A title marked as one among many, like the Pitch's bracketed theory of work: from
+% the given click, violet brackets around it and the word in violet italics.
+\newcommand<>{\bracketedtitle}[1]{%
+  \only#2{\textcolor{hoapaviolet}{[}}\alt#2{\textcolor{hoapaviolet}{\textit{#1}}}{#1}\only#2{\textcolor{hoapaviolet}{]}}%
+}
+
 \newcommand{\paragraphtitle}[1]{%
   {\bfseries #1\par}%
   \vspace{2pt}%
@@ -339,7 +345,7 @@
   \medskip
   \begin{itemize}
     \item<2-> \markedword{risingseateal}{A. Grothendieck}: gives a rich notion of creativity, the relative point of view, naturalness via the rising sea method, ecological thinking… the structure and destination of the project…
-    \item<3-> \markedword{metaphysicsamber}{Albert Lautman}: metaphysics as ``problems the universe was going to run into no matter what'', mathematics and physics as ``effective theories answering those problems''…
+    \item<3-> \markedword{metaphysicsamber}{Albert Lautman}: or metaphysics as ``problems the universe was going to run into no matter what'', mathematics and physics as ``effective theories answering those problems''…
     \item<4-> \markedword{scienceblue}{Scientists}: because we're interested in each step of the evolution of the universe, from field theories to origins of life and attachment…
   \end{itemize}
 
@@ -355,6 +361,8 @@
   My main thesis states that in a system that puts the dialectic between concrete and abstract to \revealedword<2->{energyorange}{work} (brain, computer, community), the relation between concrete substrate and logical labor must be a resource entirely \revealedword<3->{dedicationmagenta}{dedicated} to the design and application of representations and algorithms. A form of separation between two kinds of \revealedwordwithpunctuation<4->{decompositionocean}{}{decomposition}{—}analytic (as in prime factorization) and synthetic (as in vector coordinates relative to a basis)—is a guiding principle, informed by Lautman, which can keep this relation fruitful: in a community, between thinkers and the knowledge they produce.
 
   \medskip
+  % After the three marked words, Lautman's distinction itself takes the list's place.
+  \begin{onlyenv}<1-4>
   \begin{itemize}
     \item<2-> \markedword{energyorange}{Work}: \begin{tabular}[t]{@{}l@{}}
         explosion vs.\ engine, the role of constraints; \\
@@ -370,6 +378,17 @@
     \item<3-> \markedword{dedicationmagenta}{Dedicated}: as in computers, in cells, in brains, in communities
     \item<4-> \markedword{decompositionocean}{Decomposition (Lautmanian)}: synthetic (dimensional) $\longleftrightarrow$ analytic (proper)
   \end{itemize}
+  \end{onlyenv}
+  \begin{onlyenv}<5->
+    \begin{center}
+      \begin{minipage}{0.9\textwidth}\small
+        ``The decomposition of a mathematical entity can be envisaged from two very different points of view: sometimes the decomposition brings to light the particular properties of an entity within the set to which it belongs, and it is characterized by the specificity of its very structure; sometimes on the contrary the decomposition of the entities of the same set is done according to a plan common to them all and thus reflects not only their particular properties, but also their belonging to the same set whose global structure is reflected in that of its elements.''
+
+        \smallskip
+        \hfill{\footnotesize\color{presentationgreen!70}A.~Lautman, \textit{Mathematics, Ideas and the Physical Real}, trans.\ S.~B.~Duffy}
+      \end{minipage}
+    \end{center}
+  \end{onlyenv}
 \end{frame}
 
 \begin{frame}[t]{Introduction — The main thesis}
@@ -532,7 +551,7 @@
   Hoapa revokes the privileges of the inner circle, distributes the workload evenly and transfers all the essential knowledge from the original designer's minds into a strictly typed and \revealedwordwithpunctuation<2->{documentationink}{}{operational documentation}{.}
 
   \begin{itemize}
-    \item<2-> \markedword{documentationink}{Operational documentation}: using team semantics and provenance, what must remain traceable for others to understand, revise, and continue the work (as an extension to the collective of Knuth's literate programming)
+    \item<2-> \markedword{documentationink}{Operational documentation}: for instance, using team semantics and provenance, what must remain traceable for others to understand, revise, and continue the work (as an extension to the collective of Knuth's literate programming)
   \end{itemize}
 
   \begin{uncoverenv}<3->
@@ -614,7 +633,7 @@
 \begin{frame}[t]{Implementation — Use cases}
   \paragraphtitle{Generalized permaculture}
   \balancedstart
-  I believe Hoapa protocols can stage and target the kind of recursive and self-reflective patterns just mentioned, in the ecosystem, by generalizing the concept of permaculture and applying it to a vast majority of human endeavors. Permaculture could in effect become the default mode of being of humanity, following this very simple algorithm:
+  I believe Hoapa protocols can stage and target the kind of recursive and self-reflective patterns just mentioned, in harmony with the ecosystem, by generalizing the concept of permaculture and applying it to a vast majority of human endeavors. Permaculture could in effect become the default mode of being of humanity, following this very simple algorithm:
 
   \begin{itemize}
     \item<2-> Make a very detailed and executable map of your environment, including your imprint on it.
@@ -638,7 +657,7 @@
   In all the preceding examples we've looked at instances of Hoapa protocols in isolation, but each of them would be better envisioned as a node of a vast network.
 
   \begin{uncoverenv}<2->
-    A mature protocol regulating a park would necessarily have typed conversations with other park protocols, especially those close by, to share information and reuse each other's research. It would also have ties to all the independent but interlinked networks a city would be made up of: electricity grid, water management, transportation, agriculture… and then beyond the city limits, into all sorts of other communities organized through protocols, each bringing its own point of view, from playground design to natural philosophy.
+    A mature protocol regulating a park would necessarily have typed conversations with other park protocols, especially those close by, to share information and reuse each other's research. It would also have ties to all the independent protocols a city would be made up of: electricity grid, water management, transportation, agriculture… and then beyond the city limits, into all sorts of other communities organized through protocols, each bringing its own point of view, from playground design to natural philosophy.
   \end{uncoverenv}
 
   \begin{uncoverenv}<3->
@@ -652,7 +671,7 @@
   In all of this, each protocol is both an agent and a recipient of \revealedwordwithpunctuation<2->{careterracotta}{}{care}{,} as a concrete ecosystem as well as an abstract community of participants.
 
   \begin{itemize}
-    \item<2-> \markedword{careterracotta}{Care}: Hoapa’s generalization of attachment theory (biology, psychology) into a two-step cyclic algorithm
+    \item<2-> \markedword{careterracotta}{Care}: Hoapa’s generalization of attachment theory (biology, psychology) into a two-step reciprocal and cyclic algorithm
       \begin{enumerate}
         \item<3-> In a given network, the evolution toward maturity of newer elements is taken care of by the mature elements already present in the network
         \item<4-> In turn, those newer elements become mature and take care of a new generation of elements
@@ -712,7 +731,7 @@
   \begin{itemize}
     \item<2-> \markedword{complexityazure}{$F$}: Complexity, the organized work a context allows
     \item<3-> \markedword{emergencecoral}{$G$}: Evolution, what organized inquiry produces can become part of the conditions under which further inquiry takes place
-    \item<4-> \markedword{praxispurple}{$\eta$}: Praxis, the general opening; how a piece of work $w\colon Fc\to i$ realizes it in particular, and its transpose $G(w)\circ\eta_c\colon c\to Gi$ returns the work in contextual form
+    \item<4-> \markedword{praxispurple}{$\eta$}: Praxis, the difference between what a context makes possible and what a particular inquiry actually does with those possibilities
     \item<5-> \markedword{anthropiclosspink}{$\varepsilon$}: Anthropic loss, the possible failure of the reconstruction map $\varepsilon_i\colon FGi\to i$ to be invertible
   \end{itemize}
 \end{frame}
@@ -827,31 +846,34 @@
   \end{itemize}
 \end{frame}
 
-% Part 4: the conclusion, read as written, without commentary. As in the use
-% cases, each paragraph is its own click. Two slides: the text is too long for
+% Part 4: the conclusion, read as written, without commentary. It opens on the
+% title alone; the first click brackets it (one conclusion among many); then, as in
+% the use cases, each paragraph is its own click. Two slides: the text is too long for
 % one at the slides' type size.
 \startsection{4}
 
 \begin{frame}[t,label=talksection4]{Conclusion}
-  \paragraphtitle{Conclusion}
+  \paragraphtitle{\bracketedtitle<2->{Conclusion}}
   \balancedstart
-  To me, Hoapa is a theory of everywhere: the humble counterpart to a theory of everything.
-
-  \begin{uncoverenv}<2->
-    \textit{Hoapa} means ``everywhere'', in the sense of every domain, in Khoekhoegowab, a Khoe language spoken in Namibia, Botswana and South Africa.
-  \end{uncoverenv}
-
   \begin{uncoverenv}<3->
-    The egalitarian societies of Africa, such as the San and the Hadza, can be seen as the first human implementers of Hoapa systems.
+    To me, Hoapa is a theory of everywhere: the humble counterpart to a theory of everything.
   \end{uncoverenv}
 
   \begin{uncoverenv}<4->
+    \textit{Hoapa} means ``everywhere'', in the sense of every domain, in Khoekhoegowab, a Khoe language spoken in Namibia, Botswana and South Africa.
+  \end{uncoverenv}
+
+  \begin{uncoverenv}<5->
+    The egalitarian societies of Africa, such as the San and the Hadza, can be seen as the first human implementers of Hoapa systems.
+  \end{uncoverenv}
+
+  \begin{uncoverenv}<6->
     The debate about human nature, a nature Hoapa trusts, turns on how we view the Paleolithic, our deep past: as violent and brutish, or as complex and social. The contrast echoes the one between selection and adaptation.
   \end{uncoverenv}
 \end{frame}
 
 \begin{frame}[t]{Conclusion}
-  \paragraphtitle{Conclusion}
+  \paragraphtitle{\bracketedtitle<1->{Conclusion}}
   \balancedstart
   Inquiry in universities shows the same structure across many disciplines: two camps, a ``mainstream'' and its ``rebels''. The mainstream reduces Nature's complexity and robs Her of what makes Her trustworthy. (That trust is then quietly transferred to structures of control: hierarchies, capitalism, and ``reason'' as understood from Galton to Dawkins.) The rebels form a holistic camp, which offers a fuller picture, more adequate to understand our own adaptation.
 
