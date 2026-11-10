@@ -12,9 +12,9 @@ Helsinki Logic Group, 11 November 2026
 
 **My name**
 - unaffiliated, unspecialized
-- as good as their theories (footballer-feet)
+- as good as their theories (football players-feet)
 - science ≅ racing 
-- Univ dev ≅ more and more demanding cars
+- School/univ dev of pilots ≅ more and more demanding cars
 []
 - I built my own car:
   - by chance (brain soup)
@@ -22,11 +22,11 @@ Helsinki Logic Group, 11 November 2026
 - "what is… U&B" → I trusted it → "took for a ride"
 []
 - 1st step, labels: "the system doesn't know…"
-- last: "stays in the abstract, as available resource, no movement back into the concrete"
+- last: "result stays in the abstract, as available resource, no movement back into the concrete"
 - vs. loss of knowledge, useless
-- complicated, non-trivial thing → workshops
+- complicated, non-trivial thing → embryonic workshops
 []
-- logic: odd workshops → special workshops 
+- logic: odd workshops → special workshops
   
 ## Introduction
 
@@ -34,8 +34,8 @@ Helsinki Logic Group, 11 November 2026
 
 **[…]**
 - not a pitch but one of them
-- inherently perspectivist
-- a sort of motive
+- inherently perspectivist:
+- the world ≅ a context ≅ a system of points of view
 
 **Permacultural**
 - abstraction of the agricultural technique
@@ -47,14 +47,14 @@ Helsinki Logic Group, 11 November 2026
 - an extension not a modification/relaxation
 []
 - a protocol becomes an object of science
-- scientists (anyone) expected to sign up for the most trustworthy
+- open, and scientists (anyone) expected to sign up for the most trustworthy
 []
 - trust := whatt guarantees [ … ]
-- "layers of complexity"
+- list obtained by "layers of complexity"
 
 **Inventory diagram**
 - separations of concerns ≅ specs
-- layers ≅ perspectives
+- layers ≅ levels of abstractions
 - poles of adjunction ≅ motivation & how-to
   
 ### Sources
@@ -64,7 +64,6 @@ Helsinki Logic Group, 11 November 2026
 - workshops (embryonic) 
 - ≅ col. sci. method (specific use case) 
 - ≅ recursive elem. in G-evol (in Nature)
-- main reason to believe in permacultural logic?
 
 **Albert Lautman**
 - bio (1930, anticipator, non-reductionist)
@@ -86,16 +85,19 @@ Helsinki Logic Group, 11 November 2026
   - closures = "collective work which constructs and maintains the constraints that enable those processes" (constraint, work-task, catalytic)
 - computer (also brain, genome, communities) → Pattee (symbolic and dynamical)
   - "physical activity is recorded in symbols, which can be stored, manipulated and interpreted to guide further physical activity" (von Neumann, Peirce)
-- logic → Lautman: formal system and realization (for us: abstract/concrete)
+- logic: formal system and realization (Lautman and others, for us: abstract/concrete)
 - Hoapa = a system of constraints, open but capable of closure, and optimized for symbolic work
 
 **Dedicated**
 - evident in computers & genome:
+- the hardware is dedicated to running the software
 []
-- brains are less clear-cut (b/c internal concrete/abstract divides, as in math and code)
+- brains are less clear-cut:
+- internal concrete/abstract divides, as in math and code (multilevel vs. one level)
 []
-- communities are "degenerate"
-- concrete substrate not just coupled, dependent on the abstract
+- communities are "degenerate":
+- concrete substrate (lives) coupled, dependent on the abstract (science → economy)
+- Hoapa: clear distinction between "living your life" and "participating in specific collective work, including inquiry"
 
 **Decomposition**
 - If we think of a space being decomposed:
@@ -103,8 +105,9 @@ Helsinki Logic Group, 11 November 2026
 - prop = decompose through the structure of the element itself
 []
 - at the community level → knowledge
-- brains are like vectors → very complex Venn diagram with all those brains overlapping
+- brains are like vectors → very complex Venn diagram with lots of overlapping world-maps/brains
 - documented statements like prime factorization → a list
+- Hoapa: "system that uses these decompositions to implement the dedicated relation between concrete and abstract"
 
 ### Theory of work
 
@@ -116,7 +119,6 @@ Helsinki Logic Group, 11 November 2026
 - convs → atoms of reflexion
 - concurrency → network of reflexion
 - graphs → structured memory of reflexion
-- Hoapa as Jacob's bricolage
 
 **Conversation**
 - amazing results when experimented in politics
@@ -132,10 +134,10 @@ Helsinki Logic Group, 11 November 2026
 
 **Graph**
 []
-- the "base" layer = "verbatim" orchestration
+- the free "base" layer = verbatim record of "spontaneous" back and forth
 - refinement into specialized/pruned graphs (UTL)
 []
-- recap: conv (born) → concurrency (travels) → graph (lands) 
+- recap, ideas: conv (maelstrom → born) → concurrency (medium → travel) → graph (structure → land) 
 
 **Independently**
 []
@@ -151,31 +153,21 @@ Helsinki Logic Group, 11 November 2026
 
 ### Verification
 
-**Referee**
-- ∅
-
-**Verification**
-- ∅
-
-**Participants**
-- ∅
-
 ### Conjecture
 
 **Adjunction**
 - see later
 
 **Emerge**
-- Simondon's view: how beings come to be? context of potentials, coevolution, never exhausting it
+- "Heavy machinery" found in Simondon's view: how beings come to be? context of potentials, coevolution, never exhausting it
 - new candidates for individuation come from new context (AGI)
 []
-- reusability (return to context)
-- or "standalone byproduct" (new context, replay)
+- reusability: *return* to context or "standalone byproduct": new context, *replay* (see later)
 
 **Universal property**
 - a translation
 
-### Rising sea
+### Rising sea as a reason to believe in permacultural logic
 
 - Permacultural logic is an outgrowth of my work on Hoapa, not one of its constituents
 - It could be that Hoapa's optimality is true and the permacultural interpretation of logic is false
@@ -193,10 +185,11 @@ Helsinki Logic Group, 11 November 2026
 - see later
 
 **Replay**
+- return: novelty → into the context, replay: novelty → into a new process
 []
 - As an intuition:
 - visible part is the feedforward: math goes from problems to results and from results to problems
-- hypothesis: "you can't see the feedback, but for the structural rules to hold (≅ "the system to be sustainable"), there must be a form of non-exhaustion and positive feedback"
+- hypothesis: "you can't see the feedback, but for the structural rules to hold (≅ "the system to be sustainable"), there must be a form of non-exhaustion (Simondon) and positive feedback (cybernetics)"
 
 ### Development
 
@@ -211,7 +204,7 @@ Helsinki Logic Group, 11 November 2026
 
 **Documentation**
 []
-- Or "operational documentation", see later
+- Think "operational/executable documentation", see later
 
 ## Implementation - Use cases
 
@@ -232,17 +225,24 @@ Helsinki Logic Group, 11 November 2026
 
 **Language**
 
-- From React's slogan: systematize correspondences in the vocabulary and symbols across specialized domains 
+- From React's slogan: systematize correspondences in the vocabulary and symbols across specialized domains
+- Example: know berry picking and read about electronics, find a technical word you know and know you can trust your knowledge of it 
 []
 - How? homotopy theoretic work on the Hoapa graphs
-- In dialectic tension with the material of this homotopic work: "abstract infinitesimal variations" (the words and the "in between the words")
 - third separation: 1. concrete/abstract 2. synthetic agents/analytic documentation 3. language/variations
+[]
 - technical bridge: "Awodey and Forssell’s First-Order Logical Duality, which explicitly connects with the Grothendieckian setting, relating categories presenting theories to topological groupoids of models and their isomorphisms, using topos theory to establish a syntax–semantics duality."
+
+Explicit example: a berry patch and a charging capacitor
+- If you pick at random, the berries you find are proportional to the berries left. So your basket fills fast at first, then slower and slower: picked = all × (1 − e^(−t/τ)).
+- A capacitor charging through a resistor follows exactly the same curve: V = V₀ × (1 − e^(−t/τ)), with τ = RC.
+- These aren't just alike: both are the same equation, dx/dt = (target − x)/τ.
 
 ### Mathematics
 
 **Further**
-- Kennedy, Magidor and Väänänen - "Inner Models from Extended Logics", or Kennedy's essay "On the “Logic without Borders” Point of View" as concrete examples of what “a mathematical world generated through specified expressive resources” can mean
+- As before: the means developed to understand a context → new context for further inquiry (Lautman: structure → genesis)
+- Sources: Kennedy, Magidor and Väänänen - "Inner Models from Extended Logics", or Kennedy's essay "On the “Logic without Borders” Point of View" as concrete examples of what “a mathematical world generated through specified expressive resources” can mean
 
 ### Generalized permaculture
 
@@ -252,11 +252,13 @@ Helsinki Logic Group, 11 November 2026
 ### Networks
 
 **Care**
-- A whole other avenue of research
-- Another "layer of complexity" to try and locate in natural systems
+- attachment theory as effective theory which we can relate to metaphysical dialtectics/problems , with "traces of Hoapa"
+- A whole other avenue of research, another "layer of complexity" to try and locate in natural systems
+[]
 - Some related structures:
 - Lautman's "solidarity networks"
 - Yoneda lemma
+[]
 - game-theoretic semantics, particularly the tradition of Hintikka, Sandu, and Väänänen. For instance 'Abramsky and Väänänen - From IF to BI: A Tale of Dependence and Separation' ("In game semantics, negation exchanges the verifier’s and falsifier’s roles: a mathematical precedent for treating reciprocity of roles as part of an interaction’s structure")
 
 ## The conjecture - an adjunction
@@ -271,15 +273,16 @@ Helsinki Logic Group, 11 November 2026
 - *understanding* = demanding abstract work
 
 **Perspectivism**
-- Philosophical perspectivism with its long tradition (Deleuze, Spinoza)
 - Lautman anticipates sheaf-theory with global/local
-- in HLG scope: Ehrenfeucht–Fraïssé games, Abramsky’s contextuality work, and its translation into team semantics with Puljujärvi and Väänänen
-
+- Philosophical perspectivism with its long tradition (Deleuze, Spinoza)
+- in HLG scope: Ehrenfeucht–Fraïssé games, team semantics and links with Abramsky’s contextuality
+  
 **Presuppositionlessness**
-- The condition for openness + dedication to the concrete/abstract work relation
-- VS. every assumption coming in and staying fixed is an unnecessary constraint
+- 
+- A condition for openness + dedication to the concrete/abstract work relation
+- VS. any unnecessay assumption ≅ adding unnecesarry constraints, like walls where there should be free passage (broader scope) 
 []
-- "reduces to one assumption: the assumption-free minimal open system which permits balanced community communication is also the special or optimal one (amounts to trusting communication itself, unlike the entire field of "collective intelligence")"
+- "reduces to one assumption: the assumption-free minimal open system which permits balanced community communication is also the special or optimal one, which amounts to trusting communication itself" (unlike the entire field of "collective intelligence")
 
 ### Categories from metaphysics
 
@@ -291,7 +294,7 @@ Helsinki Logic Group, 11 November 2026
 - any apparent variation reflects a change in perspective…
 
 **G**
-- "Darwinian evolution generalizes, but the part that generalizes is not selection, but recursion: what evolution produces becomes a condition for what can evolve next"
+- "Darwinian evolution generalizes, but the part that generalizes is not selection, but 'community adaptats to context' → re-encoding of the context which preserves the elements that made this evolution possible in the first place"
 
 **η**
 - How the process of inquiry is part of the object of the inquiry
@@ -336,6 +339,23 @@ Helsinki Logic Group, 11 November 2026
 | Store_A(X) = (A ⇒ X) × A | "Store A of X is A implies X, times A" |
 | p(a) = (x, a₀) | "p of a is the pair x, a nought" |
 | q′ ∘ w = w̄ ∘ q | "q prime after w equals w bar after q" |
+
+### Conclusion
+
+-
+
+**Read aloud**
+
+| On the slide | Say |
+|---|---|
+| Khoekhoegowab | "KOY-koy-goh-wahb": the usual English approximation, as in "Khoikhoi". In the language itself, roughly "khoe-khoe-go-wab": a breathy k, and "oe" gliding from o to e |
+| Hadza | "HAHD-zah" |
+
+### Appendix
+
+Is knowledge lost?
+P: unityped in computer science, univocal in philosophy, synthetic/dimensional in mathematics ; people will specialize no matter what ; how participants in citizen assemblies deal with specialized knowledge: they go get it (and they're good at it) ; others, in scientific communities, will want to provide the knowledge they believe is true, with the proofs for this information, and make them accessible to Hoapa participants
+"Role symmetry gives us a concrete requirement to verify. Take a recorded interaction and consistently rename its participants, without merging distinct participants or changing their contributions and relations. The checker must still accept or reject the record exactly as before. This is called renaming invariance, and we have proved it in Cubical Agda for the current record validator. It gives one precise, checkable expression of the participants’ equal formal standing"
 
 ## Reading guide (from *Categories from metaphysics* on)
 
@@ -403,13 +423,8 @@ Helsinki Logic Group, 11 November 2026
 - Lawvere (oral commentary) — "law-VEER"
 - Grothendieck (oral commentary) — "GROH-ten-deek"
 - Schrödinger (oral commentary) — "SHRUR-ding-er"
-
-**Introductory symbols**
-
-- : as in, meaning, which we take to be
-- → whose function is
-- ⇒ implying, which yields, from MW we get
-- 
+- Khoekhoegowab (Conclusion) — "KOY-koy-goh-wahb", the usual English approximation; in the language itself, roughly "khoe-khoe-go-wab"
+- Hadza (Conclusion) — "HAHD-zah"
 
 ## What the university gets wrong (Science, list of evils)
 

@@ -81,9 +81,10 @@
 \newsavebox{\firstslide}\newsavebox{\secondslide}
 \newcount\slideindex \newcount\nextslideindex \newcount\slidetotal
 \newif\ifpairfits
-\newcommand{\setslide}[2]{% box, slide number
-  \sbox{#1}{\begin{minipage}[t]{\textwidth}\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000
+\newcommand{\setslideat}[3]{% box, slide number, size command
+  \sbox{#1}{\begin{minipage}[t]{\textwidth}#3\raggedright\hyphenpenalty=10000\exhyphenpenalty=10000
     \csname hoapaslide\number#2\endcsname\end{minipage}}}
+\newcommand{\setslide}[2]{\setslideat{#1}{#2}{}}
 \newcommand{\slideheight}[1]{\dimexpr\ht#1+\dp#1\relax}
 \newcommand{\slideseparator}{\par\vskip 28pt
   {\color{black!55}\hrule height 0.9pt\vskip 2.5pt\hrule height 0.9pt}\vskip 24pt}
@@ -98,6 +99,12 @@
       \ifdim\dimexpr\slideheight{\firstslide}+\separatorheight+\slideheight{\secondslide}\relax<\slidelimit
         \pairfitstrue
       \fi
+    \fi
+    % A slide alone that is still taller than the page is set a size smaller,
+    % then smaller again, rather than split across pages.
+    \unless\ifpairfits
+      \ifdim\slideheight{\firstslide}>\textheight \setslideat{\firstslide}{\slideindex}{\small}\fi
+      \ifdim\slideheight{\firstslide}>\textheight \setslideat{\firstslide}{\slideindex}{\footnotesize}\fi
     \fi
     \noindent\usebox{\firstslide}\par
     \ifpairfits
@@ -125,9 +132,9 @@
 \marked{My name}
 \begin{bulletgroup}
 \item unaffiliated, unspecialized
-\item as good as their theories (footballer-feet)
+\item as good as their theories (football players-feet)
 \item science \ensuremath{\cong} racing
-\item Univ dev \ensuremath{\cong} more and more demanding cars
+\item School/univ dev of pilots \ensuremath{\cong} more and more demanding cars
 \end{bulletgroup}
 \begin{bulletgroup}
 \item I built my own car:
@@ -139,25 +146,25 @@
 \end{bulletgroup}
 \begin{bulletgroup}
 \item 1st step, labels: "the system doesn't know…"
-\item last: "stays in the abstract, as available resource, no movement back into the concrete"
+\item last: "result stays in the abstract, as available resource, no movement back into the concrete"
 \item vs. loss of knowledge, useless
-\item complicated, non-trivial thing \ensuremath{\to} workshops
+\item complicated, non-trivial thing \ensuremath{\to} embryonic workshops
 \end{bulletgroup}
 \begin{bulletgroup}
 \item logic: odd workshops \ensuremath{\to} special workshops
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide2\endcsname{%
-\slidetitle{Pitch\hfill{\normalsize\mdseries\color{gray}1/38}}
+\slidetitle{Pitch\hfill{\normalsize\mdseries\color{gray}1/40}}
 \marked[hoapaviolet]{[…]}
 \begin{bulletgroup}
 \item not a pitch but one of them
 \end{bulletgroup}
 \begin{bulletgroup}
-\item inherently perspectivist
+\item inherently perspectivist:
 \end{bulletgroup}
 \begin{bulletgroup}
-\item a sort of motive
+\item the world \ensuremath{\cong} a context \ensuremath{\cong} a system of points of view
 \end{bulletgroup}
 \marked[permaculturegreen]{Permacultural}
 \begin{bulletgroup}
@@ -173,31 +180,30 @@
 \end{bulletgroup}
 \begin{bulletgroup}
 \item a protocol becomes an object of science
-\item scientists (anyone) expected to sign up for the most trustworthy
+\item open, and scientists (anyone) expected to sign up for the most trustworthy
 \end{bulletgroup}
 \begin{bulletgroup}
 \item trust := whatt guarantees [ … ]
-\item "layers of complexity"
+\item list obtained by "layers of complexity"
 \end{bulletgroup}
 \marked{Inventory diagram}
 \begin{bulletgroup}
 \item separations of concerns \ensuremath{\cong} specs
 \end{bulletgroup}
 \begin{bulletgroup}
-\item layers \ensuremath{\cong} perspectives
+\item layers \ensuremath{\cong} levels of abstractions
 \end{bulletgroup}
 \begin{bulletgroup}
 \item poles of adjunction \ensuremath{\cong} motivation \& how-to
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide3\endcsname{%
-\slidetitle{Sources\hfill{\normalsize\mdseries\color{gray}2/38}}
+\slidetitle{Sources\hfill{\normalsize\mdseries\color{gray}2/40}}
 \marked[risingseateal]{A. Grothendieck}
 \begin{bulletgroup}
 \item workshops (embryonic)
 \item \ensuremath{\cong} col. sci. method (specific use case)
 \item \ensuremath{\cong} recursive elem. in G-evol (in Nature)
-\item main reason to believe in permacultural logic?
 \end{bulletgroup}
 \marked[metaphysicsamber]{Albert Lautman}
 \begin{bulletgroup}
@@ -215,7 +221,7 @@
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide4\endcsname{%
-\slidetitle{Thesis\hfill{\normalsize\mdseries\color{gray}3/38}}
+\slidetitle{Thesis\hfill{\normalsize\mdseries\color{gray}3/40}}
 \marked[energyorange]{Work}
 \begin{bulletgroup}
 \item engine \ensuremath{\to} Peter Atkins (extending physics)
@@ -230,7 +236,7 @@
 \end{bulletgroup}
 \par\addvspace{6pt}- "physical activity is recorded in symbols, which can be stored, manipulated and interpreted to guide further physical activity" (von Neumann, Peirce)\par
 \begin{bulletgroup}
-\item logic \ensuremath{\to} Lautman: formal system and realization (for us: abstract/concrete)
+\item logic: formal system and realization (Lautman and others, for us: abstract/concrete)
 \end{bulletgroup}
 \begin{bulletgroup}
 \item Hoapa = a system of constraints, open but capable of closure, and optimized for symbolic work
@@ -238,13 +244,16 @@
 \marked[dedicationmagenta]{Dedicated}
 \begin{bulletgroup}
 \item evident in computers \& genome:
+\item the hardware is dedicated to running the software
 \end{bulletgroup}
 \begin{bulletgroup}
-\item brains are less clear-cut (b/c internal concrete/abstract divides, as in math and code)
+\item brains are less clear-cut:
+\item internal concrete/abstract divides, as in math and code (multilevel vs. one level)
 \end{bulletgroup}
 \begin{bulletgroup}
-\item communities are "degenerate"
-\item concrete substrate not just coupled, dependent on the abstract
+\item communities are "degenerate":
+\item concrete substrate (lives) coupled, dependent on the abstract (science \ensuremath{\to} economy)
+\item Hoapa: clear distinction between "living your life" and "participating in specific collective work, including inquiry"
 \end{bulletgroup}
 \marked[decompositionocean]{Decomposition}
 \begin{bulletgroup}
@@ -254,18 +263,19 @@
 \end{bulletgroup}
 \begin{bulletgroup}
 \item at the community level \ensuremath{\to} knowledge
-\item brains are like vectors \ensuremath{\to} very complex Venn diagram with all those brains overlapping
+\item brains are like vectors \ensuremath{\to} very complex Venn diagram with lots of overlapping world-maps/brains
 \item documented statements like prime factorization \ensuremath{\to} a list
+\item Hoapa: "system that uses these decompositions to implement the dedicated relation between concrete and abstract"
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide5\endcsname{%
-\slidetitle{Theory of work\hfill{\normalsize\mdseries\color{gray}4/38}}
+\slidetitle{Theory of work\hfill{\normalsize\mdseries\color{gray}4/40}}
 \begin{bulletgroup}
 \item "Constraints give you effects, closure gives you continuity, the abstract gives you extra possibilities"
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide6\endcsname{%
-\slidetitle{Process\hfill{\normalsize\mdseries\color{gray}5/38}}
+\slidetitle{Process\hfill{\normalsize\mdseries\color{gray}5/40}}
 \marked{Overview diagram}
 \begin{bulletgroup}
 \item convs \ensuremath{\to} atoms of reflexion
@@ -275,9 +285,6 @@
 \end{bulletgroup}
 \begin{bulletgroup}
 \item graphs \ensuremath{\to} structured memory of reflexion
-\end{bulletgroup}
-\begin{bulletgroup}
-\item Hoapa as Jacob's bricolage
 \end{bulletgroup}
 \marked[conversationrose]{Conversation}
 \begin{bulletgroup}
@@ -295,11 +302,11 @@
 \par\addvspace{6pt}- their messages "analytic" decomposition\par
 \marked[graphblue]{Graph}
 \begin{bulletgroup}
-\item the "base" layer = "verbatim" orchestration
+\item the free "base" layer = verbatim record of "spontaneous" back and forth
 \item refinement into specialized/pruned graphs (UTL)
 \end{bulletgroup}
 \begin{bulletgroup}
-\item recap: conv (born) \ensuremath{\to} concurrency (travels) \ensuremath{\to} graph (lands)
+\item recap, ideas: conv (maelstrom \ensuremath{\to} born) \ensuremath{\to} concurrency (medium \ensuremath{\to} travel) \ensuremath{\to} graph (structure \ensuremath{\to} land)
 \end{bulletgroup}
 \marked[independencecopper]{Independently}
 \begin{bulletgroup}
@@ -308,7 +315,7 @@
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide7\endcsname{%
-\slidetitle{Partial diagram\hfill{\normalsize\mdseries\color{gray}6/38}}
+\slidetitle{Partial diagram\hfill{\normalsize\mdseries\color{gray}6/40}}
 \begin{bulletgroup}
 \item Lautman's demystified metaphysics
 \item \ensuremath{\to} theory of abstract work
@@ -316,34 +323,21 @@
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide8\endcsname{%
-\slidetitle{Verification\hfill{\normalsize\mdseries\color{gray}7/38}}
-\marked[refereeyellow]{Referee}
-\begin{bulletgroup}
-\item \ensuremath{\emptyset}
-\end{bulletgroup}
-\marked[verificationgreen]{Verification}
-\begin{bulletgroup}
-\item \ensuremath{\emptyset}
-\end{bulletgroup}
-\marked[participantsplum]{Participants}
-\begin{bulletgroup}
-\item \ensuremath{\emptyset}
-\end{bulletgroup}
+\slidetitle{Verification\hfill{\normalsize\mdseries\color{gray}7/40}}
 }
 \expandafter\newcommand\csname hoapaslide9\endcsname{%
-\slidetitle{Conjecture\hfill{\normalsize\mdseries\color{gray}8/38}}
+\slidetitle{Conjecture\hfill{\normalsize\mdseries\color{gray}8/40}}
 \marked[adjunctioncrimson]{Adjunction}
 \begin{bulletgroup}
 \item see later
 \end{bulletgroup}
 \marked[emergencecoral]{Emerge}
 \begin{bulletgroup}
-\item Simondon's view: how beings come to be? context of potentials, coevolution, never exhausting it
+\item "Heavy machinery" found in Simondon's view: how beings come to be? context of potentials, coevolution, never exhausting it
 \item new candidates for individuation come from new context (AGI)
 \end{bulletgroup}
 \begin{bulletgroup}
-\item reusability (return to context)
-\item or "standalone byproduct" (new context, replay)
+\item reusability: \emph{return} to context or "standalone byproduct": new context, \emph{replay} (see later)
 \end{bulletgroup}
 \marked[universalpropertyblue]{Universal property}
 \begin{bulletgroup}
@@ -351,7 +345,7 @@
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide10\endcsname{%
-\slidetitle{Rising sea\hfill{\normalsize\mdseries\color{gray}9/38}}
+\slidetitle{Rising sea as a reason to believe in permacultural logic\hfill{\normalsize\mdseries\color{gray}9/40}}
 \begin{bulletgroup}
 \item Permacultural logic is an outgrowth of my work on Hoapa, not one of its constituents
 \end{bulletgroup}
@@ -363,7 +357,7 @@
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide11\endcsname{%
-\slidetitle{Permacultural logic\hfill{\normalsize\mdseries\color{gray}10/38}}
+\slidetitle{Permacultural logic\hfill{\normalsize\mdseries\color{gray}10/40}}
 \marked[harmonyorchid]{Harmony}
 \begin{bulletgroup}
 \item Gentzen in intro/elim
@@ -376,13 +370,16 @@
 \end{bulletgroup}
 \marked[replayolive]{Replay}
 \begin{bulletgroup}
+\item return: novelty \ensuremath{\to} into the context, replay: novelty \ensuremath{\to} into a new process
+\end{bulletgroup}
+\begin{bulletgroup}
 \item As an intuition:
 \item visible part is the feedforward: math goes from problems to results and from results to problems
-\item hypothesis: "you can't see the feedback, but for the structural rules to hold (\ensuremath{\cong} "the system to be sustainable"), there must be a form of non-exhaustion and positive feedback"
+\item hypothesis: "you can't see the feedback, but for the structural rules to hold (\ensuremath{\cong} "the system to be sustainable"), there must be a form of non-exhaustion (Simondon) and positive feedback (cybernetics)"
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide12\endcsname{%
-\slidetitle{Development\hfill{\normalsize\mdseries\color{gray}11/38}}
+\slidetitle{Development\hfill{\normalsize\mdseries\color{gray}11/40}}
 \marked[unpredictablecyan]{Unpredictable}
 \begin{bulletgroup}
 \item "only collective intelligence should shape what collective intelligence should be"
@@ -397,14 +394,14 @@
 \end{bulletgroup}
 \marked[documentationink]{Documentation}
 \begin{bulletgroup}
-\item Or "operational documentation", see later
+\item Think "operational/executable documentation", see later
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide13\endcsname{%
-\slidetitle{A park\hfill{\normalsize\mdseries\color{gray}12/38}}
+\slidetitle{A park\hfill{\normalsize\mdseries\color{gray}12/40}}
 }
 \expandafter\newcommand\csname hoapaslide14\endcsname{%
-\slidetitle{Open source\hfill{\normalsize\mdseries\color{gray}16/38}}
+\slidetitle{Open source\hfill{\normalsize\mdseries\color{gray}16/40}}
 \marked[documentationink]{Operational documentation}
 \begin{bulletgroup}
 \item \emph{literate programming} as working model (the great missed opportunity of software development)
@@ -417,7 +414,7 @@
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide15\endcsname{%
-\slidetitle{Science\hfill{\normalsize\mdseries\color{gray}18/38}}
+\slidetitle{Science\hfill{\normalsize\mdseries\color{gray}18/40}}
 \marked{*}
 \begin{bulletgroup}
 \item "And all science, when we do not understand it as an instrument for power and domination, but as an adventure in knowledge undertaken by our species through the ages, is but this harmony, more or less wide and more or less rich from one period to the other, which unfolds over the generations and centuries, by the gentle counterpoint of all the themes emerging in turns, as if summoned from the abyss, to join and embrace in her" (Grothendieck, R\&S)
@@ -428,23 +425,38 @@
 \marked[languageamethyst]{Language}
 \begin{bulletgroup}
 \item From React's slogan: systematize correspondences in the vocabulary and symbols across specialized domains
+\item Example: know berry picking and read about electronics, find a technical word you know and know you can trust your knowledge of it
 \end{bulletgroup}
 \begin{bulletgroup}
 \item How? homotopy theoretic work on the Hoapa graphs
-\item In dialectic tension with the material of this homotopic work: "abstract infinitesimal variations" (the words and the "in between the words")
 \item third separation: 1. concrete/abstract 2. synthetic agents/analytic documentation 3. language/variations
+\end{bulletgroup}
+\begin{bulletgroup}
 \item technical bridge: "Awodey and Forssell’s First-Order Logical Duality, which explicitly connects with the Grothendieckian setting, relating categories presenting theories to topological groupoids of models and their isomorphisms, using topos theory to establish a syntax–semantics duality."
+\end{bulletgroup}
+\par\addvspace{6pt}Explicit example: a berry patch and a charging capacitor\par
+\begin{bulletgroup}
+\item If you pick at random, the berries you find are proportional to the berries left. So your basket fills fast at first, then slower and slower: picked = all \ensuremath{\times} (1 \ensuremath{-} e\textasciicircum{}(\ensuremath{-}t/\ensuremath{\tau})).
+\end{bulletgroup}
+\begin{bulletgroup}
+\item A capacitor charging through a resistor follows exactly the same curve: V = V\ensuremath{_0} \ensuremath{\times} (1 \ensuremath{-} e\textasciicircum{}(\ensuremath{-}t/\ensuremath{\tau})), with \ensuremath{\tau} = RC.
+\end{bulletgroup}
+\begin{bulletgroup}
+\item These aren't just alike: both are the same equation, dx/dt = (target \ensuremath{-} x)/\ensuremath{\tau}.
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide16\endcsname{%
-\slidetitle{Mathematics\hfill{\normalsize\mdseries\color{gray}21/38}}
+\slidetitle{Mathematics\hfill{\normalsize\mdseries\color{gray}21/40}}
 \marked[emergencecoral]{Further}
 \begin{bulletgroup}
-\item Kennedy, Magidor and Väänänen - "Inner Models from Extended Logics", or Kennedy's essay "On the “Logic without Borders” Point of View" as concrete examples of what “a mathematical world generated through specified expressive resources” can mean
+\item As before: the means developed to understand a context \ensuremath{\to} new context for further inquiry (Lautman: structure \ensuremath{\to} genesis)
+\end{bulletgroup}
+\begin{bulletgroup}
+\item Sources: Kennedy, Magidor and Väänänen - "Inner Models from Extended Logics", or Kennedy's essay "On the “Logic without Borders” Point of View" as concrete examples of what “a mathematical world generated through specified expressive resources” can mean
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide17\endcsname{%
-\slidetitle{Generalized permaculture\hfill{\normalsize\mdseries\color{gray}22/38}}
+\slidetitle{Generalized permaculture\hfill{\normalsize\mdseries\color{gray}22/40}}
 \begin{bulletgroup}
 \item Not permacultural logic: what Nature may be doing
 \end{bulletgroup}
@@ -453,21 +465,15 @@
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide18\endcsname{%
-\slidetitle{Networks\hfill{\normalsize\mdseries\color{gray}24/38}}
+\slidetitle{Networks\hfill{\normalsize\mdseries\color{gray}24/40}}
 \marked[careterracotta]{Care}
 \begin{bulletgroup}
-\item A whole other avenue of research
-\end{bulletgroup}
-\begin{bulletgroup}
-\item Another "layer of complexity" to try and locate in natural systems
+\item attachment theory as effective theory which we can relate to metaphysical dialtectics/problems , with "traces of Hoapa"
+\item A whole other avenue of research, another "layer of complexity" to try and locate in natural systems
 \end{bulletgroup}
 \begin{bulletgroup}
 \item Some related structures:
-\end{bulletgroup}
-\begin{bulletgroup}
 \item Lautman's "solidarity networks"
-\end{bulletgroup}
-\begin{bulletgroup}
 \item Yoneda lemma
 \end{bulletgroup}
 \begin{bulletgroup}
@@ -475,38 +481,38 @@
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide19\endcsname{%
-\slidetitle{Informal recap diagram\hfill{\normalsize\mdseries\color{gray}26/38}}
+\slidetitle{Informal recap diagram\hfill{\normalsize\mdseries\color{gray}26/40}}
 \begin{itemize}
 \item looking for a mathematical setting in which the questions motivating the design become questions we can investigate precisely
 \end{itemize}
 }
 \expandafter\newcommand\csname hoapaslide20\endcsname{%
-\slidetitle{Motivations and goals\hfill{\normalsize\mdseries\color{gray}27/38}}
+\slidetitle{Motivations and goals\hfill{\normalsize\mdseries\color{gray}27/40}}
 \marked[optimalitygold]{Optimality}
 \begin{bulletgroup}
 \item \emph{understanding} = demanding abstract work
 \end{bulletgroup}
 \marked[hoapaviolet]{Perspectivism}
 \begin{bulletgroup}
-\item Philosophical perspectivism with its long tradition (Deleuze, Spinoza)
-\end{bulletgroup}
-\begin{bulletgroup}
 \item Lautman anticipates sheaf-theory with global/local
 \end{bulletgroup}
 \begin{bulletgroup}
-\item in HLG scope: Ehrenfeucht–Fraïssé games, Abramsky’s contextuality work, and its translation into team semantics with Puljujärvi and Väänänen
+\item Philosophical perspectivism with its long tradition (Deleuze, Spinoza)
+\end{bulletgroup}
+\begin{bulletgroup}
+\item in HLG scope: Ehrenfeucht–Fraïssé games, team semantics and links with Abramsky’s contextuality
 \end{bulletgroup}
 \marked[presuppositionlessnessteal]{Presuppositionlessness}
 \begin{bulletgroup}
-\item The condition for openness + dedication to the concrete/abstract work relation
-\item VS. every assumption coming in and staying fixed is an unnecessary constraint
+\item A condition for openness + dedication to the concrete/abstract work relation
+\item VS. any unnecessay assumption \ensuremath{\cong} adding unnecesarry constraints, like walls where there should be free passage (broader scope)
 \end{bulletgroup}
 \begin{bulletgroup}
-\item "reduces to one assumption: the assumption-free minimal open system which permits balanced community communication is also the special or optimal one (amounts to trusting communication itself, unlike the entire field of "collective intelligence")"
+\item "reduces to one assumption: the assumption-free minimal open system which permits balanced community communication is also the special or optimal one, which amounts to trusting communication itself" (unlike the entire field of "collective intelligence")
 \end{bulletgroup}
 }
 \expandafter\newcommand\csname hoapaslide21\endcsname{%
-\slidetitle{Categories from metaphysics\hfill{\normalsize\mdseries\color{gray}29/38}}
+\slidetitle{Categories from metaphysics\hfill{\normalsize\mdseries\color{gray}29/40}}
 \marked[complexityazure]{F}
 \begin{bulletgroup}
 \item Complexity in the sense of Yuri Manin
@@ -518,7 +524,7 @@
 \end{bulletgroup}
 \marked[emergencecoral]{G}
 \begin{bulletgroup}
-\item "Darwinian evolution generalizes, but the part that generalizes is not selection, but recursion: what evolution produces becomes a condition for what can evolve next"
+\item "Darwinian evolution generalizes, but the part that generalizes is not selection, but 'community adaptats to context' \ensuremath{\to} re-encoding of the context which preserves the elements that made this evolution possible in the first place"
 \end{bulletgroup}
 \marked[praxispurple]{\ensuremath{\eta}}
 \begin{bulletgroup}
@@ -546,7 +552,7 @@ G(w) \ensuremath{\circ} \ensuremath{\eta}\textsubscript{c} : c \ensuremath{\to} 
 \end{tabular}}\par\addvspace{12pt}
 }
 \expandafter\newcommand\csname hoapaslide22\endcsname{%
-\slidetitle{Permacultural logic\hfill{\normalsize\mdseries\color{gray}31/38}}
+\slidetitle{Permacultural logic\hfill{\normalsize\mdseries\color{gray}31/40}}
 \begin{bulletgroup}
 \item AI generated, motivated by all of the above
 \end{bulletgroup}
@@ -571,10 +577,26 @@ p(a) = (x, a\ensuremath{_0}) & "p of a is the pair x, a nought" \\ \hline
 q\ensuremath{^\prime} \ensuremath{\circ} w = \ensuremath{\bar{w}} \ensuremath{\circ} q & "q prime after w equals w bar after q" \\ \hline
 \end{tabular}}\par\addvspace{12pt}
 }
+\expandafter\newcommand\csname hoapaslide23\endcsname{%
+\slidetitle{Conclusion\hfill{\normalsize\mdseries\color{gray}39/40}}
+\marked{Read aloud}
+\par\addvspace{8pt}\noindent{\arrayrulecolor{black!20}\renewcommand{\arraystretch}{1.25}%
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.36\linewidth}@{\hspace{1.2em}}>{\raggedright\arraybackslash}p{\dimexpr0.64\linewidth-1.2em\relax}@{}}
+{\small\color{gray}On the slide} & {\small\color{gray}Say} \\ \hline
+Khoekhoegowab & "KOY-koy-goh-wahb": the usual English approximation, as in "Khoikhoi". In the language itself, roughly "khoe-khoe-go-wab": a breathy k, and "oe" gliding from o to e \\ \hline
+Hadza & "HAHD-zah" \\ \hline
+\end{tabular}}\par\addvspace{12pt}
+}
+\expandafter\newcommand\csname hoapaslide24\endcsname{%
+\slidetitle{Appendix}
+\par\addvspace{6pt}Is knowledge lost?\par
+\par\addvspace{6pt}P: unityped in computer science, univocal in philosophy, synthetic/dimensional in mathematics ; people will specialize no matter what ; how participants in citizen assemblies deal with specialized knowledge: they go get it (and they're good at it) ; others, in scientific communities, will want to provide the knowledge they believe is true, with the proofs for this information, and make them accessible to Hoapa participants\par
+\par\addvspace{6pt}"Role symmetry gives us a concrete requirement to verify. Take a recorded interaction and consistently rename its participants, without merging distinct participants or changing their contributions and relations. The checker must still accept or reject the record exactly as before. This is called renaming invariance, and we have proved it in Cubical Agda for the current record validator. It gives one precise, checkable expression of the participants’ equal formal standing"\par
+}
 \begin{document}
 % Ragged right and no hyphenation: easier to read aloud.
 \raggedright\hyphenpenalty=10000\exhyphenpenalty=10000
-\slidetotal=22
+\slidetotal=24
 \layoutslides
 \slidetitle{Reading guide (from \emph{Categories from metaphysics} on)}
 \guidegroup{Categories and arrows}
@@ -641,12 +663,8 @@ q\ensuremath{^\prime} \ensuremath{\circ} w = \ensuremath{\bar{w}} \ensuremath{\c
 \item Lawvere (oral commentary) — "law-VEER"
 \item Grothendieck (oral commentary) — "GROH-ten-deek"
 \item Schrödinger (oral commentary) — "SHRUR-ding-er"
-\end{itemize}
-\guidegroup{Introductory symbols}
-\begin{itemize}
-\item : as in, meaning, which we take to be
-\item \ensuremath{\to} whose function is
-\item \ensuremath{\Rightarrow} implying, which yields, from MW we get
+\item Khoekhoegowab (Conclusion) — "KOY-koy-goh-wahb", the usual English approximation; in the language itself, roughly "khoe-khoe-go-wab"
+\item Hadza (Conclusion) — "HAHD-zah"
 \end{itemize}
 \newpage
 \slidetitle{What the university gets wrong (Science, list of evils)}

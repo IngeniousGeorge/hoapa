@@ -241,7 +241,7 @@
   \colorlet{currentsectionshade}{sectionshade#1}%
   \setbeamercolor{frametitle}{bg=sectionshade#1}%
 }
-\newcommand{\talksectionsbuilt}{3}
+\newcommand{\talksectionsbuilt}{4}
 \newcommand{\footerblock}[1]{%
   \ifnum#1=\currenttalkpart\relax
     \def\talkpartfill{sectionshade#1}%
@@ -313,7 +313,7 @@
   \begin{onlyenv}<1-5>
   \begin{itemize}
     \item<2-> \textcolor{hoapaviolet}{[…]}: one point of view among many
-    \item<3-> \markedword{permaculturegreen}{Permacultural}: concretely minimal, abstractly demanding
+    \item<3-> \markedword{permaculturegreen}{Permacultural}: abstracted into ``concretely minimal, abstractly demanding''
     \item<4-> \markedword{scienceblue}{Scientific method}: \\
       well-regulated scientist–Nature relation + (ad hoc peer review $\hookrightarrow$ universities $\hookrightarrow$ economy) \\
       % The line wraps; a top-aligned box keeps its continuation clear of the arrow.
@@ -338,9 +338,9 @@
 
   \medskip
   \begin{itemize}
-    \item<2-> \markedword{risingseateal}{A. Grothendieck}: creativity, relative point of view, naturalness via rising sea, ecological thinking… the structure and destination of the project
+    \item<2-> \markedword{risingseateal}{A. Grothendieck}: gives a rich notion of creativity, the relative point of view, naturalness via the rising sea method, ecological thinking… the structure and destination of the project…
     \item<3-> \markedword{metaphysicsamber}{Albert Lautman}: metaphysics as ``problems the universe was going to run into no matter what'', mathematics and physics as ``effective theories answering those problems''…
-    \item<4-> \markedword{scienceblue}{Scientists}: we're interested in each step of the evolution of the universe, from field theories to origins of life and attachment
+    \item<4-> \markedword{scienceblue}{Scientists}: because we're interested in each step of the evolution of the universe, from field theories to origins of life and attachment…
   \end{itemize}
 
   \uncover<5->{%
@@ -367,8 +367,8 @@
         \footnotesize\textcolor{presentationgreen!70}{(Stuart Kauffman,} \\
         \footnotesize\textcolor{presentationgreen!70}{``Beyond Physics'' talk)}
       \end{tabular}
-    \item<3-> \markedword{dedicationmagenta}{Dedicated}: in computers, in cells, in brains, in communities
-    \item<4-> \markedword{decompositionocean}{Decomposition}: synthetic $\sim$ dimensional ; analytic $\sim$ proper
+    \item<3-> \markedword{dedicationmagenta}{Dedicated}: as in computers, in cells, in brains, in communities
+    \item<4-> \markedword{decompositionocean}{Decomposition (Lautmanian)}: synthetic (dimensional) $\longleftrightarrow$ analytic (proper)
   \end{itemize}
 \end{frame}
 
@@ -392,8 +392,8 @@
   % go (drawn as an overlay, so the words stay in place when it leaves). Then one
   % line per click.
   \begin{itemize}
-    \item<2-> \markedword{conversationrose}{Conversation}:\only<2>{\tikz[overlay, baseline=0pt]\node[anchor=north west, inner sep=0pt] at (2.2cm, 1.2em) {\processdiagram};} \only<3->{modeled after citizen assemblies (helps autonomy, role-symmetry, modularity… control and equal standing)}
-    \item<2-> \markedword{messageindigo}{Together}: \only<4->{message passing style, as in the actor model or $\pi$-calculus in concurrency}
+    \item<2-> \markedword{conversationrose}{Conversation}:\only<2>{\tikz[overlay, baseline=0pt]\node[anchor=north west, inner sep=0pt] at (2.7cm, 1.2em) {\processdiagram};} \only<3->{modeled after citizen assemblies (helps autonomy, role-symmetry, modularity… control and equal standing)}
+    \item<2-> \markedword{messageindigo}{Together (concurrency)}: \only<4->{message passing style, as in the actor model or $\pi$-calculus}
     \item<2-> \markedword{graphblue}{Graph}: \only<5->{typed knowledge graphs, which are versioned, multiplex, homotopical, federated…}
     \item<6-> \markedword{independencecopper}{Independently}: respecting the concrete/abstract separation of concerns and dedicated relation between the two
   \end{itemize}
@@ -412,9 +412,9 @@
 
   \medskip
   \begin{itemize}
-    \item<2-> \markedword{refereeyellow}{Referee}: automation as \textit{liberation from control mechanisms}, from the necessity to have management
+    \item<2-> \markedword{refereeyellow}{Referee}: or automation as \textit{liberation from control mechanisms}, from the necessity to have management
     \item<3-> \markedword{verificationgreen}{Verification}: machine-checks that the record of each conversation is well-formed according to the protocol, never that its conclusions are true
-    \item<4-> \markedword{participantsplum}{Participants}: the protocol is blind to identity of contributors, which means it can't count on specialization (is knowledge lost?)
+    \item<4-> \markedword{participantsplum}{Participants}: the protocol is blind to identity of contributors, which means it can't count on specialization (…is knowledge lost?)
   \end{itemize}
 \end{frame}
 
@@ -425,8 +425,8 @@
   \medskip
   \begin{itemize}
     \item<2-> \markedword{adjunctioncrimson}{Adjunction}: context \& inquiry, perspectivism \& praxis, structure \& genesis/recursion…
-    \item<3-> \markedword{emergencecoral}{Emerge}: the recursive nature of evolution: physics to biology, biology to psychology…
-    \item<4-> \markedword{universalpropertyblue}{Universal property}: ``specialness'' vs.\ optimality
+    \item<3-> \markedword{emergencecoral}{Emerge}: points to the recursive nature of evolution: physics to biology, biology to psychology…
+    \item<4-> \markedword{universalpropertyblue}{Universal property}: ``specialness'' in mathematics $\to$ optimality in engineering
   \end{itemize}
 \end{frame}
 
@@ -435,7 +435,7 @@
 % video is clicked. Both files sit next to this one: deligne_rising_sea.mp4 and
 % deligne_rising_sea_poster.jpg, cut from the full lecture recording.
 \begin{frame}[t]{Introduction — From logic to practice}
-  \paragraphtitle{Rising sea}
+  \paragraphtitle{Rising sea as a reason to believe in permacultural logic}
   \centering
   \movie[width=0.6\textwidth, height=0.348\textwidth, poster]{%
     \includegraphics[width=0.6\textwidth, height=0.348\textwidth]{deligne_rising_sea_poster.jpg}%
@@ -447,7 +447,7 @@
 
 \begin{frame}[t]{Introduction — From logic to practice}
   \paragraphtitle{Permacultural logic}
-  The project also looks for this pattern inside logic, where ``permaculture'' is understood broadly as the two-step process of (1) getting to know one's context as much as possible, (2) acting minimally in a manner that will enhance one's condition while preserving and enriching the context. A proof may begin with a provisional assumption (borrow), derive a conclusion (work), and turn the derivation into a conditional statement that later proofs can use (return or \revealedwordwithpunctuation<3->{replayolive}{}{replay}{).} What began as work under particular conditions becomes a reusable achievement. Hoapa investigates this borrow–work–replay pattern as a possible logical expression of its permacultural ambition: the \revealedword<2->{harmonyorchid}{harmony} between receiving and giving back.
+  The project also looks for this pattern inside logic, where ``permaculture'' is understood broadly as the two-step process of (1) getting to know one's context as much as possible, (2) acting minimally in a manner that will enhance one's condition while preserving and enriching the context. A proof may begin with a provisional assumption (borrow), derive a conclusion (work), and turn the derivation into a conditional statement that later proofs can use (return) or start afresh from \revealedwordwithpunctuation<3->{replayolive}{(}{replay}{).} Hoapa investigates this borrow–work–replay pattern as a possible logical expression of its permacultural ambition: the \revealedword<2->{harmonyorchid}{harmony} between receiving and giving back.
 
   \medskip
   \begin{itemize}
@@ -652,7 +652,7 @@
   In all of this, each protocol is both an agent and a recipient of \revealedwordwithpunctuation<2->{careterracotta}{}{care}{,} as a concrete ecosystem as well as an abstract community of participants.
 
   \begin{itemize}
-    \item<2-> \markedword{careterracotta}{Care}: Hoapa’s generalization of attachment theory into a two-step cyclic algorithm
+    \item<2-> \markedword{careterracotta}{Care}: Hoapa’s generalization of attachment theory (biology, psychology) into a two-step cyclic algorithm
       \begin{enumerate}
         \item<3-> In a given network, the evolution toward maturity of newer elements is taken care of by the mature elements already present in the network
         \item<4-> In turn, those newer elements become mature and take care of a new generation of elements
@@ -693,7 +693,7 @@
   \revealedfirstword<2->{hoapaviolet}{Perspectivism} motivates this ambition; \revealedword<3->{presuppositionlessnessteal}{presuppositionlessness} guides the response. The world has already produced different beings, experiences, skills, and ways of understanding. Their contributions must be able to enter the inquiry without their worth being decided in advance by a hierarchy or an established division of knowledge. What the world has already developed becomes material for collective work; what that work will produce remains open.
 
   \begin{itemize}
-    \item<2-> \markedword{hoapaviolet}{Perspectivism}: global understanding assembled from local views, with obstructions to their integration retained as information
+    \item<2-> \markedword{hoapaviolet}{Perspectivism}: global understanding is assembled from local views, with obstructions to their integration retained as information
     \item<3-> \markedword{presuppositionlessnessteal}{Presuppositionlessness}: applied to protocols, a principle saying we need common rules, open rules with equally distributed power to revise them, and only the rules needed to make communication possible
   \end{itemize}
 \end{frame}
@@ -710,8 +710,8 @@
   Each piece of this structure is meant to carry one of the project's concepts: \revealedwordwithpunctuation<2->{complexityazure}{}{$F$}{,} \revealedwordwithpunctuation<3->{emergencecoral}{}{$G$}{,} the unit \revealedword<4->{praxispurple}{$\eta$} and the counit \revealedwordwithpunctuation<5->{anthropiclosspink}{}{$\varepsilon$}{.}
 
   \begin{itemize}
-    \item<2-> \markedword{complexityazure}{$F$}: Complexity, what the organized work a context allows
-    \item<3-> \markedword{emergencecoral}{$G$}: Evolution, how work acquires a contextual presentation through which its achievements can enter further development
+    \item<2-> \markedword{complexityazure}{$F$}: Complexity, the organized work a context allows
+    \item<3-> \markedword{emergencecoral}{$G$}: Evolution, what organized inquiry produces can become part of the conditions under which further inquiry takes place
     \item<4-> \markedword{praxispurple}{$\eta$}: Praxis, the general opening; how a piece of work $w\colon Fc\to i$ realizes it in particular, and its transpose $G(w)\circ\eta_c\colon c\to Gi$ returns the work in contextual form
     \item<5-> \markedword{anthropiclosspink}{$\varepsilon$}: Anthropic loss, the possible failure of the reconstruction map $\varepsilon_i\colon FGi\to i$ to be invertible
   \end{itemize}
@@ -825,6 +825,39 @@
     \item<1-> \markedword{emergencecoral}{Renewal}: preserve declared earlier uses and make a genuinely new operation available.
     \item<1-> \markedword{permaculturegreen}{Conditions of activity}: reusable results still depend on people, skills, records, tools, and material support.
   \end{itemize}
+\end{frame}
+
+% Part 4: the conclusion, read as written, without commentary. As in the use
+% cases, each paragraph is its own click. Two slides: the text is too long for
+% one at the slides' type size.
+\startsection{4}
+
+\begin{frame}[t,label=talksection4]{Conclusion}
+  \paragraphtitle{Conclusion}
+  \balancedstart
+  To me, Hoapa is a theory of everywhere: the humble counterpart to a theory of everything.
+
+  \begin{uncoverenv}<2->
+    \textit{Hoapa} means ``everywhere'', in the sense of every domain, in Khoekhoegowab, a Khoe language spoken in Namibia, Botswana and South Africa.
+  \end{uncoverenv}
+
+  \begin{uncoverenv}<3->
+    The egalitarian societies of Africa, such as the San and the Hadza, can be seen as the first human implementers of Hoapa systems.
+  \end{uncoverenv}
+
+  \begin{uncoverenv}<4->
+    The debate about human nature, a nature Hoapa trusts, turns on how we view the Paleolithic, our deep past: as violent and brutish, or as complex and social. The contrast echoes the one between selection and adaptation.
+  \end{uncoverenv}
+\end{frame}
+
+\begin{frame}[t]{Conclusion}
+  \paragraphtitle{Conclusion}
+  \balancedstart
+  Inquiry in universities shows the same structure across many disciplines: two camps, a ``mainstream'' and its ``rebels''. The mainstream reduces Nature's complexity and robs Her of what makes Her trustworthy. (That trust is then quietly transferred to structures of control: hierarchies, capitalism, and ``reason'' as understood from Galton to Dawkins.) The rebels form a holistic camp, which offers a fuller picture, more adequate to understand our own adaptation.
+
+  \begin{uncoverenv}<2->
+    Hoapa would give these movements a chance to federate and to find strength in numbers, through a broad base of support in citizen science. Together, they could do justice to the complexity of Nature. We hope this would also bring peace to our relationship with Her and to our relationships with one another, and end the systematic exploitation of Nature and of ourselves.
+  \end{uncoverenv}
 \end{frame}
 
 \end{document}

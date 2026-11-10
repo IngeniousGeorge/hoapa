@@ -927,3 +927,12 @@ B. Room for improvement
    That shows why these are connected conversations rather than merely institutions linked in a diagram. It also realizes the point you’ve reserved in the notes: the additional discipline begins to pay off through reuse across the network.
 
 The script is about 2,400 words, including roughly 1,500 for the use cases. Your ten-minute estimate for those cases is plausible; the full written text is around seventeen to twenty minutes before slide commentary. I would keep the overall structure and spend the revision effort on the claims above, especially open source, Care, and the boundary between communication and action.
+
+### Conclusion
+
+- Hoapa means everywhere in (see details in presentation_of_hoapa file)
+- African egalitarianism as first implementers of Hoapa systems
+- Theory of everywhere, the humble counterpart to a theory of everything
+- the debate about human nature (which Hoapa trusts) finds a crucial pivot with how we view the Paleolithic: violent and brutish or complex and social (echoes selection vs. adaptation)
+- invariant in the structure of inquiry in universities: there are two camps, "mainstream" and "rebels", where the mainstream reduces Nature's complexity and robs Her of what makes it trustworthy (trust that is then implicitely realocated in control structures: hierarchies, captitalism, "reason": from Galton to Dawkins) and a holisitic camp which gives the full/adequate picture 
+- Hoapa would give a chance for those movements to federate, and "rendre justice à la complexité de la Nature", and hopefully "apaiser notre relation à elle, nos relations entre humains, et arreter son et notre exploitation systematique"
